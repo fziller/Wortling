@@ -91,7 +91,7 @@ export default function HomeScreen() {
                   <Text style={styles.cardText}>{game.shortDescription}</Text>
                   <Link href={game.route as never} asChild>
                     <AppButton
-                      label={status === "playing" ? "Weiterspielen" : "Spielen"}
+                      label={status === "playing" ? "Weiterspielen" : status ? "Öffnen" : "Spielen"}
                       onPress={() => undefined}
                     />
                   </Link>

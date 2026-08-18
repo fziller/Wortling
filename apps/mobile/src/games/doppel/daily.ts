@@ -11,3 +11,10 @@ export function createDailyDoppelGame(date = new Date()) {
 
   return { dateKey, puzzle, state: createDoppelState(puzzle) };
 }
+
+export function createPracticeDoppelGame(previousPuzzleId?: string) {
+  const options = doppelPuzzles.filter((puzzle) => puzzle.id !== previousPuzzleId);
+  const puzzle = options[Math.floor(Math.random() * options.length)] ?? doppelPuzzles[0];
+
+  return { dateKey: "Freies Spiel", puzzle, state: createDoppelState(puzzle) };
+}

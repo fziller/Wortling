@@ -3,9 +3,11 @@ import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text
 import { useRouter } from "expo-router";
 
 import { AppButton } from "@/components/AppButton";
+import { HelpButton, HelpModal } from "@/components/HelpModal";
 import { Screen } from "@/components/Screen";
 import { tokens } from "@/design/tokens";
-import { createDailyDoppelGame } from "@/games/doppel/daily";
+import { gameHelp } from "@/games/help";
+import { createDailyDoppelGame, createPracticeDoppelGame } from "@/games/doppel/daily";
 import { revealDoppelSolution, submitDoppelGuess, unlockDoppelHint } from "@/games/doppel/engine";
 import { DoppelHint, DoppelState } from "@/games/doppel/types";
 import { loadProgress, saveProgress } from "@/storage/progress";
@@ -22,10 +24,12 @@ function hintText(hint: DoppelHint): string {
 
 export default function DoppelScreen() {
   const router = useRouter();
-  const { dateKey, puzzle } = dailyGame;
-  const [state, setState] = useState<DoppelState>(dailyGame.state);
+  const [game, setGame] = useState(dailyGame);
+  const { dateKey, puzzle } = game;
+  const [state, setState] = useState<DoppelState>(game.state);
   const [input, setInput] = useState("");
   const [message, setMessage] = useState("Finde ein Wort, das beide Seiten verbindet.");
+  const [helpVisible, setHelpVisible] = useState(false);
 
   useEffect(() => {
     loadProgress<DoppelState>("doppel", dateKey).then((progress) => {
@@ -70,6 +74,15 @@ export default function DoppelScreen() {
     setMessage("Lösung aufgedeckt.");
   }
 
+  function startNextGame() {
+    const nextGame = createPracticeDoppelGame(puzzle.id);
+
+    setGame(nextGame);
+    setState(nextGame.state);
+    setInput("");
+    setMessage("Finde ein Wort, das beide Seiten verbindet.");
+  }
+
   return (
     <Screen>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={styles.wrap}>
@@ -78,10 +91,11 @@ export default function DoppelScreen() {
             <Pressable accessibilityRole="button" onPress={() => router.replace("/")} style={styles.backButton}>
               <Text style={styles.backText}>←</Text>
             </Pressable>
-            <View>
+            <View style={styles.titleBlock}>
               <Text style={styles.date}>{dateKey}</Text>
-              <Text style={styles.title}>Doppel</Text>
+              <Text adjustsFontSizeToFit numberOfLines={1} style={styles.title}>Doppel</Text>
             </View>
+            <HelpButton onPress={() => setHelpVisible(true)} />
           </View>
 
           <View style={styles.card}>
@@ -126,11 +140,18 @@ export default function DoppelScreen() {
           )}
 
           <View style={styles.actions}>
-            <AppButton disabled={state.status !== "playing"} label="Hinweis" onPress={hint} />
-            <AppButton disabled={state.status !== "playing"} label="Lösung zeigen" onPress={reveal} />
+            {state.status === "playing" ? (
+              <>
+                <AppButton label="Hinweis" onPress={hint} />
+                <AppButton label="Lösung zeigen" onPress={reveal} />
+              </>
+            ) : (
+              <AppButton label="Neues Spiel" onPress={startNextGame} />
+            )}
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
+      <HelpModal {...gameHelp.doppel} onClose={() => setHelpVisible(false)} visible={helpVisible} />
     </Screen>
   );
 }
@@ -139,6 +160,7 @@ const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.lg },
   scrollContent: { gap: tokens.space.lg, paddingBottom: tokens.space.xl },
   header: { flexDirection: "row", alignItems: "center", gap: tokens.space.md, paddingTop: tokens.space.lg },
+  titleBlock: { flex: 1, minWidth: 0 },
   backButton: { width: 44, height: 44, alignItems: "center", justifyContent: "center", borderRadius: tokens.radius.pill, backgroundColor: tokens.color.card },
   backText: { color: tokens.color.ink, fontSize: 28, fontWeight: "900" },
   date: { color: tokens.color.primaryDark, fontSize: tokens.type.small, fontWeight: "900" },

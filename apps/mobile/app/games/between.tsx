@@ -14,8 +14,10 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { AppButton } from "@/components/AppButton";
+import { HelpButton, HelpModal } from "@/components/HelpModal";
 import { Screen } from "@/components/Screen";
 import { tokens } from "@/design/tokens";
+import { gameHelp } from "@/games/help";
 import { allowedGuessCount, targetWordCount } from "@/games/between/content";
 import { createDailyBetweenGame, createPracticeBetweenGame } from "@/games/between/daily";
 import { abandonGame, getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
@@ -44,6 +46,7 @@ export default function BetweenScreen() {
   const [dateKey, setDateKey] = useState(dailyGame.dateKey);
   const [input, setInput] = useState("");
   const [modal, setModal] = useState<"cancel" | "reveal" | null>(null);
+  const [helpVisible, setHelpVisible] = useState(false);
   const [successVisible, setSuccessVisible] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
@@ -160,12 +163,13 @@ export default function BetweenScreen() {
               <Text style={styles.title}>Dazwischen</Text>
             </View>
             <View style={styles.headerActions}>
-              <Pressable accessibilityRole="button" onPress={() => setModal("cancel")} style={styles.ghostButton}>
-                <Text style={styles.ghostButtonText}>Abbrechen</Text>
+              <Pressable accessibilityRole="button" onPress={state.status === "playing" ? () => setModal("cancel") : startNextWord} style={styles.ghostButton}>
+                <Text style={styles.ghostButtonText}>{state.status === "playing" ? "Abbrechen" : "Neues Wort"}</Text>
               </Pressable>
               <Pressable accessibilityRole="button" disabled={state.status !== "playing"} onPress={() => setModal("reveal")} style={[styles.ghostButton, state.status !== "playing" && styles.disabledAction]}>
                 <Text style={styles.ghostButtonText}>Lösen</Text>
               </Pressable>
+              <HelpButton onPress={() => setHelpVisible(true)} />
             </View>
           </View>
           <Text style={styles.rules}>Grenze das Zielwort alphabetisch ein.</Text>
@@ -245,6 +249,7 @@ export default function BetweenScreen() {
         title="Runde abbrechen?"
         visible={modal === "cancel"}
       />
+      <HelpModal {...gameHelp.between} onClose={() => setHelpVisible(false)} visible={helpVisible} />
       <ConfirmModal
         confirmLabel="Lösung zeigen"
         message="Die Runde wird beendet und nicht als gewonnen gewertet."

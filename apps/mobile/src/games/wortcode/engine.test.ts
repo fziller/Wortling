@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { WORTCODE_MAX_ATTEMPTS, WORTCODE_WORD_LENGTH, guessWords } from "./content";
-import { createWortcodeState, evaluateGuess, submitWortcodeGuess } from "./engine";
+import { createWortcodeState, evaluateGuess, submitWortcodeGuess, toggleWortcodeLetterMark } from "./engine";
 import { WortcodePuzzle } from "./types";
 
 const puzzle: WortcodePuzzle = {
@@ -48,5 +48,18 @@ describe("wortcode engine", () => {
 
   it("keeps curated guesses at the configured length", () => {
     expect(guessWords.every((word) => Array.from(word).length === WORTCODE_WORD_LENGTH)).toBe(true);
+  });
+
+  it("toggles manual letter marks without changing scoring", () => {
+    const guessed = submitWortcodeGuess(puzzle, createWortcodeState(puzzle), "ananas").state;
+    const included = toggleWortcodeLetterMark(guessed, 0, 1);
+    const exact = toggleWortcodeLetterMark(included, 0, 1);
+    const cleared = toggleWortcodeLetterMark(exact, 0, 1);
+
+    expect(included.guesses[0].marks?.[1]).toBe("included");
+    expect(exact.guesses[0].marks?.[1]).toBe("exact");
+    expect(cleared.guesses[0].marks?.[1]).toBe("none");
+    expect(cleared.guesses[0].exactMatches).toBe(0);
+    expect(toggleWortcodeLetterMark(cleared, 99, 0)).toBe(cleared);
   });
 });

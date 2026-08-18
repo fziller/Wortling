@@ -1,5 +1,7 @@
 import type { GameStatus } from "@/games/types";
 
+export type WortcodeLetterMark = "none" | "included" | "exact";
+
 export type WortcodePuzzle = {
   id: string;
   version: number;
@@ -13,6 +15,7 @@ export type WortcodeGuess = {
   value: string;
   exactMatches: number;
   misplacedMatches: number;
+  marks?: WortcodeLetterMark[];
 };
 
 export type WortcodeState = {

@@ -1,5 +1,5 @@
 import { guessWords } from "./content";
-import { WortcodePuzzle, WortcodeState, WortcodeSubmitResult } from "./types";
+import { WortcodeLetterMark, WortcodePuzzle, WortcodeState, WortcodeSubmitResult } from "./types";
 
 const allowedGuesses = new Set(guessWords);
 
@@ -75,4 +75,25 @@ export function submitWortcodeGuess(puzzle: WortcodePuzzle, state: WortcodeState
   const lost = !won && state.guesses.length + 1 >= puzzle.maxAttempts;
 
   return { ok: true, guess, state: { ...state, guesses: [...state.guesses, guess], status: won ? "won" : lost ? "lost" : "playing" } };
+}
+
+export function toggleWortcodeLetterMark(state: WortcodeState, guessIndex: number, letterIndex: number): WortcodeState {
+  const guess = state.guesses[guessIndex];
+  const letters = guess ? Array.from(guess.value) : [];
+
+  if (!guess || letterIndex < 0 || letterIndex >= letters.length) {
+    return state;
+  }
+
+  const marks = Array.from({ length: letters.length }, (_, index) => guess.marks?.[index] ?? "none" as WortcodeLetterMark);
+  marks[letterIndex] = marks[letterIndex] === "none" ? "included" : marks[letterIndex] === "included" ? "exact" : "none";
+
+  return {
+    ...state,
+    guesses: state.guesses.map((item, index) => index === guessIndex ? { ...item, marks } : item)
+  };
+}
+
+export function revealWortcodeSolution(state: WortcodeState): WortcodeState {
+  return { ...state, status: "revealed" };
 }
