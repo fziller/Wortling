@@ -15,3 +15,14 @@ export function createDailyBetweenGame(date = new Date()) {
     state: createBetweenState(targetWord)
   };
 }
+
+export function createPracticeBetweenGame(previousTarget?: string) {
+  const options = targetWords.filter((word) => word !== previousTarget);
+  const targetWord = options[Math.floor(Math.random() * options.length)] ?? targetWords[0];
+
+  return {
+    dateKey: "Freies Spiel",
+    contentVersion: CONTENT_VERSION,
+    state: createBetweenState(targetWord)
+  };
+}

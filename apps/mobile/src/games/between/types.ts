@@ -3,9 +3,10 @@ export type GuessDirection = "before" | "after" | "hit";
 export type Guess = {
   word: string;
   direction: GuessDirection;
+  percent: number;
 };
 
-export type GameStatus = "playing" | "won";
+export type GameStatus = "playing" | "won" | "revealed" | "abandoned";
 
 export type BetweenState = {
   targetWord: string;

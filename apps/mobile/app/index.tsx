@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 
 import { AppCard } from "@/components/AppCard";
@@ -14,9 +14,18 @@ export default function HomeScreen() {
   return (
     <Screen>
       <Animated.View entering={FadeInUp.duration(tokens.motion.slow)} style={styles.hero}>
-        <Text style={styles.kicker}>Heute</Text>
-        <Text style={styles.title}>Wortling</Text>
-        <Text style={styles.subtitle}>Ein kurzes deutsches Wortraetsel. Kein Account, kein Kram.</Text>
+        <View style={styles.heroTop}>
+          <View>
+            <Text style={styles.kicker}>Heute</Text>
+            <Text style={styles.title}>Wortling</Text>
+          </View>
+          <Link href="/settings" asChild>
+            <Pressable accessibilityLabel="Open settings" accessibilityRole="button" style={styles.settingsButton}>
+              <Text style={styles.settingsButtonText}>⚙</Text>
+            </Pressable>
+          </Link>
+        </View>
+        <Text style={styles.subtitle}>Ein kurzes deutsches Worträtsel. Kein Account, kein Kram.</Text>
       </Animated.View>
 
       <Animated.View entering={FadeInDown.delay(120).duration(tokens.motion.slow)}>
@@ -28,9 +37,9 @@ export default function HomeScreen() {
           <Text style={styles.cardTitle}>{between.title}</Text>
           <Text style={styles.cardText}>{between.shortDescription}</Text>
           <View style={styles.rangePreview}>
-            <Text style={styles.rangeWord}>aaaaa</Text>
+            <Text style={styles.rangeWord}>AAAAA</Text>
             <View style={styles.rangeLine} />
-            <Text style={styles.rangeWord}>zzzzz</Text>
+            <Text style={styles.rangeWord}>ZZZZZ</Text>
           </View>
           <Link href={between.route} asChild>
             <AppButton label="Spiel starten" onPress={() => undefined} />
@@ -47,6 +56,28 @@ const styles = StyleSheet.create({
   hero: {
     paddingTop: tokens.space.xl,
     gap: tokens.space.sm
+  },
+  heroTop: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    gap: tokens.space.md
+  },
+  settingsButton: {
+    width: 44,
+    height: 44,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: tokens.color.line,
+    borderRadius: tokens.radius.pill,
+    backgroundColor: "rgba(255, 255, 255, 0.62)"
+  },
+  settingsButtonText: {
+    color: tokens.color.ink,
+    fontSize: 22,
+    fontWeight: "900",
+    lineHeight: 24
   },
   kicker: {
     color: tokens.color.primaryDark,

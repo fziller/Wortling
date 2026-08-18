@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { KeyboardAvoidingView, Modal, Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { useRouter } from "expo-router";
 import Animated, {
   FadeInDown,
   FadeInUp,
@@ -15,25 +16,70 @@ import Animated, {
 import { AppButton } from "@/components/AppButton";
 import { Screen } from "@/components/Screen";
 import { tokens } from "@/design/tokens";
-import { createDailyBetweenGame } from "@/games/between/daily";
-import { submitGuess } from "@/games/between/engine";
-import { BetweenState } from "@/games/between/types";
+import { allowedGuessCount, targetWordCount } from "@/games/between/content";
+import { createDailyBetweenGame, createPracticeBetweenGame } from "@/games/between/daily";
+import { abandonGame, getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
+import { displayWord } from "@/games/between/format";
+import { BetweenState, Guess } from "@/games/between/types";
 
+const BOARD_LINE_HEIGHT = 176;
+const DOT_SIZE = 20;
+const DOT_MARGIN = 4;
 const dailyGame = createDailyBetweenGame();
 
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
+}
+
+function formatElapsedTime(seconds: number): string {
+  const minutes = Math.floor(seconds / 60);
+  const rest = seconds % 60;
+
+  return minutes > 0 ? `${minutes}:${String(rest).padStart(2, "0")}` : `${rest} Sek.`;
+}
+
 export default function BetweenScreen() {
+  const router = useRouter();
   const [state, setState] = useState<BetweenState>(dailyGame.state);
+  const [dateKey, setDateKey] = useState(dailyGame.dateKey);
   const [input, setInput] = useState("");
-  const [message, setMessage] = useState("Rate ein deutsches Wort mit 5 Buchstaben.");
+  const [modal, setModal] = useState<"cancel" | "reveal" | null>(null);
+  const [successVisible, setSuccessVisible] = useState(false);
+  const [startedAt, setStartedAt] = useState(() => Date.now());
+  const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const shake = useSharedValue(0);
   const winGlow = useSharedValue(0);
+  const markerOpacity = useSharedValue(1);
+  const markerY = useSharedValue(BOARD_LINE_HEIGHT / 2);
+  const markerNudge = useSharedValue(0);
+
+  const lastGuess = state.guesses[state.guesses.length - 1] as Guess | undefined;
+  const rangeMetrics = getTargetRangeMetrics(state);
+  const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
+  const centerWord = state.status === "revealed" ? state.targetWord : lastGuess?.word;
+  const showScaleHints = Boolean(lastGuess);
 
   const sortedGuesses = useMemo(() => {
     return [...state.guesses].reverse();
   }, [state.guesses]);
 
   useEffect(() => {
+    const rawY = (rangeMetrics.targetPositionPercent / 100) * BOARD_LINE_HEIGHT;
+    const nextY = clamp(rawY, DOT_MARGIN, BOARD_LINE_HEIGHT - DOT_SIZE - DOT_MARGIN);
+    const nudge = lastGuess?.direction === "before" ? -10 : lastGuess?.direction === "after" ? 10 : 0;
+
+    markerOpacity.value = withTiming(1, { duration: tokens.motion.quick });
+    markerY.value = withSpring(nextY, { damping: 15, stiffness: 120 });
+    markerNudge.value = withSequence(
+      withTiming(nudge, { duration: tokens.motion.normal }),
+      withSpring(0, { damping: 9, stiffness: 80 })
+    );
+  }, [lastGuess, markerNudge, markerOpacity, markerY, rangeMetrics.targetPositionPercent]);
+
+  useEffect(() => {
     if (state.status === "won") {
+      setFinishedAt((current) => current ?? Date.now());
+      setSuccessVisible(true);
       winGlow.value = withSequence(
         withTiming(1, { duration: tokens.motion.normal }),
         withSpring(0.35, { damping: 8, stiffness: 90 })
@@ -50,8 +96,12 @@ export default function BetweenScreen() {
     transform: [{ scale: 1 + winGlow.value * 0.025 }]
   }));
 
-  function fail(reason: string) {
-    setMessage(reason);
+  const markerStyle = useAnimatedStyle(() => ({
+    opacity: markerOpacity.value,
+    transform: [{ translateY: markerY.value + markerNudge.value }]
+  }));
+
+  function fail() {
     shake.value = withSequence(
       withTiming(-10, { duration: 45 }),
       withTiming(10, { duration: 70 }),
@@ -64,56 +114,105 @@ export default function BetweenScreen() {
     const result = submitGuess(state, input);
 
     if (!result.ok) {
-      fail(result.reason);
+      fail();
       return;
     }
 
     setState(result.state);
     setInput("");
 
-    if (result.guess.direction === "hit") {
-      setMessage(`Treffer. ${result.guess.word.toUpperCase()} war das Wort.`);
-    } else if (result.guess.direction === "after") {
-      setMessage(`Das Ziel liegt nach ${result.guess.word.toUpperCase()}.`);
-    } else {
-      setMessage(`Das Ziel liegt vor ${result.guess.word.toUpperCase()}.`);
-    }
+  }
+
+  function startNextWord() {
+    const nextGame = createPracticeBetweenGame(state.targetWord);
+
+    setState(nextGame.state);
+    setDateKey(nextGame.dateKey);
+    setInput("");
+    setModal(null);
+    setSuccessVisible(false);
+    setStartedAt(Date.now());
+    setFinishedAt(null);
+    markerOpacity.value = 1;
+    markerY.value = BOARD_LINE_HEIGHT / 2;
+    markerNudge.value = 0;
+    winGlow.value = 0;
+  }
+
+  function cancelRound() {
+    setState(abandonGame(state));
+    setModal(null);
+    router.replace("/");
+  }
+
+  function revealRound() {
+    setState(revealSolution(state));
+    setModal(null);
   }
 
   return (
     <Screen>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={styles.keyboard}>
         <Animated.View entering={FadeInUp.duration(tokens.motion.normal)} style={styles.header}>
-          <Text style={styles.date}>{dailyGame.dateKey}</Text>
-          <Text style={styles.title}>Dazwischen</Text>
-          <Text style={styles.rules}>Finde das Zielwort. Jeder Tipp sagt dir, ob es alphabetisch davor oder danach liegt.</Text>
+          <View style={styles.headerTop}>
+            <View>
+              <Text style={styles.date}>{dateKey}</Text>
+              <Text style={styles.title}>Dazwischen</Text>
+            </View>
+            <View style={styles.headerActions}>
+              <Pressable accessibilityRole="button" onPress={() => setModal("cancel")} style={styles.ghostButton}>
+                <Text style={styles.ghostButtonText}>Abbrechen</Text>
+              </Pressable>
+              <Pressable accessibilityRole="button" disabled={state.status !== "playing"} onPress={() => setModal("reveal")} style={[styles.ghostButton, state.status !== "playing" && styles.disabledAction]}>
+                <Text style={styles.ghostButtonText}>Lösen</Text>
+              </Pressable>
+            </View>
+          </View>
+          <Text style={styles.rules}>Grenze das Zielwort alphabetisch ein.</Text>
+          <Text style={styles.wordStats}>{allowedGuessCount} gültige Wörter · {targetWordCount} Zielwörter</Text>
         </Animated.View>
 
-        <Animated.View entering={FadeInDown.delay(80)} layout={LinearTransition.springify()} style={[styles.rangeCard, glowStyle]}>
-          <View style={styles.boundRow}>
-            <Text style={styles.boundLabel}>nach</Text>
-            <Text style={styles.boundWord}>{state.lowerBound}</Text>
+        <Animated.View entering={FadeInDown.delay(80)} layout={LinearTransition.springify()} style={[styles.boardCard, glowStyle]}>
+          <View style={styles.rangeStats}>
+            <Text style={styles.statText}>{state.guesses.length} Tipps</Text>
           </View>
-          <View style={styles.track}>
-            <View style={styles.trackDot} />
-            <View style={styles.trackLine} />
-            <View style={[styles.trackDot, styles.trackDotEnd]} />
+
+          <View style={styles.boardWrap}>
+            <View style={styles.sideRail}>
+              {showScaleHints ? (
+                <View style={[styles.distanceBubble, styles.distanceBubbleTop]}>
+                  <Text style={styles.distanceText}>{rangeMetrics.topDistancePercent}%</Text>
+                </View>
+              ) : null}
+              <View style={styles.boardLine}>
+                {showScaleHints ? <Animated.View style={[styles.orangeDot, markerStyle]} /> : null}
+              </View>
+              {showScaleHints ? (
+                <View style={[styles.distanceBubble, styles.distanceBubbleBottom]}>
+                  <Text style={styles.distanceText}>{rangeMetrics.bottomDistancePercent}%</Text>
+                </View>
+              ) : null}
+            </View>
+            <View style={styles.wordStack}>
+              <WordTiles dimmed={state.status === "revealed"} filled word={state.lowerBound} />
+              <WordTiles revealed={state.status === "revealed"} word={centerWord} />
+              <WordTiles dimmed={state.status === "revealed"} filled word={state.upperBound} />
+            </View>
           </View>
-          <View style={styles.boundRow}>
-            <Text style={styles.boundLabel}>vor</Text>
-            <Text style={styles.boundWord}>{state.upperBound}</Text>
-          </View>
+
+          <Text style={styles.alphabetLabel}>Offener Alphabetbereich</Text>
+          <AlphabetStrip lowerBound={state.lowerBound} upperBound={state.upperBound} />
         </Animated.View>
 
         <Animated.View style={[styles.inputCard, shakeStyle]}>
           <TextInput
-            autoCapitalize="none"
+            autoCapitalize="characters"
             autoCorrect={false}
             editable={state.status === "playing"}
             maxLength={5}
             onChangeText={setInput}
             onSubmitEditing={guess}
-            placeholder="wort"
+            placeholder="WORT"
             placeholderTextColor="#B09E8B"
             returnKeyType="done"
             style={styles.input}
@@ -122,12 +221,13 @@ export default function BetweenScreen() {
           <AppButton disabled={input.length < 5 || state.status !== "playing"} label="Tippen" onPress={guess} />
         </Animated.View>
 
-        <Text accessibilityLiveRegion="polite" style={styles.message}>{message}</Text>
-
         <View style={styles.history}>
           {sortedGuesses.map((item) => (
             <Animated.View entering={SlideInRight.springify().damping(14)} key={item.word} layout={LinearTransition.springify()} style={styles.guessRow}>
-              <Text style={styles.guessWord}>{item.word}</Text>
+              <View>
+                <Text style={styles.guessWord}>{displayWord(item.word)}</Text>
+                <Text style={styles.guessPercent}>{item.percent}%</Text>
+              </View>
               <Text style={[styles.guessHint, item.direction === "hit" && styles.hit]}>
                 {item.direction === "hit" ? "Treffer" : item.direction === "after" ? "Ziel danach" : "Ziel davor"}
               </Text>
@@ -135,23 +235,194 @@ export default function BetweenScreen() {
           ))}
         </View>
 
-        {state.status === "won" ? (
-          <Pressable accessibilityRole="button" onPress={() => setState(createDailyBetweenGame().state)} style={styles.reset}>
-            <Text style={styles.resetText}>Nochmal testen</Text>
-          </Pressable>
-        ) : null}
       </KeyboardAvoidingView>
+
+      <ConfirmModal
+        confirmLabel="Abbrechen"
+        message="Dein Fortschritt in dieser Runde geht verloren."
+        onCancel={() => setModal(null)}
+        onConfirm={cancelRound}
+        title="Runde abbrechen?"
+        visible={modal === "cancel"}
+      />
+      <ConfirmModal
+        confirmLabel="Lösung zeigen"
+        message="Die Runde wird beendet und nicht als gewonnen gewertet."
+        onCancel={() => setModal(null)}
+        onConfirm={revealRound}
+        title="Lösung anzeigen?"
+        visible={modal === "reveal"}
+      />
+      <SuccessModal
+        elapsedSeconds={elapsedSeconds}
+        guesses={state.guesses.length}
+        onHome={() => router.replace("/")}
+        onNext={startNextWord}
+        targetWord={state.targetWord}
+        visible={successVisible}
+      />
     </Screen>
+  );
+}
+
+type ConfirmModalProps = {
+  visible: boolean;
+  title: string;
+  message: string;
+  confirmLabel: string;
+  onCancel: () => void;
+  onConfirm: () => void;
+};
+
+type WordTilesProps = {
+  word?: string;
+  filled?: boolean;
+  dimmed?: boolean;
+  revealed?: boolean;
+};
+
+function WordTiles({ word, filled = false, dimmed = false, revealed = false }: WordTilesProps) {
+  const letters = word ? Array.from(displayWord(word)) : Array.from({ length: 5 }, () => "");
+
+  return (
+    <View style={styles.tileRow}>
+      {letters.map((letter, index) => (
+        <Animated.View
+          entering={FadeInDown.delay(index * 35).duration(tokens.motion.quick)}
+          key={`${letter}-${index}`}
+          layout={LinearTransition.springify().damping(16)}
+          style={[
+            styles.wordTile,
+            filled ? styles.wordTileFilled : styles.wordTileEmpty,
+            revealed && styles.wordTileRevealed,
+            dimmed && styles.wordTileDimmed
+          ]}
+        >
+          <Text style={[styles.wordTileText, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty]}>{letter}</Text>
+        </Animated.View>
+      ))}
+    </View>
+  );
+}
+
+type AlphabetStripProps = {
+  lowerBound: string;
+  upperBound: string;
+};
+
+function AlphabetStrip({ lowerBound, upperBound }: AlphabetStripProps) {
+  const firstOpenLetter = lowerBound[0]?.toLocaleUpperCase("de-DE") ?? "A";
+  const lastOpenLetter = upperBound[0]?.toLocaleUpperCase("de-DE") ?? "Z";
+
+  return (
+    <View style={styles.alphabetStrip}>
+      {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => {
+        const isAvailable = letter >= firstOpenLetter && letter <= lastOpenLetter;
+
+        return (
+          <Text key={letter} style={[styles.alphabetLetter, !isAvailable && styles.alphabetLetterDisabled]}>
+            {letter}
+          </Text>
+        );
+      })}
+    </View>
+  );
+}
+
+function ConfirmModal({ visible, title, message, confirmLabel, onCancel, onConfirm }: ConfirmModalProps) {
+  return (
+    <Modal animationType="fade" onRequestClose={onCancel} transparent visible={visible}>
+      <View style={styles.modalBackdrop}>
+        <Animated.View entering={FadeInDown.duration(tokens.motion.normal)} style={styles.modalCard}>
+          <Text style={styles.modalTitle}>{title}</Text>
+          <Text style={styles.modalMessage}>{message}</Text>
+          <View style={styles.modalActions}>
+            <Pressable accessibilityRole="button" onPress={onCancel} style={[styles.modalButton, styles.modalButtonSecondary]}>
+              <Text style={styles.modalButtonSecondaryText}>Weiterspielen</Text>
+            </Pressable>
+            <Pressable accessibilityRole="button" onPress={onConfirm} style={[styles.modalButton, styles.modalButtonPrimary]}>
+              <Text style={styles.modalButtonPrimaryText}>{confirmLabel}</Text>
+            </Pressable>
+          </View>
+        </Animated.View>
+      </View>
+    </Modal>
+  );
+}
+
+type SuccessModalProps = {
+  visible: boolean;
+  targetWord: string;
+  guesses: number;
+  elapsedSeconds: number;
+  onNext: () => void;
+  onHome: () => void;
+};
+
+function SuccessModal({ visible, targetWord, guesses, elapsedSeconds, onNext, onHome }: SuccessModalProps) {
+  return (
+    <Modal animationType="fade" transparent visible={visible}>
+      <View style={styles.modalBackdrop}>
+        <Animated.View entering={FadeInDown.duration(tokens.motion.normal)} style={styles.modalCard}>
+          <Text style={styles.successKicker}>Gelöst</Text>
+          <Text style={styles.successWord}>{displayWord(targetWord)}</Text>
+          <View style={styles.resultGrid}>
+            <View style={styles.resultTile}>
+              <Text style={styles.resultValue}>{guesses}</Text>
+              <Text style={styles.resultLabel}>Versuche</Text>
+            </View>
+            <View style={styles.resultTile}>
+              <Text style={styles.resultValue}>{formatElapsedTime(elapsedSeconds)}</Text>
+              <Text style={styles.resultLabel}>Zeit</Text>
+            </View>
+          </View>
+          <View style={styles.modalActions}>
+            <Pressable accessibilityRole="button" onPress={onHome} style={[styles.modalButton, styles.modalButtonSecondary]}>
+              <Text style={styles.modalButtonSecondaryText}>Startseite</Text>
+            </Pressable>
+            <Pressable accessibilityRole="button" onPress={onNext} style={[styles.modalButton, styles.modalButtonPrimary]}>
+              <Text style={styles.modalButtonPrimaryText}>Weiteres Wort</Text>
+            </Pressable>
+          </View>
+        </Animated.View>
+      </View>
+    </Modal>
   );
 }
 
 const styles = StyleSheet.create({
   keyboard: {
     flex: 1,
-    gap: tokens.space.lg
+    gap: tokens.space.md
   },
   header: {
     gap: tokens.space.sm
+  },
+  headerTop: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    gap: tokens.space.md
+  },
+  headerActions: {
+    gap: tokens.space.xs
+  },
+  ghostButton: {
+    alignItems: "center",
+    paddingHorizontal: tokens.space.md,
+    paddingVertical: tokens.space.sm,
+    borderWidth: 1,
+    borderColor: tokens.color.line,
+    borderRadius: tokens.radius.pill,
+    backgroundColor: "rgba(255, 255, 255, 0.55)"
+  },
+  ghostButtonText: {
+    color: tokens.color.ink,
+    fontSize: tokens.type.small,
+    fontWeight: "900"
+  },
+  disabledAction: {
+    opacity: 0.4
   },
   date: {
     color: tokens.color.primaryDark,
@@ -166,10 +437,16 @@ const styles = StyleSheet.create({
   },
   rules: {
     color: tokens.color.muted,
-    fontSize: tokens.type.body,
-    lineHeight: 24
+    fontSize: tokens.type.small,
+    fontWeight: "800",
+    lineHeight: 19
   },
-  rangeCard: {
+  wordStats: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.small,
+    fontWeight: "900"
+  },
+  boardCard: {
     gap: tokens.space.md,
     padding: tokens.space.lg,
     borderRadius: tokens.radius.lg,
@@ -179,63 +456,136 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 12 },
     elevation: 4
   },
-  boundRow: {
+  rangeStats: {
     flexDirection: "row",
-    alignItems: "baseline",
-    justifyContent: "space-between"
+    justifyContent: "flex-end"
   },
-  boundLabel: {
+  statText: {
     color: tokens.color.muted,
     fontSize: tokens.type.small,
-    fontWeight: "900",
-    textTransform: "uppercase"
+    fontWeight: "900"
   },
-  boundWord: {
-    color: tokens.color.ink,
-    fontSize: 26,
-    fontWeight: "900",
-    letterSpacing: 2
-  },
-  track: {
+  boardWrap: {
     flexDirection: "row",
+    gap: tokens.space.md,
     alignItems: "center"
   },
-  trackDot: {
-    width: 18,
-    height: 18,
-    borderRadius: 9,
+  sideRail: {
+    width: 64,
+    height: BOARD_LINE_HEIGHT,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  distanceBubble: {
+    position: "absolute",
+    left: 0,
+    zIndex: 3,
+    minWidth: 46,
+    alignItems: "center",
+    paddingHorizontal: tokens.space.sm,
+    paddingVertical: 4,
+    borderRadius: tokens.radius.sm,
     backgroundColor: tokens.color.secondary
   },
-  trackDotEnd: {
-    backgroundColor: tokens.color.primary
+  distanceBubbleTop: {
+    top: -6
   },
-  trackLine: {
-    flex: 1,
-    height: 10,
+  distanceBubbleBottom: {
+    bottom: -6
+  },
+  distanceText: {
+    color: "white",
+    fontSize: tokens.type.small,
+    fontWeight: "900"
+  },
+  boardLine: {
+    width: 6,
+    height: BOARD_LINE_HEIGHT,
     borderRadius: tokens.radius.pill,
-    backgroundColor: "#D9E3FF"
+    backgroundColor: tokens.color.secondary
+  },
+  orangeDot: {
+    position: "absolute",
+    top: 0,
+    left: -7,
+    width: DOT_SIZE,
+    height: DOT_SIZE,
+    borderRadius: DOT_SIZE / 2,
+    backgroundColor: "#FF8500"
+  },
+  wordStack: {
+    flex: 1,
+    gap: tokens.space.sm
+  },
+  tileRow: {
+    flexDirection: "row",
+    gap: 6
+  },
+  wordTile: {
+    flex: 1,
+    aspectRatio: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  wordTileFilled: {
+    backgroundColor: tokens.color.secondary
+  },
+  wordTileRevealed: {
+    borderWidth: 0,
+    backgroundColor: tokens.color.success
+  },
+  wordTileDimmed: {
+    opacity: 0.28
+  },
+  wordTileEmpty: {
+    borderWidth: 2,
+    borderColor: "rgba(23, 19, 13, 0.62)",
+    backgroundColor: "rgba(255, 255, 255, 0.35)"
+  },
+  wordTileText: {
+    fontSize: 26,
+    fontWeight: "900"
+  },
+  wordTileTextFilled: {
+    color: "white"
+  },
+  wordTileTextEmpty: {
+    color: tokens.color.ink
+  },
+  alphabetLabel: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.small,
+    fontWeight: "900"
+  },
+  alphabetStrip: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 6
+  },
+  alphabetLetter: {
+    minWidth: 20,
+    color: tokens.color.secondary,
+    fontSize: tokens.type.small,
+    fontWeight: "900",
+    textAlign: "center"
+  },
+  alphabetLetterDisabled: {
+    color: "rgba(23, 19, 13, 0.22)"
   },
   inputCard: {
     gap: tokens.space.md
   },
   input: {
-    height: 70,
+    height: 64,
     borderWidth: 2,
     borderColor: tokens.color.line,
     borderRadius: tokens.radius.md,
     backgroundColor: "white",
     color: tokens.color.ink,
-    fontSize: 34,
+    fontSize: 32,
     fontWeight: "900",
     letterSpacing: 8,
     textAlign: "center"
-  },
-  message: {
-    minHeight: 46,
-    color: tokens.color.ink,
-    fontSize: tokens.type.body,
-    fontWeight: "800",
-    lineHeight: 23
   },
   history: {
     gap: tokens.space.sm
@@ -250,9 +600,14 @@ const styles = StyleSheet.create({
   },
   guessWord: {
     color: tokens.color.ink,
-    fontSize: 20,
+    fontSize: 19,
     fontWeight: "900",
     letterSpacing: 1.5
+  },
+  guessPercent: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.small,
+    fontWeight: "900"
   },
   guessHint: {
     color: tokens.color.secondary,
@@ -261,13 +616,89 @@ const styles = StyleSheet.create({
   hit: {
     color: tokens.color.success
   },
-  reset: {
-    alignItems: "center",
-    marginTop: "auto",
-    padding: tokens.space.md
+  modalBackdrop: {
+    flex: 1,
+    justifyContent: "center",
+    padding: tokens.space.lg,
+    backgroundColor: "rgba(23, 19, 13, 0.48)"
   },
-  resetText: {
-    color: tokens.color.primaryDark,
+  modalCard: {
+    gap: tokens.space.md,
+    padding: tokens.space.lg,
+    borderRadius: tokens.radius.lg,
+    backgroundColor: tokens.color.card
+  },
+  modalTitle: {
+    color: tokens.color.ink,
+    fontSize: tokens.type.h2,
+    fontWeight: "900"
+  },
+  modalMessage: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.body,
+    lineHeight: 24
+  },
+  modalActions: {
+    flexDirection: "row",
+    gap: tokens.space.sm,
+    marginTop: tokens.space.sm
+  },
+  modalButton: {
+    flex: 1,
+    minHeight: 52,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: tokens.radius.pill
+  },
+  modalButtonSecondary: {
+    borderWidth: 1,
+    borderColor: tokens.color.line,
+    backgroundColor: "white"
+  },
+  modalButtonPrimary: {
+    backgroundColor: tokens.color.primary
+  },
+  modalButtonSecondaryText: {
+    color: tokens.color.ink,
+    fontWeight: "900"
+  },
+  modalButtonPrimaryText: {
+    color: "white",
+    fontWeight: "900"
+  },
+  successKicker: {
+    color: tokens.color.success,
+    fontSize: tokens.type.small,
+    fontWeight: "900",
+    letterSpacing: 1.6,
+    textTransform: "uppercase"
+  },
+  successWord: {
+    color: tokens.color.ink,
+    fontSize: 42,
+    fontWeight: "900",
+    letterSpacing: 3,
+    textAlign: "center"
+  },
+  resultGrid: {
+    flexDirection: "row",
+    gap: tokens.space.sm
+  },
+  resultTile: {
+    flex: 1,
+    alignItems: "center",
+    padding: tokens.space.md,
+    borderRadius: tokens.radius.md,
+    backgroundColor: "rgba(36, 107, 254, 0.1)"
+  },
+  resultValue: {
+    color: tokens.color.ink,
+    fontSize: tokens.type.h2,
+    fontWeight: "900"
+  },
+  resultLabel: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.small,
     fontWeight: "900"
   }
 });

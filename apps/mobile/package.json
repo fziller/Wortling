@@ -8,6 +8,7 @@
     "ios": "expo run:ios",
     "android": "expo run:android",
     "web": "expo start --web",
+    "words:import": "node scripts/import-dwds-words.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
