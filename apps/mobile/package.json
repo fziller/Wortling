@@ -8,10 +8,14 @@
     "ios": "expo run:ios",
     "android": "expo run:android",
     "web": "expo start --web",
-    "words:import": "node scripts/import-dwds-words.mjs",
+    "words:import": "yarn words:import:5",
+    "words:import:5": "node scripts/import-dwds-words.mjs --length=5 --output=src/games/between/generated/allowedGuesses.ts",
+    "words:import:6": "node scripts/import-dwds-words.mjs --length=6 --output=src/games/wortcode/generated/allowedGuesses.ts",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "2.2.0",
     "expo": "~57.0.14",
     "expo-constants": "~57.0.12",
     "expo-dev-client": "~57.0.13",
@@ -34,6 +38,7 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.11"
   }
 }

@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     minHeight: 56,
     alignItems: "center",
     justifyContent: "center",
+    paddingHorizontal: tokens.space.lg,
     borderRadius: tokens.radius.pill,
     backgroundColor: tokens.color.primary,
     shadowColor: tokens.color.shadow,
@@ -49,6 +50,7 @@ const styles = StyleSheet.create({
   label: {
     color: "white",
     fontSize: 17,
-    fontWeight: "800"
+    fontWeight: "800",
+    textAlign: "center"
   }
 });
