@@ -22,6 +22,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "updates": {
+      "url": "https://expo.dev/projects/@fziller/wortling/updates",
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
     }
   }
 }
