@@ -7,8 +7,12 @@ import { PostHogProvider } from "posthog-react-native";
 
 import { initSentry } from "@/monitoring/sentry";
 import { posthogConfig } from "@/analytics/posthog";
+import { configureNotifications } from "@/notifications/configure";
+import { scheduleDailyReminder } from "@/notifications/scheduler";
 
 initSentry();
+configureNotifications();
+scheduleDailyReminder();
 
 function RootLayoutInner() {
   return (

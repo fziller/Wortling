@@ -8,18 +8,15 @@
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "app.wortling.mobile"
+      "bundleIdentifier": "com.existuus.wortling"
     },
     "android": {
-      "package": "app.wortling.mobile"
+      "package": "com.existuus.wortling"
     },
     "web": {
       "bundler": "metro"
     },
-    "plugins": [
-      "expo-router",
-      "expo-dev-client"
-    ],
+    "plugins": ["expo-router", "expo-dev-client", "expo-notifications"],
     "experiments": {
       "typedRoutes": true
     },
