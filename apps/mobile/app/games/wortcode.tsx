@@ -7,10 +7,12 @@ import { HelpButton, HelpModal } from "@/components/HelpModal";
 import { Screen } from "@/components/Screen";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
+import { games } from "@/games/registry";
 import { createDailyWortcodeGame, createPracticeWortcodeGame } from "@/games/wortcode/daily";
 import { revealWortcodeSolution, submitWortcodeGuess, toggleWortcodeLetterMark } from "@/games/wortcode/engine";
 import { WortcodeLetterMark, WortcodeState } from "@/games/wortcode/types";
-import { loadProgress, saveProgress } from "@/storage/progress";
+import { loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { updateBadgeCount } from "@/notifications/badge";
 
 const dailyGame = createDailyWortcodeGame();
 
@@ -42,6 +44,12 @@ export default function WortcodeScreen() {
       completedAt: state.status !== "playing" ? new Date().toISOString() : undefined
     });
   }, [dateKey, puzzle.id, puzzle.version, state]);
+
+  useEffect(() => {
+    if (state.status !== "playing") {
+      loadProgressForGames(games.map((g) => g.id), dateKey).then(updateBadgeCount);
+    }
+  }, [state.status, dateKey]);
 
   const attemptsLeft = puzzle.maxAttempts - state.guesses.length;
   const canSubmit = input.trim().length > 0 && state.status === "playing";

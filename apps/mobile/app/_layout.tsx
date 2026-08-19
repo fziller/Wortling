@@ -4,7 +4,9 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as Sentry from "@sentry/react-native";
 import { PostHogProvider } from "posthog-react-native";
+import { useEffect, useState } from "react";
 
+import { AppSplash } from "@/components/AppSplash";
 import { initSentry } from "@/monitoring/sentry";
 import { posthogConfig } from "@/analytics/posthog";
 import { configureNotifications } from "@/notifications/configure";
@@ -15,6 +17,13 @@ configureNotifications();
 scheduleDailyReminder();
 
 function RootLayoutInner() {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setShowSplash(false), 1600);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <>
       <Stack
@@ -23,7 +32,8 @@ function RootLayoutInner() {
           contentStyle: { backgroundColor: "#F7F1E8" },
         }}
       />
-      <StatusBar style="dark" />
+      {showSplash ? <AppSplash /> : null}
+      <StatusBar style={showSplash ? "light" : "dark"} />
     </>
   );
 }

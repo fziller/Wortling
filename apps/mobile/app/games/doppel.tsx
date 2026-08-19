@@ -7,10 +7,12 @@ import { HelpButton, HelpModal } from "@/components/HelpModal";
 import { Screen } from "@/components/Screen";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
+import { games } from "@/games/registry";
 import { createDailyDoppelGame, createPracticeDoppelGame } from "@/games/doppel/daily";
 import { revealDoppelSolution, submitDoppelGuess, unlockDoppelHint } from "@/games/doppel/engine";
 import { DoppelHint, DoppelState } from "@/games/doppel/types";
-import { loadProgress, saveProgress } from "@/storage/progress";
+import { loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { updateBadgeCount } from "@/notifications/badge";
 
 const dailyGame = createDailyDoppelGame();
 
@@ -50,6 +52,12 @@ export default function DoppelScreen() {
       completedAt: state.status !== "playing" ? new Date().toISOString() : undefined
     });
   }, [dateKey, puzzle.id, puzzle.version, state]);
+
+  useEffect(() => {
+    if (state.status !== "playing") {
+      loadProgressForGames(games.map((g) => g.id), dateKey).then(updateBadgeCount);
+    }
+  }, [state.status, dateKey]);
 
   const solution = puzzle.solutions.find((item) => item.answer === state.solvedAnswer) ?? puzzle.solutions[0];
   const visibleHints = (puzzle.hints ?? []).slice(0, state.unlockedHints);

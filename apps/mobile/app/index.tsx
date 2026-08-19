@@ -11,6 +11,7 @@ import { tokens } from "@/design/tokens";
 import { games } from "@/games/registry";
 import { GameStatus } from "@/games/types";
 import { loadProgressForGames, StoredProgress } from "@/storage/progress";
+import { updateBadgeCount } from "@/notifications/badge";
 
 function statusLabel(status?: GameStatus): string {
   if (status === "won") return "Geschafft";
@@ -34,7 +35,10 @@ export default function HomeScreen() {
       games.map((game) => game.id),
       dateKey,
     ).then((progress) => {
-      if (mounted) setProgressByGame(progress);
+      if (mounted) {
+        setProgressByGame(progress);
+        updateBadgeCount(progress);
+      }
     });
 
     return () => {
