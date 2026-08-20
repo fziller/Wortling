@@ -33,15 +33,25 @@
           "image": "./assets/adaptive-icon.png",
           "imageWidth": 260
         }
-      ]
+      ],
+      ["@sentry/react-native/expo", {}]
     ],
     "experiments": {
       "typedRoutes": true
     },
     "updates": {
-      "url": "https://expo.dev/projects/@fziller/wortling/updates",
+      "url": "https://u.expo.dev/a0242df2-d182-4b3a-81f2-54a3abb41fa8",
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "a0242df2-d182-4b3a-81f2-54a3abb41fa8"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }

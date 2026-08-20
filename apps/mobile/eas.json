@@ -13,14 +13,7 @@
       "channel": "preview"
     },
     "production": {
-      "channel": "production",
-      "hooks": {
-        "postBuild": [
-          {
-            "cmd": "npx sentry-expo-upload-sourcemaps"
-          }
-        ]
-      }
+      "channel": "production"
     }
   },
   "submit": {

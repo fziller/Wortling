@@ -1,4 +1,4 @@
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
@@ -23,6 +23,7 @@ function statusLabel(status?: GameStatus): string {
 }
 
 export default function HomeScreen() {
+  const router = useRouter();
   const dateKey = getBerlinDateKey();
   const [progressByGame, setProgressByGame] = useState<
     Record<string, StoredProgress | null>
@@ -93,12 +94,10 @@ export default function HomeScreen() {
                   </View>
                   <Text style={styles.cardTitle}>{game.title}</Text>
                   <Text style={styles.cardText}>{game.shortDescription}</Text>
-                  <Link href={game.route as never} asChild>
-                    <AppButton
-                      label={status === "playing" ? "Weiterspielen" : status ? "Öffnen" : "Spielen"}
-                      onPress={() => undefined}
-                    />
-                  </Link>
+                  <AppButton
+                    label={status === "playing" ? "Weiterspielen" : status ? "Öffnen" : "Spielen"}
+                    onPress={() => router.push(game.route as never)}
+                  />
                 </AppCard>
               </Animated.View>
             );

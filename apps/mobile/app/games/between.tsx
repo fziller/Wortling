@@ -1,9 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { KeyboardAvoidingView, Modal, Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useRouter } from "expo-router";
 import Animated, {
   FadeInDown,
   FadeInUp,
+  FadeOut,
+  FadeOutDown,
+  FadeOutUp,
   LinearTransition,
   SlideInRight,
   useAnimatedStyle,
@@ -48,8 +51,10 @@ export default function BetweenScreen() {
   const [modal, setModal] = useState<"cancel" | "reveal" | null>(null);
   const [helpVisible, setHelpVisible] = useState(false);
   const [successVisible, setSuccessVisible] = useState(false);
+  const [movingGuess, setMovingGuess] = useState<Guess | null>(null);
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
+  const clearMovingGuessTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shake = useSharedValue(0);
   const winGlow = useSharedValue(0);
   const markerOpacity = useSharedValue(1);
@@ -59,7 +64,7 @@ export default function BetweenScreen() {
   const lastGuess = state.guesses[state.guesses.length - 1] as Guess | undefined;
   const rangeMetrics = getTargetRangeMetrics(state);
   const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
-  const centerWord = state.status === "revealed" ? state.targetWord : lastGuess?.word;
+  const centerWord = state.status === "revealed" || state.status === "won" ? state.targetWord : movingGuess?.word;
   const showScaleHints = Boolean(lastGuess);
 
   const sortedGuesses = useMemo(() => {
@@ -89,6 +94,14 @@ export default function BetweenScreen() {
       );
     }
   }, [state.status, winGlow]);
+
+  useEffect(() => {
+    return () => {
+      if (clearMovingGuessTimeout.current) {
+        clearTimeout(clearMovingGuessTimeout.current);
+      }
+    };
+  }, []);
 
   const shakeStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: shake.value }]
@@ -121,14 +134,28 @@ export default function BetweenScreen() {
       return;
     }
 
+    if (clearMovingGuessTimeout.current) {
+      clearTimeout(clearMovingGuessTimeout.current);
+    }
+
+    setMovingGuess(result.guess.direction === "hit" ? null : result.guess);
     setState(result.state);
     setInput("");
+
+    if (result.guess.direction !== "hit") {
+      clearMovingGuessTimeout.current = setTimeout(() => setMovingGuess(null), tokens.motion.slow);
+    }
 
   }
 
   function startNextWord() {
     const nextGame = createPracticeBetweenGame(state.targetWord);
 
+    if (clearMovingGuessTimeout.current) {
+      clearTimeout(clearMovingGuessTimeout.current);
+    }
+
+    setMovingGuess(null);
     setState(nextGame.state);
     setDateKey(nextGame.dateKey);
     setInput("");
@@ -199,7 +226,7 @@ export default function BetweenScreen() {
             </View>
             <View style={styles.wordStack}>
               <WordTiles dimmed={state.status === "revealed"} filled word={state.lowerBound} />
-              <WordTiles revealed={state.status === "revealed"} word={centerWord} />
+              <WordTiles exitingDirection={movingGuess?.direction} revealed={state.status === "revealed" || state.status === "won"} word={centerWord} />
               <WordTiles dimmed={state.status === "revealed"} filled word={state.upperBound} />
             </View>
           </View>
@@ -284,16 +311,19 @@ type WordTilesProps = {
   filled?: boolean;
   dimmed?: boolean;
   revealed?: boolean;
+  exitingDirection?: Guess["direction"];
 };
 
-function WordTiles({ word, filled = false, dimmed = false, revealed = false }: WordTilesProps) {
+function WordTiles({ word, filled = false, dimmed = false, revealed = false, exitingDirection }: WordTilesProps) {
   const letters = word ? Array.from(displayWord(word)) : Array.from({ length: 5 }, () => "");
+  const exitingAnimation = exitingDirection === "after" ? FadeOutUp : exitingDirection === "before" ? FadeOutDown : FadeOut;
 
   return (
     <View style={styles.tileRow}>
       {letters.map((letter, index) => (
         <Animated.View
           entering={FadeInDown.delay(index * 35).duration(tokens.motion.quick)}
+          exiting={exitingAnimation.duration(tokens.motion.quick)}
           key={`${letter}-${index}`}
           layout={LinearTransition.springify().damping(16)}
           style={[
