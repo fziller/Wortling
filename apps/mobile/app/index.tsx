@@ -19,6 +19,7 @@ const homeOrder = [
   "wortcode",
   "formwort",
   "wortleiter",
+  "doppel",
 ] as const;
 
 const previewWords = {
