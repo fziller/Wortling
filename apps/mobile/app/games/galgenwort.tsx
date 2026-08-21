@@ -129,14 +129,15 @@ export default function GalgenwortScreen() {
   }
 
   return (
-    <Screen>
+    <Screen videoBackground>
       <Stack.Screen
         options={{
           headerLeft: () => <GameHeaderButton accessibilityLabel="Zurück" label="←" onPress={goBack} />,
           headerRight: () => <GameHeaderHelpButton onPress={() => setHelpVisible(true)} />,
-          headerShadowVisible: false,
           headerShown: true,
-          headerStyle: { backgroundColor: tokens.color.paper },
+          headerShadowVisible: false,
+          headerStyle: { backgroundColor: "transparent" },
+          headerTransparent: true,
           headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Galgenwort" />,
           headerTitleAlign: "center"
         }}

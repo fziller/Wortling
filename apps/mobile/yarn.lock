@@ -2697,6 +2697,11 @@ expo-updates@~57.0.15:
     nullthrows "^1.1.1"
     resolve-from "^5.0.0"
 
+expo-video@~57.0.2:
+  version "57.0.2"
+  resolved "https://registry.yarnpkg.com/expo-video/-/expo-video-57.0.2.tgz#e54c5d17e48ce7b6fb87fba6f36310b54a3a9c97"
+  integrity sha512-s8KDRpGNWOE7Vx7+1o89hGeXZ3evx00SrQ2+5odYcmvUikNvF59/VuFkg55+YIS981wVQz/07csK6hLAK/w4bQ==
+
 expo-web-browser@~57.0.2:
   version "57.0.2"
   resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-57.0.2.tgz#37a9386069bbf0a35709b3f0b394f195dc1cd43a"
