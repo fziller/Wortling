@@ -29,6 +29,7 @@ export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace,
                 accessibilityLabel={`Buchstabe ${letter}`}
                 accessibilityRole="button"
                 disabled={disabled}
+                hitSlop={4}
                 key={letter}
                 onPress={() => onLetter(letter.toLocaleLowerCase("de-DE"))}
                 style={[styles.key, styles[state], disabled && styles.disabled]}
@@ -52,7 +53,7 @@ type KeyboardActionProps = {
 
 function KeyboardAction({ disabled, label, onPress }: KeyboardActionProps) {
   return (
-    <Pressable accessibilityLabel={label} accessibilityRole="button" disabled={disabled} onPress={onPress} style={[styles.actionKey, disabled && styles.disabled]}>
+    <Pressable accessibilityLabel={label} accessibilityRole="button" disabled={disabled} hitSlop={4} onPress={onPress} style={[styles.actionKey, disabled && styles.disabled]}>
       <Text style={styles.actionText}>{label}</Text>
     </Pressable>
   );
@@ -60,16 +61,16 @@ function KeyboardAction({ disabled, label, onPress }: KeyboardActionProps) {
 
 const styles = StyleSheet.create({
   keyboard: {
-    gap: 7
+    gap: 8
   },
   row: {
     flexDirection: "row",
-    gap: 5,
+    gap: 4,
     justifyContent: "center"
   },
   key: {
     flex: 1,
-    minHeight: 42,
+    minHeight: 50,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: tokens.radius.sm,
@@ -78,8 +79,8 @@ const styles = StyleSheet.create({
     borderColor: tokens.color.line
   },
   actionKey: {
-    minWidth: 58,
-    minHeight: 42,
+    minWidth: 66,
+    minHeight: 50,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: tokens.space.sm,
@@ -88,12 +89,12 @@ const styles = StyleSheet.create({
   },
   keyText: {
     color: tokens.color.ink,
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "900"
   },
   actionText: {
     color: "white",
-    fontSize: tokens.type.small,
+    fontSize: tokens.type.body,
     fontWeight: "900"
   },
   markedText: {
