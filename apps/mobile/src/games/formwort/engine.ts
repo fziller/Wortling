@@ -26,6 +26,22 @@ export function createFormwortState(puzzle: FormwortPuzzle): FormwortState {
   return { puzzleId: puzzle.id, guesses: [], status: "playing" };
 }
 
+export function applyFormwortInputLetter(symbols: readonly string[], letters: readonly string[], cursorIndex: number, letter: string) {
+  const symbol = symbols[cursorIndex];
+  const nextLetters = letters.map((item, index) => symbols[index] === symbol ? letter : item);
+  const nextEmptyAfterCursor = nextLetters.findIndex((item, index) => index > cursorIndex && !item);
+  const nextEmpty = nextEmptyAfterCursor === -1 ? nextLetters.findIndex((item) => !item) : nextEmptyAfterCursor;
+
+  return { letters: nextLetters, cursorIndex: nextEmpty === -1 ? cursorIndex : nextEmpty };
+}
+
+export function removeFormwortInputLetter(symbols: readonly string[], letters: readonly string[], cursorIndex: number) {
+  const targetIndex = letters[cursorIndex] ? cursorIndex : Math.max(cursorIndex - 1, 0);
+  const symbol = symbols[targetIndex];
+
+  return { letters: letters.map((item, index) => symbols[index] === symbol ? "" : item), cursorIndex: targetIndex };
+}
+
 export function getFormwortLetterStates(state: FormwortState): Record<string, KeyboardLetterState> {
   const letterStates: Record<string, KeyboardLetterState> = {};
 

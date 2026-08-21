@@ -22,7 +22,6 @@ export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace,
     <View style={styles.keyboard}>
       {rows.map((row, rowIndex) => (
         <View key={row} style={styles.row}>
-          {rowIndex === 2 && showSubmit ? <KeyboardAction disabled={disabled || submitDisabled} label="Prüfen" onPress={onSubmit} /> : null}
           {Array.from(row).map((letter) => {
             const state = letterStates[letter.toLocaleLowerCase("de-DE")] ?? "unused";
 
@@ -40,9 +39,14 @@ export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace,
               </Pressable>
             );
           })}
-          {rowIndex === 2 && showBackspace ? <KeyboardAction disabled={disabled} label="⌫" onPress={onBackspace} /> : null}
         </View>
       ))}
+      {showSubmit || showBackspace ? (
+        <View style={styles.actionRow}>
+          {showSubmit ? <KeyboardAction disabled={disabled || submitDisabled} label="Prüfen" onPress={onSubmit} /> : null}
+          {showBackspace ? <KeyboardAction disabled={disabled} label="Löschen" onPress={onBackspace} /> : null}
+        </View>
+      ) : null}
     </View>
   );
 }
@@ -63,16 +67,20 @@ function KeyboardAction({ disabled, label, onPress }: KeyboardActionProps) {
 
 const styles = StyleSheet.create({
   keyboard: {
-    gap: 8
+    gap: 7
   },
   row: {
     flexDirection: "row",
-    gap: 4,
+    gap: 3,
     justifyContent: "center"
+  },
+  actionRow: {
+    flexDirection: "row",
+    gap: tokens.space.sm
   },
   key: {
     flex: 1,
-    minHeight: 50,
+    minHeight: 54,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: tokens.radius.sm,
@@ -81,8 +89,8 @@ const styles = StyleSheet.create({
     borderColor: tokens.color.line
   },
   actionKey: {
-    minWidth: 66,
-    minHeight: 50,
+    flex: 1,
+    minHeight: 56,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: tokens.space.sm,

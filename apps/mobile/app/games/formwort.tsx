@@ -3,9 +3,9 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 
-import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
+import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
 import { LetterInputTiles } from "@/components/LetterInputTiles";
@@ -13,7 +13,7 @@ import { Screen } from "@/components/Screen";
 import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { createDailyFormwortGame, createPracticeFormwortGame } from "@/games/formwort/daily";
-import { getFormwortLetterStates, revealFormwortSolution, submitFormwortGuess } from "@/games/formwort/engine";
+import { applyFormwortInputLetter, getFormwortLetterStates, removeFormwortInputLetter, revealFormwortSolution, submitFormwortGuess } from "@/games/formwort/engine";
 import type { FormwortState } from "@/games/formwort/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
@@ -37,7 +37,10 @@ export default function FormwortScreen() {
   const [message, setMessage] = useState("Gleiche Formen stehen für gleiche Buchstaben.");
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
+  const [resultVisible, setResultVisible] = useState(false);
+  const [progressLoaded, setProgressLoaded] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
+  const [finishedAt, setFinishedAt] = useState<number | null>(null);
 
   useEffect(() => {
     try {
@@ -50,13 +53,23 @@ export default function FormwortScreen() {
 
   useEffect(() => {
     loadProgress<FormwortState>("formwort", dateKey).then((progress) => {
-      if (progress?.puzzleId === puzzle.id && progress.puzzleVersion === puzzle.version) setState(progress.state);
+      if (progress?.puzzleId === puzzle.id && progress.puzzleVersion === puzzle.version) {
+        if (progress.status !== "playing") {
+          startPracticeWord();
+          setProgressLoaded(true);
+          return;
+        }
+        setState(progress.state);
+      }
+      setProgressLoaded(true);
     });
   }, [dateKey, puzzle.id, puzzle.version]);
 
   useEffect(() => {
+    if (!progressLoaded) return;
+
     saveProgress({ gameId: "formwort", dateKey, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt: state.status !== "playing" ? new Date().toISOString() : undefined });
-  }, [dateKey, puzzle.id, puzzle.version, state]);
+  }, [dateKey, progressLoaded, puzzle.id, puzzle.version, state]);
 
   useEffect(() => {
     if (state.status !== "playing") loadProgressForGames(games.map((g) => g.id), dateKey).then(updateBadgeCount);
@@ -64,21 +77,26 @@ export default function FormwortScreen() {
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getFormwortLetterStates(state);
+  const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
+  const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
-    setInputLetters((current) => current.map((item, index) => index === cursorIndex ? letter : item));
-    setCursorIndex((current) => Math.min(current + 1, puzzle.wordLength - 1));
+    setInputLetters((current) => {
+      const next = applyFormwortInputLetter(puzzle.symbols, current, cursorIndex, letter);
+      setCursorIndex(next.cursorIndex);
+
+      return next.letters;
+    });
   }
 
   function backspace() {
     setInputLetters((current) => {
-      if (current[cursorIndex]) return current.map((item, index) => index === cursorIndex ? "" : item);
+      const next = removeFormwortInputLetter(puzzle.symbols, current, cursorIndex);
 
-      const previousIndex = Math.max(cursorIndex - 1, 0);
-      setCursorIndex(previousIndex);
+      setCursorIndex(next.cursorIndex);
 
-      return current.map((item, index) => index === previousIndex ? "" : item);
+      return next.letters;
     });
   }
 
@@ -92,6 +110,8 @@ export default function FormwortScreen() {
       setCursorIndex(0);
     }
     if (result.ok && result.state.status !== "playing") {
+      setFinishedAt(Date.now());
+      setResultVisible(true);
       try {
         posthog.capture("game_completed", { gameId: "formwort", dateKey, durationMs: Date.now() - startedAt, attempts: result.state.guesses.length });
       } catch {
@@ -106,9 +126,11 @@ export default function FormwortScreen() {
     setInputLetters(createEmptyInput(puzzle.wordLength));
     setCursorIndex(0);
     setGiveUpVisible(false);
+    setFinishedAt(Date.now());
+    setResultVisible(true);
   }
 
-  function startNextWord() {
+  function startPracticeWord() {
     const nextGame = createPracticeFormwortGame(puzzle.answer);
 
     setGame(nextGame);
@@ -116,7 +138,17 @@ export default function FormwortScreen() {
     setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
     setCursorIndex(0);
     setMessage("Gleiche Formen stehen für gleiche Buchstaben.");
+    setResultVisible(false);
+    setFinishedAt(null);
+    setProgressLoaded(true);
     setStartedAt(Date.now());
+  }
+
+  function resultTitle() {
+    if (state.status === "won") return "Form geknackt.";
+    if (state.status === "lost") return "Heute nicht geknackt.";
+
+    return "Aufgelöst.";
   }
 
   function goBack() {
@@ -145,10 +177,6 @@ export default function FormwortScreen() {
         }}
       />
       <View style={styles.wrap}>
-        <View style={styles.symbolRow}>
-          {puzzle.symbols.map((symbol, index) => <Text key={`${symbol}-${index}`} style={styles.symbolTile}>{symbol}</Text>)}
-        </View>
-
         <View style={styles.board}>
           {Array.from({ length: puzzle.maxAttempts }).map((_, rowIndex) => {
             const guess = state.guesses[rowIndex];
@@ -158,10 +186,11 @@ export default function FormwortScreen() {
               <View key={rowIndex} style={styles.tileRow}>
                 {letters.map((letter, letterIndex) => {
                   const mark = guess?.marks[letterIndex];
+                  const symbol = !guess && rowIndex === state.guesses.length && !letter ? puzzle.symbols[letterIndex] : "";
 
                   return (
                     <Pressable disabled key={`${rowIndex}-${letterIndex}`} style={[styles.tile, mark && styles[mark]]}>
-                      <Text style={[styles.tileText, mark && styles.markedTileText]}>{letter.toLocaleUpperCase("de-DE")}</Text>
+                      <Text style={[styles.tileText, symbol && styles.symbolText, mark && styles.markedTileText]}>{letter ? letter.toLocaleUpperCase("de-DE") : symbol}</Text>
                     </Pressable>
                   );
                 })}
@@ -183,23 +212,34 @@ export default function FormwortScreen() {
             </Pressable>
           ) : null}
           <WordKeyboard disabled={state.status !== "playing"} letterStates={letterStates} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
-          {state.status !== "playing" ? <AppButton label="Neues Wort" onPress={startNextWord} /> : null}
         </KeyboardDock>
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Aufgeben?" visible={giveUpVisible} />
+      <GameResultModal
+        message={state.status === "won" ? "Alle Formen sitzen." : "Die Lösung ist raus. Weiteres Wort?"}
+        onHome={() => router.replace("/")}
+        onNext={startPracticeWord}
+        solution={puzzle.answer}
+        stats={[
+          { label: "Versuche", value: state.guesses.length },
+          { label: "Zeit", value: `${elapsedSeconds} Sek.` },
+          { label: "Buchstaben", value: usedLetters }
+        ]}
+        title={resultTitle()}
+        visible={resultVisible && state.status !== "playing"}
+      />
       <HelpModal {...gameHelp.formwort} onClose={() => setHelpVisible(false)} visible={helpVisible} />
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, gap: tokens.space.md },
-  symbolRow: { flexDirection: "row", gap: tokens.space.xs, padding: tokens.space.md, borderRadius: tokens.radius.lg, backgroundColor: tokens.color.card, borderWidth: 1, borderColor: tokens.color.line },
-  symbolTile: { flex: 1, color: tokens.color.primaryDark, fontSize: 28, fontWeight: "900", textAlign: "center" },
-  board: { flex: 1, justifyContent: "center", gap: 7 },
+  wrap: { flex: 1, gap: tokens.space.sm },
+  board: { flex: 1, justifyContent: "flex-start", gap: 6 },
   tileRow: { flexDirection: "row", gap: 7 },
-  tile: { flex: 1, aspectRatio: 1, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
+  tile: { flex: 1, minHeight: 46, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
   tileText: { color: tokens.color.ink, fontSize: 25, fontWeight: "900" },
+  symbolText: { color: "#E99B88", fontSize: 24 },
   markedTileText: { color: "white" },
   absent: { backgroundColor: "#7B736A", borderColor: "#7B736A" },
   present: { backgroundColor: "#D98500", borderColor: "#D98500" },

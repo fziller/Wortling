@@ -3,9 +3,9 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 
-import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
+import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
 import { Screen } from "@/components/Screen";
@@ -30,7 +30,10 @@ export default function GalgenwortScreen() {
   const [message, setMessage] = useState("Errate das Wort Buchstabe für Buchstabe.");
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
+  const [resultVisible, setResultVisible] = useState(false);
+  const [progressLoaded, setProgressLoaded] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
+  const [finishedAt, setFinishedAt] = useState<number | null>(null);
 
   useEffect(() => {
     try {
@@ -43,13 +46,23 @@ export default function GalgenwortScreen() {
 
   useEffect(() => {
     loadProgress<GalgenwortState>("galgenwort", dateKey).then((progress) => {
-      if (progress?.puzzleId === puzzle.id && progress.puzzleVersion === puzzle.version) setState(progress.state);
+      if (progress?.puzzleId === puzzle.id && progress.puzzleVersion === puzzle.version) {
+        if (progress.status !== "playing") {
+          startPracticeWord();
+          setProgressLoaded(true);
+          return;
+        }
+        setState(progress.state);
+      }
+      setProgressLoaded(true);
     });
   }, [dateKey, puzzle.id, puzzle.version]);
 
   useEffect(() => {
+    if (!progressLoaded) return;
+
     saveProgress({ gameId: "galgenwort", dateKey, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt: state.status !== "playing" ? new Date().toISOString() : undefined });
-  }, [dateKey, puzzle.id, puzzle.version, state]);
+  }, [dateKey, progressLoaded, puzzle.id, puzzle.version, state]);
 
   useEffect(() => {
     if (state.status !== "playing") loadProgressForGames(games.map((g) => g.id), dateKey).then(updateBadgeCount);
@@ -58,6 +71,7 @@ export default function GalgenwortScreen() {
   const revealed = getGalgenwortRevealedLetters(puzzle, state);
   const wrongLetters = getGalgenwortWrongLetters(puzzle, state);
   const letterStates = getGalgenwortLetterStates(puzzle, state);
+  const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
 
   function guess(letter: string) {
     const result = submitGalgenwortLetter(puzzle, state, letter);
@@ -65,6 +79,8 @@ export default function GalgenwortScreen() {
     setState(result.state);
     setMessage(result.ok ? result.state.status === "won" ? "Gelöst!" : result.state.status === "lost" ? "Heute nicht gerettet." : result.correct ? "Treffer." : "Leider nicht drin." : result.reason);
     if (result.ok && result.state.status !== "playing") {
+      setFinishedAt(Date.now());
+      setResultVisible(true);
       try {
         posthog.capture("game_completed", { gameId: "galgenwort", dateKey, durationMs: Date.now() - startedAt, attempts: result.state.guessedLetters.length });
       } catch {
@@ -77,15 +93,27 @@ export default function GalgenwortScreen() {
     setState((current) => revealGalgenwortSolution(current));
     setMessage("Lösung aufgedeckt.");
     setGiveUpVisible(false);
+    setFinishedAt(Date.now());
+    setResultVisible(true);
   }
 
-  function startNextWord() {
+  function startPracticeWord() {
     const nextGame = createPracticeGalgenwortGame(puzzle.id);
 
     setGame(nextGame);
     setState(nextGame.state);
     setMessage("Errate das Wort Buchstabe für Buchstabe.");
+    setResultVisible(false);
+    setFinishedAt(null);
+    setProgressLoaded(true);
     setStartedAt(Date.now());
+  }
+
+  function resultTitle() {
+    if (state.status === "won") return "Gerettet.";
+    if (state.status === "lost") return "Heute nicht gerettet.";
+
+    return "Aufgelöst.";
   }
 
   function goBack() {
@@ -136,10 +164,22 @@ export default function GalgenwortScreen() {
             </Pressable>
           ) : null}
           <WordKeyboard disabled={state.status !== "playing"} letterStates={letterStates} onBackspace={() => undefined} onLetter={guess} onSubmit={() => undefined} showBackspace={false} showSubmit={false} />
-          {state.status !== "playing" ? <AppButton label="Neues Wort" onPress={startNextWord} /> : null}
         </KeyboardDock>
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Aufgeben?" visible={giveUpVisible} />
+      <GameResultModal
+        message={state.status === "won" ? "Nice, das Wort ist frei." : "Die Lösung ist raus. Weiteres Wort?"}
+        onHome={() => router.replace("/")}
+        onNext={startPracticeWord}
+        solution={puzzle.answer}
+        stats={[
+          { label: "Buchstaben", value: state.guessedLetters.length },
+          { label: "Fehler", value: wrongLetters.length },
+          { label: "Zeit", value: `${elapsedSeconds} Sek.` }
+        ]}
+        title={resultTitle()}
+        visible={resultVisible && state.status !== "playing"}
+      />
       <HelpModal {...gameHelp.galgenwort} onClose={() => setHelpVisible(false)} visible={helpVisible} />
     </Screen>
   );

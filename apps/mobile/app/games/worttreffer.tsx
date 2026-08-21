@@ -3,9 +3,9 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 
-import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
+import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
 import { Screen } from "@/components/Screen";
@@ -36,7 +36,10 @@ export default function WorttrefferScreen() {
   const [message, setMessage] = useState("");
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
+  const [resultVisible, setResultVisible] = useState(false);
+  const [progressLoaded, setProgressLoaded] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
+  const [finishedAt, setFinishedAt] = useState<number | null>(null);
 
   useEffect(() => {
     try {
@@ -50,12 +53,20 @@ export default function WorttrefferScreen() {
   useEffect(() => {
     loadProgress<WorttrefferState>("worttreffer", dateKey).then((progress) => {
       if (progress?.puzzleId === puzzle.id && progress.puzzleVersion === puzzle.version) {
+        if (progress.status !== "playing") {
+          startPracticeWord();
+          setProgressLoaded(true);
+          return;
+        }
         setState(progress.state);
       }
+      setProgressLoaded(true);
     });
   }, [dateKey, puzzle.id, puzzle.version]);
 
   useEffect(() => {
+    if (!progressLoaded) return;
+
     saveProgress({
       gameId: "worttreffer",
       dateKey,
@@ -65,7 +76,7 @@ export default function WorttrefferScreen() {
       state,
       completedAt: state.status !== "playing" ? new Date().toISOString() : undefined
     });
-  }, [dateKey, puzzle.id, puzzle.version, state]);
+  }, [dateKey, progressLoaded, puzzle.id, puzzle.version, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -75,6 +86,8 @@ export default function WorttrefferScreen() {
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getWorttrefferLetterStates(state);
+  const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
+  const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
@@ -105,6 +118,8 @@ export default function WorttrefferScreen() {
       setCursorIndex(0);
     }
     if (result.ok && result.state.status !== "playing") {
+      setFinishedAt(Date.now());
+      setResultVisible(true);
       try {
         posthog.capture("game_completed", { gameId: "worttreffer", dateKey, durationMs: Date.now() - startedAt, attempts: result.state.guesses.length });
       } catch {
@@ -119,9 +134,11 @@ export default function WorttrefferScreen() {
     setInputLetters(createEmptyInput(puzzle.wordLength));
     setCursorIndex(0);
     setGiveUpVisible(false);
+    setFinishedAt(Date.now());
+    setResultVisible(true);
   }
 
-  function startNextWord() {
+  function startPracticeWord() {
     const nextGame = createPracticeWorttrefferGame(puzzle.answer);
 
     setGame(nextGame);
@@ -129,7 +146,17 @@ export default function WorttrefferScreen() {
     setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
     setCursorIndex(0);
     setMessage("");
+    setResultVisible(false);
+    setFinishedAt(null);
+    setProgressLoaded(true);
     setStartedAt(Date.now());
+  }
+
+  function resultTitle() {
+    if (state.status === "won") return "Stark getroffen.";
+    if (state.status === "lost") return "Heute nicht getroffen.";
+
+    return "Aufgelöst.";
   }
 
   function goBack() {
@@ -190,7 +217,6 @@ export default function WorttrefferScreen() {
             </Pressable>
           ) : null}
           <WordKeyboard disabled={state.status !== "playing"} letterStates={letterStates} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
-          {state.status !== "playing" ? <AppButton label="Neues Wort" onPress={startNextWord} /> : null}
         </KeyboardDock>
       </View>
       <ConfirmModal
@@ -201,6 +227,19 @@ export default function WorttrefferScreen() {
         title="Aufgeben?"
         visible={giveUpVisible}
       />
+      <GameResultModal
+        message={state.status === "won" ? "Sauber, das war das Wort." : "Die Lösung ist raus. Weiteres Wort?"}
+        onHome={() => router.replace("/")}
+        onNext={startPracticeWord}
+        solution={puzzle.answer}
+        stats={[
+          { label: "Versuche", value: state.guesses.length },
+          { label: "Zeit", value: `${elapsedSeconds} Sek.` },
+          { label: "Buchstaben", value: usedLetters }
+        ]}
+        title={resultTitle()}
+        visible={resultVisible && state.status !== "playing"}
+      />
       <HelpModal {...gameHelp.worttreffer} onClose={() => setHelpVisible(false)} visible={helpVisible} />
     </Screen>
   );
@@ -210,7 +249,7 @@ const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.md },
   board: { flex: 1, justifyContent: "center", gap: 7, paddingTop: tokens.space.sm },
   tileRow: { flexDirection: "row", gap: 7 },
-  tile: { flex: 1, aspectRatio: 1, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
+  tile: { flex: 1, minHeight: 58, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
   activeTile: { borderColor: tokens.color.primary, backgroundColor: "#FFF1DF" },
   tileText: { color: tokens.color.ink, fontSize: 25, fontWeight: "900" },
   markedTileText: { color: "white" },

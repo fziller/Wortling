@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { FORMWORT_MAX_ATTEMPTS, FORMWORT_WORD_LENGTH, formwortGuessWords } from "./content";
-import { createFormwortState, createFormwortSymbols, submitFormwortGuess } from "./engine";
+import { applyFormwortInputLetter, createFormwortState, createFormwortSymbols, removeFormwortInputLetter, submitFormwortGuess } from "./engine";
 import type { FormwortPuzzle } from "./types";
 
 const puzzle: FormwortPuzzle = {
@@ -16,6 +16,20 @@ const puzzle: FormwortPuzzle = {
 describe("formwort engine", () => {
   it("uses the same symbol for repeated letters", () => {
     expect(createFormwortSymbols("allee")).toEqual(["◆", "◼", "◼", "▲", "▲"]);
+  });
+
+  it("fills repeated shapes together", () => {
+    const result = applyFormwortInputLetter(puzzle.symbols, ["", "", "", "", ""], 1, "l");
+
+    expect(result.letters).toEqual(["", "l", "l", "", ""]);
+    expect(result.cursorIndex).toBe(3);
+  });
+
+  it("removes repeated shapes together", () => {
+    const result = removeFormwortInputLetter(puzzle.symbols, ["a", "l", "l", "", ""], 2);
+
+    expect(result.letters).toEqual(["a", "", "", "", ""]);
+    expect(result.cursorIndex).toBe(2);
   });
 
   it("submits guesses with wordle feedback", () => {

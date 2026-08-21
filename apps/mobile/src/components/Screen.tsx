@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding: tokens.space.lg,
+    paddingHorizontal: tokens.space.md,
+    paddingVertical: tokens.space.lg,
     gap: tokens.space.lg
   }
 });

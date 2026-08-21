@@ -5,6 +5,7 @@ import { Stack, useRouter } from "expo-router";
 import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
+import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
 import { Screen } from "@/components/Screen";
@@ -37,16 +38,28 @@ export default function DoppelScreen() {
   const [message, setMessage] = useState("Finde ein Wort, das beide Seiten verbindet.");
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
+  const [resultVisible, setResultVisible] = useState(false);
+  const [progressLoaded, setProgressLoaded] = useState(false);
+  const [startedAt, setStartedAt] = useState(() => Date.now());
+  const [finishedAt, setFinishedAt] = useState<number | null>(null);
 
   useEffect(() => {
     loadProgress<DoppelState>("doppel", dateKey).then((progress) => {
       if (progress?.puzzleId === puzzle.id && progress.puzzleVersion === puzzle.version) {
+        if (progress.status !== "playing") {
+          startPracticeGame();
+          setProgressLoaded(true);
+          return;
+        }
         setState(progress.state);
       }
+      setProgressLoaded(true);
     });
   }, [dateKey, puzzle.id, puzzle.version]);
 
   useEffect(() => {
+    if (!progressLoaded) return;
+
     saveProgress({
       gameId: "doppel",
       dateKey,
@@ -56,7 +69,7 @@ export default function DoppelScreen() {
       state,
       completedAt: state.status !== "playing" ? new Date().toISOString() : undefined
     });
-  }, [dateKey, puzzle.id, puzzle.version, state]);
+  }, [dateKey, progressLoaded, puzzle.id, puzzle.version, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -68,6 +81,7 @@ export default function DoppelScreen() {
   const visibleHints = (puzzle.hints ?? []).slice(0, state.unlockedHints);
   const canSubmit = input.trim().length > 0 && state.status === "playing";
   const maxInputLength = Math.max(...puzzle.solutions.map((item) => Array.from(item.answer).length));
+  const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
@@ -84,6 +98,10 @@ export default function DoppelScreen() {
     setState(result.state);
     setMessage(result.ok ? "Gelöst." : result.reason);
     if (result.ok) setInput("");
+    if (result.ok && result.state.status !== "playing") {
+      setFinishedAt(Date.now());
+      setResultVisible(true);
+    }
   }
 
   function hint() {
@@ -96,15 +114,26 @@ export default function DoppelScreen() {
     setState(revealDoppelSolution(puzzle, state));
     setMessage("Lösung aufgedeckt.");
     setGiveUpVisible(false);
+    setFinishedAt(Date.now());
+    setResultVisible(true);
   }
 
-  function startNextGame() {
+  function startPracticeGame() {
     const nextGame = createPracticeDoppelGame(puzzle.id);
 
     setGame(nextGame);
     setState(nextGame.state);
     setInput("");
     setMessage("Finde ein Wort, das beide Seiten verbindet.");
+    setResultVisible(false);
+    setFinishedAt(null);
+    setProgressLoaded(true);
+    setStartedAt(Date.now());
+  }
+
+  function resultTitle() {
+    if (state.status === "won") return "Verbindung gefunden.";
+    return "Aufgelöst.";
   }
 
   function goBack() {
@@ -166,13 +195,6 @@ export default function DoppelScreen() {
             </View>
           )}
 
-          <View style={styles.actions}>
-            {state.status === "playing" ? (
-              null
-            ) : (
-              <AppButton label="Neues Spiel" onPress={startNextGame} />
-            )}
-          </View>
         </ScrollView>
       </View>
       <ConfirmModal
@@ -182,6 +204,19 @@ export default function DoppelScreen() {
         onConfirm={reveal}
         title="Aufgeben?"
         visible={giveUpVisible}
+      />
+      <GameResultModal
+        actionLabel="Neues Spiel"
+        message={state.status === "won" ? `${solution.leftCompound} · ${solution.rightCompound}` : "Die Lösung ist raus. Noch eins?"}
+        onHome={() => router.replace("/")}
+        onNext={startPracticeGame}
+        solution={solution.answer}
+        stats={[
+          { label: "Hinweise", value: state.unlockedHints },
+          { label: "Zeit", value: `${elapsedSeconds} Sek.` }
+        ]}
+        title={resultTitle()}
+        visible={resultVisible && state.status !== "playing"}
       />
       <HelpModal {...gameHelp.doppel} onClose={() => setHelpVisible(false)} visible={helpVisible} />
     </Screen>
@@ -201,7 +236,6 @@ const styles = StyleSheet.create({
   inputBox: { minHeight: 58, alignItems: "center", justifyContent: "center", paddingHorizontal: tokens.space.lg, borderRadius: tokens.radius.pill, backgroundColor: "white" },
   inputText: { color: tokens.color.ink, fontSize: 24, fontWeight: "900", letterSpacing: 1, textAlign: "center" },
   placeholder: { color: "#B09E8B" },
-  actions: { gap: tokens.space.md },
   giveUpButton: { alignSelf: "center", paddingHorizontal: tokens.space.md, paddingVertical: tokens.space.xs },
   giveUpText: { color: tokens.color.muted, fontSize: tokens.type.small, fontWeight: "900" },
   hints: { gap: tokens.space.sm, padding: tokens.space.md, borderRadius: tokens.radius.md, backgroundColor: "rgba(255,255,255,0.5)" },

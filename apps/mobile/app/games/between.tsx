@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import Animated, {
   FadeInDown,
@@ -18,6 +18,7 @@ import Animated, {
 
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
+import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
 import { Screen } from "@/components/Screen";
@@ -30,7 +31,7 @@ import { getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/betw
 import { displayWord } from "@/games/between/format";
 import { BetweenState, Guess } from "@/games/between/types";
 
-const BOARD_LINE_HEIGHT = 176;
+const BOARD_LINE_HEIGHT = 132;
 const DOT_SIZE = 20;
 const DOT_MARGIN = 4;
 const dailyGame = createDailyBetweenGame();
@@ -58,7 +59,7 @@ export default function BetweenScreen() {
   const [cursorIndex, setCursorIndex] = useState(0);
   const [modal, setModal] = useState<"reveal" | null>(null);
   const [helpVisible, setHelpVisible] = useState(false);
-  const [successVisible, setSuccessVisible] = useState(false);
+  const [resultVisible, setResultVisible] = useState(false);
   const [movingGuess, setMovingGuess] = useState<Guess | null>(null);
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
@@ -95,7 +96,7 @@ export default function BetweenScreen() {
   useEffect(() => {
     if (state.status === "won") {
       setFinishedAt((current) => current ?? Date.now());
-      setSuccessVisible(true);
+      setResultVisible(true);
       winGlow.value = withSequence(
         withTiming(1, { duration: tokens.motion.normal }),
         withSpring(0.35, { damping: 8, stiffness: 90 })
@@ -189,7 +190,7 @@ export default function BetweenScreen() {
     setInputLetters(createEmptyInput(5));
     setCursorIndex(0);
     setModal(null);
-    setSuccessVisible(false);
+    setResultVisible(false);
     setStartedAt(Date.now());
     setFinishedAt(null);
     markerOpacity.value = 1;
@@ -201,6 +202,8 @@ export default function BetweenScreen() {
   function revealRound() {
     setState(revealSolution(state));
     setModal(null);
+    setFinishedAt(Date.now());
+    setResultVisible(true);
   }
 
   function goBack() {
@@ -303,13 +306,18 @@ export default function BetweenScreen() {
         title="Lösung anzeigen?"
         visible={modal === "reveal"}
       />
-      <SuccessModal
-        elapsedSeconds={elapsedSeconds}
-        guesses={state.guesses.length}
+      <GameResultModal
+        message={state.status === "won" ? "Ziel sauber eingegrenzt." : "Die Lösung ist raus. Noch eins?"}
         onHome={() => router.replace("/")}
         onNext={startNextWord}
-        targetWord={state.targetWord}
-        visible={successVisible}
+        solution={state.targetWord}
+        stats={[
+          { label: "Tipps", value: state.guesses.length },
+          { label: "Zeit", value: formatElapsedTime(elapsedSeconds) },
+          { label: "Rest", value: `${rangeMetrics.topDistancePercent + rangeMetrics.bottomDistancePercent}%` }
+        ]}
+        title={state.status === "won" ? "Gefunden." : "Aufgelöst."}
+        visible={resultVisible && state.status !== "playing"}
       />
     </Screen>
   );
@@ -386,50 +394,10 @@ function AlphabetStrip({ lowerBound, upperBound }: AlphabetStripProps) {
   );
 }
 
-type SuccessModalProps = {
-  visible: boolean;
-  targetWord: string;
-  guesses: number;
-  elapsedSeconds: number;
-  onNext: () => void;
-  onHome: () => void;
-};
-
-function SuccessModal({ visible, targetWord, guesses, elapsedSeconds, onNext, onHome }: SuccessModalProps) {
-  return (
-    <Modal animationType="fade" transparent visible={visible}>
-      <View style={styles.modalBackdrop}>
-        <Animated.View entering={FadeInDown.duration(tokens.motion.normal)} style={styles.modalCard}>
-          <Text style={styles.successKicker}>Gelöst</Text>
-          <Text style={styles.successWord}>{displayWord(targetWord)}</Text>
-          <View style={styles.resultGrid}>
-            <View style={styles.resultTile}>
-              <Text style={styles.resultValue}>{guesses}</Text>
-              <Text style={styles.resultLabel}>Versuche</Text>
-            </View>
-            <View style={styles.resultTile}>
-              <Text style={styles.resultValue}>{formatElapsedTime(elapsedSeconds)}</Text>
-              <Text style={styles.resultLabel}>Zeit</Text>
-            </View>
-          </View>
-          <View style={styles.modalActions}>
-            <Pressable accessibilityRole="button" onPress={onHome} style={[styles.modalButton, styles.modalButtonSecondary]}>
-              <Text style={styles.modalButtonSecondaryText}>Startseite</Text>
-            </Pressable>
-            <Pressable accessibilityRole="button" onPress={onNext} style={[styles.modalButton, styles.modalButtonPrimary]}>
-              <Text style={styles.modalButtonPrimaryText}>Weiteres Wort</Text>
-            </Pressable>
-          </View>
-        </Animated.View>
-      </View>
-    </Modal>
-  );
-}
-
 const styles = StyleSheet.create({
   keyboard: {
     flex: 1,
-    gap: tokens.space.md
+    gap: tokens.space.sm
   },
   header: {
     gap: tokens.space.sm
@@ -446,8 +414,8 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   boardCard: {
-    gap: tokens.space.md,
-    padding: tokens.space.lg,
+    gap: tokens.space.sm,
+    padding: tokens.space.md,
     borderRadius: tokens.radius.lg,
     backgroundColor: tokens.color.card,
     shadowColor: tokens.color.primary,
@@ -522,7 +490,7 @@ const styles = StyleSheet.create({
   },
   wordTile: {
     flex: 1,
-    aspectRatio: 1,
+    minHeight: 44,
     alignItems: "center",
     justifyContent: "center"
   },
@@ -579,7 +547,7 @@ const styles = StyleSheet.create({
     color: "rgba(23, 19, 13, 0.22)"
   },
   inputCard: {
-    gap: tokens.space.md
+    gap: tokens.space.sm
   },
   giveUpButton: {
     alignSelf: "flex-end",
@@ -619,80 +587,5 @@ const styles = StyleSheet.create({
   },
   hit: {
     color: tokens.color.success
-  },
-  modalBackdrop: {
-    flex: 1,
-    justifyContent: "center",
-    padding: tokens.space.lg,
-    backgroundColor: "rgba(23, 19, 13, 0.48)"
-  },
-  modalCard: {
-    gap: tokens.space.md,
-    padding: tokens.space.lg,
-    borderRadius: tokens.radius.lg,
-    backgroundColor: tokens.color.card
-  },
-  modalActions: {
-    flexDirection: "row",
-    gap: tokens.space.sm,
-    marginTop: tokens.space.sm
-  },
-  modalButton: {
-    flex: 1,
-    minHeight: 52,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: tokens.radius.pill
-  },
-  modalButtonSecondary: {
-    borderWidth: 1,
-    borderColor: tokens.color.line,
-    backgroundColor: "white"
-  },
-  modalButtonPrimary: {
-    backgroundColor: tokens.color.primary
-  },
-  modalButtonSecondaryText: {
-    color: tokens.color.ink,
-    fontWeight: "900"
-  },
-  modalButtonPrimaryText: {
-    color: "white",
-    fontWeight: "900"
-  },
-  successKicker: {
-    color: tokens.color.success,
-    fontSize: tokens.type.small,
-    fontWeight: "900",
-    letterSpacing: 1.6,
-    textTransform: "uppercase"
-  },
-  successWord: {
-    color: tokens.color.ink,
-    fontSize: 42,
-    fontWeight: "900",
-    letterSpacing: 3,
-    textAlign: "center"
-  },
-  resultGrid: {
-    flexDirection: "row",
-    gap: tokens.space.sm
-  },
-  resultTile: {
-    flex: 1,
-    alignItems: "center",
-    padding: tokens.space.md,
-    borderRadius: tokens.radius.md,
-    backgroundColor: "rgba(36, 107, 254, 0.1)"
-  },
-  resultValue: {
-    color: tokens.color.ink,
-    fontSize: tokens.type.h2,
-    fontWeight: "900"
-  },
-  resultLabel: {
-    color: tokens.color.muted,
-    fontSize: tokens.type.small,
-    fontWeight: "900"
   }
 });

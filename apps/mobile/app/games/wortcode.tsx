@@ -5,6 +5,7 @@ import { Stack, useRouter } from "expo-router";
 import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
+import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
 import { LetterInputTiles } from "@/components/LetterInputTiles";
@@ -35,16 +36,28 @@ export default function WortcodeScreen() {
   const [message, setMessage] = useState("Rate ein gültiges deutsches Wort.");
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
+  const [resultVisible, setResultVisible] = useState(false);
+  const [progressLoaded, setProgressLoaded] = useState(false);
+  const [startedAt, setStartedAt] = useState(() => Date.now());
+  const [finishedAt, setFinishedAt] = useState<number | null>(null);
 
   useEffect(() => {
     loadProgress<WortcodeState>("wortcode", dateKey).then((progress) => {
       if (progress?.puzzleId === puzzle.id && progress.puzzleVersion === puzzle.version) {
+        if (progress.status !== "playing") {
+          startPracticeWord();
+          setProgressLoaded(true);
+          return;
+        }
         setState(progress.state);
       }
+      setProgressLoaded(true);
     });
   }, [dateKey, puzzle.id, puzzle.version]);
 
   useEffect(() => {
+    if (!progressLoaded) return;
+
     saveProgress({
       gameId: "wortcode",
       dateKey,
@@ -54,7 +67,7 @@ export default function WortcodeScreen() {
       state,
       completedAt: state.status !== "playing" ? new Date().toISOString() : undefined
     });
-  }, [dateKey, puzzle.id, puzzle.version, state]);
+  }, [dateKey, progressLoaded, puzzle.id, puzzle.version, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -63,6 +76,8 @@ export default function WortcodeScreen() {
   }, [state.status, dateKey]);
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
+  const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
+  const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
@@ -92,6 +107,10 @@ export default function WortcodeScreen() {
       setInputLetters(createEmptyInput(puzzle.wordLength));
       setCursorIndex(0);
     }
+    if (result.ok && result.state.status !== "playing") {
+      setFinishedAt(Date.now());
+      setResultVisible(true);
+    }
   }
 
   function toggleMark(guessIndex: number, letterIndex: number) {
@@ -104,9 +123,11 @@ export default function WortcodeScreen() {
     setInputLetters(createEmptyInput(puzzle.wordLength));
     setCursorIndex(0);
     setGiveUpVisible(false);
+    setFinishedAt(Date.now());
+    setResultVisible(true);
   }
 
-  function startNextWord() {
+  function startPracticeWord() {
     const nextGame = createPracticeWortcodeGame(puzzle.answer);
 
     setGame(nextGame);
@@ -114,6 +135,17 @@ export default function WortcodeScreen() {
     setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
     setCursorIndex(0);
     setMessage("Rate ein gültiges deutsches Wort.");
+    setResultVisible(false);
+    setFinishedAt(null);
+    setProgressLoaded(true);
+    setStartedAt(Date.now());
+  }
+
+  function resultTitle() {
+    if (state.status === "won") return "Code geknackt.";
+    if (state.status === "lost") return "Heute nicht geknackt.";
+
+    return "Aufgelöst.";
   }
 
   function goBack() {
@@ -184,7 +216,6 @@ export default function WortcodeScreen() {
             ) : null}
             <KeyboardDock>
               <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
-              {state.status !== "playing" ? <AppButton label="Neues Wort" onPress={startNextWord} /> : null}
             </KeyboardDock>
           </View>
         </ScrollView>
@@ -196,6 +227,19 @@ export default function WortcodeScreen() {
         onConfirm={reveal}
         title="Aufgeben?"
         visible={giveUpVisible}
+      />
+      <GameResultModal
+        message={state.status === "won" ? "Sauber kombiniert." : "Die Lösung ist raus. Weiteres Wort?"}
+        onHome={() => router.replace("/")}
+        onNext={startPracticeWord}
+        solution={puzzle.answer}
+        stats={[
+          { label: "Versuche", value: state.guesses.length },
+          { label: "Zeit", value: `${elapsedSeconds} Sek.` },
+          { label: "Buchstaben", value: usedLetters }
+        ]}
+        title={resultTitle()}
+        visible={resultVisible && state.status !== "playing"}
       />
       <HelpModal {...gameHelp.wortcode} onClose={() => setHelpVisible(false)} visible={helpVisible} />
     </Screen>
