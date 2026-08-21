@@ -18,6 +18,22 @@ export const games = [
     badge: "Komposita"
   },
   {
+    id: "galgenwort",
+    title: "Galgenwort",
+    shortDescription: "Errate ein deutsches Wort, bevor die Fehler ausgehen.",
+    route: "/games/galgenwort",
+    estimatedMinutes: 2,
+    badge: "Buchstaben"
+  },
+  {
+    id: "formwort",
+    title: "Formwort",
+    shortDescription: "Nutze Formen und Farbhinweise, um das Wort zu knacken.",
+    route: "/games/formwort",
+    estimatedMinutes: 3,
+    badge: "Formen"
+  },
+  {
     id: "worttreffer",
     title: "Worttreffer",
     shortDescription: "Errate ein Wort mit grün-gelb-grauem Feedback.",

@@ -14,6 +14,15 @@ Wortling is an Expo + React Native + TypeScript mobile app for German daily word
 - Write README, agent-facing docs, and code comments in English.
 - Do not add backend, accounts, or extra game modes unless explicitly requested.
 - Prefer existing Expo/React Native APIs before adding dependencies.
+- Only change dependencies when the user explicitly asks for it, or when a bug fix or requested feature genuinely requires a package/version change. Do not update packages just to make hygiene checks pass; report that as separate maintenance instead.
+
+## Word Data
+
+- Keep target words and allowed guesses separate: target words are curated daily solutions; allowed guesses are generated validation/ranking data.
+- Word-list import/generation belongs to development/build time, never gameplay runtime.
+- Do not add large locale-aware sorts or word-list processing to screen-open paths. Generate sorted data ahead of time and use `Set`/`Map` lookups at runtime.
+- Generated word files must not be edited by hand; change the import script or curated target lists instead.
+- When word data or rank order changes in a way that affects daily selection or saved progress, bump the affected content version.
 
 ## Offline-First
 
@@ -42,3 +51,5 @@ yarn typecheck
 npx expo-doctor
 yarn expo install --check
 ```
+
+If dependency checks fail because installed Expo/package patch versions are outdated, do not auto-update them unless the current task is dependency maintenance. Mention the mismatch in the handoff instead.

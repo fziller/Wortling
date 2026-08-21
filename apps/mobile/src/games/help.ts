@@ -15,6 +15,22 @@ export const gameHelp = {
       "Hinweise helfen dir Schritt für Schritt. Wenn du die Lösung zeigst, zählt das Rätsel nicht als geschafft."
     ]
   },
+  galgenwort: {
+    title: "So geht Galgenwort",
+    paragraphs: [
+      "Errate das gesuchte Wort Buchstabe für Buchstabe.",
+      "Richtige Buchstaben werden überall im Wort aufgedeckt.",
+      "Falsche Buchstaben zählen als Fehler. Sind alle Fehler aufgebraucht, ist die Runde verloren."
+    ]
+  },
+  formwort: {
+    title: "So geht Formwort",
+    paragraphs: [
+      "Errate das Wort in sechs Versuchen.",
+      "Oben siehst du Formen für die Buchstaben des Lösungsworts. Gleiche Formen bedeuten gleiche Buchstaben.",
+      "Nach jedem Tipp zeigt Grün die richtige Stelle, Gelb einen enthaltenen Buchstaben und Grau einen falschen Buchstaben."
+    ]
+  },
   worttreffer: {
     title: "So geht Worttreffer",
     paragraphs: [

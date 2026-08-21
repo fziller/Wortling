@@ -10,17 +10,19 @@ type WordKeyboardProps = {
   onBackspace: () => void;
   onLetter: (letter: string) => void;
   onSubmit: () => void;
+  showBackspace?: boolean;
+  showSubmit?: boolean;
   submitDisabled?: boolean;
 };
 
 const rows = ["QWERTZUIOPÜ", "ASDFGHJKLÖÄ", "YXCVBNMß"];
 
-export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace, onLetter, onSubmit, submitDisabled = false }: WordKeyboardProps) {
+export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace, onLetter, onSubmit, showBackspace = true, showSubmit = true, submitDisabled = false }: WordKeyboardProps) {
   return (
     <View style={styles.keyboard}>
       {rows.map((row, rowIndex) => (
         <View key={row} style={styles.row}>
-          {rowIndex === 2 ? <KeyboardAction disabled={disabled || submitDisabled} label="Prüfen" onPress={onSubmit} /> : null}
+          {rowIndex === 2 && showSubmit ? <KeyboardAction disabled={disabled || submitDisabled} label="Prüfen" onPress={onSubmit} /> : null}
           {Array.from(row).map((letter) => {
             const state = letterStates[letter.toLocaleLowerCase("de-DE")] ?? "unused";
 
@@ -38,7 +40,7 @@ export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace,
               </Pressable>
             );
           })}
-          {rowIndex === 2 ? <KeyboardAction disabled={disabled} label="⌫" onPress={onBackspace} /> : null}
+          {rowIndex === 2 && showBackspace ? <KeyboardAction disabled={disabled} label="⌫" onPress={onBackspace} /> : null}
         </View>
       ))}
     </View>
