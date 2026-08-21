@@ -18,6 +18,14 @@ export const games = [
     badge: "Komposita"
   },
   {
+    id: "worttreffer",
+    title: "Worttreffer",
+    shortDescription: "Errate ein Wort mit grün-gelb-grauem Feedback.",
+    route: "/games/worttreffer",
+    estimatedMinutes: 3,
+    badge: "5 Buchstaben"
+  },
+  {
     id: "wortcode",
     title: "Wortcode",
     shortDescription: "Knacke ein Wort mit Mastermind-Logik.",

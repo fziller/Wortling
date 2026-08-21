@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 
 import { AppButton } from "@/components/AppButton";
-import { HelpButton, HelpModal } from "@/components/HelpModal";
+import { ConfirmModal } from "@/components/ConfirmModal";
+import { GameHeader } from "@/components/GameHeader";
+import { HelpModal } from "@/components/HelpModal";
 import { Screen } from "@/components/Screen";
+import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
@@ -24,6 +27,7 @@ export default function WortcodeScreen() {
   const [input, setInput] = useState("");
   const [message, setMessage] = useState("Rate ein gültiges deutsches Wort.");
   const [helpVisible, setHelpVisible] = useState(false);
+  const [giveUpVisible, setGiveUpVisible] = useState(false);
 
   useEffect(() => {
     loadProgress<WortcodeState>("wortcode", dateKey).then((progress) => {
@@ -51,8 +55,16 @@ export default function WortcodeScreen() {
     }
   }, [state.status, dateKey]);
 
-  const attemptsLeft = puzzle.maxAttempts - state.guesses.length;
-  const canSubmit = input.trim().length > 0 && state.status === "playing";
+  const canSubmit = Array.from(input).length === puzzle.wordLength && state.status === "playing";
+
+  function addLetter(letter: string) {
+    if (state.status !== "playing") return;
+    setInput((current) => Array.from(current).length >= puzzle.wordLength ? current : current + letter);
+  }
+
+  function backspace() {
+    setInput((current) => Array.from(current).slice(0, -1).join(""));
+  }
 
   function submit() {
     const result = submitWortcodeGuess(puzzle, state, input);
@@ -70,6 +82,7 @@ export default function WortcodeScreen() {
     setState((current) => revealWortcodeSolution(current));
     setMessage("Lösung aufgedeckt.");
     setInput("");
+    setGiveUpVisible(false);
   }
 
   function startNextWord() {
@@ -83,18 +96,9 @@ export default function WortcodeScreen() {
 
   return (
     <Screen>
-      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={styles.wrap}>
+      <View style={styles.wrap}>
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-          <View style={styles.header}>
-            <Pressable accessibilityRole="button" onPress={() => router.replace("/")} style={styles.backButton}>
-              <Text style={styles.backText}>←</Text>
-            </Pressable>
-            <View style={styles.titleBlock}>
-              <Text style={styles.date}>{dateKey}</Text>
-              <Text adjustsFontSizeToFit numberOfLines={1} style={styles.title}>Wortcode</Text>
-            </View>
-            <HelpButton onPress={() => setHelpVisible(true)} />
-          </View>
+          <GameHeader onBack={() => router.back()} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Wortcode" />
 
           <View style={styles.summaryCard}>
             <Text style={styles.summaryTitle}>Gesucht: {puzzle.wordLength} Buchstaben</Text>
@@ -136,30 +140,34 @@ export default function WortcodeScreen() {
           {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toUpperCase()}</Text> : null}
 
           <View style={styles.inputCard}>
-            <TextInput
-              autoCapitalize="characters"
-              autoCorrect={false}
-              editable={state.status === "playing"}
-              maxLength={puzzle.wordLength}
-              onChangeText={setInput}
-              onSubmitEditing={submit}
-              placeholder={"_".repeat(puzzle.wordLength)}
-              placeholderTextColor="#B09E8B"
-              returnKeyType="done"
-              style={styles.input}
-              value={input}
-            />
-            <AppButton disabled={!canSubmit} label={attemptsLeft <= 1 ? "Letzter Versuch" : "Prüfen"} onPress={submit} />
+            <View style={styles.inputRow}>
+              {Array.from(input.padEnd(puzzle.wordLength, " ")).map((letter, index) => (
+                <View key={index} style={styles.inputTile}>
+                  <Text style={styles.inputTileText}>{letter.trim().toUpperCase()}</Text>
+                </View>
+              ))}
+            </View>
+            <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
           </View>
           <View style={styles.actions}>
             {state.status === "playing" ? (
-              <AppButton label="Lösung zeigen" onPress={reveal} />
+              <Pressable accessibilityRole="button" onPress={() => setGiveUpVisible(true)} style={styles.giveUpButton}>
+                <Text style={styles.giveUpText}>Aufgeben</Text>
+              </Pressable>
             ) : (
               <AppButton label="Neues Wort" onPress={startNextWord} />
             )}
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </View>
+      <ConfirmModal
+        confirmLabel="Lösung zeigen"
+        message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft."
+        onCancel={() => setGiveUpVisible(false)}
+        onConfirm={reveal}
+        title="Aufgeben?"
+        visible={giveUpVisible}
+      />
       <HelpModal {...gameHelp.wortcode} onClose={() => setHelpVisible(false)} visible={helpVisible} />
     </Screen>
   );
@@ -175,12 +183,6 @@ function markLabel(mark: WortcodeLetterMark): string {
 const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.lg },
   scrollContent: { flexGrow: 1, gap: tokens.space.lg, paddingBottom: tokens.space.xl },
-  header: { flexDirection: "row", alignItems: "center", gap: tokens.space.md, paddingTop: tokens.space.lg },
-  titleBlock: { flex: 1, minWidth: 0 },
-  backButton: { width: 44, height: 44, alignItems: "center", justifyContent: "center", borderRadius: tokens.radius.pill, backgroundColor: tokens.color.card },
-  backText: { color: tokens.color.ink, fontSize: 28, fontWeight: "900" },
-  date: { color: tokens.color.primaryDark, fontSize: tokens.type.small, fontWeight: "900" },
-  title: { color: tokens.color.ink, fontSize: tokens.type.title, fontWeight: "900" },
   summaryCard: { gap: tokens.space.xs, padding: tokens.space.lg, borderRadius: tokens.radius.lg, backgroundColor: tokens.color.card, borderWidth: 1, borderColor: tokens.color.line },
   summaryTitle: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900" },
   summaryText: { color: tokens.color.primaryDark, fontSize: tokens.type.body, fontWeight: "900" },
@@ -199,6 +201,10 @@ const styles = StyleSheet.create({
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" },
   inputCard: { gap: tokens.space.md },
-  input: { minHeight: 58, paddingHorizontal: tokens.space.lg, borderRadius: tokens.radius.pill, backgroundColor: "white", color: tokens.color.ink, fontSize: 24, fontWeight: "900", textAlign: "center", letterSpacing: 4 },
-  actions: { gap: tokens.space.md }
+  inputRow: { flexDirection: "row", gap: tokens.space.xs },
+  inputTile: { flex: 1, minHeight: 46, alignItems: "center", justifyContent: "center", borderRadius: tokens.radius.sm, backgroundColor: "white", borderWidth: 1, borderColor: tokens.color.line },
+  inputTileText: { color: tokens.color.ink, fontSize: 20, fontWeight: "900" },
+  actions: { gap: tokens.space.md },
+  giveUpButton: { alignSelf: "center", paddingHorizontal: tokens.space.md, paddingVertical: tokens.space.xs },
+  giveUpText: { color: tokens.color.muted, fontSize: tokens.type.small, fontWeight: "900" }
 });

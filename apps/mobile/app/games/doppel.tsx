@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 
 import { AppButton } from "@/components/AppButton";
-import { HelpButton, HelpModal } from "@/components/HelpModal";
+import { ConfirmModal } from "@/components/ConfirmModal";
+import { GameHeader } from "@/components/GameHeader";
+import { HelpModal } from "@/components/HelpModal";
 import { Screen } from "@/components/Screen";
+import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
@@ -32,6 +35,7 @@ export default function DoppelScreen() {
   const [input, setInput] = useState("");
   const [message, setMessage] = useState("Finde ein Wort, das beide Seiten verbindet.");
   const [helpVisible, setHelpVisible] = useState(false);
+  const [giveUpVisible, setGiveUpVisible] = useState(false);
 
   useEffect(() => {
     loadProgress<DoppelState>("doppel", dateKey).then((progress) => {
@@ -62,6 +66,16 @@ export default function DoppelScreen() {
   const solution = puzzle.solutions.find((item) => item.answer === state.solvedAnswer) ?? puzzle.solutions[0];
   const visibleHints = (puzzle.hints ?? []).slice(0, state.unlockedHints);
   const canSubmit = input.trim().length > 0 && state.status === "playing";
+  const maxInputLength = Math.max(...puzzle.solutions.map((item) => Array.from(item.answer).length));
+
+  function addLetter(letter: string) {
+    if (state.status !== "playing") return;
+    setInput((current) => Array.from(current).length >= maxInputLength ? current : current + letter);
+  }
+
+  function backspace() {
+    setInput((current) => Array.from(current).slice(0, -1).join(""));
+  }
 
   function submit() {
     const result = submitDoppelGuess(puzzle, state, input);
@@ -80,6 +94,7 @@ export default function DoppelScreen() {
   function reveal() {
     setState(revealDoppelSolution(puzzle, state));
     setMessage("Lösung aufgedeckt.");
+    setGiveUpVisible(false);
   }
 
   function startNextGame() {
@@ -93,18 +108,9 @@ export default function DoppelScreen() {
 
   return (
     <Screen>
-      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={styles.wrap}>
+      <View style={styles.wrap}>
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-          <View style={styles.header}>
-            <Pressable accessibilityRole="button" onPress={() => router.replace("/")} style={styles.backButton}>
-              <Text style={styles.backText}>←</Text>
-            </Pressable>
-            <View style={styles.titleBlock}>
-              <Text style={styles.date}>{dateKey}</Text>
-              <Text adjustsFontSizeToFit numberOfLines={1} style={styles.title}>Doppel</Text>
-            </View>
-            <HelpButton onPress={() => setHelpVisible(true)} />
-          </View>
+          <GameHeader onBack={() => router.back()} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Doppel" />
 
           <View style={styles.card}>
             <Text style={styles.sideWord}>{puzzle.leftWord.toUpperCase()}</Text>
@@ -132,18 +138,10 @@ export default function DoppelScreen() {
             </View>
           ) : (
             <View style={styles.inputCard}>
-              <TextInput
-                autoCapitalize="characters"
-                autoCorrect={false}
-                onChangeText={setInput}
-                onSubmitEditing={submit}
-                placeholder="Lösung"
-                placeholderTextColor="#B09E8B"
-                returnKeyType="done"
-                style={styles.input}
-                value={input}
-              />
-              <AppButton disabled={!canSubmit} label="Prüfen" onPress={submit} />
+              <View style={styles.inputBox}>
+                <Text style={[styles.inputText, !input && styles.placeholder]}>{input ? input.toLocaleUpperCase("de-DE") : "Lösung"}</Text>
+              </View>
+              <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
             </View>
           )}
 
@@ -151,14 +149,24 @@ export default function DoppelScreen() {
             {state.status === "playing" ? (
               <>
                 <AppButton label="Hinweis" onPress={hint} />
-                <AppButton label="Lösung zeigen" onPress={reveal} />
+                <Pressable accessibilityRole="button" onPress={() => setGiveUpVisible(true)} style={styles.giveUpButton}>
+                  <Text style={styles.giveUpText}>Aufgeben</Text>
+                </Pressable>
               </>
             ) : (
               <AppButton label="Neues Spiel" onPress={startNextGame} />
             )}
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </View>
+      <ConfirmModal
+        confirmLabel="Lösung zeigen"
+        message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft."
+        onCancel={() => setGiveUpVisible(false)}
+        onConfirm={reveal}
+        title="Aufgeben?"
+        visible={giveUpVisible}
+      />
       <HelpModal {...gameHelp.doppel} onClose={() => setHelpVisible(false)} visible={helpVisible} />
     </Screen>
   );
@@ -167,12 +175,6 @@ export default function DoppelScreen() {
 const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.lg },
   scrollContent: { gap: tokens.space.lg, paddingBottom: tokens.space.xl },
-  header: { flexDirection: "row", alignItems: "center", gap: tokens.space.md, paddingTop: tokens.space.lg },
-  titleBlock: { flex: 1, minWidth: 0 },
-  backButton: { width: 44, height: 44, alignItems: "center", justifyContent: "center", borderRadius: tokens.radius.pill, backgroundColor: tokens.color.card },
-  backText: { color: tokens.color.ink, fontSize: 28, fontWeight: "900" },
-  date: { color: tokens.color.primaryDark, fontSize: tokens.type.small, fontWeight: "900" },
-  title: { color: tokens.color.ink, fontSize: tokens.type.title, fontWeight: "900" },
   card: { alignItems: "center", gap: tokens.space.sm, padding: tokens.space.lg, borderRadius: tokens.radius.lg, backgroundColor: tokens.color.card, borderWidth: 1, borderColor: tokens.color.line },
   sideWord: { color: tokens.color.ink, fontSize: 28, fontWeight: "900", letterSpacing: 1 },
   plus: { color: tokens.color.muted, fontSize: 24, fontWeight: "900" },
@@ -180,8 +182,12 @@ const styles = StyleSheet.create({
   answerText: { color: tokens.color.primaryDark, fontSize: 30, fontWeight: "900", letterSpacing: 2 },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center", lineHeight: 24 },
   inputCard: { gap: tokens.space.md },
-  input: { minHeight: 58, paddingHorizontal: tokens.space.lg, borderRadius: tokens.radius.pill, backgroundColor: "white", color: tokens.color.ink, fontSize: 24, fontWeight: "900", textAlign: "center", letterSpacing: 1 },
+  inputBox: { minHeight: 58, alignItems: "center", justifyContent: "center", paddingHorizontal: tokens.space.lg, borderRadius: tokens.radius.pill, backgroundColor: "white" },
+  inputText: { color: tokens.color.ink, fontSize: 24, fontWeight: "900", letterSpacing: 1, textAlign: "center" },
+  placeholder: { color: "#B09E8B" },
   actions: { gap: tokens.space.md },
+  giveUpButton: { alignSelf: "center", paddingHorizontal: tokens.space.md, paddingVertical: tokens.space.xs },
+  giveUpText: { color: tokens.color.muted, fontSize: tokens.type.small, fontWeight: "900" },
   hints: { gap: tokens.space.sm, padding: tokens.space.md, borderRadius: tokens.radius.md, backgroundColor: "rgba(255,255,255,0.5)" },
   hint: { color: tokens.color.ink, fontSize: tokens.type.body, fontWeight: "700" },
   resultCard: { gap: tokens.space.sm, padding: tokens.space.lg, borderRadius: tokens.radius.lg, backgroundColor: "#E5F7EF" },

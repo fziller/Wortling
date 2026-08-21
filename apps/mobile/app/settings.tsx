@@ -1,3 +1,4 @@
+import * as Application from "expo-application";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -119,6 +120,9 @@ export default function SettingsScreen() {
               Wortling ist eine mobile Wortspiel-App für deutsche Wörter. Der erste spielbare Modus heißt
               Dazwischen: ein Rätsel mit fünf Buchstaben, bei dem du das Zielwort alphabetisch eingrenzt.
             </Text>
+            <Text style={styles.versionText}>
+              Version {Application.nativeApplicationVersion ?? "?"} (Build {Application.nativeBuildVersion ?? "?"})
+            </Text>
           </AppCard>
         </Animated.View>
 
@@ -196,6 +200,11 @@ const styles = StyleSheet.create({
     fontSize: tokens.type.body,
     lineHeight: 24,
     marginBottom: tokens.space.md
+  },
+  versionText: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.small,
+    fontWeight: "700"
   },
   linkButton: {
     alignSelf: "flex-start",

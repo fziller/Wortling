@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { KeyboardAvoidingView, Modal, Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import Animated, {
   FadeInDown,
@@ -16,14 +16,16 @@ import Animated, {
   withTiming
 } from "react-native-reanimated";
 
-import { AppButton } from "@/components/AppButton";
-import { HelpButton, HelpModal } from "@/components/HelpModal";
+import { ConfirmModal } from "@/components/ConfirmModal";
+import { GameHeader } from "@/components/GameHeader";
+import { HelpModal } from "@/components/HelpModal";
 import { Screen } from "@/components/Screen";
+import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { allowedGuessCount, targetWordCount } from "@/games/between/content";
 import { createDailyBetweenGame, createPracticeBetweenGame } from "@/games/between/daily";
-import { abandonGame, getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
+import { getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
 import { displayWord } from "@/games/between/format";
 import { BetweenState, Guess } from "@/games/between/types";
 
@@ -48,7 +50,7 @@ export default function BetweenScreen() {
   const [state, setState] = useState<BetweenState>(dailyGame.state);
   const [dateKey, setDateKey] = useState(dailyGame.dateKey);
   const [input, setInput] = useState("");
-  const [modal, setModal] = useState<"cancel" | "reveal" | null>(null);
+  const [modal, setModal] = useState<"reveal" | null>(null);
   const [helpVisible, setHelpVisible] = useState(false);
   const [successVisible, setSuccessVisible] = useState(false);
   const [movingGuess, setMovingGuess] = useState<Guess | null>(null);
@@ -148,6 +150,15 @@ export default function BetweenScreen() {
 
   }
 
+  function addLetter(letter: string) {
+    if (state.status !== "playing") return;
+    setInput((current) => current.length >= 5 ? current : current + letter);
+  }
+
+  function backspace() {
+    setInput((current) => current.slice(0, -1));
+  }
+
   function startNextWord() {
     const nextGame = createPracticeBetweenGame(state.targetWord);
 
@@ -169,12 +180,6 @@ export default function BetweenScreen() {
     winGlow.value = 0;
   }
 
-  function cancelRound() {
-    setState(abandonGame(state));
-    setModal(null);
-    router.replace("/");
-  }
-
   function revealRound() {
     setState(revealSolution(state));
     setModal(null);
@@ -182,23 +187,9 @@ export default function BetweenScreen() {
 
   return (
     <Screen>
-      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={styles.keyboard}>
+      <View style={styles.keyboard}>
         <Animated.View entering={FadeInUp.duration(tokens.motion.normal)} style={styles.header}>
-          <View style={styles.headerTop}>
-            <View>
-              <Text style={styles.date}>{dateKey}</Text>
-              <Text style={styles.title}>Dazwischen</Text>
-            </View>
-            <View style={styles.headerActions}>
-              <Pressable accessibilityRole="button" onPress={state.status === "playing" ? () => setModal("cancel") : startNextWord} style={styles.ghostButton}>
-                <Text style={styles.ghostButtonText}>{state.status === "playing" ? "Abbrechen" : "Neues Wort"}</Text>
-              </Pressable>
-              <Pressable accessibilityRole="button" disabled={state.status !== "playing"} onPress={() => setModal("reveal")} style={[styles.ghostButton, state.status !== "playing" && styles.disabledAction]}>
-                <Text style={styles.ghostButtonText}>Lösen</Text>
-              </Pressable>
-              <HelpButton onPress={() => setHelpVisible(true)} />
-            </View>
-          </View>
+          <GameHeader onBack={() => router.back()} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Dazwischen" />
           <Text style={styles.rules}>Grenze das Zielwort alphabetisch ein.</Text>
           <Text style={styles.wordStats}>{allowedGuessCount} gültige Wörter · {targetWordCount} Zielwörter</Text>
         </Animated.View>
@@ -236,20 +227,19 @@ export default function BetweenScreen() {
         </Animated.View>
 
         <Animated.View style={[styles.inputCard, shakeStyle]}>
-          <TextInput
-            autoCapitalize="characters"
-            autoCorrect={false}
-            editable={state.status === "playing"}
-            maxLength={5}
-            onChangeText={setInput}
-            onSubmitEditing={guess}
-            placeholder="WORT"
-            placeholderTextColor="#B09E8B"
-            returnKeyType="done"
-            style={styles.input}
-            value={input}
-          />
-          <AppButton disabled={input.length < 5 || state.status !== "playing"} label="Tippen" onPress={guess} />
+          {state.status === "playing" ? (
+            <Pressable accessibilityRole="button" onPress={() => setModal("reveal")} style={styles.giveUpButton}>
+              <Text style={styles.giveUpText}>Aufgeben</Text>
+            </Pressable>
+          ) : null}
+          <View style={styles.inputRow}>
+            {Array.from(input.padEnd(5, " ")).map((letter, index) => (
+              <View key={index} style={styles.inputTile}>
+                <Text style={styles.inputTileText}>{letter.trim().toUpperCase()}</Text>
+              </View>
+            ))}
+          </View>
+          <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={guess} submitDisabled={input.length < 5 || state.status !== "playing"} />
         </Animated.View>
 
         <View style={styles.history}>
@@ -266,16 +256,8 @@ export default function BetweenScreen() {
           ))}
         </View>
 
-      </KeyboardAvoidingView>
+      </View>
 
-      <ConfirmModal
-        confirmLabel="Abbrechen"
-        message="Dein Fortschritt in dieser Runde geht verloren."
-        onCancel={() => setModal(null)}
-        onConfirm={cancelRound}
-        title="Runde abbrechen?"
-        visible={modal === "cancel"}
-      />
       <HelpModal {...gameHelp.between} onClose={() => setHelpVisible(false)} visible={helpVisible} />
       <ConfirmModal
         confirmLabel="Lösung zeigen"
@@ -296,15 +278,6 @@ export default function BetweenScreen() {
     </Screen>
   );
 }
-
-type ConfirmModalProps = {
-  visible: boolean;
-  title: string;
-  message: string;
-  confirmLabel: string;
-  onCancel: () => void;
-  onConfirm: () => void;
-};
 
 type WordTilesProps = {
   word?: string;
@@ -364,27 +337,6 @@ function AlphabetStrip({ lowerBound, upperBound }: AlphabetStripProps) {
   );
 }
 
-function ConfirmModal({ visible, title, message, confirmLabel, onCancel, onConfirm }: ConfirmModalProps) {
-  return (
-    <Modal animationType="fade" onRequestClose={onCancel} transparent visible={visible}>
-      <View style={styles.modalBackdrop}>
-        <Animated.View entering={FadeInDown.duration(tokens.motion.normal)} style={styles.modalCard}>
-          <Text style={styles.modalTitle}>{title}</Text>
-          <Text style={styles.modalMessage}>{message}</Text>
-          <View style={styles.modalActions}>
-            <Pressable accessibilityRole="button" onPress={onCancel} style={[styles.modalButton, styles.modalButtonSecondary]}>
-              <Text style={styles.modalButtonSecondaryText}>Weiterspielen</Text>
-            </Pressable>
-            <Pressable accessibilityRole="button" onPress={onConfirm} style={[styles.modalButton, styles.modalButtonPrimary]}>
-              <Text style={styles.modalButtonPrimaryText}>{confirmLabel}</Text>
-            </Pressable>
-          </View>
-        </Animated.View>
-      </View>
-    </Modal>
-  );
-}
-
 type SuccessModalProps = {
   visible: boolean;
   targetWord: string;
@@ -432,43 +384,6 @@ const styles = StyleSheet.create({
   },
   header: {
     gap: tokens.space.sm
-  },
-  headerTop: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    gap: tokens.space.md
-  },
-  headerActions: {
-    gap: tokens.space.xs
-  },
-  ghostButton: {
-    alignItems: "center",
-    paddingHorizontal: tokens.space.md,
-    paddingVertical: tokens.space.sm,
-    borderWidth: 1,
-    borderColor: tokens.color.line,
-    borderRadius: tokens.radius.pill,
-    backgroundColor: "rgba(255, 255, 255, 0.55)"
-  },
-  ghostButtonText: {
-    color: tokens.color.ink,
-    fontSize: tokens.type.small,
-    fontWeight: "900"
-  },
-  disabledAction: {
-    opacity: 0.4
-  },
-  date: {
-    color: tokens.color.primaryDark,
-    fontSize: tokens.type.small,
-    fontWeight: "900",
-    letterSpacing: 1.2
-  },
-  title: {
-    color: tokens.color.ink,
-    fontSize: tokens.type.h1,
-    fontWeight: "900"
   },
   rules: {
     color: tokens.color.muted,
@@ -610,17 +525,34 @@ const styles = StyleSheet.create({
   inputCard: {
     gap: tokens.space.md
   },
-  input: {
-    height: 64,
+  giveUpButton: {
+    alignSelf: "flex-end",
+    paddingHorizontal: tokens.space.sm,
+    paddingVertical: tokens.space.xs
+  },
+  giveUpText: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.small,
+    fontWeight: "900"
+  },
+  inputRow: {
+    flexDirection: "row",
+    gap: tokens.space.xs
+  },
+  inputTile: {
+    flex: 1,
+    height: 48,
+    alignItems: "center",
+    justifyContent: "center",
     borderWidth: 2,
     borderColor: tokens.color.line,
-    borderRadius: tokens.radius.md,
-    backgroundColor: "white",
+    borderRadius: tokens.radius.sm,
+    backgroundColor: "white"
+  },
+  inputTileText: {
     color: tokens.color.ink,
-    fontSize: 32,
-    fontWeight: "900",
-    letterSpacing: 8,
-    textAlign: "center"
+    fontSize: 22,
+    fontWeight: "900"
   },
   history: {
     gap: tokens.space.sm
@@ -662,16 +594,6 @@ const styles = StyleSheet.create({
     padding: tokens.space.lg,
     borderRadius: tokens.radius.lg,
     backgroundColor: tokens.color.card
-  },
-  modalTitle: {
-    color: tokens.color.ink,
-    fontSize: tokens.type.h2,
-    fontWeight: "900"
-  },
-  modalMessage: {
-    color: tokens.color.muted,
-    fontSize: tokens.type.body,
-    lineHeight: 24
   },
   modalActions: {
     flexDirection: "row",

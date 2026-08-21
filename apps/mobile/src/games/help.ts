@@ -15,6 +15,15 @@ export const gameHelp = {
       "Hinweise helfen dir Schritt für Schritt. Wenn du die Lösung zeigst, zählt das Rätsel nicht als geschafft."
     ]
   },
+  worttreffer: {
+    title: "So geht Worttreffer",
+    paragraphs: [
+      "Errate das gesuchte Wort in sechs Versuchen.",
+      "Grün heißt: Buchstabe richtig und an der richtigen Stelle.",
+      "Gelb heißt: Buchstabe kommt vor, aber an einer anderen Stelle.",
+      "Grau heißt: Der Buchstabe kommt nicht im Wort vor. Die Tastatur merkt sich diese Hinweise."
+    ]
+  },
   wortcode: {
     title: "So geht Wortcode",
     paragraphs: [
