@@ -17,6 +17,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { hashSeed } from "@/daily/seed";
 import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
@@ -25,11 +26,14 @@ import { Screen } from "@/components/Screen";
 import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
+import { games } from "@/games/registry";
 import { allowedGuessCount, targetWordCount } from "@/games/between/content";
 import { createDailyBetweenGame, createPracticeBetweenGame } from "@/games/between/daily";
 import { getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
 import { displayWord } from "@/games/between/format";
 import { BetweenState, Guess } from "@/games/between/types";
+import { updateBadgeCount } from "@/notifications/badge";
+import { loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
 
 const BOARD_LINE_HEIGHT = 132;
 const DOT_SIZE = 20;
@@ -61,6 +65,7 @@ export default function BetweenScreen() {
   const [helpVisible, setHelpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [movingGuess, setMovingGuess] = useState<Guess | null>(null);
+  const [progressLoaded, setProgressLoaded] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const clearMovingGuessTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -75,10 +80,44 @@ export default function BetweenScreen() {
   const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
   const centerWord = state.status === "revealed" || state.status === "won" ? state.targetWord : movingGuess?.word;
   const showScaleHints = Boolean(lastGuess);
+  const dailyPuzzleId = `between-${dailyGame.dateKey}`;
+  const dailyPuzzleVersion = hashSeed(dailyGame.contentVersion);
 
   const sortedGuesses = useMemo(() => {
     return [...state.guesses].reverse();
   }, [state.guesses]);
+
+  useEffect(() => {
+    loadProgress<BetweenState>("between", dailyGame.dateKey).then((progress) => {
+      if (progress?.puzzleId === dailyPuzzleId && progress.puzzleVersion === dailyPuzzleVersion) {
+        setState(progress.state);
+        setDateKey(progress.dateKey);
+        setFinishedAt(progress.completedAt ? Date.parse(progress.completedAt) : null);
+        setResultVisible(progress.status !== "playing");
+      }
+      setProgressLoaded(true);
+    });
+  }, [dailyPuzzleId, dailyPuzzleVersion]);
+
+  useEffect(() => {
+    if (!progressLoaded || dateKey !== dailyGame.dateKey) return;
+
+    saveProgress({
+      gameId: "between",
+      dateKey,
+      puzzleId: dailyPuzzleId,
+      puzzleVersion: dailyPuzzleVersion,
+      status: state.status === "abandoned" ? "revealed" : state.status,
+      state,
+      completedAt: state.status !== "playing" ? new Date().toISOString() : undefined,
+    });
+  }, [dailyPuzzleId, dailyPuzzleVersion, dateKey, progressLoaded, state]);
+
+  useEffect(() => {
+    if (state.status !== "playing" && dateKey === dailyGame.dateKey) {
+      loadProgressForGames(games.map((game) => game.id), dateKey).then((progress) => updateBadgeCount(progress, dateKey));
+    }
+  }, [state.status, dateKey]);
 
   useEffect(() => {
     const rawY = (rangeMetrics.targetPositionPercent / 100) * BOARD_LINE_HEIGHT;

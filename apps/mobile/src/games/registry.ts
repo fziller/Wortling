@@ -7,7 +7,8 @@ export const games = [
     shortDescription: "Grenze ein deutsches Wort alphabetisch ein.",
     route: "/games/between",
     estimatedMinutes: 3,
-    badge: "5 Buchstaben"
+    badge: "5 Buchstaben",
+    dailyKniffEligible: true
   },
   {
     id: "doppel",
@@ -15,7 +16,8 @@ export const games = [
     shortDescription: "Finde das Wort, das zwei Komposita verbindet.",
     route: "/games/doppel",
     estimatedMinutes: 2,
-    badge: "Komposita"
+    badge: "Komposita",
+    dailyKniffEligible: true
   },
   {
     id: "galgenwort",
@@ -23,7 +25,8 @@ export const games = [
     shortDescription: "Errate ein deutsches Wort, bevor die Fehler ausgehen.",
     route: "/games/galgenwort",
     estimatedMinutes: 2,
-    badge: "Buchstaben"
+    badge: "Buchstaben",
+    dailyKniffEligible: true
   },
   {
     id: "formwort",
@@ -31,7 +34,8 @@ export const games = [
     shortDescription: "Nutze Formen und Farbhinweise, um das Wort zu knacken.",
     route: "/games/formwort",
     estimatedMinutes: 3,
-    badge: "Formen"
+    badge: "Formen",
+    dailyKniffEligible: true
   },
   {
     id: "worttreffer",
@@ -39,7 +43,8 @@ export const games = [
     shortDescription: "Errate ein Wort mit grün-gelb-grauem Feedback.",
     route: "/games/worttreffer",
     estimatedMinutes: 3,
-    badge: "5 Buchstaben"
+    badge: "5 Buchstaben",
+    dailyKniffEligible: true
   },
   {
     id: "wortleiter",
@@ -47,7 +52,8 @@ export const games = [
     shortDescription: "Verwandle ein Wort Schritt für Schritt ins Zielwort.",
     route: "/games/wortleiter",
     estimatedMinutes: 4,
-    badge: "4 Buchstaben"
+    badge: "4 Buchstaben",
+    dailyKniffEligible: true
   },
   {
     id: "wortcode",
@@ -55,7 +61,8 @@ export const games = [
     shortDescription: "Knacke ein Wort mit Mastermind-Logik.",
     route: "/games/wortcode",
     estimatedMinutes: 3,
-    badge: "6 Buchstaben"
+    badge: "6 Buchstaben",
+    dailyKniffEligible: true
   }
 ] as const satisfies readonly GameDefinition[];
 

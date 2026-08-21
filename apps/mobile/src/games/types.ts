@@ -7,4 +7,5 @@ export type GameDefinition = {
   route: string;
   estimatedMinutes: number;
   badge: string;
+  dailyKniffEligible?: boolean;
 };

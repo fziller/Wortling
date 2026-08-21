@@ -18,8 +18,8 @@ export async function scheduleDailyReminder(): Promise<void> {
   await Notifications.scheduleNotificationAsync({
     identifier: DAILY_IDENTIFIER,
     content: {
-      title: "🧠 Dein tägliches Wortspiel wartet!",
-      body: "3 neue Rätsel warten auf dich.",
+      title: "Deine Tageskniffe warten",
+      body: "3 kurze Rätsel für heute.",
       sound: true,
       ...(Platform.OS === "android" ? { channelId: "daily-reminder" } : {}),
     },

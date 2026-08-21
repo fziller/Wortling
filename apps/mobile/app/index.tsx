@@ -1,15 +1,18 @@
-import { Link, useRouter } from "expo-router";
+import { Link, useFocusEffect, useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 
 import { Screen } from "@/components/Screen";
 import { getBerlinDateKey } from "@/daily/date";
+import { generateDailyKniffe, getDailyKniffeSummary, isDailyKniffCompleted } from "@/dailyKniffe";
 import { tokens } from "@/design/tokens";
-import { games } from "@/games/registry";
+import { gameRegistry, games } from "@/games/registry";
 import type { GameStatus } from "@/games/types";
 import { updateBadgeCount } from "@/notifications/badge";
+import { loadDailyKniffeSeedOverride } from "@/storage/dailyKniffeDev";
+import { completeDailyStreak, loadDailyStreak, type DailyStreak } from "@/storage/dailyStreak";
 import { loadProgressForGames, type StoredProgress } from "@/storage/progress";
 
 const homeOrder = [
@@ -96,15 +99,43 @@ export default function HomeScreen() {
   const posthog = usePostHog();
   const dateKey = getBerlinDateKey();
   const [progressByGame, setProgressByGame] = useState<Record<string, StoredProgress | null>>({});
+  const [dailyStreak, setDailyStreak] = useState<DailyStreak>({ current: 0, best: 0 });
+  const [seedOverride, setSeedOverride] = useState<number | undefined>();
+  const completedEventIds = useRef(new Set<string>());
   const orderedGames = homeOrder
     .map((id) => games.find((game) => game.id === id))
     .filter((game): game is (typeof games)[number] => Boolean(game));
+  const dailyKniffe = useMemo(() => generateDailyKniffe({
+    dateKey,
+    devConfig: { seedOverride },
+    games,
+  }), [dateKey, seedOverride]);
+  const dailyKniffeByGame = useMemo(() => new Map(dailyKniffe.map((kniff) => [kniff.gameId, kniff])), [dailyKniffe]);
+  const dailyKniffGames = dailyKniffe
+    .map((kniff) => gameRegistry[kniff.gameId])
+    .filter((game): game is (typeof games)[number] => Boolean(game));
+  const dailySummary = getDailyKniffeSummary(dailyKniffe, progressByGame);
 
   useEffect(() => {
     try {
       posthog.capture("screen_viewed", { screen: "home", params: { dateKey } });
+      posthog.capture("daily_kniffe_viewed", { dateKey, total: dailySummary.total });
     } catch {}
-  }, [dateKey, posthog]);
+  }, [dateKey, dailySummary.total, posthog]);
+
+  useFocusEffect(useCallback(() => {
+    let mounted = true;
+
+    Promise.all([loadDailyKniffeSeedOverride(), loadDailyStreak()]).then(([nextSeedOverride, nextStreak]) => {
+      if (!mounted) return;
+      setSeedOverride(nextSeedOverride);
+      setDailyStreak(nextStreak);
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, []));
 
   useEffect(() => {
     let mounted = true;
@@ -115,14 +146,51 @@ export default function HomeScreen() {
     ).then((progress) => {
       if (mounted) {
         setProgressByGame(progress);
-        updateBadgeCount(progress);
+        updateBadgeCount(progress, dateKey, seedOverride);
       }
     });
 
     return () => {
       mounted = false;
     };
-  }, [dateKey]);
+  }, [dateKey, seedOverride]);
+
+  useEffect(() => {
+    for (const kniff of dailyKniffe) {
+      if (!isDailyKniffCompleted(progressByGame[kniff.gameId]) || completedEventIds.current.has(kniff.id)) continue;
+
+      completedEventIds.current.add(kniff.id);
+      try {
+        posthog.capture("daily_kniff_completed", { dateKey, gameId: kniff.gameId });
+      } catch {}
+    }
+  }, [dateKey, dailyKniffe, posthog, progressByGame]);
+
+  useEffect(() => {
+    if (!dailySummary.isComplete || dailyStreak.lastCompletedDateKey === dateKey) return;
+
+    completeDailyStreak(dateKey).then((nextStreak) => {
+      setDailyStreak(nextStreak);
+      try {
+        posthog.capture("daily_kniffe_all_completed", { dateKey, streak: nextStreak.current });
+      } catch {}
+    });
+  }, [dailyStreak.lastCompletedDateKey, dailySummary.isComplete, dateKey, posthog]);
+
+  function openDailyKniff(gameId: string) {
+    const game = gameRegistry[gameId];
+    if (!game) return;
+
+    try {
+      posthog.capture("daily_kniff_opened", {
+        dateKey,
+        gameId,
+        completed: String(isDailyKniffCompleted(progressByGame[gameId])),
+      });
+    } catch {}
+
+    router.push(game.route as never);
+  }
 
   return (
     <Screen>
@@ -137,20 +205,67 @@ export default function HomeScreen() {
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        <Animated.View entering={FadeInUp.duration(tokens.motion.slow)} style={styles.progressSection}>
-          <Text style={styles.progressTitle}>DEIN FORTSCHRITT</Text>
-          <View style={styles.tokensRow}>
-            <ProgressToken complete rotate="-2deg" />
-            <ProgressToken complete rotate="1deg" />
-            <ProgressToken rotate="-1deg" />
+        <Animated.View entering={FadeInUp.duration(tokens.motion.slow)} style={styles.dailyCard}>
+          <Tape position="dailyTopRight" />
+          <View style={styles.dailyHeader}>
+            <Text style={styles.dailyTitle}>Tageskniffe</Text>
+            <View style={styles.dailyCountPill}>
+              <Text style={styles.dailyCountText}>{dailySummary.completed}/{dailySummary.total || 3} ERLEDIGT</Text>
+            </View>
           </View>
-          <Text style={styles.progressText}>2 von 3 Rätseln gelöst</Text>
+
+          <View style={styles.dailyRows}>
+            {dailyKniffGames.map((game) => {
+              const complete = isDailyKniffCompleted(progressByGame[game.id]);
+
+              return (
+                <Pressable
+                  accessibilityLabel={`${game.title}, ${complete ? "Tageskniff erledigt" : "offener Tageskniff"}`}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: complete }}
+                  key={game.id}
+                  onPress={() => openDailyKniff(game.id)}
+                  style={({ pressed }) => [styles.dailyRow, complete && styles.dailyRowDone, pressed && styles.pressed]}
+                >
+                  {complete ? (
+                    <View style={styles.dailyStamp}>
+                      <View style={styles.dailyStampCoin}>
+                        <Text style={styles.dailyStampCheck}>✓</Text>
+                      </View>
+                    </View>
+                  ) : (
+                    <View style={styles.dailyOpenMark}>
+                      <View style={styles.dailyOpenDot} />
+                    </View>
+                  )}
+                  <Text style={[styles.dailyGameTitle, complete && styles.dailyGameTitleDone]}>{game.title}</Text>
+                  {complete ? (
+                    <Text style={styles.dailyDoneLabel}>ABGESCHLOSSEN</Text>
+                  ) : (
+                    <View style={styles.dailyPlayPill}>
+                      <Text style={styles.dailyPlayText}>SPIELEN</Text>
+                    </View>
+                  )}
+                </Pressable>
+              );
+            })}
+          </View>
+
+          <Text style={styles.dailyFooter}>
+            {dailySummary.isComplete
+              ? `Tageskniffe geschafft · Serie ${dailyStreak.current || 1}`
+              : dailySummary.total < 3
+                ? "Noch nicht genug Spiele freigegeben."
+                : `Noch ${dailySummary.total - dailySummary.completed} für deine Serie`}
+          </Text>
         </Animated.View>
 
         <View style={styles.gameList}>
           {orderedGames.map((game, index) => {
             const meta = gameMeta[game.id as keyof typeof gameMeta];
             const status = progressByGame[game.id]?.status;
+            const dailyKniff = dailyKniffeByGame.get(game.id);
+            const dailyKniffComplete = isDailyKniffCompleted(progressByGame[game.id]);
 
             return (
               <Animated.View
@@ -173,6 +288,11 @@ export default function HomeScreen() {
                       <View style={[styles.statusDot, { backgroundColor: statusDotColor(status, meta.dot) }]} />
                     </View>
                   </View>
+                  {dailyKniff ? (
+                    <Text style={[styles.dailyBadge, dailyKniffComplete && styles.dailyBadgeDone]}>
+                      {dailyKniffComplete ? "✓ Tageskniff" : "✦ Tageskniff"}
+                    </Text>
+                  ) : null}
                   <Text style={styles.cardText}>{meta.description}</Text>
                   {renderPreview(game.id as keyof typeof gameMeta, meta.color)}
                 </Pressable>
@@ -182,14 +302,6 @@ export default function HomeScreen() {
         </View>
       </ScrollView>
     </Screen>
-  );
-}
-
-function ProgressToken({ complete = false, rotate }: { complete?: boolean; rotate: string }) {
-  return (
-    <View style={[styles.progressToken, complete ? styles.progressTokenDone : styles.progressTokenOpen, { transform: [{ rotate }] }]}>
-      {complete ? <Text style={styles.check}>✓</Text> : null}
-    </View>
   );
 }
 
@@ -335,6 +447,11 @@ const tapePositions = StyleSheet.create({
     left: "43%",
     transform: [{ rotate: "-3deg" }],
   },
+  dailyTopRight: {
+    right: 38,
+    top: -6,
+    transform: [{ rotate: "10deg" }],
+  },
 });
 
 const styles = StyleSheet.create({
@@ -373,52 +490,159 @@ const styles = StyleSheet.create({
     paddingBottom: tokens.space.xl,
     paddingTop: tokens.space.lg,
   },
-  progressSection: {
-    alignItems: "center",
-    gap: 14,
-    paddingVertical: tokens.space.sm,
-  },
-  progressTitle: {
-    color: tokens.color.ink,
-    fontSize: 17,
-    fontWeight: "900",
-    letterSpacing: 0.9,
-  },
-  tokensRow: {
-    flexDirection: "row",
-    gap: 16,
-  },
-  progressToken: {
-    alignItems: "center",
-    borderRadius: 13,
-    height: 56,
-    justifyContent: "center",
-    width: 56,
-  },
-  progressTokenDone: {
-    backgroundColor: "#E65100",
-    shadowColor: "#9C2E00",
-    shadowOffset: { height: 6, width: 0 },
-    shadowOpacity: 0.24,
-    shadowRadius: 10,
-    elevation: 3,
-  },
-  progressTokenOpen: {
-    backgroundColor: "#F2EDE4",
-    borderColor: "#E1D8CB",
-    borderStyle: "dashed",
+  dailyCard: {
+    gap: tokens.space.md,
+    padding: 22,
+    borderRadius: 22,
     borderWidth: 1,
+    borderColor: "#EEE6DA",
+    backgroundColor: "#FFFDF8",
+    overflow: "visible",
+    shadowColor: tokens.color.shadow,
+    shadowOffset: { height: 12, width: 0 },
+    shadowOpacity: 0.09,
+    shadowRadius: 22,
+    elevation: 4,
+    transform: [{ rotate: "-1deg" }],
   },
-  check: {
-    color: "#FFFDF8",
-    fontSize: 33,
+  dailyHeader: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: tokens.space.sm,
+    marginBottom: tokens.space.xs,
+  },
+  dailyTitle: {
+    color: tokens.color.ink,
+    flexShrink: 1,
+    fontSize: 19,
     fontWeight: "900",
-    lineHeight: 34,
+    letterSpacing: -0.6,
   },
-  progressText: {
-    color: "#5F6368",
-    fontSize: 14,
-    fontWeight: "600",
+  dailyCountPill: {
+    alignItems: "center",
+    paddingHorizontal: tokens.space.sm,
+    paddingVertical: 5,
+    borderRadius: tokens.radius.pill,
+    backgroundColor: "#FFE0B2",
+  },
+  dailyCountText: {
+    color: tokens.color.primaryDark,
+    fontSize: 11,
+    fontWeight: "900",
+    letterSpacing: 0.4,
+  },
+  dailyRows: {
+    gap: 9,
+  },
+  dailyRow: {
+    minHeight: 50,
+    alignItems: "center",
+    flexDirection: "row",
+    gap: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
+    borderRadius: 13,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "#EDE5DA",
+    shadowColor: tokens.color.shadow,
+    shadowOffset: { height: 4, width: 0 },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    elevation: 1,
+  },
+  dailyRowDone: {
+    backgroundColor: "rgba(245, 240, 230, 0.35)",
+    borderColor: "#E0D8CD",
+    borderStyle: "dashed",
+    shadowOpacity: 0,
+    elevation: 0,
+  },
+  pressed: {
+    opacity: 0.72,
+  },
+  dailyStamp: {
+    width: 44,
+    height: 28,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(23, 19, 13, 0.55)",
+    transform: [{ rotate: "-1deg" }],
+  },
+  dailyStampCoin: {
+    width: 21,
+    height: 21,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 999,
+    backgroundColor: "#FFE0B2",
+    borderWidth: 2,
+    borderColor: "#FFFFFF",
+  },
+  dailyStampCheck: {
+    color: tokens.color.primaryDark,
+    fontSize: 13,
+    fontWeight: "900",
+    lineHeight: 15,
+  },
+  dailyOpenMark: {
+    width: 32,
+    height: 32,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 999,
+    backgroundColor: "#F5F0E6",
+    shadowColor: tokens.color.shadow,
+    shadowOffset: { height: 2, width: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+  },
+  dailyOpenDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 999,
+    backgroundColor: tokens.color.primary,
+  },
+  dailyGameTitle: {
+    color: tokens.color.ink,
+    flex: 1,
+    fontSize: 16,
+    fontWeight: "900",
+  },
+  dailyGameTitleDone: {
+    color: tokens.color.ink,
+  },
+  dailyDoneLabel: {
+    color: "#2E7D32",
+    fontSize: 10,
+    fontWeight: "900",
+    letterSpacing: 0.4,
+  },
+  dailyPlayPill: {
+    minWidth: 72,
+    alignItems: "center",
+    paddingHorizontal: tokens.space.sm,
+    paddingVertical: 7,
+    borderRadius: tokens.radius.pill,
+    backgroundColor: tokens.color.primary,
+    shadowColor: tokens.color.primaryDark,
+    shadowOffset: { height: 2, width: 0 },
+    shadowOpacity: 0.16,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  dailyPlayText: {
+    color: "white",
+    fontSize: 11,
+    fontWeight: "900",
+    letterSpacing: 0.3,
+  },
+  dailyFooter: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.small,
+    fontWeight: "900",
+    textAlign: "center",
   },
   gameList: {
     gap: 20,
@@ -467,6 +691,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     marginTop: 4,
+  },
+  dailyBadge: {
+    alignSelf: "flex-start",
+    marginTop: tokens.space.xs,
+    paddingHorizontal: tokens.space.sm,
+    paddingVertical: 4,
+    borderRadius: tokens.radius.pill,
+    backgroundColor: "rgba(255, 107, 53, 0.12)",
+    color: tokens.color.primaryDark,
+    fontSize: tokens.type.small,
+    fontWeight: "900",
+  },
+  dailyBadgeDone: {
+    backgroundColor: "rgba(33, 166, 122, 0.14)",
+    color: tokens.color.success,
   },
   tape: {
     backgroundColor: "rgba(253, 251, 247, 0.72)",

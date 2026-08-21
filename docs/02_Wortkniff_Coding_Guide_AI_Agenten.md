@@ -108,6 +108,17 @@ und sendet Actions; sie enthält möglichst keine Spielregeln.
 - Entwicklermodus: Datum/Seed überschreibbar machen, damit Rätsel
   reproduzierbar getestet werden können.
 
+- Tageskniffe sind nur eine deterministische Auswahl bestehender Daily
+  Games. Sie enthalten keinen eigenen Puzzle-Content, kein Zielwort und
+  keinen separaten Completion-Status.
+
+- Tageskniff-Fortschritt wird aus dem bestehenden Game Progress
+  abgeleitet. Final zählen `won`, `lost` und `revealed`; bloßes Öffnen
+  zählt nicht.
+
+- Streaks werden lokal als Tagesabschluss-Summary gespeichert. Einzelne
+  Tageskniffe bleiben weiterhin aus dem Game Progress ableitbar.
+
 # 6. Wortdaten und Content
 
 - Wortliste nicht blind aus einem beliebigen Dictionary übernehmen.

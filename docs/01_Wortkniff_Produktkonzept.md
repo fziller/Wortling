@@ -99,18 +99,19 @@ Hinweise bedeuten mehr Punkte.
 
 # 6. Daily Loop
 
-1.  App öffnen und die heutige Spielkarte sehen.
+1.  App öffnen und die heutigen Tageskniffe sehen.
 
-2.  Spielmodus auswählen und eine Runde in 1 bis 3 Minuten spielen.
+2.  Einen der drei markierten Spielmodi auswählen und die heutige Runde
+    in 1 bis 3 Minuten spielen.
 
 3.  Direktes Ergebnis mit Versuchen, Zeit oder Score erhalten.
 
-4.  Weitere heutige Modi spielen.
+4.  Weitere heutige Tageskniffe spielen.
 
-5.  Tagesabschluss: X/Y geschafft, Streak, persönliche Statistik und
-    teilbares Ergebnis.
+5.  Tagesabschluss: 3/3 Tageskniffe geschafft, Streak, persönliche
+    Statistik und teilbares Ergebnis.
 
-6.  Am nächsten Tag neue Rätsel.
+6.  Am nächsten Tag neue Daily-Rätsel und eine neue Tageskniffe-Auswahl.
 
 # 7. MVP
 
@@ -126,7 +127,8 @@ zu bauen, sondern die Produktwirkung in der Hand zu testen.
 - Kleine kuratierte deutsche Wortliste plus Validierung gültiger
   Eingaben.
 
-- Streak/Statistik zunächst lokal.
+- Streak/Statistik zunächst lokal; ein Streak-Tag ist vollständig, wenn
+  alle drei Tageskniffe abgeschlossen wurden.
 
 - Polierte Motion- und Feedback-Grundsprache.
 

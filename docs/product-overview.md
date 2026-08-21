@@ -25,6 +25,8 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 ## Current Features
 
 - Daily puzzle selection per game.
+- Tageskniffe: each Berlin day highlights three existing daily games on Home; finishing all three final daily rounds completes the day.
+- Local daily streaks based on consecutive completed Tageskniffe days.
 - Practice rounds where supported by the game screen.
 - Shared local progress model stored in AsyncStorage.
 - Static generated allowed-guess data checked into the app.

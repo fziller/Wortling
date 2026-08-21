@@ -65,11 +65,12 @@ möchte.
 
 - Fortschritt pro Tag speichern.
 
-- Streak und einfache Statistik ergänzen.
+- Streak und einfache Statistik ergänzen. Ein Streak-Tag zählt nur, wenn
+  alle drei Tageskniffe final abgeschlossen wurden.
 
 - Share-Text/Share-Grid erzeugen, ohne Lösung zu verraten.
 
-- Home-Screen zeigt Status: offen, begonnen, geschafft.
+- Home-Screen zeigt Tageskniffe mit Status: offen, begonnen, geschafft.
 
 - Definition of Done: Nutzer kann die App an mehreren simulierten Tagen
   sinnvoll verwenden.

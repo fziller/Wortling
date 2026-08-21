@@ -1,12 +1,16 @@
 import * as Application from "expo-application";
 import { useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 
 import { AppCard } from "@/components/AppCard";
 import { Screen } from "@/components/Screen";
+import { getBerlinDateKey } from "@/daily/date";
+import { createDailyKniffeSeed, generateDailyKniffe } from "@/dailyKniffe";
 import { tokens } from "@/design/tokens";
+import { gameRegistry, games } from "@/games/registry";
+import { clearDailyKniffeSeedOverride, loadDailyKniffeSeedOverride, saveDailyKniffeSeedOverride } from "@/storage/dailyKniffeDev";
 import { loadNotificationSettings, saveNotificationSettings, NotificationSettings } from "@/storage/settings";
 import { requestNotificationPermission } from "@/notifications/register";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
@@ -21,9 +25,18 @@ export default function SettingsScreen() {
     hour: 18,
     minute: 0,
   });
+  const [dailyKniffeSeedOverride, setDailyKniffeSeedOverride] = useState<number | undefined>();
+  const dateKey = getBerlinDateKey();
+  const productionSeed = createDailyKniffeSeed(dateKey);
+  const generatedKniffe = useMemo(() => generateDailyKniffe({
+    dateKey,
+    devConfig: { seedOverride: dailyKniffeSeedOverride },
+    games,
+  }), [dailyKniffeSeedOverride, dateKey]);
 
   useEffect(() => {
     loadNotificationSettings().then(setSettings);
+    loadDailyKniffeSeedOverride().then(setDailyKniffeSeedOverride);
   }, []);
 
   async function updateAndReschedule(next: NotificationSettings) {
@@ -48,6 +61,17 @@ export default function SettingsScreen() {
   function adjustMinute(delta: number) {
     const next = { ...settings, minute: (settings.minute + delta + 60) % 60 };
     updateAndReschedule(next);
+  }
+
+  async function createNewDailyKniffeSeed() {
+    const nextSeed = Math.floor(Math.random() * 1_000_000_000);
+    setDailyKniffeSeedOverride(nextSeed);
+    await saveDailyKniffeSeedOverride(nextSeed);
+  }
+
+  async function resetDailyKniffeSeed() {
+    setDailyKniffeSeedOverride(undefined);
+    await clearDailyKniffeSeedOverride();
   }
 
   const timeLabel = `${String(settings.hour).padStart(2, "0")}:${String(settings.minute).padStart(2, "0")}`;
@@ -125,6 +149,33 @@ export default function SettingsScreen() {
             </Text>
           </AppCard>
         </Animated.View>
+
+        {__DEV__ ? (
+          <Animated.View entering={FadeInDown.delay(170).duration(tokens.motion.normal)}>
+            <AppCard>
+              <Text style={styles.cardTitle}>DEV Tageskniffe</Text>
+              <Text style={styles.body}>
+                {dailyKniffeSeedOverride === undefined ? "Production-Auswahl aktiv." : "DEV Daily Override aktiv."}
+              </Text>
+              <Text style={styles.versionText}>Datum: {dateKey}</Text>
+              <Text style={styles.versionText}>Quest Seed: {dailyKniffeSeedOverride ?? productionSeed}</Text>
+              <View style={styles.devGenerated}>
+                <Text style={styles.stepperLabel}>Generated</Text>
+                {generatedKniffe.map((kniff) => (
+                  <Text key={kniff.id} style={styles.devGameText}>• {gameRegistry[kniff.gameId]?.title ?? kniff.gameId}</Text>
+                ))}
+              </View>
+              <View style={styles.devActions}>
+                <Pressable accessibilityRole="button" onPress={createNewDailyKniffeSeed} style={styles.devButton}>
+                  <Text style={styles.devButtonText}>🎲 Neuer Seed</Text>
+                </Pressable>
+                <Pressable accessibilityRole="button" onPress={resetDailyKniffeSeed} style={styles.devButtonSecondary}>
+                  <Text style={styles.devButtonSecondaryText}>Seed Override zurücksetzen</Text>
+                </Pressable>
+              </View>
+            </AppCard>
+          </Animated.View>
+        ) : null}
 
         <Animated.View entering={FadeInDown.delay(200).duration(tokens.motion.normal)}>
           <AppCard>
@@ -291,6 +342,45 @@ const styles = StyleSheet.create({
   timeButtonText: {
     color: tokens.color.ink,
     fontSize: 20,
+    fontWeight: "900"
+  },
+  devGenerated: {
+    gap: tokens.space.xs,
+    marginTop: tokens.space.md,
+    marginBottom: tokens.space.md
+  },
+  devGameText: {
+    color: tokens.color.ink,
+    fontSize: tokens.type.body,
+    fontWeight: "800"
+  },
+  devActions: {
+    gap: tokens.space.sm
+  },
+  devButton: {
+    minHeight: 48,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: tokens.radius.pill,
+    backgroundColor: tokens.color.primary
+  },
+  devButtonText: {
+    color: "white",
+    fontSize: tokens.type.body,
+    fontWeight: "900"
+  },
+  devButtonSecondary: {
+    minHeight: 48,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: tokens.radius.pill,
+    borderWidth: 1,
+    borderColor: tokens.color.line,
+    backgroundColor: "white"
+  },
+  devButtonSecondaryText: {
+    color: tokens.color.ink,
+    fontSize: tokens.type.body,
     fontWeight: "900"
   }
 });
