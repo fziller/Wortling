@@ -1,10 +1,15 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useMemo } from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import { VideoView, useVideoPlayer } from "expo-video";
 
 import { tokens } from "@/design/tokens";
 
-const gameBackgroundVideo = require("../../assets/background/game-background.mp4");
+const gameBackgroundVideos = [
+  require("../../assets/background/game-background_1.mp4"),
+  require("../../assets/background/game-background_2.mp4"),
+  require("../../assets/background/game-background_3.mp4"),
+  require("../../assets/background/game-background_4.mp4")
+];
 
 type ScreenProps = PropsWithChildren<{
   videoBackground?: boolean;
@@ -20,7 +25,11 @@ export function Screen({ children, videoBackground = false }: ScreenProps) {
 }
 
 function BackgroundVideo() {
-  const player = useVideoPlayer(gameBackgroundVideo, (player) => {
+  const source = useMemo(
+    () => gameBackgroundVideos[Math.floor(Math.random() * gameBackgroundVideos.length)],
+    []
+  );
+  const player = useVideoPlayer(source, (player) => {
     player.loop = true;
     player.muted = true;
     player.play();

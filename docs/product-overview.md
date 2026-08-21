@@ -19,6 +19,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 | Galgenwort | Guess a German word before running out of mistakes. | Guess letters from a clue category; wrong guesses count against the limit. |
 | Formwort | Solve a 5-letter word with shape and color feedback. | Guess words and use visual hints to infer repeated letters and positions. |
 | Worttreffer | Guess a 5-letter word with color feedback. | Green means correct position, yellow means present elsewhere, gray means absent. |
+| Wortleiter | Transform a 4-letter start word into a target word. | Each intermediate word must be valid German and change exactly one letter. Daily puzzles are generated from prepared word-graph candidates. |
 | Wortcode | Crack a 6-letter word with Mastermind-style logic. | Each guess returns positional and non-positional match counts. |
 
 ## Current Features

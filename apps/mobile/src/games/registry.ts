@@ -42,6 +42,14 @@ export const games = [
     badge: "5 Buchstaben"
   },
   {
+    id: "wortleiter",
+    title: "Wortleiter",
+    shortDescription: "Verwandle ein Wort Schritt für Schritt ins Zielwort.",
+    route: "/games/wortleiter",
+    estimatedMinutes: 4,
+    badge: "4 Buchstaben"
+  },
+  {
     id: "wortcode",
     title: "Wortcode",
     shortDescription: "Knacke ein Wort mit Mastermind-Logik.",

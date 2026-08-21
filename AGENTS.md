@@ -23,6 +23,7 @@ Wortkniff is an Expo + React Native + TypeScript mobile app for German daily wor
 - Word-list import/generation belongs to development/build time, never gameplay runtime.
 - Do not add large locale-aware sorts or word-list processing to screen-open paths. Generate sorted data ahead of time and use `Set`/`Map` lookups at runtime.
 - Generated word files must not be edited by hand; change the import script or curated target lists instead.
+- New game word-import or content-generation scripts must be wired into `apps/mobile/package.json` via `content:generate`, so app builds and OTA updates refresh generated game data automatically.
 - When word data or rank order changes in a way that affects daily selection or saved progress, bump the affected content version.
 
 ## Offline-First

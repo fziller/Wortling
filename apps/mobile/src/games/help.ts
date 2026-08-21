@@ -40,6 +40,14 @@ export const gameHelp = {
       "Grau heißt: Der Buchstabe kommt nicht im Wort vor. Die Tastatur merkt sich diese Hinweise."
     ]
   },
+  wortleiter: {
+    title: "So geht Wortleiter",
+    paragraphs: [
+      "Verwandle das Startwort in das Zielwort.",
+      "Jeder Schritt muss ein gültiges deutsches Wort sein und genau einen Buchstaben ändern.",
+      "Du darfst Wörter in derselben Leiter nicht wiederholen. Mit Zurück nimmst du den letzten Schritt raus."
+    ]
+  },
   wortcode: {
     title: "So geht Wortcode",
     paragraphs: [
