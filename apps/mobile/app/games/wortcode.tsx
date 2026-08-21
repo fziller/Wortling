@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 
 import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameHeader } from "@/components/GameHeader";
+import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
 import { HelpModal } from "@/components/HelpModal";
 import { Screen } from "@/components/Screen";
 import { WordKeyboard } from "@/components/WordKeyboard";
@@ -94,12 +94,26 @@ export default function WortcodeScreen() {
     setMessage("Rate ein gültiges deutsches Wort.");
   }
 
+  function goBack() {
+    if (router.canGoBack()) router.back();
+    else router.replace("/");
+  }
+
   return (
     <Screen>
+      <Stack.Screen
+        options={{
+          headerLeft: () => <GameHeaderButton accessibilityLabel="Zurück" label="←" onPress={goBack} />,
+          headerRight: () => <GameHeaderHelpButton onPress={() => setHelpVisible(true)} />,
+          headerShadowVisible: false,
+          headerShown: true,
+          headerStyle: { backgroundColor: tokens.color.paper },
+          headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Wortcode" />,
+          headerTitleAlign: "center"
+        }}
+      />
       <View style={styles.wrap}>
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-          <GameHeader onBack={() => router.back()} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Wortcode" />
-
           <View style={styles.summaryCard}>
             <Text style={styles.summaryTitle}>Gesucht: {puzzle.wordLength} Buchstaben</Text>
             <Text style={styles.summaryText}>Versuch {Math.min(state.guesses.length + 1, puzzle.maxAttempts)} / {puzzle.maxAttempts}</Text>

@@ -2,7 +2,8 @@ import { allowedGuesses, WORD_LENGTH } from "./content";
 import { BetweenState, GuessResult } from "./types";
 
 const collator = new Intl.Collator("de-DE", { sensitivity: "base" });
-const sortedGuesses = [...allowedGuesses].sort(compareWords);
+const allowedGuessSet = new Set(allowedGuesses);
+const wordRankByWord = new Map(allowedGuesses.map((word, index) => [word, index]));
 
 export function normalizeWord(word: string): string {
   return word.trim().toLocaleLowerCase("de-DE");
@@ -31,11 +32,7 @@ export function getWordPercent(word: string): number {
     return 100;
   }
 
-  const normalizedWord = normalizeWord(word);
-  const index = sortedGuesses.findIndex((guess) => compareWords(guess, normalizedWord) >= 0);
-  const safeIndex = index === -1 ? sortedGuesses.length - 1 : index;
-
-  return Math.round((safeIndex / Math.max(sortedGuesses.length - 1, 1)) * 100);
+  return Math.round((getWordRank(word) / Math.max(allowedGuesses.length - 1, 1)) * 100);
 }
 
 export function getRemainingPercent(state: BetweenState): number {
@@ -48,13 +45,32 @@ export function getWordRank(word: string): number {
   }
 
   if (word === "zzzzz") {
-    return sortedGuesses.length - 1;
+    return allowedGuesses.length - 1;
   }
 
   const normalizedWord = normalizeWord(word);
-  const index = sortedGuesses.findIndex((guess) => compareWords(guess, normalizedWord) >= 0);
+  const rank = wordRankByWord.get(normalizedWord);
 
-  return index === -1 ? sortedGuesses.length - 1 : index;
+  if (rank !== undefined) {
+    return rank;
+  }
+
+  let low = 0;
+  let high = allowedGuesses.length - 1;
+  let index = -1;
+
+  while (low <= high) {
+    const middle = Math.floor((low + high) / 2);
+
+    if (compareWords(allowedGuesses[middle], normalizedWord) >= 0) {
+      index = middle;
+      high = middle - 1;
+    } else {
+      low = middle + 1;
+    }
+  }
+
+  return index === -1 ? allowedGuesses.length - 1 : index;
 }
 
 export function getGuessDistancePercent(state: BetweenState): number | null {
@@ -65,7 +81,7 @@ export function getGuessDistancePercent(state: BetweenState): number | null {
   }
 
   const distance = Math.abs(getWordRank(state.targetWord) - getWordRank(lastGuess.word));
-  const percent = (distance / Math.max(sortedGuesses.length - 1, 1)) * 100;
+  const percent = (distance / Math.max(allowedGuesses.length - 1, 1)) * 100;
 
   return Math.round(percent * 10) / 10;
 }
@@ -88,7 +104,7 @@ export function getTargetRangeMetrics(state: BetweenState) {
   const lowerRank = getWordRank(state.lowerBound);
   const upperRank = getWordRank(state.upperBound);
   const targetRank = getWordRank(state.targetWord);
-  const totalWords = Math.max(sortedGuesses.length - 1, 1);
+  const totalWords = Math.max(allowedGuesses.length - 1, 1);
   const rangeSize = Math.max(upperRank - lowerRank, 1);
   const topDistance = targetRank - lowerRank;
   const bottomDistance = upperRank - targetRank;
@@ -120,7 +136,7 @@ export function submitGuess(state: BetweenState, rawGuess: string): GuessResult 
     return { ok: false, state, reason: `Bitte genau ${WORD_LENGTH} Buchstaben eingeben.` };
   }
 
-  if (!allowedGuesses.includes(word)) {
+  if (!allowedGuessSet.has(word)) {
     return { ok: false, state, reason: "Dieses deutsche Wort kenne ich noch nicht." };
   }
 

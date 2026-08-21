@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import Animated, {
   FadeInDown,
   FadeInUp,
@@ -17,7 +17,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameHeader } from "@/components/GameHeader";
+import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
 import { HelpModal } from "@/components/HelpModal";
 import { Screen } from "@/components/Screen";
 import { WordKeyboard } from "@/components/WordKeyboard";
@@ -185,11 +185,26 @@ export default function BetweenScreen() {
     setModal(null);
   }
 
+  function goBack() {
+    if (router.canGoBack()) router.back();
+    else router.replace("/");
+  }
+
   return (
     <Screen>
+      <Stack.Screen
+        options={{
+          headerLeft: () => <GameHeaderButton accessibilityLabel="Zurück" label="←" onPress={goBack} />,
+          headerRight: () => <GameHeaderHelpButton onPress={() => setHelpVisible(true)} />,
+          headerShadowVisible: false,
+          headerShown: true,
+          headerStyle: { backgroundColor: tokens.color.paper },
+          headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Dazwischen" />,
+          headerTitleAlign: "center"
+        }}
+      />
       <View style={styles.keyboard}>
         <Animated.View entering={FadeInUp.duration(tokens.motion.normal)} style={styles.header}>
-          <GameHeader onBack={() => router.back()} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Dazwischen" />
           <Text style={styles.rules}>Grenze das Zielwort alphabetisch ein.</Text>
           <Text style={styles.wordStats}>{allowedGuessCount} gültige Wörter · {targetWordCount} Zielwörter</Text>
         </Animated.View>

@@ -46,7 +46,12 @@ export const targetWords = [
   "zange"
 ].sort();
 
-export const allowedGuesses = Array.from(new Set([...targetWords, ...generatedAllowedGuesses])).sort();
+const generatedGuessSet = new Set<string>(generatedAllowedGuesses);
+const missingTargetWords = targetWords.filter((word) => !generatedGuessSet.has(word));
+
+export const allowedGuesses = missingTargetWords.length === 0
+  ? generatedAllowedGuesses
+  : [...generatedAllowedGuesses, ...missingTargetWords].sort(new Intl.Collator("de-DE", { sensitivity: "base" }).compare);
 
 export const targetWordCount = targetWords.length;
 export const allowedGuessCount = allowedGuesses.length;

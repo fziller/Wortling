@@ -2,38 +2,48 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { tokens } from "@/design/tokens";
 
-import { HelpButton } from "./HelpModal";
-
-type GameHeaderProps = {
-  onBack: () => void;
-  onHelp: () => void;
+type GameHeaderTitleProps = {
   subtitle: string;
   title: string;
 };
 
-export function GameHeader({ onBack, onHelp, subtitle, title }: GameHeaderProps) {
+export function GameHeaderTitle({ subtitle, title }: GameHeaderTitleProps) {
   return (
-    <View style={styles.header}>
-      <Pressable accessibilityLabel="Zurück" accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-        <Text style={styles.backText}>←</Text>
-      </Pressable>
-      <View style={styles.titleBlock}>
-        <Text style={styles.subtitle}>{subtitle}</Text>
-        <Text adjustsFontSizeToFit numberOfLines={1} style={styles.title}>{title}</Text>
-      </View>
-      <HelpButton onPress={onHelp} />
+    <View style={styles.titleBlock}>
+      <Text style={styles.subtitle}>{subtitle}</Text>
+      <Text adjustsFontSizeToFit numberOfLines={1} style={styles.title}>{title}</Text>
+    </View>
+  );
+}
+
+type GameHeaderButtonProps = {
+  accessibilityLabel: string;
+  label: string;
+  onPress: () => void;
+};
+
+export function GameHeaderButton({ accessibilityLabel, label, onPress }: GameHeaderButtonProps) {
+  return (
+    <Pressable accessibilityLabel={accessibilityLabel} accessibilityRole="button" onPress={onPress} style={styles.button}>
+      <Text style={styles.buttonText}>{label}</Text>
+    </Pressable>
+  );
+}
+
+type GameHeaderHelpButtonProps = {
+  onPress: () => void;
+};
+
+export function GameHeaderHelpButton({ onPress }: GameHeaderHelpButtonProps) {
+  return (
+    <View style={styles.helpWrap}>
+      <GameHeaderButton accessibilityLabel="Hilfe öffnen" label="?" onPress={onPress} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: tokens.space.md,
-    paddingTop: tokens.space.lg
-  },
-  backButton: {
+  button: {
     width: 44,
     height: 44,
     alignItems: "center",
@@ -43,16 +53,20 @@ const styles = StyleSheet.create({
     borderRadius: tokens.radius.pill,
     backgroundColor: tokens.color.card
   },
-  backText: {
+  buttonText: {
     color: tokens.color.ink,
     fontSize: 28,
     fontWeight: "900",
     lineHeight: 30
   },
+  helpWrap: {
+    alignItems: "flex-end"
+  },
   titleBlock: {
-    flex: 1,
-    minWidth: 0,
-    alignItems: "center"
+    minWidth: 150,
+    maxWidth: 220,
+    alignItems: "center",
+    justifyContent: "center"
   },
   subtitle: {
     color: tokens.color.primaryDark,
@@ -61,7 +75,8 @@ const styles = StyleSheet.create({
   },
   title: {
     color: tokens.color.ink,
-    fontSize: tokens.type.h1,
-    fontWeight: "900"
+    fontSize: tokens.type.h2,
+    fontWeight: "900",
+    lineHeight: 24
   }
 });

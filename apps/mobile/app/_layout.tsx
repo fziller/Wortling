@@ -13,11 +13,19 @@ import { configureNotifications } from "@/notifications/configure";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
 
 initSentry();
-configureNotifications();
-scheduleDailyReminder();
 
 function RootLayoutInner() {
   const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    try {
+      configureNotifications();
+    } catch {
+      // Notifications are nice-to-have; startup must stay offline-safe.
+    }
+
+    scheduleDailyReminder().catch(() => {});
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => setShowSplash(false), 1600);

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 
 import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameHeader } from "@/components/GameHeader";
+import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
 import { HelpModal } from "@/components/HelpModal";
 import { Screen } from "@/components/Screen";
 import { WordKeyboard } from "@/components/WordKeyboard";
@@ -113,11 +113,25 @@ export default function WorttrefferScreen() {
     setStartedAt(Date.now());
   }
 
+  function goBack() {
+    if (router.canGoBack()) router.back();
+    else router.replace("/");
+  }
+
   return (
     <Screen>
+      <Stack.Screen
+        options={{
+          headerLeft: () => <GameHeaderButton accessibilityLabel="Zurück" label="←" onPress={goBack} />,
+          headerRight: () => <GameHeaderHelpButton onPress={() => setHelpVisible(true)} />,
+          headerShadowVisible: false,
+          headerShown: true,
+          headerStyle: { backgroundColor: tokens.color.paper },
+          headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Worttreffer" />,
+          headerTitleAlign: "center"
+        }}
+      />
       <View style={styles.wrap}>
-        <GameHeader onBack={() => router.back()} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Worttreffer" />
-
         <View style={styles.board}>
           {Array.from({ length: puzzle.maxAttempts }).map((_, rowIndex) => {
             const guess = state.guesses[rowIndex];
