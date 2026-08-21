@@ -6,6 +6,8 @@ import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
 import { HelpModal } from "@/components/HelpModal";
+import { KeyboardDock } from "@/components/KeyboardDock";
+import { LetterInputTiles } from "@/components/LetterInputTiles";
 import { Screen } from "@/components/Screen";
 import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
@@ -19,12 +21,17 @@ import { updateBadgeCount } from "@/notifications/badge";
 
 const dailyGame = createDailyWortcodeGame();
 
+function createEmptyInput(length: number) {
+  return Array.from({ length }, () => "");
+}
+
 export default function WortcodeScreen() {
   const router = useRouter();
   const [game, setGame] = useState(dailyGame);
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<WortcodeState>(game.state);
-  const [input, setInput] = useState("");
+  const [inputLetters, setInputLetters] = useState(() => createEmptyInput(dailyGame.puzzle.wordLength));
+  const [cursorIndex, setCursorIndex] = useState(0);
   const [message, setMessage] = useState("Rate ein gültiges deutsches Wort.");
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
@@ -55,23 +62,36 @@ export default function WortcodeScreen() {
     }
   }, [state.status, dateKey]);
 
-  const canSubmit = Array.from(input).length === puzzle.wordLength && state.status === "playing";
+  const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
-    setInput((current) => Array.from(current).length >= puzzle.wordLength ? current : current + letter);
+    setInputLetters((current) => current.map((item, index) => index === cursorIndex ? letter : item));
+    setCursorIndex((current) => Math.min(current + 1, puzzle.wordLength - 1));
   }
 
   function backspace() {
-    setInput((current) => Array.from(current).slice(0, -1).join(""));
+    setInputLetters((current) => {
+      if (current[cursorIndex]) {
+        return current.map((item, index) => index === cursorIndex ? "" : item);
+      }
+
+      const previousIndex = Math.max(cursorIndex - 1, 0);
+      setCursorIndex(previousIndex);
+
+      return current.map((item, index) => index === previousIndex ? "" : item);
+    });
   }
 
   function submit() {
-    const result = submitWortcodeGuess(puzzle, state, input);
+    const result = submitWortcodeGuess(puzzle, state, inputLetters.join(""));
 
     setState(result.state);
     setMessage(result.ok ? result.state.status === "won" ? "Code geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "Weiter eingrenzen." : result.reason);
-    if (result.ok) setInput("");
+    if (result.ok) {
+      setInputLetters(createEmptyInput(puzzle.wordLength));
+      setCursorIndex(0);
+    }
   }
 
   function toggleMark(guessIndex: number, letterIndex: number) {
@@ -81,7 +101,8 @@ export default function WortcodeScreen() {
   function reveal() {
     setState((current) => revealWortcodeSolution(current));
     setMessage("Lösung aufgedeckt.");
-    setInput("");
+    setInputLetters(createEmptyInput(puzzle.wordLength));
+    setCursorIndex(0);
     setGiveUpVisible(false);
   }
 
@@ -90,7 +111,8 @@ export default function WortcodeScreen() {
 
     setGame(nextGame);
     setState(nextGame.state);
-    setInput("");
+    setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
+    setCursorIndex(0);
     setMessage("Rate ein gültiges deutsches Wort.");
   }
 
@@ -154,23 +176,16 @@ export default function WortcodeScreen() {
           {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toUpperCase()}</Text> : null}
 
           <View style={styles.inputCard}>
-            <View style={styles.inputRow}>
-              {Array.from(input.padEnd(puzzle.wordLength, " ")).map((letter, index) => (
-                <View key={index} style={styles.inputTile}>
-                  <Text style={styles.inputTileText}>{letter.trim().toUpperCase()}</Text>
-                </View>
-              ))}
-            </View>
-            <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
-          </View>
-          <View style={styles.actions}>
+            <LetterInputTiles cursorIndex={cursorIndex} disabled={state.status !== "playing"} letters={inputLetters} onCursorChange={setCursorIndex} />
             {state.status === "playing" ? (
               <Pressable accessibilityRole="button" onPress={() => setGiveUpVisible(true)} style={styles.giveUpButton}>
                 <Text style={styles.giveUpText}>Aufgeben</Text>
               </Pressable>
-            ) : (
-              <AppButton label="Neues Wort" onPress={startNextWord} />
-            )}
+            ) : null}
+            <KeyboardDock>
+              <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
+              {state.status !== "playing" ? <AppButton label="Neues Wort" onPress={startNextWord} /> : null}
+            </KeyboardDock>
           </View>
         </ScrollView>
       </View>
@@ -215,10 +230,6 @@ const styles = StyleSheet.create({
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" },
   inputCard: { gap: tokens.space.md },
-  inputRow: { flexDirection: "row", gap: tokens.space.xs },
-  inputTile: { flex: 1, minHeight: 46, alignItems: "center", justifyContent: "center", borderRadius: tokens.radius.sm, backgroundColor: "white", borderWidth: 1, borderColor: tokens.color.line },
-  inputTileText: { color: tokens.color.ink, fontSize: 20, fontWeight: "900" },
-  actions: { gap: tokens.space.md },
   giveUpButton: { alignSelf: "center", paddingHorizontal: tokens.space.md, paddingVertical: tokens.space.xs },
   giveUpText: { color: tokens.color.muted, fontSize: tokens.type.small, fontWeight: "900" }
 });

@@ -6,6 +6,7 @@ import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
 import { HelpModal } from "@/components/HelpModal";
+import { KeyboardDock } from "@/components/KeyboardDock";
 import { Screen } from "@/components/Screen";
 import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
@@ -155,18 +156,19 @@ export default function DoppelScreen() {
               <View style={styles.inputBox}>
                 <Text style={[styles.inputText, !input && styles.placeholder]}>{input ? input.toLocaleUpperCase("de-DE") : "Lösung"}</Text>
               </View>
-              <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
+              <AppButton label="Hinweis" onPress={hint} />
+              <Pressable accessibilityRole="button" onPress={() => setGiveUpVisible(true)} style={styles.giveUpButton}>
+                <Text style={styles.giveUpText}>Aufgeben</Text>
+              </Pressable>
+              <KeyboardDock>
+                <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
+              </KeyboardDock>
             </View>
           )}
 
           <View style={styles.actions}>
             {state.status === "playing" ? (
-              <>
-                <AppButton label="Hinweis" onPress={hint} />
-                <Pressable accessibilityRole="button" onPress={() => setGiveUpVisible(true)} style={styles.giveUpButton}>
-                  <Text style={styles.giveUpText}>Aufgeben</Text>
-                </Pressable>
-              </>
+              null
             ) : (
               <AppButton label="Neues Spiel" onPress={startNextGame} />
             )}

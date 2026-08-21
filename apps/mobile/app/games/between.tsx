@@ -19,6 +19,7 @@ import Animated, {
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
 import { HelpModal } from "@/components/HelpModal";
+import { KeyboardDock } from "@/components/KeyboardDock";
 import { Screen } from "@/components/Screen";
 import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
@@ -33,6 +34,10 @@ const BOARD_LINE_HEIGHT = 176;
 const DOT_SIZE = 20;
 const DOT_MARGIN = 4;
 const dailyGame = createDailyBetweenGame();
+
+function createEmptyInput(length: number) {
+  return Array.from({ length }, () => "");
+}
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
@@ -49,7 +54,8 @@ export default function BetweenScreen() {
   const router = useRouter();
   const [state, setState] = useState<BetweenState>(dailyGame.state);
   const [dateKey, setDateKey] = useState(dailyGame.dateKey);
-  const [input, setInput] = useState("");
+  const [inputLetters, setInputLetters] = useState(() => createEmptyInput(5));
+  const [cursorIndex, setCursorIndex] = useState(0);
   const [modal, setModal] = useState<"reveal" | null>(null);
   const [helpVisible, setHelpVisible] = useState(false);
   const [successVisible, setSuccessVisible] = useState(false);
@@ -129,7 +135,7 @@ export default function BetweenScreen() {
   }
 
   function guess() {
-    const result = submitGuess(state, input);
+    const result = submitGuess(state, inputLetters.join(""));
 
     if (!result.ok) {
       fail();
@@ -142,7 +148,8 @@ export default function BetweenScreen() {
 
     setMovingGuess(result.guess.direction === "hit" ? null : result.guess);
     setState(result.state);
-    setInput("");
+    setInputLetters(createEmptyInput(5));
+    setCursorIndex(0);
 
     if (result.guess.direction !== "hit") {
       clearMovingGuessTimeout.current = setTimeout(() => setMovingGuess(null), tokens.motion.slow);
@@ -152,11 +159,21 @@ export default function BetweenScreen() {
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
-    setInput((current) => current.length >= 5 ? current : current + letter);
+    setInputLetters((current) => current.map((item, index) => index === cursorIndex ? letter : item));
+    setCursorIndex((current) => Math.min(current + 1, 4));
   }
 
   function backspace() {
-    setInput((current) => current.slice(0, -1));
+    setInputLetters((current) => {
+      if (current[cursorIndex]) {
+        return current.map((item, index) => index === cursorIndex ? "" : item);
+      }
+
+      const previousIndex = Math.max(cursorIndex - 1, 0);
+      setCursorIndex(previousIndex);
+
+      return current.map((item, index) => index === previousIndex ? "" : item);
+    });
   }
 
   function startNextWord() {
@@ -169,7 +186,8 @@ export default function BetweenScreen() {
     setMovingGuess(null);
     setState(nextGame.state);
     setDateKey(nextGame.dateKey);
-    setInput("");
+    setInputLetters(createEmptyInput(5));
+    setCursorIndex(0);
     setModal(null);
     setSuccessVisible(false);
     setStartedAt(Date.now());
@@ -232,7 +250,15 @@ export default function BetweenScreen() {
             </View>
             <View style={styles.wordStack}>
               <WordTiles dimmed={state.status === "revealed"} filled word={state.lowerBound} />
-              <WordTiles exitingDirection={movingGuess?.direction} revealed={state.status === "revealed" || state.status === "won"} word={centerWord} />
+              <WordTiles
+                cursorIndex={cursorIndex}
+                disabled={Boolean(centerWord) || state.status !== "playing"}
+                exitingDirection={movingGuess?.direction}
+                letters={centerWord ? undefined : inputLetters}
+                onTilePress={setCursorIndex}
+                revealed={state.status === "revealed" || state.status === "won"}
+                word={centerWord}
+              />
               <WordTiles dimmed={state.status === "revealed"} filled word={state.upperBound} />
             </View>
           </View>
@@ -247,14 +273,9 @@ export default function BetweenScreen() {
               <Text style={styles.giveUpText}>Aufgeben</Text>
             </Pressable>
           ) : null}
-          <View style={styles.inputRow}>
-            {Array.from(input.padEnd(5, " ")).map((letter, index) => (
-              <View key={index} style={styles.inputTile}>
-                <Text style={styles.inputTileText}>{letter.trim().toUpperCase()}</Text>
-              </View>
-            ))}
-          </View>
-          <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={guess} submitDisabled={input.length < 5 || state.status !== "playing"} />
+          <KeyboardDock>
+            <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={guess} submitDisabled={!inputLetters.every(Boolean) || state.status !== "playing"} />
+          </KeyboardDock>
         </Animated.View>
 
         <View style={styles.history}>
@@ -295,15 +316,19 @@ export default function BetweenScreen() {
 }
 
 type WordTilesProps = {
+  cursorIndex?: number;
+  disabled?: boolean;
   word?: string;
+  letters?: readonly string[];
   filled?: boolean;
   dimmed?: boolean;
+  onTilePress?: (index: number) => void;
   revealed?: boolean;
   exitingDirection?: Guess["direction"];
 };
 
-function WordTiles({ word, filled = false, dimmed = false, revealed = false, exitingDirection }: WordTilesProps) {
-  const letters = word ? Array.from(displayWord(word)) : Array.from({ length: 5 }, () => "");
+function WordTiles({ cursorIndex = 0, disabled = true, word, letters: inputLetters, filled = false, dimmed = false, onTilePress, revealed = false, exitingDirection }: WordTilesProps) {
+  const letters = word ? Array.from(displayWord(word)) : inputLetters ?? Array.from({ length: 5 }, () => "");
   const exitingAnimation = exitingDirection === "after" ? FadeOutUp : exitingDirection === "before" ? FadeOutDown : FadeOut;
 
   return (
@@ -314,14 +339,23 @@ function WordTiles({ word, filled = false, dimmed = false, revealed = false, exi
           exiting={exitingAnimation.duration(tokens.motion.quick)}
           key={`${letter}-${index}`}
           layout={LinearTransition.springify().damping(16)}
+          style={styles.wordTileWrap}
+        >
+          <Pressable
+            accessibilityLabel={`Buchstabe ${index + 1}${letter ? `: ${letter.toUpperCase()}` : " leer"}`}
+            accessibilityRole="button"
+            disabled={disabled}
+            onPress={() => onTilePress?.(index)}
           style={[
             styles.wordTile,
             filled ? styles.wordTileFilled : styles.wordTileEmpty,
             revealed && styles.wordTileRevealed,
-            dimmed && styles.wordTileDimmed
+            dimmed && styles.wordTileDimmed,
+            !disabled && index === cursorIndex && styles.wordTileActive
           ]}
         >
-          <Text style={[styles.wordTileText, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty]}>{letter}</Text>
+          <Text style={[styles.wordTileText, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty]}>{letter.toLocaleUpperCase("de-DE")}</Text>
+          </Pressable>
         </Animated.View>
       ))}
     </View>
@@ -492,6 +526,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
+  wordTileWrap: {
+    flex: 1
+  },
   wordTileFilled: {
     backgroundColor: tokens.color.secondary
   },
@@ -506,6 +543,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "rgba(23, 19, 13, 0.62)",
     backgroundColor: "rgba(255, 255, 255, 0.35)"
+  },
+  wordTileActive: {
+    borderColor: tokens.color.primary,
+    backgroundColor: "#FFF1DF"
   },
   wordTileText: {
     fontSize: 26,
@@ -548,25 +589,6 @@ const styles = StyleSheet.create({
   giveUpText: {
     color: tokens.color.muted,
     fontSize: tokens.type.small,
-    fontWeight: "900"
-  },
-  inputRow: {
-    flexDirection: "row",
-    gap: tokens.space.xs
-  },
-  inputTile: {
-    flex: 1,
-    height: 48,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 2,
-    borderColor: tokens.color.line,
-    borderRadius: tokens.radius.sm,
-    backgroundColor: "white"
-  },
-  inputTileText: {
-    color: tokens.color.ink,
-    fontSize: 22,
     fontWeight: "900"
   },
   history: {

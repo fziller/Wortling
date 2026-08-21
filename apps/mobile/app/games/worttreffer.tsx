@@ -7,6 +7,7 @@ import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
 import { HelpModal } from "@/components/HelpModal";
+import { KeyboardDock } from "@/components/KeyboardDock";
 import { Screen } from "@/components/Screen";
 import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
@@ -20,13 +21,18 @@ import { loadProgress, loadProgressForGames, saveProgress } from "@/storage/prog
 
 const dailyGame = createDailyWorttrefferGame();
 
+function createEmptyInput(length: number) {
+  return Array.from({ length }, () => "");
+}
+
 export default function WorttrefferScreen() {
   const router = useRouter();
   const posthog = usePostHog();
   const [game, setGame] = useState(dailyGame);
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<WorttrefferState>(game.state);
-  const [input, setInput] = useState("");
+  const [inputLetters, setInputLetters] = useState(() => createEmptyInput(dailyGame.puzzle.wordLength));
+  const [cursorIndex, setCursorIndex] = useState(0);
   const [message, setMessage] = useState("");
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
@@ -67,25 +73,36 @@ export default function WorttrefferScreen() {
     }
   }, [state.status, dateKey]);
 
-  const canSubmit = input.length === puzzle.wordLength && state.status === "playing";
+  const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getWorttrefferLetterStates(state);
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
-    setInput((current) => current.length >= puzzle.wordLength ? current : current + letter);
+    setInputLetters((current) => current.map((item, index) => index === cursorIndex ? letter : item));
+    setCursorIndex((current) => Math.min(current + 1, puzzle.wordLength - 1));
   }
 
   function backspace() {
-    setInput((current) => current.slice(0, -1));
+    setInputLetters((current) => {
+      if (current[cursorIndex]) {
+        return current.map((item, index) => index === cursorIndex ? "" : item);
+      }
+
+      const previousIndex = Math.max(cursorIndex - 1, 0);
+      setCursorIndex(previousIndex);
+
+      return current.map((item, index) => index === previousIndex ? "" : item);
+    });
   }
 
   function submit() {
-    const result = submitWorttrefferGuess(puzzle, state, input);
+    const result = submitWorttrefferGuess(puzzle, state, inputLetters.join(""));
 
     setState(result.state);
     setMessage(result.ok ? result.state.status === "won" ? "Getroffen!" : result.state.status === "lost" ? "Heute nicht getroffen." : "Weiter geht's." : result.reason);
     if (result.ok) {
-      setInput("");
+      setInputLetters(createEmptyInput(puzzle.wordLength));
+      setCursorIndex(0);
     }
     if (result.ok && result.state.status !== "playing") {
       try {
@@ -99,7 +116,8 @@ export default function WorttrefferScreen() {
   function reveal() {
     setState((current) => revealWorttrefferSolution(current));
     setMessage("Lösung aufgedeckt.");
-    setInput("");
+    setInputLetters(createEmptyInput(puzzle.wordLength));
+    setCursorIndex(0);
     setGiveUpVisible(false);
   }
 
@@ -108,7 +126,8 @@ export default function WorttrefferScreen() {
 
     setGame(nextGame);
     setState(nextGame.state);
-    setInput("");
+    setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
+    setCursorIndex(0);
     setMessage("");
     setStartedAt(Date.now());
   }
@@ -135,7 +154,7 @@ export default function WorttrefferScreen() {
         <View style={styles.board}>
           {Array.from({ length: puzzle.maxAttempts }).map((_, rowIndex) => {
             const guess = state.guesses[rowIndex];
-            const letters = guess ? Array.from(guess.value) : rowIndex === state.guesses.length ? Array.from(input.padEnd(puzzle.wordLength, " ")) : Array.from(" ".repeat(puzzle.wordLength));
+            const letters = guess ? Array.from(guess.value) : rowIndex === state.guesses.length ? inputLetters : createEmptyInput(puzzle.wordLength);
 
             return (
               <View key={rowIndex} style={styles.tileRow}>
@@ -143,9 +162,15 @@ export default function WorttrefferScreen() {
                   const mark = guess?.marks[letterIndex];
 
                   return (
-                    <View key={`${rowIndex}-${letterIndex}`} style={[styles.tile, mark && styles[mark]]}>
+                    <Pressable
+                      accessibilityRole="button"
+                      disabled={Boolean(guess) || rowIndex !== state.guesses.length || state.status !== "playing"}
+                      key={`${rowIndex}-${letterIndex}`}
+                      onPress={() => setCursorIndex(letterIndex)}
+                      style={[styles.tile, !guess && rowIndex === state.guesses.length && letterIndex === cursorIndex && styles.activeTile, mark && styles[mark]]}
+                    >
                       <Text style={[styles.tileText, mark && styles.markedTileText]}>{letter.trim().toUpperCase()}</Text>
-                    </View>
+                    </Pressable>
                   );
                 })}
               </View>
@@ -158,7 +183,7 @@ export default function WorttrefferScreen() {
           {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toUpperCase()}</Text> : null}
         </View>
 
-        <View style={styles.bottom}>
+        <KeyboardDock>
           {state.status === "playing" ? (
             <Pressable accessibilityRole="button" onPress={() => setGiveUpVisible(true)} style={styles.giveUpButton}>
               <Text style={styles.giveUpText}>Aufgeben</Text>
@@ -166,7 +191,7 @@ export default function WorttrefferScreen() {
           ) : null}
           <WordKeyboard disabled={state.status !== "playing"} letterStates={letterStates} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
           {state.status !== "playing" ? <AppButton label="Neues Wort" onPress={startNextWord} /> : null}
-        </View>
+        </KeyboardDock>
       </View>
       <ConfirmModal
         confirmLabel="Lösung zeigen"
@@ -186,6 +211,7 @@ const styles = StyleSheet.create({
   board: { flex: 1, justifyContent: "center", gap: 7, paddingTop: tokens.space.sm },
   tileRow: { flexDirection: "row", gap: 7 },
   tile: { flex: 1, aspectRatio: 1, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
+  activeTile: { borderColor: tokens.color.primary, backgroundColor: "#FFF1DF" },
   tileText: { color: tokens.color.ink, fontSize: 25, fontWeight: "900" },
   markedTileText: { color: "white" },
   absent: { backgroundColor: "#7B736A", borderColor: "#7B736A" },
@@ -194,7 +220,6 @@ const styles = StyleSheet.create({
   statusBlock: { minHeight: 56, justifyContent: "center", gap: tokens.space.xs },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" },
-  bottom: { gap: tokens.space.sm, paddingBottom: tokens.space.md },
   giveUpButton: { alignSelf: "flex-end", paddingHorizontal: tokens.space.sm, paddingVertical: tokens.space.xs },
   giveUpText: { color: tokens.color.muted, fontSize: tokens.type.small, fontWeight: "900" }
 });
