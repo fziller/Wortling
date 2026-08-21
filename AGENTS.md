@@ -2,7 +2,7 @@
 
 ## Project
 
-Wortling is an Expo + React Native + TypeScript mobile app for German daily word games. Do not use Godot for this project.
+Wortkniff is an Expo + React Native + TypeScript mobile app for German daily word games. Do not use Godot for this project.
 
 ## Rules
 
@@ -12,6 +12,7 @@ Wortling is an Expo + React Native + TypeScript mobile app for German daily word
 - Do not fetch word lists at runtime in the mobile app; generate static word data at development/build time.
 - Keep user-facing game text in German unless the product direction changes.
 - Write README, agent-facing docs, and code comments in English.
+- Keep `docs/product-overview.md` updated when adding games, changing game rules, or shipping user-facing features.
 - Do not add backend, accounts, or extra game modes unless explicitly requested.
 - Prefer existing Expo/React Native APIs before adding dependencies.
 - Only change dependencies when the user explicitly asks for it, or when a bug fix or requested feature genuinely requires a package/version change. Do not update packages just to make hygiene checks pass; report that as separate maintenance instead.

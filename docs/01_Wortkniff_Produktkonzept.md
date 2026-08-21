@@ -1,10 +1,10 @@
-**Wortling – Produktkonzept**
+**Wortkniff – Produktkonzept**
 
 Produktvision, Zielgruppe, Spielmodi und MVP-These
 
 # 1. Kurzfassung
 
-**Wortling** ist eine hochwertige, deutschsprachige Daily-Wortspiel-App
+**Wortkniff** ist eine hochwertige, deutschsprachige Daily-Wortspiel-App
 bündelt mehrere kurze, moderne Rätsel in einem einzigen Produkt. Statt
 für Betweenle-, Semantik-, Gruppen- oder Wortketten-Spiele jeweils eine
 eigene App zu benötigen, bekommt der Nutzer jeden Tag eine kleine

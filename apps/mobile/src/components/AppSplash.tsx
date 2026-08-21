@@ -15,7 +15,7 @@ export function AppSplash() {
         <Image source={mascot} style={styles.mascot} />
       </LinearGradient>
       <View style={styles.copy}>
-        <Text style={styles.title}>Wortling</Text>
+        <Text style={styles.title}>Wortkniff</Text>
         <Text style={styles.subtitle}>Kurz. Clever. Deutsch.</Text>
       </View>
     </Animated.View>

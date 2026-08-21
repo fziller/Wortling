@@ -57,7 +57,7 @@ export default function HomeScreen() {
           <View style={styles.heroTop}>
             <View>
               <Text style={styles.kicker}>Heute</Text>
-              <Text style={styles.title}>Wortling</Text>
+              <Text style={styles.title}>Wortkniff</Text>
             </View>
             <Link href="/settings" asChild>
               <Pressable

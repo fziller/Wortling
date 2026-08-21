@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const STORAGE_KEY = "wortling:settings:notifications";
+const STORAGE_KEY = "wortkniff:settings:notifications";
 
 export type NotificationSettings = {
   enabled: boolean;

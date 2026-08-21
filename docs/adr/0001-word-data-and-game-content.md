@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-Wortling must work fully offline. Word games need enough input validation data to feel fair, but daily solutions should remain curated so puzzles are understandable and not dictionary-noise.
+Wortkniff must work fully offline. Word games need enough input validation data to feel fair, but daily solutions should remain curated so puzzles are understandable and not dictionary-noise.
 
 Some games, especially `Dazwischen`, also depend on stable alphabetic ordering. Doing large word-list sorting on screen open blocks the JavaScript thread, especially on Android/Hermes.
 

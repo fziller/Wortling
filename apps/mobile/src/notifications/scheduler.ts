@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 
 import { loadNotificationSettings } from "@/storage/settings";
 
-const DAILY_IDENTIFIER = "wortling-daily-reminder";
+const DAILY_IDENTIFIER = "wortkniff-daily-reminder";
 
 export async function scheduleDailyReminder(): Promise<void> {
   const settings = await loadNotificationSettings();

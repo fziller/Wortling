@@ -1,4 +1,4 @@
-# Wortling Visual Brief
+# Wortkniff Visual Brief
 
 Use this before creating app icons, splash screens, screenshots, or Stitch explorations.
 
@@ -43,7 +43,7 @@ A bright rounded square with one strong letter and a tiny calendar/dot motif. Mo
 Keep it boring in the good way:
 
 - Solid brand background.
-- Centered icon or simple Wortling wordmark.
+- Centered icon or simple Wortkniff wordmark.
 - No illustration.
 - No loading text unless needed.
 

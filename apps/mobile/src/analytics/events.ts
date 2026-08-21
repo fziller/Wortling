@@ -1,4 +1,4 @@
-export type WortlingEvents = {
+export type WortkniffEvents = {
   game_started: { gameId: string; dateKey: string };
   game_completed: { gameId: string; dateKey: string; durationMs: number; attempts: number };
   game_abandoned: { gameId: string; dateKey: string; attempts: number };

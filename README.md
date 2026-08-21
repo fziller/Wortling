@@ -1,6 +1,6 @@
-# Wortling
+# Wortkniff
 
-Wortling is an offline-first German daily word game app. It ships multiple short word puzzles with static word data, local progress, and no account requirement.
+Wortkniff is an offline-first German daily word game app. It ships multiple short word puzzles with static word data, local progress, and no account requirement.
 
 ## Stack
 
@@ -47,13 +47,15 @@ yarn expo install --check
 
 ## Current Scope
 
-- Game modes: `Dazwischen`, `Doppel`, `Wortcode`, `Worttreffer`
+- Game modes: `Dazwischen`, `Doppel`, `Galgenwort`, `Formwort`, `Worttreffer`, `Wortcode`
 - Shared in-app keyboard for word entry
 - Daily puzzles plus practice rounds where supported
 - Local curated target words per game
 - Generated allowed-guess word lists for validation
 - No backend
 - No accounts
+
+See `docs/product-overview.md` for the maintained product overview.
 
 ## Word Data
 

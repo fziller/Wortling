@@ -14,7 +14,7 @@ export type StoredProgress<TState = unknown> = {
 };
 
 function progressKey(gameId: string, dateKey: string): string {
-  return `wortling:progress:${gameId}:${dateKey}`;
+  return `wortkniff:progress:${gameId}:${dateKey}`;
 }
 
 export async function loadProgress<TState = unknown>(gameId: string, dateKey: string): Promise<StoredProgress<TState> | null> {

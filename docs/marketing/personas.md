@@ -1,4 +1,4 @@
-# Wortling Marketing Personas
+# Wortkniff Marketing Personas
 
 These personas keep app-store copy, screenshots, and feature decisions focused. They are not product requirements.
 
@@ -10,7 +10,7 @@ These personas keep app-store copy, screenshots, and feature decisions focused. 
 
 **Context:** Plays during breakfast, commute, lunch break, or on the sofa. Knows games like Wordle, Connections, Mini Crossword, or Sudoku apps.
 
-**What sells Wortling:**
+**What sells Wortkniff:**
 
 - A fresh German daily puzzle routine.
 - Several short word games in one app.
@@ -29,7 +29,7 @@ These personas keep app-store copy, screenshots, and feature decisions focused. 
 
 **Context:** Likes German-specific mechanics instead of translated English word games.
 
-**What sells Wortling:**
+**What sells Wortkniff:**
 
 - Built around German words, compounds, and meanings.
 - More varied than one Wordle clone.
@@ -48,7 +48,7 @@ These personas keep app-store copy, screenshots, and feature decisions focused. 
 
 **Context:** Does not want tutorials, accounts, timers, or complex rules.
 
-**What sells Wortling:**
+**What sells Wortkniff:**
 
 - Open the app, tap today's puzzle, play.
 - Each mode is explainable in one sentence.
@@ -67,7 +67,7 @@ These personas keep app-store copy, screenshots, and feature decisions focused. 
 
 **Context:** Compares results casually with friends or family, but does not need a social network.
 
-**What sells Wortling:**
+**What sells Wortkniff:**
 
 - Same daily puzzles for everyone.
 - Personal stats and streaks.
@@ -82,7 +82,7 @@ These personas keep app-store copy, screenshots, and feature decisions focused. 
 
 ## Positioning Summary
 
-Wortling is for people who want short, polished, German-first word puzzles as a daily habit. It should feel clever and modern, not like a generic brain-training app.
+Wortkniff is for people who want short, polished, German-first word puzzles as a daily habit. It should feel clever and modern, not like a generic brain-training app.
 
 ## Messaging Rules
 

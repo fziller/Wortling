@@ -59,7 +59,7 @@ export default function SettingsScreen() {
           <Pressable accessibilityRole="button" onPress={() => router.back()} style={styles.backButton}>
             <Text style={styles.backButtonText}>Zurück</Text>
           </Pressable>
-          <Text style={styles.kicker}>Wortling</Text>
+          <Text style={styles.kicker}>Wortkniff</Text>
           <Text style={styles.title}>Einstellungen</Text>
         </Animated.View>
 
@@ -115,10 +115,10 @@ export default function SettingsScreen() {
 
         <Animated.View entering={FadeInDown.delay(140).duration(tokens.motion.normal)}>
           <AppCard>
-            <Text style={styles.cardTitle}>Über Wortling</Text>
+            <Text style={styles.cardTitle}>Über Wortkniff</Text>
             <Text style={styles.body}>
-              Wortling ist eine mobile Wortspiel-App für deutsche Wörter. Der erste spielbare Modus heißt
-              Dazwischen: ein Rätsel mit fünf Buchstaben, bei dem du das Zielwort alphabetisch eingrenzt.
+              Wortkniff ist eine mobile Wortspiel-App für deutsche Wörter. Jeden Tag warten kurze Rätsel wie
+              Dazwischen, Doppel, Galgenwort, Formwort, Worttreffer und Wortcode.
             </Text>
             <Text style={styles.versionText}>
               Version {Application.nativeApplicationVersion ?? "?"} (Build {Application.nativeBuildVersion ?? "?"})
