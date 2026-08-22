@@ -16,7 +16,7 @@ import type { GalgenwortState } from "@/games/galgenwort/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { updateBadgeCount } from "@/notifications/badge";
-import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 
 type GalgenwortGame = ReturnType<typeof createPracticeGalgenwortGame>;
 
@@ -25,6 +25,7 @@ export default function GalgenwortScreen() {
   const posthog = usePostHog();
   const today = getBerlinDateKey();
   const completedAtRef = useRef<string | undefined>(undefined);
+  const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [game, setGame] = useState<GalgenwortGame>(() => createPracticeGalgenwortGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<GalgenwortState>(game.state);
@@ -48,6 +49,7 @@ export default function GalgenwortScreen() {
   useEffect(() => {
     loadProgress<GalgenwortState>("galgenwort", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
+      completedStatusRef.current = progress?.completedStatus;
       if (isStartedProgress(progress)) {
         setGame({ dateKey: progress.dateKey, puzzle: progress.puzzle as GalgenwortGame["puzzle"], state: progress.state });
         setState(progress.state);
@@ -60,8 +62,10 @@ export default function GalgenwortScreen() {
     if (!progressLoaded) return;
 
     const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    const completedStatus = state.status !== "playing" ? state.status : completedStatusRef.current;
     completedAtRef.current = completedAt;
-    saveProgress({ gameId: "galgenwort", dateKey, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });
+    completedStatusRef.current = completedStatus;
+    saveProgress({ gameId: "galgenwort", dateKey, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });
   }, [dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
@@ -69,6 +73,8 @@ export default function GalgenwortScreen() {
   }, [state.status, dateKey]);
 
   const revealed = getGalgenwortRevealedLetters(puzzle, state);
+  const answerLength = Array.from(puzzle.answer).length;
+  const wordTileFontSize = answerLength > 10 ? 22 : answerLength > 8 ? 26 : 30;
   const wrongLetters = getGalgenwortWrongLetters(puzzle, state);
   const letterStates = getGalgenwortLetterStates(puzzle, state);
   const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
@@ -147,10 +153,13 @@ export default function GalgenwortScreen() {
     >
       <View style={styles.wrap}>
         <View style={styles.card}>
-          <Text style={styles.kicker}>Hinweis</Text>
+          <View style={styles.cardHeader}>
+            <Text style={styles.kicker}>Hinweis</Text>
+            <Text style={styles.lengthPill}>{answerLength} Buchstaben</Text>
+          </View>
           <Text style={styles.clue}>{puzzle.clue}</Text>
           <View style={styles.wordRow}>
-            {revealed.map((letter, index) => <Text key={index} style={styles.wordTile}>{letter ? letter.toLocaleUpperCase("de-DE") : "_"}</Text>)}
+            {revealed.map((letter, index) => <Text key={index} style={[styles.wordTile, { fontSize: wordTileFontSize }]}>{letter ? letter.toLocaleUpperCase("de-DE") : "_"}</Text>)}
           </View>
           <Text style={styles.misses}>Fehler {wrongLetters.length} / {puzzle.maxWrongGuesses}</Text>
         </View>
@@ -183,10 +192,12 @@ export default function GalgenwortScreen() {
 const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.lg },
   card: { gap: tokens.space.md, padding: tokens.space.lg, borderRadius: tokens.radius.lg, backgroundColor: tokens.color.card, borderWidth: 1, borderColor: tokens.color.line },
+  cardHeader: { alignItems: "center", flexDirection: "row", justifyContent: "space-between", gap: tokens.space.sm },
   kicker: { color: tokens.color.primaryDark, fontSize: tokens.type.small, fontWeight: "900", textTransform: "uppercase" },
+  lengthPill: { color: tokens.color.primaryDark, fontSize: tokens.type.small, fontWeight: "900" },
   clue: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900" },
-  wordRow: { flexDirection: "row", flexWrap: "wrap", gap: tokens.space.xs, justifyContent: "center" },
-  wordTile: { minWidth: 28, color: tokens.color.ink, fontSize: 30, fontWeight: "900", textAlign: "center" },
+  wordRow: { flexDirection: "row", gap: 4, justifyContent: "center" },
+  wordTile: { flex: 1, minWidth: 0, color: tokens.color.ink, fontWeight: "900", textAlign: "center" },
   misses: { color: tokens.color.primaryDark, fontSize: tokens.type.body, fontWeight: "900", textAlign: "center" },
   statusBlock: { flex: 1, justifyContent: "center", gap: tokens.space.sm },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },

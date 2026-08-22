@@ -39,11 +39,7 @@ export function DailyKniffeCard({ completedGames, games, onOpenGame, streakCurre
               style={({ pressed }) => [styles.dailyRow, complete && styles.dailyRowDone, pressed && styles.pressed]}
             >
               {complete ? (
-                <View style={styles.dailyStamp}>
-                  <View style={styles.dailyStampCoin}>
-                    <Text style={styles.dailyStampCheck}>✓</Text>
-                  </View>
-                </View>
+                <Text style={styles.dailyCheck}>✓</Text>
               ) : (
                 <View style={styles.dailyOpenMark}>
                   <View style={styles.dailyOpenDot} />
@@ -142,29 +138,13 @@ const styles = StyleSheet.create({
     elevation: 0,
   },
   pressed: { opacity: 0.72 },
-  dailyStamp: {
-    width: 44,
-    height: 28,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgba(23, 19, 13, 0.55)",
-    transform: [{ rotate: "-1deg" }],
-  },
-  dailyStampCoin: {
-    width: 21,
-    height: 21,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 999,
-    backgroundColor: "#FFE0B2",
-    borderWidth: 2,
-    borderColor: "#FFFFFF",
-  },
-  dailyStampCheck: {
-    color: tokens.color.primaryDark,
-    fontSize: 13,
+  dailyCheck: {
+    width: 32,
+    color: tokens.color.success,
+    fontSize: 26,
     fontWeight: "900",
-    lineHeight: 15,
+    lineHeight: 28,
+    textAlign: "center",
   },
   dailyOpenMark: {
     width: 32,

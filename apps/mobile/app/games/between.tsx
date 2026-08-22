@@ -31,7 +31,7 @@ import { getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/betw
 import { displayWord } from "@/games/between/format";
 import { BetweenState, Guess } from "@/games/between/types";
 import { updateBadgeCount } from "@/notifications/badge";
-import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 
 const BOARD_LINE_HEIGHT = 132;
 const DOT_SIZE = 20;
@@ -57,6 +57,7 @@ export default function BetweenScreen() {
   const router = useRouter();
   const today = getBerlinDateKey();
   const completedAtRef = useRef<string | undefined>(undefined);
+  const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [state, setState] = useState<BetweenState>(() => createPracticeBetweenGame(undefined, today).state);
   const [dateKey, setDateKey] = useState(today);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(5));
@@ -89,6 +90,7 @@ export default function BetweenScreen() {
   useEffect(() => {
     loadProgress<BetweenState>("between", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
+      completedStatusRef.current = progress?.completedStatus;
       if (isStartedProgress(progress)) {
         setState(progress.state);
         setDateKey(progress.dateKey);
@@ -104,7 +106,10 @@ export default function BetweenScreen() {
     if (!progressLoaded) return;
 
     const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    const status = state.status === "abandoned" ? "revealed" : state.status;
+    const completedStatus = state.status !== "playing" ? status : completedStatusRef.current;
     completedAtRef.current = completedAt;
+    completedStatusRef.current = completedStatus;
     saveProgress({
       gameId: "between",
       dateKey,
@@ -112,7 +117,8 @@ export default function BetweenScreen() {
       puzzle: { targetWord: state.targetWord },
       puzzleId,
       puzzleVersion,
-      status: state.status === "abandoned" ? "revealed" : state.status,
+      completedStatus,
+      status,
       state,
       completedAt,
     });

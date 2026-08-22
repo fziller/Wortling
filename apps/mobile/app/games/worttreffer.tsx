@@ -27,6 +27,7 @@ import {
   loadProgress,
   loadProgressForGames,
   saveProgress,
+  type StoredProgress,
 } from "@/storage/progress";
 
 type WorttrefferGame = ReturnType<typeof createPracticeWorttrefferGame>;
@@ -40,6 +41,7 @@ export default function WorttrefferScreen() {
   const posthog = usePostHog();
   const today = getBerlinDateKey();
   const completedAtRef = useRef<string | undefined>(undefined);
+  const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [game, setGame] = useState<WorttrefferGame>(() => createPracticeWorttrefferGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<WorttrefferState>(game.state);
@@ -70,6 +72,7 @@ export default function WorttrefferScreen() {
   useEffect(() => {
     loadProgress<WorttrefferState>("worttreffer", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
+      completedStatusRef.current = progress?.completedStatus;
       if (isStartedProgress(progress)) {
         const nextGame = { dateKey: progress.dateKey, puzzle: progress.puzzle as WorttrefferGame["puzzle"], state: progress.state };
         setGame(nextGame);
@@ -84,11 +87,14 @@ export default function WorttrefferScreen() {
     if (!progressLoaded) return;
 
     const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    const completedStatus = state.status !== "playing" ? state.status : completedStatusRef.current;
     completedAtRef.current = completedAt;
+    completedStatusRef.current = completedStatus;
     saveProgress({
       gameId: "worttreffer",
       dateKey,
       draft: inputLetters,
+      completedStatus,
       puzzle,
       puzzleId: puzzle.id,
       puzzleVersion: puzzle.version,

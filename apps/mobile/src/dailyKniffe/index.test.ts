@@ -61,12 +61,16 @@ describe("daily kniffe", () => {
     expect(kniffe[0].gameId).toBe("a");
   });
 
-  it.each(["won", "lost", "revealed"] as const)("treats %s as completed", (status) => {
-    expect(isDailyKniffCompleted(progress(status))).toBe(true);
+  it("treats won as completed", () => {
+    expect(isDailyKniffCompleted(progress("won"))).toBe(true);
   });
 
-  it.each(["playing", "not_started"] as const)("does not treat %s as completed", (status) => {
+  it.each(["playing", "not_started", "lost", "revealed"] as const)("does not treat %s as completed", (status) => {
     expect(isDailyKniffCompleted(progress(status))).toBe(false);
+  });
+
+  it("keeps a won daily kniff completed while a new puzzle is in progress", () => {
+    expect(isDailyKniffCompleted({ ...progress("playing"), completedStatus: "won" })).toBe(true);
   });
 
   it("summarizes 0/3, 1/3, 2/3, and 3/3", () => {
@@ -75,8 +79,8 @@ describe("daily kniffe", () => {
 
     expect(getDailyKniffeSummary(kniffe, {}).completed).toBe(0);
     expect(getDailyKniffeSummary(kniffe, { [first.gameId]: progress("won") }).completed).toBe(1);
-    expect(getDailyKniffeSummary(kniffe, { [first.gameId]: progress("won"), [second.gameId]: progress("lost") }).completed).toBe(2);
-    expect(getDailyKniffeSummary(kniffe, { [first.gameId]: progress("won"), [second.gameId]: progress("lost"), [third.gameId]: progress("revealed") })).toEqual({ total: 3, completed: 3, isComplete: true });
+    expect(getDailyKniffeSummary(kniffe, { [first.gameId]: progress("won"), [second.gameId]: progress("lost") }).completed).toBe(1);
+    expect(getDailyKniffeSummary(kniffe, { [first.gameId]: progress("won"), [second.gameId]: progress("won"), [third.gameId]: progress("won") })).toEqual({ total: 3, completed: 3, isComplete: true });
   });
 });
 

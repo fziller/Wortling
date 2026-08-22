@@ -17,12 +17,29 @@ import type { FormwortState } from "@/games/formwort/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { updateBadgeCount } from "@/notifications/badge";
-import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 
 type FormwortGame = ReturnType<typeof createPracticeFormwortGame>;
 
+const symbolColors = [
+  "#E85D3F",
+  "#246BFE",
+  "#2E7D32",
+  "#7B1FA2",
+  "#D98500",
+  "#00838F",
+  "#C2185B",
+  "#6D4C41",
+  "#5E35B1",
+  "#558B2F",
+];
+
 function createEmptyInput(length: number) {
   return Array.from({ length }, () => "");
+}
+
+function symbolColor(symbol: string): string {
+  return symbolColors[Math.abs(symbol.codePointAt(0) ?? 0) % symbolColors.length];
 }
 
 export default function FormwortScreen() {
@@ -30,6 +47,7 @@ export default function FormwortScreen() {
   const posthog = usePostHog();
   const today = getBerlinDateKey();
   const completedAtRef = useRef<string | undefined>(undefined);
+  const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [game, setGame] = useState<FormwortGame>(() => createPracticeFormwortGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<FormwortState>(game.state);
@@ -55,6 +73,7 @@ export default function FormwortScreen() {
   useEffect(() => {
     loadProgress<FormwortState>("formwort", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
+      completedStatusRef.current = progress?.completedStatus;
       if (isStartedProgress(progress)) {
         const nextGame = { dateKey: progress.dateKey, puzzle: progress.puzzle as FormwortGame["puzzle"], state: progress.state };
         setGame(nextGame);
@@ -69,8 +88,10 @@ export default function FormwortScreen() {
     if (!progressLoaded) return;
 
     const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    const completedStatus = state.status !== "playing" ? state.status : completedStatusRef.current;
     completedAtRef.current = completedAt;
-    saveProgress({ gameId: "formwort", dateKey, draft: inputLetters, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });
+    completedStatusRef.current = completedStatus;
+    saveProgress({ gameId: "formwort", dateKey, draft: inputLetters, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });
   }, [dateKey, inputLetters, progressLoaded, puzzle, state]);
 
   useEffect(() => {
@@ -195,8 +216,8 @@ export default function FormwortScreen() {
                   const symbol = !guess && rowIndex === state.guesses.length && !letter ? puzzle.symbols[letterIndex] : "";
 
                   return (
-                    <Pressable disabled key={`${rowIndex}-${letterIndex}`} style={[styles.tile, mark && styles[mark]]}>
-                      <Text style={[styles.tileText, symbol && styles.symbolText, mark && styles.markedTileText]}>{letter ? letter.toLocaleUpperCase("de-DE") : symbol}</Text>
+                    <Pressable disabled key={`${rowIndex}-${letterIndex}`} style={[styles.tile, symbol && { borderColor: symbolColor(symbol) }, mark && styles[mark]]}>
+                      <Text style={[styles.tileText, symbol && styles.symbolText, symbol && { color: symbolColor(symbol) }, mark && styles.markedTileText]}>{letter ? letter.toLocaleUpperCase("de-DE") : symbol}</Text>
                     </Pressable>
                   );
                 })}

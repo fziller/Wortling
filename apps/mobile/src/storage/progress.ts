@@ -6,6 +6,7 @@ export type StoredProgress<TState = unknown> = {
   gameId: string;
   dateKey: string;
   draft?: unknown;
+  completedStatus?: GameStatus;
   puzzle?: unknown;
   puzzleId: string;
   puzzleVersion: number;

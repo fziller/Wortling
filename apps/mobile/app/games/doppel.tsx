@@ -14,7 +14,7 @@ import { games } from "@/games/registry";
 import { createPracticeDoppelGame } from "@/games/doppel/daily";
 import { revealDoppelSolution, submitDoppelGuess, unlockDoppelHint } from "@/games/doppel/engine";
 import { DoppelHint, DoppelState } from "@/games/doppel/types";
-import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
 
 type DoppelGame = ReturnType<typeof createPracticeDoppelGame>;
@@ -31,6 +31,7 @@ export default function DoppelScreen() {
   const router = useRouter();
   const today = getBerlinDateKey();
   const completedAtRef = useRef<string | undefined>(undefined);
+  const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [game, setGame] = useState<DoppelGame>(() => createPracticeDoppelGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<DoppelState>(game.state);
@@ -46,6 +47,7 @@ export default function DoppelScreen() {
   useEffect(() => {
     loadProgress<DoppelState>("doppel", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
+      completedStatusRef.current = progress?.completedStatus;
       if (isStartedProgress(progress)) {
         setGame({ dateKey: progress.dateKey, puzzle: progress.puzzle as DoppelGame["puzzle"], state: progress.state });
         setState(progress.state);
@@ -59,11 +61,14 @@ export default function DoppelScreen() {
     if (!progressLoaded) return;
 
     const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    const completedStatus = state.status !== "playing" ? state.status : completedStatusRef.current;
     completedAtRef.current = completedAt;
+    completedStatusRef.current = completedStatus;
     saveProgress({
       gameId: "doppel",
       dateKey,
       draft: input,
+      completedStatus,
       puzzle,
       puzzleId: puzzle.id,
       puzzleVersion: puzzle.version,

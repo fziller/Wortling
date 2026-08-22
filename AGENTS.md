@@ -18,6 +18,14 @@ Wortkniff is an Expo + React Native + TypeScript mobile app for German daily wor
 - Only change dependencies when the user explicitly asks for it, or when a bug fix or requested feature genuinely requires a package/version change. Do not update packages just to make hygiene checks pass; report that as separate maintenance instead.
 - Aim to keep files around 300 lines when touching them, splitting into smaller components/modules where it improves readability. This is a soft guideline, not a hard limit; slightly larger files are fine when splitting would add noise. Generated files and static data files are exempt.
 
+## Game UI
+
+- Build word-game screens with `GameScreenFrame` so header, content, actions, and keyboard stay consistent.
+- Keep game content in the frame content area, never underneath the header or keyboard.
+- Keep game keyboard controls in the frame keyboard/footer area so bottom safe area handling stays centralized.
+- Put small per-game actions like `Lösung anzeigen`, `Hinweis`, or `Zurück` in the frame action row above the keyboard.
+- Do not add explanatory game-rule copy directly into gameplay content; use the help modal for rules and reserve content text for concrete feedback, hints, or results.
+
 ## Word Data
 
 - Keep target words and allowed guesses separate: target words are curated daily solutions; allowed guesses are generated validation/ranking data.

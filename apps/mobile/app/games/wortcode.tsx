@@ -15,7 +15,7 @@ import { games } from "@/games/registry";
 import { createPracticeWortcodeGame } from "@/games/wortcode/daily";
 import { revealWortcodeSolution, submitWortcodeGuess, toggleWortcodeLetterMark } from "@/games/wortcode/engine";
 import { WortcodeLetterMark, WortcodeState } from "@/games/wortcode/types";
-import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
 
 type WortcodeGame = ReturnType<typeof createPracticeWortcodeGame>;
@@ -28,6 +28,7 @@ export default function WortcodeScreen() {
   const router = useRouter();
   const today = getBerlinDateKey();
   const completedAtRef = useRef<string | undefined>(undefined);
+  const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [game, setGame] = useState<WortcodeGame>(() => createPracticeWortcodeGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<WortcodeState>(game.state);
@@ -44,6 +45,7 @@ export default function WortcodeScreen() {
   useEffect(() => {
     loadProgress<WortcodeState>("wortcode", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
+      completedStatusRef.current = progress?.completedStatus;
       if (isStartedProgress(progress)) {
         const nextGame = { dateKey: progress.dateKey, puzzle: progress.puzzle as WortcodeGame["puzzle"], state: progress.state };
         setGame(nextGame);
@@ -62,12 +64,15 @@ export default function WortcodeScreen() {
     if (!progressLoaded) return;
 
     const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    const completedStatus = state.status !== "playing" ? state.status : completedStatusRef.current;
     completedAtRef.current = completedAt;
+    completedStatusRef.current = completedStatus;
 
     saveProgress({
       gameId: "wortcode",
       dateKey,
       draft: inputLetters,
+      completedStatus,
       puzzle,
       puzzleId: puzzle.id,
       puzzleVersion: puzzle.version,
