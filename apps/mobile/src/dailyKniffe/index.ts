@@ -59,7 +59,7 @@ export function generateDailyKniffe({
 }
 
 export function isDailyKniffCompleted(progress: StoredProgress | null | undefined): boolean {
-  return isFinalDailyStatus(progress?.status);
+  return Boolean(progress?.completedAt) || isFinalDailyStatus(progress?.status);
 }
 
 export function isFinalDailyStatus(status: GameStatus | null | undefined): boolean {

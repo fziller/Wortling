@@ -12,9 +12,9 @@ export function createDailyWortleiterGame(date = new Date()) {
   return { dateKey, puzzle, state: createWortleiterState(puzzle) };
 }
 
-export function createPracticeWortleiterGame(previousPuzzleId?: string) {
+export function createPracticeWortleiterGame(previousPuzzleId?: string, dateKey = "Freies Spiel") {
   const options = wortleiterPuzzles.filter((puzzle) => puzzle.id !== previousPuzzleId);
   const puzzle = options[Math.floor(Math.random() * options.length)] ?? wortleiterPuzzles[0];
 
-  return { dateKey: "Freies Spiel", puzzle, state: createWortleiterState(puzzle) };
+  return { dateKey, puzzle, state: createWortleiterState(puzzle) };
 }

@@ -14,12 +14,12 @@ export function createDailyFormwortGame(date = new Date()) {
   return { dateKey, puzzle, state: createFormwortState(puzzle) };
 }
 
-export function createPracticeFormwortGame(previousAnswer?: string) {
+export function createPracticeFormwortGame(previousAnswer?: string, dateKey = "Freies Spiel") {
   const options = formwortAnswers.filter((word) => word !== previousAnswer);
   const answer = options[Math.floor(Math.random() * options.length)] ?? formwortAnswers[0];
   const puzzle = createPuzzle(answer, `formwort-practice-${Date.now()}`);
 
-  return { dateKey: "Freies Spiel", puzzle, state: createFormwortState(puzzle) };
+  return { dateKey, puzzle, state: createFormwortState(puzzle) };
 }
 
 function createPuzzle(answer: string, id: string): FormwortPuzzle {

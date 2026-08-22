@@ -14,12 +14,12 @@ export function createDailyWorttrefferGame(date = new Date()) {
   return { dateKey, puzzle, state: createWorttrefferState(puzzle) };
 }
 
-export function createPracticeWorttrefferGame(previousAnswer?: string) {
+export function createPracticeWorttrefferGame(previousAnswer?: string, dateKey = "Freies Spiel") {
   const options = answerWords.filter((word) => word !== previousAnswer);
   const answer = options[Math.floor(Math.random() * options.length)] ?? answerWords[0];
   const puzzle = createWorttrefferPuzzle(answer, `worttreffer-practice-${Date.now()}`);
 
-  return { dateKey: "Freies Spiel", puzzle, state: createWorttrefferState(puzzle) };
+  return { dateKey, puzzle, state: createWorttrefferState(puzzle) };
 }
 
 function createWorttrefferPuzzle(answer: string, id: string): WorttrefferPuzzle {

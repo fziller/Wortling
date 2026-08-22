@@ -14,12 +14,12 @@ export function createDailyWortcodeGame(date = new Date()) {
   return { dateKey, puzzle, state: createWortcodeState(puzzle) };
 }
 
-export function createPracticeWortcodeGame(previousAnswer?: string) {
+export function createPracticeWortcodeGame(previousAnswer?: string, dateKey = "Freies Spiel") {
   const options = answerWords.filter((word) => word !== previousAnswer);
   const answer = options[Math.floor(Math.random() * options.length)] ?? answerWords[0];
   const puzzle = createWortcodePuzzle(answer, `wortcode-practice-${Date.now()}`);
 
-  return { dateKey: "Freies Spiel", puzzle, state: createWortcodeState(puzzle) };
+  return { dateKey, puzzle, state: createWortcodeState(puzzle) };
 }
 
 function createWortcodePuzzle(answer: string, id: string): WortcodePuzzle {

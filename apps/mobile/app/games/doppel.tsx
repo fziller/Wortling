@@ -1,25 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
 import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
+import { GameScreenHeader } from "@/components/GameHeader";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
 import { Screen } from "@/components/Screen";
+import { getBerlinDateKey } from "@/daily/date";
 import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
-import { createDailyDoppelGame, createPracticeDoppelGame } from "@/games/doppel/daily";
+import { createPracticeDoppelGame } from "@/games/doppel/daily";
 import { revealDoppelSolution, submitDoppelGuess, unlockDoppelHint } from "@/games/doppel/engine";
 import { DoppelHint, DoppelState } from "@/games/doppel/types";
-import { loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
 
-const dailyGame = createDailyDoppelGame();
+type DoppelGame = ReturnType<typeof createPracticeDoppelGame>;
 
 function hintText(hint: DoppelHint): string {
   if (hint.type === "length") return `${hint.value} Buchstaben`;
@@ -31,7 +32,9 @@ function hintText(hint: DoppelHint): string {
 
 export default function DoppelScreen() {
   const router = useRouter();
-  const [game, setGame] = useState(dailyGame);
+  const today = getBerlinDateKey();
+  const completedAtRef = useRef<string | undefined>(undefined);
+  const [game, setGame] = useState<DoppelGame>(() => createPracticeDoppelGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<DoppelState>(game.state);
   const [input, setInput] = useState("");
@@ -44,32 +47,34 @@ export default function DoppelScreen() {
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
 
   useEffect(() => {
-    loadProgress<DoppelState>("doppel", dateKey).then((progress) => {
-      if (progress?.puzzleId === puzzle.id && progress.puzzleVersion === puzzle.version) {
-        if (progress.status !== "playing") {
-          startPracticeGame();
-          setProgressLoaded(true);
-          return;
-        }
+    loadProgress<DoppelState>("doppel", today).then((progress) => {
+      completedAtRef.current = progress?.completedAt;
+      if (isStartedProgress(progress)) {
+        setGame({ dateKey: progress.dateKey, puzzle: progress.puzzle as DoppelGame["puzzle"], state: progress.state });
         setState(progress.state);
+        setInput(typeof progress.draft === "string" ? progress.draft : "");
       }
       setProgressLoaded(true);
     });
-  }, [dateKey, puzzle.id, puzzle.version]);
+  }, [today]);
 
   useEffect(() => {
     if (!progressLoaded) return;
 
+    const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    completedAtRef.current = completedAt;
     saveProgress({
       gameId: "doppel",
       dateKey,
+      draft: input,
+      puzzle,
       puzzleId: puzzle.id,
       puzzleVersion: puzzle.version,
       status: state.status,
       state,
-      completedAt: state.status !== "playing" ? new Date().toISOString() : undefined
+      completedAt
     });
-  }, [dateKey, progressLoaded, puzzle.id, puzzle.version, state]);
+  }, [dateKey, input, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -119,7 +124,7 @@ export default function DoppelScreen() {
   }
 
   function startPracticeGame() {
-    const nextGame = createPracticeDoppelGame(puzzle.id);
+    const nextGame = createPracticeDoppelGame(puzzle.id, today);
 
     setGame(nextGame);
     setState(nextGame.state);
@@ -142,18 +147,7 @@ export default function DoppelScreen() {
   }
 
   return (
-    <Screen videoBackground>
-      <Stack.Screen
-        options={{
-          headerLeft: () => <GameHeaderButton accessibilityLabel="Zurück" label="←" onPress={goBack} />,
-          headerRight: () => <GameHeaderHelpButton onPress={() => setHelpVisible(true)} />,
-          headerShown: true,
-          headerShadowVisible: false,
-          headerStyle: { backgroundColor: "transparent" },
-          headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Doppel" />,
-          headerTitleAlign: "center"
-        }}
-      />
+    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Doppel" />} videoBackground>
       <View style={styles.wrap}>
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
           <View style={styles.card}>

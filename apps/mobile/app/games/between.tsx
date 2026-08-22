@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import Animated, {
   FadeInDown,
   FadeInUp,
@@ -17,8 +17,9 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { getBerlinDateKey } from "@/daily/date";
 import { hashSeed } from "@/daily/seed";
-import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
+import { GameScreenHeader } from "@/components/GameHeader";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
@@ -27,18 +28,18 @@ import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
-import { allowedGuessCount, targetWordCount } from "@/games/between/content";
-import { createDailyBetweenGame, createPracticeBetweenGame } from "@/games/between/daily";
+import { allowedGuessCount, CONTENT_VERSION, targetWordCount } from "@/games/between/content";
+import { createPracticeBetweenGame } from "@/games/between/daily";
 import { getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
 import { displayWord } from "@/games/between/format";
 import { BetweenState, Guess } from "@/games/between/types";
 import { updateBadgeCount } from "@/notifications/badge";
-import { loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
 
 const BOARD_LINE_HEIGHT = 132;
 const DOT_SIZE = 20;
 const DOT_MARGIN = 4;
-const dailyGame = createDailyBetweenGame();
+const puzzleVersion = hashSeed(CONTENT_VERSION);
 
 function createEmptyInput(length: number) {
   return Array.from({ length }, () => "");
@@ -57,8 +58,10 @@ function formatElapsedTime(seconds: number): string {
 
 export default function BetweenScreen() {
   const router = useRouter();
-  const [state, setState] = useState<BetweenState>(dailyGame.state);
-  const [dateKey, setDateKey] = useState(dailyGame.dateKey);
+  const today = getBerlinDateKey();
+  const completedAtRef = useRef<string | undefined>(undefined);
+  const [state, setState] = useState<BetweenState>(() => createPracticeBetweenGame(undefined, today).state);
+  const [dateKey, setDateKey] = useState(today);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(5));
   const [cursorIndex, setCursorIndex] = useState(0);
   const [modal, setModal] = useState<"reveal" | null>(null);
@@ -80,41 +83,46 @@ export default function BetweenScreen() {
   const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
   const centerWord = state.status === "revealed" || state.status === "won" ? state.targetWord : movingGuess?.word;
   const showScaleHints = Boolean(lastGuess);
-  const dailyPuzzleId = `between-${dailyGame.dateKey}`;
-  const dailyPuzzleVersion = hashSeed(dailyGame.contentVersion);
+  const puzzleId = `between-${state.targetWord}`;
 
   const sortedGuesses = useMemo(() => {
     return [...state.guesses].reverse();
   }, [state.guesses]);
 
   useEffect(() => {
-    loadProgress<BetweenState>("between", dailyGame.dateKey).then((progress) => {
-      if (progress?.puzzleId === dailyPuzzleId && progress.puzzleVersion === dailyPuzzleVersion) {
+    loadProgress<BetweenState>("between", today).then((progress) => {
+      completedAtRef.current = progress?.completedAt;
+      if (isStartedProgress(progress)) {
         setState(progress.state);
         setDateKey(progress.dateKey);
+        setInputLetters(Array.isArray(progress.draft) ? progress.draft.map(String) : createEmptyInput(5));
         setFinishedAt(progress.completedAt ? Date.parse(progress.completedAt) : null);
         setResultVisible(progress.status !== "playing");
       }
       setProgressLoaded(true);
     });
-  }, [dailyPuzzleId, dailyPuzzleVersion]);
+  }, [today]);
 
   useEffect(() => {
-    if (!progressLoaded || dateKey !== dailyGame.dateKey) return;
+    if (!progressLoaded) return;
 
+    const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    completedAtRef.current = completedAt;
     saveProgress({
       gameId: "between",
       dateKey,
-      puzzleId: dailyPuzzleId,
-      puzzleVersion: dailyPuzzleVersion,
+      draft: inputLetters,
+      puzzle: { targetWord: state.targetWord },
+      puzzleId,
+      puzzleVersion,
       status: state.status === "abandoned" ? "revealed" : state.status,
       state,
-      completedAt: state.status !== "playing" ? new Date().toISOString() : undefined,
+      completedAt,
     });
-  }, [dailyPuzzleId, dailyPuzzleVersion, dateKey, progressLoaded, state]);
+  }, [dateKey, inputLetters, progressLoaded, puzzleId, state]);
 
   useEffect(() => {
-    if (state.status !== "playing" && dateKey === dailyGame.dateKey) {
+    if (state.status !== "playing") {
       loadProgressForGames(games.map((game) => game.id), dateKey).then((progress) => updateBadgeCount(progress, dateKey));
     }
   }, [state.status, dateKey]);
@@ -217,7 +225,7 @@ export default function BetweenScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createPracticeBetweenGame(state.targetWord);
+    const nextGame = createPracticeBetweenGame(state.targetWord, today);
 
     if (clearMovingGuessTimeout.current) {
       clearTimeout(clearMovingGuessTimeout.current);
@@ -251,18 +259,7 @@ export default function BetweenScreen() {
   }
 
   return (
-    <Screen videoBackground>
-      <Stack.Screen
-        options={{
-          headerLeft: () => <GameHeaderButton accessibilityLabel="Zurück" label="←" onPress={goBack} />,
-          headerRight: () => <GameHeaderHelpButton onPress={() => setHelpVisible(true)} />,
-          headerShown: true,
-          headerShadowVisible: false,
-          headerStyle: { backgroundColor: "transparent" },
-          headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Dazwischen" />,
-          headerTitleAlign: "center"
-        }}
-      />
+    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Dazwischen" />} videoBackground>
       <View style={styles.keyboard}>
         <Animated.View entering={FadeInUp.duration(tokens.motion.normal)} style={styles.header}>
           <Text style={styles.rules}>Grenze das Zielwort alphabetisch ein.</Text>

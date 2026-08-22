@@ -1,6 +1,6 @@
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Modal,
   Pressable,
@@ -15,20 +15,16 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
-import {
-  GameHeaderButton,
-  GameHeaderHelpButton,
-  GameHeaderTitle,
-} from "@/components/GameHeader";
+import { GameScreenHeader } from "@/components/GameHeader";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
 import { Screen } from "@/components/Screen";
+import { getBerlinDateKey } from "@/daily/date";
 import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import {
-  createDailyWortleiterGame,
   createPracticeWortleiterGame,
 } from "@/games/wortleiter/daily";
 import {
@@ -40,12 +36,13 @@ import {
 import type { WortleiterState } from "@/games/wortleiter/types";
 import { updateBadgeCount } from "@/notifications/badge";
 import {
+  isStartedProgress,
   loadProgress,
   loadProgressForGames,
   saveProgress,
 } from "@/storage/progress";
 
-const dailyGame = createDailyWortleiterGame();
+type WortleiterGame = ReturnType<typeof createPracticeWortleiterGame>;
 
 function createEmptyInput(length: number): string[] {
   return Array.from({ length }, () => "");
@@ -63,11 +60,13 @@ function formatElapsedTime(seconds: number): string {
 export default function WortleiterScreen() {
   const router = useRouter();
   const posthog = usePostHog();
-  const [game, setGame] = useState(dailyGame);
+  const today = getBerlinDateKey();
+  const completedAtRef = useRef<string | undefined>(undefined);
+  const [game, setGame] = useState<WortleiterGame>(() => createPracticeWortleiterGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<WortleiterState>(game.state);
   const [inputLetters, setInputLetters] = useState(() =>
-    createEmptyInput(dailyGame.puzzle.wordLength),
+    createEmptyInput(game.puzzle.wordLength),
   );
   const [cursorIndex, setCursorIndex] = useState(0);
   const [message, setMessage] = useState("");
@@ -91,12 +90,13 @@ export default function WortleiterScreen() {
   }, [dateKey, posthog]);
 
   useEffect(() => {
-    loadProgress<WortleiterState>("wortleiter", dateKey).then((progress) => {
-      if (
-        progress?.puzzleId === puzzle.id &&
-        progress.puzzleVersion === puzzle.version
-      ) {
+    loadProgress<WortleiterState>("wortleiter", today).then((progress) => {
+      completedAtRef.current = progress?.completedAt;
+      if (isStartedProgress(progress)) {
+        const nextGame = { dateKey: progress.dateKey, puzzle: progress.puzzle as WortleiterGame["puzzle"], state: progress.state };
+        setGame(nextGame);
         setState(progress.state);
+        setInputLetters(Array.isArray(progress.draft) ? progress.draft.map(String) : createEmptyInput(nextGame.puzzle.wordLength));
         setFinishedAt(
           progress.completedAt ? Date.parse(progress.completedAt) : null,
         );
@@ -104,7 +104,7 @@ export default function WortleiterScreen() {
       }
       setProgressLoaded(true);
     });
-  }, [dateKey, puzzle.id, puzzle.version]);
+  }, [today]);
 
   useEffect(() => {
     if (!progressLoaded) return;
@@ -112,10 +112,13 @@ export default function WortleiterScreen() {
     const completedAt =
       state.status !== "playing"
         ? (state.completedAt ?? new Date().toISOString())
-        : undefined;
+        : completedAtRef.current;
+    completedAtRef.current = completedAt;
     saveProgress({
       gameId: "wortleiter",
       dateKey,
+      draft: inputLetters,
+      puzzle,
       puzzleId: puzzle.id,
       puzzleVersion: puzzle.version,
       status: state.status,
@@ -127,7 +130,7 @@ export default function WortleiterScreen() {
       startedAt: state.startedAt ?? new Date(startedAt).toISOString(),
       completedAt,
     });
-  }, [dateKey, progressLoaded, puzzle.id, puzzle.version, startedAt, state]);
+  }, [dateKey, inputLetters, progressLoaded, puzzle, startedAt, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -220,7 +223,7 @@ export default function WortleiterScreen() {
   }
 
   function startPracticePuzzle() {
-    const nextGame = createPracticeWortleiterGame(puzzle.id);
+    const nextGame = createPracticeWortleiterGame(puzzle.id, today);
 
     setGame(nextGame);
     setState(nextGame.state);
@@ -251,28 +254,7 @@ export default function WortleiterScreen() {
   }
 
   return (
-    <Screen videoBackground>
-      <Stack.Screen
-        options={{
-          headerLeft: () => (
-            <GameHeaderButton
-              accessibilityLabel="Zurück"
-              label="←"
-              onPress={goBack}
-            />
-          ),
-          headerRight: () => (
-            <GameHeaderHelpButton onPress={() => setHelpVisible(true)} />
-          ),
-          headerShown: true,
-          headerShadowVisible: false,
-          headerStyle: { backgroundColor: "transparent" },
-          headerTitle: () => (
-            <GameHeaderTitle subtitle={dateKey} title="Wortleiter" />
-          ),
-          headerTitleAlign: "center",
-        }}
-      />
+    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Wortleiter" />} videoBackground>
       <View style={styles.wrap}>
         <View style={styles.boardPanel}>
           <View style={styles.statusRow}>

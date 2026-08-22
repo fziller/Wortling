@@ -5,6 +5,8 @@ import type { GameStatus } from "@/games/types";
 export type StoredProgress<TState = unknown> = {
   gameId: string;
   dateKey: string;
+  draft?: unknown;
+  puzzle?: unknown;
   puzzleId: string;
   puzzleVersion: number;
   status: GameStatus;
@@ -39,4 +41,27 @@ export async function loadProgressForGames(gameIds: readonly string[], dateKey: 
   const entries = await Promise.all(gameIds.map(async (gameId) => [gameId, await loadProgress(gameId, dateKey)] as const));
 
   return Object.fromEntries(entries);
+}
+
+export function isStartedProgress(progress: StoredProgress | null | undefined): progress is StoredProgress {
+  if (!progress || progress.status !== "playing") return false;
+  if (!progress.puzzle) return false;
+  if (hasDraft(progress.draft)) return true;
+
+  const state = progress.state as Record<string, unknown> | null | undefined;
+  if (!state) return false;
+
+  if (Array.isArray(state.guesses) && state.guesses.length > 0) return true;
+  if (Array.isArray(state.guessedLetters) && state.guessedLetters.length > 0) return true;
+  if (Array.isArray(state.words) && state.words.length > 1) return true;
+  if (typeof state.unlockedHints === "number" && state.unlockedHints > 0) return true;
+
+  return false;
+}
+
+function hasDraft(draft: unknown): boolean {
+  if (typeof draft === "string") return draft.length > 0;
+  if (Array.isArray(draft)) return draft.some(Boolean);
+
+  return false;
 }

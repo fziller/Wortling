@@ -2,6 +2,36 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { tokens } from "@/design/tokens";
 
+type GameScreenHeaderProps = {
+  backAccessibilityLabel?: string;
+  backLabel?: string;
+  helpAccessibilityLabel?: string;
+  helpLabel?: string;
+  onBack: () => void;
+  onHelp: () => void;
+  subtitle: string;
+  title: string;
+};
+
+export function GameScreenHeader({
+  backAccessibilityLabel = "Zurück",
+  backLabel = "←",
+  helpAccessibilityLabel = "Hilfe öffnen",
+  helpLabel = "?",
+  onBack,
+  onHelp,
+  subtitle,
+  title,
+}: GameScreenHeaderProps) {
+  return (
+    <View style={styles.screenHeader}>
+      <GameHeaderButton accessibilityLabel={backAccessibilityLabel} label={backLabel} onPress={onBack} />
+      <GameHeaderTitle subtitle={subtitle} title={title} />
+      <GameHeaderButton accessibilityLabel={helpAccessibilityLabel} label={helpLabel} onPress={onHelp} />
+    </View>
+  );
+}
+
 type GameHeaderTitleProps = {
   subtitle: string;
   title: string;
@@ -43,6 +73,18 @@ export function GameHeaderHelpButton({ onPress }: GameHeaderHelpButtonProps) {
 }
 
 const styles = StyleSheet.create({
+  screenHeader: {
+    minHeight: 62,
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: tokens.space.sm,
+    paddingHorizontal: tokens.space.md,
+    paddingVertical: tokens.space.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: "rgba(238, 231, 221, 0.72)",
+    backgroundColor: "transparent",
+  },
   button: {
     width: 44,
     height: 44,

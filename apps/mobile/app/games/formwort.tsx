@@ -1,26 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
+import { GameScreenHeader } from "@/components/GameHeader";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
 import { LetterInputTiles } from "@/components/LetterInputTiles";
 import { Screen } from "@/components/Screen";
+import { getBerlinDateKey } from "@/daily/date";
 import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
-import { createDailyFormwortGame, createPracticeFormwortGame } from "@/games/formwort/daily";
+import { createPracticeFormwortGame } from "@/games/formwort/daily";
 import { applyFormwortInputLetter, getFormwortLetterStates, removeFormwortInputLetter, revealFormwortSolution, submitFormwortGuess } from "@/games/formwort/engine";
 import type { FormwortState } from "@/games/formwort/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { updateBadgeCount } from "@/notifications/badge";
-import { loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
 
-const dailyGame = createDailyFormwortGame();
+type FormwortGame = ReturnType<typeof createPracticeFormwortGame>;
 
 function createEmptyInput(length: number) {
   return Array.from({ length }, () => "");
@@ -29,10 +30,12 @@ function createEmptyInput(length: number) {
 export default function FormwortScreen() {
   const router = useRouter();
   const posthog = usePostHog();
-  const [game, setGame] = useState(dailyGame);
+  const today = getBerlinDateKey();
+  const completedAtRef = useRef<string | undefined>(undefined);
+  const [game, setGame] = useState<FormwortGame>(() => createPracticeFormwortGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<FormwortState>(game.state);
-  const [inputLetters, setInputLetters] = useState(() => createEmptyInput(dailyGame.puzzle.wordLength));
+  const [inputLetters, setInputLetters] = useState(() => createEmptyInput(game.puzzle.wordLength));
   const [cursorIndex, setCursorIndex] = useState(0);
   const [message, setMessage] = useState("Gleiche Formen stehen für gleiche Buchstaben.");
   const [helpVisible, setHelpVisible] = useState(false);
@@ -52,24 +55,25 @@ export default function FormwortScreen() {
   }, [dateKey, posthog]);
 
   useEffect(() => {
-    loadProgress<FormwortState>("formwort", dateKey).then((progress) => {
-      if (progress?.puzzleId === puzzle.id && progress.puzzleVersion === puzzle.version) {
-        if (progress.status !== "playing") {
-          startPracticeWord();
-          setProgressLoaded(true);
-          return;
-        }
+    loadProgress<FormwortState>("formwort", today).then((progress) => {
+      completedAtRef.current = progress?.completedAt;
+      if (isStartedProgress(progress)) {
+        const nextGame = { dateKey: progress.dateKey, puzzle: progress.puzzle as FormwortGame["puzzle"], state: progress.state };
+        setGame(nextGame);
         setState(progress.state);
+        setInputLetters(Array.isArray(progress.draft) ? progress.draft.map(String) : createEmptyInput(nextGame.puzzle.wordLength));
       }
       setProgressLoaded(true);
     });
-  }, [dateKey, puzzle.id, puzzle.version]);
+  }, [today]);
 
   useEffect(() => {
     if (!progressLoaded) return;
 
-    saveProgress({ gameId: "formwort", dateKey, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt: state.status !== "playing" ? new Date().toISOString() : undefined });
-  }, [dateKey, progressLoaded, puzzle.id, puzzle.version, state]);
+    const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    completedAtRef.current = completedAt;
+    saveProgress({ gameId: "formwort", dateKey, draft: inputLetters, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });
+  }, [dateKey, inputLetters, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") loadProgressForGames(games.map((g) => g.id), dateKey).then(updateBadgeCount);
@@ -131,7 +135,7 @@ export default function FormwortScreen() {
   }
 
   function startPracticeWord() {
-    const nextGame = createPracticeFormwortGame(puzzle.answer);
+    const nextGame = createPracticeFormwortGame(puzzle.answer, today);
 
     setGame(nextGame);
     setState(nextGame.state);
@@ -164,18 +168,7 @@ export default function FormwortScreen() {
   }
 
   return (
-    <Screen videoBackground>
-      <Stack.Screen
-        options={{
-          headerLeft: () => <GameHeaderButton accessibilityLabel="Zurück" label="←" onPress={goBack} />,
-          headerRight: () => <GameHeaderHelpButton onPress={() => setHelpVisible(true)} />,
-          headerShown: true,
-          headerShadowVisible: false,
-          headerStyle: { backgroundColor: "transparent" },
-          headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Formwort" />,
-          headerTitleAlign: "center"
-        }}
-      />
+    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Formwort" />} videoBackground>
       <View style={styles.wrap}>
         <View style={styles.board}>
           {Array.from({ length: puzzle.maxAttempts }).map((_, rowIndex) => {

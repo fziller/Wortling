@@ -1,30 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
+import { GameScreenHeader } from "@/components/GameHeader";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
 import { Screen } from "@/components/Screen";
+import { getBerlinDateKey } from "@/daily/date";
 import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
-import { createDailyGalgenwortGame, createPracticeGalgenwortGame } from "@/games/galgenwort/daily";
+import { createPracticeGalgenwortGame } from "@/games/galgenwort/daily";
 import { getGalgenwortLetterStates, getGalgenwortRevealedLetters, getGalgenwortWrongLetters, revealGalgenwortSolution, submitGalgenwortLetter } from "@/games/galgenwort/engine";
 import type { GalgenwortState } from "@/games/galgenwort/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { updateBadgeCount } from "@/notifications/badge";
-import { loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
 
-const dailyGame = createDailyGalgenwortGame();
+type GalgenwortGame = ReturnType<typeof createPracticeGalgenwortGame>;
 
 export default function GalgenwortScreen() {
   const router = useRouter();
   const posthog = usePostHog();
-  const [game, setGame] = useState(dailyGame);
+  const today = getBerlinDateKey();
+  const completedAtRef = useRef<string | undefined>(undefined);
+  const [game, setGame] = useState<GalgenwortGame>(() => createPracticeGalgenwortGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<GalgenwortState>(game.state);
   const [message, setMessage] = useState("Errate das Wort Buchstabe für Buchstabe.");
@@ -45,24 +48,23 @@ export default function GalgenwortScreen() {
   }, [dateKey, posthog]);
 
   useEffect(() => {
-    loadProgress<GalgenwortState>("galgenwort", dateKey).then((progress) => {
-      if (progress?.puzzleId === puzzle.id && progress.puzzleVersion === puzzle.version) {
-        if (progress.status !== "playing") {
-          startPracticeWord();
-          setProgressLoaded(true);
-          return;
-        }
+    loadProgress<GalgenwortState>("galgenwort", today).then((progress) => {
+      completedAtRef.current = progress?.completedAt;
+      if (isStartedProgress(progress)) {
+        setGame({ dateKey: progress.dateKey, puzzle: progress.puzzle as GalgenwortGame["puzzle"], state: progress.state });
         setState(progress.state);
       }
       setProgressLoaded(true);
     });
-  }, [dateKey, puzzle.id, puzzle.version]);
+  }, [today]);
 
   useEffect(() => {
     if (!progressLoaded) return;
 
-    saveProgress({ gameId: "galgenwort", dateKey, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt: state.status !== "playing" ? new Date().toISOString() : undefined });
-  }, [dateKey, progressLoaded, puzzle.id, puzzle.version, state]);
+    const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    completedAtRef.current = completedAt;
+    saveProgress({ gameId: "galgenwort", dateKey, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });
+  }, [dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") loadProgressForGames(games.map((g) => g.id), dateKey).then(updateBadgeCount);
@@ -98,7 +100,7 @@ export default function GalgenwortScreen() {
   }
 
   function startPracticeWord() {
-    const nextGame = createPracticeGalgenwortGame(puzzle.id);
+    const nextGame = createPracticeGalgenwortGame(puzzle.id, today);
 
     setGame(nextGame);
     setState(nextGame.state);
@@ -129,18 +131,7 @@ export default function GalgenwortScreen() {
   }
 
   return (
-    <Screen videoBackground>
-      <Stack.Screen
-        options={{
-          headerLeft: () => <GameHeaderButton accessibilityLabel="Zurück" label="←" onPress={goBack} />,
-          headerRight: () => <GameHeaderHelpButton onPress={() => setHelpVisible(true)} />,
-          headerShown: true,
-          headerShadowVisible: false,
-          headerStyle: { backgroundColor: "transparent" },
-          headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Galgenwort" />,
-          headerTitleAlign: "center"
-        }}
-      />
+    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Galgenwort" />} videoBackground>
       <View style={styles.wrap}>
         <View style={styles.card}>
           <Text style={styles.kicker}>Hinweis</Text>

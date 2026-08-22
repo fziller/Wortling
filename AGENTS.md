@@ -16,6 +16,7 @@ Wortkniff is an Expo + React Native + TypeScript mobile app for German daily wor
 - Do not add backend, accounts, or extra game modes unless explicitly requested.
 - Prefer existing Expo/React Native APIs before adding dependencies.
 - Only change dependencies when the user explicitly asks for it, or when a bug fix or requested feature genuinely requires a package/version change. Do not update packages just to make hygiene checks pass; report that as separate maintenance instead.
+- Aim to keep files around 300 lines when touching them, splitting into smaller components/modules where it improves readability. This is a soft guideline, not a hard limit; slightly larger files are fine when splitting would add noise. Generated files and static data files are exempt.
 
 ## Word Data
 

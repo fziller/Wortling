@@ -1,26 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
 import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameHeaderButton, GameHeaderHelpButton, GameHeaderTitle } from "@/components/GameHeader";
+import { GameScreenHeader } from "@/components/GameHeader";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { KeyboardDock } from "@/components/KeyboardDock";
 import { LetterInputTiles } from "@/components/LetterInputTiles";
 import { Screen } from "@/components/Screen";
+import { getBerlinDateKey } from "@/daily/date";
 import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
-import { createDailyWortcodeGame, createPracticeWortcodeGame } from "@/games/wortcode/daily";
+import { createPracticeWortcodeGame } from "@/games/wortcode/daily";
 import { revealWortcodeSolution, submitWortcodeGuess, toggleWortcodeLetterMark } from "@/games/wortcode/engine";
 import { WortcodeLetterMark, WortcodeState } from "@/games/wortcode/types";
-import { loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
 
-const dailyGame = createDailyWortcodeGame();
+type WortcodeGame = ReturnType<typeof createPracticeWortcodeGame>;
 
 function createEmptyInput(length: number) {
   return Array.from({ length }, () => "");
@@ -28,10 +29,12 @@ function createEmptyInput(length: number) {
 
 export default function WortcodeScreen() {
   const router = useRouter();
-  const [game, setGame] = useState(dailyGame);
+  const today = getBerlinDateKey();
+  const completedAtRef = useRef<string | undefined>(undefined);
+  const [game, setGame] = useState<WortcodeGame>(() => createPracticeWortcodeGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<WortcodeState>(game.state);
-  const [inputLetters, setInputLetters] = useState(() => createEmptyInput(dailyGame.puzzle.wordLength));
+  const [inputLetters, setInputLetters] = useState(() => createEmptyInput(game.puzzle.wordLength));
   const [cursorIndex, setCursorIndex] = useState(0);
   const [message, setMessage] = useState("Rate ein gültiges deutsches Wort.");
   const [helpVisible, setHelpVisible] = useState(false);
@@ -42,32 +45,40 @@ export default function WortcodeScreen() {
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
 
   useEffect(() => {
-    loadProgress<WortcodeState>("wortcode", dateKey).then((progress) => {
-      if (progress?.puzzleId === puzzle.id && progress.puzzleVersion === puzzle.version) {
-        if (progress.status !== "playing") {
-          startPracticeWord();
-          setProgressLoaded(true);
-          return;
-        }
+    loadProgress<WortcodeState>("wortcode", today).then((progress) => {
+      completedAtRef.current = progress?.completedAt;
+      if (isStartedProgress(progress)) {
+        const nextGame = { dateKey: progress.dateKey, puzzle: progress.puzzle as WortcodeGame["puzzle"], state: progress.state };
+        setGame(nextGame);
         setState(progress.state);
+        if (Array.isArray(progress.draft)) {
+          setInputLetters(progress.draft.map(String));
+        } else {
+          setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
+        }
       }
       setProgressLoaded(true);
     });
-  }, [dateKey, puzzle.id, puzzle.version]);
+  }, [today]);
 
   useEffect(() => {
     if (!progressLoaded) return;
 
+    const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    completedAtRef.current = completedAt;
+
     saveProgress({
       gameId: "wortcode",
       dateKey,
+      draft: inputLetters,
+      puzzle,
       puzzleId: puzzle.id,
       puzzleVersion: puzzle.version,
       status: state.status,
       state,
-      completedAt: state.status !== "playing" ? new Date().toISOString() : undefined
+      completedAt
     });
-  }, [dateKey, progressLoaded, puzzle.id, puzzle.version, state]);
+  }, [dateKey, inputLetters, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -128,7 +139,7 @@ export default function WortcodeScreen() {
   }
 
   function startPracticeWord() {
-    const nextGame = createPracticeWortcodeGame(puzzle.answer);
+    const nextGame = createPracticeWortcodeGame(puzzle.answer, today);
 
     setGame(nextGame);
     setState(nextGame.state);
@@ -154,18 +165,7 @@ export default function WortcodeScreen() {
   }
 
   return (
-    <Screen videoBackground>
-      <Stack.Screen
-        options={{
-          headerLeft: () => <GameHeaderButton accessibilityLabel="Zurück" label="←" onPress={goBack} />,
-          headerRight: () => <GameHeaderHelpButton onPress={() => setHelpVisible(true)} />,
-          headerShown: true,
-          headerShadowVisible: false,
-          headerStyle: { backgroundColor: "transparent" },
-          headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Wortcode" />,
-          headerTitleAlign: "center"
-        }}
-      />
+    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Wortcode" />} videoBackground>
       <View style={styles.wrap}>
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
           <View style={styles.summaryCard}>

@@ -6,7 +6,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 
 - German-first daily word puzzles for quick sessions.
 - Multiple lightweight game modes in one app instead of one clone mechanic.
-- Curated target words and puzzles instead of random dictionary noise.
+- Curated target words and puzzles selected randomly instead of random dictionary noise.
 - Fully playable offline with local progress storage.
 - Network-dependent features such as analytics, notifications, and crash reporting must never block gameplay.
 
@@ -19,15 +19,15 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 | Galgenwort | Guess a German word before running out of mistakes. | Guess letters from a clue category; wrong guesses count against the limit. |
 | Formwort | Solve a 5-letter word with shape and color feedback. | Guess words and use visual hints to infer repeated letters and positions. |
 | Worttreffer | Guess a 5-letter word with color feedback. | Green means correct position, yellow means present elsewhere, gray means absent. |
-| Wortleiter | Transform a 4-letter start word into a target word. | Each intermediate word must be valid German and change exactly one letter. Daily puzzles are generated from prepared word-graph candidates. |
+| Wortleiter | Transform a 4-letter start word into a target word. | Each intermediate word must be valid German and change exactly one letter. Puzzles are selected from prepared word-graph candidates. |
 | Wortcode | Crack a 6-letter word with Mastermind-style logic. | Each guess returns positional and non-positional match counts. |
 
 ## Current Features
 
-- Daily puzzle selection per game.
-- Tageskniffe: each Berlin day highlights three existing daily games on Home; finishing all three final daily rounds completes the day.
+- Random puzzle selection when opening a game without saved in-progress input.
+- Tageskniffe: each Berlin day highlights three existing games on Home; completing one puzzle in each highlighted game completes the day.
 - Local daily streaks based on consecutive completed Tageskniffe days.
-- Practice rounds where supported by the game screen.
+- Saved in-progress rounds with draft input and a Home `Weiterspielen` chip.
 - Shared local progress model stored in AsyncStorage.
 - Static generated allowed-guess data checked into the app.
 - Curated target lists checked into source files under `apps/mobile/src/games`.
