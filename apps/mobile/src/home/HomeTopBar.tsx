@@ -3,6 +3,8 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { tokens } from "@/design/tokens";
 
+export const HOME_HEADER_BACKGROUND = "#FDFBF7";
+
 export function HomeTopBar() {
   return (
     <View style={styles.topBar}>
@@ -20,7 +22,7 @@ export function HomeTopBar() {
 const styles = StyleSheet.create({
   topBar: {
     alignItems: "center",
-    backgroundColor: "#FDFBF7",
+    backgroundColor: HOME_HEADER_BACKGROUND,
     borderBottomColor: "#EEE7DD",
     borderBottomWidth: 1,
     flexDirection: "row",

@@ -10,7 +10,7 @@ import { tokens } from "@/design/tokens";
 import { gameRegistry, games } from "@/games/registry";
 import { DailyKniffeCard } from "@/home/DailyKniffeCard";
 import { GameCard } from "@/home/GameCard";
-import { HomeTopBar } from "@/home/HomeTopBar";
+import { HOME_HEADER_BACKGROUND, HomeTopBar } from "@/home/HomeTopBar";
 import { homeOrder } from "@/home/homeMeta";
 import { updateBadgeCount } from "@/notifications/badge";
 import { loadDailyKniffeSeedOverride } from "@/storage/dailyKniffeDev";
@@ -119,7 +119,7 @@ export default function HomeScreen() {
   }
 
   return (
-    <Screen header={<HomeTopBar />}>
+    <Screen header={<HomeTopBar />} headerBackgroundColor={HOME_HEADER_BACKGROUND}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <DailyKniffeCard
           completedGames={dailyKniffCompletedGames}

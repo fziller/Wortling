@@ -4,13 +4,11 @@ import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameScreenHeader } from "@/components/GameHeader";
+import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
-import { KeyboardDock } from "@/components/KeyboardDock";
-import { Screen } from "@/components/Screen";
+import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
-import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { createPracticeGalgenwortGame } from "@/games/galgenwort/daily";
 import { getGalgenwortLetterStates, getGalgenwortRevealedLetters, getGalgenwortWrongLetters, revealGalgenwortSolution, submitGalgenwortLetter } from "@/games/galgenwort/engine";
@@ -30,7 +28,7 @@ export default function GalgenwortScreen() {
   const [game, setGame] = useState<GalgenwortGame>(() => createPracticeGalgenwortGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<GalgenwortState>(game.state);
-  const [message, setMessage] = useState("Errate das Wort Buchstabe für Buchstabe.");
+  const [message, setMessage] = useState("");
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
@@ -104,7 +102,7 @@ export default function GalgenwortScreen() {
 
     setGame(nextGame);
     setState(nextGame.state);
-    setMessage("Errate das Wort Buchstabe für Buchstabe.");
+    setMessage("");
     setResultVisible(false);
     setFinishedAt(null);
     setProgressLoaded(true);
@@ -131,7 +129,22 @@ export default function GalgenwortScreen() {
   }
 
   return (
-    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Galgenwort" />} videoBackground>
+    <GameScreenFrame
+      actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
+      keyboard={{
+        disabled: state.status !== "playing",
+        letterStates,
+        onBackspace: () => undefined,
+        onLetter: guess,
+        onSubmit: () => undefined,
+        showBackspace: false,
+        showSubmit: false,
+      }}
+      onBack={goBack}
+      onHelp={() => setHelpVisible(true)}
+      subtitle={dateKey}
+      title="Galgenwort"
+    >
       <View style={styles.wrap}>
         <View style={styles.card}>
           <Text style={styles.kicker}>Hinweis</Text>
@@ -143,21 +156,12 @@ export default function GalgenwortScreen() {
         </View>
 
         <View style={styles.statusBlock}>
-          <Text style={styles.message}>{message}</Text>
+          {message && state.status !== "playing" ? <Text style={styles.message}>{message}</Text> : null}
           {wrongLetters.length > 0 ? <Text style={styles.wrong}>Falsch: {wrongLetters.join(" ").toLocaleUpperCase("de-DE")}</Text> : null}
           {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toLocaleUpperCase("de-DE")}</Text> : null}
         </View>
-
-        <KeyboardDock>
-          {state.status === "playing" ? (
-            <Pressable accessibilityRole="button" onPress={() => setGiveUpVisible(true)} style={styles.giveUpButton}>
-              <Text style={styles.giveUpText}>Aufgeben</Text>
-            </Pressable>
-          ) : null}
-          <WordKeyboard disabled={state.status !== "playing"} letterStates={letterStates} onBackspace={() => undefined} onLetter={guess} onSubmit={() => undefined} showBackspace={false} showSubmit={false} />
-        </KeyboardDock>
       </View>
-      <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Aufgeben?" visible={giveUpVisible} />
+      <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <GameResultModal
         message={state.status === "won" ? "Nice, das Wort ist frei." : "Die Lösung ist raus. Weiteres Wort?"}
         onHome={() => router.replace("/")}
@@ -172,7 +176,7 @@ export default function GalgenwortScreen() {
         visible={resultVisible && state.status !== "playing"}
       />
       <HelpModal {...gameHelp.galgenwort} onClose={() => setHelpVisible(false)} visible={helpVisible} />
-    </Screen>
+    </GameScreenFrame>
   );
 }
 
@@ -187,7 +191,5 @@ const styles = StyleSheet.create({
   statusBlock: { flex: 1, justifyContent: "center", gap: tokens.space.sm },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   wrong: { color: tokens.color.ink, fontSize: tokens.type.body, fontWeight: "900", textAlign: "center" },
-  answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" },
-  giveUpButton: { alignSelf: "flex-end", paddingHorizontal: tokens.space.sm, paddingVertical: tokens.space.xs },
-  giveUpText: { color: tokens.color.muted, fontSize: tokens.type.small, fontWeight: "900" }
+  answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" }
 });

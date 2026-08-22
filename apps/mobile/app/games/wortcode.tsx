@@ -2,16 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 
-import { AppButton } from "@/components/AppButton";
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameScreenHeader } from "@/components/GameHeader";
+import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
-import { KeyboardDock } from "@/components/KeyboardDock";
 import { LetterInputTiles } from "@/components/LetterInputTiles";
-import { Screen } from "@/components/Screen";
+import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
-import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
@@ -36,7 +33,7 @@ export default function WortcodeScreen() {
   const [state, setState] = useState<WortcodeState>(game.state);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(game.puzzle.wordLength));
   const [cursorIndex, setCursorIndex] = useState(0);
-  const [message, setMessage] = useState("Rate ein gültiges deutsches Wort.");
+  const [message, setMessage] = useState("");
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
@@ -145,7 +142,7 @@ export default function WortcodeScreen() {
     setState(nextGame.state);
     setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
     setCursorIndex(0);
-    setMessage("Rate ein gültiges deutsches Wort.");
+    setMessage("");
     setResultVisible(false);
     setFinishedAt(null);
     setProgressLoaded(true);
@@ -165,13 +162,26 @@ export default function WortcodeScreen() {
   }
 
   return (
-    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Wortcode" />} videoBackground>
+    <GameScreenFrame
+      actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
+      inputPreview={<LetterInputTiles cursorIndex={cursorIndex} disabled={state.status !== "playing"} letters={inputLetters} onCursorChange={setCursorIndex} />}
+      keyboard={{
+        disabled: state.status !== "playing",
+        onBackspace: backspace,
+        onLetter: addLetter,
+        onSubmit: submit,
+        submitDisabled: !canSubmit,
+      }}
+      onBack={goBack}
+      onHelp={() => setHelpVisible(true)}
+      subtitle={dateKey}
+      title="Wortcode"
+    >
       <View style={styles.wrap}>
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
           <View style={styles.summaryCard}>
             <Text style={styles.summaryTitle}>Gesucht: {puzzle.wordLength} Buchstaben</Text>
             <Text style={styles.summaryText}>Versuch {Math.min(state.guesses.length + 1, puzzle.maxAttempts)} / {puzzle.maxAttempts}</Text>
-            <Text style={styles.rules}>Feedback ist absichtlich nicht positionsbezogen.</Text>
           </View>
 
           <View style={styles.history}>
@@ -203,28 +213,17 @@ export default function WortcodeScreen() {
             ))}
           </View>
 
-          <Text style={styles.message}>{message}</Text>
+          {message ? <Text style={styles.message}>{message}</Text> : null}
 
           {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toUpperCase()}</Text> : null}
         </ScrollView>
-        <View style={styles.inputCard}>
-          <LetterInputTiles cursorIndex={cursorIndex} disabled={state.status !== "playing"} letters={inputLetters} onCursorChange={setCursorIndex} />
-          {state.status === "playing" ? (
-            <Pressable accessibilityRole="button" onPress={() => setGiveUpVisible(true)} style={styles.giveUpButton}>
-              <Text style={styles.giveUpText}>Aufgeben</Text>
-            </Pressable>
-          ) : null}
-        </View>
-        <KeyboardDock>
-          <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
-        </KeyboardDock>
       </View>
       <ConfirmModal
         confirmLabel="Lösung zeigen"
         message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft."
         onCancel={() => setGiveUpVisible(false)}
         onConfirm={reveal}
-        title="Aufgeben?"
+        title="Lösung anzeigen?"
         visible={giveUpVisible}
       />
       <GameResultModal
@@ -241,7 +240,7 @@ export default function WortcodeScreen() {
         visible={resultVisible && state.status !== "playing"}
       />
       <HelpModal {...gameHelp.wortcode} onClose={() => setHelpVisible(false)} visible={helpVisible} />
-    </Screen>
+    </GameScreenFrame>
   );
 }
 
@@ -253,12 +252,11 @@ function markLabel(mark: WortcodeLetterMark): string {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, gap: tokens.space.lg },
-  scrollContent: { flexGrow: 1, gap: tokens.space.lg, paddingBottom: tokens.space.xl },
+  wrap: { flex: 1, gap: tokens.space.sm },
+  scrollContent: { flexGrow: 1, gap: tokens.space.md, paddingBottom: tokens.space.md },
   summaryCard: { gap: tokens.space.xs, padding: tokens.space.lg, borderRadius: tokens.radius.lg, backgroundColor: tokens.color.card, borderWidth: 1, borderColor: tokens.color.line },
   summaryTitle: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900" },
   summaryText: { color: tokens.color.primaryDark, fontSize: tokens.type.body, fontWeight: "900" },
-  rules: { color: tokens.color.muted, fontSize: tokens.type.small, lineHeight: 19 },
   history: { flex: 1, gap: tokens.space.sm },
   empty: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   guessRow: { gap: tokens.space.sm, padding: tokens.space.md, borderRadius: tokens.radius.md, backgroundColor: "rgba(255,255,255,0.58)" },
@@ -271,8 +269,5 @@ const styles = StyleSheet.create({
   feedback: { flexDirection: "row", gap: tokens.space.sm },
   feedbackText: { color: tokens.color.muted, fontSize: tokens.type.small, fontWeight: "900" },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
-  answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" },
-  inputCard: { gap: tokens.space.md },
-  giveUpButton: { alignSelf: "center", paddingHorizontal: tokens.space.md, paddingVertical: tokens.space.xs },
-  giveUpText: { color: tokens.color.muted, fontSize: tokens.type.small, fontWeight: "900" }
+  answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" }
 });

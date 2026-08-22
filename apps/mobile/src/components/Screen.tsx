@@ -13,10 +13,11 @@ const gameBackgroundVideos = [
 
 type ScreenProps = PropsWithChildren<{
   header?: ReactNode;
+  headerBackgroundColor?: string;
   videoBackground?: boolean;
 }>;
 
-export function Screen({ children, header, videoBackground = false }: ScreenProps) {
+export function Screen({ children, header, headerBackgroundColor, videoBackground = false }: ScreenProps) {
   if (!header) {
     return (
       <SafeAreaView style={styles.safeArea}>
@@ -29,7 +30,14 @@ export function Screen({ children, header, videoBackground = false }: ScreenProp
   return (
     <View style={styles.safeArea}>
       {videoBackground ? <BackgroundVideo /> : null}
-      <SafeAreaView edges={["top", "left", "right"]} style={[styles.headerSafeArea, videoBackground && styles.videoHeaderSafeArea]}>
+      <SafeAreaView
+        edges={["top", "left", "right"]}
+        style={[
+          styles.headerSafeArea,
+          videoBackground && styles.videoHeaderSafeArea,
+          headerBackgroundColor ? { backgroundColor: headerBackgroundColor } : null,
+        ]}
+      >
         {header}
       </SafeAreaView>
       <SafeAreaView edges={["left", "right", "bottom"]} style={styles.contentSafeArea}>

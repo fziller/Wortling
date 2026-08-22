@@ -15,12 +15,10 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameScreenHeader } from "@/components/GameHeader";
+import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { HelpModal } from "@/components/HelpModal";
-import { KeyboardDock } from "@/components/KeyboardDock";
-import { Screen } from "@/components/Screen";
+import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
-import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
@@ -254,7 +252,25 @@ export default function WortleiterScreen() {
   }
 
   return (
-    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Wortleiter" />} videoBackground>
+    <GameScreenFrame
+      actions={state.status === "playing" ? (
+        <>
+          <SmallGameAction disabled={state.words.length <= 1} label="Zurück" onPress={undo} />
+          <SmallGameAction label="Lösung anzeigen" onPress={() => setRevealVisible(true)} />
+        </>
+      ) : null}
+      keyboard={{
+        disabled: state.status !== "playing",
+        onBackspace: backspace,
+        onLetter: addLetter,
+        onSubmit: submit,
+        submitDisabled: !canSubmit,
+      }}
+      onBack={goBack}
+      onHelp={() => setHelpVisible(true)}
+      subtitle={dateKey}
+      title="Wortleiter"
+    >
       <View style={styles.wrap}>
         <View style={styles.boardPanel}>
           <View style={styles.statusRow}>
@@ -316,45 +332,13 @@ export default function WortleiterScreen() {
             ) : null}
           </View>
         ) : null}
-
-        <KeyboardDock>
-          {state.status === "playing" ? (
-            <View style={styles.actions}>
-              <Pressable
-                accessibilityRole="button"
-                disabled={state.words.length <= 1}
-                onPress={undo}
-                style={[
-                  styles.smallButton,
-                  state.words.length <= 1 && styles.disabledButton,
-                ]}
-              >
-                <Text style={styles.smallButtonText}>Zurück</Text>
-              </Pressable>
-              <Pressable
-                accessibilityRole="button"
-                onPress={() => setRevealVisible(true)}
-                style={styles.smallButton}
-              >
-                <Text style={styles.smallButtonText}>Lösung anzeigen</Text>
-              </Pressable>
-            </View>
-          ) : null}
-          <WordKeyboard
-            disabled={state.status !== "playing"}
-            onBackspace={backspace}
-            onLetter={addLetter}
-            onSubmit={submit}
-            submitDisabled={!canSubmit}
-          />
-        </KeyboardDock>
       </View>
       <ConfirmModal
         confirmLabel="Lösung zeigen"
         message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft."
         onCancel={() => setRevealVisible(false)}
         onConfirm={reveal}
-        title="Aufgeben?"
+        title="Lösung anzeigen?"
         visible={revealVisible}
       />
       <WortleiterResultModal
@@ -372,7 +356,7 @@ export default function WortleiterScreen() {
         onClose={() => setHelpVisible(false)}
         visible={helpVisible}
       />
-    </Screen>
+    </GameScreenFrame>
   );
 }
 
@@ -603,29 +587,6 @@ const styles = StyleSheet.create({
   rating: {
     color: tokens.color.warning,
     fontSize: tokens.type.h2,
-    fontWeight: "900",
-    textAlign: "center",
-  },
-  actions: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    gap: tokens.space.sm,
-  },
-  smallButton: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: tokens.space.sm,
-    paddingVertical: tokens.space.xs,
-    borderRadius: tokens.radius.pill,
-    backgroundColor: "rgba(255, 255, 255, 0.72)",
-    borderWidth: 1,
-    borderColor: tokens.color.line,
-  },
-  disabledButton: { opacity: 0.45 },
-  smallButtonText: {
-    color: tokens.color.muted,
-    fontSize: tokens.type.small,
     fontWeight: "900",
     textAlign: "center",
   },

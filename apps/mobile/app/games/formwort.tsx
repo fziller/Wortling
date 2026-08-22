@@ -4,14 +4,12 @@ import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameScreenHeader } from "@/components/GameHeader";
+import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
-import { KeyboardDock } from "@/components/KeyboardDock";
 import { LetterInputTiles } from "@/components/LetterInputTiles";
-import { Screen } from "@/components/Screen";
+import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
-import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { createPracticeFormwortGame } from "@/games/formwort/daily";
 import { applyFormwortInputLetter, getFormwortLetterStates, removeFormwortInputLetter, revealFormwortSolution, submitFormwortGuess } from "@/games/formwort/engine";
@@ -37,7 +35,7 @@ export default function FormwortScreen() {
   const [state, setState] = useState<FormwortState>(game.state);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(game.puzzle.wordLength));
   const [cursorIndex, setCursorIndex] = useState(0);
-  const [message, setMessage] = useState("Gleiche Formen stehen für gleiche Buchstaben.");
+  const [message, setMessage] = useState("");
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
@@ -141,7 +139,7 @@ export default function FormwortScreen() {
     setState(nextGame.state);
     setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
     setCursorIndex(0);
-    setMessage("Gleiche Formen stehen für gleiche Buchstaben.");
+    setMessage("");
     setResultVisible(false);
     setFinishedAt(null);
     setProgressLoaded(true);
@@ -168,7 +166,22 @@ export default function FormwortScreen() {
   }
 
   return (
-    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Formwort" />} videoBackground>
+    <GameScreenFrame
+      actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
+      inputPreview={<LetterInputTiles cursorIndex={cursorIndex} disabled={state.status !== "playing"} letters={inputLetters} onCursorChange={setCursorIndex} />}
+      keyboard={{
+        disabled: state.status !== "playing",
+        letterStates,
+        onBackspace: backspace,
+        onLetter: addLetter,
+        onSubmit: submit,
+        submitDisabled: !canSubmit,
+      }}
+      onBack={goBack}
+      onHelp={() => setHelpVisible(true)}
+      subtitle={dateKey}
+      title="Formwort"
+    >
       <View style={styles.wrap}>
         <View style={styles.board}>
           {Array.from({ length: puzzle.maxAttempts }).map((_, rowIndex) => {
@@ -192,22 +205,10 @@ export default function FormwortScreen() {
           })}
         </View>
 
-        <View style={styles.statusBlock}>
-          <Text style={styles.message}>{message}</Text>
-          {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toLocaleUpperCase("de-DE")}</Text> : null}
-        </View>
-
-        <KeyboardDock>
-          <LetterInputTiles cursorIndex={cursorIndex} disabled={state.status !== "playing"} letters={inputLetters} onCursorChange={setCursorIndex} />
-          {state.status === "playing" ? (
-            <Pressable accessibilityRole="button" onPress={() => setGiveUpVisible(true)} style={styles.giveUpButton}>
-              <Text style={styles.giveUpText}>Aufgeben</Text>
-            </Pressable>
-          ) : null}
-          <WordKeyboard disabled={state.status !== "playing"} letterStates={letterStates} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
-        </KeyboardDock>
+        {message ? <Text style={styles.message}>{message}</Text> : null}
+        {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toLocaleUpperCase("de-DE")}</Text> : null}
       </View>
-      <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Aufgeben?" visible={giveUpVisible} />
+      <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <GameResultModal
         message={state.status === "won" ? "Alle Formen sitzen." : "Die Lösung ist raus. Weiteres Wort?"}
         onHome={() => router.replace("/")}
@@ -222,13 +223,13 @@ export default function FormwortScreen() {
         visible={resultVisible && state.status !== "playing"}
       />
       <HelpModal {...gameHelp.formwort} onClose={() => setHelpVisible(false)} visible={helpVisible} />
-    </Screen>
+    </GameScreenFrame>
   );
 }
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.sm },
-  board: { flex: 1, justifyContent: "flex-start", gap: 6 },
+  board: { flex: 1, justifyContent: "center", gap: 6 },
   tileRow: { flexDirection: "row", gap: 7 },
   tile: { flex: 1, minHeight: 46, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
   tileText: { color: tokens.color.ink, fontSize: 25, fontWeight: "900" },
@@ -237,9 +238,6 @@ const styles = StyleSheet.create({
   absent: { backgroundColor: "#7B736A", borderColor: "#7B736A" },
   present: { backgroundColor: "#D98500", borderColor: "#D98500" },
   correct: { backgroundColor: tokens.color.success, borderColor: tokens.color.success },
-  statusBlock: { minHeight: 56, justifyContent: "center", gap: tokens.space.xs },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" },
-  giveUpButton: { alignSelf: "flex-end", paddingHorizontal: tokens.space.sm, paddingVertical: tokens.space.xs },
-  giveUpText: { color: tokens.color.muted, fontSize: tokens.type.small, fontWeight: "900" }
 });

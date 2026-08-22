@@ -58,9 +58,11 @@ type KeyboardActionProps = {
 };
 
 function KeyboardAction({ disabled, label, onPress }: KeyboardActionProps) {
+  const primary = label === "Prüfen";
+
   return (
-    <Pressable accessibilityLabel={label} accessibilityRole="button" disabled={disabled} hitSlop={4} onPress={onPress} style={[styles.actionKey, disabled && styles.disabled]}>
-      <Text style={styles.actionText}>{label}</Text>
+    <Pressable accessibilityLabel={label} accessibilityRole="button" disabled={disabled} hitSlop={4} onPress={onPress} style={[styles.actionKey, primary ? styles.primaryAction : styles.secondaryAction, disabled && styles.disabled]}>
+      <Text style={[styles.actionText, primary ? styles.primaryActionText : styles.secondaryActionText]}>{label}</Text>
     </Pressable>
   );
 }
@@ -90,12 +92,20 @@ const styles = StyleSheet.create({
   },
   actionKey: {
     flex: 1,
-    minHeight: 56,
+    minHeight: 44,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: tokens.space.sm,
     borderRadius: tokens.radius.sm,
-    backgroundColor: tokens.color.ink
+    borderWidth: 1,
+  },
+  primaryAction: {
+    borderColor: tokens.color.primary,
+    backgroundColor: tokens.color.primary,
+  },
+  secondaryAction: {
+    borderColor: "rgba(23, 19, 13, 0.22)",
+    backgroundColor: "rgba(253, 251, 247, 0.72)",
   },
   keyText: {
     color: tokens.color.ink,
@@ -103,9 +113,14 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   actionText: {
-    color: "white",
-    fontSize: tokens.type.body,
+    fontSize: tokens.type.small,
     fontWeight: "900"
+  },
+  primaryActionText: {
+    color: "white",
+  },
+  secondaryActionText: {
+    color: tokens.color.ink,
   },
   markedText: {
     color: "white"

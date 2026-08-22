@@ -3,7 +3,6 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import Animated, {
   FadeInDown,
-  FadeInUp,
   FadeOut,
   FadeOutDown,
   FadeOutUp,
@@ -19,16 +18,14 @@ import Animated, {
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { getBerlinDateKey } from "@/daily/date";
 import { hashSeed } from "@/daily/seed";
-import { GameScreenHeader } from "@/components/GameHeader";
+import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
-import { KeyboardDock } from "@/components/KeyboardDock";
-import { Screen } from "@/components/Screen";
-import { WordKeyboard } from "@/components/WordKeyboard";
+import { SmallGameAction } from "@/components/SmallGameAction";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
-import { allowedGuessCount, CONTENT_VERSION, targetWordCount } from "@/games/between/content";
+import { CONTENT_VERSION } from "@/games/between/content";
 import { createPracticeBetweenGame } from "@/games/between/daily";
 import { getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
 import { displayWord } from "@/games/between/format";
@@ -259,13 +256,21 @@ export default function BetweenScreen() {
   }
 
   return (
-    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Dazwischen" />} videoBackground>
+    <GameScreenFrame
+      actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setModal("reveal")} /> : null}
+      keyboard={{
+        disabled: state.status !== "playing",
+        onBackspace: backspace,
+        onLetter: addLetter,
+        onSubmit: guess,
+        submitDisabled: !inputLetters.every(Boolean) || state.status !== "playing",
+      }}
+      onBack={goBack}
+      onHelp={() => setHelpVisible(true)}
+      subtitle={dateKey}
+      title="Dazwischen"
+    >
       <View style={styles.keyboard}>
-        <Animated.View entering={FadeInUp.duration(tokens.motion.normal)} style={styles.header}>
-          <Text style={styles.rules}>Grenze das Zielwort alphabetisch ein.</Text>
-          <Text style={styles.wordStats}>{allowedGuessCount} gültige Wörter · {targetWordCount} Zielwörter</Text>
-        </Animated.View>
-
         <Animated.View entering={FadeInDown.delay(80)} layout={LinearTransition.springify()} style={[styles.boardCard, glowStyle]}>
           <View style={styles.rangeStats}>
             <Text style={styles.statText}>{state.guesses.length} Tipps</Text>
@@ -306,16 +311,7 @@ export default function BetweenScreen() {
           <AlphabetStrip lowerBound={state.lowerBound} upperBound={state.upperBound} />
         </Animated.View>
 
-        <Animated.View style={[styles.inputCard, shakeStyle]}>
-          {state.status === "playing" ? (
-            <Pressable accessibilityRole="button" onPress={() => setModal("reveal")} style={styles.giveUpButton}>
-              <Text style={styles.giveUpText}>Aufgeben</Text>
-            </Pressable>
-          ) : null}
-          <KeyboardDock>
-            <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={guess} submitDisabled={!inputLetters.every(Boolean) || state.status !== "playing"} />
-          </KeyboardDock>
-        </Animated.View>
+        <Animated.View style={shakeStyle} />
 
         <View style={styles.history}>
           {sortedGuesses.map((item) => (
@@ -355,7 +351,7 @@ export default function BetweenScreen() {
         title={state.status === "won" ? "Gefunden." : "Aufgelöst."}
         visible={resultVisible && state.status !== "playing"}
       />
-    </Screen>
+    </GameScreenFrame>
   );
 }
 
@@ -434,20 +430,6 @@ const styles = StyleSheet.create({
   keyboard: {
     flex: 1,
     gap: tokens.space.sm
-  },
-  header: {
-    gap: tokens.space.sm
-  },
-  rules: {
-    color: tokens.color.muted,
-    fontSize: tokens.type.small,
-    fontWeight: "800",
-    lineHeight: 19
-  },
-  wordStats: {
-    color: tokens.color.muted,
-    fontSize: tokens.type.small,
-    fontWeight: "900"
   },
   boardCard: {
     gap: tokens.space.sm,
@@ -581,19 +563,6 @@ const styles = StyleSheet.create({
   },
   alphabetLetterDisabled: {
     color: "rgba(23, 19, 13, 0.22)"
-  },
-  inputCard: {
-    gap: tokens.space.sm
-  },
-  giveUpButton: {
-    alignSelf: "flex-end",
-    paddingHorizontal: tokens.space.sm,
-    paddingVertical: tokens.space.xs
-  },
-  giveUpText: {
-    color: tokens.color.muted,
-    fontSize: tokens.type.small,
-    fontWeight: "900"
   },
   history: {
     gap: tokens.space.sm

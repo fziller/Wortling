@@ -4,13 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { GameScreenHeader } from "@/components/GameHeader";
+import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
-import { KeyboardDock } from "@/components/KeyboardDock";
-import { Screen } from "@/components/Screen";
+import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
-import { WordKeyboard } from "@/components/WordKeyboard";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
@@ -214,7 +212,21 @@ export default function WorttrefferScreen() {
   }
 
   return (
-    <Screen header={<GameScreenHeader onBack={goBack} onHelp={() => setHelpVisible(true)} subtitle={dateKey} title="Worttreffer" />} videoBackground>
+    <GameScreenFrame
+      actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
+      keyboard={{
+        disabled: state.status !== "playing",
+        letterStates,
+        onBackspace: backspace,
+        onLetter: addLetter,
+        onSubmit: submit,
+        submitDisabled: !canSubmit,
+      }}
+      onBack={goBack}
+      onHelp={() => setHelpVisible(true)}
+      subtitle={dateKey}
+      title="Worttreffer"
+    >
       <View style={styles.wrap}>
         <View style={styles.board}>
           {Array.from({ length: puzzle.maxAttempts }).map((_, rowIndex) => {
@@ -262,41 +274,15 @@ export default function WorttrefferScreen() {
           })}
         </View>
 
-        <View style={styles.statusBlock}>
-          {message ? <Text style={styles.message}>{message}</Text> : null}
-          {state.status === "lost" || state.status === "revealed" ? (
-            <Text style={styles.answer}>
-              Lösung: {puzzle.answer.toUpperCase()}
-            </Text>
-          ) : null}
-        </View>
-
-        <KeyboardDock>
-          {state.status === "playing" ? (
-            <Pressable
-              accessibilityRole="button"
-              onPress={() => setGiveUpVisible(true)}
-              style={styles.giveUpButton}
-            >
-              <Text style={styles.giveUpText}>Aufgeben</Text>
-            </Pressable>
-          ) : null}
-          <WordKeyboard
-            disabled={state.status !== "playing"}
-            letterStates={letterStates}
-            onBackspace={backspace}
-            onLetter={addLetter}
-            onSubmit={submit}
-            submitDisabled={!canSubmit}
-          />
-        </KeyboardDock>
+        {message ? <Text style={styles.message}>{message}</Text> : null}
+        {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toUpperCase()}</Text> : null}
       </View>
       <ConfirmModal
         confirmLabel="Lösung zeigen"
         message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft."
         onCancel={() => setGiveUpVisible(false)}
         onConfirm={reveal}
-        title="Aufgeben?"
+        title="Lösung anzeigen?"
         visible={giveUpVisible}
       />
       <GameResultModal
@@ -321,17 +307,16 @@ export default function WorttrefferScreen() {
         onClose={() => setHelpVisible(false)}
         visible={helpVisible}
       />
-    </Screen>
+    </GameScreenFrame>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, gap: tokens.space.md },
+  wrap: { flex: 1, gap: tokens.space.sm },
   board: {
     flex: 1,
     justifyContent: "center",
     gap: 7,
-    paddingTop: tokens.space.sm,
   },
   tileRow: { flexDirection: "row", gap: 7 },
   tile: {
@@ -353,11 +338,6 @@ const styles = StyleSheet.create({
     backgroundColor: tokens.color.success,
     borderColor: tokens.color.success,
   },
-  statusBlock: {
-    minHeight: 56,
-    justifyContent: "center",
-    gap: tokens.space.xs,
-  },
   message: {
     color: tokens.color.muted,
     fontSize: tokens.type.body,
@@ -368,15 +348,5 @@ const styles = StyleSheet.create({
     fontSize: tokens.type.h2,
     fontWeight: "900",
     textAlign: "center",
-  },
-  giveUpButton: {
-    alignSelf: "flex-end",
-    paddingHorizontal: tokens.space.sm,
-    paddingVertical: tokens.space.xs,
-  },
-  giveUpText: {
-    color: tokens.color.muted,
-    fontSize: tokens.type.small,
-    fontWeight: "900",
   },
 });
