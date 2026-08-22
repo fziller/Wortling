@@ -173,7 +173,6 @@ export default function WorttrefferScreen() {
           headerShown: true,
           headerShadowVisible: false,
           headerStyle: { backgroundColor: "transparent" },
-          headerTransparent: true,
           headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Worttreffer" />,
           headerTitleAlign: "center"
         }}

@@ -137,7 +137,6 @@ export default function GalgenwortScreen() {
           headerShown: true,
           headerShadowVisible: false,
           headerStyle: { backgroundColor: "transparent" },
-          headerTransparent: true,
           headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Galgenwort" />,
           headerTitleAlign: "center"
         }}

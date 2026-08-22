@@ -259,7 +259,6 @@ export default function BetweenScreen() {
           headerShown: true,
           headerShadowVisible: false,
           headerStyle: { backgroundColor: "transparent" },
-          headerTransparent: true,
           headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Dazwischen" />,
           headerTitleAlign: "center"
         }}

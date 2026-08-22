@@ -172,7 +172,6 @@ export default function FormwortScreen() {
           headerShown: true,
           headerShadowVisible: false,
           headerStyle: { backgroundColor: "transparent" },
-          headerTransparent: true,
           headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Formwort" />,
           headerTitleAlign: "center"
         }}

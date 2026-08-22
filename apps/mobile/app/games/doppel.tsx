@@ -150,7 +150,6 @@ export default function DoppelScreen() {
           headerShown: true,
           headerShadowVisible: false,
           headerStyle: { backgroundColor: "transparent" },
-          headerTransparent: true,
           headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Doppel" />,
           headerTitleAlign: "center"
         }}

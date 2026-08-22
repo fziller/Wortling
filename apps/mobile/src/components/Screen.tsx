@@ -1,5 +1,6 @@
 import { PropsWithChildren, useMemo } from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { VideoView, useVideoPlayer } from "expo-video";
 
 import { tokens } from "@/design/tokens";
@@ -16,10 +17,12 @@ type ScreenProps = PropsWithChildren<{
 }>;
 
 export function Screen({ children, videoBackground = false }: ScreenProps) {
+  const insets = useSafeAreaInsets();
+
   return (
     <SafeAreaView style={styles.safeArea}>
       {videoBackground ? <BackgroundVideo /> : null}
-      <View style={styles.content}>{children}</View>
+      <View style={[styles.content, { paddingBottom: tokens.space.lg + insets.bottom }]}>{children}</View>
     </SafeAreaView>
   );
 }
@@ -47,7 +50,6 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingHorizontal: tokens.space.md,
-    paddingVertical: tokens.space.lg,
     gap: tokens.space.lg
   }
 });

@@ -162,7 +162,6 @@ export default function WortcodeScreen() {
           headerShown: true,
           headerShadowVisible: false,
           headerStyle: { backgroundColor: "transparent" },
-          headerTransparent: true,
           headerTitle: () => <GameHeaderTitle subtitle={dateKey} title="Wortcode" />,
           headerTitleAlign: "center"
         }}
@@ -207,19 +206,18 @@ export default function WortcodeScreen() {
           <Text style={styles.message}>{message}</Text>
 
           {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toUpperCase()}</Text> : null}
-
-          <View style={styles.inputCard}>
-            <LetterInputTiles cursorIndex={cursorIndex} disabled={state.status !== "playing"} letters={inputLetters} onCursorChange={setCursorIndex} />
-            {state.status === "playing" ? (
-              <Pressable accessibilityRole="button" onPress={() => setGiveUpVisible(true)} style={styles.giveUpButton}>
-                <Text style={styles.giveUpText}>Aufgeben</Text>
-              </Pressable>
-            ) : null}
-            <KeyboardDock>
-              <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
-            </KeyboardDock>
-          </View>
         </ScrollView>
+        <View style={styles.inputCard}>
+          <LetterInputTiles cursorIndex={cursorIndex} disabled={state.status !== "playing"} letters={inputLetters} onCursorChange={setCursorIndex} />
+          {state.status === "playing" ? (
+            <Pressable accessibilityRole="button" onPress={() => setGiveUpVisible(true)} style={styles.giveUpButton}>
+              <Text style={styles.giveUpText}>Aufgeben</Text>
+            </Pressable>
+          ) : null}
+        </View>
+        <KeyboardDock>
+          <WordKeyboard disabled={state.status !== "playing"} onBackspace={backspace} onLetter={addLetter} onSubmit={submit} submitDisabled={!canSubmit} />
+        </KeyboardDock>
       </View>
       <ConfirmModal
         confirmLabel="Lösung zeigen"
