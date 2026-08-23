@@ -14,6 +14,7 @@ import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import {
   createPracticeWorttrefferGame,
+  restoreWorttrefferPuzzle,
 } from "@/games/worttreffer/daily";
 import {
   getWorttrefferLetterStates,
@@ -21,6 +22,7 @@ import {
   submitWorttrefferGuess,
 } from "@/games/worttreffer/engine";
 import { WorttrefferState } from "@/games/worttreffer/types";
+import { getWordTileLayout } from "@/games/wordTileLayout";
 import { updateBadgeCount } from "@/notifications/badge";
 import {
   isStartedProgress,
@@ -73,11 +75,13 @@ export default function WorttrefferScreen() {
     loadProgress<WorttrefferState>("worttreffer", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
-      if (isStartedProgress(progress)) {
-        const nextGame = { dateKey: progress.dateKey, puzzle: progress.puzzle as WorttrefferGame["puzzle"], state: progress.state };
+      const restoredPuzzle = restoreWorttrefferPuzzle(progress?.puzzle);
+      if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
+        const nextGame = { dateKey: progress.dateKey, puzzle: restoredPuzzle, state: progress.state };
         setGame(nextGame);
         setState(progress.state);
-        setInputLetters(Array.isArray(progress.draft) ? progress.draft.map(String) : createEmptyInput(nextGame.puzzle.wordLength));
+        const draft = Array.isArray(progress.draft) ? progress.draft.map(String).slice(0, nextGame.puzzle.wordLength) : [];
+        setInputLetters(draft.length === nextGame.puzzle.wordLength ? draft : createEmptyInput(nextGame.puzzle.wordLength));
       }
       setProgressLoaded(true);
     });
@@ -115,6 +119,7 @@ export default function WorttrefferScreen() {
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getWorttrefferLetterStates(state);
+  const tileLayout = getWordTileLayout(puzzle.wordLength);
   const elapsedSeconds = Math.max(
     0,
     Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000),
@@ -122,6 +127,7 @@ export default function WorttrefferScreen() {
   const usedLetters = new Set(
     state.guesses.flatMap((guess) => Array.from(guess.value)),
   ).size;
+  const visibleRows = state.guesses.length + (state.status === "playing" ? 1 : 0);
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
@@ -230,21 +236,18 @@ export default function WorttrefferScreen() {
       }}
       onBack={goBack}
       onHelp={() => setHelpVisible(true)}
-      subtitle={dateKey}
+      subtitle={`${dateKey} · ${puzzle.wordLength} Buchstaben`}
       title="Worttreffer"
     >
       <View style={styles.wrap}>
         <View style={styles.board}>
-          {Array.from({ length: puzzle.maxAttempts }).map((_, rowIndex) => {
+          {Array.from({ length: visibleRows }).map((_, rowIndex) => {
             const guess = state.guesses[rowIndex];
-            const letters = guess
-              ? Array.from(guess.value)
-              : rowIndex === state.guesses.length
-                ? inputLetters
-                : createEmptyInput(puzzle.wordLength);
+            const inputRow = state.status === "playing" && rowIndex === state.guesses.length;
+            const letters = guess ? Array.from(guess.value) : inputRow ? inputLetters : createEmptyInput(puzzle.wordLength);
 
             return (
-              <View key={rowIndex} style={styles.tileRow}>
+              <View key={rowIndex} style={[styles.tileRow, { gap: tileLayout.gap }]}>
                 {letters.map((letter, letterIndex) => {
                   const mark = guess?.marks[letterIndex];
 
@@ -253,14 +256,16 @@ export default function WorttrefferScreen() {
                       accessibilityRole="button"
                       disabled={
                         Boolean(guess) ||
-                        rowIndex !== state.guesses.length ||
+                        !inputRow ||
                         state.status !== "playing"
                       }
                       key={`${rowIndex}-${letterIndex}`}
                       onPress={() => setCursorIndex(letterIndex)}
                       style={[
                         styles.tile,
-                        !guess &&
+                        { minHeight: tileLayout.minHeight },
+                        inputRow &&
+                          !guess &&
                           rowIndex === state.guesses.length &&
                           letterIndex === cursorIndex &&
                           styles.activeTile,
@@ -268,7 +273,7 @@ export default function WorttrefferScreen() {
                       ]}
                     >
                       <Text
-                        style={[styles.tileText, mark && styles.markedTileText]}
+                        style={[styles.tileText, { fontSize: tileLayout.fontSize }, mark && styles.markedTileText]}
                       >
                         {letter.trim().toUpperCase()}
                       </Text>
@@ -280,7 +285,6 @@ export default function WorttrefferScreen() {
           })}
         </View>
 
-        {message ? <Text style={styles.message}>{message}</Text> : null}
         {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toUpperCase()}</Text> : null}
       </View>
       <ConfirmModal
@@ -292,6 +296,7 @@ export default function WorttrefferScreen() {
         visible={giveUpVisible}
       />
       <GameResultModal
+        guesses={state.guesses.map((guess) => guess.value)}
         message={
           state.status === "won"
             ? "Sauber, das war das Wort."
@@ -322,12 +327,12 @@ const styles = StyleSheet.create({
   board: {
     flex: 1,
     justifyContent: "center",
-    gap: 7,
+    gap: 5,
   },
-  tileRow: { flexDirection: "row", gap: 7 },
+  tileRow: { flexDirection: "row" },
   tile: {
     flex: 1,
-    minHeight: 58,
+    minWidth: 0,
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 2,

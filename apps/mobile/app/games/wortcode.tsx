@@ -6,15 +6,15 @@ import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
-import { LetterInputTiles } from "@/components/LetterInputTiles";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
-import { createPracticeWortcodeGame } from "@/games/wortcode/daily";
+import { createPracticeWortcodeGame, restoreWortcodePuzzle } from "@/games/wortcode/daily";
 import { revealWortcodeSolution, submitWortcodeGuess, toggleWortcodeLetterMark } from "@/games/wortcode/engine";
 import { WortcodeLetterMark, WortcodeState } from "@/games/wortcode/types";
+import { getWordTileLayout } from "@/games/wordTileLayout";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
 
@@ -46,15 +46,13 @@ export default function WortcodeScreen() {
     loadProgress<WortcodeState>("wortcode", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
-      if (isStartedProgress(progress)) {
-        const nextGame = { dateKey: progress.dateKey, puzzle: progress.puzzle as WortcodeGame["puzzle"], state: progress.state };
+      const restoredPuzzle = restoreWortcodePuzzle(progress?.puzzle);
+      if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
+        const nextGame = { dateKey: progress.dateKey, puzzle: restoredPuzzle, state: progress.state };
         setGame(nextGame);
         setState(progress.state);
-        if (Array.isArray(progress.draft)) {
-          setInputLetters(progress.draft.map(String));
-        } else {
-          setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
-        }
+        const draft = Array.isArray(progress.draft) ? progress.draft.map(String).slice(0, nextGame.puzzle.wordLength) : [];
+        setInputLetters(draft.length === nextGame.puzzle.wordLength ? draft : createEmptyInput(nextGame.puzzle.wordLength));
       }
       setProgressLoaded(true);
     });
@@ -89,6 +87,7 @@ export default function WortcodeScreen() {
   }, [state.status, dateKey]);
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
+  const tileLayout = getWordTileLayout(puzzle.wordLength);
   const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
   const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
 
@@ -169,7 +168,6 @@ export default function WortcodeScreen() {
   return (
     <GameScreenFrame
       actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
-      inputPreview={<LetterInputTiles cursorIndex={cursorIndex} disabled={state.status !== "playing"} letters={inputLetters} onCursorChange={setCursorIndex} />}
       keyboard={{
         disabled: state.status !== "playing",
         onBackspace: backspace,
@@ -179,7 +177,7 @@ export default function WortcodeScreen() {
       }}
       onBack={goBack}
       onHelp={() => setHelpVisible(true)}
-      subtitle={dateKey}
+      subtitle={`${dateKey} · ${puzzle.wordLength} Buchstaben`}
       title="Wortcode"
     >
       <View style={styles.wrap}>
@@ -193,7 +191,7 @@ export default function WortcodeScreen() {
             {state.guesses.length === 0 ? <Text style={styles.empty}>Noch kein Versuch.</Text> : null}
             {state.guesses.map((guess, guessIndex) => (
               <View accessibilityLabel={`${guess.value}. ${guess.exactMatches} exakt. ${guess.misplacedMatches} enthalten.`} key={guess.value} style={styles.guessRow}>
-                <View style={styles.letterRow}>
+                <View style={[styles.letterRow, { gap: tileLayout.gap }]}>
                   {Array.from(guess.value).map((letter, letterIndex) => {
                     const mark = guess.marks?.[letterIndex] ?? "none";
 
@@ -203,9 +201,9 @@ export default function WortcodeScreen() {
                         accessibilityRole="button"
                         key={`${guess.value}-${letterIndex}`}
                         onPress={() => toggleMark(guessIndex, letterIndex)}
-                        style={[styles.letterTile, mark === "included" && styles.includedTile, mark === "exact" && styles.exactTile]}
+                        style={[styles.letterTile, { minHeight: tileLayout.minHeight }, mark === "included" && styles.includedTile, mark === "exact" && styles.exactTile]}
                       >
-                        <Text style={[styles.letterText, mark === "exact" && styles.exactLetterText]}>{letter.toUpperCase()}</Text>
+                        <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4 }, mark === "exact" && styles.exactLetterText]}>{letter.toUpperCase()}</Text>
                       </Pressable>
                     );
                   })}
@@ -216,6 +214,23 @@ export default function WortcodeScreen() {
                 </View>
               </View>
             ))}
+            {state.status === "playing" ? (
+              <View style={styles.inputRow}>
+                <View style={[styles.letterRow, { gap: tileLayout.gap }]}>
+                  {inputLetters.map((letter, letterIndex) => (
+                    <Pressable
+                      accessibilityLabel={`Buchstabe ${letterIndex + 1}${letter ? `: ${letter.toUpperCase()}` : " leer"}`}
+                      accessibilityRole="button"
+                      key={`input-${letterIndex}`}
+                      onPress={() => setCursorIndex(letterIndex)}
+                      style={[styles.letterTile, { minHeight: tileLayout.minHeight }, letterIndex === cursorIndex && styles.activeTile]}
+                    >
+                      <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4 }]}>{letter.toLocaleUpperCase("de-DE")}</Text>
+                    </Pressable>
+                  ))}
+                </View>
+              </View>
+            ) : null}
           </View>
 
           {message ? <Text style={styles.message}>{message}</Text> : null}
@@ -232,6 +247,7 @@ export default function WortcodeScreen() {
         visible={giveUpVisible}
       />
       <GameResultModal
+        guesses={state.guesses.map((guess) => guess.value)}
         message={state.status === "won" ? "Sauber kombiniert." : "Die Lösung ist raus. Weiteres Wort?"}
         onHome={() => router.replace("/")}
         onNext={startPracticeWord}
@@ -265,8 +281,10 @@ const styles = StyleSheet.create({
   history: { flex: 1, gap: tokens.space.sm },
   empty: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   guessRow: { gap: tokens.space.sm, padding: tokens.space.md, borderRadius: tokens.radius.md, backgroundColor: "rgba(255,255,255,0.58)" },
-  letterRow: { flexDirection: "row", gap: tokens.space.xs },
-  letterTile: { flex: 1, minHeight: 44, alignItems: "center", justifyContent: "center", borderRadius: tokens.radius.sm, backgroundColor: "white", borderWidth: 1, borderColor: tokens.color.line },
+  inputRow: { gap: tokens.space.sm, padding: tokens.space.md, borderRadius: tokens.radius.md, backgroundColor: "rgba(255,255,255,0.42)" },
+  letterRow: { flexDirection: "row" },
+  letterTile: { flex: 1, minWidth: 0, alignItems: "center", justifyContent: "center", borderRadius: tokens.radius.sm, backgroundColor: "white", borderWidth: 1, borderColor: tokens.color.line },
+  activeTile: { borderColor: tokens.color.primary, backgroundColor: "#FFF1DF" },
   includedTile: { backgroundColor: "#FFD76A", borderColor: "#D98500" },
   exactTile: { backgroundColor: tokens.color.success, borderColor: "#127456" },
   letterText: { color: tokens.color.ink, fontSize: 18, fontWeight: "900" },

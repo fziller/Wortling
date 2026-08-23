@@ -22,7 +22,6 @@ export type GameKeyboardConfig = {
 type GameScreenFrameProps = {
   actions?: ReactNode;
   children: ReactNode;
-  inputPreview?: ReactNode;
   keyboard: GameKeyboardConfig;
   onBack: () => void;
   onHelp: () => void;
@@ -33,7 +32,6 @@ type GameScreenFrameProps = {
 export function GameScreenFrame({
   actions,
   children,
-  inputPreview,
   keyboard,
   onBack,
   onHelp,
@@ -49,7 +47,6 @@ export function GameScreenFrame({
       <View style={styles.shell}>
         <View style={styles.content}>{children}</View>
         <View style={styles.footer}>
-          {inputPreview ? <View style={styles.inputPreview}>{inputPreview}</View> : null}
           {actions ? <View style={styles.actions}>{actions}</View> : null}
           <WordKeyboard {...keyboard} />
         </View>
@@ -69,9 +66,6 @@ const styles = StyleSheet.create({
     paddingTop: tokens.space.md,
   },
   footer: {
-    gap: tokens.space.sm,
-  },
-  inputPreview: {
     gap: tokens.space.sm,
   },
   actions: {

@@ -2,7 +2,7 @@ import type { KeyboardLetterState } from "@/components/WordKeyboard";
 
 import { evaluateWorttrefferGuess, normalizeWorttrefferGuess } from "../worttreffer/engine";
 
-import { FORMWORT_WORD_LENGTH, formwortGuessWords } from "./content";
+import { formwortGuessWords } from "./content";
 import type { FormwortPuzzle, FormwortState, FormwortSubmitResult } from "./types";
 
 const allowedGuesses = new Set(formwortGuessWords);

@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { tokens } from "@/design/tokens";
+import { getWordTileLayout } from "@/games/wordTileLayout";
 
 type LetterInputTilesProps = {
   cursorIndex: number;
@@ -10,8 +11,10 @@ type LetterInputTilesProps = {
 };
 
 export function LetterInputTiles({ cursorIndex, disabled = false, letters, onCursorChange }: LetterInputTilesProps) {
+  const tileLayout = getWordTileLayout(letters.length);
+
   return (
-    <View style={styles.row}>
+    <View style={[styles.row, { gap: tileLayout.gap }]}>
       {letters.map((letter, index) => {
         const active = !disabled && index === cursorIndex;
 
@@ -22,9 +25,9 @@ export function LetterInputTiles({ cursorIndex, disabled = false, letters, onCur
             disabled={disabled}
             key={index}
             onPress={() => onCursorChange(index)}
-            style={[styles.tile, active && styles.activeTile]}
+            style={[styles.tile, { minHeight: tileLayout.minHeight }, active && styles.activeTile]}
           >
-            <Text style={styles.tileText}>{letter.toLocaleUpperCase("de-DE")}</Text>
+            <Text style={[styles.tileText, { fontSize: tileLayout.fontSize }]}>{letter.toLocaleUpperCase("de-DE")}</Text>
           </Pressable>
         );
       })}
@@ -35,11 +38,10 @@ export function LetterInputTiles({ cursorIndex, disabled = false, letters, onCur
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
-    gap: tokens.space.xs
   },
   tile: {
     flex: 1,
-    minHeight: 48,
+    minWidth: 0,
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 2,

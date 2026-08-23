@@ -1,33 +1,58 @@
 import { getBerlinDateKey } from "@/daily/date";
-import { pickSeededIndex } from "@/daily/seed";
+import { getWordLength, isSupportedWordLength, pickRandomTargetWord, type SupportedWordLength, type WordLengthWeight } from "@/games/wordLengths";
 
-import { answerWords, WORTTREFFER_CONTENT_VERSION, WORTTREFFER_MAX_ATTEMPTS, WORTTREFFER_WORD_LENGTH } from "./content";
+import { WORTTREFFER_CONTENT_VERSION, worttrefferTargetsByLength } from "./content";
 import { createWorttrefferState } from "./engine";
 import { WorttrefferPuzzle } from "./types";
 
+const maxAttemptsByLength = { 4: 5, 5: 6, 6: 7, 7: 8 } as const satisfies Record<SupportedWordLength, number>;
+const worttrefferWordLengthWeights = [
+  { length: 4, weight: 15 },
+  { length: 5, weight: 40 },
+  { length: 6, weight: 30 },
+  { length: 7, weight: 15 },
+] as const satisfies readonly WordLengthWeight[];
+
 export function createDailyWorttrefferGame(date = new Date()) {
   const dateKey = getBerlinDateKey(date);
-  const seed = `${dateKey}:worttreffer:${WORTTREFFER_CONTENT_VERSION}`;
-  const answer = answerWords[pickSeededIndex(seed, answerWords.length)];
-  const puzzle = createWorttrefferPuzzle(answer, `worttreffer-${dateKey}`);
 
-  return { dateKey, puzzle, state: createWorttrefferState(puzzle) };
+  return createPracticeWorttrefferGame(undefined, dateKey);
 }
 
 export function createPracticeWorttrefferGame(previousAnswer?: string, dateKey = "Freies Spiel") {
-  const options = answerWords.filter((word) => word !== previousAnswer);
-  const answer = options[Math.floor(Math.random() * options.length)] ?? answerWords[0];
-  const puzzle = createWorttrefferPuzzle(answer, `worttreffer-practice-${Date.now()}`);
+  const { answer, wordLength } = pickRandomTargetWord(worttrefferTargetsByLength, previousAnswer, worttrefferWordLengthWeights);
+  const puzzle = createWorttrefferPuzzle(answer, wordLength, `worttreffer-practice-${Date.now()}`);
 
   return { dateKey, puzzle, state: createWorttrefferState(puzzle) };
 }
 
-function createWorttrefferPuzzle(answer: string, id: string): WorttrefferPuzzle {
+export function getWorttrefferMaxAttempts(wordLength: SupportedWordLength): number {
+  return maxAttemptsByLength[wordLength];
+}
+
+export function createWorttrefferPuzzle(answer: string, wordLength: SupportedWordLength, id: string): WorttrefferPuzzle {
   return {
     id,
     version: WORTTREFFER_CONTENT_VERSION,
     answer,
-    wordLength: WORTTREFFER_WORD_LENGTH,
-    maxAttempts: WORTTREFFER_MAX_ATTEMPTS
+    wordLength,
+    maxAttempts: getWorttrefferMaxAttempts(wordLength),
+  };
+}
+
+export function restoreWorttrefferPuzzle(value: unknown): WorttrefferPuzzle | null {
+  const item = value as Partial<WorttrefferPuzzle> | null | undefined;
+  if (!item || typeof item.answer !== "string") return null;
+
+  const inferredLength = getWordLength(item.answer);
+  const wordLength = isSupportedWordLength(item.wordLength) ? item.wordLength : isSupportedWordLength(inferredLength) ? inferredLength : null;
+  if (!wordLength || inferredLength !== wordLength) return null;
+
+  return {
+    id: typeof item.id === "string" ? item.id : `worttreffer-restored-${Date.now()}`,
+    version: typeof item.version === "number" ? item.version : WORTTREFFER_CONTENT_VERSION,
+    answer: item.answer,
+    wordLength,
+    maxAttempts: typeof item.maxAttempts === "number" && item.maxAttempts > 0 ? item.maxAttempts : getWorttrefferMaxAttempts(wordLength),
   };
 }

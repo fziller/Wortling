@@ -9,6 +9,7 @@ export type GameResultStat = {
 
 type GameResultModalProps = {
   actionLabel?: string;
+  guesses?: readonly string[];
   message?: string;
   onHome: () => void;
   onNext: () => void;
@@ -18,7 +19,7 @@ type GameResultModalProps = {
   visible: boolean;
 };
 
-export function GameResultModal({ actionLabel = "Neues Wort", message, onHome, onNext, solution, stats = [], title, visible }: GameResultModalProps) {
+export function GameResultModal({ actionLabel = "Neues Wort", guesses = [], message, onHome, onNext, solution, stats = [], title, visible }: GameResultModalProps) {
   return (
     <Modal animationType="fade" transparent visible={visible}>
       <View style={styles.backdrop}>
@@ -26,6 +27,16 @@ export function GameResultModal({ actionLabel = "Neues Wort", message, onHome, o
           <Text style={styles.title}>{title}</Text>
           {solution ? <Text style={styles.solution}>{solution.toLocaleUpperCase("de-DE")}</Text> : null}
           {message ? <Text style={styles.message}>{message}</Text> : null}
+          {guesses.length > 0 ? (
+            <View style={styles.history}>
+              {guesses.map((guess, index) => (
+                <View key={`${guess}-${index}`} style={styles.guessRow}>
+                  <Text style={styles.guessNumber}>{index + 1}</Text>
+                  <Text style={styles.guessValue}>{guess.toLocaleUpperCase("de-DE")}</Text>
+                </View>
+              ))}
+            </View>
+          ) : null}
           {stats.length > 0 ? (
             <View style={styles.stats}>
               {stats.map((stat) => (
@@ -81,6 +92,32 @@ const styles = StyleSheet.create({
     fontSize: tokens.type.body,
     lineHeight: 24,
     textAlign: "center"
+  },
+  history: {
+    gap: 4,
+    paddingVertical: tokens.space.xs,
+    paddingHorizontal: tokens.space.sm,
+    borderRadius: tokens.radius.md,
+    backgroundColor: "rgba(36, 107, 254, 0.08)"
+  },
+  guessRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: tokens.space.sm,
+    paddingVertical: 2
+  },
+  guessNumber: {
+    width: 22,
+    color: tokens.color.primaryDark,
+    fontSize: tokens.type.small,
+    fontWeight: "900",
+    textAlign: "center"
+  },
+  guessValue: {
+    color: tokens.color.ink,
+    fontSize: 18,
+    fontWeight: "900",
+    letterSpacing: 1
   },
   stats: {
     flexDirection: "row",

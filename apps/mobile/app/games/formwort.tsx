@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 
@@ -7,15 +7,15 @@ import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
-import { LetterInputTiles } from "@/components/LetterInputTiles";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
-import { createPracticeFormwortGame } from "@/games/formwort/daily";
+import { createPracticeFormwortGame, restoreFormwortPuzzle } from "@/games/formwort/daily";
 import { applyFormwortInputLetter, getFormwortLetterStates, removeFormwortInputLetter, revealFormwortSolution, submitFormwortGuess } from "@/games/formwort/engine";
 import type { FormwortState } from "@/games/formwort/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
+import { getWordTileLayout } from "@/games/wordTileLayout";
 import { updateBadgeCount } from "@/notifications/badge";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 
@@ -40,6 +40,17 @@ function createEmptyInput(length: number) {
 
 function symbolColor(symbol: string): string {
   return symbolColors[Math.abs(symbol.codePointAt(0) ?? 0) % symbolColors.length];
+}
+
+function tileStyle(minHeight: number, symbol: string, colorForSymbol: (s: string) => string, mark?: string) {
+  return [
+    styles.tile,
+    { minHeight },
+    symbol && { borderColor: colorForSymbol(symbol) },
+    mark === "absent" && styles.absent,
+    mark === "present" && styles.present,
+    mark === "correct" && styles.correct,
+  ];
 }
 
 export default function FormwortScreen() {
@@ -74,11 +85,13 @@ export default function FormwortScreen() {
     loadProgress<FormwortState>("formwort", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
-      if (isStartedProgress(progress)) {
-        const nextGame = { dateKey: progress.dateKey, puzzle: progress.puzzle as FormwortGame["puzzle"], state: progress.state };
+      const restoredPuzzle = restoreFormwortPuzzle(progress?.puzzle);
+      if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
+        const nextGame = { dateKey: progress.dateKey, puzzle: restoredPuzzle, state: progress.state };
         setGame(nextGame);
         setState(progress.state);
-        setInputLetters(Array.isArray(progress.draft) ? progress.draft.map(String) : createEmptyInput(nextGame.puzzle.wordLength));
+        const draft = Array.isArray(progress.draft) ? progress.draft.map(String).slice(0, nextGame.puzzle.wordLength) : [];
+        setInputLetters(draft.length === nextGame.puzzle.wordLength ? draft : createEmptyInput(nextGame.puzzle.wordLength));
       }
       setProgressLoaded(true);
     });
@@ -100,8 +113,10 @@ export default function FormwortScreen() {
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getFormwortLetterStates(state);
+  const tileLayout = getWordTileLayout(puzzle.wordLength);
   const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
   const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
+  const visibleRows = state.guesses.length + (state.status === "playing" ? 1 : 0);
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
@@ -189,7 +204,6 @@ export default function FormwortScreen() {
   return (
     <GameScreenFrame
       actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
-      inputPreview={<LetterInputTiles cursorIndex={cursorIndex} disabled={state.status !== "playing"} letters={inputLetters} onCursorChange={setCursorIndex} />}
       keyboard={{
         disabled: state.status !== "playing",
         letterStates,
@@ -200,37 +214,42 @@ export default function FormwortScreen() {
       }}
       onBack={goBack}
       onHelp={() => setHelpVisible(true)}
-      subtitle={dateKey}
+      subtitle={`${dateKey} · ${puzzle.wordLength} Buchstaben`}
       title="Formwort"
     >
-      <View style={styles.wrap}>
-        <View style={styles.board}>
-          {Array.from({ length: puzzle.maxAttempts }).map((_, rowIndex) => {
-            const guess = state.guesses[rowIndex];
-            const letters = guess ? Array.from(guess.value) : rowIndex === state.guesses.length ? inputLetters : createEmptyInput(puzzle.wordLength);
+      <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+        <View style={styles.wrap}>
+          <View style={styles.board}>
+            {Array.from({ length: visibleRows }).map((_, rowIndex) => {
+              const guess = state.guesses[rowIndex];
+              const inputRow = state.status === "playing" && rowIndex === state.guesses.length;
+              const letters = guess ? Array.from(guess.value) : inputRow ? inputLetters : createEmptyInput(puzzle.wordLength);
 
-            return (
-              <View key={rowIndex} style={styles.tileRow}>
-                {letters.map((letter, letterIndex) => {
-                  const mark = guess?.marks[letterIndex];
-                  const symbol = !guess && rowIndex === state.guesses.length && !letter ? puzzle.symbols[letterIndex] : "";
+              return (
+                <View key={rowIndex} style={[styles.tileRow, { gap: tileLayout.gap }]}>
+                  {letters.map((letter, letterIndex) => {
+                    const mark = guess?.marks[letterIndex];
+                    const symbol = inputRow && !letter ? puzzle.symbols[letterIndex] : "";
 
-                  return (
-                    <Pressable disabled key={`${rowIndex}-${letterIndex}`} style={[styles.tile, symbol && { borderColor: symbolColor(symbol) }, mark && styles[mark]]}>
-                      <Text style={[styles.tileText, symbol && styles.symbolText, symbol && { color: symbolColor(symbol) }, mark && styles.markedTileText]}>{letter ? letter.toLocaleUpperCase("de-DE") : symbol}</Text>
-                    </Pressable>
-                  );
-                })}
-              </View>
-            );
-          })}
+                    return (
+                      <Pressable disabled key={`${rowIndex}-${letterIndex}`} style={tileStyle(tileLayout.minHeight, symbol, symbolColor, mark)}>
+                        <Text style={[styles.tileText, { fontSize: tileLayout.fontSize }, symbol && styles.symbolText, symbol && { color: symbolColor(symbol), fontSize: tileLayout.symbolFontSize }, mark && styles.markedTileText]}>
+                          {letter ? letter.toLocaleUpperCase("de-DE") : symbol}
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
+              );
+            })}
+          </View>
+
+          {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toLocaleUpperCase("de-DE")}</Text> : null}
         </View>
-
-        {message ? <Text style={styles.message}>{message}</Text> : null}
-        {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toLocaleUpperCase("de-DE")}</Text> : null}
-      </View>
+      </ScrollView>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <GameResultModal
+        guesses={state.guesses.map((guess) => guess.value)}
         message={state.status === "won" ? "Alle Formen sitzen." : "Die Lösung ist raus. Weiteres Wort?"}
         onHome={() => router.replace("/")}
         onNext={startPracticeWord}
@@ -249,16 +268,16 @@ export default function FormwortScreen() {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, gap: tokens.space.sm },
-  board: { flex: 1, justifyContent: "center", gap: 6 },
-  tileRow: { flexDirection: "row", gap: 7 },
-  tile: { flex: 1, minHeight: 46, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
+  scrollContent: { flexGrow: 1, paddingBottom: tokens.space.md },
+  wrap: { gap: tokens.space.sm },
+  board: { gap: 5 },
+  tileRow: { flexDirection: "row" },
+  tile: { flex: 1, minWidth: 0, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
   tileText: { color: tokens.color.ink, fontSize: 25, fontWeight: "900" },
   symbolText: { color: "#E99B88", fontSize: 24 },
   markedTileText: { color: "white" },
   absent: { backgroundColor: "#7B736A", borderColor: "#7B736A" },
   present: { backgroundColor: "#D98500", borderColor: "#D98500" },
   correct: { backgroundColor: tokens.color.success, borderColor: tokens.color.success },
-  message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" },
 });

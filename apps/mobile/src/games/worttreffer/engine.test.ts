@@ -1,16 +1,12 @@
 import { describe, expect, it } from "vitest";
 
-import { WORTTREFFER_MAX_ATTEMPTS, WORTTREFFER_WORD_LENGTH, guessWords } from "./content";
-import { createWorttrefferState, evaluateWorttrefferGuess, getWorttrefferLetterStates, submitWorttrefferGuess } from "./engine";
-import { WorttrefferPuzzle } from "./types";
+import { getWordLength, supportedWordLengths } from "../wordLengths";
 
-const puzzle: WorttrefferPuzzle = {
-  id: "test",
-  version: 1,
-  answer: "ampel",
-  wordLength: WORTTREFFER_WORD_LENGTH,
-  maxAttempts: WORTTREFFER_MAX_ATTEMPTS
-};
+import { guessWords, worttrefferTargetsByLength } from "./content";
+import { createWorttrefferPuzzle, getWorttrefferMaxAttempts, restoreWorttrefferPuzzle } from "./daily";
+import { createWorttrefferState, evaluateWorttrefferGuess, getWorttrefferLetterStates, submitWorttrefferGuess } from "./engine";
+
+const puzzle = createWorttrefferPuzzle("ampel", 5, "test");
 
 describe("worttreffer engine", () => {
   it("marks exact, present, and absent letters", () => {
@@ -20,6 +16,25 @@ describe("worttreffer engine", () => {
   it("does not reuse answer letters for duplicates", () => {
     expect(evaluateWorttrefferGuess("ampel", "allee")).toEqual(["correct", "present", "absent", "correct", "absent"]);
     expect(evaluateWorttrefferGuess("allee", "ampel")).toEqual(["correct", "absent", "absent", "correct", "present"]);
+    expect(evaluateWorttrefferGuess("ballast", "abstand")).toEqual(["present", "present", "present", "present", "correct", "absent", "absent"]);
+  });
+
+  it("supports configured word lengths and attempts", () => {
+    const cases = [
+      [4, "haus", 5],
+      [5, "ampel", 6],
+      [6, "banane", 7],
+      [7, "abstand", 8],
+    ] as const;
+
+    for (const [wordLength, answer, maxAttempts] of cases) {
+      const nextPuzzle = createWorttrefferPuzzle(answer, wordLength, `test-${wordLength}`);
+      const result = submitWorttrefferGuess(nextPuzzle, createWorttrefferState(nextPuzzle), answer);
+
+      expect(nextPuzzle.maxAttempts).toBe(maxAttempts);
+      expect(getWorttrefferMaxAttempts(wordLength)).toBe(maxAttempts);
+      expect(result.state.status).toBe("won");
+    }
   });
 
   it("rejects wrong length, invalid words, and repeated guesses", () => {
@@ -52,6 +67,15 @@ describe("worttreffer engine", () => {
   });
 
   it("keeps curated guesses at the configured length", () => {
-    expect(guessWords.every((word) => Array.from(word).length === WORTTREFFER_WORD_LENGTH)).toBe(true);
+    expect(guessWords.every((word) => supportedWordLengths.some((length) => length === getWordLength(word)))).toBe(true);
+    for (const length of supportedWordLengths) {
+      expect(worttrefferTargetsByLength[length]?.every((word) => getWordLength(word) === length)).toBe(true);
+    }
+  });
+
+  it("restores old persisted puzzles without wordLength", () => {
+    expect(restoreWorttrefferPuzzle({ id: "old", version: 1, answer: "ampel", maxAttempts: 6 })).toMatchObject({ wordLength: 5, maxAttempts: 6 });
+    expect(restoreWorttrefferPuzzle({ id: "old-4", version: 2, answer: "haus" })).toMatchObject({ wordLength: 4, maxAttempts: 5 });
+    expect(restoreWorttrefferPuzzle({ id: "bad", answer: "tag" })).toBeNull();
   });
 });

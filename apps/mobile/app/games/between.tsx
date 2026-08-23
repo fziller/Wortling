@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import Animated, {
@@ -7,7 +7,6 @@ import Animated, {
   FadeOutDown,
   FadeOutUp,
   LinearTransition,
-  SlideInRight,
   useAnimatedStyle,
   useSharedValue,
   withSequence,
@@ -30,6 +29,7 @@ import { createPracticeBetweenGame } from "@/games/between/daily";
 import { getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
 import { displayWord } from "@/games/between/format";
 import { BetweenState, Guess } from "@/games/between/types";
+import { getWordTileLayout } from "@/games/wordTileLayout";
 import { updateBadgeCount } from "@/notifications/badge";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 
@@ -82,10 +82,6 @@ export default function BetweenScreen() {
   const centerWord = state.status === "revealed" || state.status === "won" ? state.targetWord : movingGuess?.word;
   const showScaleHints = Boolean(lastGuess);
   const puzzleId = `between-${state.targetWord}`;
-
-  const sortedGuesses = useMemo(() => {
-    return [...state.guesses].reverse();
-  }, [state.guesses]);
 
   useEffect(() => {
     loadProgress<BetweenState>("between", today).then((progress) => {
@@ -319,20 +315,6 @@ export default function BetweenScreen() {
 
         <Animated.View style={shakeStyle} />
 
-        <View style={styles.history}>
-          {sortedGuesses.map((item) => (
-            <Animated.View entering={SlideInRight.springify().damping(14)} key={item.word} layout={LinearTransition.springify()} style={styles.guessRow}>
-              <View>
-                <Text style={styles.guessWord}>{displayWord(item.word)}</Text>
-                <Text style={styles.guessPercent}>{item.percent}%</Text>
-              </View>
-              <Text style={[styles.guessHint, item.direction === "hit" && styles.hit]}>
-                {item.direction === "hit" ? "Treffer" : item.direction === "after" ? "Ziel danach" : "Ziel davor"}
-              </Text>
-            </Animated.View>
-          ))}
-        </View>
-
       </View>
 
       <HelpModal {...gameHelp.between} onClose={() => setHelpVisible(false)} visible={helpVisible} />
@@ -345,6 +327,7 @@ export default function BetweenScreen() {
         visible={modal === "reveal"}
       />
       <GameResultModal
+        guesses={state.guesses.map((guess) => guess.word)}
         message={state.status === "won" ? "Ziel sauber eingegrenzt." : "Die Lösung ist raus. Noch eins?"}
         onHome={() => router.replace("/")}
         onNext={startNextWord}
@@ -375,10 +358,11 @@ type WordTilesProps = {
 
 function WordTiles({ cursorIndex = 0, disabled = true, word, letters: inputLetters, filled = false, dimmed = false, onTilePress, revealed = false, exitingDirection }: WordTilesProps) {
   const letters = word ? Array.from(displayWord(word)) : inputLetters ?? Array.from({ length: 5 }, () => "");
+  const tileLayout = getWordTileLayout(letters.length);
   const exitingAnimation = exitingDirection === "after" ? FadeOutUp : exitingDirection === "before" ? FadeOutDown : FadeOut;
 
   return (
-    <View style={styles.tileRow}>
+    <View style={[styles.tileRow, { gap: tileLayout.gap }]}>
       {letters.map((letter, index) => (
         <Animated.View
           entering={FadeInDown.delay(index * 35).duration(tokens.motion.quick)}
@@ -394,13 +378,14 @@ function WordTiles({ cursorIndex = 0, disabled = true, word, letters: inputLette
             onPress={() => onTilePress?.(index)}
           style={[
             styles.wordTile,
+            { minHeight: tileLayout.minHeight },
             filled ? styles.wordTileFilled : styles.wordTileEmpty,
             revealed && styles.wordTileRevealed,
             dimmed && styles.wordTileDimmed,
             !disabled && index === cursorIndex && styles.wordTileActive
           ]}
         >
-          <Text style={[styles.wordTileText, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty]}>{letter.toLocaleUpperCase("de-DE")}</Text>
+          <Text style={[styles.wordTileText, { fontSize: tileLayout.fontSize }, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty]}>{letter.toLocaleUpperCase("de-DE")}</Text>
           </Pressable>
         </Animated.View>
       ))}
@@ -509,12 +494,10 @@ const styles = StyleSheet.create({
     gap: tokens.space.sm
   },
   tileRow: {
-    flexDirection: "row",
-    gap: 6
+    flexDirection: "row"
   },
   wordTile: {
     flex: 1,
-    minHeight: 44,
     alignItems: "center",
     justifyContent: "center"
   },
@@ -541,7 +524,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF1DF"
   },
   wordTileText: {
-    fontSize: 26,
     fontWeight: "900"
   },
   wordTileTextFilled: {
@@ -569,34 +551,5 @@ const styles = StyleSheet.create({
   },
   alphabetLetterDisabled: {
     color: "rgba(23, 19, 13, 0.22)"
-  },
-  history: {
-    gap: tokens.space.sm
-  },
-  guessRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: tokens.space.md,
-    borderRadius: tokens.radius.md,
-    backgroundColor: "rgba(255, 255, 255, 0.62)"
-  },
-  guessWord: {
-    color: tokens.color.ink,
-    fontSize: 19,
-    fontWeight: "900",
-    letterSpacing: 1.5
-  },
-  guessPercent: {
-    color: tokens.color.muted,
-    fontSize: tokens.type.small,
-    fontWeight: "900"
-  },
-  guessHint: {
-    color: tokens.color.secondary,
-    fontWeight: "900"
-  },
-  hit: {
-    color: tokens.color.success
   }
 });

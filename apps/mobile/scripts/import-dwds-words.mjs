@@ -179,6 +179,10 @@ const smokeTestsByLength = {
   6: {
     included: ["banane", "fragen", "laufen"],
     excluded: []
+  },
+  7: {
+    included: ["abstand", "antwort", "fenster"],
+    excluded: []
   }
 };
 const smokeTests = smokeTestsByLength[wordLength];

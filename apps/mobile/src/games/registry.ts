@@ -43,7 +43,7 @@ export const games = [
     shortDescription: "Errate ein Wort mit grün-gelb-grauem Feedback.",
     route: "/games/worttreffer",
     estimatedMinutes: 3,
-    badge: "5 Buchstaben",
+    badge: "4-7 Buchstaben",
     dailyKniffEligible: true
   },
   {
@@ -61,7 +61,7 @@ export const games = [
     shortDescription: "Knacke ein Wort mit Mastermind-Logik.",
     route: "/games/wortcode",
     estimatedMinutes: 3,
-    badge: "6 Buchstaben",
+    badge: "5-7 Buchstaben",
     dailyKniffEligible: true
   }
 ] as const satisfies readonly GameDefinition[];

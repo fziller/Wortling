@@ -25,6 +25,7 @@ Wortkniff is an Expo + React Native + TypeScript mobile app for German daily wor
 - Keep game keyboard controls in the frame keyboard/footer area so bottom safe area handling stays centralized.
 - Put small per-game actions like `Lösung anzeigen`, `Hinweis`, or `Zurück` in the frame action row above the keyboard.
 - Do not add explanatory game-rule copy directly into gameplay content; use the help modal for rules and reserve content text for concrete feedback, hints, or results.
+- Never use horizontal scrolling for gameplay letter tiles or word boards; shrink tile width, gaps, or type instead so the full puzzle remains visible.
 
 ## Word Data
 

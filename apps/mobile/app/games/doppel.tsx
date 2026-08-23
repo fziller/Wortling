@@ -156,11 +156,6 @@ export default function DoppelScreen() {
           <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} />
         </>
       ) : null}
-      inputPreview={state.status === "playing" ? (
-        <View style={styles.inputBox}>
-          <Text style={[styles.inputText, !input && styles.placeholder]}>{input ? input.toLocaleUpperCase("de-DE") : "Lösung"}</Text>
-        </View>
-      ) : null}
       keyboard={{
         disabled: state.status !== "playing",
         onBackspace: backspace,
@@ -179,7 +174,7 @@ export default function DoppelScreen() {
             <Text style={styles.sideWord}>{puzzle.leftWord.toUpperCase()}</Text>
             <Text style={styles.plus}>+</Text>
             <View style={styles.answerBox}>
-              <Text style={styles.answerText}>{state.solvedAnswer?.toUpperCase() ?? "?".repeat(Array.from(puzzle.solutions[0].answer).length)}</Text>
+              <Text style={styles.answerText}>{(state.solvedAnswer ?? input)?.toLocaleUpperCase("de-DE") || "?".repeat(Array.from(puzzle.solutions[0].answer).length)}</Text>
             </View>
             <Text style={styles.plus}>+</Text>
             <Text style={styles.sideWord}>{puzzle.rightWord.toUpperCase()}</Text>
@@ -212,6 +207,7 @@ export default function DoppelScreen() {
       />
       <GameResultModal
         actionLabel="Neues Spiel"
+        guesses={state.guesses}
         message={state.status === "won" ? `${solution.leftCompound} · ${solution.rightCompound}` : "Die Lösung ist raus. Noch eins?"}
         onHome={() => router.replace("/")}
         onNext={startPracticeGame}
@@ -237,9 +233,6 @@ const styles = StyleSheet.create({
   answerBox: { minWidth: 120, alignItems: "center", paddingHorizontal: tokens.space.md, paddingVertical: tokens.space.sm, borderRadius: tokens.radius.pill, backgroundColor: "rgba(255,255,255,0.58)", borderWidth: 1, borderColor: tokens.color.line },
   answerText: { color: tokens.color.ink, fontSize: 22, fontWeight: "900", letterSpacing: 2 },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center", lineHeight: 24 },
-  inputBox: { minHeight: 42, alignItems: "center", justifyContent: "center", paddingHorizontal: tokens.space.lg, borderRadius: tokens.radius.pill, backgroundColor: "rgba(253, 251, 247, 0.72)", borderWidth: 1, borderColor: tokens.color.line },
-  inputText: { color: tokens.color.ink, fontSize: 20, fontWeight: "900", letterSpacing: 1, textAlign: "center" },
-  placeholder: { color: "#B09E8B" },
   hints: { gap: tokens.space.xs, padding: tokens.space.sm, borderRadius: tokens.radius.md, backgroundColor: "rgba(255,255,255,0.5)" },
   hint: { color: tokens.color.ink, fontSize: tokens.type.body, fontWeight: "700" },
   resultCard: { gap: tokens.space.sm, padding: tokens.space.lg, borderRadius: tokens.radius.lg, backgroundColor: "#E5F7EF" },
