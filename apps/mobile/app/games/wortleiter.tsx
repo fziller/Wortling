@@ -279,13 +279,6 @@ export default function WortleiterScreen() {
     >
       <View style={styles.wrap}>
         <View style={styles.boardPanel}>
-          <View style={styles.statusRow}>
-            <Text style={styles.statusText}>Schritte: {steps}</Text>
-            <Text style={styles.statusText}>
-              Optimal: {puzzle.optimalSteps}
-            </Text>
-          </View>
-
           <ScrollView
             contentContainerStyle={styles.ladderScrollContent}
             showsVerticalScrollIndicator={false}
@@ -309,21 +302,29 @@ export default function WortleiterScreen() {
             ))}
 
             {state.status === "playing" ? (
-              <View style={styles.inputStep}>
+              <Animated.View
+                entering={FadeInDown.duration(tokens.motion.quick)}
+                layout={LinearTransition.springify()}
+                style={styles.inputStep}
+              >
                 <Text style={styles.arrow}>↓</Text>
                 <CompactLetterInputTiles
                   cursorIndex={cursorIndex}
                   letters={inputLetters}
                   onCursorChange={setCursorIndex}
                 />
-              </View>
+              </Animated.View>
             ) : null}
 
             {state.words[state.words.length - 1] !== puzzle.targetWord ? (
-              <View style={styles.stepWrap}>
+              <Animated.View
+                entering={FadeInDown.duration(tokens.motion.quick)}
+                layout={LinearTransition.springify()}
+                style={styles.stepWrap}
+              >
                 <Text style={styles.arrow}>↓</Text>
                 <LadderWord label="Ziel" target word={puzzle.targetWord} />
-              </View>
+              </Animated.View>
             ) : null}
           </ScrollView>
         </View>
@@ -509,38 +510,27 @@ const styles = StyleSheet.create({
   boardPanel: {
     flex: 1,
     gap: tokens.space.xs,
-    paddingTop: tokens.space.sm,
   },
-  statusRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    gap: tokens.space.sm,
-  },
-  statusText: {
-    color: tokens.color.primaryDark,
-    fontSize: tokens.type.small,
-    fontWeight: "900",
-  },
-  ladderScroll: { flexGrow: 0, maxHeight: 300 },
+  ladderScroll: { flexGrow: 0, maxHeight: 340 },
   ladderScrollContent: {
     alignItems: "center",
     gap: 2,
-    paddingVertical: tokens.space.xs,
+    paddingBottom: tokens.space.xs,
   },
   stepWrap: { alignItems: "center", gap: tokens.space.xs },
   inputStep: { width: "100%", alignItems: "center", gap: tokens.space.xs },
   arrow: {
     color: tokens.color.primaryDark,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "900",
     lineHeight: 16,
     textAlign: "center",
   },
   wordPill: {
-    minWidth: 148,
+    minWidth: 124,
     alignItems: "center",
-    paddingHorizontal: tokens.space.md,
-    paddingVertical: tokens.space.xs,
+    paddingHorizontal: tokens.space.sm,
+    paddingVertical: 4,
     borderWidth: 1,
     borderColor: tokens.color.line,
     borderRadius: tokens.radius.pill,
@@ -552,14 +542,14 @@ const styles = StyleSheet.create({
   },
   pillLabel: {
     color: tokens.color.muted,
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: "900",
     letterSpacing: 1.2,
     textTransform: "uppercase",
   },
   pillWord: {
     color: tokens.color.ink,
-    fontSize: 22,
+    fontSize: 19,
     fontWeight: "900",
     letterSpacing: 4,
     textAlign: "center",

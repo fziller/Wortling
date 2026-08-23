@@ -3,12 +3,12 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import Animated, {
   FadeInDown,
-  FadeOut,
-  FadeOutDown,
-  FadeOutUp,
   LinearTransition,
+  interpolate,
+  interpolateColor,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withSequence,
   withSpring,
   withTiming
@@ -37,6 +37,9 @@ const BOARD_LINE_HEIGHT = 132;
 const DOT_SIZE = 20;
 const DOT_MARGIN = 4;
 const puzzleVersion = hashSeed(CONTENT_VERSION);
+const TILE_FLIP_DELAY_MS = 45;
+const TILE_FLIP_DURATION_MS = 260;
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 function createEmptyInput(length: number) {
   return Array.from({ length }, () => "");
@@ -65,7 +68,7 @@ export default function BetweenScreen() {
   const [modal, setModal] = useState<"reveal" | null>(null);
   const [helpVisible, setHelpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
-  const [movingGuess, setMovingGuess] = useState<Guess | null>(null);
+  const [clearingDirection, setClearingDirection] = useState<Guess["direction"] | undefined>(undefined);
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
@@ -79,7 +82,7 @@ export default function BetweenScreen() {
   const lastGuess = state.guesses[state.guesses.length - 1] as Guess | undefined;
   const rangeMetrics = getTargetRangeMetrics(state);
   const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
-  const centerWord = state.status === "revealed" || state.status === "won" ? state.targetWord : movingGuess?.word;
+  const centerWord = state.status === "revealed" || state.status === "won" ? state.targetWord : undefined;
   const showScaleHints = Boolean(lastGuess);
   const puzzleId = `between-${state.targetWord}`;
 
@@ -193,13 +196,17 @@ export default function BetweenScreen() {
       clearTimeout(clearMovingGuessTimeout.current);
     }
 
-    setMovingGuess(result.guess.direction === "hit" ? null : result.guess);
     setState(result.state);
-    setInputLetters(createEmptyInput(5));
     setCursorIndex(0);
 
     if (result.guess.direction !== "hit") {
-      clearMovingGuessTimeout.current = setTimeout(() => setMovingGuess(null), tokens.motion.slow);
+      setClearingDirection(result.guess.direction);
+      clearMovingGuessTimeout.current = setTimeout(() => {
+        setInputLetters(createEmptyInput(5));
+        clearMovingGuessTimeout.current = setTimeout(() => setClearingDirection(undefined), TILE_FLIP_DURATION_MS + 5 * TILE_FLIP_DELAY_MS);
+      }, tokens.motion.quick);
+    } else {
+      setInputLetters(createEmptyInput(5));
     }
 
   }
@@ -230,7 +237,7 @@ export default function BetweenScreen() {
       clearTimeout(clearMovingGuessTimeout.current);
     }
 
-    setMovingGuess(null);
+    setClearingDirection(undefined);
     setState(nextGame.state);
     setDateKey(nextGame.dateKey);
     setInputLetters(createEmptyInput(5));
@@ -298,8 +305,8 @@ export default function BetweenScreen() {
               <WordTiles dimmed={state.status === "revealed"} filled word={state.lowerBound} />
               <WordTiles
                 cursorIndex={cursorIndex}
-                disabled={Boolean(centerWord) || state.status !== "playing"}
-                exitingDirection={movingGuess?.direction}
+                disabled={Boolean(centerWord) || Boolean(clearingDirection) || state.status !== "playing"}
+                exitingDirection={clearingDirection}
                 letters={centerWord ? undefined : inputLetters}
                 onTilePress={setCursorIndex}
                 revealed={state.status === "revealed" || state.status === "won"}
@@ -359,37 +366,104 @@ type WordTilesProps = {
 function WordTiles({ cursorIndex = 0, disabled = true, word, letters: inputLetters, filled = false, dimmed = false, onTilePress, revealed = false, exitingDirection }: WordTilesProps) {
   const letters = word ? Array.from(displayWord(word)) : inputLetters ?? Array.from({ length: 5 }, () => "");
   const tileLayout = getWordTileLayout(letters.length);
-  const exitingAnimation = exitingDirection === "after" ? FadeOutUp : exitingDirection === "before" ? FadeOutDown : FadeOut;
+  const flipChanges = Boolean(word) || Boolean(exitingDirection) || filled || revealed;
 
   return (
     <View style={[styles.tileRow, { gap: tileLayout.gap }]}>
       {letters.map((letter, index) => (
-        <Animated.View
-          entering={FadeInDown.delay(index * 35).duration(tokens.motion.quick)}
-          exiting={exitingAnimation.duration(tokens.motion.quick)}
-          key={`${letter}-${index}`}
-          layout={LinearTransition.springify().damping(16)}
-          style={styles.wordTileWrap}
-        >
-          <Pressable
-            accessibilityLabel={`Buchstabe ${index + 1}${letter ? `: ${letter.toUpperCase()}` : " leer"}`}
-            accessibilityRole="button"
-            disabled={disabled}
-            onPress={() => onTilePress?.(index)}
-          style={[
-            styles.wordTile,
-            { minHeight: tileLayout.minHeight },
-            filled ? styles.wordTileFilled : styles.wordTileEmpty,
-            revealed && styles.wordTileRevealed,
-            dimmed && styles.wordTileDimmed,
-            !disabled && index === cursorIndex && styles.wordTileActive
-          ]}
-        >
-          <Text style={[styles.wordTileText, { fontSize: tileLayout.fontSize }, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty]}>{letter.toLocaleUpperCase("de-DE")}</Text>
-          </Pressable>
-        </Animated.View>
+        <FlipWordTile
+          cursorIndex={cursorIndex}
+          disabled={disabled}
+          dimmed={dimmed}
+          filled={filled}
+          flip={flipChanges}
+          index={index}
+          key={index}
+          letter={letter}
+          minHeight={tileLayout.minHeight}
+          onPress={() => onTilePress?.(index)}
+          revealed={revealed}
+          textSize={tileLayout.fontSize}
+        />
       ))}
     </View>
+  );
+}
+
+type FlipWordTileProps = {
+  cursorIndex: number;
+  disabled: boolean;
+  dimmed: boolean;
+  filled: boolean;
+  flip: boolean;
+  index: number;
+  letter: string;
+  minHeight: number;
+  onPress: () => void;
+  revealed: boolean;
+  textSize: number;
+};
+
+function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, letter, minHeight, onPress, revealed, textSize }: FlipWordTileProps) {
+  const [displayLetter, setDisplayLetter] = useState(letter);
+  const progress = useSharedValue(1);
+
+  useEffect(() => {
+    if (displayLetter === letter) return;
+
+    if (!flip) {
+      setDisplayLetter(letter);
+      progress.value = 1;
+      return;
+    }
+
+    const delay = index * TILE_FLIP_DELAY_MS;
+    const timeout = setTimeout(() => setDisplayLetter(letter), delay + TILE_FLIP_DURATION_MS / 2);
+
+    progress.value = 0;
+    progress.value = withDelay(delay, withTiming(1, { duration: TILE_FLIP_DURATION_MS }));
+
+    return () => clearTimeout(timeout);
+  }, [displayLetter, flip, index, letter, progress]);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    const scaleY = interpolate(progress.value, [0, 0.5, 1], [1, 0.08, 1]);
+    const targetColor = revealed ? tokens.color.success : filled ? tokens.color.secondary : "rgba(255,255,255,0.5)";
+    const targetBorderColor = revealed ? tokens.color.success : filled ? tokens.color.secondary : tokens.color.line;
+    const backgroundColor = interpolateColor(
+      progress.value,
+      [0, 0.5, 1],
+      ["rgba(255,255,255,0.5)", "rgba(255,255,255,0.5)", targetColor]
+    );
+    const borderColor = interpolateColor(
+      progress.value,
+      [0, 0.5, 1],
+      [tokens.color.line, tokens.color.line, targetBorderColor]
+    );
+
+    return { backgroundColor, borderColor, transform: [{ scaleY }] };
+  });
+
+  return (
+    <AnimatedPressable
+      accessibilityLabel={`Buchstabe ${index + 1}${displayLetter ? `: ${displayLetter.toUpperCase()}` : " leer"}`}
+      accessibilityRole="button"
+      disabled={disabled}
+      entering={FadeInDown.delay(index * 35).duration(tokens.motion.quick)}
+      layout={LinearTransition.springify().damping(16)}
+      onPress={onPress}
+      style={[
+        styles.wordTile,
+        { minHeight },
+        filled ? styles.wordTileFilled : styles.wordTileEmpty,
+        revealed && styles.wordTileRevealed,
+        dimmed && styles.wordTileDimmed,
+        animatedStyle,
+        !disabled && index === cursorIndex && styles.wordTileActive
+      ]}
+    >
+      <Text style={[styles.wordTileText, { fontSize: textSize }, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty]}>{displayLetter.toLocaleUpperCase("de-DE")}</Text>
+    </AnimatedPressable>
   );
 }
 
@@ -499,16 +573,17 @@ const styles = StyleSheet.create({
   wordTile: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
-  },
-  wordTileWrap: {
-    flex: 1
+    justifyContent: "center",
+    borderRadius: tokens.radius.sm
   },
   wordTileFilled: {
+    borderWidth: 2,
+    borderColor: tokens.color.secondary,
     backgroundColor: tokens.color.secondary
   },
   wordTileRevealed: {
-    borderWidth: 0,
+    borderWidth: 2,
+    borderColor: tokens.color.success,
     backgroundColor: tokens.color.success
   },
   wordTileDimmed: {
@@ -516,8 +591,8 @@ const styles = StyleSheet.create({
   },
   wordTileEmpty: {
     borderWidth: 2,
-    borderColor: "rgba(23, 19, 13, 0.62)",
-    backgroundColor: "rgba(255, 255, 255, 0.35)"
+    borderColor: tokens.color.line,
+    backgroundColor: "rgba(255,255,255,0.5)"
   },
   wordTileActive: {
     borderColor: tokens.color.primary,

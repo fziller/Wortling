@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
@@ -159,7 +160,15 @@ export default function GalgenwortScreen() {
           </View>
           <Text style={styles.clue}>{puzzle.clue}</Text>
           <View style={styles.wordRow}>
-            {revealed.map((letter, index) => <Text key={index} style={[styles.wordTile, { fontSize: wordTileFontSize }]}>{letter ? letter.toLocaleUpperCase("de-DE") : "_"}</Text>)}
+            {revealed.map((letter, index) => letter ? (
+              <Animated.Text
+                entering={FadeInDown.duration(tokens.motion.quick).springify()}
+                key={`${index}-${letter}`}
+                style={[styles.wordTile, { fontSize: wordTileFontSize }]}
+              >
+                {letter.toLocaleUpperCase("de-DE")}
+              </Animated.Text>
+            ) : <Text key={`${index}-blank`} style={[styles.wordTile, { fontSize: wordTileFontSize }]}>_</Text>)}
           </View>
           <Text style={styles.misses}>Fehler {wrongLetters.length} / {puzzle.maxWrongGuesses}</Text>
         </View>
@@ -172,7 +181,6 @@ export default function GalgenwortScreen() {
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <GameResultModal
-        guesses={state.guessedLetters}
         message={state.status === "won" ? "Nice, das Wort ist frei." : "Die Lösung ist raus. Weiteres Wort?"}
         onHome={() => router.replace("/")}
         onNext={startPracticeWord}

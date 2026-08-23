@@ -2,6 +2,16 @@ import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import Animated, {
+  FadeInDown,
+  LinearTransition,
+  interpolate,
+  interpolateColor,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withTiming,
+} from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
@@ -33,6 +43,11 @@ import {
 } from "@/storage/progress";
 
 type WorttrefferGame = ReturnType<typeof createPracticeWorttrefferGame>;
+type TileMark = "absent" | "present" | "correct";
+
+const TILE_REVEAL_DELAY_MS = 120;
+const TILE_REVEAL_DURATION_MS = 360;
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 function createEmptyInput(length: number) {
   return Array.from({ length }, () => "");
@@ -58,6 +73,14 @@ export default function WorttrefferScreen() {
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
+  const [revealingGuessIndex, setRevealingGuessIndex] = useState<number | null>(null);
+  const revealDoneTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     try {
@@ -127,7 +150,7 @@ export default function WorttrefferScreen() {
   const usedLetters = new Set(
     state.guesses.flatMap((guess) => Array.from(guess.value)),
   ).size;
-  const visibleRows = state.guesses.length + (state.status === "playing" ? 1 : 0);
+  const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
@@ -157,6 +180,7 @@ export default function WorttrefferScreen() {
   function submit() {
     const result = submitWorttrefferGuess(puzzle, state, inputLetters.join(""));
 
+    if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     setState(result.state);
     setMessage(
       result.ok
@@ -168,26 +192,42 @@ export default function WorttrefferScreen() {
         : result.reason,
     );
     if (result.ok) {
+      const nextGuessIndex = result.state.guesses.length - 1;
+
+      setRevealingGuessIndex(nextGuessIndex);
       setInputLetters(createEmptyInput(puzzle.wordLength));
       setCursorIndex(0);
     }
     if (result.ok && result.state.status !== "playing") {
-      setFinishedAt(Date.now());
-      setResultVisible(true);
-      try {
-        posthog.capture("game_completed", {
-          gameId: "worttreffer",
-          dateKey,
-          durationMs: Date.now() - startedAt,
-          attempts: result.state.guesses.length,
-        });
-      } catch {
-        // Analytics must never break offline gameplay.
-      }
+      const revealDuration = puzzle.wordLength * TILE_REVEAL_DELAY_MS + TILE_REVEAL_DURATION_MS;
+
+      revealDoneTimeoutRef.current = setTimeout(() => {
+        setRevealingGuessIndex(null);
+        setFinishedAt(Date.now());
+        setResultVisible(true);
+        try {
+          posthog.capture("game_completed", {
+            gameId: "worttreffer",
+            dateKey,
+            durationMs: Date.now() - startedAt,
+            attempts: result.state.guesses.length,
+          });
+        } catch {
+          // Analytics must never break offline gameplay.
+        }
+      }, revealDuration);
+    } else if (result.ok) {
+      const revealDuration = puzzle.wordLength * TILE_REVEAL_DELAY_MS + TILE_REVEAL_DURATION_MS;
+
+      revealDoneTimeoutRef.current = setTimeout(() => {
+        setRevealingGuessIndex(null);
+      }, revealDuration);
     }
   }
 
   function reveal() {
+    if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
+    setRevealingGuessIndex(null);
     setState((current) => revealWorttrefferSolution(current));
     setMessage("Lösung aufgedeckt.");
     setInputLetters(createEmptyInput(puzzle.wordLength));
@@ -200,6 +240,7 @@ export default function WorttrefferScreen() {
   function startPracticeWord() {
     const nextGame = createPracticeWorttrefferGame(puzzle.answer, today);
 
+    if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     setGame(nextGame);
     setState(nextGame.state);
     setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
@@ -209,6 +250,7 @@ export default function WorttrefferScreen() {
     setFinishedAt(null);
     setProgressLoaded(true);
     setStartedAt(Date.now());
+    setRevealingGuessIndex(null);
   }
 
   function resultTitle() {
@@ -247,12 +289,17 @@ export default function WorttrefferScreen() {
             const letters = guess ? Array.from(guess.value) : inputRow ? inputLetters : createEmptyInput(puzzle.wordLength);
 
             return (
-              <View key={rowIndex} style={[styles.tileRow, { gap: tileLayout.gap }]}>
+              <Animated.View
+                entering={FadeInDown.duration(tokens.motion.quick)}
+                key={rowIndex}
+                layout={LinearTransition.springify().damping(16)}
+                style={[styles.tileRow, { gap: tileLayout.gap }]}
+              >
                 {letters.map((letter, letterIndex) => {
                   const mark = guess?.marks[letterIndex];
 
                   return (
-                    <Pressable
+                    <AnimatedWorttrefferTile
                       accessibilityRole="button"
                       disabled={
                         Boolean(guess) ||
@@ -260,27 +307,19 @@ export default function WorttrefferScreen() {
                         state.status !== "playing"
                       }
                       key={`${rowIndex}-${letterIndex}`}
+                      letter={letter}
+                      mark={mark}
+                      minHeight={tileLayout.minHeight}
                       onPress={() => setCursorIndex(letterIndex)}
-                      style={[
-                        styles.tile,
-                        { minHeight: tileLayout.minHeight },
-                        inputRow &&
-                          !guess &&
-                          rowIndex === state.guesses.length &&
-                          letterIndex === cursorIndex &&
-                          styles.activeTile,
-                        mark && styles[mark],
-                      ]}
-                    >
-                      <Text
-                        style={[styles.tileText, { fontSize: tileLayout.fontSize }, mark && styles.markedTileText]}
-                      >
-                        {letter.trim().toUpperCase()}
-                      </Text>
-                    </Pressable>
+                      revealed={Boolean(mark) && rowIndex !== revealingGuessIndex}
+                      revealDelay={letterIndex * TILE_REVEAL_DELAY_MS}
+                      revealing={Boolean(mark) && rowIndex === revealingGuessIndex}
+                      selected={inputRow && !guess && letterIndex === cursorIndex}
+                      textSize={tileLayout.fontSize}
+                    />
                   );
                 })}
-              </View>
+              </Animated.View>
             );
           })}
         </View>
@@ -322,11 +361,73 @@ export default function WorttrefferScreen() {
   );
 }
 
+type AnimatedWorttrefferTileProps = {
+  accessibilityRole: "button";
+  disabled: boolean;
+  letter: string;
+  mark?: TileMark;
+  minHeight: number;
+  onPress: () => void;
+  revealed: boolean;
+  revealDelay: number;
+  revealing: boolean;
+  selected: boolean;
+  textSize: number;
+};
+
+function markColor(mark?: TileMark) {
+  if (mark === "correct") return tokens.color.success;
+  if (mark === "present") return "#D98500";
+  if (mark === "absent") return "#7B736A";
+
+  return "rgba(255,255,255,0.5)";
+}
+
+function AnimatedWorttrefferTile({ accessibilityRole, disabled, letter, mark, minHeight, onPress, revealed, revealDelay, revealing, selected, textSize }: AnimatedWorttrefferTileProps) {
+  const targetColor = markColor(mark);
+  const progress = useSharedValue(revealed ? 1 : 0);
+
+  useEffect(() => {
+    if (revealing) {
+      progress.value = 0;
+      progress.value = withDelay(revealDelay, withTiming(1, { duration: TILE_REVEAL_DURATION_MS }));
+      return;
+    }
+
+    progress.value = revealed ? 1 : 0;
+  }, [progress, revealDelay, revealed, revealing]);
+
+  const tileStyle = useAnimatedStyle(() => {
+    const backgroundColor = interpolateColor(progress.value, [0, 0.5, 1], ["rgba(255,255,255,0.5)", "rgba(255,255,255,0.5)", targetColor]);
+    const borderColor = interpolateColor(progress.value, [0, 0.5, 1], [tokens.color.line, tokens.color.line, targetColor]);
+    const scaleY = interpolate(progress.value, [0, 0.5, 1], [1, 0.08, 1]);
+
+    return { backgroundColor, borderColor, transform: [{ scaleY }] };
+  });
+
+  const textStyle = useAnimatedStyle(() => {
+    const color = interpolateColor(progress.value, [0, 0.5, 1], [tokens.color.ink, tokens.color.ink, mark ? "white" : tokens.color.ink]);
+
+    return { color };
+  });
+
+  return (
+    <AnimatedPressable
+      accessibilityRole={accessibilityRole}
+      disabled={disabled}
+      onPress={onPress}
+      style={[styles.tile, { minHeight }, tileStyle, selected && styles.activeTile]}
+    >
+      <Animated.Text style={[styles.tileText, { fontSize: textSize }, textStyle]}>{letter.trim().toLocaleUpperCase("de-DE")}</Animated.Text>
+    </AnimatedPressable>
+  );
+}
+
 const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.sm },
   board: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     gap: 5,
   },
   tileRow: { flexDirection: "row" },

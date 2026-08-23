@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
+import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
@@ -188,9 +189,14 @@ export default function WortcodeScreen() {
           </View>
 
           <View style={styles.history}>
-            {state.guesses.length === 0 ? <Text style={styles.empty}>Noch kein Versuch.</Text> : null}
             {state.guesses.map((guess, guessIndex) => (
-              <View accessibilityLabel={`${guess.value}. ${guess.exactMatches} exakt. ${guess.misplacedMatches} enthalten.`} key={guess.value} style={styles.guessRow}>
+              <Animated.View
+                accessibilityLabel={`${guess.value}. ${guess.exactMatches} exakt. ${guess.misplacedMatches} enthalten.`}
+                entering={FadeInDown.duration(tokens.motion.quick)}
+                key={guess.value}
+                layout={LinearTransition.springify().damping(16)}
+                style={styles.guessRow}
+              >
                 <View style={[styles.letterRow, { gap: tileLayout.gap }]}>
                   {Array.from(guess.value).map((letter, letterIndex) => {
                     const mark = guess.marks?.[letterIndex] ?? "none";
@@ -212,10 +218,14 @@ export default function WortcodeScreen() {
                   <Text style={styles.feedbackText}>{guess.exactMatches} exakt</Text>
                   <Text style={styles.feedbackText}>{guess.misplacedMatches} enthalten</Text>
                 </View>
-              </View>
+              </Animated.View>
             ))}
             {state.status === "playing" ? (
-              <View style={styles.inputRow}>
+              <Animated.View
+                entering={FadeInDown.duration(tokens.motion.quick)}
+                layout={LinearTransition.springify().damping(16)}
+                style={styles.inputRow}
+              >
                 <View style={[styles.letterRow, { gap: tileLayout.gap }]}>
                   {inputLetters.map((letter, letterIndex) => (
                     <Pressable
@@ -229,11 +239,9 @@ export default function WortcodeScreen() {
                     </Pressable>
                   ))}
                 </View>
-              </View>
+              </Animated.View>
             ) : null}
           </View>
-
-          {message ? <Text style={styles.message}>{message}</Text> : null}
 
           {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toUpperCase()}</Text> : null}
         </ScrollView>
@@ -279,11 +287,10 @@ const styles = StyleSheet.create({
   summaryTitle: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900" },
   summaryText: { color: tokens.color.primaryDark, fontSize: tokens.type.body, fontWeight: "900" },
   history: { flex: 1, gap: tokens.space.sm },
-  empty: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
-  guessRow: { gap: tokens.space.sm, padding: tokens.space.md, borderRadius: tokens.radius.md, backgroundColor: "rgba(255,255,255,0.58)" },
-  inputRow: { gap: tokens.space.sm, padding: tokens.space.md, borderRadius: tokens.radius.md, backgroundColor: "rgba(255,255,255,0.42)" },
+  guessRow: { gap: tokens.space.sm },
+  inputRow: { gap: tokens.space.sm },
   letterRow: { flexDirection: "row" },
-  letterTile: { flex: 1, minWidth: 0, alignItems: "center", justifyContent: "center", borderRadius: tokens.radius.sm, backgroundColor: "white", borderWidth: 1, borderColor: tokens.color.line },
+  letterTile: { flex: 1, minWidth: 0, alignItems: "center", justifyContent: "center", borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)", borderWidth: 2, borderColor: tokens.color.line },
   activeTile: { borderColor: tokens.color.primary, backgroundColor: "#FFF1DF" },
   includedTile: { backgroundColor: "#FFD76A", borderColor: "#D98500" },
   exactTile: { backgroundColor: tokens.color.success, borderColor: "#127456" },
@@ -291,6 +298,5 @@ const styles = StyleSheet.create({
   exactLetterText: { color: "white" },
   feedback: { flexDirection: "row", gap: tokens.space.sm },
   feedbackText: { color: tokens.color.muted, fontSize: tokens.type.small, fontWeight: "900" },
-  message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" }
 });

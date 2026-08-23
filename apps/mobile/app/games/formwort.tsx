@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
+import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
@@ -226,7 +227,12 @@ export default function FormwortScreen() {
               const letters = guess ? Array.from(guess.value) : inputRow ? inputLetters : createEmptyInput(puzzle.wordLength);
 
               return (
-                <View key={rowIndex} style={[styles.tileRow, { gap: tileLayout.gap }]}>
+                <Animated.View
+                  entering={FadeInDown.duration(tokens.motion.quick)}
+                  key={rowIndex}
+                  layout={LinearTransition.springify().damping(16)}
+                  style={[styles.tileRow, { gap: tileLayout.gap }]}
+                >
                   {letters.map((letter, letterIndex) => {
                     const mark = guess?.marks[letterIndex];
                     const symbol = inputRow && !letter ? puzzle.symbols[letterIndex] : "";
@@ -239,7 +245,7 @@ export default function FormwortScreen() {
                       </Pressable>
                     );
                   })}
-                </View>
+                </Animated.View>
               );
             })}
           </View>

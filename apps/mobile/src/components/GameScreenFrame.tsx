@@ -67,6 +67,8 @@ const styles = StyleSheet.create({
   },
   footer: {
     gap: tokens.space.sm,
+    marginHorizontal: -tokens.space.sm,
+    paddingHorizontal: tokens.space.xs,
   },
   actions: {
     alignItems: "center",

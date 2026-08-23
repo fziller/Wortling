@@ -146,31 +146,41 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    gap: 3,
+    gap: 2,
     justifyContent: "center"
   },
   actionRow: {
     flexDirection: "row",
-    gap: tokens.space.sm
+    gap: tokens.space.xs
   },
   key: {
     flex: 1,
-    minHeight: 60,
+    minHeight: 56,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: tokens.radius.sm,
     backgroundColor: "rgba(255, 255, 255, 0.82)",
     borderWidth: 1,
-    borderColor: tokens.color.line
+    borderColor: tokens.color.line,
+    shadowColor: tokens.color.ink,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2
   },
   actionKey: {
     flex: 1,
-    minHeight: 52,
+    minHeight: 48,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: tokens.space.sm,
     borderRadius: tokens.radius.sm,
-    borderWidth: 1
+    borderWidth: 1,
+    shadowColor: tokens.color.ink,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2
   },
   primaryAction: {
     borderColor: tokens.color.primary,
@@ -182,11 +192,11 @@ const styles = StyleSheet.create({
   },
   keyText: {
     color: tokens.color.ink,
-    fontSize: 17,
+    fontSize: 20,
     fontWeight: "900"
   },
   actionText: {
-    fontSize: tokens.type.small,
+    fontSize: 14,
     fontWeight: "900"
   },
   primaryActionText: {
@@ -199,7 +209,7 @@ const styles = StyleSheet.create({
     color: "white"
   },
   pressed: {
-    transform: [{ scale: 0.96 }],
+    transform: [{ scale: 0.97 }],
     opacity: 0.72
   },
   menu: {
