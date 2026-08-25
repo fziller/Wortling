@@ -1,8 +1,9 @@
 import { generatedAllowedGuesses } from "./generated/allowedGuesses";
 import { generatedWortleiterPuzzles } from "./generated/puzzles";
+import type { WortleiterPuzzle } from "./types";
 
-export const WORTLEITER_CONTENT_VERSION = 1;
+export const WORTLEITER_CONTENT_VERSION = 2;
 export const WORTLEITER_WORD_LENGTH = 4;
 
-export const allowedGuesses = generatedAllowedGuesses;
-export const wortleiterPuzzles = generatedWortleiterPuzzles;
+export const allowedGuesses: string[] = [...(generatedAllowedGuesses as unknown as string[])];
+export const wortleiterPuzzles: WortleiterPuzzle[] = [...(generatedWortleiterPuzzles as unknown as WortleiterPuzzle[])];

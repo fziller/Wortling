@@ -7,6 +7,7 @@ export const tokens = {
     line: "#E5D7C5",
     primary: "#FF6B35",
     primaryDark: "#D94A1E",
+    primaryLight: "#FFF1DF",
     secondary: "#246BFE",
     success: "#21A67A",
     warning: "#D98500",

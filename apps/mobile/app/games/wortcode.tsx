@@ -16,6 +16,7 @@ import { createNextWortcodeGame, restoreWortcodePuzzle } from "@/games/wortcode/
 import { revealWortcodeSolution, submitWortcodeGuess, toggleWortcodeLetterMark } from "@/games/wortcode/engine";
 import { WortcodeLetterMark, WortcodeState } from "@/games/wortcode/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
+import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
@@ -42,8 +43,8 @@ export default function WortcodeScreen() {
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
-  const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
+  const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
 
   useEffect(() => {
     loadProgress<WortcodeState>("wortcode", today).then((progress) => {
@@ -91,7 +92,6 @@ export default function WortcodeScreen() {
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const tileLayout = getWordTileLayout(puzzle.wordLength);
-  const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
   const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
 
   function addLetter(letter: string) {
@@ -166,7 +166,7 @@ export default function WortcodeScreen() {
     setResultVisible(false);
     setFinishedAt(null);
     setProgressLoaded(true);
-    setStartedAt(Date.now());
+    resetTimer();
   }
 
   function resultTitle() {
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
   inputRow: { gap: tokens.space.sm },
   letterRow: { flexDirection: "row" },
   letterTile: { flex: 1, minWidth: 0, alignItems: "center", justifyContent: "center", borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)", borderWidth: 2, borderColor: tokens.color.line },
-  activeTile: { borderColor: tokens.color.primary, backgroundColor: "#FFF1DF" },
+  activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
   includedTile: { backgroundColor: "#FFD76A", borderColor: "#D98500" },
   exactTile: { backgroundColor: tokens.color.success, borderColor: "#127456" },
   letterText: { color: tokens.color.ink, fontSize: 18, fontWeight: "900" },

@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   activeTile: {
     borderColor: tokens.color.primary,
-    backgroundColor: "#FFF1DF"
+    backgroundColor: tokens.color.primaryLight
   },
   tileText: {
     color: tokens.color.ink,

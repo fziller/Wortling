@@ -4,69 +4,19 @@ import type { WordsByLength } from "../wordLengths";
 
 import { generatedAllowedGuesses as sixLetterGuesses } from "./generated/allowedGuesses";
 
-export const WORTCODE_CONTENT_VERSION = 2;
+export const WORTCODE_CONTENT_VERSION = 3;
 
-export const wortcodeTargetsByLength = {
-  5: [
-    "ampel",
-    "apfel",
-    "blume",
-    "farbe",
-    "frage",
-    "honig",
-    "insel",
-    "kerze",
-    "nacht",
-    "reise",
-    "tafel",
-    "wolke",
-  ],
-  6: [
-    "banane",
-    "blumen",
-    "bruder",
-    "fragen",
-    "garten",
-    "kaffee",
-    "kuchen",
-    "laufen",
-    "mantel",
-    "mutter",
-    "schule",
-    "sommer",
-    "speise",
-    "straße",
-    "wasser",
-    "winter",
-    "zimmer",
-  ],
-  7: [
-    "abstand",
-    "antwort",
-    "brunnen",
-    "fenster",
-    "freitag",
-    "gebirge",
-    "gedicht",
-    "heizung",
-    "kapitel",
-    "kompass",
-    "pflanze",
-    "schrank",
-    "schwarz",
-    "spieler",
-    "theater",
-    "wohnung",
-    "zeichen",
-    "zeitung",
-  ],
-} as const satisfies WordsByLength;
+export const wortcodeTargetsByLength: WordsByLength = {
+  5: [...fiveLetterGuesses],
+  6: [...sixLetterGuesses],
+  7: [...sevenLetterGuesses],
+};
 
-export const wortcodeGuessWordsByLength = {
-  5: Array.from(new Set([...wortcodeTargetsByLength[5], ...fiveLetterGuesses])).sort(),
+export const wortcodeGuessWordsByLength: WordsByLength = {
+  5: Array.from(new Set([...(wortcodeTargetsByLength[5] ?? []), ...(fiveLetterGuesses as unknown as string[])])).sort(),
   6: Array.from(new Set([
-    ...wortcodeTargetsByLength[6],
-    ...sixLetterGuesses,
+    ...(wortcodeTargetsByLength[6] ?? []),
+    ...(sixLetterGuesses as unknown as string[]),
     "ananas",
     "anders",
     "arbeit",
@@ -116,8 +66,8 @@ export const wortcodeGuessWordsByLength = {
     "wollen",
     "zahlen",
   ])).sort(),
-  7: Array.from(new Set([...wortcodeTargetsByLength[7], ...sevenLetterGuesses])).sort(),
-} as const satisfies WordsByLength;
+  7: Array.from(new Set([...(wortcodeTargetsByLength[7] ?? []), ...(sevenLetterGuesses as unknown as string[])])).sort(),
+};
 
 export const answerWords = Object.values(wortcodeTargetsByLength).flat();
 export const guessWords = Object.values(wortcodeGuessWordsByLength).flat();

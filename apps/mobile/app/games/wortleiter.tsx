@@ -17,6 +17,7 @@ import Animated, {
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { HelpModal } from "@/components/HelpModal";
+import { LetterInputTiles } from "@/components/LetterInputTiles";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
@@ -32,6 +33,7 @@ import {
   undoWortleiterStep,
 } from "@/games/wortleiter/engine";
 import type { WortleiterState } from "@/games/wortleiter/types";
+import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
 import {
   isStartedProgress,
@@ -76,8 +78,8 @@ export default function WortleiterScreen() {
   const [revealVisible, setRevealVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
-  const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
+  const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
 
   useEffect(() => {
     try {
@@ -130,13 +132,13 @@ export default function WortleiterScreen() {
       status: state.status,
       state: {
         ...state,
-        startedAt: state.startedAt ?? new Date(startedAt).toISOString(),
+        startedAt: state.startedAt ?? new Date().toISOString(),
         completedAt,
       },
-      startedAt: state.startedAt ?? new Date(startedAt).toISOString(),
+      startedAt: state.startedAt ?? new Date().toISOString(),
       completedAt,
     });
-  }, [dateKey, inputLetters, progressLoaded, puzzle, startedAt, state]);
+  }, [dateKey, inputLetters, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -148,10 +150,6 @@ export default function WortleiterScreen() {
   }, [state.status, dateKey]);
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
-  const elapsedSeconds = Math.max(
-    0,
-    Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000),
-  );
   const steps = Math.max(0, state.words.length - 1);
 
   function addLetter(letter: string) {
@@ -215,7 +213,7 @@ export default function WortleiterScreen() {
         posthog.capture("game_completed", {
           gameId: "wortleiter",
           dateKey,
-          durationMs: now - startedAt,
+          durationMs: elapsedSeconds * 1000,
           attempts: result.state.words.length - 1,
         });
       } catch {
@@ -253,8 +251,8 @@ export default function WortleiterScreen() {
     setResultVisible(false);
     setRevealVisible(false);
     setProgressLoaded(true);
-    setStartedAt(Date.now());
     setFinishedAt(null);
+    resetTimer();
   }
 
   function goBack() {
@@ -324,7 +322,7 @@ export default function WortleiterScreen() {
                 style={styles.inputStep}
               >
                 <Text style={styles.arrow}>↓</Text>
-                <CompactLetterInputTiles
+                <LetterInputTiles
                   cursorIndex={cursorIndex}
                   letters={inputLetters}
                   onCursorChange={setCursorIndex}
@@ -394,38 +392,6 @@ function LadderWord({ label, target = false, word }: LadderWordProps) {
     <View style={[styles.wordPill, target && styles.targetPill]}>
       {label ? <Text style={styles.pillLabel}>{label}</Text> : null}
       <Text style={styles.pillWord}>{word.toLocaleUpperCase("de-DE")}</Text>
-    </View>
-  );
-}
-
-type CompactLetterInputTilesProps = {
-  cursorIndex: number;
-  letters: readonly string[];
-  onCursorChange: (index: number) => void;
-};
-
-function CompactLetterInputTiles({
-  cursorIndex,
-  letters,
-  onCursorChange,
-}: CompactLetterInputTilesProps) {
-  return (
-    <View style={styles.inputRow}>
-      {letters.map((letter, index) => (
-        <Pressable
-          accessibilityRole="button"
-          key={index}
-          onPress={() => onCursorChange(index)}
-          style={[
-            styles.inputTile,
-            index === cursorIndex && styles.activeInputTile,
-          ]}
-        >
-          <Text style={styles.inputTileText}>
-            {letter.toLocaleUpperCase("de-DE")}
-          </Text>
-        </Pressable>
-      ))}
     </View>
   );
 }
@@ -569,21 +535,6 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     letterSpacing: 4,
     textAlign: "center",
-  },
-  inputRow: { width: "82%", flexDirection: "row", gap: tokens.space.xs },
-  inputTile: {
-    flex: 1,
-    minHeight: 42,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 2,
-    borderColor: tokens.color.line,
-    borderRadius: tokens.radius.sm,
-    backgroundColor: "rgba(255,255,255,0.78)",
-  },
-  activeInputTile: {
-    borderColor: tokens.color.primary,
-    backgroundColor: "#FFF1DF",
   },
   inputTileText: { color: tokens.color.ink, fontSize: 20, fontWeight: "900" },
   statusBlock: {

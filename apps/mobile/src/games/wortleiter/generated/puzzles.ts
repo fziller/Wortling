@@ -5841,5 +5841,18580 @@ export const generatedWortleiterPuzzles = [
       "piss",
       "pass"
     ]
+  },
+  {
+    "id": "wortleiter-366",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filz",
+      "falz",
+      "salz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-367",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filz",
+      "falz",
+      "walz",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-368",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "firm",
+      "form",
+      "fort",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-369",
+    "version": 1,
+    "startWord": "frau",
+    "targetWord": "plan",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "frau",
+      "flau",
+      "klau",
+      "klan",
+      "plan"
+    ]
+  },
+  {
+    "id": "wortleiter-370",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "feld",
+      "feed",
+      "feen",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-371",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gell",
+      "gehl",
+      "mehl",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-372",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gelt",
+      "galt",
+      "halt",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-373",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gelt",
+      "welt",
+      "wert",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-374",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "held",
+      "huld",
+      "hund",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-375",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "held",
+      "huld",
+      "hund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-376",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "meld",
+      "meid",
+      "maid",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-377",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "meld",
+      "mild",
+      "mied",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-378",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "meld",
+      "mild",
+      "milz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-379",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "meld",
+      "mild",
+      "wild",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-380",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "meld",
+      "mild",
+      "wild",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-381",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "meld",
+      "mold",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-382",
+    "version": 1,
+    "startWord": "glas",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "glas",
+      "blas",
+      "baas",
+      "bass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-383",
+    "version": 1,
+    "startWord": "glas",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "glas",
+      "blas",
+      "baas",
+      "baus",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-384",
+    "version": 1,
+    "startWord": "glas",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "glas",
+      "blas",
+      "baas",
+      "baus",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-385",
+    "version": 1,
+    "startWord": "glas",
+    "targetWord": "plan",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "glas",
+      "glau",
+      "klau",
+      "klan",
+      "plan"
+    ]
+  },
+  {
+    "id": "wortleiter-386",
+    "version": 1,
+    "startWord": "gras",
+    "targetWord": "plan",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "gras",
+      "gran",
+      "kran",
+      "klan",
+      "plan"
+    ]
+  },
+  {
+    "id": "wortleiter-387",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "band",
+      "bank",
+      "bark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-388",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "band",
+      "bann",
+      "bahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-389",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "band",
+      "bind",
+      "kind",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-390",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "fand",
+      "fans",
+      "fass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-391",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "hanf",
+      "haff",
+      "haft",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-392",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "hanf",
+      "half",
+      "hals",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-393",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "hemd",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "hund",
+      "huld",
+      "held",
+      "hemd"
+    ]
+  },
+  {
+    "id": "wortleiter-394",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "hund",
+      "huld",
+      "hold",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-395",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "rand",
+      "raid",
+      "maid",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-396",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "rand",
+      "rane",
+      "rase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-397",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "rand",
+      "rane",
+      "rase",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-398",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "rand",
+      "rant",
+      "raut",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-399",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "rand",
+      "rant",
+      "raut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-400",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "sand",
+      "send",
+      "senn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-401",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "wand",
+      "want",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-402",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "baus",
+      "bars",
+      "bark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-403",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "hais",
+      "hain",
+      "zain",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-404",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "hals",
+      "halm",
+      "holm",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-405",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "hals",
+      "wals",
+      "wald",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-406",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "hals",
+      "wals",
+      "wels",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-407",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "haut",
+      "hart",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-408",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "haut",
+      "hart",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-409",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "maus",
+      "mass",
+      "muss",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-410",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "maus",
+      "maul",
+      "mahl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-411",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "maus",
+      "maul",
+      "mahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-412",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "raus",
+      "rais",
+      "raid",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-413",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "raus",
+      "rats",
+      "ratz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-414",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "raus",
+      "raue",
+      "rase",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-415",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "saus",
+      "saug",
+      "sang",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-416",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "baut",
+      "bast",
+      "best",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-417",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "halt",
+      "galt",
+      "gelt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-418",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "halt",
+      "hall",
+      "wall",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-419",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "hart",
+      "harn",
+      "hahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-420",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "hart",
+      "hort",
+      "horn",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-421",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "hart",
+      "hurt",
+      "hunt",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-422",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "heut",
+      "hebt",
+      "webt",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-423",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "kaut",
+      "kart",
+      "kort",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-424",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "laut",
+      "lagt",
+      "lugt",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-425",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "maut",
+      "maul",
+      "mahl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-426",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "maut",
+      "maul",
+      "mahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-427",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "raut",
+      "rant",
+      "rand",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-428",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "raut",
+      "rant",
+      "rand",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-429",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "raut",
+      "rant",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-430",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "raut",
+      "rant",
+      "want",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-431",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "raut",
+      "rast",
+      "rost",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-432",
+    "version": 1,
+    "startWord": "hemd",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hemd",
+      "held",
+      "geld",
+      "gelt",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-433",
+    "version": 1,
+    "startWord": "hemd",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hemd",
+      "held",
+      "geld",
+      "gelt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-434",
+    "version": 1,
+    "startWord": "hemd",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hemd",
+      "held",
+      "hell",
+      "hehl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-435",
+    "version": 1,
+    "startWord": "hemd",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hemd",
+      "held",
+      "hell",
+      "heil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-436",
+    "version": 1,
+    "startWord": "hemd",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hemd",
+      "held",
+      "huld",
+      "hund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-437",
+    "version": 1,
+    "startWord": "hemd",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hemd",
+      "held",
+      "meld",
+      "mold",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-438",
+    "version": 1,
+    "startWord": "hemd",
+    "targetWord": "meer",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hemd",
+      "herd",
+      "herr",
+      "heer",
+      "meer"
+    ]
+  },
+  {
+    "id": "wortleiter-439",
+    "version": 1,
+    "startWord": "hemd",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hemd",
+      "herd",
+      "werd",
+      "wend",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-440",
+    "version": 1,
+    "startWord": "hemd",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hemd",
+      "herd",
+      "werd",
+      "wert",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-441",
+    "version": 1,
+    "startWord": "hemd",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hemd",
+      "herd",
+      "werd",
+      "wird",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-442",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "harz",
+      "harn",
+      "hahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-443",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "harz",
+      "harn",
+      "horn",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-444",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "harz",
+      "harn",
+      "karn",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-445",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "harz",
+      "hart",
+      "haft",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-446",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "harz",
+      "hart",
+      "haut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-447",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "harz",
+      "hart",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-448",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "herd",
+      "held",
+      "hold",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-449",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "herd",
+      "held",
+      "huld",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-450",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "herd",
+      "werd",
+      "wend",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-451",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "herd",
+      "werd",
+      "wert",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-452",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "herd",
+      "werd",
+      "wird",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-453",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "tier",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "herr",
+      "heer",
+      "teer",
+      "tier"
+    ]
+  },
+  {
+    "id": "wortleiter-454",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "herr",
+      "hehr",
+      "mehr",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-455",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "nerz",
+      "netz",
+      "nett",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-456",
+    "version": 1,
+    "startWord": "holz",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "holz",
+      "bolz",
+      "balz",
+      "salz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-457",
+    "version": 1,
+    "startWord": "holz",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "holz",
+      "bolz",
+      "balz",
+      "walz",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-458",
+    "version": 1,
+    "startWord": "holz",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "holz",
+      "hold",
+      "mold",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-459",
+    "version": 1,
+    "startWord": "holz",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "holz",
+      "hold",
+      "mold",
+      "mond",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-460",
+    "version": 1,
+    "startWord": "holz",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "holz",
+      "hole",
+      "hose",
+      "hase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-461",
+    "version": 1,
+    "startWord": "holz",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "holz",
+      "holk",
+      "kolk",
+      "kork",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-462",
+    "version": 1,
+    "startWord": "holz",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "holz",
+      "holt",
+      "halt",
+      "haft",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-463",
+    "version": 1,
+    "startWord": "holz",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "holz",
+      "holt",
+      "halt",
+      "haut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-464",
+    "version": 1,
+    "startWord": "holz",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "holz",
+      "holt",
+      "hort",
+      "horn",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-465",
+    "version": 1,
+    "startWord": "hund",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hund",
+      "bund",
+      "bind",
+      "lind",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-466",
+    "version": 1,
+    "startWord": "hund",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hund",
+      "hunt",
+      "hont",
+      "hort",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-467",
+    "version": 1,
+    "startWord": "hund",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hund",
+      "sund",
+      "send",
+      "senn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-468",
+    "version": 1,
+    "startWord": "kind",
+    "targetWord": "ziel",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kind",
+      "kink",
+      "kiek",
+      "kiel",
+      "ziel"
+    ]
+  },
+  {
+    "id": "wortleiter-469",
+    "version": 1,
+    "startWord": "kind",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kind",
+      "kinn",
+      "kenn",
+      "kern",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-470",
+    "version": 1,
+    "startWord": "kind",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kind",
+      "sind",
+      "send",
+      "senn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-471",
+    "version": 1,
+    "startWord": "kind",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kind",
+      "wind",
+      "wird",
+      "wirt",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-472",
+    "version": 1,
+    "startWord": "kino",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kino",
+      "kilo",
+      "filo",
+      "filz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-473",
+    "version": 1,
+    "startWord": "kino",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kino",
+      "kind",
+      "bind",
+      "bond",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-474",
+    "version": 1,
+    "startWord": "kino",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kino",
+      "kind",
+      "wind",
+      "wand",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-475",
+    "version": 1,
+    "startWord": "kino",
+    "targetWord": "ziel",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kino",
+      "kink",
+      "kiek",
+      "kiel",
+      "ziel"
+    ]
+  },
+  {
+    "id": "wortleiter-476",
+    "version": 1,
+    "startWord": "kino",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kino",
+      "kinn",
+      "kenn",
+      "kern",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-477",
+    "version": 1,
+    "startWord": "kino",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kino",
+      "kinn",
+      "sinn",
+      "senn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-478",
+    "version": 1,
+    "startWord": "kopf",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kopf",
+      "topf",
+      "torf",
+      "tort",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-479",
+    "version": 1,
+    "startWord": "korn",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "korn",
+      "born",
+      "barn",
+      "bark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-480",
+    "version": 1,
+    "startWord": "korn",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "korn",
+      "karn",
+      "kahn",
+      "kahl",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-481",
+    "version": 1,
+    "startWord": "korn",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "korn",
+      "karn",
+      "kahn",
+      "zahn",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-482",
+    "version": 1,
+    "startWord": "korn",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "korn",
+      "karn",
+      "kart",
+      "kaut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-483",
+    "version": 1,
+    "startWord": "korn",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "korn",
+      "kern",
+      "fern",
+      "feen",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-484",
+    "version": 1,
+    "startWord": "korn",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "korn",
+      "kern",
+      "kerl",
+      "keil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-485",
+    "version": 1,
+    "startWord": "korn",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "korn",
+      "kord",
+      "mord",
+      "mond",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-486",
+    "version": 1,
+    "startWord": "korn",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "korn",
+      "kore",
+      "lore",
+      "lose",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-487",
+    "version": 1,
+    "startWord": "korn",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "korn",
+      "kort",
+      "wort",
+      "wert",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-488",
+    "version": 1,
+    "startWord": "kuss",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kuss",
+      "guss",
+      "goss",
+      "ross",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-489",
+    "version": 1,
+    "startWord": "kuss",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kuss",
+      "kess",
+      "kees",
+      "sees",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-490",
+    "version": 1,
+    "startWord": "kuss",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kuss",
+      "muss",
+      "muds",
+      "mudd",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-491",
+    "version": 1,
+    "startWord": "kuss",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kuss",
+      "nuss",
+      "nass",
+      "nase",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-492",
+    "version": 1,
+    "startWord": "land",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "land",
+      "band",
+      "bank",
+      "bark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-493",
+    "version": 1,
+    "startWord": "land",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "land",
+      "band",
+      "bann",
+      "bahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-494",
+    "version": 1,
+    "startWord": "land",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "land",
+      "fand",
+      "fans",
+      "fass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-495",
+    "version": 1,
+    "startWord": "land",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "land",
+      "rand",
+      "raid",
+      "maid",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-496",
+    "version": 1,
+    "startWord": "land",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "land",
+      "rand",
+      "rane",
+      "rase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-497",
+    "version": 1,
+    "startWord": "land",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "land",
+      "rand",
+      "rane",
+      "rase",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-498",
+    "version": 1,
+    "startWord": "land",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "land",
+      "rand",
+      "rant",
+      "raut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-499",
+    "version": 1,
+    "startWord": "land",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "land",
+      "sand",
+      "send",
+      "senn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-500",
+    "version": 1,
+    "startWord": "land",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "land",
+      "wand",
+      "want",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-501",
+    "version": 1,
+    "startWord": "laut",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "laut",
+      "baut",
+      "bart",
+      "part",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-502",
+    "version": 1,
+    "startWord": "laut",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "laut",
+      "baut",
+      "bart",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-503",
+    "version": 1,
+    "startWord": "laut",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "laut",
+      "labt",
+      "lebt",
+      "webt",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-504",
+    "version": 1,
+    "startWord": "laut",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "laut",
+      "maut",
+      "maul",
+      "mahl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-505",
+    "version": 1,
+    "startWord": "laut",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "laut",
+      "maut",
+      "maul",
+      "mahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-506",
+    "version": 1,
+    "startWord": "laut",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "laut",
+      "raut",
+      "rant",
+      "rand",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-507",
+    "version": 1,
+    "startWord": "laut",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "laut",
+      "raut",
+      "rant",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-508",
+    "version": 1,
+    "startWord": "laut",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "laut",
+      "raut",
+      "rant",
+      "want",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-509",
+    "version": 1,
+    "startWord": "laut",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "laut",
+      "raut",
+      "rast",
+      "rost",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-510",
+    "version": 1,
+    "startWord": "lied",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "lied",
+      "mied",
+      "mild",
+      "milz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-511",
+    "version": 1,
+    "startWord": "lied",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "lied",
+      "mied",
+      "mild",
+      "mold",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-512",
+    "version": 1,
+    "startWord": "lied",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "lied",
+      "mied",
+      "mild",
+      "wild",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-513",
+    "version": 1,
+    "startWord": "lied",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "lied",
+      "ried",
+      "rind",
+      "rund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-514",
+    "version": 1,
+    "startWord": "luft",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "luft",
+      "loft",
+      "lobt",
+      "wobt",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-515",
+    "version": 1,
+    "startWord": "luft",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "luft",
+      "loft",
+      "lost",
+      "rost",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-516",
+    "version": 1,
+    "startWord": "luft",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "luft",
+      "loft",
+      "soft",
+      "saft",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-517",
+    "version": 1,
+    "startWord": "luft",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "luft",
+      "lust",
+      "last",
+      "lase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-518",
+    "version": 1,
+    "startWord": "luft",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "luft",
+      "lust",
+      "last",
+      "lass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-519",
+    "version": 1,
+    "startWord": "luft",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "luft",
+      "lust",
+      "wust",
+      "west",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-520",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "fahl",
+      "fehl",
+      "feil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-521",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "mail",
+      "maid",
+      "raid",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-522",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "mail",
+      "mais",
+      "mass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-523",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "mall",
+      "malz",
+      "milz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-524",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "mall",
+      "malz",
+      "salz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-525",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "mall",
+      "moll",
+      "mold",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-526",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "maul",
+      "maut",
+      "saut",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-527",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "wahl",
+      "waal",
+      "saal",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-528",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "wahl",
+      "wall",
+      "wald",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-529",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "wahl",
+      "wohl",
+      "wohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-530",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "hais",
+      "hain",
+      "zain",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-531",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "maid",
+      "waid",
+      "wand",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-532",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "mail",
+      "fail",
+      "feil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-533",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "mals",
+      "mall",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-534",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "mals",
+      "malt",
+      "maat",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-535",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "mals",
+      "malz",
+      "milz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-536",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "mals",
+      "wals",
+      "wels",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-537",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "mass",
+      "nass",
+      "nase",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-538",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "maus",
+      "saus",
+      "saut",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-539",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "rais",
+      "raid",
+      "rand",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-540",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "rais",
+      "rats",
+      "ratz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-541",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "rais",
+      "reis",
+      "reit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-542",
+    "version": 1,
+    "startWord": "maus",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "maus",
+      "baus",
+      "baue",
+      "naue",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-543",
+    "version": 1,
+    "startWord": "maus",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "maus",
+      "mais",
+      "maid",
+      "waid",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-544",
+    "version": 1,
+    "startWord": "maus",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "maus",
+      "mals",
+      "mall",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-545",
+    "version": 1,
+    "startWord": "maus",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "maus",
+      "mals",
+      "malz",
+      "milz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-546",
+    "version": 1,
+    "startWord": "maus",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "maus",
+      "mals",
+      "wals",
+      "wels",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-547",
+    "version": 1,
+    "startWord": "maus",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "maus",
+      "maul",
+      "mahl",
+      "zahl",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-548",
+    "version": 1,
+    "startWord": "maus",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "maus",
+      "raus",
+      "rais",
+      "raid",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-549",
+    "version": 1,
+    "startWord": "maus",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "maus",
+      "raus",
+      "rats",
+      "ratz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-550",
+    "version": 1,
+    "startWord": "maus",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "maus",
+      "raus",
+      "raue",
+      "rase",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-551",
+    "version": 1,
+    "startWord": "maus",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "maus",
+      "saus",
+      "saug",
+      "sang",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-552",
+    "version": 1,
+    "startWord": "meer",
+    "targetWord": "ziel",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "meer",
+      "geer",
+      "gier",
+      "zier",
+      "ziel"
+    ]
+  },
+  {
+    "id": "wortleiter-553",
+    "version": 1,
+    "startWord": "meer",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "meer",
+      "mehr",
+      "mahr",
+      "mahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-554",
+    "version": 1,
+    "startWord": "meer",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "meer",
+      "mehr",
+      "sehr",
+      "sohr",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-555",
+    "version": 1,
+    "startWord": "meer",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "meer",
+      "mehr",
+      "wehr",
+      "weht",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-556",
+    "version": 1,
+    "startWord": "meer",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "meer",
+      "teer",
+      "teen",
+      "tein",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-557",
+    "version": 1,
+    "startWord": "mehl",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mehl",
+      "fehl",
+      "fehn",
+      "feen",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-558",
+    "version": 1,
+    "startWord": "mehl",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mehl",
+      "fehl",
+      "feil",
+      "feit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-559",
+    "version": 1,
+    "startWord": "mehl",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mehl",
+      "gehl",
+      "geht",
+      "gest",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-560",
+    "version": 1,
+    "startWord": "mehl",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mehl",
+      "gehl",
+      "gell",
+      "gelt",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-561",
+    "version": 1,
+    "startWord": "mehl",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mehl",
+      "gehl",
+      "gell",
+      "gelt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-562",
+    "version": 1,
+    "startWord": "mehl",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mehl",
+      "hehl",
+      "hohl",
+      "hohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-563",
+    "version": 1,
+    "startWord": "mehl",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mehl",
+      "mahl",
+      "mall",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-564",
+    "version": 1,
+    "startWord": "mehl",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mehl",
+      "mahl",
+      "wahl",
+      "wall",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-565",
+    "version": 1,
+    "startWord": "mehl",
+    "targetWord": "tier",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mehl",
+      "mehr",
+      "meer",
+      "teer",
+      "tier"
+    ]
+  },
+  {
+    "id": "wortleiter-566",
+    "version": 1,
+    "startWord": "mond",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mond",
+      "bond",
+      "band",
+      "wand",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-567",
+    "version": 1,
+    "startWord": "mond",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mond",
+      "bond",
+      "bind",
+      "rind",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-568",
+    "version": 1,
+    "startWord": "mond",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mond",
+      "bond",
+      "bord",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-569",
+    "version": 1,
+    "startWord": "mond",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mond",
+      "bond",
+      "bord",
+      "bort",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-570",
+    "version": 1,
+    "startWord": "mond",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mond",
+      "mold",
+      "mild",
+      "milz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-571",
+    "version": 1,
+    "startWord": "mund",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mund",
+      "mond",
+      "mold",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-572",
+    "version": 1,
+    "startWord": "mund",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mund",
+      "sund",
+      "send",
+      "senn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-573",
+    "version": 1,
+    "startWord": "name",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "name",
+      "kame",
+      "kate",
+      "katz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-574",
+    "version": 1,
+    "startWord": "name",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "name",
+      "nabe",
+      "rabe",
+      "rane",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-575",
+    "version": 1,
+    "startWord": "name",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "name",
+      "nabe",
+      "wabe",
+      "wane",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-576",
+    "version": 1,
+    "startWord": "name",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "name",
+      "nahe",
+      "nahm",
+      "zahm",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-577",
+    "version": 1,
+    "startWord": "name",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "name",
+      "nahe",
+      "rahe",
+      "rahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-578",
+    "version": 1,
+    "startWord": "name",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "name",
+      "same",
+      "sale",
+      "wale",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-579",
+    "version": 1,
+    "startWord": "name",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "name",
+      "same",
+      "sami",
+      "sani",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-580",
+    "version": 1,
+    "startWord": "nase",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nase",
+      "base",
+      "bare",
+      "bark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-581",
+    "version": 1,
+    "startWord": "nase",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nase",
+      "base",
+      "bast",
+      "best",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-582",
+    "version": 1,
+    "startWord": "nase",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nase",
+      "hase",
+      "hast",
+      "haft",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-583",
+    "version": 1,
+    "startWord": "nase",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nase",
+      "nabe",
+      "wabe",
+      "wale",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-584",
+    "version": 1,
+    "startWord": "nase",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nase",
+      "nage",
+      "sage",
+      "sagt",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-585",
+    "version": 1,
+    "startWord": "nase",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nase",
+      "nahe",
+      "nahm",
+      "zahm",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-586",
+    "version": 1,
+    "startWord": "nase",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nase",
+      "rase",
+      "rahe",
+      "rahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-587",
+    "version": 1,
+    "startWord": "nase",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nase",
+      "rase",
+      "rane",
+      "rand",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-588",
+    "version": 1,
+    "startWord": "nase",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nase",
+      "rase",
+      "rane",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-589",
+    "version": 1,
+    "startWord": "nase",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nase",
+      "rase",
+      "rane",
+      "wane",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-590",
+    "version": 1,
+    "startWord": "nase",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nase",
+      "rase",
+      "rate",
+      "ratz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-591",
+    "version": 1,
+    "startWord": "nest",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nest",
+      "best",
+      "bast",
+      "bass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-592",
+    "version": 1,
+    "startWord": "nest",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nest",
+      "fest",
+      "feit",
+      "feil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-593",
+    "version": 1,
+    "startWord": "nest",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nest",
+      "rest",
+      "rast",
+      "rant",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-594",
+    "version": 1,
+    "startWord": "park",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "park",
+      "bark",
+      "bank",
+      "rank",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-595",
+    "version": 1,
+    "startWord": "park",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "park",
+      "bark",
+      "bank",
+      "sank",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-596",
+    "version": 1,
+    "startWord": "park",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "park",
+      "bark",
+      "bank",
+      "wank",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-597",
+    "version": 1,
+    "startWord": "park",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "park",
+      "bark",
+      "barn",
+      "bahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-598",
+    "version": 1,
+    "startWord": "park",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "park",
+      "bark",
+      "barn",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-599",
+    "version": 1,
+    "startWord": "park",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "park",
+      "bark",
+      "bars",
+      "bass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-600",
+    "version": 1,
+    "startWord": "park",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "park",
+      "hark",
+      "hart",
+      "haft",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-601",
+    "version": 1,
+    "startWord": "park",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "park",
+      "hark",
+      "harz",
+      "hatz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-602",
+    "version": 1,
+    "startWord": "park",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "park",
+      "part",
+      "wart",
+      "wert",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-603",
+    "version": 1,
+    "startWord": "pass",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pass",
+      "bass",
+      "boss",
+      "ross",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-604",
+    "version": 1,
+    "startWord": "pass",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pass",
+      "fass",
+      "fans",
+      "fand",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-605",
+    "version": 1,
+    "startWord": "pass",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pass",
+      "fass",
+      "fans",
+      "fand",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-606",
+    "version": 1,
+    "startWord": "pass",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pass",
+      "fass",
+      "fans",
+      "fand",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-607",
+    "version": 1,
+    "startWord": "pass",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pass",
+      "hass",
+      "hals",
+      "wals",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-608",
+    "version": 1,
+    "startWord": "pass",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pass",
+      "hass",
+      "hast",
+      "haft",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-609",
+    "version": 1,
+    "startWord": "pass",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pass",
+      "mass",
+      "mast",
+      "maat",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-610",
+    "version": 1,
+    "startWord": "pass",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pass",
+      "piss",
+      "pins",
+      "ping",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-611",
+    "version": 1,
+    "startWord": "pilz",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pilz",
+      "filz",
+      "falz",
+      "salz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-612",
+    "version": 1,
+    "startWord": "pilz",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pilz",
+      "filz",
+      "falz",
+      "walz",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-613",
+    "version": 1,
+    "startWord": "pilz",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pilz",
+      "milz",
+      "mild",
+      "wild",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-614",
+    "version": 1,
+    "startWord": "pilz",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pilz",
+      "pils",
+      "pins",
+      "ping",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-615",
+    "version": 1,
+    "startWord": "pilz",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pilz",
+      "pils",
+      "pols",
+      "poll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-616",
+    "version": 1,
+    "startWord": "rand",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rand",
+      "rane",
+      "rate",
+      "ratz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-617",
+    "version": 1,
+    "startWord": "rand",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rand",
+      "rann",
+      "rahn",
+      "zahn",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-618",
+    "version": 1,
+    "startWord": "rand",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rand",
+      "rant",
+      "ragt",
+      "sagt",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-619",
+    "version": 1,
+    "startWord": "rand",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rand",
+      "rant",
+      "ragt",
+      "sagt",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-620",
+    "version": 1,
+    "startWord": "rand",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rand",
+      "sand",
+      "send",
+      "senn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-621",
+    "version": 1,
+    "startWord": "rand",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rand",
+      "wand",
+      "want",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-622",
+    "version": 1,
+    "startWord": "ring",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "ring",
+      "rang",
+      "rand",
+      "wand",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-623",
+    "version": 1,
+    "startWord": "ring",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "ring",
+      "rang",
+      "rane",
+      "rase",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-624",
+    "version": 1,
+    "startWord": "ring",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "ring",
+      "rang",
+      "rann",
+      "rahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-625",
+    "version": 1,
+    "startWord": "ring",
+    "targetWord": "ziel",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "ring",
+      "sing",
+      "sieg",
+      "siel",
+      "ziel"
+    ]
+  },
+  {
+    "id": "wortleiter-626",
+    "version": 1,
+    "startWord": "ring",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "ring",
+      "sing",
+      "sinn",
+      "senn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-627",
+    "version": 1,
+    "startWord": "rose",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rose",
+      "dose",
+      "dole",
+      "doll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-628",
+    "version": 1,
+    "startWord": "rose",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rose",
+      "dose",
+      "dost",
+      "dort",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-629",
+    "version": 1,
+    "startWord": "rose",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rose",
+      "lose",
+      "lohe",
+      "lohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-630",
+    "version": 1,
+    "startWord": "rose",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rose",
+      "rase",
+      "rahe",
+      "rahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-631",
+    "version": 1,
+    "startWord": "rose",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rose",
+      "rase",
+      "rane",
+      "rand",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-632",
+    "version": 1,
+    "startWord": "rose",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rose",
+      "rase",
+      "rane",
+      "wane",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-633",
+    "version": 1,
+    "startWord": "rose",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rose",
+      "rase",
+      "rate",
+      "ratz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-634",
+    "version": 1,
+    "startWord": "rose",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rose",
+      "rost",
+      "rest",
+      "reit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-635",
+    "version": 1,
+    "startWord": "rose",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rose",
+      "rost",
+      "rest",
+      "west",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-636",
+    "version": 1,
+    "startWord": "saat",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saat",
+      "saal",
+      "seal",
+      "seil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-637",
+    "version": 1,
+    "startWord": "saat",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saat",
+      "saal",
+      "waal",
+      "wahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-638",
+    "version": 1,
+    "startWord": "saat",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saat",
+      "saal",
+      "waal",
+      "wall",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-639",
+    "version": 1,
+    "startWord": "saat",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saat",
+      "sagt",
+      "wagt",
+      "want",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-640",
+    "version": 1,
+    "startWord": "saat",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saat",
+      "sagt",
+      "wagt",
+      "wogt",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-641",
+    "version": 1,
+    "startWord": "saat",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saat",
+      "saht",
+      "seht",
+      "weht",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-642",
+    "version": 1,
+    "startWord": "saat",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saat",
+      "samt",
+      "sami",
+      "sani",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-643",
+    "version": 1,
+    "startWord": "saft",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saft",
+      "haft",
+      "hart",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-644",
+    "version": 1,
+    "startWord": "saft",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saft",
+      "haft",
+      "heft",
+      "weft",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-645",
+    "version": 1,
+    "startWord": "saft",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saft",
+      "safe",
+      "sale",
+      "wale",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-646",
+    "version": 1,
+    "startWord": "saft",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saft",
+      "sagt",
+      "wagt",
+      "want",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-647",
+    "version": 1,
+    "startWord": "saft",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saft",
+      "samt",
+      "sami",
+      "sani",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-648",
+    "version": 1,
+    "startWord": "sand",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sand",
+      "band",
+      "bann",
+      "bahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-649",
+    "version": 1,
+    "startWord": "sand",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sand",
+      "sani",
+      "sali",
+      "salz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-650",
+    "version": 1,
+    "startWord": "sand",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sand",
+      "send",
+      "seid",
+      "seil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-651",
+    "version": 1,
+    "startWord": "sand",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sand",
+      "wand",
+      "want",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-652",
+    "version": 1,
+    "startWord": "satz",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "satz",
+      "salz",
+      "walz",
+      "wald",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-653",
+    "version": 1,
+    "startWord": "satz",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "satz",
+      "satt",
+      "watt",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-654",
+    "version": 1,
+    "startWord": "satz",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "satz",
+      "satt",
+      "watt",
+      "wett",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-655",
+    "version": 1,
+    "startWord": "seen",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "seen",
+      "feen",
+      "fehn",
+      "zehn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-656",
+    "version": 1,
+    "startWord": "seen",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "seen",
+      "sein",
+      "wein",
+      "weit",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-657",
+    "version": 1,
+    "startWord": "seen",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "seen",
+      "sein",
+      "zein",
+      "zeit",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-658",
+    "version": 1,
+    "startWord": "seen",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "seen",
+      "senn",
+      "sann",
+      "wann",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-659",
+    "version": 1,
+    "startWord": "seen",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "seen",
+      "senn",
+      "sinn",
+      "sind",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-660",
+    "version": 1,
+    "startWord": "sohn",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sohn",
+      "hohn",
+      "hahn",
+      "zahn",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-661",
+    "version": 1,
+    "startWord": "sohn",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sohn",
+      "hohn",
+      "horn",
+      "hort",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-662",
+    "version": 1,
+    "startWord": "sohn",
+    "targetWord": "star",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sohn",
+      "sohr",
+      "sour",
+      "stur",
+      "star"
+    ]
+  },
+  {
+    "id": "wortleiter-663",
+    "version": 1,
+    "startWord": "sohn",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sohn",
+      "wohn",
+      "wahn",
+      "wann",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-664",
+    "version": 1,
+    "startWord": "teil",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "teil",
+      "feil",
+      "fail",
+      "fahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-665",
+    "version": 1,
+    "startWord": "teil",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "teil",
+      "feil",
+      "feit",
+      "weit",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-666",
+    "version": 1,
+    "startWord": "teil",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "teil",
+      "feil",
+      "feit",
+      "zeit",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-667",
+    "version": 1,
+    "startWord": "teil",
+    "targetWord": "tier",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "teil",
+      "tein",
+      "teen",
+      "teer",
+      "tier"
+    ]
+  },
+  {
+    "id": "wortleiter-668",
+    "version": 1,
+    "startWord": "teil",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "teil",
+      "tein",
+      "zein",
+      "zain",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-669",
+    "version": 1,
+    "startWord": "wald",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "wald",
+      "walk",
+      "welk",
+      "welt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-670",
+    "version": 1,
+    "startWord": "wald",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "wald",
+      "wall",
+      "mall",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-671",
+    "version": 1,
+    "startWord": "wald",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "wald",
+      "wand",
+      "wann",
+      "wahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-672",
+    "version": 1,
+    "startWord": "wald",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "wald",
+      "wild",
+      "wird",
+      "wirt",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-673",
+    "version": 1,
+    "startWord": "wand",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "wand",
+      "wald",
+      "wall",
+      "wahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-674",
+    "version": 1,
+    "startWord": "wand",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "wand",
+      "wend",
+      "werd",
+      "wert",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-675",
+    "version": 1,
+    "startWord": "welt",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "welt",
+      "wert",
+      "wirt",
+      "wird",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-676",
+    "version": 1,
+    "startWord": "wind",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "wind",
+      "wand",
+      "wann",
+      "wahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-677",
+    "version": 1,
+    "startWord": "wort",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "wort",
+      "port",
+      "polt",
+      "poll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-678",
+    "version": 1,
+    "startWord": "zahl",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "zahl",
+      "mahl",
+      "mall",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-679",
+    "version": 1,
+    "startWord": "zahl",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "zahl",
+      "zahn",
+      "zehn",
+      "zein",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-680",
+    "version": 1,
+    "startWord": "zahn",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "zahn",
+      "bahn",
+      "barn",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-681",
+    "version": 1,
+    "startWord": "zahn",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "zahn",
+      "zehn",
+      "zein",
+      "zeit",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-682",
+    "version": 1,
+    "startWord": "ader",
+    "targetWord": "ziel",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ader",
+      "aber",
+      "eber",
+      "eier",
+      "zier",
+      "ziel"
+    ]
+  },
+  {
+    "id": "wortleiter-683",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "aule",
+      "aula",
+      "hula",
+      "huld",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-684",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "aule",
+      "eule",
+      "eile",
+      "file",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-685",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "ball",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "aule",
+      "pule",
+      "pale",
+      "pall",
+      "ball"
+    ]
+  },
+  {
+    "id": "wortleiter-686",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "fall",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "aule",
+      "pule",
+      "pale",
+      "pall",
+      "fall"
+    ]
+  },
+  {
+    "id": "wortleiter-687",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "aule",
+      "pule",
+      "pole",
+      "hole",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-688",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "aule",
+      "pule",
+      "pole",
+      "poll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-689",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "aule",
+      "pule",
+      "puls",
+      "pils",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-690",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "bart",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "buge",
+      "bube",
+      "babe",
+      "bare",
+      "bart"
+    ]
+  },
+  {
+    "id": "wortleiter-691",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "baum",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "buge",
+      "bube",
+      "babe",
+      "baue",
+      "baum"
+    ]
+  },
+  {
+    "id": "wortleiter-692",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "buge",
+      "bugs",
+      "bags",
+      "bass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-693",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "buge",
+      "bugs",
+      "bags",
+      "baus",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-694",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "buge",
+      "bugs",
+      "bags",
+      "baus",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-695",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "bund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "buge",
+      "buhe",
+      "buht",
+      "bunt",
+      "bund"
+    ]
+  },
+  {
+    "id": "wortleiter-696",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "fell",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "fuge",
+      "fege",
+      "fehe",
+      "fehl",
+      "fell"
+    ]
+  },
+  {
+    "id": "wortleiter-697",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "fuge",
+      "fege",
+      "fehe",
+      "fehl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-698",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "fuge",
+      "fege",
+      "feie",
+      "feil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-699",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "bein",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "fuge",
+      "fege",
+      "feie",
+      "fein",
+      "bein"
+    ]
+  },
+  {
+    "id": "wortleiter-700",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "fuge",
+      "fege",
+      "feie",
+      "feit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-701",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "fuge",
+      "fege",
+      "fese",
+      "fest",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-702",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "fuge",
+      "fugt",
+      "furt",
+      "wurt",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-703",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "dame",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "luge",
+      "lage",
+      "gage",
+      "game",
+      "dame"
+    ]
+  },
+  {
+    "id": "wortleiter-704",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "luge",
+      "lage",
+      "laue",
+      "haue",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-705",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "luge",
+      "lage",
+      "mage",
+      "maie",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-706",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "luge",
+      "lage",
+      "rage",
+      "rane",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-707",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "luge",
+      "lage",
+      "sage",
+      "safe",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-708",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "luge",
+      "lage",
+      "sage",
+      "sagt",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-709",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "luge",
+      "lage",
+      "wage",
+      "wale",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-710",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "luge",
+      "lage",
+      "wage",
+      "wane",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-711",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "luge",
+      "loge",
+      "koge",
+      "kore",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-712",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "boot",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "luge",
+      "loge",
+      "logt",
+      "bogt",
+      "boot"
+    ]
+  },
+  {
+    "id": "wortleiter-713",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "auge",
+      "luge",
+      "loge",
+      "lohe",
+      "lohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-714",
+    "version": 1,
+    "startWord": "auge",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "auge",
+      "luge",
+      "lugt",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-715",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "ball",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bank",
+      "band",
+      "bald",
+      "ball"
+    ]
+  },
+  {
+    "id": "wortleiter-716",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "bild",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bank",
+      "band",
+      "bind",
+      "bild"
+    ]
+  },
+  {
+    "id": "wortleiter-717",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bank",
+      "band",
+      "bind",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-718",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bank",
+      "band",
+      "bond",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-719",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bank",
+      "band",
+      "bund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-720",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bank",
+      "band",
+      "hand",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-721",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bank",
+      "bann",
+      "bahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-722",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bank",
+      "wank",
+      "walk",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-723",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bank",
+      "wank",
+      "wink",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-724",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "bein",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bark",
+      "barn",
+      "bern",
+      "bein"
+    ]
+  },
+  {
+    "id": "wortleiter-725",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bark",
+      "barn",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-726",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bark",
+      "barn",
+      "karn",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-727",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "bart",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bach",
+      "back",
+      "bark",
+      "bart"
+    ]
+  },
+  {
+    "id": "wortleiter-728",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "blut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bark",
+      "bart",
+      "baut",
+      "blut"
+    ]
+  },
+  {
+    "id": "wortleiter-729",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "boot",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bark",
+      "bart",
+      "bort",
+      "boot"
+    ]
+  },
+  {
+    "id": "wortleiter-730",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "bark",
+      "bart",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-731",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bach",
+      "back",
+      "pack",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-732",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "rack",
+      "rank",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-733",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "baum",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "back",
+      "rack",
+      "rauk",
+      "raum",
+      "baum"
+    ]
+  },
+  {
+    "id": "wortleiter-734",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "fach",
+      "fact",
+      "fast",
+      "fest",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-735",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "hach",
+      "hack",
+      "hark",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-736",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "hach",
+      "hash",
+      "hase",
+      "nase",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-737",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "hach",
+      "hash",
+      "hase",
+      "rase",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-738",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "hach",
+      "hash",
+      "hass",
+      "mass",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-739",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "hach",
+      "hash",
+      "hass",
+      "mass",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-740",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "bund",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "bann",
+      "band",
+      "bund"
+    ]
+  },
+  {
+    "id": "wortleiter-741",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "bann",
+      "band",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-742",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "bann",
+      "band",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-743",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "bann",
+      "band",
+      "land",
+      "lind",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-744",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "buch",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "bann",
+      "bank",
+      "back",
+      "bach",
+      "buch"
+    ]
+  },
+  {
+    "id": "wortleiter-745",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "dach",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "bann",
+      "bank",
+      "back",
+      "bach",
+      "dach"
+    ]
+  },
+  {
+    "id": "wortleiter-746",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "fach",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "bann",
+      "bank",
+      "back",
+      "bach",
+      "fach"
+    ]
+  },
+  {
+    "id": "wortleiter-747",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "bann",
+      "sann",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-748",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "barn",
+      "bark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-749",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "glas",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "barn",
+      "bars",
+      "baas",
+      "blas",
+      "glas"
+    ]
+  },
+  {
+    "id": "wortleiter-750",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "barn",
+      "bart",
+      "bast",
+      "best",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-751",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "barn",
+      "bart",
+      "bast",
+      "fast",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-752",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "bein",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "barn",
+      "bern",
+      "bein"
+    ]
+  },
+  {
+    "id": "wortleiter-753",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "berg",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "barn",
+      "bern",
+      "berg"
+    ]
+  },
+  {
+    "id": "wortleiter-754",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "brot",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "barn",
+      "born",
+      "bort",
+      "boot",
+      "brot"
+    ]
+  },
+  {
+    "id": "wortleiter-755",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "barn",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-756",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "barn",
+      "farn",
+      "firn",
+      "firm",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-757",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "hahn",
+      "harn",
+      "hart",
+      "haft",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-758",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "hahn",
+      "harn",
+      "harz",
+      "hatz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-759",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "hahn",
+      "hohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-760",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "fell",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "kahn",
+      "kahl",
+      "fahl",
+      "fehl",
+      "fell"
+    ]
+  },
+  {
+    "id": "wortleiter-761",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "kahn",
+      "kahl",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-762",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "dame",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "kahn",
+      "kahm",
+      "kamm",
+      "damm",
+      "dame"
+    ]
+  },
+  {
+    "id": "wortleiter-763",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "kahn",
+      "karn",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-764",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "rahn",
+      "rain",
+      "rein",
+      "tein",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-765",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "rahn",
+      "rann",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-766",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "rahn",
+      "rann",
+      "rinn",
+      "kinn",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-767",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "wahn",
+      "wahl",
+      "waal",
+      "saal",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-768",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "meer",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "wahn",
+      "wahr",
+      "mahr",
+      "mehr",
+      "meer"
+    ]
+  },
+  {
+    "id": "wortleiter-769",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "wahn",
+      "wahr",
+      "wehr",
+      "weht",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-770",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "wahn",
+      "wann",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-771",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "zahn",
+      "zehn",
+      "zein",
+      "zeit",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-772",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "bank",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "bald",
+      "band",
+      "bank"
+    ]
+  },
+  {
+    "id": "wortleiter-773",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "bund",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "bald",
+      "band",
+      "bund"
+    ]
+  },
+  {
+    "id": "wortleiter-774",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "bald",
+      "band",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-775",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "bald",
+      "band",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-776",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "bald",
+      "band",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-777",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "bald",
+      "band",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-778",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "bald",
+      "bild",
+      "mild",
+      "mied",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-779",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "bald",
+      "bold",
+      "bord",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-780",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "boot",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "bald",
+      "bold",
+      "bord",
+      "bort",
+      "boot"
+    ]
+  },
+  {
+    "id": "wortleiter-781",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "bald",
+      "bold",
+      "bord",
+      "kord",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-782",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "bart",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "balg",
+      "barg",
+      "bart"
+    ]
+  },
+  {
+    "id": "wortleiter-783",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "berg",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "balg",
+      "barg",
+      "berg"
+    ]
+  },
+  {
+    "id": "wortleiter-784",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "brot",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "balm",
+      "baum",
+      "baut",
+      "brut",
+      "brot"
+    ]
+  },
+  {
+    "id": "wortleiter-785",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "balz",
+      "bolz",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-786",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "balz",
+      "salz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-787",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "fall",
+      "fahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-788",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "bein",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "fall",
+      "fell",
+      "feil",
+      "beil",
+      "bein"
+    ]
+  },
+  {
+    "id": "wortleiter-789",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "fall",
+      "fell",
+      "feil",
+      "feit",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-790",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "fall",
+      "fell",
+      "feil",
+      "feit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-791",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "feld",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "fall",
+      "fell",
+      "feld"
+    ]
+  },
+  {
+    "id": "wortleiter-792",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "fall",
+      "fell",
+      "gell",
+      "gelt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-793",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "hall",
+      "halo",
+      "kalo",
+      "kilo",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-794",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "hall",
+      "hals",
+      "hass",
+      "nass",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-795",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "hall",
+      "hals",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-796",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "hall",
+      "halt",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-797",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "hall",
+      "halt",
+      "holt",
+      "hort",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-798",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "hall",
+      "hell",
+      "held",
+      "herd",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-799",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "mall",
+      "mahl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-800",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "meer",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "mall",
+      "mahl",
+      "mehl",
+      "mehr",
+      "meer"
+    ]
+  },
+  {
+    "id": "wortleiter-801",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "mall",
+      "mail",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-802",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "dame",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "mall",
+      "male",
+      "sale",
+      "same",
+      "dame"
+    ]
+  },
+  {
+    "id": "wortleiter-803",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "mall",
+      "male",
+      "sale",
+      "same",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-804",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "mall",
+      "mals",
+      "mass",
+      "muss",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-805",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "mall",
+      "maul",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-806",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "mall",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-807",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "pall",
+      "poll",
+      "pole",
+      "pose",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-808",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "duft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "pall",
+      "pull",
+      "pult",
+      "dult",
+      "duft"
+    ]
+  },
+  {
+    "id": "wortleiter-809",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "wall",
+      "wahl",
+      "wohl",
+      "wohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-810",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "wall",
+      "wald",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-811",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "buch",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "back",
+      "bach",
+      "buch"
+    ]
+  },
+  {
+    "id": "wortleiter-812",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "dach",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "back",
+      "bach",
+      "dach"
+    ]
+  },
+  {
+    "id": "wortleiter-813",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "fach",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "back",
+      "bach",
+      "fach"
+    ]
+  },
+  {
+    "id": "wortleiter-814",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "bild",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "band",
+      "bind",
+      "bild"
+    ]
+  },
+  {
+    "id": "wortleiter-815",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "band",
+      "bind",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-816",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "geld",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "band",
+      "bond",
+      "bold",
+      "gold",
+      "geld"
+    ]
+  },
+  {
+    "id": "wortleiter-817",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "band",
+      "bond",
+      "bold",
+      "hold",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-818",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "band",
+      "bond",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-819",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "band",
+      "bund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-820",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "band",
+      "hand",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-821",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "bann",
+      "bahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-822",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "berg",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "bark",
+      "barg",
+      "berg"
+    ]
+  },
+  {
+    "id": "wortleiter-823",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "dorf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "bark",
+      "barn",
+      "born",
+      "dorn",
+      "dorf"
+    ]
+  },
+  {
+    "id": "wortleiter-824",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "glas",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "bark",
+      "bars",
+      "baas",
+      "blas",
+      "glas"
+    ]
+  },
+  {
+    "id": "wortleiter-825",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "brot",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "bark",
+      "bart",
+      "bort",
+      "boot",
+      "brot"
+    ]
+  },
+  {
+    "id": "wortleiter-826",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "dame",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "rank",
+      "rane",
+      "rate",
+      "date",
+      "dame"
+    ]
+  },
+  {
+    "id": "wortleiter-827",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "rank",
+      "rane",
+      "rate",
+      "ratz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-828",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "rank",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-829",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "rank",
+      "rant",
+      "fant",
+      "fast",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-830",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "rank",
+      "rant",
+      "rast",
+      "rest",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-831",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "rank",
+      "rauk",
+      "raue",
+      "naue",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-832",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "rank",
+      "rauk",
+      "raut",
+      "saut",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-833",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "rank",
+      "rauk",
+      "raut",
+      "saut",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-834",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "wank",
+      "walk",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-835",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "fell",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "wank",
+      "walk",
+      "wall",
+      "fall",
+      "fell"
+    ]
+  },
+  {
+    "id": "wortleiter-836",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "wank",
+      "walk",
+      "wall",
+      "mall",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-837",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "wank",
+      "walk",
+      "welk",
+      "welt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-838",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "wank",
+      "wann",
+      "wahn",
+      "wohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-839",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bank",
+      "wank",
+      "wink",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-840",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "barn",
+      "bahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-841",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "bein",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "barn",
+      "bern",
+      "bein"
+    ]
+  },
+  {
+    "id": "wortleiter-842",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "barn",
+      "bern",
+      "bein",
+      "tein",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-843",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "barn",
+      "farn",
+      "fern",
+      "feen",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-844",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "bars",
+      "mars",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-845",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "bast",
+      "base",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-846",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "bast",
+      "bass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-847",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "bast",
+      "best",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-848",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "tier",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "bast",
+      "bist",
+      "biet",
+      "bier",
+      "tier"
+    ]
+  },
+  {
+    "id": "wortleiter-849",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "bast",
+      "fast",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-850",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "bast",
+      "mast",
+      "mass",
+      "muss",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-851",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "gras",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "baut",
+      "brut",
+      "brat",
+      "grat",
+      "gras"
+    ]
+  },
+  {
+    "id": "wortleiter-852",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "baut",
+      "maut",
+      "maul",
+      "mahl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-853",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "baut",
+      "maut",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-854",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "baut",
+      "saut",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-855",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "brot",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "bort",
+      "boot",
+      "brot"
+    ]
+  },
+  {
+    "id": "wortleiter-856",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "bort",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-857",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "kopf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "bort",
+      "tort",
+      "torf",
+      "topf",
+      "kopf"
+    ]
+  },
+  {
+    "id": "wortleiter-858",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "dart",
+      "darm",
+      "farm",
+      "firm",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-859",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "dorf",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "dart",
+      "dort",
+      "dorf"
+    ]
+  },
+  {
+    "id": "wortleiter-860",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "feld",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "gart",
+      "galt",
+      "gelt",
+      "geld",
+      "feld"
+    ]
+  },
+  {
+    "id": "wortleiter-861",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "fell",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "gart",
+      "galt",
+      "gelt",
+      "gell",
+      "fell"
+    ]
+  },
+  {
+    "id": "wortleiter-862",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "hart",
+      "haft",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-863",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "hemd",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "hart",
+      "harb",
+      "herb",
+      "herd",
+      "hemd"
+    ]
+  },
+  {
+    "id": "wortleiter-864",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "hart",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-865",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "hart",
+      "haut",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-866",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "hart",
+      "hort",
+      "horn",
+      "hohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-867",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "hart",
+      "hurt",
+      "hunt",
+      "munt",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-868",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "kart",
+      "kalt",
+      "kilt",
+      "kilo",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-869",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "duft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "kart",
+      "kalt",
+      "kult",
+      "dult",
+      "duft"
+    ]
+  },
+  {
+    "id": "wortleiter-870",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "kart",
+      "kort",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-871",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "part",
+      "port",
+      "polt",
+      "poll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-872",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "wart",
+      "want",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-873",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "wart",
+      "wert",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-874",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "wart",
+      "wirt",
+      "wird",
+      "wind",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-875",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "bald",
+      "band",
+      "bund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-876",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "bald",
+      "band",
+      "hand",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-877",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "bild",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "balm",
+      "bald",
+      "bild"
+    ]
+  },
+  {
+    "id": "wortleiter-878",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "bald",
+      "bild",
+      "bind",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-879",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "bald",
+      "bold",
+      "mold",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-880",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "fall",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "balm",
+      "ball",
+      "fall"
+    ]
+  },
+  {
+    "id": "wortleiter-881",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "balz",
+      "falz",
+      "filz",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-882",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "halm",
+      "harm",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-883",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "feld",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "halm",
+      "helm",
+      "held",
+      "feld"
+    ]
+  },
+  {
+    "id": "wortleiter-884",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "geld",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "halm",
+      "helm",
+      "held",
+      "geld"
+    ]
+  },
+  {
+    "id": "wortleiter-885",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "hemd",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "halm",
+      "helm",
+      "held",
+      "hemd"
+    ]
+  },
+  {
+    "id": "wortleiter-886",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "malm",
+      "mall",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-887",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "malm",
+      "malz",
+      "milz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-888",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "balm",
+      "walm",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-889",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "walm",
+      "wald",
+      "wild",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-890",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "walm",
+      "walk",
+      "welk",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-891",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "baue",
+      "bare",
+      "bore",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-892",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "baue",
+      "naue",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-893",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "baue",
+      "naue",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-894",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "gras",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "baus",
+      "baas",
+      "blas",
+      "glas",
+      "gras"
+    ]
+  },
+  {
+    "id": "wortleiter-895",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "baus",
+      "bass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-896",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "baus",
+      "maus",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-897",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "baus",
+      "maus",
+      "mass",
+      "muss",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-898",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "dorf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "baut",
+      "bart",
+      "dart",
+      "dort",
+      "dorf"
+    ]
+  },
+  {
+    "id": "wortleiter-899",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "bier",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "baut",
+      "bast",
+      "bist",
+      "biet",
+      "bier"
+    ]
+  },
+  {
+    "id": "wortleiter-900",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "fach",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "baut",
+      "bast",
+      "fast",
+      "fact",
+      "fach"
+    ]
+  },
+  {
+    "id": "wortleiter-901",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "brot",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "baut",
+      "brut",
+      "brot"
+    ]
+  },
+  {
+    "id": "wortleiter-902",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "baut",
+      "laut",
+      "lagt",
+      "lugt",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-903",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "kaum",
+      "kahm",
+      "kahl",
+      "mahl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-904",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "kaum",
+      "kahm",
+      "kahn",
+      "karn",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-905",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "raum",
+      "raue",
+      "rane",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-906",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "saum",
+      "saut",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-907",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "saum",
+      "saut",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-908",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "zaum",
+      "zahm",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-909",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "zaum",
+      "zahm",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-910",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "bein",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "zaum",
+      "zaun",
+      "zain",
+      "zein",
+      "bein"
+    ]
+  },
+  {
+    "id": "wortleiter-911",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "zaum",
+      "zaun",
+      "zain",
+      "zein",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-912",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "bern",
+      "barn",
+      "bars",
+      "bass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-913",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "blut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "bern",
+      "barn",
+      "bart",
+      "baut",
+      "blut"
+    ]
+  },
+  {
+    "id": "wortleiter-914",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "bern",
+      "barn",
+      "harn",
+      "hart",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-915",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "brot",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "bern",
+      "born",
+      "bort",
+      "boot",
+      "brot"
+    ]
+  },
+  {
+    "id": "wortleiter-916",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bein",
+      "bern",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-917",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bein",
+      "bern",
+      "kern",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-918",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "fein",
+      "fehn",
+      "fehl",
+      "mehl",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-919",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "fein",
+      "feie",
+      "fese",
+      "fase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-920",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "fell",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bein",
+      "fein",
+      "feil",
+      "fell"
+    ]
+  },
+  {
+    "id": "wortleiter-921",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bein",
+      "fein",
+      "feit",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-922",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "fein",
+      "fenn",
+      "kenn",
+      "kinn",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-923",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "fein",
+      "fenn",
+      "kenn",
+      "kinn",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-924",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "fein",
+      "fern",
+      "firn",
+      "firm",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-925",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "lein",
+      "leib",
+      "laib",
+      "laub",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-926",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "hemd",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "lein",
+      "leid",
+      "lead",
+      "head",
+      "hemd"
+    ]
+  },
+  {
+    "id": "wortleiter-927",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "mein",
+      "meid",
+      "maid",
+      "mais",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-928",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "mein",
+      "meid",
+      "maid",
+      "waid",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-929",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "mein",
+      "meid",
+      "maid",
+      "waid",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-930",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "bild",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "mein",
+      "meid",
+      "meld",
+      "mild",
+      "bild"
+    ]
+  },
+  {
+    "id": "wortleiter-931",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "mein",
+      "meid",
+      "meld",
+      "mold",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-932",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "nein",
+      "neid",
+      "nerd",
+      "herd",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-933",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "nein",
+      "neun",
+      "neue",
+      "naue",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-934",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "rein",
+      "rain",
+      "hain",
+      "hais",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-935",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "rein",
+      "rain",
+      "rann",
+      "rand",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-936",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "rein",
+      "rain",
+      "rann",
+      "rand",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-937",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "rein",
+      "reit",
+      "rest",
+      "rost",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-938",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "rein",
+      "renn",
+      "rinn",
+      "rind",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-939",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "bund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "sein",
+      "senn",
+      "send",
+      "sund",
+      "bund"
+    ]
+  },
+  {
+    "id": "wortleiter-940",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "sein",
+      "senn",
+      "send",
+      "sund",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-941",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "sein",
+      "senn",
+      "send",
+      "sund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-942",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "sein",
+      "spin",
+      "span",
+      "spat",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-943",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "bier",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "tein",
+      "teen",
+      "teer",
+      "tier",
+      "bier"
+    ]
+  },
+  {
+    "id": "wortleiter-944",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bein",
+      "wein",
+      "weit",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-945",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bein",
+      "zein",
+      "zain",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-946",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bein",
+      "zein",
+      "zeit",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-947",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "fell",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "balg",
+      "ball",
+      "fall",
+      "fell"
+    ]
+  },
+  {
+    "id": "wortleiter-948",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "balg",
+      "ball",
+      "mall",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-949",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "balg",
+      "balz",
+      "bolz",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-950",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "balg",
+      "balz",
+      "salz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-951",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "bare",
+      "base",
+      "rase",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-952",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "bare",
+      "gare",
+      "game",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-953",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "buch",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "bark",
+      "back",
+      "bach",
+      "buch"
+    ]
+  },
+  {
+    "id": "wortleiter-954",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "dach",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "bark",
+      "back",
+      "bach",
+      "dach"
+    ]
+  },
+  {
+    "id": "wortleiter-955",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "fach",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "bark",
+      "back",
+      "bach",
+      "fach"
+    ]
+  },
+  {
+    "id": "wortleiter-956",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "berg",
+      "barg",
+      "bark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-957",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "barn",
+      "bahn",
+      "zahn",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-958",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "glas",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "bars",
+      "baas",
+      "blas",
+      "glas"
+    ]
+  },
+  {
+    "id": "wortleiter-959",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "dame",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "darg",
+      "darm",
+      "damm",
+      "dame"
+    ]
+  },
+  {
+    "id": "wortleiter-960",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "sarg",
+      "saug",
+      "saut",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-961",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "sarg",
+      "saug",
+      "saut",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-962",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "bern",
+      "fern",
+      "fehn",
+      "fehl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-963",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "bern",
+      "fern",
+      "firn",
+      "firm",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-964",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "bern",
+      "kern",
+      "kenn",
+      "kinn",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-965",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "borg",
+      "born",
+      "horn",
+      "hohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-966",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "berg",
+      "borg",
+      "born",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-967",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "berg",
+      "borg",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-968",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "boot",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "berg",
+      "borg",
+      "bort",
+      "boot"
+    ]
+  },
+  {
+    "id": "wortleiter-969",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "feld",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "werg",
+      "werd",
+      "herd",
+      "held",
+      "feld"
+    ]
+  },
+  {
+    "id": "wortleiter-970",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "geld",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "werg",
+      "werd",
+      "herd",
+      "held",
+      "geld"
+    ]
+  },
+  {
+    "id": "wortleiter-971",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "werg",
+      "werd",
+      "wend",
+      "wund",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-972",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "werg",
+      "werd",
+      "wend",
+      "wund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-973",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "werg",
+      "werd",
+      "wird",
+      "wind",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-974",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "berg",
+      "werg",
+      "wert",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-975",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "berg",
+      "werg",
+      "wert",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-976",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bier",
+      "bieg",
+      "lieg",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-977",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "bieg",
+      "lieg",
+      "lied",
+      "lind",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-978",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "bieg",
+      "sieg",
+      "sing",
+      "sang",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-979",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "star",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "bieg",
+      "sieg",
+      "steg",
+      "stag",
+      "star"
+    ]
+  },
+  {
+    "id": "wortleiter-980",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "dorf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "bien",
+      "dien",
+      "dirn",
+      "dorn",
+      "dorf"
+    ]
+  },
+  {
+    "id": "wortleiter-981",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "bien",
+      "dien",
+      "dirn",
+      "dorn",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-982",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "bien",
+      "dien",
+      "dirn",
+      "dorn",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-983",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "brot",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "beet",
+      "beat",
+      "brat",
+      "brot"
+    ]
+  },
+  {
+    "id": "wortleiter-984",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "beet",
+      "bebt",
+      "webt",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-985",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "boot",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "beet",
+      "bett",
+      "bott",
+      "boot"
+    ]
+  },
+  {
+    "id": "wortleiter-986",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "bund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "bikt",
+      "bukt",
+      "bunt",
+      "bund"
+    ]
+  },
+  {
+    "id": "wortleiter-987",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "bist",
+      "bast",
+      "base",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-988",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "bist",
+      "bast",
+      "bass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-989",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "blut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "bist",
+      "bast",
+      "baut",
+      "blut"
+    ]
+  },
+  {
+    "id": "wortleiter-990",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "bist",
+      "bast",
+      "hast",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-991",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "bist",
+      "list",
+      "last",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-992",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "riet",
+      "reet",
+      "reit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-993",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "riet",
+      "ried",
+      "rind",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-994",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "riet",
+      "rift",
+      "lift",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-995",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "duft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "riet",
+      "rift",
+      "ruft",
+      "duft"
+    ]
+  },
+  {
+    "id": "wortleiter-996",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "biet",
+      "riet",
+      "rist",
+      "rost",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-997",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "ofen",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "eier",
+      "eber",
+      "ober",
+      "oben",
+      "ofen"
+    ]
+  },
+  {
+    "id": "wortleiter-998",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "plan",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "eier",
+      "eien",
+      "elen",
+      "elan",
+      "plan"
+    ]
+  },
+  {
+    "id": "wortleiter-999",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "erde",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "eier",
+      "eies",
+      "eids",
+      "eide",
+      "erde"
+    ]
+  },
+  {
+    "id": "wortleiter-1000",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "eier",
+      "eies",
+      "fies",
+      "fils",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-1001",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "meer",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bier",
+      "gier",
+      "geer",
+      "meer"
+    ]
+  },
+  {
+    "id": "wortleiter-1002",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "gier",
+      "geer",
+      "meer",
+      "mehr",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-1003",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "hemd",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "hier",
+      "heer",
+      "herr",
+      "herd",
+      "hemd"
+    ]
+  },
+  {
+    "id": "wortleiter-1004",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "pier",
+      "piek",
+      "pick",
+      "pack",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1005",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "pier",
+      "piek",
+      "pink",
+      "wink",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-1006",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "tier",
+      "teer",
+      "teen",
+      "tein",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-1007",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "fall",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "bald",
+      "ball",
+      "fall"
+    ]
+  },
+  {
+    "id": "wortleiter-1008",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bald",
+      "ball",
+      "hall",
+      "halt",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1009",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bald",
+      "ball",
+      "mall",
+      "mahl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-1010",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "blut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bald",
+      "balm",
+      "baum",
+      "baut",
+      "blut"
+    ]
+  },
+  {
+    "id": "wortleiter-1011",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bald",
+      "balm",
+      "baum",
+      "baut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-1012",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bald",
+      "band",
+      "bank",
+      "bark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1013",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bald",
+      "band",
+      "bann",
+      "bahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-1014",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "bald",
+      "band",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-1015",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "bald",
+      "band",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-1016",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "bald",
+      "band",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-1017",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "bald",
+      "band",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-1018",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "bind",
+      "bund",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-1019",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "bind",
+      "bund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-1020",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "bind",
+      "kind",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1021",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "bind",
+      "rind",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-1022",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bind",
+      "sind",
+      "send",
+      "senn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-1023",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "dorf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bold",
+      "bord",
+      "born",
+      "dorn",
+      "dorf"
+    ]
+  },
+  {
+    "id": "wortleiter-1024",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "brot",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bold",
+      "bord",
+      "bort",
+      "boot",
+      "brot"
+    ]
+  },
+  {
+    "id": "wortleiter-1025",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bold",
+      "hold",
+      "hole",
+      "hose",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1026",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "bold",
+      "hold",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1027",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "feld",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "mild",
+      "meld",
+      "feld"
+    ]
+  },
+  {
+    "id": "wortleiter-1028",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "geld",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "mild",
+      "meld",
+      "geld"
+    ]
+  },
+  {
+    "id": "wortleiter-1029",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "mild",
+      "meld",
+      "geld",
+      "gelt",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-1030",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "mild",
+      "meld",
+      "geld",
+      "gelt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-1031",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "mild",
+      "meld",
+      "held",
+      "herd",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1032",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "mild",
+      "meld",
+      "meid",
+      "maid",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-1033",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "mild",
+      "mied",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-1034",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "tier",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "mild",
+      "mied",
+      "mief",
+      "tief",
+      "tier"
+    ]
+  },
+  {
+    "id": "wortleiter-1035",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "mild",
+      "milz",
+      "malz",
+      "mals",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1036",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "mild",
+      "milz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-1037",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "mild",
+      "mold",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1038",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "wild",
+      "wald",
+      "wall",
+      "wahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1039",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "wild",
+      "wald",
+      "wals",
+      "hals",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-1040",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bild",
+      "wild",
+      "wald",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-1041",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "bart",
+      "barn",
+      "bahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-1042",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "bart",
+      "bort",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-1043",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "bart",
+      "wart",
+      "wert",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-1044",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "fach",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "bast",
+      "fast",
+      "fact",
+      "fach"
+    ]
+  },
+  {
+    "id": "wortleiter-1045",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "baum",
+      "balm",
+      "walm",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-1046",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "glas",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "baus",
+      "baas",
+      "blas",
+      "glas"
+    ]
+  },
+  {
+    "id": "wortleiter-1047",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "fall",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "haut",
+      "halt",
+      "hall",
+      "fall"
+    ]
+  },
+  {
+    "id": "wortleiter-1048",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "haut",
+      "halt",
+      "holt",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1049",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "haut",
+      "hart",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1050",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "blut",
+      "baut",
+      "haut",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-1051",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "laut",
+      "lagt",
+      "lugt",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-1052",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "maut",
+      "maul",
+      "mahl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-1053",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "maut",
+      "maul",
+      "mahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1054",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "blut",
+      "baut",
+      "maut",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1055",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "raut",
+      "rant",
+      "rand",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-1056",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "raut",
+      "rant",
+      "rand",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-1057",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "raut",
+      "rant",
+      "rand",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-1058",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "raut",
+      "rant",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-1059",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "raut",
+      "rant",
+      "want",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-1060",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "raut",
+      "rast",
+      "rost",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1061",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "blut",
+      "baut",
+      "saut",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-1062",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "blut",
+      "baut",
+      "saut",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-1063",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "frau",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "brut",
+      "brat",
+      "grat",
+      "grau",
+      "frau"
+    ]
+  },
+  {
+    "id": "wortleiter-1064",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "boot",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "blut",
+      "brut",
+      "brot",
+      "boot"
+    ]
+  },
+  {
+    "id": "wortleiter-1065",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "dorf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "glut",
+      "gout",
+      "gort",
+      "dort",
+      "dorf"
+    ]
+  },
+  {
+    "id": "wortleiter-1066",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "glut",
+      "gout",
+      "gort",
+      "kort",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1067",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "dame",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "klut",
+      "kaut",
+      "kamt",
+      "kame",
+      "dame"
+    ]
+  },
+  {
+    "id": "wortleiter-1068",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bogt",
+      "wogt",
+      "wagt",
+      "want",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-1069",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "bart",
+      "barn",
+      "bahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-1070",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "bart",
+      "bars",
+      "mars",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-1071",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "bord",
+      "bold",
+      "bald",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-1072",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "geld",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "bord",
+      "bold",
+      "gold",
+      "geld"
+    ]
+  },
+  {
+    "id": "wortleiter-1073",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "bord",
+      "bond",
+      "band",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-1074",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "bord",
+      "bond",
+      "band",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-1075",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "bord",
+      "bond",
+      "band",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-1076",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "bord",
+      "bond",
+      "band",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-1077",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "bord",
+      "bond",
+      "bind",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-1078",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "bord",
+      "mord",
+      "mond",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-1079",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "boot",
+      "bort",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-1080",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "dorf",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "boot",
+      "bort",
+      "dort",
+      "dorf"
+    ]
+  },
+  {
+    "id": "wortleiter-1081",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "fort",
+      "form",
+      "firm",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-1082",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "hort",
+      "hart",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1083",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "hort",
+      "horn",
+      "hohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1084",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "hort",
+      "hurt",
+      "hunt",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-1085",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "boot",
+      "bort",
+      "kort",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1086",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "port",
+      "polt",
+      "poll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-1087",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "kopf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "tort",
+      "torf",
+      "topf",
+      "kopf"
+    ]
+  },
+  {
+    "id": "wortleiter-1088",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "wort",
+      "wert",
+      "weit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-1089",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "wort",
+      "wert",
+      "welt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-1090",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "bort",
+      "wort",
+      "wirt",
+      "wird",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-1091",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "glas",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "brot",
+      "brat",
+      "grat",
+      "gras",
+      "glas"
+    ]
+  },
+  {
+    "id": "wortleiter-1092",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "frau",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "brot",
+      "brat",
+      "grat",
+      "grau",
+      "frau"
+    ]
+  },
+  {
+    "id": "wortleiter-1093",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "brot",
+      "brut",
+      "baut",
+      "haut",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-1094",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "brot",
+      "brut",
+      "baut",
+      "maut",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1095",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "boot",
+      "loot",
+      "loft",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-1096",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "loot",
+      "lost",
+      "last",
+      "lase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1097",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "loot",
+      "lost",
+      "last",
+      "lass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-1098",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "bund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "boot",
+      "bort",
+      "bord",
+      "bond",
+      "bund"
+    ]
+  },
+  {
+    "id": "wortleiter-1099",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "boot",
+      "bort",
+      "bord",
+      "mord",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1100",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "boot",
+      "bort",
+      "hort",
+      "holt",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1101",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "boot",
+      "bort",
+      "port",
+      "part",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1102",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "brot",
+      "boot",
+      "bort",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-1103",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "boot",
+      "bort",
+      "wort",
+      "wert",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-1104",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "boot",
+      "bott",
+      "sott",
+      "satt",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-1105",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "duft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "boot",
+      "loot",
+      "loft",
+      "luft",
+      "duft"
+    ]
+  },
+  {
+    "id": "wortleiter-1106",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "boot",
+      "loot",
+      "lost",
+      "rost",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1107",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "gras",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "brot",
+      "brat",
+      "grat",
+      "gras"
+    ]
+  },
+  {
+    "id": "wortleiter-1108",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "plan",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "brat",
+      "urat",
+      "uran",
+      "ulan",
+      "plan"
+    ]
+  },
+  {
+    "id": "wortleiter-1109",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "brut",
+      "baut",
+      "bast",
+      "base",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1110",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "brut",
+      "baut",
+      "bast",
+      "bass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-1111",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "brut",
+      "baut",
+      "baue",
+      "naue",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-1112",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "brot",
+      "brut",
+      "baut",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1113",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "brot",
+      "brut",
+      "baut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-1114",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "brut",
+      "baut",
+      "maut",
+      "maul",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1115",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "brut",
+      "baut",
+      "maut",
+      "maus",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-1116",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "brot",
+      "brut",
+      "baut",
+      "raut",
+      "rant",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-1117",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "bund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "bach",
+      "back",
+      "bank",
+      "band",
+      "bund"
+    ]
+  },
+  {
+    "id": "wortleiter-1118",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "bach",
+      "back",
+      "bank",
+      "band",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-1119",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "bach",
+      "back",
+      "bank",
+      "band",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-1120",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "bach",
+      "back",
+      "bank",
+      "wank",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-1121",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "bach",
+      "back",
+      "sack",
+      "sank",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-1122",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "bach",
+      "fach",
+      "fact",
+      "fast",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-1123",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "huch",
+      "hach",
+      "hash",
+      "hase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1124",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "huch",
+      "hach",
+      "hash",
+      "hass",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-1125",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "huch",
+      "hach",
+      "hash",
+      "hass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-1126",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "huch",
+      "hach",
+      "hash",
+      "hast",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1127",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "ruch",
+      "ruck",
+      "rack",
+      "rank",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-1128",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "band",
+      "bald",
+      "ball",
+      "mall",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1129",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "band",
+      "bald",
+      "balz",
+      "salz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-1130",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "dach",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "band",
+      "bank",
+      "back",
+      "bach",
+      "dach"
+    ]
+  },
+  {
+    "id": "wortleiter-1131",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "band",
+      "bann",
+      "bahn",
+      "zahn",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1132",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "bind",
+      "bild",
+      "mild",
+      "milz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-1133",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bund",
+      "bind",
+      "lind",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-1134",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "dorf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "bond",
+      "bord",
+      "born",
+      "dorn",
+      "dorf"
+    ]
+  },
+  {
+    "id": "wortleiter-1135",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "bunt",
+      "tunt",
+      "tust",
+      "test",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-1136",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "fund",
+      "fand",
+      "fans",
+      "fass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-1137",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "fach",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "fund",
+      "fand",
+      "fant",
+      "fact",
+      "fach"
+    ]
+  },
+  {
+    "id": "wortleiter-1138",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "fund",
+      "fand",
+      "fant",
+      "fast",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-1139",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "fell",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "hund",
+      "huld",
+      "held",
+      "feld",
+      "fell"
+    ]
+  },
+  {
+    "id": "wortleiter-1140",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "hund",
+      "huld",
+      "held",
+      "herd",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1141",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "hund",
+      "hunt",
+      "hurt",
+      "hart",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1142",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bund",
+      "kund",
+      "kind",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1143",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "mund",
+      "mond",
+      "mold",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-1144",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "mund",
+      "mudd",
+      "muds",
+      "muss",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-1145",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "rund",
+      "rand",
+      "raid",
+      "maid",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-1146",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "rund",
+      "rand",
+      "rane",
+      "rase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1147",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "rund",
+      "rand",
+      "rane",
+      "rase",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1148",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "rund",
+      "rand",
+      "rant",
+      "raut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-1149",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bund",
+      "rund",
+      "rind",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-1150",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "rund",
+      "rune",
+      "rufe",
+      "ruft",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-1151",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "sund",
+      "send",
+      "seid",
+      "seil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-1152",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bund",
+      "wund",
+      "wand",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-1153",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "wund",
+      "wend",
+      "werd",
+      "wert",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-1154",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "bach",
+      "back",
+      "bank",
+      "band",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-1155",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "bach",
+      "back",
+      "bank",
+      "band",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-1156",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "bach",
+      "back",
+      "bank",
+      "wank",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-1157",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "bach",
+      "back",
+      "rack",
+      "rank",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-1158",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "bach",
+      "back",
+      "sack",
+      "sank",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-1159",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "dame",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "doch",
+      "docs",
+      "doms",
+      "dome",
+      "dame"
+    ]
+  },
+  {
+    "id": "wortleiter-1160",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "fach",
+      "fact",
+      "fast",
+      "fest",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-1161",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "hach",
+      "hack",
+      "hark",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1162",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "hach",
+      "hash",
+      "hase",
+      "nase",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-1163",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "hach",
+      "hash",
+      "hase",
+      "rase",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1164",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "hach",
+      "hash",
+      "hass",
+      "mass",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-1165",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "hach",
+      "hash",
+      "hass",
+      "mass",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1166",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "damm",
+      "darm",
+      "farm",
+      "firm",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-1167",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "damm",
+      "darm",
+      "harm",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1168",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "date",
+      "dato",
+      "dito",
+      "dino",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1169",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "date",
+      "rate",
+      "rane",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-1170",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "date",
+      "wate",
+      "wane",
+      "wand",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-1171",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "erde",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "dime",
+      "time",
+      "tide",
+      "eide",
+      "erde"
+    ]
+  },
+  {
+    "id": "wortleiter-1172",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "dome",
+      "dole",
+      "mole",
+      "mold",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1173",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "dorf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "dome",
+      "dope",
+      "dopt",
+      "dort",
+      "dorf"
+    ]
+  },
+  {
+    "id": "wortleiter-1174",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "dame",
+      "dome",
+      "dose",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1175",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "geld",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "game",
+      "gabe",
+      "gebe",
+      "gele",
+      "geld"
+    ]
+  },
+  {
+    "id": "wortleiter-1176",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "game",
+      "gamt",
+      "galt",
+      "gelt",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-1177",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "game",
+      "gamt",
+      "galt",
+      "gelt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-1178",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "game",
+      "gare",
+      "bare",
+      "bark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1179",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "game",
+      "gare",
+      "garn",
+      "karn",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1180",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "game",
+      "gare",
+      "ware",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-1181",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "game",
+      "gase",
+      "fase",
+      "fese",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-1182",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "game",
+      "gase",
+      "gast",
+      "gest",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-1183",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "kame",
+      "kamm",
+      "kahm",
+      "kahl",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1184",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "kame",
+      "kamm",
+      "kahm",
+      "zahm",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1185",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "kame",
+      "kamm",
+      "kahm",
+      "zahm",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-1186",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "name",
+      "nase",
+      "nass",
+      "nuss",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-1187",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "dame",
+      "same",
+      "safe",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-1188",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "fall",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "same",
+      "sale",
+      "male",
+      "mall",
+      "fall"
+    ]
+  },
+  {
+    "id": "wortleiter-1189",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "same",
+      "sami",
+      "sani",
+      "sand",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-1190",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "same",
+      "sami",
+      "sani",
+      "sand",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-1191",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "dame",
+      "same",
+      "samt",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-1192",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dorn",
+      "born",
+      "barn",
+      "bahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-1193",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dorn",
+      "born",
+      "bord",
+      "mord",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1194",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dorn",
+      "dirn",
+      "dien",
+      "lien",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-1195",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dorn",
+      "dirn",
+      "firn",
+      "firm",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-1196",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dorn",
+      "horn",
+      "harn",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1197",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dort",
+      "bort",
+      "bart",
+      "baut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-1198",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dort",
+      "dost",
+      "lost",
+      "lust",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-1199",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dort",
+      "hort",
+      "hart",
+      "haut",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-1200",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dort",
+      "hort",
+      "hurt",
+      "hunt",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-1201",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dort",
+      "wort",
+      "wart",
+      "want",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-1202",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dort",
+      "wort",
+      "wert",
+      "weit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-1203",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dort",
+      "wort",
+      "wert",
+      "welt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-1204",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dort",
+      "wort",
+      "wirt",
+      "wird",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-1205",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "torf",
+      "toff",
+      "soff",
+      "soft",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-1206",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "kopf",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "dorf",
+      "torf",
+      "topf",
+      "kopf"
+    ]
+  },
+  {
+    "id": "wortleiter-1207",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "torf",
+      "tora",
+      "tola",
+      "toll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-1208",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "torf",
+      "tort",
+      "tost",
+      "test",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-1209",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "torf",
+      "tort",
+      "tost",
+      "test",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-1210",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "duft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "torf",
+      "turf",
+      "tuff",
+      "duff",
+      "duft"
+    ]
+  },
+  {
+    "id": "wortleiter-1211",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "kopf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "duff",
+      "tuff",
+      "toff",
+      "topf",
+      "kopf"
+    ]
+  },
+  {
+    "id": "wortleiter-1212",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "dult",
+      "kult",
+      "kilt",
+      "kilo",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1213",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "dult",
+      "pult",
+      "polt",
+      "holt",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1214",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "dult",
+      "pult",
+      "polt",
+      "poll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-1215",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "fall",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "dult",
+      "pult",
+      "pull",
+      "pall",
+      "fall"
+    ]
+  },
+  {
+    "id": "wortleiter-1216",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "dult",
+      "pult",
+      "puls",
+      "pils",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-1217",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "dutt",
+      "mutt",
+      "matt",
+      "maut",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1218",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "dutt",
+      "mutt",
+      "matt",
+      "satt",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-1219",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "dutt",
+      "mutt",
+      "munt",
+      "mund",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1220",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "dutt",
+      "mutt",
+      "muts",
+      "muss",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-1221",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "dutt",
+      "putt",
+      "patt",
+      "part",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1222",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "luft",
+      "loft",
+      "lobt",
+      "wobt",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-1223",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "luft",
+      "loft",
+      "lost",
+      "rost",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1224",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "luft",
+      "loft",
+      "soft",
+      "saft",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-1225",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "luft",
+      "lugt",
+      "lagt",
+      "laut",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1226",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "luft",
+      "lust",
+      "last",
+      "lase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1227",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "luft",
+      "lust",
+      "last",
+      "lass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-1228",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "luft",
+      "lust",
+      "wust",
+      "west",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-1229",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "ruft",
+      "rift",
+      "riet",
+      "ried",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-1230",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "ruft",
+      "rufe",
+      "rune",
+      "rane",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-1231",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "ruft",
+      "rufe",
+      "rune",
+      "rund",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-1232",
+    "version": 1,
+    "startWord": "ente",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ente",
+      "ende",
+      "eide",
+      "eile",
+      "file",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-1233",
+    "version": 1,
+    "startWord": "ente",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ente",
+      "este",
+      "esse",
+      "eise",
+      "rise",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1234",
+    "version": 1,
+    "startWord": "erde",
+    "targetWord": "tier",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "erde",
+      "eide",
+      "eids",
+      "eies",
+      "eier",
+      "tier"
+    ]
+  },
+  {
+    "id": "wortleiter-1235",
+    "version": 1,
+    "startWord": "erde",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "erde",
+      "eide",
+      "eile",
+      "file",
+      "filz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-1236",
+    "version": 1,
+    "startWord": "erde",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "erde",
+      "eide",
+      "eise",
+      "eist",
+      "fist",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-1237",
+    "version": 1,
+    "startWord": "erde",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "erde",
+      "eide",
+      "lide",
+      "lade",
+      "lase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1238",
+    "version": 1,
+    "startWord": "erde",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "erde",
+      "eide",
+      "lide",
+      "lade",
+      "laue",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-1239",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "fact",
+      "fant",
+      "fand",
+      "find",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-1240",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "fact",
+      "fant",
+      "fand",
+      "fund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-1241",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "fact",
+      "fant",
+      "fand",
+      "hand",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-1242",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "fact",
+      "fant",
+      "font",
+      "fond",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1243",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "fact",
+      "fant",
+      "rant",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-1244",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "fact",
+      "fant",
+      "want",
+      "wand",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-1245",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "fact",
+      "fant",
+      "want",
+      "wand",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-1246",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "fact",
+      "fant",
+      "want",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-1247",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fach",
+      "fact",
+      "fast",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-1248",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "fact",
+      "fast",
+      "fest",
+      "feit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-1249",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "fact",
+      "fast",
+      "fest",
+      "west",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-1250",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "fact",
+      "fast",
+      "last",
+      "lust",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-1251",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "hach",
+      "hack",
+      "hark",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1252",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "hach",
+      "hash",
+      "hase",
+      "nase",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-1253",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "hach",
+      "hash",
+      "hase",
+      "rase",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1254",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "hach",
+      "hash",
+      "hass",
+      "mass",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-1255",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "hach",
+      "hash",
+      "hass",
+      "mass",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1256",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "ball",
+      "bald",
+      "band",
+      "bund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-1257",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "ball",
+      "bald",
+      "band",
+      "hand",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-1258",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "ball",
+      "bald",
+      "bild",
+      "bind",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-1259",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "ball",
+      "balg",
+      "bang",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-1260",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "ball",
+      "balg",
+      "barg",
+      "bark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1261",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "fahl",
+      "kahl",
+      "kahn",
+      "karn",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1262",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "fahl",
+      "zahl",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-1263",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "falz",
+      "filz",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-1264",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "falz",
+      "filz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-1265",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "falz",
+      "salz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-1266",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "fell",
+      "fehl",
+      "fehn",
+      "feen",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-1267",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "fell",
+      "feil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-1268",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "geld",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "fell",
+      "gell",
+      "geld"
+    ]
+  },
+  {
+    "id": "wortleiter-1269",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "fell",
+      "gell",
+      "gelt",
+      "gest",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-1270",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "hall",
+      "halo",
+      "kalo",
+      "kilo",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1271",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "hall",
+      "hals",
+      "hass",
+      "nass",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1272",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "hall",
+      "hals",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-1273",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "hall",
+      "halt",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1274",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "hall",
+      "halt",
+      "holt",
+      "hort",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-1275",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "hall",
+      "hell",
+      "held",
+      "herd",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1276",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "mall",
+      "mahl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-1277",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "meer",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "mall",
+      "mahl",
+      "mehl",
+      "mehr",
+      "meer"
+    ]
+  },
+  {
+    "id": "wortleiter-1278",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "mall",
+      "mail",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-1279",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "mall",
+      "male",
+      "sale",
+      "same",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-1280",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "mall",
+      "mals",
+      "mass",
+      "muss",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-1281",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "mall",
+      "maul",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1282",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "mall",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-1283",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "pall",
+      "poll",
+      "pole",
+      "pose",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1284",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "wall",
+      "wahl",
+      "wohl",
+      "wohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1285",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "wall",
+      "wald",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-1286",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "feed",
+      "feen",
+      "fehn",
+      "zehn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-1287",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "feld",
+      "feed",
+      "feen",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-1288",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "ziel",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "feed",
+      "fees",
+      "fies",
+      "fiel",
+      "ziel"
+    ]
+  },
+  {
+    "id": "wortleiter-1289",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "feed",
+      "fees",
+      "kees",
+      "kess",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-1290",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "tier",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "feed",
+      "need",
+      "neer",
+      "teer",
+      "tier"
+    ]
+  },
+  {
+    "id": "wortleiter-1291",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "fell",
+      "fall",
+      "falz",
+      "salz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-1292",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "feld",
+      "fell",
+      "fehl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-1293",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "feld",
+      "fell",
+      "feil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-1294",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "feld",
+      "fels",
+      "fils",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-1295",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "fels",
+      "fils",
+      "filo",
+      "kilo",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1296",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "fels",
+      "fils",
+      "pils",
+      "piss",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-1297",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "geld",
+      "gelt",
+      "galt",
+      "halt",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1298",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "feld",
+      "geld",
+      "gelt",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-1299",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "geld",
+      "gelt",
+      "welt",
+      "wert",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-1300",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "feld",
+      "geld",
+      "gelt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-1301",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "held",
+      "hell",
+      "hall",
+      "hals",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-1302",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "feld",
+      "held",
+      "herd",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1303",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "held",
+      "hold",
+      "hole",
+      "hose",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1304",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "feld",
+      "held",
+      "hold",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1305",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "feld",
+      "held",
+      "huld",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-1306",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "held",
+      "huld",
+      "hund",
+      "hand",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-1307",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "held",
+      "huld",
+      "hund",
+      "kund",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-1308",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "held",
+      "huld",
+      "hund",
+      "rund",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-1309",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "held",
+      "huld",
+      "hund",
+      "sund",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-1310",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "meld",
+      "meid",
+      "maid",
+      "mais",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1311",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "meld",
+      "melk",
+      "merk",
+      "mark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1312",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "feld",
+      "meld",
+      "mold",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1313",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "meld",
+      "mold",
+      "mord",
+      "kord",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1314",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fall",
+      "ball",
+      "bald",
+      "band",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-1315",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fall",
+      "ball",
+      "bald",
+      "band",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-1316",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fall",
+      "ball",
+      "bald",
+      "band",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-1317",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "fall",
+      "fahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1318",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "fall",
+      "mall",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1319",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fall",
+      "mall",
+      "malt",
+      "maat",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-1320",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "fall",
+      "wall",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-1321",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fall",
+      "wall",
+      "wald",
+      "wild",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-1322",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fehl",
+      "fehe",
+      "fese",
+      "fase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1323",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fehl",
+      "fehe",
+      "rehe",
+      "rohe",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1324",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fehl",
+      "fehn",
+      "fern",
+      "kern",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1325",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "fest",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "feil",
+      "feit",
+      "fest"
+    ]
+  },
+  {
+    "id": "wortleiter-1326",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "feil",
+      "feit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-1327",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "feld",
+      "meld",
+      "mild",
+      "mied",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-1328",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fels",
+      "fees",
+      "kees",
+      "kess",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-1329",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "tier",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fels",
+      "fees",
+      "tees",
+      "teer",
+      "tier"
+    ]
+  },
+  {
+    "id": "wortleiter-1330",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "ziel",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fels",
+      "fils",
+      "fies",
+      "fiel",
+      "ziel"
+    ]
+  },
+  {
+    "id": "wortleiter-1331",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "fels",
+      "fils",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-1332",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fels",
+      "fils",
+      "filo",
+      "kilo",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1333",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "gell",
+      "gelt",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-1334",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "gell",
+      "gelt",
+      "welt",
+      "wert",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-1335",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "gell",
+      "gelt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-1336",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "hell",
+      "hall",
+      "half",
+      "hanf",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-1337",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "hell",
+      "hall",
+      "hals",
+      "hass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-1338",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "hell",
+      "hall",
+      "halt",
+      "haft",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-1339",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "hell",
+      "hall",
+      "halt",
+      "haut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-1340",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "hell",
+      "hehl",
+      "hohl",
+      "hohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1341",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "hemd",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "hell",
+      "held",
+      "hemd"
+    ]
+  },
+  {
+    "id": "wortleiter-1342",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "hell",
+      "held",
+      "huld",
+      "hund",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-1343",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "best",
+      "bast",
+      "bart",
+      "part",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1344",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "gras",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "best",
+      "beat",
+      "brat",
+      "grat",
+      "gras"
+    ]
+  },
+  {
+    "id": "wortleiter-1345",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "tier",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "best",
+      "bist",
+      "biet",
+      "bier",
+      "tier"
+    ]
+  },
+  {
+    "id": "wortleiter-1346",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "fast",
+      "fant",
+      "fand",
+      "find",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-1347",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "fast",
+      "fant",
+      "font",
+      "fond",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1348",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fest",
+      "fast",
+      "fase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1349",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fest",
+      "fast",
+      "fass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-1350",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fest",
+      "fast",
+      "hast",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1351",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "fast",
+      "mast",
+      "mass",
+      "muss",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-1352",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "feit",
+      "feil",
+      "fail",
+      "fahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1353",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fest",
+      "feit",
+      "feil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-1354",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "feit",
+      "zeit",
+      "zein",
+      "zain",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-1355",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "film",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "fett",
+      "fete",
+      "fite",
+      "file",
+      "film"
+    ]
+  },
+  {
+    "id": "wortleiter-1356",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "gest",
+      "gast",
+      "gatt",
+      "satt",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-1357",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "gest",
+      "geht",
+      "gehl",
+      "mehl",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1358",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "geld",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fest",
+      "gest",
+      "gelt",
+      "geld"
+    ]
+  },
+  {
+    "id": "wortleiter-1359",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "hemd",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "gest",
+      "gelt",
+      "geld",
+      "held",
+      "hemd"
+    ]
+  },
+  {
+    "id": "wortleiter-1360",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fest",
+      "gest",
+      "gelt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-1361",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fest",
+      "lest",
+      "last",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-1362",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "lest",
+      "lost",
+      "host",
+      "holt",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1363",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "lest",
+      "lost",
+      "kost",
+      "kort",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1364",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fest",
+      "lest",
+      "lust",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-1365",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "nest",
+      "nett",
+      "netz",
+      "nerz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1366",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "pest",
+      "post",
+      "polt",
+      "poll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-1367",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "rest",
+      "rast",
+      "rant",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-1368",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "rest",
+      "rist",
+      "riet",
+      "ried",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-1369",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fest",
+      "rest",
+      "rost",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1370",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "test",
+      "tust",
+      "tunt",
+      "hunt",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-1371",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "test",
+      "tust",
+      "tunt",
+      "munt",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-1372",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "meer",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "west",
+      "weht",
+      "wehr",
+      "mehr",
+      "meer"
+    ]
+  },
+  {
+    "id": "wortleiter-1373",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "west",
+      "welt",
+      "welk",
+      "walk",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-1374",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fest",
+      "west",
+      "wert",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-1375",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "west",
+      "wist",
+      "wirt",
+      "wird",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-1376",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "file",
+      "eile",
+      "eise",
+      "rise",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1377",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "film",
+      "filo",
+      "kilo",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1378",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filo",
+      "kilo",
+      "kino",
+      "kind",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-1379",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filo",
+      "kilo",
+      "kino",
+      "king",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-1380",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filo",
+      "silo",
+      "solo",
+      "soll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-1381",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "hemd",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "fils",
+      "fels",
+      "feld",
+      "held",
+      "hemd"
+    ]
+  },
+  {
+    "id": "wortleiter-1382",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "fils",
+      "fels",
+      "fell",
+      "fehl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-1383",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "fils",
+      "fels",
+      "fell",
+      "feil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-1384",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "fils",
+      "fels",
+      "gels",
+      "gelt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-1385",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "tier",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "fils",
+      "fies",
+      "eies",
+      "eier",
+      "tier"
+    ]
+  },
+  {
+    "id": "wortleiter-1386",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "fils",
+      "fies",
+      "mies",
+      "mied",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-1387",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "kopf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "fils",
+      "fips",
+      "kips",
+      "kops",
+      "kopf"
+    ]
+  },
+  {
+    "id": "wortleiter-1388",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filz",
+      "falz",
+      "balz",
+      "bolz",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1389",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filz",
+      "falz",
+      "fall",
+      "fahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1390",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filz",
+      "falz",
+      "walz",
+      "wald",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-1391",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filz",
+      "milz",
+      "malz",
+      "mall",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1392",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filz",
+      "milz",
+      "malz",
+      "mals",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-1393",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filz",
+      "milz",
+      "malz",
+      "mals",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1394",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "filz",
+      "milz",
+      "mild",
+      "mold",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1395",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "firm",
+      "farm",
+      "farn",
+      "karn",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1396",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "firm",
+      "farm",
+      "harm",
+      "hark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1397",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "firm",
+      "farm",
+      "harm",
+      "hart",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1398",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "firm",
+      "farm",
+      "harm",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1399",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "firm",
+      "firn",
+      "dirn",
+      "dorn",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-1400",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "firm",
+      "firn",
+      "fern",
+      "feen",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-1401",
+    "version": 1,
+    "startWord": "frau",
+    "targetWord": "glas",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "frau",
+      "grau",
+      "glau",
+      "glas"
+    ]
+  },
+  {
+    "id": "wortleiter-1402",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "meer",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "feld",
+      "feed",
+      "need",
+      "neer",
+      "meer"
+    ]
+  },
+  {
+    "id": "wortleiter-1403",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "feld",
+      "feed",
+      "weed",
+      "wend",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-1404",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "feld",
+      "fell",
+      "fall",
+      "fahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1405",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gele",
+      "gebe",
+      "gabe",
+      "nabe",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-1406",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gele",
+      "gebe",
+      "gabe",
+      "nabe",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1407",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gele",
+      "gehe",
+      "zehe",
+      "zehn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-1408",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "geld",
+      "gell",
+      "gehl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-1409",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "geld",
+      "gell",
+      "geil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-1410",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gels",
+      "gens",
+      "gins",
+      "ging",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-1411",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gelt",
+      "galt",
+      "gatt",
+      "satt",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-1412",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gelt",
+      "galt",
+      "halt",
+      "haft",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-1413",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gelt",
+      "galt",
+      "halt",
+      "haut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-1414",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gelt",
+      "galt",
+      "malt",
+      "maat",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-1415",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "geld",
+      "gelt",
+      "gest",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-1416",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gelt",
+      "gilt",
+      "gift",
+      "lift",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-1417",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gelt",
+      "gilt",
+      "kilt",
+      "kilo",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1418",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "geld",
+      "gelt",
+      "zelt",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-1419",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "gold",
+      "bold",
+      "bord",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-1420",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "held",
+      "hell",
+      "hall",
+      "hals",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-1421",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "geld",
+      "held",
+      "herd",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1422",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "held",
+      "hold",
+      "hole",
+      "hose",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1423",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "geld",
+      "held",
+      "hold",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1424",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "geld",
+      "held",
+      "huld",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-1425",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "held",
+      "huld",
+      "hund",
+      "hand",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-1426",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "held",
+      "huld",
+      "hund",
+      "kund",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-1427",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "rand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "held",
+      "huld",
+      "hund",
+      "rund",
+      "rand"
+    ]
+  },
+  {
+    "id": "wortleiter-1428",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "held",
+      "huld",
+      "hund",
+      "sund",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-1429",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "meld",
+      "meid",
+      "maid",
+      "mais",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1430",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "meld",
+      "melk",
+      "merk",
+      "mark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1431",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "geld",
+      "meld",
+      "mold",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1432",
+    "version": 1,
+    "startWord": "geld",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "geld",
+      "meld",
+      "mold",
+      "mord",
+      "kord",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1433",
+    "version": 1,
+    "startWord": "glas",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "glas",
+      "blas",
+      "baas",
+      "bars",
+      "bark",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1434",
+    "version": 1,
+    "startWord": "glas",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "glas",
+      "blas",
+      "baas",
+      "bars",
+      "mars",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-1435",
+    "version": 1,
+    "startWord": "glas",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "glas",
+      "blas",
+      "baas",
+      "bass",
+      "nass",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1436",
+    "version": 1,
+    "startWord": "glas",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "glas",
+      "blas",
+      "baas",
+      "baus",
+      "haus",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1437",
+    "version": 1,
+    "startWord": "glas",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "glas",
+      "blas",
+      "baas",
+      "baus",
+      "laus",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-1438",
+    "version": 1,
+    "startWord": "gras",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "gras",
+      "glas",
+      "blas",
+      "baas",
+      "bass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-1439",
+    "version": 1,
+    "startWord": "gras",
+    "targetWord": "haus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "gras",
+      "glas",
+      "blas",
+      "baas",
+      "baus",
+      "haus"
+    ]
+  },
+  {
+    "id": "wortleiter-1440",
+    "version": 1,
+    "startWord": "gras",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "gras",
+      "glas",
+      "blas",
+      "baas",
+      "baus",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1441",
+    "version": 1,
+    "startWord": "gras",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "gras",
+      "grat",
+      "brat",
+      "beat",
+      "best",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-1442",
+    "version": 1,
+    "startWord": "gras",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "gras",
+      "grat",
+      "brat",
+      "brut",
+      "baut",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1443",
+    "version": 1,
+    "startWord": "gras",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "gras",
+      "grat",
+      "brat",
+      "brut",
+      "baut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-1444",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "band",
+      "bald",
+      "ball",
+      "mall",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1445",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "band",
+      "bald",
+      "balz",
+      "salz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-1446",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "band",
+      "bann",
+      "bahn",
+      "zahn",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1447",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "kind",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "hand",
+      "band",
+      "bind",
+      "kind"
+    ]
+  },
+  {
+    "id": "wortleiter-1448",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "band",
+      "bond",
+      "bord",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-1449",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "band",
+      "bond",
+      "bord",
+      "kord",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1450",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "hand",
+      "band",
+      "bond",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1451",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "fand",
+      "fans",
+      "fass",
+      "mass",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1452",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "fand",
+      "fant",
+      "fast",
+      "fest",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-1453",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "hand",
+      "land",
+      "lind",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-1454",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "rand",
+      "rane",
+      "rabe",
+      "nabe",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-1455",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "hand",
+      "rand",
+      "rind",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-1456",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "sand",
+      "send",
+      "seid",
+      "seil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-1457",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "wand",
+      "wann",
+      "wahn",
+      "wohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1458",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "wand",
+      "wend",
+      "werd",
+      "herd",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1459",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "wand",
+      "wend",
+      "werd",
+      "wert",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-1460",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "baus",
+      "bars",
+      "barn",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-1461",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "baus",
+      "bars",
+      "barn",
+      "karn",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1462",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "baus",
+      "bass",
+      "bast",
+      "best",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-1463",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "hais",
+      "hain",
+      "hahn",
+      "hohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1464",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "hund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "hals",
+      "half",
+      "hanf",
+      "hand",
+      "hund"
+    ]
+  },
+  {
+    "id": "wortleiter-1465",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "hals",
+      "hall",
+      "hell",
+      "heil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-1466",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "hemd",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "hals",
+      "hall",
+      "hell",
+      "held",
+      "hemd"
+    ]
+  },
+  {
+    "id": "wortleiter-1467",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "hals",
+      "halo",
+      "kalo",
+      "kilo",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1468",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haus",
+      "hals",
+      "wals",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-1469",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "hals",
+      "wals",
+      "wald",
+      "wild",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-1470",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "zelt",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "hals",
+      "wals",
+      "wels",
+      "welt",
+      "zelt"
+    ]
+  },
+  {
+    "id": "wortleiter-1471",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haus",
+      "hass",
+      "nass",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1472",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haus",
+      "haue",
+      "naue",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-1473",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "luft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "laus",
+      "lass",
+      "last",
+      "lust",
+      "luft"
+    ]
+  },
+  {
+    "id": "wortleiter-1474",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "maus",
+      "mals",
+      "mall",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-1475",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "maus",
+      "mals",
+      "malz",
+      "milz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-1476",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haus",
+      "maus",
+      "maul",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1477",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "raus",
+      "rais",
+      "raid",
+      "rand",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-1478",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "raus",
+      "rais",
+      "reis",
+      "reit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-1479",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "kopf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "raus",
+      "raps",
+      "kaps",
+      "kops",
+      "kopf"
+    ]
+  },
+  {
+    "id": "wortleiter-1480",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "ring",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "raus",
+      "raue",
+      "rane",
+      "rang",
+      "ring"
+    ]
+  },
+  {
+    "id": "wortleiter-1481",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haus",
+      "saus",
+      "saut",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-1482",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haus",
+      "saus",
+      "saut",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-1483",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "halt",
+      "hall",
+      "hell",
+      "heil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-1484",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "hemd",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "halt",
+      "holt",
+      "hold",
+      "held",
+      "hemd"
+    ]
+  },
+  {
+    "id": "wortleiter-1485",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "halt",
+      "holt",
+      "hold",
+      "mold",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1486",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haut",
+      "halt",
+      "holt",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1487",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haut",
+      "hart",
+      "harz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-1488",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "hart",
+      "hort",
+      "horn",
+      "hohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1489",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haut",
+      "hart",
+      "part",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1490",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haut",
+      "hart",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-1491",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "nase",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haut",
+      "hast",
+      "hase",
+      "nase"
+    ]
+  },
+  {
+    "id": "wortleiter-1492",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haut",
+      "hast",
+      "hass",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-1493",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "name",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haut",
+      "haue",
+      "naue",
+      "name"
+    ]
+  },
+  {
+    "id": "wortleiter-1494",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "kaut",
+      "kalt",
+      "kilt",
+      "kilo",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1495",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "maut",
+      "malt",
+      "mall",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-1496",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "maut",
+      "malt",
+      "malz",
+      "milz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-1497",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "kuss",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "maut",
+      "mast",
+      "mass",
+      "muss",
+      "kuss"
+    ]
+  },
+  {
+    "id": "wortleiter-1498",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "mund",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "maut",
+      "matt",
+      "mutt",
+      "munt",
+      "mund"
+    ]
+  },
+  {
+    "id": "wortleiter-1499",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haut",
+      "maut",
+      "maul",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-1500",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "haut",
+      "maut",
+      "maus",
+      "mais"
+    ]
   }
 ] as const satisfies readonly WortleiterPuzzle[];

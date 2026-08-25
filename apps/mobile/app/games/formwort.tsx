@@ -18,6 +18,7 @@ import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { updateBadgeCount } from "@/notifications/badge";
+import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
@@ -44,11 +45,12 @@ function symbolColor(symbol: string): string {
   return symbolColors[Math.abs(symbol.codePointAt(0) ?? 0) % symbolColors.length];
 }
 
-function tileStyle(minHeight: number, symbol: string, colorForSymbol: (s: string) => string, mark?: string) {
+function tileStyle(minHeight: number, symbol: string, colorForSymbol: (s: string) => string, mark?: string, isActive?: boolean) {
   return [
     styles.tile,
     { minHeight },
-    symbol && { borderColor: colorForSymbol(symbol) },
+    isActive && styles.activeTile,
+    symbol && !isActive && { borderColor: colorForSymbol(symbol) },
     mark === "absent" && styles.absent,
     mark === "present" && styles.present,
     mark === "correct" && styles.correct,
@@ -72,8 +74,8 @@ export default function FormwortScreen() {
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
-  const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
+  const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
 
   useEffect(() => {
     try {
@@ -117,7 +119,6 @@ export default function FormwortScreen() {
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getFormwortLetterStates(state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
-  const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
   const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
   const visibleRows = state.guesses.length + (state.status === "playing" ? 1 : 0);
 
@@ -163,7 +164,7 @@ export default function FormwortScreen() {
       setFinishedAt(Date.now());
       setResultVisible(true);
       try {
-        posthog.capture("game_completed", { gameId: "formwort", dateKey, durationMs: Date.now() - startedAt, attempts: result.state.guesses.length });
+        posthog.capture("game_completed", { gameId: "formwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length });
       } catch {
         // Analytics must never break offline gameplay.
       }
@@ -193,7 +194,7 @@ export default function FormwortScreen() {
     setResultVisible(false);
     setFinishedAt(null);
     setProgressLoaded(true);
-    setStartedAt(Date.now());
+    resetTimer();
   }
 
   function resultTitle() {
@@ -249,9 +250,10 @@ export default function FormwortScreen() {
                   {letters.map((letter, letterIndex) => {
                     const mark = guess?.marks[letterIndex];
                     const symbol = inputRow && !letter ? puzzle.symbols[letterIndex] : "";
+                    const isActive = inputRow && !guess && letterIndex === cursorIndex && state.status === "playing";
 
                     return (
-                      <Pressable disabled key={`${rowIndex}-${letterIndex}`} style={tileStyle(tileLayout.minHeight, symbol, symbolColor, mark)}>
+                      <Pressable disabled={Boolean(guess)} key={`${rowIndex}-${letterIndex}`} onPress={() => inputRow && setCursorIndex(letterIndex)} style={tileStyle(tileLayout.minHeight, symbol, symbolColor, mark, isActive)}>
                         <Text style={[styles.tileText, { fontSize: tileLayout.fontSize }, symbol && styles.symbolText, symbol && { color: symbolColor(symbol), fontSize: tileLayout.symbolFontSize }, mark && styles.markedTileText]}>
                           {letter ? letter.toLocaleUpperCase("de-DE") : symbol}
                         </Text>
@@ -292,6 +294,7 @@ const styles = StyleSheet.create({
   board: { gap: 5 },
   tileRow: { flexDirection: "row" },
   tile: { flex: 1, minWidth: 0, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
+  activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
   tileText: { color: tokens.color.ink, fontSize: 25, fontWeight: "900" },
   symbolText: { color: "#E99B88", fontSize: 24 },
   markedTileText: { color: "white" },

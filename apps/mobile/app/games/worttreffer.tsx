@@ -33,6 +33,7 @@ import {
 } from "@/games/worttreffer/engine";
 import { WorttrefferState } from "@/games/worttreffer/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
+import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
 import {
   isStartedProgress,
@@ -73,8 +74,8 @@ export default function WorttrefferScreen() {
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
-  const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
+  const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
   const [revealingGuessIndex, setRevealingGuessIndex] = useState<number | null>(null);
   const revealDoneTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -145,10 +146,6 @@ export default function WorttrefferScreen() {
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getWorttrefferLetterStates(state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
-  const elapsedSeconds = Math.max(
-    0,
-    Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000),
-  );
   const usedLetters = new Set(
     state.guesses.flatMap((guess) => Array.from(guess.value)),
   ).size;
@@ -220,7 +217,7 @@ export default function WorttrefferScreen() {
           posthog.capture("game_completed", {
             gameId: "worttreffer",
             dateKey,
-            durationMs: Date.now() - startedAt,
+            durationMs: elapsedSeconds * 1000,
             attempts: result.state.guesses.length,
           });
         } catch {
@@ -262,7 +259,7 @@ export default function WorttrefferScreen() {
     setResultVisible(false);
     setFinishedAt(null);
     setProgressLoaded(true);
-    setStartedAt(Date.now());
+    resetTimer();
     setRevealingGuessIndex(null);
   }
 
@@ -411,8 +408,12 @@ function AnimatedWorttrefferTile({ accessibilityRole, disabled, letter, mark, mi
   }, [progress, revealDelay, revealed, revealing]);
 
   const tileStyle = useAnimatedStyle(() => {
-    const backgroundColor = interpolateColor(progress.value, [0, 0.5, 1], ["rgba(255,255,255,0.5)", "rgba(255,255,255,0.5)", targetColor]);
-    const borderColor = interpolateColor(progress.value, [0, 0.5, 1], [tokens.color.line, tokens.color.line, targetColor]);
+    const baseBorder = selected ? tokens.color.primary : tokens.color.line;
+    const baseBg = selected ? tokens.color.primaryLight : "rgba(255,255,255,0.5)";
+    const endBorder = selected ? tokens.color.primary : targetColor;
+    const endBg = selected ? tokens.color.primaryLight : targetColor;
+    const backgroundColor = interpolateColor(progress.value, [0, 0.5, 1], [baseBg, baseBg, endBg]);
+    const borderColor = interpolateColor(progress.value, [0, 0.5, 1], [baseBorder, baseBorder, endBorder]);
     const scaleY = interpolate(progress.value, [0, 0.5, 1], [1, 0.08, 1]);
 
     return { backgroundColor, borderColor, transform: [{ scaleY }] };
@@ -429,7 +430,7 @@ function AnimatedWorttrefferTile({ accessibilityRole, disabled, letter, mark, mi
       accessibilityRole={accessibilityRole}
       disabled={disabled}
       onPress={onPress}
-      style={[styles.tile, { minHeight }, tileStyle, selected && styles.activeTile]}
+      style={[styles.tile, { minHeight }, tileStyle]}
     >
       <Animated.Text style={[styles.tileText, { fontSize: textSize }, textStyle]}>{letter.trim().toLocaleUpperCase("de-DE")}</Animated.Text>
     </AnimatedPressable>
@@ -454,7 +455,7 @@ const styles = StyleSheet.create({
     borderRadius: tokens.radius.sm,
     backgroundColor: "rgba(255,255,255,0.5)",
   },
-  activeTile: { borderColor: tokens.color.primary, backgroundColor: "#FFF1DF" },
+  activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
   tileText: { color: tokens.color.ink, fontSize: 25, fontWeight: "900" },
   markedTileText: { color: "white" },
   absent: { backgroundColor: "#7B736A", borderColor: "#7B736A" },

@@ -17,6 +17,7 @@ import type { GalgenwortState } from "@/games/galgenwort/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { updateBadgeCount } from "@/notifications/badge";
+import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
@@ -37,8 +38,8 @@ export default function GalgenwortScreen() {
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
-  const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
+  const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
 
   useEffect(() => {
     try {
@@ -80,7 +81,6 @@ export default function GalgenwortScreen() {
   const wordTileFontSize = answerLength > 10 ? 22 : answerLength > 8 ? 26 : 30;
   const wrongLetters = getGalgenwortWrongLetters(puzzle, state);
   const letterStates = getGalgenwortLetterStates(puzzle, state);
-  const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
 
   function guess(letter: string) {
     stats.start({ gameId: "galgenwort", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version });
@@ -98,7 +98,7 @@ export default function GalgenwortScreen() {
       setFinishedAt(Date.now());
       setResultVisible(true);
       try {
-        posthog.capture("game_completed", { gameId: "galgenwort", dateKey, durationMs: Date.now() - startedAt, attempts: result.state.guessedLetters.length });
+        posthog.capture("game_completed", { gameId: "galgenwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guessedLetters.length });
       } catch {
         // Analytics must never break offline gameplay.
       }
@@ -124,7 +124,7 @@ export default function GalgenwortScreen() {
     setResultVisible(false);
     setFinishedAt(null);
     setProgressLoaded(true);
-    setStartedAt(Date.now());
+    resetTimer();
   }
 
   function resultTitle() {

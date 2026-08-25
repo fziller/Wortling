@@ -14,6 +14,7 @@ import { games } from "@/games/registry";
 import { createNextDoppelGame } from "@/games/doppel/daily";
 import { revealDoppelSolution, submitDoppelGuess, unlockDoppelHint } from "@/games/doppel/engine";
 import { DoppelHint, DoppelState } from "@/games/doppel/types";
+import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
 import { useGameRecorder } from "@/stats/recorder";
@@ -43,8 +44,8 @@ export default function DoppelScreen() {
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
-  const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
+  const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
 
   useEffect(() => {
     loadProgress<DoppelState>("doppel", today).then((progress) => {
@@ -90,7 +91,6 @@ export default function DoppelScreen() {
   const visibleHints = (puzzle.hints ?? []).slice(0, state.unlockedHints);
   const canSubmit = input.trim().length > 0 && state.status === "playing";
   const maxInputLength = Math.max(...puzzle.solutions.map((item) => Array.from(item.answer).length));
-  const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
@@ -157,7 +157,7 @@ export default function DoppelScreen() {
     setResultVisible(false);
     setFinishedAt(null);
     setProgressLoaded(true);
-    setStartedAt(Date.now());
+    resetTimer();
   }
 
   function resultTitle() {

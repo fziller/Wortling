@@ -30,6 +30,7 @@ import { getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/betw
 import { displayWord } from "@/games/between/format";
 import { BetweenState, Guess } from "@/games/between/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
+import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { useGameRecorder } from "@/stats/recorder";
@@ -72,8 +73,8 @@ export default function BetweenScreen() {
   const [resultVisible, setResultVisible] = useState(false);
   const [clearingDirection, setClearingDirection] = useState<Guess["direction"] | undefined>(undefined);
   const [progressLoaded, setProgressLoaded] = useState(false);
-  const [startedAt, setStartedAt] = useState(() => Date.now());
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
+  const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
   const clearMovingGuessTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shake = useSharedValue(0);
   const winGlow = useSharedValue(0);
@@ -83,7 +84,6 @@ export default function BetweenScreen() {
 
   const lastGuess = state.guesses[state.guesses.length - 1] as Guess | undefined;
   const rangeMetrics = getTargetRangeMetrics(state);
-  const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
   const centerWord = state.status === "revealed" || state.status === "won" ? state.targetWord : undefined;
   const showScaleHints = Boolean(lastGuess);
   const puzzleId = `between-${state.targetWord}`;
@@ -253,7 +253,7 @@ export default function BetweenScreen() {
     setCursorIndex(0);
     setModal(null);
     setResultVisible(false);
-    setStartedAt(Date.now());
+    resetTimer();
     setFinishedAt(null);
     markerOpacity.value = 1;
     markerY.value = BOARD_LINE_HEIGHT / 2;
@@ -437,19 +437,22 @@ function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, lett
     return () => clearTimeout(timeout);
   }, [displayLetter, flip, index, letter, progress]);
 
+  const isActive = !disabled && index === cursorIndex;
   const animatedStyle = useAnimatedStyle(() => {
     const scaleY = interpolate(progress.value, [0, 0.5, 1], [1, 0.08, 1]);
-    const targetColor = revealed ? tokens.color.success : filled ? tokens.color.secondary : "rgba(255,255,255,0.5)";
-    const targetBorderColor = revealed ? tokens.color.success : filled ? tokens.color.secondary : tokens.color.line;
+    const baseBg = isActive ? tokens.color.primaryLight : "rgba(255,255,255,0.5)";
+    const baseBorder = isActive ? tokens.color.primary : tokens.color.line;
+    const targetColor = isActive ? tokens.color.primaryLight : revealed ? tokens.color.success : filled ? tokens.color.secondary : "rgba(255,255,255,0.5)";
+    const targetBorderColor = isActive ? tokens.color.primary : revealed ? tokens.color.success : filled ? tokens.color.secondary : tokens.color.line;
     const backgroundColor = interpolateColor(
       progress.value,
       [0, 0.5, 1],
-      ["rgba(255,255,255,0.5)", "rgba(255,255,255,0.5)", targetColor]
+      [baseBg, baseBg, targetColor]
     );
     const borderColor = interpolateColor(
       progress.value,
       [0, 0.5, 1],
-      [tokens.color.line, tokens.color.line, targetBorderColor]
+      [baseBorder, baseBorder, targetBorderColor]
     );
 
     return { backgroundColor, borderColor, transform: [{ scaleY }] };
@@ -470,7 +473,6 @@ function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, lett
         revealed && styles.wordTileRevealed,
         dimmed && styles.wordTileDimmed,
         animatedStyle,
-        !disabled && index === cursorIndex && styles.wordTileActive
       ]}
     >
       <Text style={[styles.wordTileText, { fontSize: textSize }, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty]}>{displayLetter.toLocaleUpperCase("de-DE")}</Text>
@@ -607,7 +609,7 @@ const styles = StyleSheet.create({
   },
   wordTileActive: {
     borderColor: tokens.color.primary,
-    backgroundColor: "#FFF1DF"
+    backgroundColor: tokens.color.primaryLight
   },
   wordTileText: {
     fontWeight: "900"
