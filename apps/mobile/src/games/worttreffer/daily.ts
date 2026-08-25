@@ -16,12 +16,12 @@ const worttrefferWordLengthWeights = [
 export function createDailyWorttrefferGame(date = new Date()) {
   const dateKey = getBerlinDateKey(date);
 
-  return createPracticeWorttrefferGame(undefined, dateKey);
+  return createNextWorttrefferGame(undefined, dateKey);
 }
 
-export function createPracticeWorttrefferGame(previousAnswer?: string, dateKey = "Freies Spiel") {
+export function createNextWorttrefferGame(previousAnswer?: string, dateKey = "Freies Spiel") {
   const { answer, wordLength } = pickRandomTargetWord(worttrefferTargetsByLength, previousAnswer, worttrefferWordLengthWeights);
-  const puzzle = createWorttrefferPuzzle(answer, wordLength, `worttreffer-practice-${Date.now()}`);
+  const puzzle = createWorttrefferPuzzle(answer, wordLength, `worttreffer-next-${Date.now()}`);
 
   return { dateKey, puzzle, state: createWorttrefferState(puzzle) };
 }

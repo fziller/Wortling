@@ -11,7 +11,7 @@ import { HelpModal } from "@/components/HelpModal";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
-import { createPracticeFormwortGame, restoreFormwortPuzzle } from "@/games/formwort/daily";
+import { createNextFormwortGame, restoreFormwortPuzzle } from "@/games/formwort/daily";
 import { applyFormwortInputLetter, getFormwortLetterStates, removeFormwortInputLetter, revealFormwortSolution, submitFormwortGuess } from "@/games/formwort/engine";
 import type { FormwortState } from "@/games/formwort/types";
 import { gameHelp } from "@/games/help";
@@ -19,8 +19,9 @@ import { games } from "@/games/registry";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { updateBadgeCount } from "@/notifications/badge";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
+import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
-type FormwortGame = ReturnType<typeof createPracticeFormwortGame>;
+type FormwortGame = ReturnType<typeof createNextFormwortGame>;
 
 const symbolColors = [
   "#E85D3F",
@@ -58,9 +59,10 @@ export default function FormwortScreen() {
   const router = useRouter();
   const posthog = usePostHog();
   const today = getBerlinDateKey();
+  const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [game, setGame] = useState<FormwortGame>(() => createPracticeFormwortGame(undefined, today));
+  const [game, setGame] = useState<FormwortGame>(() => createNextFormwortGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<FormwortState>(game.state);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(game.puzzle.wordLength));
@@ -139,16 +141,25 @@ export default function FormwortScreen() {
     });
   }
 
+  function startStats() {
+    stats.start({ gameId: "formwort", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength });
+  }
+
   function submit() {
+    startStats();
     const result = submitFormwortGuess(puzzle, state, inputLetters.join(""));
 
     setState(result.state);
     setMessage(result.ok ? result.state.status === "won" ? "Form geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "Weiter eingrenzen." : result.reason);
     if (result.ok) {
+      stats.recordAcceptedGuess(result.guess.value, { marks: [...result.guess.marks] });
       setInputLetters(createEmptyInput(puzzle.wordLength));
       setCursorIndex(0);
+    } else {
+      stats.recordRejectedGuess(result.reason, inputLetters.join(""));
     }
-    if (result.ok && result.state.status !== "playing") {
+    if (result.ok && isFinishedGameStatus(result.state.status)) {
+      stats.finish(result.state.status);
       setFinishedAt(Date.now());
       setResultVisible(true);
       try {
@@ -160,6 +171,8 @@ export default function FormwortScreen() {
   }
 
   function reveal() {
+    startStats();
+    stats.finish("revealed");
     setState((current) => revealFormwortSolution(current));
     setMessage("Lösung aufgedeckt.");
     setInputLetters(createEmptyInput(puzzle.wordLength));
@@ -169,8 +182,8 @@ export default function FormwortScreen() {
     setResultVisible(true);
   }
 
-  function startPracticeWord() {
-    const nextGame = createPracticeFormwortGame(puzzle.answer, today);
+  function startNextWord() {
+    const nextGame = createNextFormwortGame(puzzle.answer, today);
 
     setGame(nextGame);
     setState(nextGame.state);
@@ -258,7 +271,7 @@ export default function FormwortScreen() {
         guesses={state.guesses.map((guess) => guess.value)}
         message={state.status === "won" ? "Alle Formen sitzen." : "Die Lösung ist raus. Weiteres Wort?"}
         onHome={() => router.replace("/")}
-        onNext={startPracticeWord}
+        onNext={startNextWord}
         solution={puzzle.answer}
         stats={[
           { label: "Versuche", value: state.guesses.length },

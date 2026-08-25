@@ -23,7 +23,7 @@ import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import {
-  createPracticeWorttrefferGame,
+  createNextWorttrefferGame,
   restoreWorttrefferPuzzle,
 } from "@/games/worttreffer/daily";
 import {
@@ -41,8 +41,9 @@ import {
   saveProgress,
   type StoredProgress,
 } from "@/storage/progress";
+import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
-type WorttrefferGame = ReturnType<typeof createPracticeWorttrefferGame>;
+type WorttrefferGame = ReturnType<typeof createNextWorttrefferGame>;
 type TileMark = "absent" | "present" | "correct";
 
 const TILE_REVEAL_DELAY_MS = 120;
@@ -57,9 +58,10 @@ export default function WorttrefferScreen() {
   const router = useRouter();
   const posthog = usePostHog();
   const today = getBerlinDateKey();
+  const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [game, setGame] = useState<WorttrefferGame>(() => createPracticeWorttrefferGame(undefined, today));
+  const [game, setGame] = useState<WorttrefferGame>(() => createNextWorttrefferGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<WorttrefferState>(game.state);
   const [inputLetters, setInputLetters] = useState(() =>
@@ -177,7 +179,12 @@ export default function WorttrefferScreen() {
     });
   }
 
+  function startStats() {
+    stats.start({ gameId: "worttreffer", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength });
+  }
+
   function submit() {
+    startStats();
     const result = submitWorttrefferGuess(puzzle, state, inputLetters.join(""));
 
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
@@ -192,13 +199,17 @@ export default function WorttrefferScreen() {
         : result.reason,
     );
     if (result.ok) {
+      stats.recordAcceptedGuess(result.guess.value, { marks: [...result.guess.marks] });
       const nextGuessIndex = result.state.guesses.length - 1;
 
       setRevealingGuessIndex(nextGuessIndex);
       setInputLetters(createEmptyInput(puzzle.wordLength));
       setCursorIndex(0);
+    } else {
+      stats.recordRejectedGuess(result.reason, inputLetters.join(""));
     }
-    if (result.ok && result.state.status !== "playing") {
+    if (result.ok && isFinishedGameStatus(result.state.status)) {
+      stats.finish(result.state.status);
       const revealDuration = puzzle.wordLength * TILE_REVEAL_DELAY_MS + TILE_REVEAL_DURATION_MS;
 
       revealDoneTimeoutRef.current = setTimeout(() => {
@@ -227,6 +238,8 @@ export default function WorttrefferScreen() {
 
   function reveal() {
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
+    startStats();
+    stats.finish("revealed");
     setRevealingGuessIndex(null);
     setState((current) => revealWorttrefferSolution(current));
     setMessage("Lösung aufgedeckt.");
@@ -237,8 +250,8 @@ export default function WorttrefferScreen() {
     setResultVisible(true);
   }
 
-  function startPracticeWord() {
-    const nextGame = createPracticeWorttrefferGame(puzzle.answer, today);
+  function startNextWord() {
+    const nextGame = createNextWorttrefferGame(puzzle.answer, today);
 
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     setGame(nextGame);
@@ -342,7 +355,7 @@ export default function WorttrefferScreen() {
             : "Die Lösung ist raus. Weiteres Wort?"
         }
         onHome={() => router.replace("/")}
-        onNext={startPracticeWord}
+        onNext={startNextWord}
         solution={puzzle.answer}
         stats={[
           { label: "Versuche", value: state.guesses.length },

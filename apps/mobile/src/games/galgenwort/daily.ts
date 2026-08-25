@@ -12,7 +12,7 @@ export function createDailyGalgenwortGame(date = new Date()) {
   return { dateKey, puzzle, state: createGalgenwortState(puzzle) };
 }
 
-export function createPracticeGalgenwortGame(previousPuzzleId?: string, dateKey = "Freies Spiel") {
+export function createNextGalgenwortGame(previousPuzzleId?: string, dateKey = "Freies Spiel") {
   const options = galgenwortPuzzles.filter((puzzle) => puzzle.id !== previousPuzzleId);
   const puzzle = options[Math.floor(Math.random() * options.length)] ?? galgenwortPuzzles[0];
 

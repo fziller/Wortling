@@ -36,6 +36,14 @@ Wortkniff is an Expo + React Native + TypeScript mobile app for German daily wor
 - New game word-import or content-generation scripts must be wired into `apps/mobile/package.json` via `content:generate`, so app builds and OTA updates refresh generated game data automatically.
 - When word data or rank order changes in a way that affects daily selection or saved progress, bump the affected content version.
 
+## Statistics
+
+- Personal statistics are a first-class product feature. Every new game and every new gameplay feature must consider stats collection from day one — never ship a feature that bypasses it.
+- All games report through the central recorder (`apps/mobile/src/stats/recorder.ts`, `useGameRecorder`): `start()` on first semantic action, `recordAcceptedGuess`/`recordRejectedGuess` per submission, `recordHint()` for hints, `finish(outcome)` on round end. Never call SQLite from games or screens directly.
+- Game-specific metrics belong in guess `gameData` payloads or event metadata, so future premium analytics can compute them retroactively from raw data.
+- Raw data is the source of truth: do not persist derived counters when the value is computable from existing rows (spec: docs/Wortkniff_Statistik_Spezifikation_Kompakt.md).
+- Personal stats stay strictly local (SQLite). Never send guess words, answers, or other personal gameplay content to PostHog.
+
 ## Offline-First
 
 - The app must function fully offline. Word lists are static (generated at build time), progress is stored in AsyncStorage.

@@ -12,14 +12,15 @@ import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
-import { createPracticeWortcodeGame, restoreWortcodePuzzle } from "@/games/wortcode/daily";
+import { createNextWortcodeGame, restoreWortcodePuzzle } from "@/games/wortcode/daily";
 import { revealWortcodeSolution, submitWortcodeGuess, toggleWortcodeLetterMark } from "@/games/wortcode/engine";
 import { WortcodeLetterMark, WortcodeState } from "@/games/wortcode/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
+import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
-type WortcodeGame = ReturnType<typeof createPracticeWortcodeGame>;
+type WortcodeGame = ReturnType<typeof createNextWortcodeGame>;
 
 function createEmptyInput(length: number) {
   return Array.from({ length }, () => "");
@@ -28,9 +29,10 @@ function createEmptyInput(length: number) {
 export default function WortcodeScreen() {
   const router = useRouter();
   const today = getBerlinDateKey();
+  const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [game, setGame] = useState<WortcodeGame>(() => createPracticeWortcodeGame(undefined, today));
+  const [game, setGame] = useState<WortcodeGame>(() => createNextWortcodeGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<WortcodeState>(game.state);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(game.puzzle.wordLength));
@@ -111,16 +113,27 @@ export default function WortcodeScreen() {
     });
   }
 
+  function startStats() {
+    stats.start({ gameId: "wortcode", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength, difficulty: puzzle.difficulty });
+  }
+
   function submit() {
+    startStats();
     const result = submitWortcodeGuess(puzzle, state, inputLetters.join(""));
 
     setState(result.state);
     setMessage(result.ok ? result.state.status === "won" ? "Code geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "Weiter eingrenzen." : result.reason);
     if (result.ok) {
+      const lastGuess = result.state.guesses[result.state.guesses.length - 1];
+
+      stats.recordAcceptedGuess(lastGuess.value, { exactMatches: lastGuess.exactMatches, misplacedMatches: lastGuess.misplacedMatches });
       setInputLetters(createEmptyInput(puzzle.wordLength));
       setCursorIndex(0);
+    } else {
+      stats.recordRejectedGuess(result.reason, inputLetters.join(""));
     }
-    if (result.ok && result.state.status !== "playing") {
+    if (result.ok && isFinishedGameStatus(result.state.status)) {
+      stats.finish(result.state.status);
       setFinishedAt(Date.now());
       setResultVisible(true);
     }
@@ -131,6 +144,8 @@ export default function WortcodeScreen() {
   }
 
   function reveal() {
+    startStats();
+    stats.finish("revealed");
     setState((current) => revealWortcodeSolution(current));
     setMessage("Lösung aufgedeckt.");
     setInputLetters(createEmptyInput(puzzle.wordLength));
@@ -140,8 +155,8 @@ export default function WortcodeScreen() {
     setResultVisible(true);
   }
 
-  function startPracticeWord() {
-    const nextGame = createPracticeWortcodeGame(puzzle.answer, today);
+  function startNextWord() {
+    const nextGame = createNextWortcodeGame(puzzle.answer, today);
 
     setGame(nextGame);
     setState(nextGame.state);
@@ -258,7 +273,7 @@ export default function WortcodeScreen() {
         guesses={state.guesses.map((guess) => guess.value)}
         message={state.status === "won" ? "Sauber kombiniert." : "Die Lösung ist raus. Weiteres Wort?"}
         onHome={() => router.replace("/")}
-        onNext={startPracticeWord}
+        onNext={startNextWord}
         solution={puzzle.answer}
         stats={[
           { label: "Versuche", value: state.guesses.length },

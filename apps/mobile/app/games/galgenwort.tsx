@@ -11,23 +11,25 @@ import { HelpModal } from "@/components/HelpModal";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
-import { createPracticeGalgenwortGame } from "@/games/galgenwort/daily";
+import { createNextGalgenwortGame } from "@/games/galgenwort/daily";
 import { getGalgenwortLetterStates, getGalgenwortRevealedLetters, getGalgenwortWrongLetters, revealGalgenwortSolution, submitGalgenwortLetter } from "@/games/galgenwort/engine";
 import type { GalgenwortState } from "@/games/galgenwort/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { updateBadgeCount } from "@/notifications/badge";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
+import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
-type GalgenwortGame = ReturnType<typeof createPracticeGalgenwortGame>;
+type GalgenwortGame = ReturnType<typeof createNextGalgenwortGame>;
 
 export default function GalgenwortScreen() {
   const router = useRouter();
   const posthog = usePostHog();
   const today = getBerlinDateKey();
+  const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [game, setGame] = useState<GalgenwortGame>(() => createPracticeGalgenwortGame(undefined, today));
+  const [game, setGame] = useState<GalgenwortGame>(() => createNextGalgenwortGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<GalgenwortState>(game.state);
   const [message, setMessage] = useState("");
@@ -81,11 +83,18 @@ export default function GalgenwortScreen() {
   const elapsedSeconds = Math.max(0, Math.round(((finishedAt ?? Date.now()) - startedAt) / 1000));
 
   function guess(letter: string) {
+    stats.start({ gameId: "galgenwort", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version });
     const result = submitGalgenwortLetter(puzzle, state, letter);
 
     setState(result.state);
     setMessage(result.ok ? result.state.status === "won" ? "Gelöst!" : result.state.status === "lost" ? "Heute nicht gerettet." : result.correct ? "Treffer." : "Leider nicht drin." : result.reason);
-    if (result.ok && result.state.status !== "playing") {
+    if (result.ok) {
+      stats.recordAcceptedGuess(letter);
+    } else {
+      stats.recordRejectedGuess(result.reason, letter);
+    }
+    if (result.ok && isFinishedGameStatus(result.state.status)) {
+      stats.finish(result.state.status);
       setFinishedAt(Date.now());
       setResultVisible(true);
       try {
@@ -97,6 +106,8 @@ export default function GalgenwortScreen() {
   }
 
   function reveal() {
+    stats.start({ gameId: "galgenwort", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version });
+    stats.finish("revealed");
     setState((current) => revealGalgenwortSolution(current));
     setMessage("Lösung aufgedeckt.");
     setGiveUpVisible(false);
@@ -104,8 +115,8 @@ export default function GalgenwortScreen() {
     setResultVisible(true);
   }
 
-  function startPracticeWord() {
-    const nextGame = createPracticeGalgenwortGame(puzzle.id, today);
+  function startNextWord() {
+    const nextGame = createNextGalgenwortGame(puzzle.id, today);
 
     setGame(nextGame);
     setState(nextGame.state);
@@ -183,7 +194,7 @@ export default function GalgenwortScreen() {
       <GameResultModal
         message={state.status === "won" ? "Nice, das Wort ist frei." : "Die Lösung ist raus. Weiteres Wort?"}
         onHome={() => router.replace("/")}
-        onNext={startPracticeWord}
+        onNext={startNextWord}
         solution={puzzle.answer}
         stats={[
           { label: "Buchstaben", value: state.guessedLetters.length },

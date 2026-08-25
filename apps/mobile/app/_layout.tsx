@@ -7,10 +7,13 @@ import { PostHogProvider } from "posthog-react-native";
 import { useEffect, useState } from "react";
 
 import { AppSplash } from "@/components/AppSplash";
+import { getBerlinDateKey } from "@/daily/date";
 import { initSentry } from "@/monitoring/sentry";
 import { posthogConfig } from "@/analytics/posthog";
 import { configureNotifications } from "@/notifications/configure";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
+import { closeAbandonedSessions } from "@/stats/repository";
+import { initStats } from "@/stats/db";
 
 initSentry();
 
@@ -25,6 +28,12 @@ function RootLayoutInner() {
     }
 
     scheduleDailyReminder().catch(() => {});
+
+    initStats()
+      .then(() => closeAbandonedSessions(getBerlinDateKey()))
+      .catch(() => {
+        // Stats are nice-to-have; startup must stay offline-safe.
+      });
   }, []);
 
   useEffect(() => {

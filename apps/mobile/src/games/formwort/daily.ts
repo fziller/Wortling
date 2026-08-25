@@ -12,13 +12,13 @@ const maxAttemptsByLength = { 5: 6, 6: 7, 7: 8 } as const satisfies Record<Formw
 export function createDailyFormwortGame(date = new Date()) {
   const dateKey = getBerlinDateKey(date);
 
-  return createPracticeFormwortGame(undefined, dateKey);
+  return createNextFormwortGame(undefined, dateKey);
 }
 
-export function createPracticeFormwortGame(previousAnswer?: string, dateKey = "Freies Spiel") {
+export function createNextFormwortGame(previousAnswer?: string, dateKey = "Freies Spiel") {
   const { answer, wordLength } = pickRandomTargetWord(formwortTargetsByLength, previousAnswer);
   if (!isFormwortWordLength(wordLength)) throw new Error("Formwort only supports 5- to 7-letter words.");
-  const puzzle = createFormwortPuzzle(answer, wordLength, `formwort-practice-${Date.now()}`);
+  const puzzle = createFormwortPuzzle(answer, wordLength, `formwort-next-${Date.now()}`);
 
   return { dateKey, puzzle, state: createFormwortState(puzzle) };
 }

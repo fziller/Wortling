@@ -14,7 +14,7 @@ import { HOME_HEADER_BACKGROUND, HomeTopBar } from "@/home/HomeTopBar";
 import { homeOrder } from "@/home/homeMeta";
 import { updateBadgeCount } from "@/notifications/badge";
 import { loadDailyKniffeSeedOverride } from "@/storage/dailyKniffeDev";
-import { completeDailyStreak, loadDailyStreak, type DailyStreak } from "@/storage/dailyStreak";
+import { loadCurrentWinDayStreak } from "@/stats/freeStats";
 import { isStartedProgress, loadProgressForGames, type StoredProgress } from "@/storage/progress";
 
 export default function HomeScreen() {
@@ -22,9 +22,10 @@ export default function HomeScreen() {
   const posthog = usePostHog();
   const dateKey = getBerlinDateKey();
   const [progressByGame, setProgressByGame] = useState<Record<string, StoredProgress | null>>({});
-  const [dailyStreak, setDailyStreak] = useState<DailyStreak>({ current: 0, best: 0 });
+  const [winDayStreak, setWinDayStreak] = useState({ current: 0, longest: 0, todayIsWinDay: false });
   const [seedOverride, setSeedOverride] = useState<number | undefined>();
   const completedEventIds = useRef(new Set<string>());
+  const celebratedDateKeys = useRef(new Set<string>());
   const orderedGames = homeOrder
     .map((id) => games.find((game) => game.id === id))
     .filter((game): game is (typeof games)[number] => Boolean(game));
@@ -52,10 +53,12 @@ export default function HomeScreen() {
   useFocusEffect(useCallback(() => {
     let mounted = true;
 
-    Promise.all([loadDailyKniffeSeedOverride(), loadDailyStreak()]).then(([nextSeedOverride, nextStreak]) => {
+    Promise.all([loadDailyKniffeSeedOverride(), loadCurrentWinDayStreak()]).then(([nextSeedOverride, nextStreak]) => {
       if (!mounted) return;
       setSeedOverride(nextSeedOverride);
-      setDailyStreak(nextStreak);
+      setWinDayStreak(nextStreak);
+    }).catch(() => {
+      // Streak display is nice-to-have; home must stay offline-safe.
     });
 
     return () => {
@@ -93,15 +96,13 @@ export default function HomeScreen() {
   }, [dateKey, dailyKniffe, posthog, progressByGame]);
 
   useEffect(() => {
-    if (!dailySummary.isComplete || dailyStreak.lastCompletedDateKey === dateKey) return;
+    if (!dailySummary.isComplete || !winDayStreak.todayIsWinDay || celebratedDateKeys.current.has(dateKey)) return;
 
-    completeDailyStreak(dateKey).then((nextStreak) => {
-      setDailyStreak(nextStreak);
-      try {
-        posthog.capture("daily_kniffe_all_completed", { dateKey, streak: nextStreak.current });
-      } catch {}
-    });
-  }, [dailyStreak.lastCompletedDateKey, dailySummary.isComplete, dateKey, posthog]);
+    celebratedDateKeys.current.add(dateKey);
+    try {
+      posthog.capture("daily_kniffe_all_completed", { dateKey, streak: winDayStreak.current });
+    } catch {}
+  }, [dateKey, dailySummary.isComplete, posthog, winDayStreak]);
 
   function openDailyKniff(gameId: string) {
     const game = gameRegistry[gameId];
@@ -125,7 +126,7 @@ export default function HomeScreen() {
           completedGames={dailyKniffCompletedGames}
           games={dailyKniffGames}
           onOpenGame={openDailyKniff}
-          streakCurrent={dailyStreak.current}
+          streakCurrent={winDayStreak.current}
           summary={dailySummary}
         />
 

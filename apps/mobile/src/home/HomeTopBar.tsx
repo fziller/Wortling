@@ -8,7 +8,11 @@ export const HOME_HEADER_BACKGROUND = "#FDFBF7";
 export function HomeTopBar() {
   return (
     <View style={styles.topBar}>
-      <View style={styles.iconButton} />
+      <Link href="/stats" asChild>
+        <Pressable accessibilityLabel="Statistiken öffnen" accessibilityRole="button" style={styles.iconButton}>
+          <Text style={styles.statsIcon}>📊</Text>
+        </Pressable>
+      </Link>
       <Text style={styles.logo}>WORTKNIFF</Text>
       <Link href="/settings" asChild>
         <Pressable accessibilityLabel="Einstellungen öffnen" accessibilityRole="button" style={styles.iconButton}>
@@ -42,6 +46,10 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "900",
     lineHeight: 25,
+  },
+  statsIcon: {
+    fontSize: 20,
+    textAlign: "center",
   },
   logo: {
     color: "#E65100",

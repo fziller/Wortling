@@ -25,13 +25,14 @@ import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { CONTENT_VERSION } from "@/games/between/content";
-import { createPracticeBetweenGame } from "@/games/between/daily";
+import { createNextBetweenGame } from "@/games/between/daily";
 import { getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
 import { displayWord } from "@/games/between/format";
 import { BetweenState, Guess } from "@/games/between/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { updateBadgeCount } from "@/notifications/badge";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
+import { useGameRecorder } from "@/stats/recorder";
 
 const BOARD_LINE_HEIGHT = 132;
 const DOT_SIZE = 20;
@@ -59,9 +60,10 @@ function formatElapsedTime(seconds: number): string {
 export default function BetweenScreen() {
   const router = useRouter();
   const today = getBerlinDateKey();
+  const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [state, setState] = useState<BetweenState>(() => createPracticeBetweenGame(undefined, today).state);
+  const [state, setState] = useState<BetweenState>(() => createNextBetweenGame(undefined, today).state);
   const [dateKey, setDateKey] = useState(today);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(5));
   const [cursorIndex, setCursorIndex] = useState(0);
@@ -185,10 +187,12 @@ export default function BetweenScreen() {
   }
 
   function guess() {
+    stats.start({ gameId: "between", playDate: dateKey, puzzleId, gameVersion: puzzleVersion, wordLength: 5 });
     const result = submitGuess(state, inputLetters.join(""));
 
     if (!result.ok) {
       fail();
+      stats.recordRejectedGuess(result.reason, inputLetters.join(""));
       return;
     }
 
@@ -198,6 +202,11 @@ export default function BetweenScreen() {
 
     setState(result.state);
     setCursorIndex(0);
+    stats.recordAcceptedGuess(result.guess.word, { direction: result.guess.direction });
+
+    if (result.state.status === "won") {
+      stats.finish("won");
+    }
 
     if (result.guess.direction !== "hit") {
       setClearingDirection(result.guess.direction);
@@ -231,7 +240,7 @@ export default function BetweenScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createPracticeBetweenGame(state.targetWord, today);
+    const nextGame = createNextBetweenGame(state.targetWord, today);
 
     if (clearMovingGuessTimeout.current) {
       clearTimeout(clearMovingGuessTimeout.current);
@@ -253,6 +262,8 @@ export default function BetweenScreen() {
   }
 
   function revealRound() {
+    stats.start({ gameId: "between", playDate: dateKey, puzzleId, gameVersion: puzzleVersion, wordLength: 5 });
+    stats.finish("revealed");
     setState(revealSolution(state));
     setModal(null);
     setFinishedAt(Date.now());

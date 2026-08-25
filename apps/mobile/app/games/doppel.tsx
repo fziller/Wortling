@@ -11,13 +11,14 @@ import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
-import { createPracticeDoppelGame } from "@/games/doppel/daily";
+import { createNextDoppelGame } from "@/games/doppel/daily";
 import { revealDoppelSolution, submitDoppelGuess, unlockDoppelHint } from "@/games/doppel/engine";
 import { DoppelHint, DoppelState } from "@/games/doppel/types";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
+import { useGameRecorder } from "@/stats/recorder";
 
-type DoppelGame = ReturnType<typeof createPracticeDoppelGame>;
+type DoppelGame = ReturnType<typeof createNextDoppelGame>;
 
 function hintText(hint: DoppelHint): string {
   if (hint.type === "length") return `${hint.value} Buchstaben`;
@@ -30,9 +31,10 @@ function hintText(hint: DoppelHint): string {
 export default function DoppelScreen() {
   const router = useRouter();
   const today = getBerlinDateKey();
+  const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [game, setGame] = useState<DoppelGame>(() => createPracticeDoppelGame(undefined, today));
+  const [game, setGame] = useState<DoppelGame>(() => createNextDoppelGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<DoppelState>(game.state);
   const [input, setInput] = useState("");
@@ -99,25 +101,45 @@ export default function DoppelScreen() {
     setInput((current) => Array.from(current).slice(0, -1).join(""));
   }
 
+  function startStats() {
+    stats.start({ gameId: "doppel", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version });
+  }
+
   function submit() {
+    startStats();
     const result = submitDoppelGuess(puzzle, state, input);
 
     setState(result.state);
     setMessage(result.ok ? "Gelöst." : result.reason);
-    if (result.ok) setInput("");
+    if (result.ok) {
+      stats.recordAcceptedGuess(input);
+      setInput("");
+    } else {
+      stats.recordRejectedGuess(result.reason, input);
+    }
     if (result.ok && result.state.status !== "playing") {
+      stats.finish("won");
       setFinishedAt(Date.now());
       setResultVisible(true);
     }
   }
 
   function hint() {
+    startStats();
     const nextState = unlockDoppelHint(puzzle, state);
+
+    if (nextState.unlockedHints > state.unlockedHints) {
+      const unlockedHint = (puzzle.hints ?? [])[nextState.unlockedHints - 1];
+
+      stats.recordHint(unlockedHint ? { type: unlockedHint.type } : undefined);
+    }
     setState(nextState);
     setMessage(nextState.unlockedHints === state.unlockedHints ? "Keine weiteren Hinweise." : "Hinweis freigeschaltet.");
   }
 
   function reveal() {
+    startStats();
+    stats.finish("revealed");
     setState(revealDoppelSolution(puzzle, state));
     setMessage("Lösung aufgedeckt.");
     setGiveUpVisible(false);
@@ -125,8 +147,8 @@ export default function DoppelScreen() {
     setResultVisible(true);
   }
 
-  function startPracticeGame() {
-    const nextGame = createPracticeDoppelGame(puzzle.id, today);
+  function startNextGame() {
+    const nextGame = createNextDoppelGame(puzzle.id, today);
 
     setGame(nextGame);
     setState(nextGame.state);
@@ -210,7 +232,7 @@ export default function DoppelScreen() {
         guesses={state.guesses}
         message={state.status === "won" ? `${solution.leftCompound} · ${solution.rightCompound}` : "Die Lösung ist raus. Noch eins?"}
         onHome={() => router.replace("/")}
-        onNext={startPracticeGame}
+        onNext={startNextGame}
         solution={solution.answer}
         stats={[
           { label: "Hinweise", value: state.unlockedHints },

@@ -16,7 +16,7 @@ export function createDailyBetweenGame(date = new Date()) {
   };
 }
 
-export function createPracticeBetweenGame(previousTarget?: string, dateKey = "Freies Spiel") {
+export function createNextBetweenGame(previousTarget?: string, dateKey = "Freies Spiel") {
   const options = targetWords.filter((word) => word !== previousTarget);
   const targetWord = options[Math.floor(Math.random() * options.length)] ?? targetWords[0];
 

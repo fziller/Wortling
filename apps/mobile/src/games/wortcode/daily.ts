@@ -13,13 +13,13 @@ const difficultyByLength = { 5: "easy", 6: "medium", 7: "hard" } as const satisf
 export function createDailyWortcodeGame(date = new Date()) {
   const dateKey = getBerlinDateKey(date);
 
-  return createPracticeWortcodeGame(undefined, dateKey);
+  return createNextWortcodeGame(undefined, dateKey);
 }
 
-export function createPracticeWortcodeGame(previousAnswer?: string, dateKey = "Freies Spiel") {
+export function createNextWortcodeGame(previousAnswer?: string, dateKey = "Freies Spiel") {
   const { answer, wordLength } = pickRandomTargetWord(wortcodeTargetsByLength, previousAnswer);
   if (!isWortcodeWordLength(wordLength)) throw new Error("Wortcode only supports 5- to 7-letter words.");
-  const puzzle = createWortcodePuzzle(answer, wordLength, `wortcode-practice-${Date.now()}`);
+  const puzzle = createWortcodePuzzle(answer, wordLength, `wortcode-next-${Date.now()}`);
 
   return { dateKey, puzzle, state: createWortcodeState(puzzle) };
 }

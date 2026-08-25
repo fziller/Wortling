@@ -23,7 +23,7 @@ import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import {
-  createPracticeWortleiterGame,
+  createNextWortleiterGame,
 } from "@/games/wortleiter/daily";
 import {
   getWortleiterRating,
@@ -40,8 +40,9 @@ import {
   saveProgress,
   type StoredProgress,
 } from "@/storage/progress";
+import { useGameRecorder } from "@/stats/recorder";
 
-type WortleiterGame = ReturnType<typeof createPracticeWortleiterGame>;
+type WortleiterGame = ReturnType<typeof createNextWortleiterGame>;
 
 function createEmptyInput(length: number): string[] {
   return Array.from({ length }, () => "");
@@ -60,9 +61,10 @@ export default function WortleiterScreen() {
   const router = useRouter();
   const posthog = usePostHog();
   const today = getBerlinDateKey();
+  const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [game, setGame] = useState<WortleiterGame>(() => createPracticeWortleiterGame(undefined, today));
+  const [game, setGame] = useState<WortleiterGame>(() => createNextWortleiterGame(undefined, today));
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<WortleiterState>(game.state);
   const [inputLetters, setInputLetters] = useState(() =>
@@ -176,7 +178,12 @@ export default function WortleiterScreen() {
     });
   }
 
+  function startStats() {
+    stats.start({ gameId: "wortleiter", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength });
+  }
+
   function submit() {
+    startStats();
     const result = submitWortleiterGuess(puzzle, state, inputLetters.join(""));
 
     setState(result.state);
@@ -189,12 +196,19 @@ export default function WortleiterScreen() {
     );
 
     if (result.ok) {
+      const lastWord = result.state.words[result.state.words.length - 1];
+
+      stats.recordAcceptedGuess(lastWord);
       setInputLetters(createEmptyInput(puzzle.wordLength));
       setCursorIndex(0);
+    } else {
+      stats.recordRejectedGuess(result.reason, inputLetters.join(""));
     }
 
     if (result.ok && result.state.status === "won") {
       const now = Date.now();
+
+      stats.finish("won");
       setFinishedAt(now);
       setResultVisible(true);
       try {
@@ -216,6 +230,8 @@ export default function WortleiterScreen() {
   }
 
   function reveal() {
+    startStats();
+    stats.finish("revealed");
     const nextState = revealWortleiterSolution(puzzle, state);
     setState(nextState);
     setMessage("Lösung aufgedeckt.");
@@ -226,8 +242,8 @@ export default function WortleiterScreen() {
     setResultVisible(true);
   }
 
-  function startPracticePuzzle() {
-    const nextGame = createPracticeWortleiterGame(puzzle.id, today);
+  function startNextPuzzle() {
+    const nextGame = createNextWortleiterGame(puzzle.id, today);
 
     setGame(nextGame);
     setState(nextGame.state);
@@ -351,7 +367,7 @@ export default function WortleiterScreen() {
       <WortleiterResultModal
         elapsedTime={formatElapsedTime(elapsedSeconds)}
         onHome={() => router.replace("/")}
-        onNext={startPracticePuzzle}
+        onNext={startNextPuzzle}
         optimalSteps={puzzle.optimalSteps}
         status={state.status}
         steps={steps}
