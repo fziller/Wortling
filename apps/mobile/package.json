@@ -1,6 +1,6 @@
 {
   "name": "wortkniff-mobile",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "main": "expo-router/entry",
   "scripts": {
@@ -23,9 +23,9 @@
     "wortleiter:generate": "yarn words:import:4 && node scripts/generate-wortleiter-puzzles.mjs --limit=1500",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "build:prod:ios": "yarn content:generate && dotenvx run -- expo run:ios --configuration Release && dotenvx run -- npx sentry-expo-upload-sourcemaps",
-    "build:prod:android": "yarn content:generate && dotenvx run -- expo run:android --variant release && dotenvx run -- npx sentry-expo-upload-sourcemaps",
-    "sentry:upload": "dotenvx run -- npx sentry-expo-upload-sourcemaps",
+    "build:prod:ios": "yarn content:generate && dotenvx run -- expo run:ios --configuration Release",
+    "build:prod:android": "yarn content:generate && dotenvx run -- eas build --platform android --profile production --local",
+    "sentry:upload": "dotenvx run -- npx sentry-expo-upload-sourcemaps dist",
     "eas:build": "yarn content:generate && eas build --platform all --profile production",
     "eas:build:dev": "yarn content:generate && eas build --platform all --profile development",
     "eas:build:preview": "yarn content:generate && eas build --platform all --profile preview",
@@ -71,6 +71,7 @@
   "devDependencies": {
     "@dotenvx/dotenvx": "^2.21.0",
     "@types/react": "~19.2.2",
+    "dotenv": "^17.4.2",
     "typescript": "~6.0.3",
     "vitest": "^4.1.11"
   }
