@@ -26,6 +26,13 @@ Wortkniff is an Expo + React Native + TypeScript mobile app for German daily wor
 - Put small per-game actions like `Lösung anzeigen`, `Hinweis`, or `Zurück` in the frame action row above the keyboard.
 - Do not add explanatory game-rule copy directly into gameplay content; use the help modal for rules and reserve content text for concrete feedback, hints, or results.
 - Never use horizontal scrolling for gameplay letter tiles or word boards; shrink tile width, gaps, or type instead so the full puzzle remains visible.
+- Animate all interactive state changes (toggles, switches, buttons) smoothly with `react-native-reanimated` — no hard on/off jumps. Use spring (`damping ~18, stiffness ~220`) or timing (180-220ms) for track color and knob position.
+
+## Animations & Polish
+
+- Animation is an acceptance criterion for every UI change. When adding or modifying interactive elements, verify on device that transitions are smooth and not snapping.
+- Challenge new tasks that lack animation consideration: ask whether a toggle, modal, tile, or navigation needs a spring/timing transition before marking done.
+- Keep animations offline-friendly and lightweight (Reanimated worklets only, no JS-thread jank).
 
 ## Word Data
 

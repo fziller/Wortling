@@ -31,7 +31,8 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 - Saved in-progress rounds with draft input and a Home `Weiterspielen` chip.
 - Shared local progress model stored in AsyncStorage.
 - Static generated allowed-guess data checked into the app.
-- Curated target lists checked into source files under `apps/mobile/src/games`.
+- Curated target lists derived from generated allowed guesses via SUBTLEX-DE Zipf tiers (easy ≥3.8, medium ≥2.2, hard ≥1.5, unknown <1.5) — normal games use easy+medium (Zipf ≥2.2), hard/unknown stay guess-only. Sources: `apps/mobile/scripts/data/subtlex-de.tsv` (FrequencyWords de_50k, Zipf = log10(freq per billion)).
+- Generated files per length: `allowedGuesses.ts` (full), `targetWords.ts` (easy+medium), `wordMeta.ts` (all words with zipf/tier for future difficulty modes).
 - Optional daily reminder notifications.
 - Sentry and PostHog instrumentation with no-op fallback behavior.
 
