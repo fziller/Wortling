@@ -42,6 +42,8 @@ import {
   saveProgress,
   type StoredProgress,
 } from "@/storage/progress";
+import { BucketPreset } from "@/games/wordBuckets";
+import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
 type WorttrefferGame = ReturnType<typeof createNextWorttrefferGame>;
@@ -62,7 +64,12 @@ export default function WorttrefferScreen() {
   const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [game, setGame] = useState<WorttrefferGame>(() => createNextWorttrefferGame(undefined, today));
+  const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
+  const [game, setGame] = useState<WorttrefferGame>(() => createNextWorttrefferGame(undefined, today, "klassisch"));
+
+  useEffect(() => {
+    loadWordBucketSettings().then((s) => setBucketPreset(getPreset(s)));
+  }, []);
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<WorttrefferState>(game.state);
   const [inputLetters, setInputLetters] = useState(() =>
@@ -248,7 +255,7 @@ export default function WorttrefferScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createNextWorttrefferGame(puzzle.answer, today);
+    const nextGame = createNextWorttrefferGame(puzzle.answer, today, bucketPreset);
 
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     setGame(nextGame);

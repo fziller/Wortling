@@ -3,6 +3,7 @@ import { getWordLength, isSupportedWordLength, pickRandomTargetWord, type Suppor
 
 import { WORTCODE_CONTENT_VERSION, wortcodeTargetsByLength } from "./content";
 import { createWortcodeState } from "./engine";
+import { BucketPreset, getWordsByLengthForPreset } from "@/games/wordBuckets";
 import { WortcodePuzzle } from "./types";
 
 type WortcodeWordLength = Exclude<SupportedWordLength, 4>;
@@ -10,14 +11,15 @@ type WortcodeWordLength = Exclude<SupportedWordLength, 4>;
 const maxAttemptsByLength = { 5: 7, 6: 8, 7: 9 } as const satisfies Record<WortcodeWordLength, number>;
 const difficultyByLength = { 5: "easy", 6: "medium", 7: "hard" } as const satisfies Record<WortcodeWordLength, WortcodePuzzle["difficulty"]>;
 
-export function createDailyWortcodeGame(date = new Date()) {
+export function createDailyWortcodeGame(date = new Date(), preset: BucketPreset = "klassisch") {
   const dateKey = getBerlinDateKey(date);
 
-  return createNextWortcodeGame(undefined, dateKey);
+  return createNextWortcodeGame(undefined, dateKey, preset);
 }
 
-export function createNextWortcodeGame(previousAnswer?: string, dateKey = "Freies Spiel") {
-  const { answer, wordLength } = pickRandomTargetWord(wortcodeTargetsByLength, previousAnswer);
+export function createNextWortcodeGame(previousAnswer?: string, dateKey = "Freies Spiel", preset: BucketPreset = "klassisch") {
+  const targets = preset === "klassisch" ? wortcodeTargetsByLength : getWordsByLengthForPreset(preset);
+  const { answer, wordLength } = pickRandomTargetWord(targets, previousAnswer);
   if (!isWortcodeWordLength(wordLength)) throw new Error("Wortcode only supports 5- to 7-letter words.");
   const puzzle = createWortcodePuzzle(answer, wordLength, `wortcode-next-${Date.now()}`);
 

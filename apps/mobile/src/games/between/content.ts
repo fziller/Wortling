@@ -1,9 +1,11 @@
 import { generatedAllowedGuesses } from "./generated/allowedGuesses";
+import { generatedTargetWords } from "./generated/targetWords";
 
-export const CONTENT_VERSION = "2026-08-18-b";
+export const CONTENT_VERSION = "2026-08-26";
 export const WORD_LENGTH = 5;
 
-export const targetWords: string[] = [...(generatedAllowedGuesses as unknown as string[])].sort();
+// Targets = easy+medium (Zipf ≥2.2) via SUBTLEX-DE/FrequencyWords; allowed = full dict. Hard/unknown stay guess-only ("better have than need").
+export const targetWords: string[] = [...(generatedTargetWords as unknown as string[])];
 
 const generatedGuessSet = new Set<string>(generatedAllowedGuesses as unknown as string[]);
 const missingTargetWords = targetWords.filter((word) => !generatedGuessSet.has(word));

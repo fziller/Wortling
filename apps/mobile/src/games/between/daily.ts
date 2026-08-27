@@ -3,11 +3,18 @@ import { pickSeededIndex } from "@/daily/seed";
 
 import { CONTENT_VERSION, targetWords } from "./content";
 import { createBetweenState } from "./engine";
+import { BucketPreset, getTargetsForPreset } from "@/games/wordBuckets";
 
-export function createDailyBetweenGame(date = new Date()) {
+function getBetweenTargets(preset: BucketPreset = "klassisch"): readonly string[] {
+  if (preset === "klassisch") return targetWords;
+  return getTargetsForPreset(5, preset);
+}
+
+export function createDailyBetweenGame(date = new Date(), preset: BucketPreset = "klassisch") {
   const dateKey = getBerlinDateKey(date);
-  const seed = `${dateKey}:between:${CONTENT_VERSION}`;
-  const targetWord = targetWords[pickSeededIndex(seed, targetWords.length)];
+  const seed = `${dateKey}:between:${CONTENT_VERSION}:${preset}`;
+  const pool = getBetweenTargets(preset);
+  const targetWord = pool[pickSeededIndex(seed, pool.length)];
 
   return {
     dateKey,
@@ -16,9 +23,10 @@ export function createDailyBetweenGame(date = new Date()) {
   };
 }
 
-export function createNextBetweenGame(previousTarget?: string, dateKey = "Freies Spiel") {
-  const options = targetWords.filter((word) => word !== previousTarget);
-  const targetWord = options[Math.floor(Math.random() * options.length)] ?? targetWords[0];
+export function createNextBetweenGame(previousTarget?: string, dateKey = "Freies Spiel", preset: BucketPreset = "klassisch") {
+  const pool = getBetweenTargets(preset);
+  const options = pool.filter((word) => word !== previousTarget);
+  const targetWord = options[Math.floor(Math.random() * options.length)] ?? pool[0];
 
   return {
     dateKey,

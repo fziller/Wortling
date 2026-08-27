@@ -2,15 +2,19 @@ import { allowedGuesses as fiveLetterGuesses } from "../between/content";
 import { generatedAllowedGuesses as sevenLetterGuesses } from "../shared/generated/allowedGuesses7";
 import { generatedAllowedGuesses as sixLetterGuesses } from "../wortcode/generated/allowedGuesses";
 import { generatedAllowedGuesses as fourLetterGuesses } from "../wortleiter/generated/allowedGuesses";
+import { generatedTargetWords as fourLetterTargets } from "../wortleiter/generated/targetWords";
+import { generatedTargetWords as fiveLetterTargets } from "../between/generated/targetWords";
+import { generatedTargetWords as sixLetterTargets } from "../wortcode/generated/targetWords";
+import { generatedTargetWords as sevenLetterTargets } from "../shared/generated/targetWords7";
 import type { WordsByLength } from "../wordLengths";
 
-export const WORTTREFFER_CONTENT_VERSION = 4;
+export const WORTTREFFER_CONTENT_VERSION = 5;
 
 export const worttrefferTargetsByLength: WordsByLength = {
-  4: [...fourLetterGuesses],
-  5: [...fiveLetterGuesses],
-  6: [...sixLetterGuesses],
-  7: [...sevenLetterGuesses],
+  4: [...(fourLetterTargets as unknown as string[])],
+  5: [...(fiveLetterTargets as unknown as string[])],
+  6: [...(sixLetterTargets as unknown as string[])],
+  7: [...(sevenLetterTargets as unknown as string[])],
 };
 
 export const worttrefferGuessWordsByLength: WordsByLength = {

@@ -32,6 +32,8 @@ import { BetweenState, Guess } from "@/games/between/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
+import { BucketPreset } from "@/games/wordBuckets";
+import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { useGameRecorder } from "@/stats/recorder";
 
@@ -64,7 +66,12 @@ export default function BetweenScreen() {
   const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [state, setState] = useState<BetweenState>(() => createNextBetweenGame(undefined, today).state);
+  const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
+  const [state, setState] = useState<BetweenState>(() => createNextBetweenGame(undefined, today, "klassisch").state);
+
+  useEffect(() => {
+    loadWordBucketSettings().then((s) => setBucketPreset(getPreset(s)));
+  }, []);
   const [dateKey, setDateKey] = useState(today);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(5));
   const [cursorIndex, setCursorIndex] = useState(0);
@@ -240,7 +247,7 @@ export default function BetweenScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createNextBetweenGame(state.targetWord, today);
+    const nextGame = createNextBetweenGame(state.targetWord, today, bucketPreset);
 
     if (clearMovingGuessTimeout.current) {
       clearTimeout(clearMovingGuessTimeout.current);

@@ -37,22 +37,6 @@ export const generatedWortleiterPuzzles = [
   {
     "id": "wortleiter-003",
     "version": 1,
-    "startWord": "ader",
-    "targetWord": "ofen",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "ader",
-      "aber",
-      "ober",
-      "oben",
-      "ofen"
-    ]
-  },
-  {
-    "id": "wortleiter-004",
-    "version": 1,
     "startWord": "auge",
     "targetWord": "ente",
     "wordLength": 4,
@@ -67,7 +51,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-005",
+    "id": "wortleiter-004",
     "version": 1,
     "startWord": "auge",
     "targetWord": "erde",
@@ -83,7 +67,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-006",
+    "id": "wortleiter-005",
     "version": 1,
     "startWord": "auge",
     "targetWord": "fest",
@@ -99,7 +83,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-007",
+    "id": "wortleiter-006",
     "version": 1,
     "startWord": "auge",
     "targetWord": "laut",
@@ -115,7 +99,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-008",
+    "id": "wortleiter-007",
     "version": 1,
     "startWord": "auge",
     "targetWord": "name",
@@ -131,7 +115,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-009",
+    "id": "wortleiter-008",
     "version": 1,
     "startWord": "auge",
     "targetWord": "nase",
@@ -147,7 +131,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-010",
+    "id": "wortleiter-009",
     "version": 1,
     "startWord": "auge",
     "targetWord": "rose",
@@ -163,7 +147,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-011",
+    "id": "wortleiter-010",
     "version": 1,
     "startWord": "auge",
     "targetWord": "duft",
@@ -179,7 +163,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-012",
+    "id": "wortleiter-011",
     "version": 1,
     "startWord": "bach",
     "targetWord": "bund",
@@ -195,7 +179,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-013",
+    "id": "wortleiter-012",
     "version": 1,
     "startWord": "bach",
     "targetWord": "hand",
@@ -211,7 +195,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-014",
+    "id": "wortleiter-013",
     "version": 1,
     "startWord": "bach",
     "targetWord": "land",
@@ -227,7 +211,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-015",
+    "id": "wortleiter-014",
     "version": 1,
     "startWord": "bach",
     "targetWord": "bahn",
@@ -243,7 +227,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-016",
+    "id": "wortleiter-015",
     "version": 1,
     "startWord": "bach",
     "targetWord": "wand",
@@ -259,7 +243,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-017",
+    "id": "wortleiter-016",
     "version": 1,
     "startWord": "bach",
     "targetWord": "berg",
@@ -275,7 +259,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-018",
+    "id": "wortleiter-017",
     "version": 1,
     "startWord": "bach",
     "targetWord": "rand",
@@ -291,7 +275,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-019",
+    "id": "wortleiter-018",
     "version": 1,
     "startWord": "bach",
     "targetWord": "sand",
@@ -307,7 +291,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-020",
+    "id": "wortleiter-019",
     "version": 1,
     "startWord": "bach",
     "targetWord": "fest",
@@ -323,7 +307,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-021",
+    "id": "wortleiter-020",
     "version": 1,
     "startWord": "bach",
     "targetWord": "nase",
@@ -339,7 +323,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-022",
+    "id": "wortleiter-021",
     "version": 1,
     "startWord": "bach",
     "targetWord": "haus",
@@ -355,7 +339,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-023",
+    "id": "wortleiter-022",
     "version": 1,
     "startWord": "bach",
     "targetWord": "pass",
@@ -371,7 +355,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-024",
+    "id": "wortleiter-023",
     "version": 1,
     "startWord": "bach",
     "targetWord": "haut",
@@ -387,7 +371,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-025",
+    "id": "wortleiter-024",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "bild",
@@ -403,7 +387,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-026",
+    "id": "wortleiter-025",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "kind",
@@ -419,7 +403,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-027",
+    "id": "wortleiter-026",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "mond",
@@ -435,7 +419,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-028",
+    "id": "wortleiter-027",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "mund",
@@ -451,7 +435,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-029",
+    "id": "wortleiter-028",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "hund",
@@ -467,23 +451,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-030",
-    "version": 1,
-    "startWord": "bahn",
-    "targetWord": "seen",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "bahn",
-      "bann",
-      "sann",
-      "senn",
-      "seen"
-    ]
-  },
-  {
-    "id": "wortleiter-031",
+    "id": "wortleiter-029",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "pass",
@@ -494,28 +462,12 @@ export const generatedWortleiterPuzzles = [
       "bahn",
       "barn",
       "bars",
-      "bass",
+      "pars",
       "pass"
     ]
   },
   {
-    "id": "wortleiter-032",
-    "version": 1,
-    "startWord": "bahn",
-    "targetWord": "maus",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "bahn",
-      "barn",
-      "bars",
-      "mars",
-      "maus"
-    ]
-  },
-  {
-    "id": "wortleiter-033",
+    "id": "wortleiter-030",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "blut",
@@ -531,23 +483,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-034",
-    "version": 1,
-    "startWord": "bahn",
-    "targetWord": "laut",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "bahn",
-      "barn",
-      "bart",
-      "baut",
-      "laut"
-    ]
-  },
-  {
-    "id": "wortleiter-035",
+    "id": "wortleiter-031",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "boot",
@@ -563,23 +499,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-036",
-    "version": 1,
-    "startWord": "bahn",
-    "targetWord": "wort",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "bahn",
-      "barn",
-      "born",
-      "bort",
-      "wort"
-    ]
-  },
-  {
-    "id": "wortleiter-037",
+    "id": "wortleiter-032",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "dorf",
@@ -595,7 +515,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-038",
+    "id": "wortleiter-033",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "haus",
@@ -611,7 +531,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-039",
+    "id": "wortleiter-034",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "mais",
@@ -627,7 +547,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-040",
+    "id": "wortleiter-035",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "haut",
@@ -643,7 +563,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-041",
+    "id": "wortleiter-036",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "herz",
@@ -659,7 +579,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-042",
+    "id": "wortleiter-037",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "fall",
@@ -675,23 +595,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-043",
-    "version": 1,
-    "startWord": "bahn",
-    "targetWord": "mehl",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "bahn",
-      "kahn",
-      "kahl",
-      "mahl",
-      "mehl"
-    ]
-  },
-  {
-    "id": "wortleiter-044",
+    "id": "wortleiter-038",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "baum",
@@ -707,7 +611,55 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-045",
+    "id": "wortleiter-039",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "ball",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "mahn",
+      "mahl",
+      "mall",
+      "ball"
+    ]
+  },
+  {
+    "id": "wortleiter-040",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "mahn",
+      "mahl",
+      "maul",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-041",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "meer",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "mahn",
+      "mahr",
+      "mehr",
+      "meer"
+    ]
+  },
+  {
+    "id": "wortleiter-042",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "name",
@@ -723,7 +675,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-046",
+    "id": "wortleiter-043",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "nase",
@@ -739,7 +691,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-047",
+    "id": "wortleiter-044",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "rose",
@@ -755,7 +707,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-048",
+    "id": "wortleiter-045",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "ring",
@@ -771,23 +723,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-049",
+    "id": "wortleiter-046",
     "version": 1,
     "startWord": "bahn",
-    "targetWord": "ball",
+    "targetWord": "laut",
     "wordLength": 4,
     "optimalSteps": 4,
     "difficulty": "medium",
     "solution": [
       "bahn",
-      "wahn",
-      "wahl",
-      "wall",
-      "ball"
+      "rahn",
+      "raun",
+      "raut",
+      "laut"
     ]
   },
   {
-    "id": "wortleiter-050",
+    "id": "wortleiter-047",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "sahn",
+      "saht",
+      "satt",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-048",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "wald",
@@ -803,7 +771,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-051",
+    "id": "wortleiter-049",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "wind",
@@ -819,7 +787,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-052",
+    "id": "wortleiter-050",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "wahn",
+      "warn",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-051",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "zeit",
@@ -835,7 +819,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-053",
+    "id": "wortleiter-052",
     "version": 1,
     "startWord": "ball",
     "targetWord": "mund",
@@ -851,7 +835,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-054",
+    "id": "wortleiter-053",
     "version": 1,
     "startWord": "ball",
     "targetWord": "hund",
@@ -867,7 +851,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-055",
+    "id": "wortleiter-054",
     "version": 1,
     "startWord": "ball",
     "targetWord": "kind",
@@ -883,7 +867,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-056",
+    "id": "wortleiter-055",
     "version": 1,
     "startWord": "ball",
     "targetWord": "ring",
@@ -899,7 +883,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-057",
+    "id": "wortleiter-056",
     "version": 1,
     "startWord": "ball",
     "targetWord": "park",
@@ -915,7 +899,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-058",
+    "id": "wortleiter-057",
     "version": 1,
     "startWord": "ball",
     "targetWord": "blut",
@@ -931,7 +915,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-059",
+    "id": "wortleiter-058",
     "version": 1,
     "startWord": "ball",
     "targetWord": "zahn",
@@ -947,7 +931,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-060",
+    "id": "wortleiter-059",
     "version": 1,
     "startWord": "ball",
     "targetWord": "film",
@@ -963,7 +947,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-061",
+    "id": "wortleiter-060",
     "version": 1,
     "startWord": "ball",
     "targetWord": "pilz",
@@ -979,39 +963,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-062",
-    "version": 1,
-    "startWord": "ball",
-    "targetWord": "teil",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "ball",
-      "fall",
-      "fell",
-      "feil",
-      "teil"
-    ]
-  },
-  {
-    "id": "wortleiter-063",
-    "version": 1,
-    "startWord": "ball",
-    "targetWord": "geld",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "ball",
-      "fall",
-      "fell",
-      "gell",
-      "geld"
-    ]
-  },
-  {
-    "id": "wortleiter-064",
+    "id": "wortleiter-061",
     "version": 1,
     "startWord": "ball",
     "targetWord": "pass",
@@ -1027,7 +979,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-065",
+    "id": "wortleiter-062",
     "version": 1,
     "startWord": "ball",
     "targetWord": "saft",
@@ -1043,7 +995,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-066",
+    "id": "wortleiter-063",
     "version": 1,
     "startWord": "ball",
     "targetWord": "laut",
@@ -1059,7 +1011,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-067",
+    "id": "wortleiter-064",
     "version": 1,
     "startWord": "ball",
     "targetWord": "hemd",
@@ -1075,7 +1027,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-068",
+    "id": "wortleiter-065",
     "version": 1,
     "startWord": "ball",
     "targetWord": "saat",
@@ -1091,7 +1043,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-069",
+    "id": "wortleiter-066",
     "version": 1,
     "startWord": "ball",
     "targetWord": "mond",
@@ -1107,7 +1059,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-070",
+    "id": "wortleiter-067",
     "version": 1,
     "startWord": "ball",
     "targetWord": "wind",
@@ -1123,23 +1075,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-071",
+    "id": "wortleiter-068",
     "version": 1,
     "startWord": "ball",
-    "targetWord": "welt",
+    "targetWord": "zelt",
     "wordLength": 4,
     "optimalSteps": 4,
     "difficulty": "medium",
     "solution": [
       "ball",
       "wall",
-      "walk",
-      "welk",
-      "welt"
+      "well",
+      "welt",
+      "zelt"
     ]
   },
   {
-    "id": "wortleiter-072",
+    "id": "wortleiter-069",
     "version": 1,
     "startWord": "bank",
     "targetWord": "lied",
@@ -1155,7 +1107,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-073",
+    "id": "wortleiter-070",
     "version": 1,
     "startWord": "bank",
     "targetWord": "zahl",
@@ -1171,7 +1123,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-074",
+    "id": "wortleiter-071",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "mahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "bann",
+      "mann",
+      "mahn",
+      "mahl"
+    ]
+  },
+  {
+    "id": "wortleiter-072",
     "version": 1,
     "startWord": "bank",
     "targetWord": "bein",
@@ -1187,7 +1155,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-075",
+    "id": "wortleiter-073",
     "version": 1,
     "startWord": "bank",
     "targetWord": "zorn",
@@ -1203,7 +1171,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-076",
+    "id": "wortleiter-074",
     "version": 1,
     "startWord": "bank",
     "targetWord": "korn",
@@ -1219,7 +1187,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-077",
+    "id": "wortleiter-075",
     "version": 1,
     "startWord": "bank",
     "targetWord": "blut",
@@ -1235,7 +1203,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-078",
+    "id": "wortleiter-076",
     "version": 1,
     "startWord": "bank",
     "targetWord": "boot",
@@ -1251,7 +1219,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-079",
+    "id": "wortleiter-077",
     "version": 1,
     "startWord": "bank",
     "targetWord": "herz",
@@ -1267,7 +1235,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-080",
+    "id": "wortleiter-078",
     "version": 1,
     "startWord": "bank",
     "targetWord": "mais",
@@ -1283,7 +1251,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-081",
+    "id": "wortleiter-079",
     "version": 1,
     "startWord": "bank",
     "targetWord": "kino",
@@ -1299,7 +1267,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-082",
+    "id": "wortleiter-080",
     "version": 1,
     "startWord": "bank",
     "targetWord": "nase",
@@ -1315,7 +1283,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-083",
+    "id": "wortleiter-081",
     "version": 1,
     "startWord": "bank",
     "targetWord": "rose",
@@ -1331,7 +1299,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-084",
+    "id": "wortleiter-082",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "rank",
+      "ranz",
+      "ratz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-083",
     "version": 1,
     "startWord": "bank",
     "targetWord": "baum",
@@ -1347,7 +1331,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-085",
+    "id": "wortleiter-084",
     "version": 1,
     "startWord": "bank",
     "targetWord": "haus",
@@ -1363,7 +1347,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-086",
+    "id": "wortleiter-085",
     "version": 1,
     "startWord": "bank",
     "targetWord": "maus",
@@ -1379,7 +1363,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-087",
+    "id": "wortleiter-086",
     "version": 1,
     "startWord": "bank",
     "targetWord": "haut",
@@ -1395,7 +1379,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-088",
+    "id": "wortleiter-087",
     "version": 1,
     "startWord": "bank",
     "targetWord": "laut",
@@ -1411,6 +1395,22 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
+    "id": "wortleiter-088",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "sank",
+      "sann",
+      "sonn",
+      "sohn"
+    ]
+  },
+  {
     "id": "wortleiter-089",
     "version": 1,
     "startWord": "bank",
@@ -1421,7 +1421,7 @@ export const generatedWortleiterPuzzles = [
     "solution": [
       "bank",
       "sank",
-      "sann",
+      "senk",
       "senn",
       "seen"
     ]
@@ -1542,6 +1542,22 @@ export const generatedWortleiterPuzzles = [
     "id": "wortleiter-097",
     "version": 1,
     "startWord": "bart",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "barn",
+      "bahn",
+      "sahn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-098",
+    "version": 1,
+    "startWord": "bart",
     "targetWord": "zahl",
     "wordLength": 4,
     "optimalSteps": 4,
@@ -1555,7 +1571,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-098",
+    "id": "wortleiter-099",
     "version": 1,
     "startWord": "bart",
     "targetWord": "glas",
@@ -1571,7 +1587,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-099",
+    "id": "wortleiter-100",
     "version": 1,
     "startWord": "bart",
     "targetWord": "bier",
@@ -1587,7 +1603,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-100",
+    "id": "wortleiter-101",
     "version": 1,
     "startWord": "bart",
     "targetWord": "fach",
@@ -1603,7 +1619,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-101",
+    "id": "wortleiter-102",
     "version": 1,
     "startWord": "bart",
     "targetWord": "luft",
@@ -1619,7 +1635,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-102",
+    "id": "wortleiter-103",
     "version": 1,
     "startWord": "bart",
     "targetWord": "rose",
@@ -1635,7 +1651,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-103",
+    "id": "wortleiter-104",
     "version": 1,
     "startWord": "bart",
     "targetWord": "mahl",
@@ -1651,7 +1667,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-104",
+    "id": "wortleiter-105",
     "version": 1,
     "startWord": "bart",
     "targetWord": "bild",
@@ -1667,7 +1683,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-105",
+    "id": "wortleiter-106",
     "version": 1,
     "startWord": "bart",
     "targetWord": "bund",
@@ -1683,7 +1699,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-106",
+    "id": "wortleiter-107",
     "version": 1,
     "startWord": "bart",
     "targetWord": "mond",
@@ -1699,7 +1715,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-107",
+    "id": "wortleiter-108",
     "version": 1,
     "startWord": "bart",
     "targetWord": "dame",
@@ -1715,7 +1731,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-108",
+    "id": "wortleiter-109",
     "version": 1,
     "startWord": "bart",
     "targetWord": "geld",
@@ -1731,7 +1747,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-109",
+    "id": "wortleiter-110",
     "version": 1,
     "startWord": "bart",
     "targetWord": "zelt",
@@ -1747,7 +1763,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-110",
+    "id": "wortleiter-111",
     "version": 1,
     "startWord": "bart",
     "targetWord": "name",
@@ -1763,7 +1779,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-111",
+    "id": "wortleiter-112",
     "version": 1,
     "startWord": "bart",
     "targetWord": "rand",
@@ -1779,7 +1795,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-112",
+    "id": "wortleiter-113",
     "version": 1,
     "startWord": "bart",
     "targetWord": "satz",
@@ -1795,7 +1811,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-113",
+    "id": "wortleiter-114",
     "version": 1,
     "startWord": "bart",
     "targetWord": "fall",
@@ -1811,7 +1827,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-114",
+    "id": "wortleiter-115",
     "version": 1,
     "startWord": "bart",
     "targetWord": "holz",
@@ -1827,7 +1843,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-115",
+    "id": "wortleiter-116",
     "version": 1,
     "startWord": "bart",
     "targetWord": "hund",
@@ -1843,7 +1859,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-116",
+    "id": "wortleiter-117",
     "version": 1,
     "startWord": "bart",
     "targetWord": "hand",
@@ -1859,7 +1875,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-117",
+    "id": "wortleiter-118",
     "version": 1,
     "startWord": "bart",
     "targetWord": "land",
@@ -1875,7 +1891,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-118",
+    "id": "wortleiter-119",
     "version": 1,
     "startWord": "bart",
     "targetWord": "sand",
@@ -1891,7 +1907,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-119",
+    "id": "wortleiter-120",
     "version": 1,
     "startWord": "bart",
     "targetWord": "wald",
@@ -1907,7 +1923,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-120",
+    "id": "wortleiter-121",
     "version": 1,
     "startWord": "bart",
     "targetWord": "zeit",
@@ -1923,7 +1939,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-121",
+    "id": "wortleiter-122",
     "version": 1,
     "startWord": "bart",
     "targetWord": "wind",
@@ -1939,7 +1955,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-122",
+    "id": "wortleiter-123",
     "version": 1,
     "startWord": "baum",
     "targetWord": "bund",
@@ -1955,7 +1971,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-123",
+    "id": "wortleiter-124",
     "version": 1,
     "startWord": "baum",
     "targetWord": "hand",
@@ -1971,7 +1987,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-124",
+    "id": "wortleiter-125",
     "version": 1,
     "startWord": "baum",
     "targetWord": "land",
@@ -1987,7 +2003,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-125",
+    "id": "wortleiter-126",
     "version": 1,
     "startWord": "baum",
     "targetWord": "berg",
@@ -2003,7 +2019,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-126",
+    "id": "wortleiter-127",
     "version": 1,
     "startWord": "baum",
     "targetWord": "fell",
@@ -2019,7 +2035,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-127",
+    "id": "wortleiter-128",
     "version": 1,
     "startWord": "baum",
     "targetWord": "holz",
@@ -2035,7 +2051,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-128",
+    "id": "wortleiter-129",
     "version": 1,
     "startWord": "baum",
     "targetWord": "wand",
@@ -2048,22 +2064,6 @@ export const generatedWortleiterPuzzles = [
       "walm",
       "wald",
       "wand"
-    ]
-  },
-  {
-    "id": "wortleiter-129",
-    "version": 1,
-    "startWord": "baum",
-    "targetWord": "park",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "baum",
-      "baue",
-      "bare",
-      "bark",
-      "park"
     ]
   },
   {
@@ -2230,6 +2230,22 @@ export const generatedWortleiterPuzzles = [
     "id": "wortleiter-140",
     "version": 1,
     "startWord": "baum",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "raum",
+      "rauk",
+      "pauk",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-141",
+    "version": 1,
+    "startWord": "baum",
     "targetWord": "sand",
     "wordLength": 4,
     "optimalSteps": 4,
@@ -2243,7 +2259,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-141",
+    "id": "wortleiter-142",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "saum",
+      "saun",
+      "sahn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-143",
     "version": 1,
     "startWord": "bein",
     "targetWord": "park",
@@ -2259,7 +2291,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-142",
+    "id": "wortleiter-144",
     "version": 1,
     "startWord": "bein",
     "targetWord": "boot",
@@ -2275,7 +2307,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-143",
+    "id": "wortleiter-145",
     "version": 1,
     "startWord": "bein",
     "targetWord": "dorf",
@@ -2291,7 +2323,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-144",
+    "id": "wortleiter-146",
     "version": 1,
     "startWord": "bein",
     "targetWord": "feld",
@@ -2307,7 +2339,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-145",
+    "id": "wortleiter-147",
     "version": 1,
     "startWord": "bein",
     "targetWord": "mehl",
@@ -2323,7 +2355,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-146",
+    "id": "wortleiter-148",
     "version": 1,
     "startWord": "bein",
     "targetWord": "fall",
@@ -2339,7 +2371,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-147",
+    "id": "wortleiter-149",
     "version": 1,
     "startWord": "bein",
     "targetWord": "nest",
@@ -2355,7 +2387,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-148",
+    "id": "wortleiter-150",
     "version": 1,
     "startWord": "bein",
     "targetWord": "geld",
@@ -2371,7 +2403,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-149",
+    "id": "wortleiter-151",
     "version": 1,
     "startWord": "bein",
     "targetWord": "mais",
@@ -2387,23 +2419,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-150",
-    "version": 1,
-    "startWord": "bein",
-    "targetWord": "sohn",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "bein",
-      "mein",
-      "moin",
-      "mohn",
-      "sohn"
-    ]
-  },
-  {
-    "id": "wortleiter-151",
+    "id": "wortleiter-152",
     "version": 1,
     "startWord": "bein",
     "targetWord": "rand",
@@ -2419,7 +2435,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-152",
+    "id": "wortleiter-153",
     "version": 1,
     "startWord": "bein",
     "targetWord": "ring",
@@ -2435,7 +2451,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-153",
+    "id": "wortleiter-154",
     "version": 1,
     "startWord": "bein",
     "targetWord": "sand",
@@ -2451,7 +2467,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-154",
+    "id": "wortleiter-155",
     "version": 1,
     "startWord": "bein",
     "targetWord": "meer",
@@ -2467,7 +2483,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-155",
+    "id": "wortleiter-156",
     "version": 1,
     "startWord": "bein",
     "targetWord": "tier",
@@ -2483,7 +2499,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-156",
+    "id": "wortleiter-157",
     "version": 1,
     "startWord": "bein",
     "targetWord": "wort",
@@ -2499,7 +2515,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-157",
+    "id": "wortleiter-158",
     "version": 1,
     "startWord": "bein",
     "targetWord": "zahl",
@@ -2515,7 +2531,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-158",
+    "id": "wortleiter-159",
     "version": 1,
     "startWord": "berg",
     "targetWord": "bild",
@@ -2531,7 +2547,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-159",
+    "id": "wortleiter-160",
     "version": 1,
     "startWord": "berg",
     "targetWord": "wald",
@@ -2547,7 +2563,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-160",
+    "id": "wortleiter-161",
     "version": 1,
     "startWord": "berg",
     "targetWord": "fall",
@@ -2563,7 +2579,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-161",
+    "id": "wortleiter-162",
     "version": 1,
     "startWord": "berg",
     "targetWord": "bund",
@@ -2579,7 +2595,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-162",
+    "id": "wortleiter-163",
     "version": 1,
     "startWord": "berg",
     "targetWord": "hand",
@@ -2595,7 +2611,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-163",
+    "id": "wortleiter-164",
     "version": 1,
     "startWord": "berg",
     "targetWord": "land",
@@ -2611,7 +2627,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-164",
+    "id": "wortleiter-165",
     "version": 1,
     "startWord": "berg",
     "targetWord": "rand",
@@ -2627,7 +2643,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-165",
+    "id": "wortleiter-166",
     "version": 1,
     "startWord": "berg",
     "targetWord": "ring",
@@ -2643,7 +2659,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-166",
+    "id": "wortleiter-167",
     "version": 1,
     "startWord": "berg",
     "targetWord": "nase",
@@ -2659,7 +2675,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-167",
+    "id": "wortleiter-168",
     "version": 1,
     "startWord": "berg",
     "targetWord": "zahn",
@@ -2672,22 +2688,6 @@ export const generatedWortleiterPuzzles = [
       "barn",
       "bahn",
       "zahn"
-    ]
-  },
-  {
-    "id": "wortleiter-168",
-    "version": 1,
-    "startWord": "berg",
-    "targetWord": "pass",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "berg",
-      "barg",
-      "bars",
-      "bass",
-      "pass"
     ]
   },
   {
@@ -2742,6 +2742,22 @@ export const generatedWortleiterPuzzles = [
     "id": "wortleiter-172",
     "version": 1,
     "startWord": "berg",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "bars",
+      "pars",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-173",
+    "version": 1,
+    "startWord": "berg",
     "targetWord": "blut",
     "wordLength": 4,
     "optimalSteps": 4,
@@ -2755,7 +2771,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-173",
+    "id": "wortleiter-174",
     "version": 1,
     "startWord": "berg",
     "targetWord": "laut",
@@ -2771,7 +2787,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-174",
+    "id": "wortleiter-175",
     "version": 1,
     "startWord": "berg",
     "targetWord": "haut",
@@ -2787,7 +2803,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-175",
+    "id": "wortleiter-176",
     "version": 1,
     "startWord": "berg",
     "targetWord": "sand",
@@ -2800,22 +2816,6 @@ export const generatedWortleiterPuzzles = [
       "sarg",
       "sang",
       "sand"
-    ]
-  },
-  {
-    "id": "wortleiter-176",
-    "version": 1,
-    "startWord": "berg",
-    "targetWord": "teil",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "berg",
-      "bern",
-      "bein",
-      "tein",
-      "teil"
     ]
   },
   {
@@ -2838,6 +2838,70 @@ export const generatedWortleiterPuzzles = [
     "id": "wortleiter-178",
     "version": 1,
     "startWord": "berg",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "beug",
+      "beul",
+      "beil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-179",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "fell",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "beug",
+      "beul",
+      "bell",
+      "fell"
+    ]
+  },
+  {
+    "id": "wortleiter-180",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "tier",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "birg",
+      "bieg",
+      "bier",
+      "tier"
+    ]
+  },
+  {
+    "id": "wortleiter-181",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "birg",
+      "bieg",
+      "lieg",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-182",
+    "version": 1,
+    "startWord": "berg",
     "targetWord": "mond",
     "wordLength": 4,
     "optimalSteps": 4,
@@ -2851,7 +2915,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-179",
+    "id": "wortleiter-183",
     "version": 1,
     "startWord": "berg",
     "targetWord": "dorf",
@@ -2867,7 +2931,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-180",
+    "id": "wortleiter-184",
     "version": 1,
     "startWord": "berg",
     "targetWord": "brot",
@@ -2883,7 +2947,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-181",
+    "id": "wortleiter-185",
     "version": 1,
     "startWord": "berg",
     "targetWord": "hemd",
@@ -2899,7 +2963,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-182",
+    "id": "wortleiter-186",
     "version": 1,
     "startWord": "berg",
     "targetWord": "herz",
@@ -2915,7 +2979,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-183",
+    "id": "wortleiter-187",
     "version": 1,
     "startWord": "berg",
     "targetWord": "wand",
@@ -2931,7 +2995,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-184",
+    "id": "wortleiter-188",
     "version": 1,
     "startWord": "berg",
     "targetWord": "wind",
@@ -2947,7 +3011,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-185",
+    "id": "wortleiter-189",
     "version": 1,
     "startWord": "berg",
     "targetWord": "zeit",
@@ -2963,7 +3027,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-186",
+    "id": "wortleiter-190",
     "version": 1,
     "startWord": "berg",
     "targetWord": "zelt",
@@ -2979,7 +3043,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-187",
+    "id": "wortleiter-191",
     "version": 1,
     "startWord": "berg",
     "targetWord": "fest",
@@ -2995,7 +3059,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-188",
+    "id": "wortleiter-192",
     "version": 1,
     "startWord": "berg",
     "targetWord": "nest",
@@ -3011,7 +3075,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-189",
+    "id": "wortleiter-193",
     "version": 1,
     "startWord": "bier",
     "targetWord": "ring",
@@ -3027,7 +3091,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-190",
+    "id": "wortleiter-194",
     "version": 1,
     "startWord": "bier",
     "targetWord": "kind",
@@ -3043,7 +3107,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-191",
+    "id": "wortleiter-195",
     "version": 1,
     "startWord": "bier",
     "targetWord": "kino",
@@ -3059,7 +3123,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-192",
+    "id": "wortleiter-196",
     "version": 1,
     "startWord": "bier",
     "targetWord": "fest",
@@ -3075,7 +3139,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-193",
+    "id": "wortleiter-197",
     "version": 1,
     "startWord": "bier",
     "targetWord": "nest",
@@ -3091,7 +3155,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-194",
+    "id": "wortleiter-198",
     "version": 1,
     "startWord": "bier",
     "targetWord": "herz",
@@ -3107,7 +3171,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-195",
+    "id": "wortleiter-199",
     "version": 1,
     "startWord": "bier",
     "targetWord": "seen",
@@ -3123,7 +3187,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-196",
+    "id": "wortleiter-200",
     "version": 1,
     "startWord": "bild",
     "targetWord": "mahl",
@@ -3139,7 +3203,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-197",
+    "id": "wortleiter-201",
     "version": 1,
     "startWord": "bild",
     "targetWord": "satz",
@@ -3155,7 +3219,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-198",
+    "id": "wortleiter-202",
     "version": 1,
     "startWord": "bild",
     "targetWord": "zorn",
@@ -3171,7 +3235,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-199",
+    "id": "wortleiter-203",
     "version": 1,
     "startWord": "bild",
     "targetWord": "boot",
@@ -3187,7 +3251,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-200",
+    "id": "wortleiter-204",
     "version": 1,
     "startWord": "bild",
     "targetWord": "korn",
@@ -3203,7 +3267,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-201",
+    "id": "wortleiter-205",
     "version": 1,
     "startWord": "bild",
     "targetWord": "fell",
@@ -3219,7 +3283,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-202",
+    "id": "wortleiter-206",
     "version": 1,
     "startWord": "bild",
     "targetWord": "hemd",
@@ -3235,7 +3299,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-203",
+    "id": "wortleiter-207",
     "version": 1,
     "startWord": "bild",
     "targetWord": "film",
@@ -3251,7 +3315,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-204",
+    "id": "wortleiter-208",
     "version": 1,
     "startWord": "bild",
     "targetWord": "zoll",
@@ -3267,7 +3331,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-205",
+    "id": "wortleiter-209",
     "version": 1,
     "startWord": "bild",
     "targetWord": "wort",
@@ -3283,7 +3347,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-206",
+    "id": "wortleiter-210",
     "version": 1,
     "startWord": "blut",
     "targetWord": "park",
@@ -3299,7 +3363,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-207",
+    "id": "wortleiter-211",
     "version": 1,
     "startWord": "blut",
     "targetWord": "nase",
@@ -3315,7 +3379,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-208",
+    "id": "wortleiter-212",
     "version": 1,
     "startWord": "blut",
     "targetWord": "pass",
@@ -3331,7 +3395,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-209",
+    "id": "wortleiter-213",
     "version": 1,
     "startWord": "blut",
     "targetWord": "nest",
@@ -3347,7 +3411,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-210",
+    "id": "wortleiter-214",
     "version": 1,
     "startWord": "blut",
     "targetWord": "fest",
@@ -3363,7 +3427,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-211",
+    "id": "wortleiter-215",
     "version": 1,
     "startWord": "blut",
     "targetWord": "name",
@@ -3379,7 +3443,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-212",
+    "id": "wortleiter-216",
     "version": 1,
     "startWord": "blut",
     "targetWord": "mahl",
@@ -3395,7 +3459,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-213",
+    "id": "wortleiter-217",
     "version": 1,
     "startWord": "blut",
     "targetWord": "mais",
@@ -3411,7 +3475,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-214",
+    "id": "wortleiter-218",
     "version": 1,
     "startWord": "blut",
     "targetWord": "rand",
@@ -3427,7 +3491,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-215",
+    "id": "wortleiter-219",
     "version": 1,
     "startWord": "blut",
     "targetWord": "satz",
@@ -3443,7 +3507,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-216",
+    "id": "wortleiter-220",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "frau",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "brut",
+      "brat",
+      "brau",
+      "frau"
+    ]
+  },
+  {
+    "id": "wortleiter-221",
     "version": 1,
     "startWord": "blut",
     "targetWord": "gras",
@@ -3459,7 +3539,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-217",
+    "id": "wortleiter-222",
     "version": 1,
     "startWord": "blut",
     "targetWord": "wort",
@@ -3475,7 +3555,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-218",
+    "id": "wortleiter-223",
     "version": 1,
     "startWord": "boot",
     "targetWord": "saat",
@@ -3491,7 +3571,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-219",
+    "id": "wortleiter-224",
     "version": 1,
     "startWord": "boot",
     "targetWord": "bund",
@@ -3507,7 +3587,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-220",
+    "id": "wortleiter-225",
     "version": 1,
     "startWord": "boot",
     "targetWord": "mond",
@@ -3523,7 +3603,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-221",
+    "id": "wortleiter-226",
     "version": 1,
     "startWord": "boot",
     "targetWord": "holz",
@@ -3539,7 +3619,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-222",
+    "id": "wortleiter-227",
     "version": 1,
     "startWord": "boot",
     "targetWord": "park",
@@ -3555,7 +3635,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-223",
+    "id": "wortleiter-228",
     "version": 1,
     "startWord": "boot",
     "targetWord": "welt",
@@ -3571,7 +3651,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-224",
+    "id": "wortleiter-229",
     "version": 1,
     "startWord": "boot",
     "targetWord": "satz",
@@ -3587,7 +3667,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-225",
+    "id": "wortleiter-230",
+    "version": 1,
+    "startWord": "boot",
+    "targetWord": "frau",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "boot",
+      "brot",
+      "brat",
+      "brau",
+      "frau"
+    ]
+  },
+  {
+    "id": "wortleiter-231",
     "version": 1,
     "startWord": "boot",
     "targetWord": "gras",
@@ -3603,7 +3699,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-226",
+    "id": "wortleiter-232",
     "version": 1,
     "startWord": "boot",
     "targetWord": "haut",
@@ -3619,7 +3715,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-227",
+    "id": "wortleiter-233",
     "version": 1,
     "startWord": "boot",
     "targetWord": "laut",
@@ -3635,7 +3731,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-228",
+    "id": "wortleiter-234",
     "version": 1,
     "startWord": "boot",
     "targetWord": "duft",
@@ -3651,7 +3747,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-229",
+    "id": "wortleiter-235",
     "version": 1,
     "startWord": "boot",
     "targetWord": "saft",
@@ -3667,7 +3763,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-230",
+    "id": "wortleiter-236",
     "version": 1,
     "startWord": "boot",
     "targetWord": "fest",
@@ -3683,7 +3779,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-231",
+    "id": "wortleiter-237",
     "version": 1,
     "startWord": "boot",
     "targetWord": "nest",
@@ -3699,7 +3795,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-232",
+    "id": "wortleiter-238",
     "version": 1,
     "startWord": "boot",
     "targetWord": "rose",
@@ -3715,7 +3811,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-233",
+    "id": "wortleiter-239",
     "version": 1,
     "startWord": "brot",
     "targetWord": "zorn",
@@ -3731,7 +3827,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-234",
+    "id": "wortleiter-240",
     "version": 1,
     "startWord": "brot",
     "targetWord": "dorf",
@@ -3747,7 +3843,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-235",
+    "id": "wortleiter-241",
     "version": 1,
     "startWord": "brot",
     "targetWord": "korn",
@@ -3763,7 +3859,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-236",
+    "id": "wortleiter-242",
     "version": 1,
     "startWord": "brot",
     "targetWord": "luft",
@@ -3779,7 +3875,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-237",
+    "id": "wortleiter-243",
     "version": 1,
     "startWord": "brot",
     "targetWord": "fest",
@@ -3795,7 +3891,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-238",
+    "id": "wortleiter-244",
     "version": 1,
     "startWord": "brot",
     "targetWord": "nest",
@@ -3811,7 +3907,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-239",
+    "id": "wortleiter-245",
     "version": 1,
     "startWord": "brot",
     "targetWord": "glas",
@@ -3827,23 +3923,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-240",
-    "version": 1,
-    "startWord": "brot",
-    "targetWord": "frau",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "brot",
-      "brat",
-      "grat",
-      "grau",
-      "frau"
-    ]
-  },
-  {
-    "id": "wortleiter-241",
+    "id": "wortleiter-246",
     "version": 1,
     "startWord": "brot",
     "targetWord": "haus",
@@ -3859,7 +3939,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-242",
+    "id": "wortleiter-247",
     "version": 1,
     "startWord": "brot",
     "targetWord": "maus",
@@ -3875,7 +3955,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-243",
+    "id": "wortleiter-248",
     "version": 1,
     "startWord": "brot",
     "targetWord": "saat",
@@ -3891,7 +3971,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-244",
+    "id": "wortleiter-249",
     "version": 1,
     "startWord": "brot",
     "targetWord": "saft",
@@ -3907,7 +3987,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-245",
+    "id": "wortleiter-250",
     "version": 1,
     "startWord": "buch",
     "targetWord": "park",
@@ -3923,7 +4003,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-246",
+    "id": "wortleiter-251",
     "version": 1,
     "startWord": "bund",
     "targetWord": "fall",
@@ -3939,7 +4019,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-247",
+    "id": "wortleiter-252",
     "version": 1,
     "startWord": "bund",
     "targetWord": "park",
@@ -3955,7 +4035,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-248",
+    "id": "wortleiter-253",
     "version": 1,
     "startWord": "bund",
     "targetWord": "zahn",
@@ -3971,7 +4051,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-249",
+    "id": "wortleiter-254",
     "version": 1,
     "startWord": "bund",
     "targetWord": "zorn",
@@ -3987,7 +4067,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-250",
+    "id": "wortleiter-255",
     "version": 1,
     "startWord": "bund",
     "targetWord": "wort",
@@ -4003,7 +4083,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-251",
+    "id": "wortleiter-256",
     "version": 1,
     "startWord": "bund",
     "targetWord": "korn",
@@ -4019,7 +4099,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-252",
+    "id": "wortleiter-257",
     "version": 1,
     "startWord": "bund",
     "targetWord": "duft",
@@ -4035,7 +4115,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-253",
+    "id": "wortleiter-258",
     "version": 1,
     "startWord": "bund",
     "targetWord": "feld",
@@ -4051,7 +4131,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-254",
+    "id": "wortleiter-259",
     "version": 1,
     "startWord": "bund",
     "targetWord": "geld",
@@ -4067,7 +4147,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-255",
+    "id": "wortleiter-260",
     "version": 1,
     "startWord": "bund",
     "targetWord": "hemd",
@@ -4083,7 +4163,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-256",
+    "id": "wortleiter-261",
     "version": 1,
     "startWord": "bund",
     "targetWord": "holz",
@@ -4099,7 +4179,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-257",
+    "id": "wortleiter-262",
     "version": 1,
     "startWord": "bund",
     "targetWord": "seen",
@@ -4115,7 +4195,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-258",
+    "id": "wortleiter-263",
     "version": 1,
     "startWord": "dach",
     "targetWord": "park",
@@ -4131,7 +4211,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-259",
+    "id": "wortleiter-264",
     "version": 1,
     "startWord": "dach",
     "targetWord": "fest",
@@ -4147,7 +4227,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-260",
+    "id": "wortleiter-265",
     "version": 1,
     "startWord": "dach",
     "targetWord": "nase",
@@ -4163,7 +4243,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-261",
+    "id": "wortleiter-266",
     "version": 1,
     "startWord": "dach",
     "targetWord": "haus",
@@ -4179,7 +4259,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-262",
+    "id": "wortleiter-267",
     "version": 1,
     "startWord": "dach",
     "targetWord": "pass",
@@ -4195,7 +4275,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-263",
+    "id": "wortleiter-268",
     "version": 1,
     "startWord": "dach",
     "targetWord": "haut",
@@ -4211,7 +4291,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-264",
+    "id": "wortleiter-269",
     "version": 1,
     "startWord": "dame",
     "targetWord": "mais",
@@ -4227,7 +4307,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-265",
+    "id": "wortleiter-270",
     "version": 1,
     "startWord": "dame",
     "targetWord": "rand",
@@ -4243,7 +4323,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-266",
+    "id": "wortleiter-271",
     "version": 1,
     "startWord": "dame",
     "targetWord": "wand",
@@ -4259,7 +4339,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-267",
+    "id": "wortleiter-272",
     "version": 1,
     "startWord": "dame",
     "targetWord": "zoll",
@@ -4275,7 +4355,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-268",
+    "id": "wortleiter-273",
     "version": 1,
     "startWord": "dame",
     "targetWord": "holz",
@@ -4291,7 +4371,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-269",
+    "id": "wortleiter-274",
     "version": 1,
     "startWord": "dame",
     "targetWord": "satz",
@@ -4307,7 +4387,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-270",
+    "id": "wortleiter-275",
     "version": 1,
     "startWord": "dame",
     "targetWord": "haus",
@@ -4323,7 +4403,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-271",
+    "id": "wortleiter-276",
     "version": 1,
     "startWord": "dame",
     "targetWord": "haut",
@@ -4339,7 +4419,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-272",
+    "id": "wortleiter-277",
     "version": 1,
     "startWord": "dame",
     "targetWord": "laut",
@@ -4355,7 +4435,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-273",
+    "id": "wortleiter-278",
     "version": 1,
     "startWord": "dame",
     "targetWord": "pass",
@@ -4371,7 +4451,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-274",
+    "id": "wortleiter-279",
     "version": 1,
     "startWord": "dame",
     "targetWord": "wald",
@@ -4387,7 +4467,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-275",
+    "id": "wortleiter-280",
     "version": 1,
     "startWord": "dame",
     "targetWord": "sand",
@@ -4403,7 +4483,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-276",
+    "id": "wortleiter-281",
     "version": 1,
     "startWord": "dame",
     "targetWord": "maus",
@@ -4419,7 +4499,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-277",
+    "id": "wortleiter-282",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "sohn",
@@ -4435,7 +4515,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-278",
+    "id": "wortleiter-283",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "haut",
@@ -4451,7 +4531,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-279",
+    "id": "wortleiter-284",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "holz",
@@ -4467,7 +4547,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-280",
+    "id": "wortleiter-285",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "park",
@@ -4483,7 +4563,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-281",
+    "id": "wortleiter-286",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "welt",
@@ -4499,7 +4579,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-282",
+    "id": "wortleiter-287",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "rose",
@@ -4515,7 +4595,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-283",
+    "id": "wortleiter-288",
     "version": 1,
     "startWord": "duft",
     "targetWord": "mund",
@@ -4531,7 +4611,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-284",
+    "id": "wortleiter-289",
     "version": 1,
     "startWord": "duft",
     "targetWord": "saft",
@@ -4547,7 +4627,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-285",
+    "id": "wortleiter-290",
     "version": 1,
     "startWord": "duft",
     "targetWord": "laut",
@@ -4563,7 +4643,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-286",
+    "id": "wortleiter-291",
     "version": 1,
     "startWord": "duft",
     "targetWord": "fest",
@@ -4579,7 +4659,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-287",
+    "id": "wortleiter-292",
     "version": 1,
     "startWord": "duft",
     "targetWord": "nest",
@@ -4595,7 +4675,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-288",
+    "id": "wortleiter-293",
     "version": 1,
     "startWord": "erde",
     "targetWord": "film",
@@ -4611,7 +4691,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-289",
+    "id": "wortleiter-294",
     "version": 1,
     "startWord": "erde",
     "targetWord": "rose",
@@ -4627,7 +4707,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-290",
+    "id": "wortleiter-295",
     "version": 1,
     "startWord": "fach",
     "targetWord": "park",
@@ -4643,7 +4723,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-291",
+    "id": "wortleiter-296",
     "version": 1,
     "startWord": "fach",
     "targetWord": "hand",
@@ -4659,7 +4739,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-292",
+    "id": "wortleiter-297",
     "version": 1,
     "startWord": "fach",
     "targetWord": "land",
@@ -4675,7 +4755,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-293",
+    "id": "wortleiter-298",
     "version": 1,
     "startWord": "fach",
     "targetWord": "sand",
@@ -4691,7 +4771,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-294",
+    "id": "wortleiter-299",
     "version": 1,
     "startWord": "fach",
     "targetWord": "rand",
@@ -4707,7 +4787,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-295",
+    "id": "wortleiter-300",
     "version": 1,
     "startWord": "fach",
     "targetWord": "wand",
@@ -4723,7 +4803,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-296",
+    "id": "wortleiter-301",
     "version": 1,
     "startWord": "fach",
     "targetWord": "nest",
@@ -4739,7 +4819,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-297",
+    "id": "wortleiter-302",
     "version": 1,
     "startWord": "fach",
     "targetWord": "nase",
@@ -4755,7 +4835,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-298",
+    "id": "wortleiter-303",
     "version": 1,
     "startWord": "fach",
     "targetWord": "haus",
@@ -4771,7 +4851,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-299",
+    "id": "wortleiter-304",
     "version": 1,
     "startWord": "fach",
     "targetWord": "pass",
@@ -4787,7 +4867,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-300",
+    "id": "wortleiter-305",
     "version": 1,
     "startWord": "fach",
     "targetWord": "haut",
@@ -4803,7 +4883,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-301",
+    "id": "wortleiter-306",
     "version": 1,
     "startWord": "fall",
     "targetWord": "hand",
@@ -4819,7 +4899,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-302",
+    "id": "wortleiter-307",
     "version": 1,
     "startWord": "fall",
     "targetWord": "land",
@@ -4835,7 +4915,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-303",
+    "id": "wortleiter-308",
     "version": 1,
     "startWord": "fall",
     "targetWord": "rand",
@@ -4851,7 +4931,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-304",
+    "id": "wortleiter-309",
     "version": 1,
     "startWord": "fall",
     "targetWord": "sand",
@@ -4867,7 +4947,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-305",
+    "id": "wortleiter-310",
     "version": 1,
     "startWord": "fall",
     "targetWord": "holz",
@@ -4883,7 +4963,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-306",
+    "id": "wortleiter-311",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "fahl",
+      "fohl",
+      "sohl",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-312",
     "version": 1,
     "startWord": "fall",
     "targetWord": "fest",
@@ -4899,7 +4995,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-307",
+    "id": "wortleiter-313",
     "version": 1,
     "startWord": "fall",
     "targetWord": "zeit",
@@ -4915,23 +5011,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-308",
-    "version": 1,
-    "startWord": "fall",
-    "targetWord": "zelt",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "fall",
-      "fell",
-      "gell",
-      "gelt",
-      "zelt"
-    ]
-  },
-  {
-    "id": "wortleiter-309",
+    "id": "wortleiter-314",
     "version": 1,
     "startWord": "fall",
     "targetWord": "pass",
@@ -4947,7 +5027,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-310",
+    "id": "wortleiter-315",
     "version": 1,
     "startWord": "fall",
     "targetWord": "saft",
@@ -4963,7 +5043,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-311",
+    "id": "wortleiter-316",
     "version": 1,
     "startWord": "fall",
     "targetWord": "laut",
@@ -4979,7 +5059,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-312",
+    "id": "wortleiter-317",
     "version": 1,
     "startWord": "fall",
     "targetWord": "hemd",
@@ -4995,7 +5075,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-313",
+    "id": "wortleiter-318",
     "version": 1,
     "startWord": "fall",
     "targetWord": "saat",
@@ -5011,7 +5091,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-314",
+    "id": "wortleiter-319",
     "version": 1,
     "startWord": "fall",
     "targetWord": "mond",
@@ -5027,7 +5107,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-315",
+    "id": "wortleiter-320",
     "version": 1,
     "startWord": "fall",
     "targetWord": "wind",
@@ -5043,23 +5123,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-316",
+    "id": "wortleiter-321",
     "version": 1,
     "startWord": "fall",
-    "targetWord": "welt",
+    "targetWord": "zelt",
     "wordLength": 4,
     "optimalSteps": 4,
     "difficulty": "medium",
     "solution": [
       "fall",
       "wall",
-      "walk",
-      "welk",
-      "welt"
+      "well",
+      "welt",
+      "zelt"
     ]
   },
   {
-    "id": "wortleiter-317",
+    "id": "wortleiter-322",
     "version": 1,
     "startWord": "feld",
     "targetWord": "meer",
@@ -5075,7 +5155,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-318",
+    "id": "wortleiter-323",
     "version": 1,
     "startWord": "feld",
     "targetWord": "wand",
@@ -5091,7 +5171,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-319",
+    "id": "wortleiter-324",
     "version": 1,
     "startWord": "feld",
     "targetWord": "zahl",
@@ -5107,7 +5187,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-320",
+    "id": "wortleiter-325",
     "version": 1,
     "startWord": "feld",
     "targetWord": "mahl",
@@ -5123,7 +5203,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-321",
+    "id": "wortleiter-326",
     "version": 1,
     "startWord": "feld",
     "targetWord": "fest",
@@ -5139,7 +5219,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-322",
+    "id": "wortleiter-327",
     "version": 1,
     "startWord": "feld",
     "targetWord": "nest",
@@ -5155,7 +5235,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-323",
+    "id": "wortleiter-328",
     "version": 1,
     "startWord": "feld",
     "targetWord": "zeit",
@@ -5171,7 +5251,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-324",
+    "id": "wortleiter-329",
     "version": 1,
     "startWord": "feld",
     "targetWord": "hand",
@@ -5187,7 +5267,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-325",
+    "id": "wortleiter-330",
     "version": 1,
     "startWord": "feld",
     "targetWord": "mund",
@@ -5203,7 +5283,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-326",
+    "id": "wortleiter-331",
     "version": 1,
     "startWord": "feld",
     "targetWord": "mais",
@@ -5219,7 +5299,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-327",
+    "id": "wortleiter-332",
     "version": 1,
     "startWord": "feld",
     "targetWord": "lied",
@@ -5235,7 +5315,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-328",
+    "id": "wortleiter-333",
     "version": 1,
     "startWord": "feld",
     "targetWord": "pilz",
@@ -5251,7 +5331,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-329",
+    "id": "wortleiter-334",
     "version": 1,
     "startWord": "feld",
     "targetWord": "wald",
@@ -5267,7 +5347,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-330",
+    "id": "wortleiter-335",
     "version": 1,
     "startWord": "feld",
     "targetWord": "wind",
@@ -5283,7 +5363,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-331",
+    "id": "wortleiter-336",
     "version": 1,
     "startWord": "feld",
     "targetWord": "zoll",
@@ -5299,7 +5379,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-332",
+    "id": "wortleiter-337",
     "version": 1,
     "startWord": "fell",
     "targetWord": "zahn",
@@ -5315,23 +5395,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-333",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "pilz",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "fall",
-      "falz",
-      "filz",
-      "pilz"
-    ]
-  },
-  {
-    "id": "wortleiter-334",
+    "id": "wortleiter-338",
     "version": 1,
     "startWord": "fell",
     "targetWord": "satz",
@@ -5347,7 +5411,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-335",
+    "id": "wortleiter-339",
     "version": 1,
     "startWord": "fell",
     "targetWord": "mais",
@@ -5363,7 +5427,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-336",
+    "id": "wortleiter-340",
     "version": 1,
     "startWord": "fell",
     "targetWord": "maus",
@@ -5379,39 +5443,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-337",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "zoll",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "fall",
-      "mall",
-      "moll",
-      "zoll"
-    ]
-  },
-  {
-    "id": "wortleiter-338",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "wand",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "fall",
-      "wall",
-      "wald",
-      "wand"
-    ]
-  },
-  {
-    "id": "wortleiter-339",
+    "id": "wortleiter-341",
     "version": 1,
     "startWord": "fell",
     "targetWord": "seen",
@@ -5422,12 +5454,28 @@ export const generatedWortleiterPuzzles = [
       "fell",
       "fehl",
       "fehn",
-      "feen",
+      "sehn",
       "seen"
     ]
   },
   {
-    "id": "wortleiter-340",
+    "id": "wortleiter-342",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "fehl",
+      "fohl",
+      "sohl",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-343",
     "version": 1,
     "startWord": "fell",
     "targetWord": "meer",
@@ -5443,7 +5491,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-341",
+    "id": "wortleiter-344",
     "version": 1,
     "startWord": "fell",
     "targetWord": "mond",
@@ -5459,7 +5507,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-342",
+    "id": "wortleiter-345",
     "version": 1,
     "startWord": "fell",
     "targetWord": "nest",
@@ -5475,7 +5523,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-343",
+    "id": "wortleiter-346",
     "version": 1,
     "startWord": "fell",
     "targetWord": "haus",
@@ -5491,7 +5539,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-344",
+    "id": "wortleiter-347",
     "version": 1,
     "startWord": "fell",
     "targetWord": "haut",
@@ -5507,7 +5555,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-345",
+    "id": "wortleiter-348",
     "version": 1,
     "startWord": "fell",
     "targetWord": "herz",
@@ -5517,13 +5565,13 @@ export const generatedWortleiterPuzzles = [
     "solution": [
       "fell",
       "hell",
-      "held",
-      "herd",
+      "heil",
+      "heiz",
       "herz"
     ]
   },
   {
-    "id": "wortleiter-346",
+    "id": "wortleiter-349",
     "version": 1,
     "startWord": "fell",
     "targetWord": "holz",
@@ -5539,7 +5587,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-347",
+    "id": "wortleiter-350",
     "version": 1,
     "startWord": "fell",
     "targetWord": "hund",
@@ -5555,7 +5603,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-348",
+    "id": "wortleiter-351",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "well",
+      "wall",
+      "wald",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-352",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "well",
+      "welt",
+      "wert",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-353",
     "version": 1,
     "startWord": "fest",
     "targetWord": "hand",
@@ -5571,7 +5651,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-349",
+    "id": "wortleiter-354",
     "version": 1,
     "startWord": "fest",
     "targetWord": "land",
@@ -5587,7 +5667,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-350",
+    "id": "wortleiter-355",
     "version": 1,
     "startWord": "fest",
     "targetWord": "sand",
@@ -5603,7 +5683,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-351",
+    "id": "wortleiter-356",
     "version": 1,
     "startWord": "fest",
     "targetWord": "wand",
@@ -5619,7 +5699,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-352",
+    "id": "wortleiter-357",
     "version": 1,
     "startWord": "fest",
     "targetWord": "name",
@@ -5635,7 +5715,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-353",
+    "id": "wortleiter-358",
     "version": 1,
     "startWord": "fest",
     "targetWord": "saft",
@@ -5651,7 +5731,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-354",
+    "id": "wortleiter-359",
     "version": 1,
     "startWord": "fest",
     "targetWord": "haus",
@@ -5667,7 +5747,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-355",
+    "id": "wortleiter-360",
     "version": 1,
     "startWord": "fest",
     "targetWord": "saat",
@@ -5683,7 +5763,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-356",
+    "id": "wortleiter-361",
     "version": 1,
     "startWord": "fest",
     "targetWord": "mais",
@@ -5699,7 +5779,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-357",
+    "id": "wortleiter-362",
     "version": 1,
     "startWord": "fest",
     "targetWord": "maus",
@@ -5715,7 +5795,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-358",
+    "id": "wortleiter-363",
     "version": 1,
     "startWord": "fest",
     "targetWord": "seen",
@@ -5731,7 +5811,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-359",
+    "id": "wortleiter-364",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "fett",
+      "fetz",
+      "hetz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-365",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "fett",
+      "fetz",
+      "setz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-366",
     "version": 1,
     "startWord": "fest",
     "targetWord": "mehl",
@@ -5747,7 +5859,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-360",
+    "id": "wortleiter-367",
     "version": 1,
     "startWord": "fest",
     "targetWord": "rand",
@@ -5763,7 +5875,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-361",
+    "id": "wortleiter-368",
     "version": 1,
     "startWord": "film",
     "targetWord": "kind",
@@ -5779,7 +5891,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-362",
+    "id": "wortleiter-369",
     "version": 1,
     "startWord": "film",
     "targetWord": "geld",
@@ -5795,7 +5907,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-363",
+    "id": "wortleiter-370",
     "version": 1,
     "startWord": "film",
     "targetWord": "welt",
@@ -5811,7 +5923,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-364",
+    "id": "wortleiter-371",
     "version": 1,
     "startWord": "film",
     "targetWord": "ziel",
@@ -5827,7 +5939,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-365",
+    "id": "wortleiter-372",
+    "version": 1,
+    "startWord": "film",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "film",
+      "fils",
+      "fies",
+      "lies",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-373",
     "version": 1,
     "startWord": "film",
     "targetWord": "pass",
@@ -5843,7 +5971,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-366",
+    "id": "wortleiter-374",
     "version": 1,
     "startWord": "film",
     "targetWord": "satz",
@@ -5859,7 +5987,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-367",
+    "id": "wortleiter-375",
     "version": 1,
     "startWord": "film",
     "targetWord": "wald",
@@ -5875,7 +6003,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-368",
+    "id": "wortleiter-376",
     "version": 1,
     "startWord": "film",
     "targetWord": "wort",
@@ -5891,7 +6019,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-369",
+    "id": "wortleiter-377",
     "version": 1,
     "startWord": "frau",
     "targetWord": "plan",
@@ -5907,7 +6035,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-370",
+    "id": "wortleiter-378",
     "version": 1,
     "startWord": "geld",
     "targetWord": "seen",
@@ -5923,7 +6051,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-371",
+    "id": "wortleiter-379",
     "version": 1,
     "startWord": "geld",
     "targetWord": "mahl",
@@ -5939,7 +6067,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-372",
+    "id": "wortleiter-380",
     "version": 1,
     "startWord": "geld",
     "targetWord": "haut",
@@ -5955,7 +6083,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-373",
+    "id": "wortleiter-381",
     "version": 1,
     "startWord": "geld",
     "targetWord": "wort",
@@ -5971,7 +6099,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-374",
+    "id": "wortleiter-382",
     "version": 1,
     "startWord": "geld",
     "targetWord": "hand",
@@ -5987,7 +6115,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-375",
+    "id": "wortleiter-383",
     "version": 1,
     "startWord": "geld",
     "targetWord": "mund",
@@ -6003,7 +6131,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-376",
+    "id": "wortleiter-384",
     "version": 1,
     "startWord": "geld",
     "targetWord": "mais",
@@ -6019,7 +6147,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-377",
+    "id": "wortleiter-385",
     "version": 1,
     "startWord": "geld",
     "targetWord": "lied",
@@ -6035,7 +6163,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-378",
+    "id": "wortleiter-386",
     "version": 1,
     "startWord": "geld",
     "targetWord": "pilz",
@@ -6051,7 +6179,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-379",
+    "id": "wortleiter-387",
     "version": 1,
     "startWord": "geld",
     "targetWord": "wald",
@@ -6067,7 +6195,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-380",
+    "id": "wortleiter-388",
     "version": 1,
     "startWord": "geld",
     "targetWord": "wind",
@@ -6083,7 +6211,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-381",
+    "id": "wortleiter-389",
     "version": 1,
     "startWord": "geld",
     "targetWord": "zoll",
@@ -6099,7 +6227,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-382",
+    "id": "wortleiter-390",
     "version": 1,
     "startWord": "glas",
     "targetWord": "pass",
@@ -6115,7 +6243,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-383",
+    "id": "wortleiter-391",
     "version": 1,
     "startWord": "glas",
     "targetWord": "haus",
@@ -6131,7 +6259,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-384",
+    "id": "wortleiter-392",
     "version": 1,
     "startWord": "glas",
     "targetWord": "maus",
@@ -6147,7 +6275,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-385",
+    "id": "wortleiter-393",
     "version": 1,
     "startWord": "glas",
     "targetWord": "plan",
@@ -6156,14 +6284,14 @@ export const generatedWortleiterPuzzles = [
     "difficulty": "medium",
     "solution": [
       "glas",
-      "glau",
-      "klau",
-      "klan",
+      "blas",
+      "blag",
+      "plag",
       "plan"
     ]
   },
   {
-    "id": "wortleiter-386",
+    "id": "wortleiter-394",
     "version": 1,
     "startWord": "gras",
     "targetWord": "plan",
@@ -6179,7 +6307,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-387",
+    "id": "wortleiter-395",
     "version": 1,
     "startWord": "hand",
     "targetWord": "park",
@@ -6195,7 +6323,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-388",
+    "id": "wortleiter-396",
     "version": 1,
     "startWord": "hand",
     "targetWord": "zahn",
@@ -6211,7 +6339,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-389",
+    "id": "wortleiter-397",
     "version": 1,
     "startWord": "hand",
     "targetWord": "kino",
@@ -6227,7 +6355,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-390",
+    "id": "wortleiter-398",
     "version": 1,
     "startWord": "hand",
     "targetWord": "pass",
@@ -6243,7 +6371,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-391",
+    "id": "wortleiter-399",
     "version": 1,
     "startWord": "hand",
     "targetWord": "saft",
@@ -6259,7 +6387,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-392",
+    "id": "wortleiter-400",
     "version": 1,
     "startWord": "hand",
     "targetWord": "haus",
@@ -6275,7 +6403,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-393",
+    "id": "wortleiter-401",
     "version": 1,
     "startWord": "hand",
     "targetWord": "hemd",
@@ -6291,7 +6419,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-394",
+    "id": "wortleiter-402",
     "version": 1,
     "startWord": "hand",
     "targetWord": "holz",
@@ -6307,7 +6435,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-395",
+    "id": "wortleiter-403",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "land",
+      "lang",
+      "laug",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-404",
     "version": 1,
     "startWord": "hand",
     "targetWord": "mais",
@@ -6323,7 +6467,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-396",
+    "id": "wortleiter-405",
     "version": 1,
     "startWord": "hand",
     "targetWord": "nase",
@@ -6339,7 +6483,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-397",
+    "id": "wortleiter-406",
     "version": 1,
     "startWord": "hand",
     "targetWord": "rose",
@@ -6355,7 +6499,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-398",
+    "id": "wortleiter-407",
     "version": 1,
     "startWord": "hand",
     "targetWord": "haut",
@@ -6371,23 +6515,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-399",
+    "id": "wortleiter-408",
     "version": 1,
     "startWord": "hand",
-    "targetWord": "laut",
+    "targetWord": "satz",
     "wordLength": 4,
     "optimalSteps": 4,
     "difficulty": "medium",
     "solution": [
       "hand",
       "rand",
-      "rant",
-      "raut",
-      "laut"
+      "ranz",
+      "ratz",
+      "satz"
     ]
   },
   {
-    "id": "wortleiter-400",
+    "id": "wortleiter-409",
+    "version": 1,
+    "startWord": "hand",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "hand",
+      "sand",
+      "sann",
+      "sonn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-410",
     "version": 1,
     "startWord": "hand",
     "targetWord": "seen",
@@ -6403,7 +6563,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-401",
+    "id": "wortleiter-411",
     "version": 1,
     "startWord": "hand",
     "targetWord": "wort",
@@ -6419,39 +6579,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-402",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "park",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "baus",
-      "bars",
-      "bark",
-      "park"
-    ]
-  },
-  {
-    "id": "wortleiter-403",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "zahn",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "hais",
-      "hain",
-      "zain",
-      "zahn"
-    ]
-  },
-  {
-    "id": "wortleiter-404",
+    "id": "wortleiter-412",
     "version": 1,
     "startWord": "haus",
     "targetWord": "holz",
@@ -6467,7 +6595,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-405",
+    "id": "wortleiter-413",
     "version": 1,
     "startWord": "haus",
     "targetWord": "wand",
@@ -6483,7 +6611,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-406",
+    "id": "wortleiter-414",
     "version": 1,
     "startWord": "haus",
     "targetWord": "welt",
@@ -6499,7 +6627,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-407",
+    "id": "wortleiter-415",
     "version": 1,
     "startWord": "haus",
     "targetWord": "herz",
@@ -6515,7 +6643,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-408",
+    "id": "wortleiter-416",
     "version": 1,
     "startWord": "haus",
     "targetWord": "wort",
@@ -6531,7 +6659,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-409",
+    "id": "wortleiter-417",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "heus",
+      "heul",
+      "heil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-418",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "laus",
+      "laug",
+      "lang",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-419",
     "version": 1,
     "startWord": "haus",
     "targetWord": "kuss",
@@ -6547,7 +6707,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-410",
+    "id": "wortleiter-420",
     "version": 1,
     "startWord": "haus",
     "targetWord": "mehl",
@@ -6563,7 +6723,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-411",
+    "id": "wortleiter-421",
     "version": 1,
     "startWord": "haus",
     "targetWord": "zahl",
@@ -6579,7 +6739,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-412",
+    "id": "wortleiter-422",
     "version": 1,
     "startWord": "haus",
     "targetWord": "rand",
@@ -6595,7 +6755,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-413",
+    "id": "wortleiter-423",
     "version": 1,
     "startWord": "haus",
     "targetWord": "satz",
@@ -6611,7 +6771,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-414",
+    "id": "wortleiter-424",
     "version": 1,
     "startWord": "haus",
     "targetWord": "rose",
@@ -6627,7 +6787,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-415",
+    "id": "wortleiter-425",
     "version": 1,
     "startWord": "haus",
     "targetWord": "sand",
@@ -6643,7 +6803,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-416",
+    "id": "wortleiter-426",
+    "version": 1,
+    "startWord": "haus",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haus",
+      "saus",
+      "saun",
+      "sahn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-427",
     "version": 1,
     "startWord": "haut",
     "targetWord": "nest",
@@ -6659,7 +6835,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-417",
+    "id": "wortleiter-428",
     "version": 1,
     "startWord": "haut",
     "targetWord": "zelt",
@@ -6675,7 +6851,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-418",
+    "id": "wortleiter-429",
     "version": 1,
     "startWord": "haut",
     "targetWord": "wald",
@@ -6691,23 +6867,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-419",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "zahn",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "haut",
-      "hart",
-      "harn",
-      "hahn",
-      "zahn"
-    ]
-  },
-  {
-    "id": "wortleiter-420",
+    "id": "wortleiter-430",
     "version": 1,
     "startWord": "haut",
     "targetWord": "zorn",
@@ -6723,7 +6883,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-421",
+    "id": "wortleiter-431",
     "version": 1,
     "startWord": "haut",
     "targetWord": "hund",
@@ -6739,7 +6899,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-422",
+    "id": "wortleiter-432",
     "version": 1,
     "startWord": "haut",
     "targetWord": "welt",
@@ -6755,7 +6915,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-423",
+    "id": "wortleiter-433",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "heut",
+      "heul",
+      "heil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-434",
     "version": 1,
     "startWord": "haut",
     "targetWord": "korn",
@@ -6771,7 +6947,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-424",
+    "id": "wortleiter-435",
     "version": 1,
     "startWord": "haut",
     "targetWord": "luft",
@@ -6787,7 +6963,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-425",
+    "id": "wortleiter-436",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "laut",
+      "laug",
+      "lang",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-437",
     "version": 1,
     "startWord": "haut",
     "targetWord": "mehl",
@@ -6803,7 +6995,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-426",
+    "id": "wortleiter-438",
     "version": 1,
     "startWord": "haut",
     "targetWord": "zahl",
@@ -6819,23 +7011,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-427",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "land",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "haut",
-      "raut",
-      "rant",
-      "rand",
-      "land"
-    ]
-  },
-  {
-    "id": "wortleiter-428",
+    "id": "wortleiter-439",
     "version": 1,
     "startWord": "haut",
     "targetWord": "sand",
@@ -6851,7 +7027,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-429",
+    "id": "wortleiter-440",
     "version": 1,
     "startWord": "haut",
     "targetWord": "ring",
@@ -6867,7 +7043,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-430",
+    "id": "wortleiter-441",
     "version": 1,
     "startWord": "haut",
     "targetWord": "wand",
@@ -6883,7 +7059,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-431",
+    "id": "wortleiter-442",
     "version": 1,
     "startWord": "haut",
     "targetWord": "rose",
@@ -6899,7 +7075,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-432",
+    "id": "wortleiter-443",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "raut",
+      "raun",
+      "zaun",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-444",
+    "version": 1,
+    "startWord": "haut",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "haut",
+      "saut",
+      "saht",
+      "sahn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-445",
     "version": 1,
     "startWord": "hemd",
     "targetWord": "welt",
@@ -6915,7 +7123,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-433",
+    "id": "wortleiter-446",
     "version": 1,
     "startWord": "hemd",
     "targetWord": "zelt",
@@ -6931,7 +7139,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-434",
+    "id": "wortleiter-447",
     "version": 1,
     "startWord": "hemd",
     "targetWord": "mehl",
@@ -6947,7 +7155,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-435",
+    "id": "wortleiter-448",
     "version": 1,
     "startWord": "hemd",
     "targetWord": "teil",
@@ -6963,7 +7171,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-436",
+    "id": "wortleiter-449",
     "version": 1,
     "startWord": "hemd",
     "targetWord": "mund",
@@ -6979,7 +7187,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-437",
+    "id": "wortleiter-450",
     "version": 1,
     "startWord": "hemd",
     "targetWord": "mond",
@@ -6995,7 +7203,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-438",
+    "id": "wortleiter-451",
     "version": 1,
     "startWord": "hemd",
     "targetWord": "meer",
@@ -7011,7 +7219,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-439",
+    "id": "wortleiter-452",
     "version": 1,
     "startWord": "hemd",
     "targetWord": "wand",
@@ -7027,7 +7235,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-440",
+    "id": "wortleiter-453",
     "version": 1,
     "startWord": "hemd",
     "targetWord": "wort",
@@ -7043,7 +7251,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-441",
+    "id": "wortleiter-454",
     "version": 1,
     "startWord": "hemd",
     "targetWord": "wind",
@@ -7059,7 +7267,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-442",
+    "id": "wortleiter-455",
     "version": 1,
     "startWord": "herz",
     "targetWord": "zahn",
@@ -7075,7 +7283,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-443",
+    "id": "wortleiter-456",
     "version": 1,
     "startWord": "herz",
     "targetWord": "zorn",
@@ -7091,7 +7299,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-444",
+    "id": "wortleiter-457",
     "version": 1,
     "startWord": "herz",
     "targetWord": "korn",
@@ -7107,7 +7315,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-445",
+    "id": "wortleiter-458",
     "version": 1,
     "startWord": "herz",
     "targetWord": "saft",
@@ -7123,7 +7331,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-446",
+    "id": "wortleiter-459",
     "version": 1,
     "startWord": "herz",
     "targetWord": "laut",
@@ -7139,7 +7347,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-447",
+    "id": "wortleiter-460",
     "version": 1,
     "startWord": "herz",
     "targetWord": "wort",
@@ -7155,7 +7363,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-448",
+    "id": "wortleiter-461",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "heiz",
+      "geiz",
+      "geit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-462",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "heiz",
+      "heil",
+      "hehl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-463",
     "version": 1,
     "startWord": "herz",
     "targetWord": "holz",
@@ -7171,7 +7411,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-449",
+    "id": "wortleiter-464",
     "version": 1,
     "startWord": "herz",
     "targetWord": "hund",
@@ -7187,7 +7427,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-450",
+    "id": "wortleiter-465",
     "version": 1,
     "startWord": "herz",
     "targetWord": "wand",
@@ -7203,23 +7443,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-451",
-    "version": 1,
-    "startWord": "herz",
-    "targetWord": "welt",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "herz",
-      "herd",
-      "werd",
-      "wert",
-      "welt"
-    ]
-  },
-  {
-    "id": "wortleiter-452",
+    "id": "wortleiter-466",
     "version": 1,
     "startWord": "herz",
     "targetWord": "wind",
@@ -7235,7 +7459,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-453",
+    "id": "wortleiter-467",
     "version": 1,
     "startWord": "herz",
     "targetWord": "tier",
@@ -7251,23 +7475,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-454",
+    "id": "wortleiter-468",
     "version": 1,
     "startWord": "herz",
-    "targetWord": "mehl",
+    "targetWord": "pilz",
     "wordLength": 4,
     "optimalSteps": 4,
     "difficulty": "medium",
     "solution": [
       "herz",
-      "herr",
-      "hehr",
-      "mehr",
-      "mehl"
+      "hetz",
+      "petz",
+      "pelz",
+      "pilz"
     ]
   },
   {
-    "id": "wortleiter-455",
+    "id": "wortleiter-469",
+    "version": 1,
+    "startWord": "herz",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "herz",
+      "hetz",
+      "wetz",
+      "wett",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-470",
     "version": 1,
     "startWord": "herz",
     "targetWord": "nest",
@@ -7283,7 +7523,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-456",
+    "id": "wortleiter-471",
     "version": 1,
     "startWord": "holz",
     "targetWord": "satz",
@@ -7299,7 +7539,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-457",
+    "id": "wortleiter-472",
     "version": 1,
     "startWord": "holz",
     "targetWord": "wald",
@@ -7315,7 +7555,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-458",
+    "id": "wortleiter-473",
     "version": 1,
     "startWord": "holz",
     "targetWord": "zoll",
@@ -7331,7 +7571,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-459",
+    "id": "wortleiter-474",
     "version": 1,
     "startWord": "holz",
     "targetWord": "mund",
@@ -7347,7 +7587,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-460",
+    "id": "wortleiter-475",
+    "version": 1,
+    "startWord": "holz",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "holz",
+      "hole",
+      "hohe",
+      "hohn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-476",
     "version": 1,
     "startWord": "holz",
     "targetWord": "nase",
@@ -7363,7 +7619,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-461",
+    "id": "wortleiter-477",
     "version": 1,
     "startWord": "holz",
     "targetWord": "korn",
@@ -7379,7 +7635,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-462",
+    "id": "wortleiter-478",
     "version": 1,
     "startWord": "holz",
     "targetWord": "saft",
@@ -7395,7 +7651,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-463",
+    "id": "wortleiter-479",
     "version": 1,
     "startWord": "holz",
     "targetWord": "laut",
@@ -7411,7 +7667,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-464",
+    "id": "wortleiter-480",
     "version": 1,
     "startWord": "holz",
     "targetWord": "zorn",
@@ -7427,7 +7683,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-465",
+    "id": "wortleiter-481",
     "version": 1,
     "startWord": "hund",
     "targetWord": "lied",
@@ -7443,7 +7699,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-466",
+    "id": "wortleiter-482",
     "version": 1,
     "startWord": "hund",
     "targetWord": "wort",
@@ -7459,7 +7715,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-467",
+    "id": "wortleiter-483",
     "version": 1,
     "startWord": "hund",
     "targetWord": "seen",
@@ -7475,7 +7731,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-468",
+    "id": "wortleiter-484",
     "version": 1,
     "startWord": "kind",
     "targetWord": "ziel",
@@ -7491,7 +7747,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-469",
+    "id": "wortleiter-485",
     "version": 1,
     "startWord": "kind",
     "targetWord": "korn",
@@ -7507,7 +7763,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-470",
+    "id": "wortleiter-486",
     "version": 1,
     "startWord": "kind",
     "targetWord": "seen",
@@ -7523,7 +7779,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-471",
+    "id": "wortleiter-487",
+    "version": 1,
+    "startWord": "kind",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kind",
+      "sind",
+      "sinn",
+      "sonn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-488",
     "version": 1,
     "startWord": "kind",
     "targetWord": "wort",
@@ -7539,7 +7811,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-472",
+    "id": "wortleiter-489",
     "version": 1,
     "startWord": "kino",
     "targetWord": "pilz",
@@ -7555,7 +7827,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-473",
+    "id": "wortleiter-490",
+    "version": 1,
+    "startWord": "kino",
+    "targetWord": "ziel",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kino",
+      "kilo",
+      "kill",
+      "kiel",
+      "ziel"
+    ]
+  },
+  {
+    "id": "wortleiter-491",
     "version": 1,
     "startWord": "kino",
     "targetWord": "mond",
@@ -7571,7 +7859,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-474",
+    "id": "wortleiter-492",
     "version": 1,
     "startWord": "kino",
     "targetWord": "wald",
@@ -7587,23 +7875,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-475",
-    "version": 1,
-    "startWord": "kino",
-    "targetWord": "ziel",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "kino",
-      "kink",
-      "kiek",
-      "kiel",
-      "ziel"
-    ]
-  },
-  {
-    "id": "wortleiter-476",
+    "id": "wortleiter-493",
     "version": 1,
     "startWord": "kino",
     "targetWord": "korn",
@@ -7619,7 +7891,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-477",
+    "id": "wortleiter-494",
     "version": 1,
     "startWord": "kino",
     "targetWord": "seen",
@@ -7635,7 +7907,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-478",
+    "id": "wortleiter-495",
+    "version": 1,
+    "startWord": "kino",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "kino",
+      "kinn",
+      "sinn",
+      "sonn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-496",
     "version": 1,
     "startWord": "kopf",
     "targetWord": "wort",
@@ -7651,7 +7939,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-479",
+    "id": "wortleiter-497",
     "version": 1,
     "startWord": "korn",
     "targetWord": "park",
@@ -7667,7 +7955,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-480",
+    "id": "wortleiter-498",
     "version": 1,
     "startWord": "korn",
     "targetWord": "mahl",
@@ -7678,12 +7966,12 @@ export const generatedWortleiterPuzzles = [
       "korn",
       "karn",
       "kahn",
-      "kahl",
+      "mahn",
       "mahl"
     ]
   },
   {
-    "id": "wortleiter-481",
+    "id": "wortleiter-499",
     "version": 1,
     "startWord": "korn",
     "targetWord": "zahl",
@@ -7699,7 +7987,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-482",
+    "id": "wortleiter-500",
     "version": 1,
     "startWord": "korn",
     "targetWord": "laut",
@@ -7715,7 +8003,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-483",
+    "id": "wortleiter-501",
+    "version": 1,
+    "startWord": "korn",
+    "targetWord": "wand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "korn",
+      "karn",
+      "warn",
+      "wann",
+      "wand"
+    ]
+  },
+  {
+    "id": "wortleiter-502",
     "version": 1,
     "startWord": "korn",
     "targetWord": "seen",
@@ -7731,7 +8035,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-484",
+    "id": "wortleiter-503",
     "version": 1,
     "startWord": "korn",
     "targetWord": "teil",
@@ -7747,7 +8051,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-485",
+    "id": "wortleiter-504",
     "version": 1,
     "startWord": "korn",
     "targetWord": "mund",
@@ -7763,7 +8067,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-486",
+    "id": "wortleiter-505",
     "version": 1,
     "startWord": "korn",
     "targetWord": "rose",
@@ -7779,7 +8083,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-487",
+    "id": "wortleiter-506",
     "version": 1,
     "startWord": "korn",
     "targetWord": "welt",
@@ -7795,7 +8099,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-488",
+    "id": "wortleiter-507",
     "version": 1,
     "startWord": "kuss",
     "targetWord": "rose",
@@ -7811,7 +8115,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-489",
+    "id": "wortleiter-508",
     "version": 1,
     "startWord": "kuss",
     "targetWord": "seen",
@@ -7827,7 +8131,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-490",
+    "id": "wortleiter-509",
     "version": 1,
     "startWord": "kuss",
     "targetWord": "mund",
@@ -7843,7 +8147,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-491",
+    "id": "wortleiter-510",
     "version": 1,
     "startWord": "kuss",
     "targetWord": "name",
@@ -7859,7 +8163,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-492",
+    "id": "wortleiter-511",
     "version": 1,
     "startWord": "land",
     "targetWord": "park",
@@ -7875,7 +8179,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-493",
+    "id": "wortleiter-512",
     "version": 1,
     "startWord": "land",
     "targetWord": "zahn",
@@ -7891,7 +8195,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-494",
+    "id": "wortleiter-513",
     "version": 1,
     "startWord": "land",
     "targetWord": "pass",
@@ -7907,7 +8211,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-495",
+    "id": "wortleiter-514",
+    "version": 1,
+    "startWord": "land",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "land",
+      "lang",
+      "laug",
+      "laus",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-515",
     "version": 1,
     "startWord": "land",
     "targetWord": "mais",
@@ -7923,7 +8243,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-496",
+    "id": "wortleiter-516",
     "version": 1,
     "startWord": "land",
     "targetWord": "nase",
@@ -7939,7 +8259,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-497",
+    "id": "wortleiter-517",
     "version": 1,
     "startWord": "land",
     "targetWord": "rose",
@@ -7955,23 +8275,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-498",
+    "id": "wortleiter-518",
     "version": 1,
     "startWord": "land",
-    "targetWord": "laut",
+    "targetWord": "satz",
     "wordLength": 4,
     "optimalSteps": 4,
     "difficulty": "medium",
     "solution": [
       "land",
       "rand",
-      "rant",
-      "raut",
-      "laut"
+      "ranz",
+      "ratz",
+      "satz"
     ]
   },
   {
-    "id": "wortleiter-499",
+    "id": "wortleiter-519",
+    "version": 1,
+    "startWord": "land",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "land",
+      "sand",
+      "sann",
+      "sonn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-520",
     "version": 1,
     "startWord": "land",
     "targetWord": "seen",
@@ -7987,7 +8323,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-500",
+    "id": "wortleiter-521",
     "version": 1,
     "startWord": "land",
     "targetWord": "wort",
@@ -8003,7 +8339,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-501",
+    "id": "wortleiter-522",
     "version": 1,
     "startWord": "laut",
     "targetWord": "park",
@@ -8019,7 +8355,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-502",
+    "id": "wortleiter-523",
     "version": 1,
     "startWord": "laut",
     "targetWord": "wort",
@@ -8035,7 +8371,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-503",
+    "id": "wortleiter-524",
     "version": 1,
     "startWord": "laut",
     "targetWord": "welt",
@@ -8051,7 +8387,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-504",
+    "id": "wortleiter-525",
     "version": 1,
     "startWord": "laut",
     "targetWord": "mehl",
@@ -8067,7 +8403,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-505",
+    "id": "wortleiter-526",
     "version": 1,
     "startWord": "laut",
     "targetWord": "zahl",
@@ -8083,7 +8419,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-506",
+    "id": "wortleiter-527",
     "version": 1,
     "startWord": "laut",
     "targetWord": "sand",
@@ -8099,7 +8435,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-507",
+    "id": "wortleiter-528",
     "version": 1,
     "startWord": "laut",
     "targetWord": "ring",
@@ -8115,7 +8451,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-508",
+    "id": "wortleiter-529",
     "version": 1,
     "startWord": "laut",
     "targetWord": "wand",
@@ -8131,7 +8467,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-509",
+    "id": "wortleiter-530",
     "version": 1,
     "startWord": "laut",
     "targetWord": "rose",
@@ -8147,7 +8483,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-510",
+    "id": "wortleiter-531",
+    "version": 1,
+    "startWord": "laut",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "laut",
+      "raut",
+      "raun",
+      "zaun",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-532",
+    "version": 1,
+    "startWord": "laut",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "laut",
+      "saut",
+      "saht",
+      "sahn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-533",
     "version": 1,
     "startWord": "lied",
     "targetWord": "pilz",
@@ -8163,7 +8531,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-511",
+    "id": "wortleiter-534",
     "version": 1,
     "startWord": "lied",
     "targetWord": "mond",
@@ -8179,7 +8547,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-512",
+    "id": "wortleiter-535",
     "version": 1,
     "startWord": "lied",
     "targetWord": "wald",
@@ -8195,7 +8563,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-513",
+    "id": "wortleiter-536",
     "version": 1,
     "startWord": "lied",
     "targetWord": "mund",
@@ -8211,7 +8579,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-514",
+    "id": "wortleiter-537",
     "version": 1,
     "startWord": "luft",
     "targetWord": "wort",
@@ -8227,7 +8595,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-515",
+    "id": "wortleiter-538",
     "version": 1,
     "startWord": "luft",
     "targetWord": "rose",
@@ -8243,7 +8611,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-516",
+    "id": "wortleiter-539",
     "version": 1,
     "startWord": "luft",
     "targetWord": "saat",
@@ -8259,7 +8627,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-517",
+    "id": "wortleiter-540",
     "version": 1,
     "startWord": "luft",
     "targetWord": "nase",
@@ -8275,7 +8643,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-518",
+    "id": "wortleiter-541",
     "version": 1,
     "startWord": "luft",
     "targetWord": "pass",
@@ -8291,7 +8659,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-519",
+    "id": "wortleiter-542",
     "version": 1,
     "startWord": "luft",
     "targetWord": "welt",
@@ -8307,7 +8675,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-520",
+    "id": "wortleiter-543",
     "version": 1,
     "startWord": "mahl",
     "targetWord": "teil",
@@ -8323,7 +8691,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-521",
+    "id": "wortleiter-544",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "mahn",
+      "sahn",
+      "sann",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-545",
+    "version": 1,
+    "startWord": "mahl",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mahl",
+      "mahn",
+      "sahn",
+      "sehn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-546",
     "version": 1,
     "startWord": "mahl",
     "targetWord": "rand",
@@ -8339,7 +8739,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-522",
+    "id": "wortleiter-547",
     "version": 1,
     "startWord": "mahl",
     "targetWord": "pass",
@@ -8355,7 +8755,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-523",
+    "id": "wortleiter-548",
     "version": 1,
     "startWord": "mahl",
     "targetWord": "pilz",
@@ -8371,7 +8771,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-524",
+    "id": "wortleiter-549",
     "version": 1,
     "startWord": "mahl",
     "targetWord": "satz",
@@ -8387,7 +8787,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-525",
+    "id": "wortleiter-550",
     "version": 1,
     "startWord": "mahl",
     "targetWord": "mond",
@@ -8403,7 +8803,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-526",
+    "id": "wortleiter-551",
     "version": 1,
     "startWord": "mahl",
     "targetWord": "saft",
@@ -8419,7 +8819,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-527",
+    "id": "wortleiter-552",
     "version": 1,
     "startWord": "mahl",
     "targetWord": "saat",
@@ -8435,7 +8835,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-528",
+    "id": "wortleiter-553",
     "version": 1,
     "startWord": "mahl",
     "targetWord": "wand",
@@ -8451,23 +8851,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-529",
+    "id": "wortleiter-554",
     "version": 1,
     "startWord": "mahl",
-    "targetWord": "sohn",
+    "targetWord": "welt",
     "wordLength": 4,
     "optimalSteps": 4,
     "difficulty": "medium",
     "solution": [
       "mahl",
       "wahl",
-      "wohl",
-      "wohn",
-      "sohn"
+      "wall",
+      "well",
+      "welt"
     ]
   },
   {
-    "id": "wortleiter-530",
+    "id": "wortleiter-555",
     "version": 1,
     "startWord": "mais",
     "targetWord": "zahn",
@@ -8483,7 +8883,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-531",
+    "id": "wortleiter-556",
     "version": 1,
     "startWord": "mais",
     "targetWord": "wind",
@@ -8499,7 +8899,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-532",
+    "id": "wortleiter-557",
     "version": 1,
     "startWord": "mais",
     "targetWord": "teil",
@@ -8515,7 +8915,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-533",
+    "id": "wortleiter-558",
     "version": 1,
     "startWord": "mais",
     "targetWord": "zoll",
@@ -8531,7 +8931,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-534",
+    "id": "wortleiter-559",
     "version": 1,
     "startWord": "mais",
     "targetWord": "saat",
@@ -8547,7 +8947,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-535",
+    "id": "wortleiter-560",
     "version": 1,
     "startWord": "mais",
     "targetWord": "pilz",
@@ -8563,7 +8963,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-536",
+    "id": "wortleiter-561",
     "version": 1,
     "startWord": "mais",
     "targetWord": "welt",
@@ -8579,7 +8979,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-537",
+    "id": "wortleiter-562",
+    "version": 1,
+    "startWord": "mais",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mais",
+      "mars",
+      "mors",
+      "mord",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-563",
     "version": 1,
     "startWord": "mais",
     "targetWord": "name",
@@ -8595,7 +9011,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-538",
+    "id": "wortleiter-564",
     "version": 1,
     "startWord": "mais",
     "targetWord": "saft",
@@ -8611,7 +9027,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-539",
+    "id": "wortleiter-565",
     "version": 1,
     "startWord": "mais",
     "targetWord": "sand",
@@ -8627,7 +9043,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-540",
+    "id": "wortleiter-566",
     "version": 1,
     "startWord": "mais",
     "targetWord": "satz",
@@ -8643,7 +9059,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-541",
+    "id": "wortleiter-567",
     "version": 1,
     "startWord": "mais",
     "targetWord": "zeit",
@@ -8659,7 +9075,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-542",
+    "id": "wortleiter-568",
     "version": 1,
     "startWord": "maus",
     "targetWord": "name",
@@ -8675,7 +9091,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-543",
+    "id": "wortleiter-569",
     "version": 1,
     "startWord": "maus",
     "targetWord": "wand",
@@ -8691,7 +9107,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-544",
+    "id": "wortleiter-570",
     "version": 1,
     "startWord": "maus",
     "targetWord": "zoll",
@@ -8707,7 +9123,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-545",
+    "id": "wortleiter-571",
     "version": 1,
     "startWord": "maus",
     "targetWord": "pilz",
@@ -8723,7 +9139,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-546",
+    "id": "wortleiter-572",
     "version": 1,
     "startWord": "maus",
     "targetWord": "welt",
@@ -8739,23 +9155,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-547",
+    "id": "wortleiter-573",
     "version": 1,
     "startWord": "maus",
-    "targetWord": "zahn",
+    "targetWord": "mond",
     "wordLength": 4,
     "optimalSteps": 4,
     "difficulty": "medium",
     "solution": [
       "maus",
-      "maul",
-      "mahl",
-      "zahl",
-      "zahn"
+      "mars",
+      "mors",
+      "mord",
+      "mond"
     ]
   },
   {
-    "id": "wortleiter-548",
+    "id": "wortleiter-574",
     "version": 1,
     "startWord": "maus",
     "targetWord": "rand",
@@ -8771,7 +9187,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-549",
+    "id": "wortleiter-575",
     "version": 1,
     "startWord": "maus",
     "targetWord": "satz",
@@ -8787,7 +9203,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-550",
+    "id": "wortleiter-576",
     "version": 1,
     "startWord": "maus",
     "targetWord": "rose",
@@ -8803,7 +9219,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-551",
+    "id": "wortleiter-577",
     "version": 1,
     "startWord": "maus",
     "targetWord": "sand",
@@ -8819,7 +9235,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-552",
+    "id": "wortleiter-578",
+    "version": 1,
+    "startWord": "maus",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "maus",
+      "saus",
+      "saun",
+      "sahn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-579",
     "version": 1,
     "startWord": "meer",
     "targetWord": "ziel",
@@ -8835,7 +9267,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-553",
+    "id": "wortleiter-580",
     "version": 1,
     "startWord": "meer",
     "targetWord": "zahl",
@@ -8851,7 +9283,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-554",
+    "id": "wortleiter-581",
     "version": 1,
     "startWord": "meer",
     "targetWord": "sohn",
@@ -8867,7 +9299,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-555",
+    "id": "wortleiter-582",
     "version": 1,
     "startWord": "meer",
     "targetWord": "welt",
@@ -8883,7 +9315,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-556",
+    "id": "wortleiter-583",
+    "version": 1,
+    "startWord": "meer",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "meer",
+      "mehr",
+      "zehr",
+      "zehn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-584",
     "version": 1,
     "startWord": "meer",
     "targetWord": "teil",
@@ -8899,7 +9347,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-557",
+    "id": "wortleiter-585",
     "version": 1,
     "startWord": "mehl",
     "targetWord": "seen",
@@ -8910,12 +9358,12 @@ export const generatedWortleiterPuzzles = [
       "mehl",
       "fehl",
       "fehn",
-      "feen",
+      "sehn",
       "seen"
     ]
   },
   {
-    "id": "wortleiter-558",
+    "id": "wortleiter-586",
     "version": 1,
     "startWord": "mehl",
     "targetWord": "zeit",
@@ -8931,7 +9379,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-559",
+    "id": "wortleiter-587",
+    "version": 1,
+    "startWord": "mehl",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mehl",
+      "fehl",
+      "fell",
+      "well",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-588",
+    "version": 1,
+    "startWord": "mehl",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "mehl",
+      "fehl",
+      "fohl",
+      "sohl",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-589",
     "version": 1,
     "startWord": "mehl",
     "targetWord": "nest",
@@ -8947,23 +9427,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-560",
-    "version": 1,
-    "startWord": "mehl",
-    "targetWord": "welt",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "mehl",
-      "gehl",
-      "gell",
-      "gelt",
-      "welt"
-    ]
-  },
-  {
-    "id": "wortleiter-561",
+    "id": "wortleiter-590",
     "version": 1,
     "startWord": "mehl",
     "targetWord": "zelt",
@@ -8979,23 +9443,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-562",
-    "version": 1,
-    "startWord": "mehl",
-    "targetWord": "sohn",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "mehl",
-      "hehl",
-      "hohl",
-      "hohn",
-      "sohn"
-    ]
-  },
-  {
-    "id": "wortleiter-563",
+    "id": "wortleiter-591",
     "version": 1,
     "startWord": "mehl",
     "targetWord": "zoll",
@@ -9011,7 +9459,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-564",
+    "id": "wortleiter-592",
     "version": 1,
     "startWord": "mehl",
     "targetWord": "wald",
@@ -9027,7 +9475,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-565",
+    "id": "wortleiter-593",
     "version": 1,
     "startWord": "mehl",
     "targetWord": "tier",
@@ -9043,7 +9491,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-566",
+    "id": "wortleiter-594",
     "version": 1,
     "startWord": "mond",
     "targetWord": "wald",
@@ -9059,7 +9507,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-567",
+    "id": "wortleiter-595",
     "version": 1,
     "startWord": "mond",
     "targetWord": "ring",
@@ -9075,7 +9523,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-568",
+    "id": "wortleiter-596",
     "version": 1,
     "startWord": "mond",
     "targetWord": "zorn",
@@ -9091,7 +9539,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-569",
+    "id": "wortleiter-597",
     "version": 1,
     "startWord": "mond",
     "targetWord": "wort",
@@ -9107,7 +9555,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-570",
+    "id": "wortleiter-598",
     "version": 1,
     "startWord": "mond",
     "targetWord": "pilz",
@@ -9123,7 +9571,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-571",
+    "id": "wortleiter-599",
     "version": 1,
     "startWord": "mund",
     "targetWord": "zoll",
@@ -9139,7 +9587,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-572",
+    "id": "wortleiter-600",
     "version": 1,
     "startWord": "mund",
     "targetWord": "seen",
@@ -9155,7 +9603,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-573",
+    "id": "wortleiter-601",
     "version": 1,
     "startWord": "name",
     "targetWord": "satz",
@@ -9171,7 +9619,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-574",
+    "id": "wortleiter-602",
     "version": 1,
     "startWord": "name",
     "targetWord": "rand",
@@ -9187,7 +9635,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-575",
+    "id": "wortleiter-603",
     "version": 1,
     "startWord": "name",
     "targetWord": "wand",
@@ -9203,7 +9651,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-576",
+    "id": "wortleiter-604",
     "version": 1,
     "startWord": "name",
     "targetWord": "zahl",
@@ -9219,7 +9667,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-577",
+    "id": "wortleiter-605",
     "version": 1,
     "startWord": "name",
     "targetWord": "zahn",
@@ -9235,7 +9683,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-578",
+    "id": "wortleiter-606",
     "version": 1,
     "startWord": "name",
     "targetWord": "wald",
@@ -9251,7 +9699,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-579",
+    "id": "wortleiter-607",
     "version": 1,
     "startWord": "name",
     "targetWord": "sand",
@@ -9267,7 +9715,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-580",
+    "id": "wortleiter-608",
     "version": 1,
     "startWord": "nase",
     "targetWord": "park",
@@ -9283,7 +9731,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-581",
+    "id": "wortleiter-609",
     "version": 1,
     "startWord": "nase",
     "targetWord": "nest",
@@ -9299,7 +9747,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-582",
+    "id": "wortleiter-610",
     "version": 1,
     "startWord": "nase",
     "targetWord": "saft",
@@ -9315,7 +9763,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-583",
+    "id": "wortleiter-611",
     "version": 1,
     "startWord": "nase",
     "targetWord": "wald",
@@ -9331,7 +9779,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-584",
+    "id": "wortleiter-612",
     "version": 1,
     "startWord": "nase",
     "targetWord": "saat",
@@ -9347,7 +9795,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-585",
+    "id": "wortleiter-613",
     "version": 1,
     "startWord": "nase",
     "targetWord": "zahl",
@@ -9363,7 +9811,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-586",
+    "id": "wortleiter-614",
     "version": 1,
     "startWord": "nase",
     "targetWord": "zahn",
@@ -9379,7 +9827,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-587",
+    "id": "wortleiter-615",
     "version": 1,
     "startWord": "nase",
     "targetWord": "sand",
@@ -9395,7 +9843,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-588",
+    "id": "wortleiter-616",
     "version": 1,
     "startWord": "nase",
     "targetWord": "ring",
@@ -9411,7 +9859,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-589",
+    "id": "wortleiter-617",
     "version": 1,
     "startWord": "nase",
     "targetWord": "wand",
@@ -9427,7 +9875,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-590",
+    "id": "wortleiter-618",
     "version": 1,
     "startWord": "nase",
     "targetWord": "satz",
@@ -9443,7 +9891,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-591",
+    "id": "wortleiter-619",
     "version": 1,
     "startWord": "nest",
     "targetWord": "pass",
@@ -9459,7 +9907,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-592",
+    "id": "wortleiter-620",
     "version": 1,
     "startWord": "nest",
     "targetWord": "teil",
@@ -9475,7 +9923,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-593",
+    "id": "wortleiter-621",
+    "version": 1,
+    "startWord": "nest",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "nest",
+      "nett",
+      "netz",
+      "setz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-622",
     "version": 1,
     "startWord": "nest",
     "targetWord": "rand",
@@ -9491,7 +9955,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-594",
+    "id": "wortleiter-623",
     "version": 1,
     "startWord": "park",
     "targetWord": "rand",
@@ -9507,7 +9971,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-595",
+    "id": "wortleiter-624",
     "version": 1,
     "startWord": "park",
     "targetWord": "sand",
@@ -9523,7 +9987,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-596",
+    "id": "wortleiter-625",
     "version": 1,
     "startWord": "park",
     "targetWord": "wand",
@@ -9539,7 +10003,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-597",
+    "id": "wortleiter-626",
     "version": 1,
     "startWord": "park",
     "targetWord": "zahn",
@@ -9555,7 +10019,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-598",
+    "id": "wortleiter-627",
     "version": 1,
     "startWord": "park",
     "targetWord": "zorn",
@@ -9571,23 +10035,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-599",
-    "version": 1,
-    "startWord": "park",
-    "targetWord": "pass",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "park",
-      "bark",
-      "bars",
-      "bass",
-      "pass"
-    ]
-  },
-  {
-    "id": "wortleiter-600",
+    "id": "wortleiter-628",
     "version": 1,
     "startWord": "park",
     "targetWord": "saft",
@@ -9603,7 +10051,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-601",
+    "id": "wortleiter-629",
     "version": 1,
     "startWord": "park",
     "targetWord": "satz",
@@ -9619,7 +10067,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-602",
+    "id": "wortleiter-630",
     "version": 1,
     "startWord": "park",
     "targetWord": "welt",
@@ -9635,7 +10083,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-603",
+    "id": "wortleiter-631",
     "version": 1,
     "startWord": "pass",
     "targetWord": "rose",
@@ -9651,7 +10099,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-604",
+    "id": "wortleiter-632",
     "version": 1,
     "startWord": "pass",
     "targetWord": "rand",
@@ -9667,7 +10115,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-605",
+    "id": "wortleiter-633",
     "version": 1,
     "startWord": "pass",
     "targetWord": "sand",
@@ -9683,7 +10131,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-606",
+    "id": "wortleiter-634",
     "version": 1,
     "startWord": "pass",
     "targetWord": "wand",
@@ -9699,7 +10147,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-607",
+    "id": "wortleiter-635",
     "version": 1,
     "startWord": "pass",
     "targetWord": "wald",
@@ -9715,7 +10163,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-608",
+    "id": "wortleiter-636",
     "version": 1,
     "startWord": "pass",
     "targetWord": "saft",
@@ -9731,7 +10179,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-609",
+    "id": "wortleiter-637",
     "version": 1,
     "startWord": "pass",
     "targetWord": "saat",
@@ -9747,7 +10195,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-610",
+    "id": "wortleiter-638",
+    "version": 1,
+    "startWord": "pass",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pass",
+      "pars",
+      "part",
+      "wart",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-639",
+    "version": 1,
+    "startWord": "pass",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pass",
+      "paus",
+      "zaus",
+      "zaun",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-640",
     "version": 1,
     "startWord": "pass",
     "targetWord": "ring",
@@ -9763,7 +10243,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-611",
+    "id": "wortleiter-641",
     "version": 1,
     "startWord": "pilz",
     "targetWord": "satz",
@@ -9779,7 +10259,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-612",
+    "id": "wortleiter-642",
     "version": 1,
     "startWord": "pilz",
     "targetWord": "wald",
@@ -9795,7 +10275,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-613",
+    "id": "wortleiter-643",
     "version": 1,
     "startWord": "pilz",
     "targetWord": "wind",
@@ -9811,7 +10291,55 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-614",
+    "id": "wortleiter-644",
+    "version": 1,
+    "startWord": "pilz",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pilz",
+      "pelz",
+      "pell",
+      "peil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-645",
+    "version": 1,
+    "startWord": "pilz",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pilz",
+      "pelz",
+      "pell",
+      "poll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-646",
+    "version": 1,
+    "startWord": "pilz",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "pilz",
+      "pelz",
+      "pell",
+      "well",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-647",
     "version": 1,
     "startWord": "pilz",
     "targetWord": "ring",
@@ -9827,39 +10355,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-615",
-    "version": 1,
-    "startWord": "pilz",
-    "targetWord": "zoll",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "pilz",
-      "pils",
-      "pols",
-      "poll",
-      "zoll"
-    ]
-  },
-  {
-    "id": "wortleiter-616",
-    "version": 1,
-    "startWord": "rand",
-    "targetWord": "satz",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "rand",
-      "rane",
-      "rate",
-      "ratz",
-      "satz"
-    ]
-  },
-  {
-    "id": "wortleiter-617",
+    "id": "wortleiter-648",
     "version": 1,
     "startWord": "rand",
     "targetWord": "zahl",
@@ -9875,7 +10371,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-618",
+    "id": "wortleiter-649",
     "version": 1,
     "startWord": "rand",
     "targetWord": "saat",
@@ -9891,7 +10387,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-619",
+    "id": "wortleiter-650",
     "version": 1,
     "startWord": "rand",
     "targetWord": "saft",
@@ -9907,7 +10403,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-620",
+    "id": "wortleiter-651",
+    "version": 1,
+    "startWord": "rand",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "rand",
+      "sand",
+      "sann",
+      "sonn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-652",
     "version": 1,
     "startWord": "rand",
     "targetWord": "seen",
@@ -9923,7 +10435,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-621",
+    "id": "wortleiter-653",
     "version": 1,
     "startWord": "rand",
     "targetWord": "wort",
@@ -9939,7 +10451,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-622",
+    "id": "wortleiter-654",
     "version": 1,
     "startWord": "ring",
     "targetWord": "wald",
@@ -9955,7 +10467,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-623",
+    "id": "wortleiter-655",
     "version": 1,
     "startWord": "ring",
     "targetWord": "rose",
@@ -9971,7 +10483,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-624",
+    "id": "wortleiter-656",
     "version": 1,
     "startWord": "ring",
     "targetWord": "zahn",
@@ -9987,7 +10499,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-625",
+    "id": "wortleiter-657",
+    "version": 1,
+    "startWord": "ring",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "ring",
+      "rang",
+      "ranz",
+      "ratz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-658",
+    "version": 1,
+    "startWord": "ring",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "ring",
+      "sing",
+      "seng",
+      "senn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-659",
     "version": 1,
     "startWord": "ring",
     "targetWord": "ziel",
@@ -10003,23 +10547,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-626",
+    "id": "wortleiter-660",
     "version": 1,
     "startWord": "ring",
-    "targetWord": "seen",
+    "targetWord": "sohn",
     "wordLength": 4,
     "optimalSteps": 4,
     "difficulty": "medium",
     "solution": [
       "ring",
       "sing",
-      "sinn",
-      "senn",
-      "seen"
+      "song",
+      "sonn",
+      "sohn"
     ]
   },
   {
-    "id": "wortleiter-627",
+    "id": "wortleiter-661",
     "version": 1,
     "startWord": "rose",
     "targetWord": "zoll",
@@ -10035,7 +10579,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-628",
+    "id": "wortleiter-662",
     "version": 1,
     "startWord": "rose",
     "targetWord": "wort",
@@ -10051,7 +10595,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-629",
+    "id": "wortleiter-663",
     "version": 1,
     "startWord": "rose",
     "targetWord": "sohn",
@@ -10060,14 +10604,14 @@ export const generatedWortleiterPuzzles = [
     "difficulty": "medium",
     "solution": [
       "rose",
-      "lose",
-      "lohe",
-      "lohn",
+      "hose",
+      "hohe",
+      "hohn",
       "sohn"
     ]
   },
   {
-    "id": "wortleiter-630",
+    "id": "wortleiter-664",
     "version": 1,
     "startWord": "rose",
     "targetWord": "zahn",
@@ -10083,7 +10627,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-631",
+    "id": "wortleiter-665",
     "version": 1,
     "startWord": "rose",
     "targetWord": "sand",
@@ -10099,7 +10643,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-632",
+    "id": "wortleiter-666",
     "version": 1,
     "startWord": "rose",
     "targetWord": "wand",
@@ -10115,7 +10659,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-633",
+    "id": "wortleiter-667",
     "version": 1,
     "startWord": "rose",
     "targetWord": "satz",
@@ -10131,7 +10675,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-634",
+    "id": "wortleiter-668",
     "version": 1,
     "startWord": "rose",
     "targetWord": "zeit",
@@ -10147,7 +10691,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-635",
+    "id": "wortleiter-669",
     "version": 1,
     "startWord": "rose",
     "targetWord": "welt",
@@ -10163,7 +10707,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-636",
+    "id": "wortleiter-670",
     "version": 1,
     "startWord": "saat",
     "targetWord": "teil",
@@ -10179,23 +10723,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-637",
-    "version": 1,
-    "startWord": "saat",
-    "targetWord": "zahl",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "saat",
-      "saal",
-      "waal",
-      "wahl",
-      "zahl"
-    ]
-  },
-  {
-    "id": "wortleiter-638",
+    "id": "wortleiter-671",
     "version": 1,
     "startWord": "saat",
     "targetWord": "wald",
@@ -10211,7 +10739,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-639",
+    "id": "wortleiter-672",
     "version": 1,
     "startWord": "saat",
     "targetWord": "wand",
@@ -10227,7 +10755,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-640",
+    "id": "wortleiter-673",
     "version": 1,
     "startWord": "saat",
     "targetWord": "wort",
@@ -10243,7 +10771,55 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-641",
+    "id": "wortleiter-674",
+    "version": 1,
+    "startWord": "saat",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saat",
+      "saht",
+      "sahn",
+      "sann",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-675",
+    "version": 1,
+    "startWord": "saat",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saat",
+      "saht",
+      "sahn",
+      "zahn",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-676",
+    "version": 1,
+    "startWord": "saat",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saat",
+      "saht",
+      "seht",
+      "sehn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-677",
     "version": 1,
     "startWord": "saat",
     "targetWord": "welt",
@@ -10259,23 +10835,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-642",
-    "version": 1,
-    "startWord": "saat",
-    "targetWord": "sand",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "saat",
-      "samt",
-      "sami",
-      "sani",
-      "sand"
-    ]
-  },
-  {
-    "id": "wortleiter-643",
+    "id": "wortleiter-678",
     "version": 1,
     "startWord": "saft",
     "targetWord": "wort",
@@ -10291,7 +10851,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-644",
+    "id": "wortleiter-679",
     "version": 1,
     "startWord": "saft",
     "targetWord": "welt",
@@ -10307,7 +10867,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-645",
+    "id": "wortleiter-680",
+    "version": 1,
+    "startWord": "saft",
+    "targetWord": "star",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saft",
+      "saat",
+      "spat",
+      "spar",
+      "star"
+    ]
+  },
+  {
+    "id": "wortleiter-681",
     "version": 1,
     "startWord": "saft",
     "targetWord": "wald",
@@ -10323,7 +10899,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-646",
+    "id": "wortleiter-682",
     "version": 1,
     "startWord": "saft",
     "targetWord": "wand",
@@ -10339,7 +10915,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-647",
+    "id": "wortleiter-683",
     "version": 1,
     "startWord": "saft",
     "targetWord": "sand",
@@ -10348,30 +10924,46 @@ export const generatedWortleiterPuzzles = [
     "difficulty": "medium",
     "solution": [
       "saft",
-      "samt",
-      "sami",
-      "sani",
+      "saht",
+      "sahn",
+      "sann",
       "sand"
     ]
   },
   {
-    "id": "wortleiter-648",
+    "id": "wortleiter-684",
     "version": 1,
-    "startWord": "sand",
-    "targetWord": "zahn",
+    "startWord": "saft",
+    "targetWord": "zahl",
     "wordLength": 4,
     "optimalSteps": 4,
     "difficulty": "medium",
     "solution": [
-      "sand",
-      "band",
-      "bann",
-      "bahn",
-      "zahn"
+      "saft",
+      "saht",
+      "sahn",
+      "zahn",
+      "zahl"
     ]
   },
   {
-    "id": "wortleiter-649",
+    "id": "wortleiter-685",
+    "version": 1,
+    "startWord": "saft",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "saft",
+      "saht",
+      "seht",
+      "sehn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-686",
     "version": 1,
     "startWord": "sand",
     "targetWord": "satz",
@@ -10380,14 +10972,30 @@ export const generatedWortleiterPuzzles = [
     "difficulty": "medium",
     "solution": [
       "sand",
-      "sani",
-      "sali",
-      "salz",
+      "rand",
+      "ranz",
+      "ratz",
       "satz"
     ]
   },
   {
-    "id": "wortleiter-650",
+    "id": "wortleiter-687",
+    "version": 1,
+    "startWord": "sand",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sand",
+      "sann",
+      "sahn",
+      "zahn",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-688",
     "version": 1,
     "startWord": "sand",
     "targetWord": "teil",
@@ -10403,7 +11011,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-651",
+    "id": "wortleiter-689",
     "version": 1,
     "startWord": "sand",
     "targetWord": "wort",
@@ -10419,7 +11027,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-652",
+    "id": "wortleiter-690",
     "version": 1,
     "startWord": "satz",
     "targetWord": "wand",
@@ -10428,14 +11036,46 @@ export const generatedWortleiterPuzzles = [
     "difficulty": "medium",
     "solution": [
       "satz",
-      "salz",
-      "walz",
-      "wald",
+      "ratz",
+      "ranz",
+      "rand",
       "wand"
     ]
   },
   {
-    "id": "wortleiter-653",
+    "id": "wortleiter-691",
+    "version": 1,
+    "startWord": "satz",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "satz",
+      "satt",
+      "saht",
+      "sahn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-692",
+    "version": 1,
+    "startWord": "satz",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "satz",
+      "satt",
+      "saht",
+      "sahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-693",
     "version": 1,
     "startWord": "satz",
     "targetWord": "wort",
@@ -10451,7 +11091,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-654",
+    "id": "wortleiter-694",
+    "version": 1,
+    "startWord": "satz",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "satz",
+      "setz",
+      "sets",
+      "sees",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-695",
     "version": 1,
     "startWord": "satz",
     "targetWord": "welt",
@@ -10460,30 +11116,30 @@ export const generatedWortleiterPuzzles = [
     "difficulty": "medium",
     "solution": [
       "satz",
-      "satt",
-      "watt",
+      "setz",
+      "wetz",
       "wett",
       "welt"
     ]
   },
   {
-    "id": "wortleiter-655",
+    "id": "wortleiter-696",
     "version": 1,
-    "startWord": "seen",
-    "targetWord": "zahn",
+    "startWord": "satz",
+    "targetWord": "ziel",
     "wordLength": 4,
     "optimalSteps": 4,
     "difficulty": "medium",
     "solution": [
-      "seen",
-      "feen",
-      "fehn",
-      "zehn",
-      "zahn"
+      "satz",
+      "sitz",
+      "siez",
+      "siel",
+      "ziel"
     ]
   },
   {
-    "id": "wortleiter-656",
+    "id": "wortleiter-697",
     "version": 1,
     "startWord": "seen",
     "targetWord": "welt",
@@ -10492,14 +11148,30 @@ export const generatedWortleiterPuzzles = [
     "difficulty": "medium",
     "solution": [
       "seen",
-      "sein",
-      "wein",
-      "weit",
+      "sehn",
+      "seht",
+      "weht",
       "welt"
     ]
   },
   {
-    "id": "wortleiter-657",
+    "id": "wortleiter-698",
+    "version": 1,
+    "startWord": "seen",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "seen",
+      "sehn",
+      "zehn",
+      "zahn",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-699",
     "version": 1,
     "startWord": "seen",
     "targetWord": "zelt",
@@ -10515,7 +11187,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-658",
+    "id": "wortleiter-700",
     "version": 1,
     "startWord": "seen",
     "targetWord": "wand",
@@ -10531,7 +11203,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-659",
+    "id": "wortleiter-701",
     "version": 1,
     "startWord": "seen",
     "targetWord": "wind",
@@ -10547,23 +11219,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-660",
-    "version": 1,
-    "startWord": "sohn",
-    "targetWord": "zahl",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "sohn",
-      "hohn",
-      "hahn",
-      "zahn",
-      "zahl"
-    ]
-  },
-  {
-    "id": "wortleiter-661",
+    "id": "wortleiter-702",
     "version": 1,
     "startWord": "sohn",
     "targetWord": "wort",
@@ -10579,7 +11235,55 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-662",
+    "id": "wortleiter-703",
+    "version": 1,
+    "startWord": "sohn",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sohn",
+      "sehn",
+      "seht",
+      "weht",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-704",
+    "version": 1,
+    "startWord": "sohn",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sohn",
+      "sehn",
+      "sein",
+      "tein",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-705",
+    "version": 1,
+    "startWord": "sohn",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sohn",
+      "sehn",
+      "zehn",
+      "zein",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-706",
     "version": 1,
     "startWord": "sohn",
     "targetWord": "star",
@@ -10595,7 +11299,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-663",
+    "id": "wortleiter-707",
+    "version": 1,
+    "startWord": "sohn",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "sohn",
+      "sonn",
+      "sinn",
+      "sind",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-708",
     "version": 1,
     "startWord": "sohn",
     "targetWord": "wand",
@@ -10611,7 +11331,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-664",
+    "id": "wortleiter-709",
     "version": 1,
     "startWord": "teil",
     "targetWord": "zahl",
@@ -10627,23 +11347,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-665",
-    "version": 1,
-    "startWord": "teil",
-    "targetWord": "welt",
-    "wordLength": 4,
-    "optimalSteps": 4,
-    "difficulty": "medium",
-    "solution": [
-      "teil",
-      "feil",
-      "feit",
-      "weit",
-      "welt"
-    ]
-  },
-  {
-    "id": "wortleiter-666",
+    "id": "wortleiter-710",
     "version": 1,
     "startWord": "teil",
     "targetWord": "zelt",
@@ -10659,7 +11363,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-667",
+    "id": "wortleiter-711",
+    "version": 1,
+    "startWord": "teil",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "teil",
+      "peil",
+      "pell",
+      "poll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-712",
     "version": 1,
     "startWord": "teil",
     "targetWord": "tier",
@@ -10675,7 +11395,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-668",
+    "id": "wortleiter-713",
     "version": 1,
     "startWord": "teil",
     "targetWord": "zahn",
@@ -10691,7 +11411,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-669",
+    "id": "wortleiter-714",
+    "version": 1,
+    "startWord": "teil",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "teil",
+      "weil",
+      "weit",
+      "wert",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-715",
+    "version": 1,
+    "startWord": "teil",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "teil",
+      "weil",
+      "well",
+      "wall",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-716",
     "version": 1,
     "startWord": "wald",
     "targetWord": "zelt",
@@ -10707,7 +11459,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-670",
+    "id": "wortleiter-717",
     "version": 1,
     "startWord": "wald",
     "targetWord": "zoll",
@@ -10723,7 +11475,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-671",
+    "id": "wortleiter-718",
     "version": 1,
     "startWord": "wald",
     "targetWord": "zahn",
@@ -10739,7 +11491,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-672",
+    "id": "wortleiter-719",
     "version": 1,
     "startWord": "wald",
     "targetWord": "wort",
@@ -10755,7 +11507,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-673",
+    "id": "wortleiter-720",
     "version": 1,
     "startWord": "wand",
     "targetWord": "zahl",
@@ -10771,7 +11523,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-674",
+    "id": "wortleiter-721",
     "version": 1,
     "startWord": "wand",
     "targetWord": "welt",
@@ -10787,7 +11539,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-675",
+    "id": "wortleiter-722",
+    "version": 1,
+    "startWord": "welt",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "welt",
+      "well",
+      "dell",
+      "doll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-723",
+    "version": 1,
+    "startWord": "welt",
+    "targetWord": "zahl",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "welt",
+      "well",
+      "wall",
+      "wahl",
+      "zahl"
+    ]
+  },
+  {
+    "id": "wortleiter-724",
     "version": 1,
     "startWord": "welt",
     "targetWord": "wind",
@@ -10803,7 +11587,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-676",
+    "id": "wortleiter-725",
     "version": 1,
     "startWord": "wind",
     "targetWord": "zahn",
@@ -10819,7 +11603,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-677",
+    "id": "wortleiter-726",
     "version": 1,
     "startWord": "wort",
     "targetWord": "zoll",
@@ -10835,7 +11619,23 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-678",
+    "id": "wortleiter-727",
+    "version": 1,
+    "startWord": "wort",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 4,
+    "difficulty": "medium",
+    "solution": [
+      "wort",
+      "wart",
+      "warn",
+      "wahn",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-728",
     "version": 1,
     "startWord": "zahl",
     "targetWord": "zoll",
@@ -10851,7 +11651,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-679",
+    "id": "wortleiter-729",
     "version": 1,
     "startWord": "zahl",
     "targetWord": "zeit",
@@ -10867,7 +11667,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-680",
+    "id": "wortleiter-730",
     "version": 1,
     "startWord": "zahn",
     "targetWord": "zorn",
@@ -10883,7 +11683,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-681",
+    "id": "wortleiter-731",
     "version": 1,
     "startWord": "zahn",
     "targetWord": "zelt",
@@ -10899,7 +11699,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-682",
+    "id": "wortleiter-732",
     "version": 1,
     "startWord": "ader",
     "targetWord": "ziel",
@@ -10916,7 +11716,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-683",
+    "id": "wortleiter-733",
     "version": 1,
     "startWord": "auge",
     "targetWord": "hund",
@@ -10933,7 +11733,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-684",
+    "id": "wortleiter-734",
     "version": 1,
     "startWord": "auge",
     "targetWord": "film",
@@ -10950,7 +11750,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-685",
+    "id": "wortleiter-735",
     "version": 1,
     "startWord": "auge",
     "targetWord": "ball",
@@ -10967,7 +11767,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-686",
+    "id": "wortleiter-736",
     "version": 1,
     "startWord": "auge",
     "targetWord": "fall",
@@ -10984,7 +11784,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-687",
+    "id": "wortleiter-737",
     "version": 1,
     "startWord": "auge",
     "targetWord": "holz",
@@ -11001,7 +11801,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-688",
+    "id": "wortleiter-738",
     "version": 1,
     "startWord": "auge",
     "targetWord": "zoll",
@@ -11018,7 +11818,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-689",
+    "id": "wortleiter-739",
     "version": 1,
     "startWord": "auge",
     "targetWord": "pilz",
@@ -11035,7 +11835,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-690",
+    "id": "wortleiter-740",
     "version": 1,
     "startWord": "auge",
     "targetWord": "bart",
@@ -11052,7 +11852,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-691",
+    "id": "wortleiter-741",
     "version": 1,
     "startWord": "auge",
     "targetWord": "baum",
@@ -11069,7 +11869,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-692",
+    "id": "wortleiter-742",
     "version": 1,
     "startWord": "auge",
     "targetWord": "pass",
@@ -11086,7 +11886,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-693",
+    "id": "wortleiter-743",
     "version": 1,
     "startWord": "auge",
     "targetWord": "haus",
@@ -11103,7 +11903,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-694",
+    "id": "wortleiter-744",
     "version": 1,
     "startWord": "auge",
     "targetWord": "maus",
@@ -11120,7 +11920,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-695",
+    "id": "wortleiter-745",
     "version": 1,
     "startWord": "auge",
     "targetWord": "bund",
@@ -11137,7 +11937,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-696",
+    "id": "wortleiter-746",
     "version": 1,
     "startWord": "auge",
     "targetWord": "fell",
@@ -11154,7 +11954,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-697",
+    "id": "wortleiter-747",
     "version": 1,
     "startWord": "auge",
     "targetWord": "mehl",
@@ -11171,7 +11971,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-698",
+    "id": "wortleiter-748",
     "version": 1,
     "startWord": "auge",
     "targetWord": "teil",
@@ -11188,7 +11988,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-699",
+    "id": "wortleiter-749",
     "version": 1,
     "startWord": "auge",
     "targetWord": "bein",
@@ -11205,7 +12005,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-700",
+    "id": "wortleiter-750",
     "version": 1,
     "startWord": "auge",
     "targetWord": "zeit",
@@ -11222,7 +12022,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-701",
+    "id": "wortleiter-751",
     "version": 1,
     "startWord": "auge",
     "targetWord": "nest",
@@ -11239,7 +12039,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-702",
+    "id": "wortleiter-752",
     "version": 1,
     "startWord": "auge",
     "targetWord": "wort",
@@ -11256,7 +12056,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-703",
+    "id": "wortleiter-753",
     "version": 1,
     "startWord": "auge",
     "targetWord": "dame",
@@ -11273,7 +12073,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-704",
+    "id": "wortleiter-754",
     "version": 1,
     "startWord": "auge",
     "targetWord": "haut",
@@ -11290,7 +12090,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-705",
+    "id": "wortleiter-755",
     "version": 1,
     "startWord": "auge",
     "targetWord": "mais",
@@ -11307,7 +12107,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-706",
+    "id": "wortleiter-756",
     "version": 1,
     "startWord": "auge",
     "targetWord": "rand",
@@ -11324,7 +12124,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-707",
+    "id": "wortleiter-757",
     "version": 1,
     "startWord": "auge",
     "targetWord": "saft",
@@ -11341,7 +12141,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-708",
+    "id": "wortleiter-758",
     "version": 1,
     "startWord": "auge",
     "targetWord": "saat",
@@ -11358,7 +12158,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-709",
+    "id": "wortleiter-759",
     "version": 1,
     "startWord": "auge",
     "targetWord": "wald",
@@ -11375,7 +12175,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-710",
+    "id": "wortleiter-760",
     "version": 1,
     "startWord": "auge",
     "targetWord": "wand",
@@ -11392,7 +12192,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-711",
+    "id": "wortleiter-761",
     "version": 1,
     "startWord": "auge",
     "targetWord": "korn",
@@ -11409,7 +12209,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-712",
+    "id": "wortleiter-762",
     "version": 1,
     "startWord": "auge",
     "targetWord": "boot",
@@ -11426,7 +12226,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-713",
+    "id": "wortleiter-763",
     "version": 1,
     "startWord": "auge",
     "targetWord": "sohn",
@@ -11443,7 +12243,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-714",
+    "id": "wortleiter-764",
     "version": 1,
     "startWord": "auge",
     "targetWord": "luft",
@@ -11458,7 +12258,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-715",
+    "id": "wortleiter-765",
     "version": 1,
     "startWord": "bach",
     "targetWord": "ball",
@@ -11475,7 +12275,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-716",
+    "id": "wortleiter-766",
     "version": 1,
     "startWord": "bach",
     "targetWord": "bild",
@@ -11492,7 +12292,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-717",
+    "id": "wortleiter-767",
     "version": 1,
     "startWord": "bach",
     "targetWord": "kind",
@@ -11509,7 +12309,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-718",
+    "id": "wortleiter-768",
     "version": 1,
     "startWord": "bach",
     "targetWord": "mond",
@@ -11526,7 +12326,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-719",
+    "id": "wortleiter-769",
     "version": 1,
     "startWord": "bach",
     "targetWord": "mund",
@@ -11543,7 +12343,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-720",
+    "id": "wortleiter-770",
     "version": 1,
     "startWord": "bach",
     "targetWord": "hund",
@@ -11560,7 +12360,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-721",
+    "id": "wortleiter-771",
     "version": 1,
     "startWord": "bach",
     "targetWord": "zahn",
@@ -11577,7 +12377,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-722",
+    "id": "wortleiter-772",
     "version": 1,
     "startWord": "bach",
     "targetWord": "wald",
@@ -11594,7 +12394,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-723",
+    "id": "wortleiter-773",
     "version": 1,
     "startWord": "bach",
     "targetWord": "wind",
@@ -11611,7 +12411,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-724",
+    "id": "wortleiter-774",
     "version": 1,
     "startWord": "bach",
     "targetWord": "bein",
@@ -11628,7 +12428,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-725",
+    "id": "wortleiter-775",
     "version": 1,
     "startWord": "bach",
     "targetWord": "zorn",
@@ -11645,7 +12445,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-726",
+    "id": "wortleiter-776",
     "version": 1,
     "startWord": "bach",
     "targetWord": "korn",
@@ -11662,7 +12462,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-727",
+    "id": "wortleiter-777",
     "version": 1,
     "startWord": "bach",
     "targetWord": "bart",
@@ -11677,7 +12477,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-728",
+    "id": "wortleiter-778",
     "version": 1,
     "startWord": "bach",
     "targetWord": "blut",
@@ -11694,7 +12494,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-729",
+    "id": "wortleiter-779",
     "version": 1,
     "startWord": "bach",
     "targetWord": "boot",
@@ -11711,7 +12511,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-730",
+    "id": "wortleiter-780",
     "version": 1,
     "startWord": "bach",
     "targetWord": "wort",
@@ -11728,7 +12528,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-731",
+    "id": "wortleiter-781",
     "version": 1,
     "startWord": "bach",
     "targetWord": "park",
@@ -11743,7 +12543,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-732",
+    "id": "wortleiter-782",
     "version": 1,
     "startWord": "bach",
     "targetWord": "ring",
@@ -11760,7 +12560,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-733",
+    "id": "wortleiter-783",
     "version": 1,
     "startWord": "bach",
     "targetWord": "baum",
@@ -11777,7 +12577,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-734",
+    "id": "wortleiter-784",
     "version": 1,
     "startWord": "bach",
     "targetWord": "nest",
@@ -11794,7 +12594,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-735",
+    "id": "wortleiter-785",
     "version": 1,
     "startWord": "bach",
     "targetWord": "herz",
@@ -11811,7 +12611,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-736",
+    "id": "wortleiter-786",
     "version": 1,
     "startWord": "bach",
     "targetWord": "name",
@@ -11828,7 +12628,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-737",
+    "id": "wortleiter-787",
     "version": 1,
     "startWord": "bach",
     "targetWord": "rose",
@@ -11845,7 +12645,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-738",
+    "id": "wortleiter-788",
     "version": 1,
     "startWord": "bach",
     "targetWord": "mais",
@@ -11862,7 +12662,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-739",
+    "id": "wortleiter-789",
     "version": 1,
     "startWord": "bach",
     "targetWord": "maus",
@@ -11879,7 +12679,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-740",
+    "id": "wortleiter-790",
+    "version": 1,
+    "startWord": "bach",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bach",
+      "hach",
+      "hoch",
+      "hock",
+      "holk",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-791",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "bund",
@@ -11894,7 +12711,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-741",
+    "id": "wortleiter-792",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "hand",
@@ -11909,7 +12726,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-742",
+    "id": "wortleiter-793",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "land",
@@ -11924,7 +12741,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-743",
+    "id": "wortleiter-794",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "lied",
@@ -11941,7 +12758,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-744",
+    "id": "wortleiter-795",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "buch",
@@ -11958,7 +12775,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-745",
+    "id": "wortleiter-796",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "dach",
@@ -11975,7 +12792,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-746",
+    "id": "wortleiter-797",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "fach",
@@ -11992,22 +12809,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-747",
+    "id": "wortleiter-798",
     "version": 1,
     "startWord": "bahn",
-    "targetWord": "sand",
+    "targetWord": "bier",
     "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
+    "optimalSteps": 5,
+    "difficulty": "medium",
     "solution": [
       "bahn",
-      "bann",
-      "sann",
-      "sand"
+      "barn",
+      "barg",
+      "birg",
+      "bieg",
+      "bier"
     ]
   },
   {
-    "id": "wortleiter-748",
+    "id": "wortleiter-799",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "park",
@@ -12022,7 +12841,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-749",
+    "id": "wortleiter-800",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "glas",
@@ -12039,7 +12858,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-750",
+    "id": "wortleiter-801",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "nest",
@@ -12056,7 +12875,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-751",
+    "id": "wortleiter-802",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "fest",
@@ -12073,7 +12892,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-752",
+    "id": "wortleiter-803",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "bein",
@@ -12088,7 +12907,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-753",
+    "id": "wortleiter-804",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "berg",
@@ -12103,7 +12922,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-754",
+    "id": "wortleiter-805",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "brot",
@@ -12120,7 +12939,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-755",
+    "id": "wortleiter-806",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "zorn",
@@ -12135,7 +12954,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-756",
+    "id": "wortleiter-807",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "film",
@@ -12152,56 +12971,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-757",
+    "id": "wortleiter-808",
     "version": 1,
     "startWord": "bahn",
-    "targetWord": "saft",
+    "targetWord": "holz",
     "wordLength": 4,
     "optimalSteps": 5,
     "difficulty": "medium",
-    "solution": [
-      "bahn",
-      "hahn",
-      "harn",
-      "hart",
-      "haft",
-      "saft"
-    ]
-  },
-  {
-    "id": "wortleiter-758",
-    "version": 1,
-    "startWord": "bahn",
-    "targetWord": "satz",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bahn",
-      "hahn",
-      "harn",
-      "harz",
-      "hatz",
-      "satz"
-    ]
-  },
-  {
-    "id": "wortleiter-759",
-    "version": 1,
-    "startWord": "bahn",
-    "targetWord": "sohn",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
     "solution": [
       "bahn",
       "hahn",
       "hohn",
-      "sohn"
+      "hohe",
+      "hole",
+      "holz"
     ]
   },
   {
-    "id": "wortleiter-760",
+    "id": "wortleiter-809",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "fell",
@@ -12218,22 +13005,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-761",
-    "version": 1,
-    "startWord": "bahn",
-    "targetWord": "mahl",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "bahn",
-      "kahn",
-      "kahl",
-      "mahl"
-    ]
-  },
-  {
-    "id": "wortleiter-762",
+    "id": "wortleiter-810",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "dame",
@@ -12250,7 +13022,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-763",
+    "id": "wortleiter-811",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "korn",
@@ -12265,7 +13037,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-764",
+    "id": "wortleiter-812",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bahn",
+      "mahn",
+      "mahl",
+      "mall",
+      "moll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-813",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "mahn",
+      "mahl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-814",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "teil",
@@ -12282,7 +13086,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-765",
+    "id": "wortleiter-815",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "rand",
@@ -12297,7 +13101,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-766",
+    "id": "wortleiter-816",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "kino",
@@ -12314,41 +13118,67 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-767",
+    "id": "wortleiter-817",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "saat",
     "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
+    "optimalSteps": 3,
+    "difficulty": "easy",
     "solution": [
       "bahn",
-      "wahn",
-      "wahl",
-      "waal",
-      "saal",
+      "sahn",
+      "saht",
       "saat"
     ]
   },
   {
-    "id": "wortleiter-768",
+    "id": "wortleiter-818",
     "version": 1,
     "startWord": "bahn",
-    "targetWord": "meer",
+    "targetWord": "saft",
     "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
+    "optimalSteps": 3,
+    "difficulty": "easy",
     "solution": [
       "bahn",
-      "wahn",
-      "wahr",
-      "mahr",
-      "mehr",
-      "meer"
+      "sahn",
+      "saht",
+      "saft"
     ]
   },
   {
-    "id": "wortleiter-769",
+    "id": "wortleiter-819",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "sand",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "sahn",
+      "sann",
+      "sand"
+    ]
+  },
+  {
+    "id": "wortleiter-820",
+    "version": 1,
+    "startWord": "bahn",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bahn",
+      "sahn",
+      "sehn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-821",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "welt",
@@ -12357,15 +13187,15 @@ export const generatedWortleiterPuzzles = [
     "difficulty": "medium",
     "solution": [
       "bahn",
-      "wahn",
-      "wahr",
-      "wehr",
+      "sahn",
+      "sehn",
+      "seht",
       "weht",
       "welt"
     ]
   },
   {
-    "id": "wortleiter-770",
+    "id": "wortleiter-822",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "wand",
@@ -12380,7 +13210,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-771",
+    "id": "wortleiter-823",
     "version": 1,
     "startWord": "bahn",
     "targetWord": "zelt",
@@ -12397,7 +13227,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-772",
+    "id": "wortleiter-824",
     "version": 1,
     "startWord": "ball",
     "targetWord": "bank",
@@ -12412,7 +13242,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-773",
+    "id": "wortleiter-825",
     "version": 1,
     "startWord": "ball",
     "targetWord": "bund",
@@ -12427,7 +13257,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-774",
+    "id": "wortleiter-826",
     "version": 1,
     "startWord": "ball",
     "targetWord": "hand",
@@ -12442,7 +13272,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-775",
+    "id": "wortleiter-827",
     "version": 1,
     "startWord": "ball",
     "targetWord": "land",
@@ -12457,7 +13287,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-776",
+    "id": "wortleiter-828",
     "version": 1,
     "startWord": "ball",
     "targetWord": "rand",
@@ -12472,7 +13302,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-777",
+    "id": "wortleiter-829",
     "version": 1,
     "startWord": "ball",
     "targetWord": "sand",
@@ -12487,7 +13317,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-778",
+    "id": "wortleiter-830",
     "version": 1,
     "startWord": "ball",
     "targetWord": "lied",
@@ -12504,7 +13334,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-779",
+    "id": "wortleiter-831",
     "version": 1,
     "startWord": "ball",
     "targetWord": "zorn",
@@ -12521,7 +13351,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-780",
+    "id": "wortleiter-832",
     "version": 1,
     "startWord": "ball",
     "targetWord": "boot",
@@ -12538,7 +13368,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-781",
+    "id": "wortleiter-833",
     "version": 1,
     "startWord": "ball",
     "targetWord": "korn",
@@ -12555,7 +13385,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-782",
+    "id": "wortleiter-834",
     "version": 1,
     "startWord": "ball",
     "targetWord": "bart",
@@ -12570,7 +13400,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-783",
+    "id": "wortleiter-835",
     "version": 1,
     "startWord": "ball",
     "targetWord": "berg",
@@ -12585,7 +13415,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-784",
+    "id": "wortleiter-836",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "bier",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "balg",
+      "barg",
+      "birg",
+      "bieg",
+      "bier"
+    ]
+  },
+  {
+    "id": "wortleiter-837",
     "version": 1,
     "startWord": "ball",
     "targetWord": "brot",
@@ -12602,7 +13449,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-785",
+    "id": "wortleiter-838",
     "version": 1,
     "startWord": "ball",
     "targetWord": "holz",
@@ -12617,7 +13464,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-786",
+    "id": "wortleiter-839",
     "version": 1,
     "startWord": "ball",
     "targetWord": "satz",
@@ -12632,7 +13479,86 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-787",
+    "id": "wortleiter-840",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "bein",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "bell",
+      "beil",
+      "bein"
+    ]
+  },
+  {
+    "id": "wortleiter-841",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "bell",
+      "beil",
+      "seil",
+      "sein",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-842",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "bell",
+      "beil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-843",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "geld",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "bell",
+      "gell",
+      "geld"
+    ]
+  },
+  {
+    "id": "wortleiter-844",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "fall",
+      "fahl",
+      "fohl",
+      "sohl",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-845",
     "version": 1,
     "startWord": "ball",
     "targetWord": "zahl",
@@ -12647,24 +13573,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-788",
-    "version": 1,
-    "startWord": "ball",
-    "targetWord": "bein",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "ball",
-      "fall",
-      "fell",
-      "feil",
-      "beil",
-      "bein"
-    ]
-  },
-  {
-    "id": "wortleiter-789",
+    "id": "wortleiter-846",
     "version": 1,
     "startWord": "ball",
     "targetWord": "fest",
@@ -12681,7 +13590,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-790",
+    "id": "wortleiter-847",
     "version": 1,
     "startWord": "ball",
     "targetWord": "zeit",
@@ -12698,7 +13607,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-791",
+    "id": "wortleiter-848",
     "version": 1,
     "startWord": "ball",
     "targetWord": "feld",
@@ -12713,24 +13622,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-792",
-    "version": 1,
-    "startWord": "ball",
-    "targetWord": "zelt",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "ball",
-      "fall",
-      "fell",
-      "gell",
-      "gelt",
-      "zelt"
-    ]
-  },
-  {
-    "id": "wortleiter-793",
+    "id": "wortleiter-849",
     "version": 1,
     "startWord": "ball",
     "targetWord": "kino",
@@ -12747,7 +13639,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-794",
+    "id": "wortleiter-850",
     "version": 1,
     "startWord": "ball",
     "targetWord": "nase",
@@ -12764,7 +13656,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-795",
+    "id": "wortleiter-851",
     "version": 1,
     "startWord": "ball",
     "targetWord": "haus",
@@ -12779,7 +13671,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-796",
+    "id": "wortleiter-852",
     "version": 1,
     "startWord": "ball",
     "targetWord": "haut",
@@ -12794,7 +13686,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-797",
+    "id": "wortleiter-853",
     "version": 1,
     "startWord": "ball",
     "targetWord": "wort",
@@ -12811,7 +13703,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-798",
+    "id": "wortleiter-854",
     "version": 1,
     "startWord": "ball",
     "targetWord": "herz",
@@ -12822,13 +13714,13 @@ export const generatedWortleiterPuzzles = [
       "ball",
       "hall",
       "hell",
-      "held",
-      "herd",
+      "heil",
+      "heiz",
       "herz"
     ]
   },
   {
-    "id": "wortleiter-799",
+    "id": "wortleiter-855",
     "version": 1,
     "startWord": "ball",
     "targetWord": "mehl",
@@ -12843,7 +13735,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-800",
+    "id": "wortleiter-856",
     "version": 1,
     "startWord": "ball",
     "targetWord": "meer",
@@ -12860,7 +13752,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-801",
+    "id": "wortleiter-857",
     "version": 1,
     "startWord": "ball",
     "targetWord": "mais",
@@ -12875,7 +13767,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-802",
+    "id": "wortleiter-858",
     "version": 1,
     "startWord": "ball",
     "targetWord": "dame",
@@ -12892,7 +13784,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-803",
+    "id": "wortleiter-859",
     "version": 1,
     "startWord": "ball",
     "targetWord": "name",
@@ -12909,7 +13801,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-804",
+    "id": "wortleiter-860",
     "version": 1,
     "startWord": "ball",
     "targetWord": "kuss",
@@ -12926,7 +13818,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-805",
+    "id": "wortleiter-861",
     "version": 1,
     "startWord": "ball",
     "targetWord": "maus",
@@ -12941,7 +13833,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-806",
+    "id": "wortleiter-862",
     "version": 1,
     "startWord": "ball",
     "targetWord": "zoll",
@@ -12956,7 +13848,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-807",
+    "id": "wortleiter-863",
     "version": 1,
     "startWord": "ball",
     "targetWord": "rose",
@@ -12973,7 +13865,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-808",
+    "id": "wortleiter-864",
     "version": 1,
     "startWord": "ball",
     "targetWord": "duft",
@@ -12990,24 +13882,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-809",
-    "version": 1,
-    "startWord": "ball",
-    "targetWord": "sohn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "ball",
-      "wall",
-      "wahl",
-      "wohl",
-      "wohn",
-      "sohn"
-    ]
-  },
-  {
-    "id": "wortleiter-810",
+    "id": "wortleiter-865",
     "version": 1,
     "startWord": "ball",
     "targetWord": "wand",
@@ -13022,7 +13897,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-811",
+    "id": "wortleiter-866",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "ball",
+      "wall",
+      "well",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-867",
+    "version": 1,
+    "startWord": "ball",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "ball",
+      "wall",
+      "well",
+      "welt",
+      "west",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-868",
     "version": 1,
     "startWord": "bank",
     "targetWord": "buch",
@@ -13037,7 +13944,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-812",
+    "id": "wortleiter-869",
     "version": 1,
     "startWord": "bank",
     "targetWord": "dach",
@@ -13052,7 +13959,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-813",
+    "id": "wortleiter-870",
     "version": 1,
     "startWord": "bank",
     "targetWord": "fach",
@@ -13067,7 +13974,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-814",
+    "id": "wortleiter-871",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "back",
+      "hack",
+      "hock",
+      "holk",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-872",
     "version": 1,
     "startWord": "bank",
     "targetWord": "bild",
@@ -13082,7 +14006,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-815",
+    "id": "wortleiter-873",
     "version": 1,
     "startWord": "bank",
     "targetWord": "kind",
@@ -13097,7 +14021,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-816",
+    "id": "wortleiter-874",
     "version": 1,
     "startWord": "bank",
     "targetWord": "geld",
@@ -13114,24 +14038,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-817",
-    "version": 1,
-    "startWord": "bank",
-    "targetWord": "holz",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bank",
-      "band",
-      "bond",
-      "bold",
-      "hold",
-      "holz"
-    ]
-  },
-  {
-    "id": "wortleiter-818",
+    "id": "wortleiter-875",
     "version": 1,
     "startWord": "bank",
     "targetWord": "mond",
@@ -13146,7 +14053,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-819",
+    "id": "wortleiter-876",
     "version": 1,
     "startWord": "bank",
     "targetWord": "mund",
@@ -13161,7 +14068,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-820",
+    "id": "wortleiter-877",
     "version": 1,
     "startWord": "bank",
     "targetWord": "hund",
@@ -13176,7 +14083,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-821",
+    "id": "wortleiter-878",
     "version": 1,
     "startWord": "bank",
     "targetWord": "zahn",
@@ -13191,7 +14098,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-822",
+    "id": "wortleiter-879",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "mehl",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "bann",
+      "mann",
+      "mahn",
+      "mahl",
+      "mehl"
+    ]
+  },
+  {
+    "id": "wortleiter-880",
     "version": 1,
     "startWord": "bank",
     "targetWord": "berg",
@@ -13206,7 +14130,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-823",
+    "id": "wortleiter-881",
+    "version": 1,
+    "startWord": "bank",
+    "targetWord": "bier",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bank",
+      "bark",
+      "barg",
+      "birg",
+      "bieg",
+      "bier"
+    ]
+  },
+  {
+    "id": "wortleiter-882",
     "version": 1,
     "startWord": "bank",
     "targetWord": "dorf",
@@ -13223,7 +14164,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-824",
+    "id": "wortleiter-883",
     "version": 1,
     "startWord": "bank",
     "targetWord": "glas",
@@ -13240,7 +14181,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-825",
+    "id": "wortleiter-884",
     "version": 1,
     "startWord": "bank",
     "targetWord": "brot",
@@ -13257,7 +14198,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-826",
+    "id": "wortleiter-885",
     "version": 1,
     "startWord": "bank",
     "targetWord": "dame",
@@ -13274,24 +14215,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-827",
-    "version": 1,
-    "startWord": "bank",
-    "targetWord": "satz",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bank",
-      "rank",
-      "rane",
-      "rate",
-      "ratz",
-      "satz"
-    ]
-  },
-  {
-    "id": "wortleiter-828",
+    "id": "wortleiter-886",
     "version": 1,
     "startWord": "bank",
     "targetWord": "ring",
@@ -13306,7 +14230,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-829",
+    "id": "wortleiter-887",
     "version": 1,
     "startWord": "bank",
     "targetWord": "fest",
@@ -13323,7 +14247,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-830",
+    "id": "wortleiter-888",
     "version": 1,
     "startWord": "bank",
     "targetWord": "nest",
@@ -13340,7 +14264,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-831",
+    "id": "wortleiter-889",
     "version": 1,
     "startWord": "bank",
     "targetWord": "name",
@@ -13357,7 +14281,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-832",
+    "id": "wortleiter-890",
     "version": 1,
     "startWord": "bank",
     "targetWord": "saat",
@@ -13374,7 +14298,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-833",
+    "id": "wortleiter-891",
     "version": 1,
     "startWord": "bank",
     "targetWord": "saft",
@@ -13391,7 +14315,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-834",
+    "id": "wortleiter-892",
     "version": 1,
     "startWord": "bank",
     "targetWord": "wald",
@@ -13406,7 +14330,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-835",
+    "id": "wortleiter-893",
     "version": 1,
     "startWord": "bank",
     "targetWord": "fell",
@@ -13417,30 +14341,13 @@ export const generatedWortleiterPuzzles = [
       "bank",
       "wank",
       "walk",
-      "wall",
-      "fall",
+      "welk",
+      "well",
       "fell"
     ]
   },
   {
-    "id": "wortleiter-836",
-    "version": 1,
-    "startWord": "bank",
-    "targetWord": "mahl",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bank",
-      "wank",
-      "walk",
-      "wall",
-      "mall",
-      "mahl"
-    ]
-  },
-  {
-    "id": "wortleiter-837",
+    "id": "wortleiter-894",
     "version": 1,
     "startWord": "bank",
     "targetWord": "zelt",
@@ -13457,24 +14364,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-838",
-    "version": 1,
-    "startWord": "bank",
-    "targetWord": "sohn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bank",
-      "wank",
-      "wann",
-      "wahn",
-      "wohn",
-      "sohn"
-    ]
-  },
-  {
-    "id": "wortleiter-839",
+    "id": "wortleiter-895",
     "version": 1,
     "startWord": "bank",
     "targetWord": "wind",
@@ -13489,7 +14379,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-840",
+    "id": "wortleiter-896",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "barg",
+      "birg",
+      "bieg",
+      "lieg",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-897",
     "version": 1,
     "startWord": "bart",
     "targetWord": "zahn",
@@ -13504,7 +14411,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-841",
+    "id": "wortleiter-898",
     "version": 1,
     "startWord": "bart",
     "targetWord": "bein",
@@ -13519,24 +14426,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-842",
-    "version": 1,
-    "startWord": "bart",
-    "targetWord": "teil",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bart",
-      "barn",
-      "bern",
-      "bein",
-      "tein",
-      "teil"
-    ]
-  },
-  {
-    "id": "wortleiter-843",
+    "id": "wortleiter-899",
     "version": 1,
     "startWord": "bart",
     "targetWord": "seen",
@@ -13553,7 +14443,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-844",
+    "id": "wortleiter-900",
     "version": 1,
     "startWord": "bart",
     "targetWord": "mais",
@@ -13568,7 +14458,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-845",
+    "id": "wortleiter-901",
     "version": 1,
     "startWord": "bart",
     "targetWord": "nase",
@@ -13583,22 +14473,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-846",
-    "version": 1,
-    "startWord": "bart",
-    "targetWord": "pass",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "bart",
-      "bast",
-      "bass",
-      "pass"
-    ]
-  },
-  {
-    "id": "wortleiter-847",
+    "id": "wortleiter-902",
     "version": 1,
     "startWord": "bart",
     "targetWord": "nest",
@@ -13613,7 +14488,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-848",
+    "id": "wortleiter-903",
     "version": 1,
     "startWord": "bart",
     "targetWord": "tier",
@@ -13630,7 +14505,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-849",
+    "id": "wortleiter-904",
     "version": 1,
     "startWord": "bart",
     "targetWord": "fest",
@@ -13645,7 +14520,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-850",
+    "id": "wortleiter-905",
     "version": 1,
     "startWord": "bart",
     "targetWord": "kuss",
@@ -13662,7 +14537,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-851",
+    "id": "wortleiter-906",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "frau",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "baut",
+      "brut",
+      "brat",
+      "brau",
+      "frau"
+    ]
+  },
+  {
+    "id": "wortleiter-907",
     "version": 1,
     "startWord": "bart",
     "targetWord": "gras",
@@ -13679,7 +14571,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-852",
+    "id": "wortleiter-908",
     "version": 1,
     "startWord": "bart",
     "targetWord": "mehl",
@@ -13696,7 +14588,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-853",
+    "id": "wortleiter-909",
     "version": 1,
     "startWord": "bart",
     "targetWord": "maus",
@@ -13711,7 +14603,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-854",
+    "id": "wortleiter-910",
     "version": 1,
     "startWord": "bart",
     "targetWord": "saat",
@@ -13726,7 +14618,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-855",
+    "id": "wortleiter-911",
     "version": 1,
     "startWord": "bart",
     "targetWord": "brot",
@@ -13741,7 +14633,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-856",
+    "id": "wortleiter-912",
     "version": 1,
     "startWord": "bart",
     "targetWord": "zorn",
@@ -13756,7 +14648,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-857",
+    "id": "wortleiter-913",
     "version": 1,
     "startWord": "bart",
     "targetWord": "kopf",
@@ -13773,7 +14665,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-858",
+    "id": "wortleiter-914",
     "version": 1,
     "startWord": "bart",
     "targetWord": "film",
@@ -13790,7 +14682,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-859",
+    "id": "wortleiter-915",
     "version": 1,
     "startWord": "bart",
     "targetWord": "dorf",
@@ -13805,7 +14697,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-860",
+    "id": "wortleiter-916",
     "version": 1,
     "startWord": "bart",
     "targetWord": "feld",
@@ -13822,7 +14714,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-861",
+    "id": "wortleiter-917",
     "version": 1,
     "startWord": "bart",
     "targetWord": "fell",
@@ -13839,7 +14731,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-862",
+    "id": "wortleiter-918",
     "version": 1,
     "startWord": "bart",
     "targetWord": "saft",
@@ -13854,7 +14746,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-863",
+    "id": "wortleiter-919",
     "version": 1,
     "startWord": "bart",
     "targetWord": "hemd",
@@ -13871,7 +14763,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-864",
+    "id": "wortleiter-920",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "meer",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "hart",
+      "harr",
+      "herr",
+      "heer",
+      "meer"
+    ]
+  },
+  {
+    "id": "wortleiter-921",
     "version": 1,
     "startWord": "bart",
     "targetWord": "herz",
@@ -13886,7 +14795,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-865",
+    "id": "wortleiter-922",
     "version": 1,
     "startWord": "bart",
     "targetWord": "haus",
@@ -13901,24 +14810,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-866",
-    "version": 1,
-    "startWord": "bart",
-    "targetWord": "sohn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bart",
-      "hart",
-      "hort",
-      "horn",
-      "hohn",
-      "sohn"
-    ]
-  },
-  {
-    "id": "wortleiter-867",
+    "id": "wortleiter-923",
     "version": 1,
     "startWord": "bart",
     "targetWord": "mund",
@@ -13935,7 +14827,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-868",
+    "id": "wortleiter-924",
     "version": 1,
     "startWord": "bart",
     "targetWord": "kino",
@@ -13952,7 +14844,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-869",
+    "id": "wortleiter-925",
     "version": 1,
     "startWord": "bart",
     "targetWord": "duft",
@@ -13969,7 +14861,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-870",
+    "id": "wortleiter-926",
     "version": 1,
     "startWord": "bart",
     "targetWord": "korn",
@@ -13984,7 +14876,22 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-871",
+    "id": "wortleiter-927",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bart",
+      "part",
+      "pars",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-928",
     "version": 1,
     "startWord": "bart",
     "targetWord": "zoll",
@@ -14001,7 +14908,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-872",
+    "id": "wortleiter-929",
     "version": 1,
     "startWord": "bart",
     "targetWord": "wand",
@@ -14016,7 +14923,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-873",
+    "id": "wortleiter-930",
+    "version": 1,
+    "startWord": "bart",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bart",
+      "wart",
+      "wert",
+      "weit",
+      "weil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-931",
     "version": 1,
     "startWord": "bart",
     "targetWord": "welt",
@@ -14031,7 +14955,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-874",
+    "id": "wortleiter-932",
     "version": 1,
     "startWord": "bart",
     "targetWord": "kind",
@@ -14048,7 +14972,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-875",
+    "id": "wortleiter-933",
     "version": 1,
     "startWord": "baum",
     "targetWord": "mund",
@@ -14065,7 +14989,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-876",
+    "id": "wortleiter-934",
     "version": 1,
     "startWord": "baum",
     "targetWord": "hund",
@@ -14082,7 +15006,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-877",
+    "id": "wortleiter-935",
     "version": 1,
     "startWord": "baum",
     "targetWord": "bild",
@@ -14097,7 +15021,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-878",
+    "id": "wortleiter-936",
     "version": 1,
     "startWord": "baum",
     "targetWord": "kind",
@@ -14114,7 +15038,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-879",
+    "id": "wortleiter-937",
     "version": 1,
     "startWord": "baum",
     "targetWord": "mond",
@@ -14131,7 +15055,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-880",
+    "id": "wortleiter-938",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "balm",
+      "ball",
+      "bell",
+      "beil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-939",
     "version": 1,
     "startWord": "baum",
     "targetWord": "fall",
@@ -14146,7 +15087,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-881",
+    "id": "wortleiter-940",
     "version": 1,
     "startWord": "baum",
     "targetWord": "film",
@@ -14163,7 +15104,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-882",
+    "id": "wortleiter-941",
     "version": 1,
     "startWord": "baum",
     "targetWord": "herz",
@@ -14180,7 +15121,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-883",
+    "id": "wortleiter-942",
     "version": 1,
     "startWord": "baum",
     "targetWord": "feld",
@@ -14197,7 +15138,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-884",
+    "id": "wortleiter-943",
     "version": 1,
     "startWord": "baum",
     "targetWord": "geld",
@@ -14214,7 +15155,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-885",
+    "id": "wortleiter-944",
     "version": 1,
     "startWord": "baum",
     "targetWord": "hemd",
@@ -14226,12 +15167,12 @@ export const generatedWortleiterPuzzles = [
       "balm",
       "halm",
       "helm",
-      "held",
+      "hemm",
       "hemd"
     ]
   },
   {
-    "id": "wortleiter-886",
+    "id": "wortleiter-945",
     "version": 1,
     "startWord": "baum",
     "targetWord": "zoll",
@@ -14248,7 +15189,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-887",
+    "id": "wortleiter-946",
     "version": 1,
     "startWord": "baum",
     "targetWord": "pilz",
@@ -14265,7 +15206,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-888",
+    "id": "wortleiter-947",
     "version": 1,
     "startWord": "baum",
     "targetWord": "wald",
@@ -14280,7 +15221,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-889",
+    "id": "wortleiter-948",
     "version": 1,
     "startWord": "baum",
     "targetWord": "wind",
@@ -14297,7 +15238,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-890",
+    "id": "wortleiter-949",
     "version": 1,
     "startWord": "baum",
     "targetWord": "welt",
@@ -14314,7 +15255,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-891",
+    "id": "wortleiter-950",
     "version": 1,
     "startWord": "baum",
     "targetWord": "zorn",
@@ -14331,7 +15272,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-892",
+    "id": "wortleiter-951",
     "version": 1,
     "startWord": "baum",
     "targetWord": "name",
@@ -14346,7 +15287,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-893",
+    "id": "wortleiter-952",
     "version": 1,
     "startWord": "baum",
     "targetWord": "nase",
@@ -14361,7 +15302,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-894",
+    "id": "wortleiter-953",
     "version": 1,
     "startWord": "baum",
     "targetWord": "gras",
@@ -14378,22 +15319,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-895",
-    "version": 1,
-    "startWord": "baum",
-    "targetWord": "pass",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "baum",
-      "baus",
-      "bass",
-      "pass"
-    ]
-  },
-  {
-    "id": "wortleiter-896",
+    "id": "wortleiter-954",
     "version": 1,
     "startWord": "baum",
     "targetWord": "mais",
@@ -14408,7 +15334,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-897",
+    "id": "wortleiter-955",
     "version": 1,
     "startWord": "baum",
     "targetWord": "kuss",
@@ -14425,7 +15351,22 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-898",
+    "id": "wortleiter-956",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "baum",
+      "baus",
+      "paus",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-957",
     "version": 1,
     "startWord": "baum",
     "targetWord": "dorf",
@@ -14442,7 +15383,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-899",
+    "id": "wortleiter-958",
     "version": 1,
     "startWord": "baum",
     "targetWord": "bier",
@@ -14459,7 +15400,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-900",
+    "id": "wortleiter-959",
     "version": 1,
     "startWord": "baum",
     "targetWord": "fach",
@@ -14476,7 +15417,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-901",
+    "id": "wortleiter-960",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "frau",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "baut",
+      "brut",
+      "brat",
+      "brau",
+      "frau"
+    ]
+  },
+  {
+    "id": "wortleiter-961",
     "version": 1,
     "startWord": "baum",
     "targetWord": "brot",
@@ -14491,7 +15449,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-902",
+    "id": "wortleiter-962",
     "version": 1,
     "startWord": "baum",
     "targetWord": "luft",
@@ -14508,7 +15466,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-903",
+    "id": "wortleiter-963",
     "version": 1,
     "startWord": "baum",
     "targetWord": "mehl",
@@ -14525,7 +15483,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-904",
+    "id": "wortleiter-964",
     "version": 1,
     "startWord": "baum",
     "targetWord": "korn",
@@ -14542,7 +15500,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-905",
+    "id": "wortleiter-965",
     "version": 1,
     "startWord": "baum",
     "targetWord": "ring",
@@ -14559,7 +15517,58 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-906",
+    "id": "wortleiter-966",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "bein",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "raum",
+      "raun",
+      "rain",
+      "rein",
+      "bein"
+    ]
+  },
+  {
+    "id": "wortleiter-967",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "star",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "saum",
+      "sauf",
+      "stuf",
+      "stur",
+      "star"
+    ]
+  },
+  {
+    "id": "wortleiter-968",
+    "version": 1,
+    "startWord": "baum",
+    "targetWord": "seen",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "baum",
+      "saum",
+      "saun",
+      "sahn",
+      "sehn",
+      "seen"
+    ]
+  },
+  {
+    "id": "wortleiter-969",
     "version": 1,
     "startWord": "baum",
     "targetWord": "saat",
@@ -14574,7 +15583,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-907",
+    "id": "wortleiter-970",
     "version": 1,
     "startWord": "baum",
     "targetWord": "saft",
@@ -14589,7 +15598,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-908",
+    "id": "wortleiter-971",
     "version": 1,
     "startWord": "baum",
     "targetWord": "zahl",
@@ -14604,7 +15613,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-909",
+    "id": "wortleiter-972",
     "version": 1,
     "startWord": "baum",
     "targetWord": "zahn",
@@ -14619,24 +15628,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-910",
-    "version": 1,
-    "startWord": "baum",
-    "targetWord": "bein",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "baum",
-      "zaum",
-      "zaun",
-      "zain",
-      "zein",
-      "bein"
-    ]
-  },
-  {
-    "id": "wortleiter-911",
+    "id": "wortleiter-973",
     "version": 1,
     "startWord": "baum",
     "targetWord": "zeit",
@@ -14653,7 +15645,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-912",
+    "id": "wortleiter-974",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "herz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bein",
+      "beiz",
+      "heiz",
+      "herz"
+    ]
+  },
+  {
+    "id": "wortleiter-975",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "beiz",
+      "heiz",
+      "hetz",
+      "setz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-976",
     "version": 1,
     "startWord": "bein",
     "targetWord": "pass",
@@ -14665,12 +15689,12 @@ export const generatedWortleiterPuzzles = [
       "bern",
       "barn",
       "bars",
-      "bass",
+      "pars",
       "pass"
     ]
   },
   {
-    "id": "wortleiter-913",
+    "id": "wortleiter-977",
     "version": 1,
     "startWord": "bein",
     "targetWord": "blut",
@@ -14687,24 +15711,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-914",
-    "version": 1,
-    "startWord": "bein",
-    "targetWord": "haut",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bein",
-      "bern",
-      "barn",
-      "harn",
-      "hart",
-      "haut"
-    ]
-  },
-  {
-    "id": "wortleiter-915",
+    "id": "wortleiter-978",
     "version": 1,
     "startWord": "bein",
     "targetWord": "brot",
@@ -14721,7 +15728,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-916",
+    "id": "wortleiter-979",
     "version": 1,
     "startWord": "bein",
     "targetWord": "zorn",
@@ -14736,7 +15743,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-917",
+    "id": "wortleiter-980",
     "version": 1,
     "startWord": "bein",
     "targetWord": "korn",
@@ -14751,7 +15758,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-918",
+    "id": "wortleiter-981",
     "version": 1,
     "startWord": "bein",
     "targetWord": "mahl",
@@ -14768,7 +15775,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-919",
+    "id": "wortleiter-982",
     "version": 1,
     "startWord": "bein",
     "targetWord": "nase",
@@ -14785,7 +15792,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-920",
+    "id": "wortleiter-983",
     "version": 1,
     "startWord": "bein",
     "targetWord": "fell",
@@ -14800,7 +15807,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-921",
+    "id": "wortleiter-984",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "hemd",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "fein",
+      "feim",
+      "heim",
+      "hemm",
+      "hemd"
+    ]
+  },
+  {
+    "id": "wortleiter-985",
     "version": 1,
     "startWord": "bein",
     "targetWord": "fest",
@@ -14815,7 +15839,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-922",
+    "id": "wortleiter-986",
     "version": 1,
     "startWord": "bein",
     "targetWord": "kind",
@@ -14832,7 +15856,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-923",
+    "id": "wortleiter-987",
     "version": 1,
     "startWord": "bein",
     "targetWord": "kino",
@@ -14849,7 +15873,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-924",
+    "id": "wortleiter-988",
     "version": 1,
     "startWord": "bein",
     "targetWord": "film",
@@ -14866,7 +15890,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-925",
+    "id": "wortleiter-989",
     "version": 1,
     "startWord": "bein",
     "targetWord": "laut",
@@ -14883,24 +15907,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-926",
-    "version": 1,
-    "startWord": "bein",
-    "targetWord": "hemd",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bein",
-      "lein",
-      "leid",
-      "lead",
-      "head",
-      "hemd"
-    ]
-  },
-  {
-    "id": "wortleiter-927",
+    "id": "wortleiter-990",
     "version": 1,
     "startWord": "bein",
     "targetWord": "maus",
@@ -14917,7 +15924,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-928",
+    "id": "wortleiter-991",
     "version": 1,
     "startWord": "bein",
     "targetWord": "wald",
@@ -14934,7 +15941,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-929",
+    "id": "wortleiter-992",
     "version": 1,
     "startWord": "bein",
     "targetWord": "wand",
@@ -14951,7 +15958,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-930",
+    "id": "wortleiter-993",
     "version": 1,
     "startWord": "bein",
     "targetWord": "bild",
@@ -14968,7 +15975,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-931",
+    "id": "wortleiter-994",
     "version": 1,
     "startWord": "bein",
     "targetWord": "mond",
@@ -14985,24 +15992,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-932",
-    "version": 1,
-    "startWord": "bein",
-    "targetWord": "herz",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bein",
-      "nein",
-      "neid",
-      "nerd",
-      "herd",
-      "herz"
-    ]
-  },
-  {
-    "id": "wortleiter-933",
+    "id": "wortleiter-995",
     "version": 1,
     "startWord": "bein",
     "targetWord": "name",
@@ -15019,7 +16009,41 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-934",
+    "id": "wortleiter-996",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "pein",
+      "peil",
+      "pell",
+      "pelz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-997",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "pein",
+      "peil",
+      "pell",
+      "poll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-998",
     "version": 1,
     "startWord": "bein",
     "targetWord": "haus",
@@ -15036,7 +16060,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-935",
+    "id": "wortleiter-999",
     "version": 1,
     "startWord": "bein",
     "targetWord": "hand",
@@ -15053,7 +16077,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-936",
+    "id": "wortleiter-1000",
     "version": 1,
     "startWord": "bein",
     "targetWord": "land",
@@ -15070,7 +16094,41 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-937",
+    "id": "wortleiter-1001",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "rein",
+      "rain",
+      "raun",
+      "raut",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1002",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "buch",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "rein",
+      "reih",
+      "rech",
+      "ruch",
+      "buch"
+    ]
+  },
+  {
+    "id": "wortleiter-1003",
     "version": 1,
     "startWord": "bein",
     "targetWord": "rose",
@@ -15087,7 +16145,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-938",
+    "id": "wortleiter-1004",
     "version": 1,
     "startWord": "bein",
     "targetWord": "wind",
@@ -15104,7 +16162,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-939",
+    "id": "wortleiter-1005",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "saft",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "sein",
+      "sehn",
+      "sahn",
+      "saht",
+      "saft"
+    ]
+  },
+  {
+    "id": "wortleiter-1006",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "bein",
+      "sein",
+      "sehn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1007",
     "version": 1,
     "startWord": "bein",
     "targetWord": "bund",
@@ -15121,7 +16211,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-940",
+    "id": "wortleiter-1008",
     "version": 1,
     "startWord": "bein",
     "targetWord": "hund",
@@ -15138,7 +16228,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-941",
+    "id": "wortleiter-1009",
     "version": 1,
     "startWord": "bein",
     "targetWord": "mund",
@@ -15155,7 +16245,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-942",
+    "id": "wortleiter-1010",
+    "version": 1,
+    "startWord": "bein",
+    "targetWord": "star",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bein",
+      "sein",
+      "spin",
+      "span",
+      "spar",
+      "star"
+    ]
+  },
+  {
+    "id": "wortleiter-1011",
     "version": 1,
     "startWord": "bein",
     "targetWord": "saat",
@@ -15172,7 +16279,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-943",
+    "id": "wortleiter-1012",
     "version": 1,
     "startWord": "bein",
     "targetWord": "bier",
@@ -15189,7 +16296,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-944",
+    "id": "wortleiter-1013",
     "version": 1,
     "startWord": "bein",
     "targetWord": "welt",
@@ -15204,7 +16311,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-945",
+    "id": "wortleiter-1014",
     "version": 1,
     "startWord": "bein",
     "targetWord": "zahn",
@@ -15219,7 +16326,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-946",
+    "id": "wortleiter-1015",
     "version": 1,
     "startWord": "bein",
     "targetWord": "zelt",
@@ -15234,24 +16341,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-947",
-    "version": 1,
-    "startWord": "berg",
-    "targetWord": "fell",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "berg",
-      "barg",
-      "balg",
-      "ball",
-      "fall",
-      "fell"
-    ]
-  },
-  {
-    "id": "wortleiter-948",
+    "id": "wortleiter-1016",
     "version": 1,
     "startWord": "berg",
     "targetWord": "mahl",
@@ -15268,7 +16358,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-949",
+    "id": "wortleiter-1017",
     "version": 1,
     "startWord": "berg",
     "targetWord": "holz",
@@ -15285,7 +16375,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-950",
+    "id": "wortleiter-1018",
     "version": 1,
     "startWord": "berg",
     "targetWord": "satz",
@@ -15302,24 +16392,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-951",
-    "version": 1,
-    "startWord": "berg",
-    "targetWord": "rose",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "berg",
-      "barg",
-      "bare",
-      "base",
-      "rase",
-      "rose"
-    ]
-  },
-  {
-    "id": "wortleiter-952",
+    "id": "wortleiter-1019",
     "version": 1,
     "startWord": "berg",
     "targetWord": "name",
@@ -15336,7 +16409,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-953",
+    "id": "wortleiter-1020",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "bare",
+      "rare",
+      "rase",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1021",
     "version": 1,
     "startWord": "berg",
     "targetWord": "buch",
@@ -15353,7 +16443,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-954",
+    "id": "wortleiter-1022",
     "version": 1,
     "startWord": "berg",
     "targetWord": "dach",
@@ -15370,7 +16460,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-955",
+    "id": "wortleiter-1023",
     "version": 1,
     "startWord": "berg",
     "targetWord": "fach",
@@ -15387,7 +16477,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-956",
+    "id": "wortleiter-1024",
     "version": 1,
     "startWord": "berg",
     "targetWord": "park",
@@ -15402,7 +16492,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-957",
+    "id": "wortleiter-1025",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "barg",
+      "barn",
+      "bahn",
+      "sahn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1026",
     "version": 1,
     "startWord": "berg",
     "targetWord": "zahl",
@@ -15419,7 +16526,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-958",
+    "id": "wortleiter-1027",
     "version": 1,
     "startWord": "berg",
     "targetWord": "glas",
@@ -15436,7 +16543,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-959",
+    "id": "wortleiter-1028",
     "version": 1,
     "startWord": "berg",
     "targetWord": "dame",
@@ -15453,7 +16560,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-960",
+    "id": "wortleiter-1029",
     "version": 1,
     "startWord": "berg",
     "targetWord": "saat",
@@ -15470,7 +16577,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-961",
+    "id": "wortleiter-1030",
     "version": 1,
     "startWord": "berg",
     "targetWord": "saft",
@@ -15487,24 +16594,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-962",
-    "version": 1,
-    "startWord": "berg",
-    "targetWord": "mehl",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "berg",
-      "bern",
-      "fern",
-      "fehn",
-      "fehl",
-      "mehl"
-    ]
-  },
-  {
-    "id": "wortleiter-963",
+    "id": "wortleiter-1031",
     "version": 1,
     "startWord": "berg",
     "targetWord": "film",
@@ -15521,7 +16611,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-964",
+    "id": "wortleiter-1032",
     "version": 1,
     "startWord": "berg",
     "targetWord": "kino",
@@ -15538,24 +16628,56 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-965",
+    "id": "wortleiter-1033",
     "version": 1,
     "startWord": "berg",
-    "targetWord": "sohn",
+    "targetWord": "mehl",
     "wordLength": 4,
     "optimalSteps": 5,
     "difficulty": "medium",
     "solution": [
       "berg",
-      "borg",
-      "born",
-      "horn",
-      "hohn",
-      "sohn"
+      "beug",
+      "beul",
+      "heul",
+      "hehl",
+      "mehl"
     ]
   },
   {
-    "id": "wortleiter-966",
+    "id": "wortleiter-1034",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "bier",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "berg",
+      "birg",
+      "bieg",
+      "bier"
+    ]
+  },
+  {
+    "id": "wortleiter-1035",
+    "version": 1,
+    "startWord": "berg",
+    "targetWord": "ziel",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "berg",
+      "birg",
+      "bieg",
+      "sieg",
+      "siel",
+      "ziel"
+    ]
+  },
+  {
+    "id": "wortleiter-1036",
     "version": 1,
     "startWord": "berg",
     "targetWord": "korn",
@@ -15570,7 +16692,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-967",
+    "id": "wortleiter-1037",
     "version": 1,
     "startWord": "berg",
     "targetWord": "zorn",
@@ -15585,7 +16707,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-968",
+    "id": "wortleiter-1038",
     "version": 1,
     "startWord": "berg",
     "targetWord": "boot",
@@ -15600,7 +16722,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-969",
+    "id": "wortleiter-1039",
     "version": 1,
     "startWord": "berg",
     "targetWord": "feld",
@@ -15617,7 +16739,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-970",
+    "id": "wortleiter-1040",
     "version": 1,
     "startWord": "berg",
     "targetWord": "geld",
@@ -15634,7 +16756,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-971",
+    "id": "wortleiter-1041",
     "version": 1,
     "startWord": "berg",
     "targetWord": "hund",
@@ -15651,7 +16773,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-972",
+    "id": "wortleiter-1042",
     "version": 1,
     "startWord": "berg",
     "targetWord": "mund",
@@ -15668,7 +16790,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-973",
+    "id": "wortleiter-1043",
     "version": 1,
     "startWord": "berg",
     "targetWord": "kind",
@@ -15685,7 +16807,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-974",
+    "id": "wortleiter-1044",
     "version": 1,
     "startWord": "berg",
     "targetWord": "welt",
@@ -15700,7 +16822,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-975",
+    "id": "wortleiter-1045",
     "version": 1,
     "startWord": "berg",
     "targetWord": "wort",
@@ -15715,7 +16837,75 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-976",
+    "id": "wortleiter-1046",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "bieg",
+      "birg",
+      "borg",
+      "born",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1047",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "zorn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "bieg",
+      "birg",
+      "borg",
+      "born",
+      "zorn"
+    ]
+  },
+  {
+    "id": "wortleiter-1048",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "boot",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "bieg",
+      "birg",
+      "borg",
+      "bort",
+      "boot"
+    ]
+  },
+  {
+    "id": "wortleiter-1049",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "wort",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "bieg",
+      "birg",
+      "borg",
+      "bort",
+      "wort"
+    ]
+  },
+  {
+    "id": "wortleiter-1050",
     "version": 1,
     "startWord": "bier",
     "targetWord": "lied",
@@ -15730,7 +16920,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-977",
+    "id": "wortleiter-1051",
     "version": 1,
     "startWord": "bier",
     "targetWord": "land",
@@ -15747,7 +16937,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-978",
+    "id": "wortleiter-1052",
+    "version": 1,
+    "startWord": "bier",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bier",
+      "bieg",
+      "sieg",
+      "siez",
+      "sitz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-1053",
     "version": 1,
     "startWord": "bier",
     "targetWord": "sand",
@@ -15764,7 +16971,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-979",
+    "id": "wortleiter-1054",
     "version": 1,
     "startWord": "bier",
     "targetWord": "star",
@@ -15781,7 +16988,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-980",
+    "id": "wortleiter-1055",
     "version": 1,
     "startWord": "bier",
     "targetWord": "dorf",
@@ -15798,41 +17005,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-981",
-    "version": 1,
-    "startWord": "bier",
-    "targetWord": "korn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bier",
-      "bien",
-      "dien",
-      "dirn",
-      "dorn",
-      "korn"
-    ]
-  },
-  {
-    "id": "wortleiter-982",
-    "version": 1,
-    "startWord": "bier",
-    "targetWord": "zorn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bier",
-      "bien",
-      "dien",
-      "dirn",
-      "dorn",
-      "zorn"
-    ]
-  },
-  {
-    "id": "wortleiter-983",
+    "id": "wortleiter-1056",
     "version": 1,
     "startWord": "bier",
     "targetWord": "brot",
@@ -15849,7 +17022,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-984",
+    "id": "wortleiter-1057",
     "version": 1,
     "startWord": "bier",
     "targetWord": "welt",
@@ -15866,24 +17039,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-985",
-    "version": 1,
-    "startWord": "bier",
-    "targetWord": "boot",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bier",
-      "biet",
-      "beet",
-      "bett",
-      "bott",
-      "boot"
-    ]
-  },
-  {
-    "id": "wortleiter-986",
+    "id": "wortleiter-1058",
     "version": 1,
     "startWord": "bier",
     "targetWord": "bund",
@@ -15900,7 +17056,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-987",
+    "id": "wortleiter-1059",
     "version": 1,
     "startWord": "bier",
     "targetWord": "nase",
@@ -15917,7 +17073,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-988",
+    "id": "wortleiter-1060",
     "version": 1,
     "startWord": "bier",
     "targetWord": "pass",
@@ -15934,7 +17090,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-989",
+    "id": "wortleiter-1061",
     "version": 1,
     "startWord": "bier",
     "targetWord": "blut",
@@ -15951,7 +17107,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-990",
+    "id": "wortleiter-1062",
     "version": 1,
     "startWord": "bier",
     "targetWord": "haut",
@@ -15968,7 +17124,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-991",
+    "id": "wortleiter-1063",
     "version": 1,
     "startWord": "bier",
     "targetWord": "laut",
@@ -15985,7 +17141,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-992",
+    "id": "wortleiter-1064",
     "version": 1,
     "startWord": "bier",
     "targetWord": "zeit",
@@ -16002,7 +17158,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-993",
+    "id": "wortleiter-1065",
     "version": 1,
     "startWord": "bier",
     "targetWord": "rand",
@@ -16019,7 +17175,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-994",
+    "id": "wortleiter-1066",
     "version": 1,
     "startWord": "bier",
     "targetWord": "luft",
@@ -16036,7 +17192,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-995",
+    "id": "wortleiter-1067",
     "version": 1,
     "startWord": "bier",
     "targetWord": "duft",
@@ -16053,7 +17209,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-996",
+    "id": "wortleiter-1068",
     "version": 1,
     "startWord": "bier",
     "targetWord": "rose",
@@ -16070,7 +17226,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-997",
+    "id": "wortleiter-1069",
     "version": 1,
     "startWord": "bier",
     "targetWord": "ofen",
@@ -16087,7 +17243,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-998",
+    "id": "wortleiter-1070",
     "version": 1,
     "startWord": "bier",
     "targetWord": "plan",
@@ -16104,7 +17260,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-999",
+    "id": "wortleiter-1071",
     "version": 1,
     "startWord": "bier",
     "targetWord": "erde",
@@ -16121,7 +17277,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1000",
+    "id": "wortleiter-1072",
     "version": 1,
     "startWord": "bier",
     "targetWord": "film",
@@ -16138,7 +17294,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1001",
+    "id": "wortleiter-1073",
     "version": 1,
     "startWord": "bier",
     "targetWord": "meer",
@@ -16153,7 +17309,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1002",
+    "id": "wortleiter-1074",
     "version": 1,
     "startWord": "bier",
     "targetWord": "mehl",
@@ -16170,7 +17326,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1003",
+    "id": "wortleiter-1075",
     "version": 1,
     "startWord": "bier",
     "targetWord": "hemd",
@@ -16187,7 +17343,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1004",
+    "id": "wortleiter-1076",
     "version": 1,
     "startWord": "bier",
     "targetWord": "park",
@@ -16204,7 +17360,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1005",
+    "id": "wortleiter-1077",
     "version": 1,
     "startWord": "bier",
     "targetWord": "wind",
@@ -16221,7 +17377,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1006",
+    "id": "wortleiter-1078",
     "version": 1,
     "startWord": "bier",
     "targetWord": "teil",
@@ -16238,7 +17394,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1007",
+    "id": "wortleiter-1079",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "teil",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bald",
+      "ball",
+      "bell",
+      "beil",
+      "teil"
+    ]
+  },
+  {
+    "id": "wortleiter-1080",
     "version": 1,
     "startWord": "bild",
     "targetWord": "fall",
@@ -16253,7 +17426,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1008",
+    "id": "wortleiter-1081",
     "version": 1,
     "startWord": "bild",
     "targetWord": "haut",
@@ -16270,7 +17443,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1009",
+    "id": "wortleiter-1082",
     "version": 1,
     "startWord": "bild",
     "targetWord": "mehl",
@@ -16287,7 +17460,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1010",
+    "id": "wortleiter-1083",
     "version": 1,
     "startWord": "bild",
     "targetWord": "blut",
@@ -16304,7 +17477,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1011",
+    "id": "wortleiter-1084",
     "version": 1,
     "startWord": "bild",
     "targetWord": "laut",
@@ -16321,7 +17494,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1012",
+    "id": "wortleiter-1085",
     "version": 1,
     "startWord": "bild",
     "targetWord": "park",
@@ -16338,7 +17511,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1013",
+    "id": "wortleiter-1086",
     "version": 1,
     "startWord": "bild",
     "targetWord": "zahn",
@@ -16355,7 +17528,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1014",
+    "id": "wortleiter-1087",
     "version": 1,
     "startWord": "bild",
     "targetWord": "hand",
@@ -16370,7 +17543,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1015",
+    "id": "wortleiter-1088",
     "version": 1,
     "startWord": "bild",
     "targetWord": "land",
@@ -16385,7 +17558,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1016",
+    "id": "wortleiter-1089",
     "version": 1,
     "startWord": "bild",
     "targetWord": "rand",
@@ -16400,7 +17573,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1017",
+    "id": "wortleiter-1090",
     "version": 1,
     "startWord": "bild",
     "targetWord": "sand",
@@ -16415,7 +17588,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1018",
+    "id": "wortleiter-1091",
     "version": 1,
     "startWord": "bild",
     "targetWord": "hund",
@@ -16430,7 +17603,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1019",
+    "id": "wortleiter-1092",
     "version": 1,
     "startWord": "bild",
     "targetWord": "mund",
@@ -16445,7 +17618,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1020",
+    "id": "wortleiter-1093",
     "version": 1,
     "startWord": "bild",
     "targetWord": "kino",
@@ -16460,7 +17633,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1021",
+    "id": "wortleiter-1094",
     "version": 1,
     "startWord": "bild",
     "targetWord": "ring",
@@ -16475,7 +17648,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1022",
+    "id": "wortleiter-1095",
     "version": 1,
     "startWord": "bild",
     "targetWord": "seen",
@@ -16492,7 +17665,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1023",
+    "id": "wortleiter-1096",
     "version": 1,
     "startWord": "bild",
     "targetWord": "dorf",
@@ -16509,7 +17682,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1024",
+    "id": "wortleiter-1097",
     "version": 1,
     "startWord": "bild",
     "targetWord": "brot",
@@ -16526,7 +17699,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1025",
+    "id": "wortleiter-1098",
     "version": 1,
     "startWord": "bild",
     "targetWord": "rose",
@@ -16543,7 +17716,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1026",
+    "id": "wortleiter-1099",
     "version": 1,
     "startWord": "bild",
     "targetWord": "holz",
@@ -16558,7 +17731,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1027",
+    "id": "wortleiter-1100",
+    "version": 1,
+    "startWord": "bild",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bild",
+      "bold",
+      "sold",
+      "soll",
+      "sohl",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1101",
     "version": 1,
     "startWord": "bild",
     "targetWord": "feld",
@@ -16573,7 +17763,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1028",
+    "id": "wortleiter-1102",
     "version": 1,
     "startWord": "bild",
     "targetWord": "geld",
@@ -16588,7 +17778,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1029",
+    "id": "wortleiter-1103",
     "version": 1,
     "startWord": "bild",
     "targetWord": "welt",
@@ -16605,7 +17795,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1030",
+    "id": "wortleiter-1104",
     "version": 1,
     "startWord": "bild",
     "targetWord": "zelt",
@@ -16622,7 +17812,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1031",
+    "id": "wortleiter-1105",
     "version": 1,
     "startWord": "bild",
     "targetWord": "herz",
@@ -16639,7 +17829,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1032",
+    "id": "wortleiter-1106",
     "version": 1,
     "startWord": "bild",
     "targetWord": "mais",
@@ -16656,7 +17846,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1033",
+    "id": "wortleiter-1107",
     "version": 1,
     "startWord": "bild",
     "targetWord": "lied",
@@ -16671,7 +17861,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1034",
+    "id": "wortleiter-1108",
     "version": 1,
     "startWord": "bild",
     "targetWord": "tier",
@@ -16688,7 +17878,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1035",
+    "id": "wortleiter-1109",
     "version": 1,
     "startWord": "bild",
     "targetWord": "maus",
@@ -16705,7 +17895,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1036",
+    "id": "wortleiter-1110",
     "version": 1,
     "startWord": "bild",
     "targetWord": "pilz",
@@ -16720,7 +17910,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1037",
+    "id": "wortleiter-1111",
     "version": 1,
     "startWord": "bild",
     "targetWord": "mond",
@@ -16735,7 +17925,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1038",
+    "id": "wortleiter-1112",
     "version": 1,
     "startWord": "bild",
     "targetWord": "zahl",
@@ -16752,7 +17942,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1039",
+    "id": "wortleiter-1113",
     "version": 1,
     "startWord": "bild",
     "targetWord": "haus",
@@ -16769,7 +17959,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1040",
+    "id": "wortleiter-1114",
     "version": 1,
     "startWord": "bild",
     "targetWord": "wand",
@@ -16784,24 +17974,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1041",
-    "version": 1,
-    "startWord": "blut",
-    "targetWord": "zahn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "blut",
-      "baut",
-      "bart",
-      "barn",
-      "bahn",
-      "zahn"
-    ]
-  },
-  {
-    "id": "wortleiter-1042",
+    "id": "wortleiter-1115",
     "version": 1,
     "startWord": "blut",
     "targetWord": "zorn",
@@ -16818,7 +17991,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1043",
+    "id": "wortleiter-1116",
     "version": 1,
     "startWord": "blut",
     "targetWord": "welt",
@@ -16835,7 +18008,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1044",
+    "id": "wortleiter-1117",
     "version": 1,
     "startWord": "blut",
     "targetWord": "fach",
@@ -16852,7 +18025,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1045",
+    "id": "wortleiter-1118",
     "version": 1,
     "startWord": "blut",
     "targetWord": "wald",
@@ -16869,7 +18042,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1046",
+    "id": "wortleiter-1119",
     "version": 1,
     "startWord": "blut",
     "targetWord": "glas",
@@ -16886,7 +18059,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1047",
+    "id": "wortleiter-1120",
     "version": 1,
     "startWord": "blut",
     "targetWord": "fall",
@@ -16903,7 +18076,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1048",
+    "id": "wortleiter-1121",
     "version": 1,
     "startWord": "blut",
     "targetWord": "holz",
@@ -16920,7 +18093,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1049",
+    "id": "wortleiter-1122",
     "version": 1,
     "startWord": "blut",
     "targetWord": "herz",
@@ -16937,7 +18110,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1050",
+    "id": "wortleiter-1123",
     "version": 1,
     "startWord": "blut",
     "targetWord": "haus",
@@ -16952,7 +18125,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1051",
+    "id": "wortleiter-1124",
     "version": 1,
     "startWord": "blut",
     "targetWord": "luft",
@@ -16969,7 +18142,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1052",
+    "id": "wortleiter-1125",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "land",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "laut",
+      "laug",
+      "lang",
+      "land"
+    ]
+  },
+  {
+    "id": "wortleiter-1126",
     "version": 1,
     "startWord": "blut",
     "targetWord": "mehl",
@@ -16986,7 +18176,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1053",
+    "id": "wortleiter-1127",
     "version": 1,
     "startWord": "blut",
     "targetWord": "zahl",
@@ -17003,7 +18193,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1054",
+    "id": "wortleiter-1128",
     "version": 1,
     "startWord": "blut",
     "targetWord": "maus",
@@ -17018,7 +18208,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1055",
+    "id": "wortleiter-1129",
     "version": 1,
     "startWord": "blut",
     "targetWord": "hand",
@@ -17035,24 +18225,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1056",
-    "version": 1,
-    "startWord": "blut",
-    "targetWord": "land",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "blut",
-      "baut",
-      "raut",
-      "rant",
-      "rand",
-      "land"
-    ]
-  },
-  {
-    "id": "wortleiter-1057",
+    "id": "wortleiter-1130",
     "version": 1,
     "startWord": "blut",
     "targetWord": "sand",
@@ -17069,7 +18242,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1058",
+    "id": "wortleiter-1131",
     "version": 1,
     "startWord": "blut",
     "targetWord": "ring",
@@ -17086,7 +18259,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1059",
+    "id": "wortleiter-1132",
     "version": 1,
     "startWord": "blut",
     "targetWord": "wand",
@@ -17103,7 +18276,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1060",
+    "id": "wortleiter-1133",
     "version": 1,
     "startWord": "blut",
     "targetWord": "rose",
@@ -17120,7 +18293,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1061",
+    "id": "wortleiter-1134",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "zahn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "baut",
+      "raut",
+      "raun",
+      "zaun",
+      "zahn"
+    ]
+  },
+  {
+    "id": "wortleiter-1135",
     "version": 1,
     "startWord": "blut",
     "targetWord": "saat",
@@ -17135,7 +18325,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1062",
+    "id": "wortleiter-1136",
     "version": 1,
     "startWord": "blut",
     "targetWord": "saft",
@@ -17150,24 +18340,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1063",
+    "id": "wortleiter-1137",
     "version": 1,
     "startWord": "blut",
-    "targetWord": "frau",
+    "targetWord": "sohn",
     "wordLength": 4,
     "optimalSteps": 5,
     "difficulty": "medium",
     "solution": [
       "blut",
-      "brut",
-      "brat",
-      "grat",
-      "grau",
-      "frau"
+      "baut",
+      "saut",
+      "saht",
+      "sahn",
+      "sohn"
     ]
   },
   {
-    "id": "wortleiter-1064",
+    "id": "wortleiter-1138",
     "version": 1,
     "startWord": "blut",
     "targetWord": "boot",
@@ -17182,7 +18372,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1065",
+    "id": "wortleiter-1139",
     "version": 1,
     "startWord": "blut",
     "targetWord": "dorf",
@@ -17199,7 +18389,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1066",
+    "id": "wortleiter-1140",
     "version": 1,
     "startWord": "blut",
     "targetWord": "korn",
@@ -17216,7 +18406,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1067",
+    "id": "wortleiter-1141",
     "version": 1,
     "startWord": "blut",
     "targetWord": "dame",
@@ -17233,7 +18423,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1068",
+    "id": "wortleiter-1142",
+    "version": 1,
+    "startWord": "blut",
+    "targetWord": "plan",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "blut",
+      "klut",
+      "klug",
+      "klag",
+      "plag",
+      "plan"
+    ]
+  },
+  {
+    "id": "wortleiter-1143",
     "version": 1,
     "startWord": "boot",
     "targetWord": "wand",
@@ -17250,7 +18457,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1069",
+    "id": "wortleiter-1144",
     "version": 1,
     "startWord": "boot",
     "targetWord": "zahn",
@@ -17267,7 +18474,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1070",
+    "id": "wortleiter-1145",
     "version": 1,
     "startWord": "boot",
     "targetWord": "mais",
@@ -17284,7 +18491,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1071",
+    "id": "wortleiter-1146",
     "version": 1,
     "startWord": "boot",
     "targetWord": "wald",
@@ -17301,7 +18508,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1072",
+    "id": "wortleiter-1147",
     "version": 1,
     "startWord": "boot",
     "targetWord": "geld",
@@ -17318,7 +18525,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1073",
+    "id": "wortleiter-1148",
     "version": 1,
     "startWord": "boot",
     "targetWord": "hand",
@@ -17335,7 +18542,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1074",
+    "id": "wortleiter-1149",
     "version": 1,
     "startWord": "boot",
     "targetWord": "land",
@@ -17352,7 +18559,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1075",
+    "id": "wortleiter-1150",
     "version": 1,
     "startWord": "boot",
     "targetWord": "rand",
@@ -17369,7 +18576,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1076",
+    "id": "wortleiter-1151",
     "version": 1,
     "startWord": "boot",
     "targetWord": "sand",
@@ -17386,7 +18593,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1077",
+    "id": "wortleiter-1152",
     "version": 1,
     "startWord": "boot",
     "targetWord": "kind",
@@ -17403,7 +18610,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1078",
+    "id": "wortleiter-1153",
     "version": 1,
     "startWord": "boot",
     "targetWord": "mund",
@@ -17420,7 +18627,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1079",
+    "id": "wortleiter-1154",
     "version": 1,
     "startWord": "boot",
     "targetWord": "zorn",
@@ -17435,7 +18642,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1080",
+    "id": "wortleiter-1155",
     "version": 1,
     "startWord": "boot",
     "targetWord": "dorf",
@@ -17450,7 +18657,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1081",
+    "id": "wortleiter-1156",
     "version": 1,
     "startWord": "boot",
     "targetWord": "film",
@@ -17467,7 +18674,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1082",
+    "id": "wortleiter-1157",
     "version": 1,
     "startWord": "boot",
     "targetWord": "herz",
@@ -17484,7 +18691,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1083",
+    "id": "wortleiter-1158",
     "version": 1,
     "startWord": "boot",
     "targetWord": "sohn",
@@ -17501,7 +18708,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1084",
+    "id": "wortleiter-1159",
     "version": 1,
     "startWord": "boot",
     "targetWord": "hund",
@@ -17518,7 +18725,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1085",
+    "id": "wortleiter-1160",
     "version": 1,
     "startWord": "boot",
     "targetWord": "korn",
@@ -17533,7 +18740,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1086",
+    "id": "wortleiter-1161",
     "version": 1,
     "startWord": "boot",
     "targetWord": "zoll",
@@ -17550,7 +18757,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1087",
+    "id": "wortleiter-1162",
     "version": 1,
     "startWord": "boot",
     "targetWord": "kopf",
@@ -17567,7 +18774,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1088",
+    "id": "wortleiter-1163",
     "version": 1,
     "startWord": "boot",
     "targetWord": "zeit",
@@ -17584,7 +18791,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1089",
+    "id": "wortleiter-1164",
     "version": 1,
     "startWord": "boot",
     "targetWord": "zelt",
@@ -17601,7 +18808,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1090",
+    "id": "wortleiter-1165",
     "version": 1,
     "startWord": "boot",
     "targetWord": "wind",
@@ -17618,7 +18825,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1091",
+    "id": "wortleiter-1166",
     "version": 1,
     "startWord": "boot",
     "targetWord": "glas",
@@ -17635,24 +18842,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1092",
-    "version": 1,
-    "startWord": "boot",
-    "targetWord": "frau",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "boot",
-      "brot",
-      "brat",
-      "grat",
-      "grau",
-      "frau"
-    ]
-  },
-  {
-    "id": "wortleiter-1093",
+    "id": "wortleiter-1167",
     "version": 1,
     "startWord": "boot",
     "targetWord": "haus",
@@ -17669,7 +18859,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1094",
+    "id": "wortleiter-1168",
     "version": 1,
     "startWord": "boot",
     "targetWord": "maus",
@@ -17686,7 +18876,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1095",
+    "id": "wortleiter-1169",
     "version": 1,
     "startWord": "boot",
     "targetWord": "luft",
@@ -17701,7 +18891,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1096",
+    "id": "wortleiter-1170",
     "version": 1,
     "startWord": "boot",
     "targetWord": "nase",
@@ -17718,7 +18908,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1097",
+    "id": "wortleiter-1171",
     "version": 1,
     "startWord": "boot",
     "targetWord": "pass",
@@ -17735,7 +18925,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1098",
+    "id": "wortleiter-1172",
     "version": 1,
     "startWord": "brot",
     "targetWord": "bund",
@@ -17752,7 +18942,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1099",
+    "id": "wortleiter-1173",
     "version": 1,
     "startWord": "brot",
     "targetWord": "mond",
@@ -17769,7 +18959,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1100",
+    "id": "wortleiter-1174",
     "version": 1,
     "startWord": "brot",
     "targetWord": "holz",
@@ -17786,7 +18976,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1101",
+    "id": "wortleiter-1175",
     "version": 1,
     "startWord": "brot",
     "targetWord": "park",
@@ -17803,7 +18993,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1102",
+    "id": "wortleiter-1176",
     "version": 1,
     "startWord": "brot",
     "targetWord": "wort",
@@ -17818,7 +19008,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1103",
+    "id": "wortleiter-1177",
     "version": 1,
     "startWord": "brot",
     "targetWord": "welt",
@@ -17835,7 +19025,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1104",
+    "id": "wortleiter-1178",
     "version": 1,
     "startWord": "brot",
     "targetWord": "satz",
@@ -17852,7 +19042,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1105",
+    "id": "wortleiter-1179",
     "version": 1,
     "startWord": "brot",
     "targetWord": "duft",
@@ -17869,7 +19059,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1106",
+    "id": "wortleiter-1180",
     "version": 1,
     "startWord": "brot",
     "targetWord": "rose",
@@ -17886,7 +19076,22 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1107",
+    "id": "wortleiter-1181",
+    "version": 1,
+    "startWord": "brot",
+    "targetWord": "frau",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "brot",
+      "brat",
+      "brau",
+      "frau"
+    ]
+  },
+  {
+    "id": "wortleiter-1182",
     "version": 1,
     "startWord": "brot",
     "targetWord": "gras",
@@ -17901,7 +19106,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1108",
+    "id": "wortleiter-1183",
     "version": 1,
     "startWord": "brot",
     "targetWord": "plan",
@@ -17918,7 +19123,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1109",
+    "id": "wortleiter-1184",
     "version": 1,
     "startWord": "brot",
     "targetWord": "nase",
@@ -17935,7 +19140,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1110",
+    "id": "wortleiter-1185",
     "version": 1,
     "startWord": "brot",
     "targetWord": "pass",
@@ -17952,7 +19157,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1111",
+    "id": "wortleiter-1186",
     "version": 1,
     "startWord": "brot",
     "targetWord": "name",
@@ -17969,7 +19174,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1112",
+    "id": "wortleiter-1187",
     "version": 1,
     "startWord": "brot",
     "targetWord": "haut",
@@ -17984,7 +19189,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1113",
+    "id": "wortleiter-1188",
     "version": 1,
     "startWord": "brot",
     "targetWord": "laut",
@@ -17999,7 +19204,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1114",
+    "id": "wortleiter-1189",
     "version": 1,
     "startWord": "brot",
     "targetWord": "mahl",
@@ -18016,7 +19221,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1115",
+    "id": "wortleiter-1190",
     "version": 1,
     "startWord": "brot",
     "targetWord": "mais",
@@ -18033,7 +19238,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1116",
+    "id": "wortleiter-1191",
     "version": 1,
     "startWord": "brot",
     "targetWord": "rand",
@@ -18050,7 +19255,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1117",
+    "id": "wortleiter-1192",
     "version": 1,
     "startWord": "buch",
     "targetWord": "bund",
@@ -18067,7 +19272,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1118",
+    "id": "wortleiter-1193",
     "version": 1,
     "startWord": "buch",
     "targetWord": "hand",
@@ -18084,7 +19289,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1119",
+    "id": "wortleiter-1194",
     "version": 1,
     "startWord": "buch",
     "targetWord": "land",
@@ -18101,7 +19306,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1120",
+    "id": "wortleiter-1195",
     "version": 1,
     "startWord": "buch",
     "targetWord": "wand",
@@ -18118,7 +19323,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1121",
+    "id": "wortleiter-1196",
     "version": 1,
     "startWord": "buch",
     "targetWord": "sand",
@@ -18135,7 +19340,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1122",
+    "id": "wortleiter-1197",
     "version": 1,
     "startWord": "buch",
     "targetWord": "fest",
@@ -18152,7 +19357,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1123",
+    "id": "wortleiter-1198",
     "version": 1,
     "startWord": "buch",
     "targetWord": "nase",
@@ -18169,7 +19374,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1124",
+    "id": "wortleiter-1199",
     "version": 1,
     "startWord": "buch",
     "targetWord": "haus",
@@ -18186,7 +19391,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1125",
+    "id": "wortleiter-1200",
     "version": 1,
     "startWord": "buch",
     "targetWord": "pass",
@@ -18203,7 +19408,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1126",
+    "id": "wortleiter-1201",
     "version": 1,
     "startWord": "buch",
     "targetWord": "haut",
@@ -18220,7 +19425,41 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1127",
+    "id": "wortleiter-1202",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "huch",
+      "hoch",
+      "hock",
+      "holk",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1203",
+    "version": 1,
+    "startWord": "buch",
+    "targetWord": "zeit",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "buch",
+      "ruch",
+      "rech",
+      "reih",
+      "reit",
+      "zeit"
+    ]
+  },
+  {
+    "id": "wortleiter-1204",
     "version": 1,
     "startWord": "buch",
     "targetWord": "rand",
@@ -18237,7 +19476,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1128",
+    "id": "wortleiter-1205",
     "version": 1,
     "startWord": "bund",
     "targetWord": "mahl",
@@ -18254,24 +19493,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1129",
-    "version": 1,
-    "startWord": "bund",
-    "targetWord": "satz",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "bund",
-      "band",
-      "bald",
-      "balz",
-      "salz",
-      "satz"
-    ]
-  },
-  {
-    "id": "wortleiter-1130",
+    "id": "wortleiter-1206",
     "version": 1,
     "startWord": "bund",
     "targetWord": "dach",
@@ -18288,7 +19510,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1131",
+    "id": "wortleiter-1207",
     "version": 1,
     "startWord": "bund",
     "targetWord": "zahl",
@@ -18305,7 +19527,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1132",
+    "id": "wortleiter-1208",
     "version": 1,
     "startWord": "bund",
     "targetWord": "pilz",
@@ -18322,7 +19544,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1133",
+    "id": "wortleiter-1209",
     "version": 1,
     "startWord": "bund",
     "targetWord": "lied",
@@ -18337,7 +19559,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1134",
+    "id": "wortleiter-1210",
     "version": 1,
     "startWord": "bund",
     "targetWord": "dorf",
@@ -18354,7 +19576,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1135",
+    "id": "wortleiter-1211",
     "version": 1,
     "startWord": "bund",
     "targetWord": "nest",
@@ -18371,7 +19593,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1136",
+    "id": "wortleiter-1212",
     "version": 1,
     "startWord": "bund",
     "targetWord": "pass",
@@ -18388,7 +19610,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1137",
+    "id": "wortleiter-1213",
     "version": 1,
     "startWord": "bund",
     "targetWord": "fach",
@@ -18405,7 +19627,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1138",
+    "id": "wortleiter-1214",
     "version": 1,
     "startWord": "bund",
     "targetWord": "fest",
@@ -18422,7 +19644,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1139",
+    "id": "wortleiter-1215",
     "version": 1,
     "startWord": "bund",
     "targetWord": "fell",
@@ -18439,7 +19661,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1140",
+    "id": "wortleiter-1216",
     "version": 1,
     "startWord": "bund",
     "targetWord": "herz",
@@ -18456,7 +19678,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1141",
+    "id": "wortleiter-1217",
     "version": 1,
     "startWord": "bund",
     "targetWord": "haut",
@@ -18473,7 +19695,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1142",
+    "id": "wortleiter-1218",
     "version": 1,
     "startWord": "bund",
     "targetWord": "kino",
@@ -18488,7 +19710,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1143",
+    "id": "wortleiter-1219",
     "version": 1,
     "startWord": "bund",
     "targetWord": "zoll",
@@ -18505,7 +19727,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1144",
+    "id": "wortleiter-1220",
     "version": 1,
     "startWord": "bund",
     "targetWord": "kuss",
@@ -18522,7 +19744,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1145",
+    "id": "wortleiter-1221",
     "version": 1,
     "startWord": "bund",
     "targetWord": "mais",
@@ -18539,7 +19761,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1146",
+    "id": "wortleiter-1222",
     "version": 1,
     "startWord": "bund",
     "targetWord": "nase",
@@ -18556,7 +19778,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1147",
+    "id": "wortleiter-1223",
     "version": 1,
     "startWord": "bund",
     "targetWord": "rose",
@@ -18573,7 +19795,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1148",
+    "id": "wortleiter-1224",
     "version": 1,
     "startWord": "bund",
     "targetWord": "laut",
@@ -18590,7 +19812,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1149",
+    "id": "wortleiter-1225",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "satz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "rund",
+      "rand",
+      "ranz",
+      "ratz",
+      "satz"
+    ]
+  },
+  {
+    "id": "wortleiter-1226",
     "version": 1,
     "startWord": "bund",
     "targetWord": "ring",
@@ -18605,7 +19844,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1150",
+    "id": "wortleiter-1227",
     "version": 1,
     "startWord": "bund",
     "targetWord": "luft",
@@ -18622,7 +19861,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1151",
+    "id": "wortleiter-1228",
+    "version": 1,
+    "startWord": "bund",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "bund",
+      "sund",
+      "sand",
+      "sann",
+      "sonn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1229",
     "version": 1,
     "startWord": "bund",
     "targetWord": "teil",
@@ -18639,7 +19895,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1152",
+    "id": "wortleiter-1230",
     "version": 1,
     "startWord": "bund",
     "targetWord": "wald",
@@ -18654,7 +19910,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1153",
+    "id": "wortleiter-1231",
     "version": 1,
     "startWord": "bund",
     "targetWord": "welt",
@@ -18671,7 +19927,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1154",
+    "id": "wortleiter-1232",
     "version": 1,
     "startWord": "dach",
     "targetWord": "hand",
@@ -18688,7 +19944,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1155",
+    "id": "wortleiter-1233",
     "version": 1,
     "startWord": "dach",
     "targetWord": "land",
@@ -18705,7 +19961,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1156",
+    "id": "wortleiter-1234",
     "version": 1,
     "startWord": "dach",
     "targetWord": "wand",
@@ -18722,7 +19978,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1157",
+    "id": "wortleiter-1235",
     "version": 1,
     "startWord": "dach",
     "targetWord": "rand",
@@ -18739,7 +19995,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1158",
+    "id": "wortleiter-1236",
     "version": 1,
     "startWord": "dach",
     "targetWord": "sand",
@@ -18756,7 +20012,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1159",
+    "id": "wortleiter-1237",
     "version": 1,
     "startWord": "dach",
     "targetWord": "dame",
@@ -18773,7 +20029,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1160",
+    "id": "wortleiter-1238",
     "version": 1,
     "startWord": "dach",
     "targetWord": "nest",
@@ -18790,7 +20046,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1161",
+    "id": "wortleiter-1239",
     "version": 1,
     "startWord": "dach",
     "targetWord": "herz",
@@ -18807,7 +20063,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1162",
+    "id": "wortleiter-1240",
     "version": 1,
     "startWord": "dach",
     "targetWord": "name",
@@ -18824,7 +20080,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1163",
+    "id": "wortleiter-1241",
     "version": 1,
     "startWord": "dach",
     "targetWord": "rose",
@@ -18841,7 +20097,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1164",
+    "id": "wortleiter-1242",
     "version": 1,
     "startWord": "dach",
     "targetWord": "mais",
@@ -18858,7 +20114,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1165",
+    "id": "wortleiter-1243",
     "version": 1,
     "startWord": "dach",
     "targetWord": "maus",
@@ -18875,7 +20131,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1166",
+    "id": "wortleiter-1244",
+    "version": 1,
+    "startWord": "dach",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dach",
+      "hach",
+      "hoch",
+      "hock",
+      "holk",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1245",
     "version": 1,
     "startWord": "dame",
     "targetWord": "film",
@@ -18892,7 +20165,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1167",
+    "id": "wortleiter-1246",
     "version": 1,
     "startWord": "dame",
     "targetWord": "herz",
@@ -18909,7 +20182,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1168",
+    "id": "wortleiter-1247",
     "version": 1,
     "startWord": "dame",
     "targetWord": "kino",
@@ -18926,7 +20199,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1169",
+    "id": "wortleiter-1248",
     "version": 1,
     "startWord": "dame",
     "targetWord": "ring",
@@ -18943,7 +20216,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1170",
+    "id": "wortleiter-1249",
     "version": 1,
     "startWord": "dame",
     "targetWord": "wind",
@@ -18960,7 +20233,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1171",
+    "id": "wortleiter-1250",
     "version": 1,
     "startWord": "dame",
     "targetWord": "erde",
@@ -18977,7 +20250,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1172",
+    "id": "wortleiter-1251",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "fell",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "dome",
+      "dole",
+      "doll",
+      "dell",
+      "fell"
+    ]
+  },
+  {
+    "id": "wortleiter-1252",
     "version": 1,
     "startWord": "dame",
     "targetWord": "mond",
@@ -18994,7 +20284,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1173",
+    "id": "wortleiter-1253",
     "version": 1,
     "startWord": "dame",
     "targetWord": "dorf",
@@ -19011,7 +20301,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1174",
+    "id": "wortleiter-1254",
     "version": 1,
     "startWord": "dame",
     "targetWord": "rose",
@@ -19026,7 +20316,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1175",
+    "id": "wortleiter-1255",
     "version": 1,
     "startWord": "dame",
     "targetWord": "geld",
@@ -19043,7 +20333,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1176",
+    "id": "wortleiter-1256",
     "version": 1,
     "startWord": "dame",
     "targetWord": "welt",
@@ -19060,7 +20350,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1177",
+    "id": "wortleiter-1257",
     "version": 1,
     "startWord": "dame",
     "targetWord": "zelt",
@@ -19077,7 +20367,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1178",
+    "id": "wortleiter-1258",
     "version": 1,
     "startWord": "dame",
     "targetWord": "park",
@@ -19094,7 +20384,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1179",
+    "id": "wortleiter-1259",
     "version": 1,
     "startWord": "dame",
     "targetWord": "korn",
@@ -19111,7 +20401,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1180",
+    "id": "wortleiter-1260",
     "version": 1,
     "startWord": "dame",
     "targetWord": "wort",
@@ -19128,7 +20418,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1181",
+    "id": "wortleiter-1261",
     "version": 1,
     "startWord": "dame",
     "targetWord": "fest",
@@ -19145,7 +20435,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1182",
+    "id": "wortleiter-1262",
     "version": 1,
     "startWord": "dame",
     "targetWord": "nest",
@@ -19162,7 +20452,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1183",
+    "id": "wortleiter-1263",
     "version": 1,
     "startWord": "dame",
     "targetWord": "mahl",
@@ -19179,7 +20469,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1184",
+    "id": "wortleiter-1264",
     "version": 1,
     "startWord": "dame",
     "targetWord": "zahl",
@@ -19196,7 +20486,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1185",
+    "id": "wortleiter-1265",
     "version": 1,
     "startWord": "dame",
     "targetWord": "zahn",
@@ -19213,7 +20503,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1186",
+    "id": "wortleiter-1266",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "kopf",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "kame",
+      "kamp",
+      "kapp",
+      "kopp",
+      "kopf"
+    ]
+  },
+  {
+    "id": "wortleiter-1267",
     "version": 1,
     "startWord": "dame",
     "targetWord": "kuss",
@@ -19230,7 +20537,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1187",
+    "id": "wortleiter-1268",
     "version": 1,
     "startWord": "dame",
     "targetWord": "saft",
@@ -19245,7 +20552,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1188",
+    "id": "wortleiter-1269",
     "version": 1,
     "startWord": "dame",
     "targetWord": "fall",
@@ -19262,7 +20569,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1189",
+    "id": "wortleiter-1270",
     "version": 1,
     "startWord": "dame",
     "targetWord": "hand",
@@ -19279,7 +20586,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1190",
+    "id": "wortleiter-1271",
     "version": 1,
     "startWord": "dame",
     "targetWord": "land",
@@ -19296,7 +20603,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1191",
+    "id": "wortleiter-1272",
     "version": 1,
     "startWord": "dame",
     "targetWord": "saat",
@@ -19311,7 +20618,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1192",
+    "id": "wortleiter-1273",
+    "version": 1,
+    "startWord": "dame",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dame",
+      "same",
+      "saue",
+      "saun",
+      "sahn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1274",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "zahn",
@@ -19328,24 +20652,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1193",
-    "version": 1,
-    "startWord": "dorf",
-    "targetWord": "mond",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "dorf",
-      "dorn",
-      "born",
-      "bord",
-      "mord",
-      "mond"
-    ]
-  },
-  {
-    "id": "wortleiter-1194",
+    "id": "wortleiter-1275",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "lied",
@@ -19362,7 +20669,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1195",
+    "id": "wortleiter-1276",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "film",
@@ -19379,7 +20686,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1196",
+    "id": "wortleiter-1277",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "herz",
@@ -19396,7 +20703,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1197",
+    "id": "wortleiter-1278",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "laut",
@@ -19413,7 +20720,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1198",
+    "id": "wortleiter-1279",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "luft",
@@ -19430,7 +20737,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1199",
+    "id": "wortleiter-1280",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "haus",
@@ -19447,7 +20754,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1200",
+    "id": "wortleiter-1281",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "hund",
@@ -19464,7 +20771,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1201",
+    "id": "wortleiter-1282",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "pass",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "dort",
+      "port",
+      "part",
+      "pars",
+      "pass"
+    ]
+  },
+  {
+    "id": "wortleiter-1283",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "wand",
@@ -19481,7 +20805,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1202",
+    "id": "wortleiter-1284",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "zeit",
@@ -19498,7 +20822,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1203",
+    "id": "wortleiter-1285",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "zelt",
@@ -19515,7 +20839,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1204",
+    "id": "wortleiter-1286",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "wind",
@@ -19532,7 +20856,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1205",
+    "id": "wortleiter-1287",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "saft",
@@ -19549,7 +20873,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1206",
+    "id": "wortleiter-1288",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "kopf",
@@ -19564,7 +20888,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1207",
+    "id": "wortleiter-1289",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "zoll",
@@ -19581,7 +20905,58 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1208",
+    "id": "wortleiter-1290",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "mais",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "torf",
+      "tors",
+      "mors",
+      "mars",
+      "mais"
+    ]
+  },
+  {
+    "id": "wortleiter-1291",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "maus",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "torf",
+      "tors",
+      "mors",
+      "mars",
+      "maus"
+    ]
+  },
+  {
+    "id": "wortleiter-1292",
+    "version": 1,
+    "startWord": "dorf",
+    "targetWord": "mond",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "dorf",
+      "torf",
+      "tors",
+      "mors",
+      "mord",
+      "mond"
+    ]
+  },
+  {
+    "id": "wortleiter-1293",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "fest",
@@ -19598,7 +20973,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1209",
+    "id": "wortleiter-1294",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "nest",
@@ -19615,7 +20990,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1210",
+    "id": "wortleiter-1295",
     "version": 1,
     "startWord": "dorf",
     "targetWord": "duft",
@@ -19632,7 +21007,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1211",
+    "id": "wortleiter-1296",
     "version": 1,
     "startWord": "duft",
     "targetWord": "kopf",
@@ -19649,7 +21024,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1212",
+    "id": "wortleiter-1297",
     "version": 1,
     "startWord": "duft",
     "targetWord": "kino",
@@ -19666,7 +21041,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1213",
+    "id": "wortleiter-1298",
     "version": 1,
     "startWord": "duft",
     "targetWord": "holz",
@@ -19683,7 +21058,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1214",
+    "id": "wortleiter-1299",
     "version": 1,
     "startWord": "duft",
     "targetWord": "zoll",
@@ -19700,7 +21075,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1215",
+    "id": "wortleiter-1300",
     "version": 1,
     "startWord": "duft",
     "targetWord": "fall",
@@ -19717,7 +21092,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1216",
+    "id": "wortleiter-1301",
+    "version": 1,
+    "startWord": "duft",
+    "targetWord": "fell",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "duft",
+      "dult",
+      "pult",
+      "pull",
+      "pell",
+      "fell"
+    ]
+  },
+  {
+    "id": "wortleiter-1302",
     "version": 1,
     "startWord": "duft",
     "targetWord": "pilz",
@@ -19734,7 +21126,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1217",
+    "id": "wortleiter-1303",
     "version": 1,
     "startWord": "duft",
     "targetWord": "maus",
@@ -19751,7 +21143,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1218",
+    "id": "wortleiter-1304",
     "version": 1,
     "startWord": "duft",
     "targetWord": "satz",
@@ -19768,7 +21160,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1219",
+    "id": "wortleiter-1305",
     "version": 1,
     "startWord": "duft",
     "targetWord": "mond",
@@ -19785,7 +21177,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1220",
+    "id": "wortleiter-1306",
     "version": 1,
     "startWord": "duft",
     "targetWord": "kuss",
@@ -19802,7 +21194,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1221",
+    "id": "wortleiter-1307",
     "version": 1,
     "startWord": "duft",
     "targetWord": "park",
@@ -19819,7 +21211,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1222",
+    "id": "wortleiter-1308",
     "version": 1,
     "startWord": "duft",
     "targetWord": "wort",
@@ -19836,7 +21228,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1223",
+    "id": "wortleiter-1309",
     "version": 1,
     "startWord": "duft",
     "targetWord": "rose",
@@ -19853,7 +21245,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1224",
+    "id": "wortleiter-1310",
     "version": 1,
     "startWord": "duft",
     "targetWord": "saat",
@@ -19870,7 +21262,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1225",
+    "id": "wortleiter-1311",
     "version": 1,
     "startWord": "duft",
     "targetWord": "haut",
@@ -19887,7 +21279,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1226",
+    "id": "wortleiter-1312",
     "version": 1,
     "startWord": "duft",
     "targetWord": "nase",
@@ -19904,7 +21296,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1227",
+    "id": "wortleiter-1313",
     "version": 1,
     "startWord": "duft",
     "targetWord": "pass",
@@ -19921,7 +21313,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1228",
+    "id": "wortleiter-1314",
     "version": 1,
     "startWord": "duft",
     "targetWord": "welt",
@@ -19938,7 +21330,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1229",
+    "id": "wortleiter-1315",
     "version": 1,
     "startWord": "duft",
     "targetWord": "lied",
@@ -19955,7 +21347,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1230",
+    "id": "wortleiter-1316",
     "version": 1,
     "startWord": "duft",
     "targetWord": "rand",
@@ -19972,7 +21364,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1231",
+    "id": "wortleiter-1317",
     "version": 1,
     "startWord": "duft",
     "targetWord": "hund",
@@ -19989,7 +21381,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1232",
+    "id": "wortleiter-1318",
     "version": 1,
     "startWord": "ente",
     "targetWord": "film",
@@ -20006,7 +21398,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1233",
+    "id": "wortleiter-1319",
     "version": 1,
     "startWord": "ente",
     "targetWord": "rose",
@@ -20023,7 +21415,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1234",
+    "id": "wortleiter-1320",
     "version": 1,
     "startWord": "erde",
     "targetWord": "tier",
@@ -20040,7 +21432,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1235",
+    "id": "wortleiter-1321",
     "version": 1,
     "startWord": "erde",
     "targetWord": "pilz",
@@ -20057,7 +21449,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1236",
+    "id": "wortleiter-1322",
     "version": 1,
     "startWord": "erde",
     "targetWord": "fest",
@@ -20074,7 +21466,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1237",
+    "id": "wortleiter-1323",
     "version": 1,
     "startWord": "erde",
     "targetWord": "nase",
@@ -20091,7 +21483,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1238",
+    "id": "wortleiter-1324",
     "version": 1,
     "startWord": "erde",
     "targetWord": "laut",
@@ -20108,7 +21500,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1239",
+    "id": "wortleiter-1325",
+    "version": 1,
+    "startWord": "erde",
+    "targetWord": "lied",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "erde",
+      "eide",
+      "lide",
+      "lids",
+      "lies",
+      "lied"
+    ]
+  },
+  {
+    "id": "wortleiter-1326",
     "version": 1,
     "startWord": "fach",
     "targetWord": "kind",
@@ -20125,7 +21534,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1240",
+    "id": "wortleiter-1327",
     "version": 1,
     "startWord": "fach",
     "targetWord": "mund",
@@ -20142,7 +21551,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1241",
+    "id": "wortleiter-1328",
     "version": 1,
     "startWord": "fach",
     "targetWord": "hund",
@@ -20159,7 +21568,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1242",
+    "id": "wortleiter-1329",
     "version": 1,
     "startWord": "fach",
     "targetWord": "mond",
@@ -20176,7 +21585,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1243",
+    "id": "wortleiter-1330",
     "version": 1,
     "startWord": "fach",
     "targetWord": "ring",
@@ -20193,7 +21602,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1244",
+    "id": "wortleiter-1331",
     "version": 1,
     "startWord": "fach",
     "targetWord": "wald",
@@ -20210,7 +21619,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1245",
+    "id": "wortleiter-1332",
     "version": 1,
     "startWord": "fach",
     "targetWord": "wind",
@@ -20227,7 +21636,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1246",
+    "id": "wortleiter-1333",
     "version": 1,
     "startWord": "fach",
     "targetWord": "wort",
@@ -20244,7 +21653,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1247",
+    "id": "wortleiter-1334",
     "version": 1,
     "startWord": "fach",
     "targetWord": "fest",
@@ -20259,7 +21668,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1248",
+    "id": "wortleiter-1335",
     "version": 1,
     "startWord": "fach",
     "targetWord": "zeit",
@@ -20276,7 +21685,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1249",
+    "id": "wortleiter-1336",
     "version": 1,
     "startWord": "fach",
     "targetWord": "welt",
@@ -20293,7 +21702,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1250",
+    "id": "wortleiter-1337",
     "version": 1,
     "startWord": "fach",
     "targetWord": "luft",
@@ -20310,7 +21719,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1251",
+    "id": "wortleiter-1338",
     "version": 1,
     "startWord": "fach",
     "targetWord": "herz",
@@ -20327,7 +21736,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1252",
+    "id": "wortleiter-1339",
     "version": 1,
     "startWord": "fach",
     "targetWord": "name",
@@ -20344,7 +21753,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1253",
+    "id": "wortleiter-1340",
     "version": 1,
     "startWord": "fach",
     "targetWord": "rose",
@@ -20361,7 +21770,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1254",
+    "id": "wortleiter-1341",
     "version": 1,
     "startWord": "fach",
     "targetWord": "mais",
@@ -20378,7 +21787,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1255",
+    "id": "wortleiter-1342",
     "version": 1,
     "startWord": "fach",
     "targetWord": "maus",
@@ -20395,7 +21804,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1256",
+    "id": "wortleiter-1343",
+    "version": 1,
+    "startWord": "fach",
+    "targetWord": "holz",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fach",
+      "hach",
+      "hoch",
+      "hock",
+      "holk",
+      "holz"
+    ]
+  },
+  {
+    "id": "wortleiter-1344",
     "version": 1,
     "startWord": "fall",
     "targetWord": "mund",
@@ -20412,7 +21838,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1257",
+    "id": "wortleiter-1345",
     "version": 1,
     "startWord": "fall",
     "targetWord": "hund",
@@ -20429,7 +21855,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1258",
+    "id": "wortleiter-1346",
     "version": 1,
     "startWord": "fall",
     "targetWord": "kind",
@@ -20446,7 +21872,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1259",
+    "id": "wortleiter-1347",
     "version": 1,
     "startWord": "fall",
     "targetWord": "ring",
@@ -20463,7 +21889,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1260",
+    "id": "wortleiter-1348",
     "version": 1,
     "startWord": "fall",
     "targetWord": "park",
@@ -20480,7 +21906,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1261",
+    "id": "wortleiter-1349",
     "version": 1,
     "startWord": "fall",
     "targetWord": "korn",
@@ -20497,7 +21923,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1262",
+    "id": "wortleiter-1350",
     "version": 1,
     "startWord": "fall",
     "targetWord": "zahn",
@@ -20512,7 +21938,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1263",
+    "id": "wortleiter-1351",
     "version": 1,
     "startWord": "fall",
     "targetWord": "film",
@@ -20527,7 +21953,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1264",
+    "id": "wortleiter-1352",
     "version": 1,
     "startWord": "fall",
     "targetWord": "pilz",
@@ -20542,7 +21968,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1265",
+    "id": "wortleiter-1353",
     "version": 1,
     "startWord": "fall",
     "targetWord": "satz",
@@ -20557,7 +21983,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1266",
+    "id": "wortleiter-1354",
     "version": 1,
     "startWord": "fall",
     "targetWord": "seen",
@@ -20569,12 +21995,12 @@ export const generatedWortleiterPuzzles = [
       "fell",
       "fehl",
       "fehn",
-      "feen",
+      "sehn",
       "seen"
     ]
   },
   {
-    "id": "wortleiter-1267",
+    "id": "wortleiter-1355",
     "version": 1,
     "startWord": "fall",
     "targetWord": "teil",
@@ -20589,7 +22015,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1268",
+    "id": "wortleiter-1356",
     "version": 1,
     "startWord": "fall",
     "targetWord": "geld",
@@ -20604,24 +22030,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1269",
-    "version": 1,
-    "startWord": "fall",
-    "targetWord": "nest",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fall",
-      "fell",
-      "gell",
-      "gelt",
-      "gest",
-      "nest"
-    ]
-  },
-  {
-    "id": "wortleiter-1270",
+    "id": "wortleiter-1357",
     "version": 1,
     "startWord": "fall",
     "targetWord": "kino",
@@ -20638,7 +22047,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1271",
+    "id": "wortleiter-1358",
     "version": 1,
     "startWord": "fall",
     "targetWord": "nase",
@@ -20655,7 +22064,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1272",
+    "id": "wortleiter-1359",
     "version": 1,
     "startWord": "fall",
     "targetWord": "haus",
@@ -20670,7 +22079,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1273",
+    "id": "wortleiter-1360",
     "version": 1,
     "startWord": "fall",
     "targetWord": "haut",
@@ -20685,7 +22094,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1274",
+    "id": "wortleiter-1361",
     "version": 1,
     "startWord": "fall",
     "targetWord": "wort",
@@ -20702,7 +22111,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1275",
+    "id": "wortleiter-1362",
     "version": 1,
     "startWord": "fall",
     "targetWord": "herz",
@@ -20713,13 +22122,13 @@ export const generatedWortleiterPuzzles = [
       "fall",
       "hall",
       "hell",
-      "held",
-      "herd",
+      "heil",
+      "heiz",
       "herz"
     ]
   },
   {
-    "id": "wortleiter-1276",
+    "id": "wortleiter-1363",
     "version": 1,
     "startWord": "fall",
     "targetWord": "mehl",
@@ -20734,7 +22143,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1277",
+    "id": "wortleiter-1364",
     "version": 1,
     "startWord": "fall",
     "targetWord": "meer",
@@ -20751,7 +22160,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1278",
+    "id": "wortleiter-1365",
     "version": 1,
     "startWord": "fall",
     "targetWord": "mais",
@@ -20766,7 +22175,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1279",
+    "id": "wortleiter-1366",
     "version": 1,
     "startWord": "fall",
     "targetWord": "name",
@@ -20783,7 +22192,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1280",
+    "id": "wortleiter-1367",
     "version": 1,
     "startWord": "fall",
     "targetWord": "kuss",
@@ -20800,7 +22209,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1281",
+    "id": "wortleiter-1368",
     "version": 1,
     "startWord": "fall",
     "targetWord": "maus",
@@ -20815,7 +22224,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1282",
+    "id": "wortleiter-1369",
     "version": 1,
     "startWord": "fall",
     "targetWord": "zoll",
@@ -20830,7 +22239,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1283",
+    "id": "wortleiter-1370",
     "version": 1,
     "startWord": "fall",
     "targetWord": "rose",
@@ -20847,24 +22256,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1284",
-    "version": 1,
-    "startWord": "fall",
-    "targetWord": "sohn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fall",
-      "wall",
-      "wahl",
-      "wohl",
-      "wohn",
-      "sohn"
-    ]
-  },
-  {
-    "id": "wortleiter-1285",
+    "id": "wortleiter-1371",
     "version": 1,
     "startWord": "fall",
     "targetWord": "wand",
@@ -20879,7 +22271,39 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1286",
+    "id": "wortleiter-1372",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "welt",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fall",
+      "wall",
+      "well",
+      "welt"
+    ]
+  },
+  {
+    "id": "wortleiter-1373",
+    "version": 1,
+    "startWord": "fall",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fall",
+      "wall",
+      "well",
+      "welt",
+      "west",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-1374",
     "version": 1,
     "startWord": "feld",
     "targetWord": "zahn",
@@ -20896,7 +22320,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1287",
+    "id": "wortleiter-1375",
     "version": 1,
     "startWord": "feld",
     "targetWord": "seen",
@@ -20911,7 +22335,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1288",
+    "id": "wortleiter-1376",
+    "version": 1,
+    "startWord": "feld",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "feld",
+      "feed",
+      "feen",
+      "seen",
+      "sehn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1377",
     "version": 1,
     "startWord": "feld",
     "targetWord": "ziel",
@@ -20928,7 +22369,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1289",
+    "id": "wortleiter-1378",
     "version": 1,
     "startWord": "feld",
     "targetWord": "kuss",
@@ -20945,7 +22386,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1290",
+    "id": "wortleiter-1379",
     "version": 1,
     "startWord": "feld",
     "targetWord": "tier",
@@ -20962,7 +22403,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1291",
+    "id": "wortleiter-1380",
     "version": 1,
     "startWord": "feld",
     "targetWord": "satz",
@@ -20979,7 +22420,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1292",
+    "id": "wortleiter-1381",
     "version": 1,
     "startWord": "feld",
     "targetWord": "mehl",
@@ -20994,7 +22435,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1293",
+    "id": "wortleiter-1382",
     "version": 1,
     "startWord": "feld",
     "targetWord": "teil",
@@ -21009,7 +22450,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1294",
+    "id": "wortleiter-1383",
     "version": 1,
     "startWord": "feld",
     "targetWord": "film",
@@ -21024,7 +22465,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1295",
+    "id": "wortleiter-1384",
     "version": 1,
     "startWord": "feld",
     "targetWord": "kino",
@@ -21041,7 +22482,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1296",
+    "id": "wortleiter-1385",
     "version": 1,
     "startWord": "feld",
     "targetWord": "pass",
@@ -21058,7 +22499,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1297",
+    "id": "wortleiter-1386",
     "version": 1,
     "startWord": "feld",
     "targetWord": "haut",
@@ -21075,7 +22516,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1298",
+    "id": "wortleiter-1387",
     "version": 1,
     "startWord": "feld",
     "targetWord": "welt",
@@ -21090,7 +22531,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1299",
+    "id": "wortleiter-1388",
     "version": 1,
     "startWord": "feld",
     "targetWord": "wort",
@@ -21107,7 +22548,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1300",
+    "id": "wortleiter-1389",
     "version": 1,
     "startWord": "feld",
     "targetWord": "zelt",
@@ -21122,7 +22563,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1301",
+    "id": "wortleiter-1390",
     "version": 1,
     "startWord": "feld",
     "targetWord": "haus",
@@ -21139,7 +22580,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1302",
+    "id": "wortleiter-1391",
     "version": 1,
     "startWord": "feld",
     "targetWord": "herz",
@@ -21154,7 +22595,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1303",
+    "id": "wortleiter-1392",
     "version": 1,
     "startWord": "feld",
     "targetWord": "rose",
@@ -21171,7 +22612,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1304",
+    "id": "wortleiter-1393",
     "version": 1,
     "startWord": "feld",
     "targetWord": "holz",
@@ -21186,7 +22627,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1305",
+    "id": "wortleiter-1394",
     "version": 1,
     "startWord": "feld",
     "targetWord": "hund",
@@ -21201,7 +22642,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1306",
+    "id": "wortleiter-1395",
     "version": 1,
     "startWord": "feld",
     "targetWord": "land",
@@ -21218,7 +22659,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1307",
+    "id": "wortleiter-1396",
     "version": 1,
     "startWord": "feld",
     "targetWord": "kind",
@@ -21235,7 +22676,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1308",
+    "id": "wortleiter-1397",
     "version": 1,
     "startWord": "feld",
     "targetWord": "rand",
@@ -21252,7 +22693,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1309",
+    "id": "wortleiter-1398",
     "version": 1,
     "startWord": "feld",
     "targetWord": "sand",
@@ -21269,7 +22710,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1310",
+    "id": "wortleiter-1399",
     "version": 1,
     "startWord": "feld",
     "targetWord": "maus",
@@ -21286,7 +22727,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1311",
+    "id": "wortleiter-1400",
     "version": 1,
     "startWord": "feld",
     "targetWord": "park",
@@ -21303,7 +22744,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1312",
+    "id": "wortleiter-1401",
     "version": 1,
     "startWord": "feld",
     "targetWord": "mond",
@@ -21318,7 +22759,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1313",
+    "id": "wortleiter-1402",
     "version": 1,
     "startWord": "feld",
     "targetWord": "korn",
@@ -21335,7 +22776,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1314",
+    "id": "wortleiter-1403",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "hand",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "bell",
+      "ball",
+      "bald",
+      "band",
+      "hand"
+    ]
+  },
+  {
+    "id": "wortleiter-1404",
     "version": 1,
     "startWord": "fell",
     "targetWord": "land",
@@ -21344,7 +22802,7 @@ export const generatedWortleiterPuzzles = [
     "difficulty": "medium",
     "solution": [
       "fell",
-      "fall",
+      "bell",
       "ball",
       "bald",
       "band",
@@ -21352,7 +22810,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1315",
+    "id": "wortleiter-1405",
     "version": 1,
     "startWord": "fell",
     "targetWord": "rand",
@@ -21361,7 +22819,7 @@ export const generatedWortleiterPuzzles = [
     "difficulty": "medium",
     "solution": [
       "fell",
-      "fall",
+      "bell",
       "ball",
       "bald",
       "band",
@@ -21369,7 +22827,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1316",
+    "id": "wortleiter-1406",
     "version": 1,
     "startWord": "fell",
     "targetWord": "sand",
@@ -21378,7 +22836,7 @@ export const generatedWortleiterPuzzles = [
     "difficulty": "medium",
     "solution": [
       "fell",
-      "fall",
+      "bell",
       "ball",
       "bald",
       "band",
@@ -21386,7 +22844,90 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1317",
+    "id": "wortleiter-1407",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "saat",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "dell",
+      "deal",
+      "seal",
+      "saal",
+      "saat"
+    ]
+  },
+  {
+    "id": "wortleiter-1408",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "ziel",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "dell",
+      "dill",
+      "kill",
+      "kiel",
+      "ziel"
+    ]
+  },
+  {
+    "id": "wortleiter-1409",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "kino",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "dell",
+      "dill",
+      "kill",
+      "kilo",
+      "kino"
+    ]
+  },
+  {
+    "id": "wortleiter-1410",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "rose",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "dell",
+      "doll",
+      "dole",
+      "dose",
+      "rose"
+    ]
+  },
+  {
+    "id": "wortleiter-1411",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "zoll",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "dell",
+      "doll",
+      "zoll"
+    ]
+  },
+  {
+    "id": "wortleiter-1412",
     "version": 1,
     "startWord": "fell",
     "targetWord": "zahl",
@@ -21401,7 +22942,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1318",
+    "id": "wortleiter-1413",
     "version": 1,
     "startWord": "fell",
     "targetWord": "mahl",
@@ -21416,56 +22957,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1319",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "saat",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "fall",
-      "mall",
-      "malt",
-      "maat",
-      "saat"
-    ]
-  },
-  {
-    "id": "wortleiter-1320",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "wald",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "fell",
-      "fall",
-      "wall",
-      "wald"
-    ]
-  },
-  {
-    "id": "wortleiter-1321",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "wind",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "fall",
-      "wall",
-      "wald",
-      "wild",
-      "wind"
-    ]
-  },
-  {
-    "id": "wortleiter-1322",
+    "id": "wortleiter-1414",
     "version": 1,
     "startWord": "fell",
     "targetWord": "nase",
@@ -21482,41 +22974,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1323",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "rose",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "fehl",
-      "fehe",
-      "rehe",
-      "rohe",
-      "rose"
-    ]
-  },
-  {
-    "id": "wortleiter-1324",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "korn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "fehl",
-      "fehn",
-      "fern",
-      "kern",
-      "korn"
-    ]
-  },
-  {
-    "id": "wortleiter-1325",
+    "id": "wortleiter-1415",
     "version": 1,
     "startWord": "fell",
     "targetWord": "fest",
@@ -21531,7 +22989,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1326",
+    "id": "wortleiter-1416",
     "version": 1,
     "startWord": "fell",
     "targetWord": "zeit",
@@ -21546,7 +23004,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1327",
+    "id": "wortleiter-1417",
     "version": 1,
     "startWord": "fell",
     "targetWord": "lied",
@@ -21563,7 +23021,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1328",
+    "id": "wortleiter-1418",
     "version": 1,
     "startWord": "fell",
     "targetWord": "kuss",
@@ -21580,7 +23038,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1329",
+    "id": "wortleiter-1419",
     "version": 1,
     "startWord": "fell",
     "targetWord": "tier",
@@ -21597,24 +23055,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1330",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "ziel",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "fels",
-      "fils",
-      "fies",
-      "fiel",
-      "ziel"
-    ]
-  },
-  {
-    "id": "wortleiter-1331",
+    "id": "wortleiter-1420",
     "version": 1,
     "startWord": "fell",
     "targetWord": "film",
@@ -21629,56 +23070,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1332",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "kino",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "fels",
-      "fils",
-      "filo",
-      "kilo",
-      "kino"
-    ]
-  },
-  {
-    "id": "wortleiter-1333",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "welt",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "fell",
-      "gell",
-      "gelt",
-      "welt"
-    ]
-  },
-  {
-    "id": "wortleiter-1334",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "wort",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "gell",
-      "gelt",
-      "welt",
-      "wert",
-      "wort"
-    ]
-  },
-  {
-    "id": "wortleiter-1335",
+    "id": "wortleiter-1421",
     "version": 1,
     "startWord": "fell",
     "targetWord": "zelt",
@@ -21693,24 +23085,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1336",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "hand",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "hell",
-      "hall",
-      "half",
-      "hanf",
-      "hand"
-    ]
-  },
-  {
-    "id": "wortleiter-1337",
+    "id": "wortleiter-1422",
     "version": 1,
     "startWord": "fell",
     "targetWord": "pass",
@@ -21727,7 +23102,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1338",
+    "id": "wortleiter-1423",
     "version": 1,
     "startWord": "fell",
     "targetWord": "saft",
@@ -21744,7 +23119,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1339",
+    "id": "wortleiter-1424",
     "version": 1,
     "startWord": "fell",
     "targetWord": "laut",
@@ -21761,24 +23136,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1340",
-    "version": 1,
-    "startWord": "fell",
-    "targetWord": "sohn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fell",
-      "hell",
-      "hehl",
-      "hohl",
-      "hohn",
-      "sohn"
-    ]
-  },
-  {
-    "id": "wortleiter-1341",
+    "id": "wortleiter-1425",
     "version": 1,
     "startWord": "fell",
     "targetWord": "hemd",
@@ -21793,7 +23151,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1342",
+    "id": "wortleiter-1426",
     "version": 1,
     "startWord": "fell",
     "targetWord": "mund",
@@ -21810,7 +23168,88 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1343",
+    "id": "wortleiter-1427",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "pilz",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "pell",
+      "pelz",
+      "pilz"
+    ]
+  },
+  {
+    "id": "wortleiter-1428",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "korn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "pell",
+      "perl",
+      "kerl",
+      "kern",
+      "korn"
+    ]
+  },
+  {
+    "id": "wortleiter-1429",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "park",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "pell",
+      "perl",
+      "peri",
+      "pari",
+      "park"
+    ]
+  },
+  {
+    "id": "wortleiter-1430",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "wald",
+    "wordLength": 4,
+    "optimalSteps": 3,
+    "difficulty": "easy",
+    "solution": [
+      "fell",
+      "well",
+      "wall",
+      "wald"
+    ]
+  },
+  {
+    "id": "wortleiter-1431",
+    "version": 1,
+    "startWord": "fell",
+    "targetWord": "wind",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fell",
+      "well",
+      "wall",
+      "wald",
+      "wild",
+      "wind"
+    ]
+  },
+  {
+    "id": "wortleiter-1432",
     "version": 1,
     "startWord": "fest",
     "targetWord": "park",
@@ -21827,7 +23266,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1344",
+    "id": "wortleiter-1433",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "frau",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "best",
+      "beat",
+      "brat",
+      "brau",
+      "frau"
+    ]
+  },
+  {
+    "id": "wortleiter-1434",
     "version": 1,
     "startWord": "fest",
     "targetWord": "gras",
@@ -21844,7 +23300,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1345",
+    "id": "wortleiter-1435",
     "version": 1,
     "startWord": "fest",
     "targetWord": "tier",
@@ -21861,7 +23317,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1346",
+    "id": "wortleiter-1436",
     "version": 1,
     "startWord": "fest",
     "targetWord": "kind",
@@ -21878,7 +23334,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1347",
+    "id": "wortleiter-1437",
     "version": 1,
     "startWord": "fest",
     "targetWord": "mond",
@@ -21895,7 +23351,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1348",
+    "id": "wortleiter-1438",
     "version": 1,
     "startWord": "fest",
     "targetWord": "nase",
@@ -21910,7 +23366,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1349",
+    "id": "wortleiter-1439",
     "version": 1,
     "startWord": "fest",
     "targetWord": "pass",
@@ -21925,7 +23381,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1350",
+    "id": "wortleiter-1440",
     "version": 1,
     "startWord": "fest",
     "targetWord": "haut",
@@ -21940,7 +23396,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1351",
+    "id": "wortleiter-1441",
     "version": 1,
     "startWord": "fest",
     "targetWord": "kuss",
@@ -21957,7 +23413,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1352",
+    "id": "wortleiter-1442",
     "version": 1,
     "startWord": "fest",
     "targetWord": "zahl",
@@ -21974,7 +23430,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1353",
+    "id": "wortleiter-1443",
     "version": 1,
     "startWord": "fest",
     "targetWord": "teil",
@@ -21989,7 +23445,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1354",
+    "id": "wortleiter-1444",
     "version": 1,
     "startWord": "fest",
     "targetWord": "zahn",
@@ -22006,7 +23462,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1355",
+    "id": "wortleiter-1445",
     "version": 1,
     "startWord": "fest",
     "targetWord": "film",
@@ -22023,24 +23479,24 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1356",
+    "id": "wortleiter-1446",
     "version": 1,
     "startWord": "fest",
-    "targetWord": "satz",
+    "targetWord": "pilz",
     "wordLength": 4,
     "optimalSteps": 5,
     "difficulty": "medium",
     "solution": [
       "fest",
-      "gest",
-      "gast",
-      "gatt",
-      "satt",
-      "satz"
+      "fett",
+      "fetz",
+      "petz",
+      "pelz",
+      "pilz"
     ]
   },
   {
-    "id": "wortleiter-1357",
+    "id": "wortleiter-1447",
     "version": 1,
     "startWord": "fest",
     "targetWord": "mahl",
@@ -22057,7 +23513,41 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1358",
+    "id": "wortleiter-1448",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "meer",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "gest",
+      "geht",
+      "gehr",
+      "mehr",
+      "meer"
+    ]
+  },
+  {
+    "id": "wortleiter-1449",
+    "version": 1,
+    "startWord": "fest",
+    "targetWord": "sohn",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "fest",
+      "gest",
+      "geht",
+      "seht",
+      "sehn",
+      "sohn"
+    ]
+  },
+  {
+    "id": "wortleiter-1450",
     "version": 1,
     "startWord": "fest",
     "targetWord": "geld",
@@ -22072,7 +23562,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1359",
+    "id": "wortleiter-1451",
     "version": 1,
     "startWord": "fest",
     "targetWord": "hemd",
@@ -22089,7 +23579,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1360",
+    "id": "wortleiter-1452",
     "version": 1,
     "startWord": "fest",
     "targetWord": "zelt",
@@ -22104,7 +23594,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1361",
+    "id": "wortleiter-1453",
     "version": 1,
     "startWord": "fest",
     "targetWord": "laut",
@@ -22119,7 +23609,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1362",
+    "id": "wortleiter-1454",
     "version": 1,
     "startWord": "fest",
     "targetWord": "holz",
@@ -22136,7 +23626,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1363",
+    "id": "wortleiter-1455",
     "version": 1,
     "startWord": "fest",
     "targetWord": "korn",
@@ -22153,7 +23643,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1364",
+    "id": "wortleiter-1456",
     "version": 1,
     "startWord": "fest",
     "targetWord": "luft",
@@ -22168,24 +23658,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1365",
-    "version": 1,
-    "startWord": "fest",
-    "targetWord": "herz",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fest",
-      "nest",
-      "nett",
-      "netz",
-      "nerz",
-      "herz"
-    ]
-  },
-  {
-    "id": "wortleiter-1366",
+    "id": "wortleiter-1457",
     "version": 1,
     "startWord": "fest",
     "targetWord": "zoll",
@@ -22202,7 +23675,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1367",
+    "id": "wortleiter-1458",
     "version": 1,
     "startWord": "fest",
     "targetWord": "ring",
@@ -22219,7 +23692,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1368",
+    "id": "wortleiter-1459",
     "version": 1,
     "startWord": "fest",
     "targetWord": "lied",
@@ -22236,7 +23709,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1369",
+    "id": "wortleiter-1460",
     "version": 1,
     "startWord": "fest",
     "targetWord": "rose",
@@ -22251,7 +23724,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1370",
+    "id": "wortleiter-1461",
     "version": 1,
     "startWord": "fest",
     "targetWord": "hund",
@@ -22268,7 +23741,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1371",
+    "id": "wortleiter-1462",
     "version": 1,
     "startWord": "fest",
     "targetWord": "mund",
@@ -22285,24 +23758,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1372",
-    "version": 1,
-    "startWord": "fest",
-    "targetWord": "meer",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "fest",
-      "west",
-      "weht",
-      "wehr",
-      "mehr",
-      "meer"
-    ]
-  },
-  {
-    "id": "wortleiter-1373",
+    "id": "wortleiter-1463",
     "version": 1,
     "startWord": "fest",
     "targetWord": "wald",
@@ -22319,7 +23775,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1374",
+    "id": "wortleiter-1464",
     "version": 1,
     "startWord": "fest",
     "targetWord": "wort",
@@ -22334,7 +23790,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1375",
+    "id": "wortleiter-1465",
     "version": 1,
     "startWord": "fest",
     "targetWord": "wind",
@@ -22351,7 +23807,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1376",
+    "id": "wortleiter-1466",
     "version": 1,
     "startWord": "film",
     "targetWord": "rose",
@@ -22368,7 +23824,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1377",
+    "id": "wortleiter-1467",
     "version": 1,
     "startWord": "film",
     "targetWord": "kino",
@@ -22383,7 +23839,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1378",
+    "id": "wortleiter-1468",
     "version": 1,
     "startWord": "film",
     "targetWord": "wind",
@@ -22400,7 +23856,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1379",
+    "id": "wortleiter-1469",
     "version": 1,
     "startWord": "film",
     "targetWord": "ring",
@@ -22417,7 +23873,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1380",
+    "id": "wortleiter-1470",
     "version": 1,
     "startWord": "film",
     "targetWord": "zoll",
@@ -22434,7 +23890,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1381",
+    "id": "wortleiter-1471",
     "version": 1,
     "startWord": "film",
     "targetWord": "hemd",
@@ -22451,7 +23907,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1382",
+    "id": "wortleiter-1472",
     "version": 1,
     "startWord": "film",
     "targetWord": "mehl",
@@ -22468,7 +23924,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1383",
+    "id": "wortleiter-1473",
     "version": 1,
     "startWord": "film",
     "targetWord": "teil",
@@ -22485,7 +23941,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1384",
+    "id": "wortleiter-1474",
     "version": 1,
     "startWord": "film",
     "targetWord": "zelt",
@@ -22502,7 +23958,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1385",
+    "id": "wortleiter-1475",
     "version": 1,
     "startWord": "film",
     "targetWord": "tier",
@@ -22519,24 +23975,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1386",
-    "version": 1,
-    "startWord": "film",
-    "targetWord": "lied",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "film",
-      "fils",
-      "fies",
-      "mies",
-      "mied",
-      "lied"
-    ]
-  },
-  {
-    "id": "wortleiter-1387",
+    "id": "wortleiter-1476",
     "version": 1,
     "startWord": "film",
     "targetWord": "kopf",
@@ -22553,7 +23992,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1388",
+    "id": "wortleiter-1477",
     "version": 1,
     "startWord": "film",
     "targetWord": "holz",
@@ -22570,7 +24009,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1389",
+    "id": "wortleiter-1478",
     "version": 1,
     "startWord": "film",
     "targetWord": "zahl",
@@ -22587,7 +24026,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1390",
+    "id": "wortleiter-1479",
     "version": 1,
     "startWord": "film",
     "targetWord": "wand",
@@ -22604,7 +24043,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1391",
+    "id": "wortleiter-1480",
     "version": 1,
     "startWord": "film",
     "targetWord": "mahl",
@@ -22621,7 +24060,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1392",
+    "id": "wortleiter-1481",
     "version": 1,
     "startWord": "film",
     "targetWord": "mais",
@@ -22638,7 +24077,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1393",
+    "id": "wortleiter-1482",
     "version": 1,
     "startWord": "film",
     "targetWord": "maus",
@@ -22655,7 +24094,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1394",
+    "id": "wortleiter-1483",
     "version": 1,
     "startWord": "film",
     "targetWord": "mond",
@@ -22672,7 +24111,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1395",
+    "id": "wortleiter-1484",
     "version": 1,
     "startWord": "film",
     "targetWord": "korn",
@@ -22689,7 +24128,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1396",
+    "id": "wortleiter-1485",
     "version": 1,
     "startWord": "film",
     "targetWord": "park",
@@ -22706,7 +24145,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1397",
+    "id": "wortleiter-1486",
     "version": 1,
     "startWord": "film",
     "targetWord": "haut",
@@ -22723,7 +24162,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1398",
+    "id": "wortleiter-1487",
     "version": 1,
     "startWord": "film",
     "targetWord": "herz",
@@ -22740,7 +24179,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1399",
+    "id": "wortleiter-1488",
     "version": 1,
     "startWord": "film",
     "targetWord": "zorn",
@@ -22757,7 +24196,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1400",
+    "id": "wortleiter-1489",
     "version": 1,
     "startWord": "film",
     "targetWord": "seen",
@@ -22774,7 +24213,58 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1401",
+    "id": "wortleiter-1490",
+    "version": 1,
+    "startWord": "frau",
+    "targetWord": "nest",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "frau",
+      "brau",
+      "beau",
+      "beat",
+      "best",
+      "nest"
+    ]
+  },
+  {
+    "id": "wortleiter-1491",
+    "version": 1,
+    "startWord": "frau",
+    "targetWord": "haut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "frau",
+      "brau",
+      "brat",
+      "brut",
+      "baut",
+      "haut"
+    ]
+  },
+  {
+    "id": "wortleiter-1492",
+    "version": 1,
+    "startWord": "frau",
+    "targetWord": "laut",
+    "wordLength": 4,
+    "optimalSteps": 5,
+    "difficulty": "medium",
+    "solution": [
+      "frau",
+      "brau",
+      "brat",
+      "brut",
+      "baut",
+      "laut"
+    ]
+  },
+  {
+    "id": "wortleiter-1493",
     "version": 1,
     "startWord": "frau",
     "targetWord": "glas",
@@ -22789,7 +24279,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1402",
+    "id": "wortleiter-1494",
     "version": 1,
     "startWord": "geld",
     "targetWord": "meer",
@@ -22806,7 +24296,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1403",
+    "id": "wortleiter-1495",
     "version": 1,
     "startWord": "geld",
     "targetWord": "wand",
@@ -22823,7 +24313,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1404",
+    "id": "wortleiter-1496",
     "version": 1,
     "startWord": "geld",
     "targetWord": "zahl",
@@ -22840,7 +24330,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1405",
+    "id": "wortleiter-1497",
     "version": 1,
     "startWord": "geld",
     "targetWord": "name",
@@ -22857,7 +24347,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1406",
+    "id": "wortleiter-1498",
     "version": 1,
     "startWord": "geld",
     "targetWord": "nase",
@@ -22874,7 +24364,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1407",
+    "id": "wortleiter-1499",
     "version": 1,
     "startWord": "geld",
     "targetWord": "zahn",
@@ -22891,7 +24381,7 @@ export const generatedWortleiterPuzzles = [
     ]
   },
   {
-    "id": "wortleiter-1408",
+    "id": "wortleiter-1500",
     "version": 1,
     "startWord": "geld",
     "targetWord": "mehl",
@@ -22903,1518 +24393,6 @@ export const generatedWortleiterPuzzles = [
       "gell",
       "gehl",
       "mehl"
-    ]
-  },
-  {
-    "id": "wortleiter-1409",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "teil",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "geld",
-      "gell",
-      "geil",
-      "teil"
-    ]
-  },
-  {
-    "id": "wortleiter-1410",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "ring",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "gels",
-      "gens",
-      "gins",
-      "ging",
-      "ring"
-    ]
-  },
-  {
-    "id": "wortleiter-1411",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "satz",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "gelt",
-      "galt",
-      "gatt",
-      "satt",
-      "satz"
-    ]
-  },
-  {
-    "id": "wortleiter-1412",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "saft",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "gelt",
-      "galt",
-      "halt",
-      "haft",
-      "saft"
-    ]
-  },
-  {
-    "id": "wortleiter-1413",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "laut",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "gelt",
-      "galt",
-      "halt",
-      "haut",
-      "laut"
-    ]
-  },
-  {
-    "id": "wortleiter-1414",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "saat",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "gelt",
-      "galt",
-      "malt",
-      "maat",
-      "saat"
-    ]
-  },
-  {
-    "id": "wortleiter-1415",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "nest",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "geld",
-      "gelt",
-      "gest",
-      "nest"
-    ]
-  },
-  {
-    "id": "wortleiter-1416",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "luft",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "gelt",
-      "gilt",
-      "gift",
-      "lift",
-      "luft"
-    ]
-  },
-  {
-    "id": "wortleiter-1417",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "kino",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "gelt",
-      "gilt",
-      "kilt",
-      "kilo",
-      "kino"
-    ]
-  },
-  {
-    "id": "wortleiter-1418",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "zeit",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "geld",
-      "gelt",
-      "zelt",
-      "zeit"
-    ]
-  },
-  {
-    "id": "wortleiter-1419",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "zorn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "gold",
-      "bold",
-      "bord",
-      "born",
-      "zorn"
-    ]
-  },
-  {
-    "id": "wortleiter-1420",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "haus",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "held",
-      "hell",
-      "hall",
-      "hals",
-      "haus"
-    ]
-  },
-  {
-    "id": "wortleiter-1421",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "herz",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "geld",
-      "held",
-      "herd",
-      "herz"
-    ]
-  },
-  {
-    "id": "wortleiter-1422",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "rose",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "held",
-      "hold",
-      "hole",
-      "hose",
-      "rose"
-    ]
-  },
-  {
-    "id": "wortleiter-1423",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "holz",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "geld",
-      "held",
-      "hold",
-      "holz"
-    ]
-  },
-  {
-    "id": "wortleiter-1424",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "hund",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "geld",
-      "held",
-      "huld",
-      "hund"
-    ]
-  },
-  {
-    "id": "wortleiter-1425",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "land",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "held",
-      "huld",
-      "hund",
-      "hand",
-      "land"
-    ]
-  },
-  {
-    "id": "wortleiter-1426",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "kind",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "held",
-      "huld",
-      "hund",
-      "kund",
-      "kind"
-    ]
-  },
-  {
-    "id": "wortleiter-1427",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "rand",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "held",
-      "huld",
-      "hund",
-      "rund",
-      "rand"
-    ]
-  },
-  {
-    "id": "wortleiter-1428",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "sand",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "held",
-      "huld",
-      "hund",
-      "sund",
-      "sand"
-    ]
-  },
-  {
-    "id": "wortleiter-1429",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "maus",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "meld",
-      "meid",
-      "maid",
-      "mais",
-      "maus"
-    ]
-  },
-  {
-    "id": "wortleiter-1430",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "park",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "meld",
-      "melk",
-      "merk",
-      "mark",
-      "park"
-    ]
-  },
-  {
-    "id": "wortleiter-1431",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "mond",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "geld",
-      "meld",
-      "mold",
-      "mond"
-    ]
-  },
-  {
-    "id": "wortleiter-1432",
-    "version": 1,
-    "startWord": "geld",
-    "targetWord": "korn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "geld",
-      "meld",
-      "mold",
-      "mord",
-      "kord",
-      "korn"
-    ]
-  },
-  {
-    "id": "wortleiter-1433",
-    "version": 1,
-    "startWord": "glas",
-    "targetWord": "park",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "glas",
-      "blas",
-      "baas",
-      "bars",
-      "bark",
-      "park"
-    ]
-  },
-  {
-    "id": "wortleiter-1434",
-    "version": 1,
-    "startWord": "glas",
-    "targetWord": "mais",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "glas",
-      "blas",
-      "baas",
-      "bars",
-      "mars",
-      "mais"
-    ]
-  },
-  {
-    "id": "wortleiter-1435",
-    "version": 1,
-    "startWord": "glas",
-    "targetWord": "nase",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "glas",
-      "blas",
-      "baas",
-      "bass",
-      "nass",
-      "nase"
-    ]
-  },
-  {
-    "id": "wortleiter-1436",
-    "version": 1,
-    "startWord": "glas",
-    "targetWord": "haut",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "glas",
-      "blas",
-      "baas",
-      "baus",
-      "haus",
-      "haut"
-    ]
-  },
-  {
-    "id": "wortleiter-1437",
-    "version": 1,
-    "startWord": "glas",
-    "targetWord": "laut",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "glas",
-      "blas",
-      "baas",
-      "baus",
-      "laus",
-      "laut"
-    ]
-  },
-  {
-    "id": "wortleiter-1438",
-    "version": 1,
-    "startWord": "gras",
-    "targetWord": "pass",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "gras",
-      "glas",
-      "blas",
-      "baas",
-      "bass",
-      "pass"
-    ]
-  },
-  {
-    "id": "wortleiter-1439",
-    "version": 1,
-    "startWord": "gras",
-    "targetWord": "haus",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "gras",
-      "glas",
-      "blas",
-      "baas",
-      "baus",
-      "haus"
-    ]
-  },
-  {
-    "id": "wortleiter-1440",
-    "version": 1,
-    "startWord": "gras",
-    "targetWord": "maus",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "gras",
-      "glas",
-      "blas",
-      "baas",
-      "baus",
-      "maus"
-    ]
-  },
-  {
-    "id": "wortleiter-1441",
-    "version": 1,
-    "startWord": "gras",
-    "targetWord": "nest",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "gras",
-      "grat",
-      "brat",
-      "beat",
-      "best",
-      "nest"
-    ]
-  },
-  {
-    "id": "wortleiter-1442",
-    "version": 1,
-    "startWord": "gras",
-    "targetWord": "haut",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "gras",
-      "grat",
-      "brat",
-      "brut",
-      "baut",
-      "haut"
-    ]
-  },
-  {
-    "id": "wortleiter-1443",
-    "version": 1,
-    "startWord": "gras",
-    "targetWord": "laut",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "gras",
-      "grat",
-      "brat",
-      "brut",
-      "baut",
-      "laut"
-    ]
-  },
-  {
-    "id": "wortleiter-1444",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "mahl",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "band",
-      "bald",
-      "ball",
-      "mall",
-      "mahl"
-    ]
-  },
-  {
-    "id": "wortleiter-1445",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "satz",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "band",
-      "bald",
-      "balz",
-      "salz",
-      "satz"
-    ]
-  },
-  {
-    "id": "wortleiter-1446",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "zahl",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "band",
-      "bann",
-      "bahn",
-      "zahn",
-      "zahl"
-    ]
-  },
-  {
-    "id": "wortleiter-1447",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "kind",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "hand",
-      "band",
-      "bind",
-      "kind"
-    ]
-  },
-  {
-    "id": "wortleiter-1448",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "zorn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "band",
-      "bond",
-      "bord",
-      "born",
-      "zorn"
-    ]
-  },
-  {
-    "id": "wortleiter-1449",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "korn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "band",
-      "bond",
-      "bord",
-      "kord",
-      "korn"
-    ]
-  },
-  {
-    "id": "wortleiter-1450",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "mond",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "hand",
-      "band",
-      "bond",
-      "mond"
-    ]
-  },
-  {
-    "id": "wortleiter-1451",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "maus",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "fand",
-      "fans",
-      "fass",
-      "mass",
-      "maus"
-    ]
-  },
-  {
-    "id": "wortleiter-1452",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "nest",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "fand",
-      "fant",
-      "fast",
-      "fest",
-      "nest"
-    ]
-  },
-  {
-    "id": "wortleiter-1453",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "lied",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "hand",
-      "land",
-      "lind",
-      "lied"
-    ]
-  },
-  {
-    "id": "wortleiter-1454",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "name",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "rand",
-      "rane",
-      "rabe",
-      "nabe",
-      "name"
-    ]
-  },
-  {
-    "id": "wortleiter-1455",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "ring",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "hand",
-      "rand",
-      "rind",
-      "ring"
-    ]
-  },
-  {
-    "id": "wortleiter-1456",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "teil",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "sand",
-      "send",
-      "seid",
-      "seil",
-      "teil"
-    ]
-  },
-  {
-    "id": "wortleiter-1457",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "sohn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "wand",
-      "wann",
-      "wahn",
-      "wohn",
-      "sohn"
-    ]
-  },
-  {
-    "id": "wortleiter-1458",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "herz",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "wand",
-      "wend",
-      "werd",
-      "herd",
-      "herz"
-    ]
-  },
-  {
-    "id": "wortleiter-1459",
-    "version": 1,
-    "startWord": "hand",
-    "targetWord": "welt",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "hand",
-      "wand",
-      "wend",
-      "werd",
-      "wert",
-      "welt"
-    ]
-  },
-  {
-    "id": "wortleiter-1460",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "zorn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "baus",
-      "bars",
-      "barn",
-      "born",
-      "zorn"
-    ]
-  },
-  {
-    "id": "wortleiter-1461",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "korn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "baus",
-      "bars",
-      "barn",
-      "karn",
-      "korn"
-    ]
-  },
-  {
-    "id": "wortleiter-1462",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "nest",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "baus",
-      "bass",
-      "bast",
-      "best",
-      "nest"
-    ]
-  },
-  {
-    "id": "wortleiter-1463",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "sohn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "hais",
-      "hain",
-      "hahn",
-      "hohn",
-      "sohn"
-    ]
-  },
-  {
-    "id": "wortleiter-1464",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "hund",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "hals",
-      "half",
-      "hanf",
-      "hand",
-      "hund"
-    ]
-  },
-  {
-    "id": "wortleiter-1465",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "teil",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "hals",
-      "hall",
-      "hell",
-      "heil",
-      "teil"
-    ]
-  },
-  {
-    "id": "wortleiter-1466",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "hemd",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "hals",
-      "hall",
-      "hell",
-      "held",
-      "hemd"
-    ]
-  },
-  {
-    "id": "wortleiter-1467",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "kino",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "hals",
-      "halo",
-      "kalo",
-      "kilo",
-      "kino"
-    ]
-  },
-  {
-    "id": "wortleiter-1468",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "wald",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haus",
-      "hals",
-      "wals",
-      "wald"
-    ]
-  },
-  {
-    "id": "wortleiter-1469",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "wind",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "hals",
-      "wals",
-      "wald",
-      "wild",
-      "wind"
-    ]
-  },
-  {
-    "id": "wortleiter-1470",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "zelt",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "hals",
-      "wals",
-      "wels",
-      "welt",
-      "zelt"
-    ]
-  },
-  {
-    "id": "wortleiter-1471",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "nase",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haus",
-      "hass",
-      "nass",
-      "nase"
-    ]
-  },
-  {
-    "id": "wortleiter-1472",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "name",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haus",
-      "haue",
-      "naue",
-      "name"
-    ]
-  },
-  {
-    "id": "wortleiter-1473",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "luft",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "laus",
-      "lass",
-      "last",
-      "lust",
-      "luft"
-    ]
-  },
-  {
-    "id": "wortleiter-1474",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "zoll",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "maus",
-      "mals",
-      "mall",
-      "moll",
-      "zoll"
-    ]
-  },
-  {
-    "id": "wortleiter-1475",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "pilz",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "maus",
-      "mals",
-      "malz",
-      "milz",
-      "pilz"
-    ]
-  },
-  {
-    "id": "wortleiter-1476",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "mahl",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haus",
-      "maus",
-      "maul",
-      "mahl"
-    ]
-  },
-  {
-    "id": "wortleiter-1477",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "land",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "raus",
-      "rais",
-      "raid",
-      "rand",
-      "land"
-    ]
-  },
-  {
-    "id": "wortleiter-1478",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "zeit",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "raus",
-      "rais",
-      "reis",
-      "reit",
-      "zeit"
-    ]
-  },
-  {
-    "id": "wortleiter-1479",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "kopf",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "raus",
-      "raps",
-      "kaps",
-      "kops",
-      "kopf"
-    ]
-  },
-  {
-    "id": "wortleiter-1480",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "ring",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haus",
-      "raus",
-      "raue",
-      "rane",
-      "rang",
-      "ring"
-    ]
-  },
-  {
-    "id": "wortleiter-1481",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "saat",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haus",
-      "saus",
-      "saut",
-      "saat"
-    ]
-  },
-  {
-    "id": "wortleiter-1482",
-    "version": 1,
-    "startWord": "haus",
-    "targetWord": "saft",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haus",
-      "saus",
-      "saut",
-      "saft"
-    ]
-  },
-  {
-    "id": "wortleiter-1483",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "teil",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haut",
-      "halt",
-      "hall",
-      "hell",
-      "heil",
-      "teil"
-    ]
-  },
-  {
-    "id": "wortleiter-1484",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "hemd",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haut",
-      "halt",
-      "holt",
-      "hold",
-      "held",
-      "hemd"
-    ]
-  },
-  {
-    "id": "wortleiter-1485",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "mond",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haut",
-      "halt",
-      "holt",
-      "hold",
-      "mold",
-      "mond"
-    ]
-  },
-  {
-    "id": "wortleiter-1486",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "holz",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haut",
-      "halt",
-      "holt",
-      "holz"
-    ]
-  },
-  {
-    "id": "wortleiter-1487",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "herz",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haut",
-      "hart",
-      "harz",
-      "herz"
-    ]
-  },
-  {
-    "id": "wortleiter-1488",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "sohn",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haut",
-      "hart",
-      "hort",
-      "horn",
-      "hohn",
-      "sohn"
-    ]
-  },
-  {
-    "id": "wortleiter-1489",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "park",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haut",
-      "hart",
-      "part",
-      "park"
-    ]
-  },
-  {
-    "id": "wortleiter-1490",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "wort",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haut",
-      "hart",
-      "wart",
-      "wort"
-    ]
-  },
-  {
-    "id": "wortleiter-1491",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "nase",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haut",
-      "hast",
-      "hase",
-      "nase"
-    ]
-  },
-  {
-    "id": "wortleiter-1492",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "pass",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haut",
-      "hast",
-      "hass",
-      "pass"
-    ]
-  },
-  {
-    "id": "wortleiter-1493",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "name",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haut",
-      "haue",
-      "naue",
-      "name"
-    ]
-  },
-  {
-    "id": "wortleiter-1494",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "kino",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haut",
-      "kaut",
-      "kalt",
-      "kilt",
-      "kilo",
-      "kino"
-    ]
-  },
-  {
-    "id": "wortleiter-1495",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "zoll",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haut",
-      "maut",
-      "malt",
-      "mall",
-      "moll",
-      "zoll"
-    ]
-  },
-  {
-    "id": "wortleiter-1496",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "pilz",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haut",
-      "maut",
-      "malt",
-      "malz",
-      "milz",
-      "pilz"
-    ]
-  },
-  {
-    "id": "wortleiter-1497",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "kuss",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haut",
-      "maut",
-      "mast",
-      "mass",
-      "muss",
-      "kuss"
-    ]
-  },
-  {
-    "id": "wortleiter-1498",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "mund",
-    "wordLength": 4,
-    "optimalSteps": 5,
-    "difficulty": "medium",
-    "solution": [
-      "haut",
-      "maut",
-      "matt",
-      "mutt",
-      "munt",
-      "mund"
-    ]
-  },
-  {
-    "id": "wortleiter-1499",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "mahl",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haut",
-      "maut",
-      "maul",
-      "mahl"
-    ]
-  },
-  {
-    "id": "wortleiter-1500",
-    "version": 1,
-    "startWord": "haut",
-    "targetWord": "mais",
-    "wordLength": 4,
-    "optimalSteps": 3,
-    "difficulty": "easy",
-    "solution": [
-      "haut",
-      "maut",
-      "maus",
-      "mais"
     ]
   }
 ] as const satisfies readonly WortleiterPuzzle[];

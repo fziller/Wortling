@@ -17,7 +17,9 @@ import { revealWortcodeSolution, submitWortcodeGuess, toggleWortcodeLetterMark }
 import { WortcodeLetterMark, WortcodeState } from "@/games/wortcode/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
+import { BucketPreset } from "@/games/wordBuckets";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
+import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { updateBadgeCount } from "@/notifications/badge";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
@@ -33,7 +35,12 @@ export default function WortcodeScreen() {
   const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [game, setGame] = useState<WortcodeGame>(() => createNextWortcodeGame(undefined, today));
+  const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
+  const [game, setGame] = useState<WortcodeGame>(() => createNextWortcodeGame(undefined, today, "klassisch"));
+
+  useEffect(() => {
+    loadWordBucketSettings().then((s) => setBucketPreset(getPreset(s)));
+  }, []);
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<WortcodeState>(game.state);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(game.puzzle.wordLength));
@@ -156,7 +163,7 @@ export default function WortcodeScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createNextWortcodeGame(puzzle.answer, today);
+    const nextGame = createNextWortcodeGame(puzzle.answer, today, bucketPreset);
 
     setGame(nextGame);
     setState(nextGame.state);

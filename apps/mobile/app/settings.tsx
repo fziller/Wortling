@@ -2,7 +2,7 @@ import * as Application from "expo-application";
 import { useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
+import Animated, { FadeInDown, FadeInUp, interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 import { AppCard } from "@/components/AppCard";
 import { Screen } from "@/components/Screen";
@@ -12,6 +12,8 @@ import { tokens } from "@/design/tokens";
 import { gameRegistry, games } from "@/games/registry";
 import { clearDailyKniffeSeedOverride, loadDailyKniffeSeedOverride, saveDailyKniffeSeedOverride } from "@/storage/dailyKniffeDev";
 import { loadNotificationSettings, saveNotificationSettings, NotificationSettings } from "@/storage/settings";
+import { BUCKET_PRESET_DESCRIPTIONS } from "@/games/wordBuckets";
+import { loadWordBucketSettings, saveWordBucketSettings, WordBucketSettings } from "@/storage/wordBuckets";
 import { requestNotificationPermission } from "@/notifications/register";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
 
@@ -25,6 +27,7 @@ export default function SettingsScreen() {
     hour: 18,
     minute: 0,
   });
+  const [bucketSettings, setBucketSettings] = useState<WordBucketSettings>({ erweitert: false, hart: false });
   const [dailyKniffeSeedOverride, setDailyKniffeSeedOverride] = useState<number | undefined>();
   const dateKey = getBerlinDateKey();
   const productionSeed = createDailyKniffeSeed(dateKey);
@@ -36,6 +39,7 @@ export default function SettingsScreen() {
 
   useEffect(() => {
     loadNotificationSettings().then(setSettings);
+    loadWordBucketSettings().then(setBucketSettings);
     loadDailyKniffeSeedOverride().then(setDailyKniffeSeedOverride);
   }, []);
 
@@ -51,6 +55,21 @@ export default function SettingsScreen() {
       if (!granted) return;
     }
     await updateAndReschedule({ ...settings, enabled: !settings.enabled });
+  }
+
+  async function toggleErweitert() {
+    const next = { ...bucketSettings, erweitert: !bucketSettings.erweitert, hart: bucketSettings.hart && !bucketSettings.erweitert ? false : bucketSettings.hart };
+    // hart implies erweitert, so if hart is on and we disable erweitert, also disable hart
+    const fixed = next.hart && !next.erweitert ? { ...next, hart: false } : next;
+    // if enabling erweitert while hart was off, keep hart off; if enabling hart later, it will set both
+    setBucketSettings(fixed);
+    await saveWordBucketSettings(fixed);
+  }
+
+  async function toggleHart() {
+    const next = bucketSettings.hart ? { ...bucketSettings, hart: false } : { erweitert: true, hart: true };
+    setBucketSettings(next);
+    await saveWordBucketSettings(next);
   }
 
   function adjustHour(delta: number) {
@@ -95,14 +114,7 @@ export default function SettingsScreen() {
             </Text>
             <View style={styles.toggleRow}>
               <Text style={styles.toggleLabel}>Tägliche Erinnerung</Text>
-              <Pressable
-                accessibilityRole="switch"
-                accessibilityState={{ checked: settings.enabled }}
-                onPress={toggleEnabled}
-                style={[styles.toggle, settings.enabled && styles.toggleOn]}
-              >
-                <View style={[styles.toggleKnob, settings.enabled && styles.toggleKnobOn]} />
-              </Pressable>
+              <AnimatedSwitch checked={settings.enabled} onPress={toggleEnabled} />
             </View>
             {settings.enabled ? (
               <View style={styles.timeRow}>
@@ -134,6 +146,35 @@ export default function SettingsScreen() {
                 </View>
               </View>
             ) : null}
+          </AppCard>
+        </Animated.View>
+
+        <Animated.View entering={FadeInDown.delay(120).duration(tokens.motion.normal)}>
+          <AppCard>
+            <Text style={styles.cardTitle}>Wortschatz</Text>
+            <Text style={styles.body}>Wähle, welche Wortarten als Lösung vorkommen. Gilt für alle Spiele und Tageskniffe. Klassisch ist immer aktiv.</Text>
+            <View style={styles.toggleRow}>
+              <View style={{ flex: 1, paddingRight: 12 }}>
+                <Text style={styles.toggleLabel}>Klassisch</Text>
+                <Text style={styles.bucketDesc}>{BUCKET_PRESET_DESCRIPTIONS.klassisch}</Text>
+              </View>
+              <AnimatedSwitch checked disabled />
+            </View>
+            <View style={styles.toggleRow}>
+              <View style={{ flex: 1, paddingRight: 12 }}>
+                <Text style={styles.toggleLabel}>Erweitert</Text>
+                <Text style={styles.bucketDesc}>{BUCKET_PRESET_DESCRIPTIONS.erweitert}</Text>
+              </View>
+              <AnimatedSwitch checked={bucketSettings.erweitert} onPress={toggleErweitert} />
+            </View>
+            <View style={styles.toggleRow}>
+              <View style={{ flex: 1, paddingRight: 12 }}>
+                <Text style={styles.toggleLabel}>Hart</Text>
+                <Text style={styles.bucketDesc}>{BUCKET_PRESET_DESCRIPTIONS.hart}</Text>
+              </View>
+              <AnimatedSwitch checked={bucketSettings.hart} onPress={toggleHart} />
+            </View>
+            <Text style={styles.versionText}>Aktiv: {bucketSettings.hart ? "Hart" : bucketSettings.erweitert ? "Erweitert" : "Klassisch"} · Ab nächster Runde wirksam.</Text>
           </AppCard>
         </Animated.View>
 
@@ -202,6 +243,38 @@ export default function SettingsScreen() {
         </Animated.View>
       </ScrollView>
     </Screen>
+  );
+}
+
+function AnimatedSwitch({ checked, onPress, disabled }: { checked: boolean; onPress?: () => void; disabled?: boolean }) {
+  const progress = useSharedValue(checked ? 1 : 0);
+
+  useEffect(() => {
+    progress.value = withTiming(checked ? 1 : 0, { duration: 160 });
+  }, [checked, progress]);
+
+  const trackStyle = useAnimatedStyle(() => ({
+    backgroundColor: interpolateColor(progress.value, [0, 1], [tokens.color.line, tokens.color.primary]),
+  }));
+
+  const knobStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: progress.value * 22 }],
+  }));
+
+  if (disabled) {
+    return (
+      <Animated.View style={[styles.toggle, trackStyle, styles.toggleDisabled]}>
+        <Animated.View style={[styles.toggleKnob, knobStyle]} />
+      </Animated.View>
+    );
+  }
+
+  return (
+    <Pressable accessibilityRole="switch" accessibilityState={{ checked }} onPress={onPress} disabled={disabled}>
+      <Animated.View style={[styles.toggle, trackStyle]}>
+        <Animated.View style={[styles.toggleKnob, knobStyle]} />
+      </Animated.View>
+    </Pressable>
   );
 }
 
@@ -283,7 +356,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: tokens.color.line,
     justifyContent: "center",
-    paddingHorizontal: 3
+    paddingHorizontal: 3,
+    overflow: "hidden"
   },
   toggleOn: {
     backgroundColor: tokens.color.primary
@@ -292,11 +366,19 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: "white",
-    alignSelf: "flex-start"
+    backgroundColor: "white"
   },
   toggleKnobOn: {
-    alignSelf: "flex-end"
+    // kept for backward compat, animation now uses translateX
+  },
+  toggleDisabled: {
+    opacity: 0.6
+  },
+  bucketDesc: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.small,
+    lineHeight: 16,
+    marginTop: 2
   },
   timeRow: {
     gap: tokens.space.sm

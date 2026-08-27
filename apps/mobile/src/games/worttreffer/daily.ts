@@ -3,6 +3,7 @@ import { getWordLength, isSupportedWordLength, pickRandomTargetWord, type Suppor
 
 import { WORTTREFFER_CONTENT_VERSION, worttrefferTargetsByLength } from "./content";
 import { createWorttrefferState } from "./engine";
+import { BucketPreset, getWordsByLengthForPreset } from "@/games/wordBuckets";
 import { WorttrefferPuzzle } from "./types";
 
 const maxAttemptsByLength = { 4: 5, 5: 6, 6: 7, 7: 8 } as const satisfies Record<SupportedWordLength, number>;
@@ -13,14 +14,15 @@ const worttrefferWordLengthWeights = [
   { length: 7, weight: 15 },
 ] as const satisfies readonly WordLengthWeight[];
 
-export function createDailyWorttrefferGame(date = new Date()) {
+export function createDailyWorttrefferGame(date = new Date(), preset: BucketPreset = "klassisch") {
   const dateKey = getBerlinDateKey(date);
 
-  return createNextWorttrefferGame(undefined, dateKey);
+  return createNextWorttrefferGame(undefined, dateKey, preset);
 }
 
-export function createNextWorttrefferGame(previousAnswer?: string, dateKey = "Freies Spiel") {
-  const { answer, wordLength } = pickRandomTargetWord(worttrefferTargetsByLength, previousAnswer, worttrefferWordLengthWeights);
+export function createNextWorttrefferGame(previousAnswer?: string, dateKey = "Freies Spiel", preset: BucketPreset = "klassisch") {
+  const targets = preset === "klassisch" ? worttrefferTargetsByLength : getWordsByLengthForPreset(preset);
+  const { answer, wordLength } = pickRandomTargetWord(targets, previousAnswer, worttrefferWordLengthWeights);
   const puzzle = createWorttrefferPuzzle(answer, wordLength, `worttreffer-next-${Date.now()}`);
 
   return { dateKey, puzzle, state: createWorttrefferState(puzzle) };

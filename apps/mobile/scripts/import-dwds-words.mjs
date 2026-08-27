@@ -16,6 +16,41 @@ const DWDS_ALLOWED_POS = new Set(["Adjektiv", "Adverb", "Interjektion", "Substan
 const BLOCKED_WORDS = new Set([]);
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const frequencyTsvPath = path.resolve(scriptDir, "data/subtlex-de.tsv");
+const wordConfigPath = path.resolve(scriptDir, "../src/games/wordConfig.ts");
+
+// Load central config (single source of truth). Falls back to defaults if file missing.
+async function loadWordConfig() {
+  try {
+    const raw = await import("node:fs/promises").then((m) => m.readFile(wordConfigPath, "utf8"));
+    const easy = Number(raw.match(/easy:\s*([0-9.]+)/)?.[1] ?? 3.8);
+    const medium = Number(raw.match(/medium:\s*([0-9.]+)/)?.[1] ?? 2.2);
+    const hard = Number(raw.match(/hard:\s*([0-9.]+)/)?.[1] ?? 1.5);
+    const thresholds = {};
+    const block = raw.match(/WORD_THRESHOLDS_BY_LENGTH\s*=\s*\{([^}]+)\}/s)?.[1] ?? "";
+    for (const m of block.matchAll(/(\d):\s*([0-9.]+)/g)) {
+      thresholds[Number(m[1])] = Number(m[2]);
+    }
+    return {
+      ZIPF_EASY_THRESHOLD: easy,
+      ZIPF_MEDIUM_THRESHOLD: medium,
+      ZIPF_HARD_THRESHOLD: hard,
+      thresholdsByLength: thresholds,
+    };
+  } catch {
+    return {
+      ZIPF_EASY_THRESHOLD: 3.8,
+      ZIPF_MEDIUM_THRESHOLD: 2.2,
+      ZIPF_HARD_THRESHOLD: 1.5,
+      thresholdsByLength: { 4: 1.5, 5: 2.2, 6: 2.2, 7: 2.2 },
+    };
+  }
+}
+const wordConfig = await loadWordConfig();
+const ZIPF_EASY_THRESHOLD = wordConfig.ZIPF_EASY_THRESHOLD;
+const ZIPF_MEDIUM_THRESHOLD = wordConfig.ZIPF_MEDIUM_THRESHOLD;
+const ZIPF_HARD_THRESHOLD = wordConfig.ZIPF_HARD_THRESHOLD;
+const WORD_THRESHOLDS_BY_LENGTH = wordConfig.thresholdsByLength;
 const cacheDir = path.resolve(scriptDir, ".cache/word-import");
 const ltZipPath = path.join(cacheDir, "LanguageTool-stable.zip");
 const ltDir = path.join(cacheDir, "lt");
@@ -115,26 +150,91 @@ function isAllowedDwdsEntry(entry) {
 
 function isAllowedPosTag(form, lemma, tag) {
   if (tag.startsWith("SUB:")) {
+    // Keep all SUB forms (including GEN) in allowedGuesses so Wortleiter graph stays connected;
+    // genitive will be bucketed separately and never picked as target (all presets).
     return true;
   }
 
   if (tag.startsWith("VER:")) {
-    return (
-      (tag.includes(":INF") || tag.includes(":PRÄ:") || tag.includes(":PRT:")) &&
-      !tag.includes(":KJ") &&
-      !tag.includes(":IMP") &&
-      !tag.includes(":PA")
-    );
+    // Allow all verb forms so we can bucket them (base INF, finite PRÄ/PRT, hard PA/KJ/IMP).
+    // ADJ: we allow all so hart can include deklinierte Formen.
+    return tag.includes(":INF") || tag.includes(":PRÄ:") || tag.includes(":PRT:") || tag.includes(":PA") || tag.includes(":KJ") || tag.includes(":IMP");
   }
 
   if (tag.startsWith("ADJ:")) {
-    return normalizeWord(form) === normalizeWord(lemma) && tag.startsWith("ADJ:PRD");
+    // Allow all adjective forms so we can bucket base (PRD, lemma==form) vs flex (dekliniert/komparativ)
+    return true;
   }
 
   return false;
 }
 
-async function addDwdsWords(words) {
+function classifyBucket(word, tags) {
+  if (!tags || tags.size === 0) return "base"; // DWDS lemma or unknown -> base
+  let hasGenitive = false;
+  let hasPlural = false;
+  let hasVerbFinite = false;
+  let hasPartizip = false;
+  let hasKonjunktiv = false;
+  let hasImperativ = false;
+  let hasHardAdj = false;
+  let hasSubSingular = false;
+  let hasVerbInf = false;
+  let hasAdjPrd = false;
+  for (const tag of tags) {
+    if (tag === "DWDS:BASE") {
+      hasSubSingular = true; // treat DWDS as base
+      continue;
+    }
+    if (tag.includes(":GEN")) hasGenitive = true;
+    if (tag.startsWith("SUB:") && tag.includes(":PLU")) hasPlural = true;
+    if (tag.startsWith("SUB:") && tag.includes(":SIN")) hasSubSingular = true;
+    if (tag.startsWith("VER:") && (tag.includes(":PRÄ:") || tag.includes(":PRT:")) && !tag.includes(":KJ") && !tag.includes(":IMP") && !tag.includes(":PA")) hasVerbFinite = true;
+    if (tag.startsWith("VER:") && tag.includes(":INF")) hasVerbInf = true;
+    if (tag.startsWith("VER:") && tag.includes(":PA")) hasPartizip = true;
+    if (tag.startsWith("VER:") && tag.includes(":KJ")) hasKonjunktiv = true;
+    if (tag.startsWith("VER:") && tag.includes(":IMP")) hasImperativ = true;
+    if (tag.startsWith("ADJ:") && tag.startsWith("ADJ:PRD")) hasAdjPrd = true;
+    if (tag.startsWith("ADJ:") && !tag.startsWith("ADJ:PRD")) hasHardAdj = true;
+  }
+  if (hasGenitive) return "genitive";
+  if (hasPartizip) return "partizip";
+  if (hasKonjunktiv) return "konjunktiv";
+  if (hasImperativ) return "imperativ";
+  if (hasPlural) return "plural";
+  if (hasVerbFinite) return "verb-finite";
+  if (hasHardAdj) return "adj-flex";
+  if (hasSubSingular || hasVerbInf || hasAdjPrd) return "base";
+  if (hasVerbInf) return "base";
+  return "base";
+}
+
+function getTier(zipf) {
+  if (zipf >= ZIPF_EASY_THRESHOLD) return "easy";
+  if (zipf >= ZIPF_MEDIUM_THRESHOLD) return "medium";
+  if (zipf >= ZIPF_HARD_THRESHOLD) return "hard";
+  return "unknown";
+}
+
+async function loadZipfMap() {
+  const map = new Map();
+  if (!(await exists(frequencyTsvPath))) {
+    console.warn(`Frequency data not found at ${frequencyTsvPath}, all words will be treated as unknown.`);
+    return map;
+  }
+  const content = await import("node:fs/promises").then((m) => m.readFile(frequencyTsvPath, "utf8"));
+  for (const line of content.split("\n")) {
+    if (!line || line.startsWith("word\t")) continue;
+    const [word, zipfStr] = line.split("\t");
+    const zipf = Number(zipfStr);
+    if (word && Number.isFinite(zipf)) {
+      map.set(normalizeWord(word), zipf);
+    }
+  }
+  return map;
+}
+
+async function addDwdsWords(words, wordTags) {
   const response = await fetch(DWDS_URL);
 
   if (!response.ok) {
@@ -145,12 +245,16 @@ async function addDwdsWords(words) {
 
   for (const entry of entries) {
     if (isAllowedDwdsEntry(entry)) {
-      words.add(normalizeWord(entry.lemma));
+      const w = normalizeWord(entry.lemma);
+      words.add(w);
+      if (!wordTags.has(w)) wordTags.set(w, new Set());
+      // DWDS lemmas are base forms
+      wordTags.get(w).add("DWDS:BASE");
     }
   }
 }
 
-async function addMorphologyWords(words) {
+async function addMorphologyWords(words, wordTags) {
   const lines = readline.createInterface({ input: createReadStream(posDumpPath, "utf8"), crlfDelay: Infinity });
 
   for await (const line of lines) {
@@ -159,6 +263,8 @@ async function addMorphologyWords(words) {
 
     if (hasValidShape(word) && isAllowedPosTag(form, lemma, tag)) {
       words.add(word);
+      if (!wordTags.has(word)) wordTags.set(word, new Set());
+      wordTags.get(word).add(tag);
     }
   }
 }
@@ -168,13 +274,14 @@ await ensureLanguageTool();
 await ensureGermanPosDump();
 
 const words = new Set();
-await addDwdsWords(words);
-await addMorphologyWords(words);
+const wordTags = new Map(); // word -> Set<tag>
+await addDwdsWords(words, wordTags);
+await addMorphologyWords(words, wordTags);
 
 const smokeTestsByLength = {
   5: {
-    included: ["panne", "pfote", "hunde", "türen", "sagte", "läuft", "klein"],
-    excluded: ["gutem"]
+    included: ["panne", "pfote", "hunde", "türen", "sagte", "läuft", "klein", "gutem"],
+    excluded: []
   },
   6: {
     included: ["banane", "fragen", "laufen"],
@@ -204,6 +311,28 @@ if (smokeTests) {
 const collator = new Intl.Collator("de-DE", { sensitivity: "base" });
 const sortedWords = Array.from(words).sort(collator.compare);
 
+// Build tiered targets from frequency data (SUBTLEX-DE via FrequencyWords) + morphology buckets.
+// "Better have than need": store zipf/tier/bucket for all words. Genitive already dropped in isAllowedPosTag.
+const zipfMap = await loadZipfMap();
+const wordMeta = sortedWords.map((word) => {
+  const zipf = zipfMap.get(word) ?? 1.0;
+  const tags = wordTags.get(word) ?? new Set();
+  const bucket = classifyBucket(word, tags);
+  return { word, zipf: Math.round(zipf * 100) / 100, tier: getTier(zipf), bucket };
+});
+const classicThreshold = WORD_THRESHOLDS_BY_LENGTH[wordLength] ?? ZIPF_MEDIUM_THRESHOLD;
+const hartThreshold = Math.min(classicThreshold, ZIPF_HARD_THRESHOLD);
+const isBaseEligible = (m) => m.bucket === "base" && m.zipf >= classicThreshold;
+const isErweitertEligible = (m) => (m.bucket === "base" || m.bucket === "plural" || m.bucket === "verb-finite") && m.zipf >= classicThreshold;
+const isHartEligible = (m) => m.bucket !== "genitive" && m.zipf >= hartThreshold; // hart = all non-genitive buckets but at least hart/classic lower
+// classic = base only (klassisch), erweitert = base+plural+verb-finite, hart = all (genitive already excluded)
+const targetWords = wordMeta.filter(isBaseEligible).map((m) => m.word);
+const erweitertWords = wordMeta.filter(isErweitertEligible).map((m) => m.word);
+const hartWords = wordMeta.filter(isHartEligible).map((m) => m.word);
+const hardWords = wordMeta.filter((m) => m.zipf >= ZIPF_HARD_THRESHOLD && m.zipf < ZIPF_MEDIUM_THRESHOLD).map((m) => m.word);
+const easyWords = wordMeta.filter((m) => m.tier === "easy").map((m) => m.word);
+const mediumWords = wordMeta.filter((m) => m.tier === "medium").map((m) => m.word);
+
 await mkdir(path.dirname(outputPath), { recursive: true });
 await writeFile(
   outputPath,
@@ -214,4 +343,54 @@ await writeFile(
   "utf8"
 );
 
+// Also emit tiered files alongside the allowed guesses (same directory, different names).
+const dir = path.dirname(outputPath);
+const baseName = path.basename(outputPath);
+// Keep shared/7-letter naming compatible: "allowedGuesses7.ts" -> "targetWords7.ts" etc. For normal paths use "targetWords.ts"
+const isSharedSeven = outputPath.includes("shared/generated");
+const targetFileName = isSharedSeven ? "targetWords7.ts" : "targetWords.ts";
+const metaFileName = isSharedSeven ? "wordMeta7.ts" : "wordMeta.ts";
+
+const targetPath = path.join(dir, targetFileName);
+const metaPath = path.join(dir, metaFileName);
+
+await writeFile(
+  targetPath,
+  `// Generated by scripts/import-dwds-words.mjs. Do not edit by hand.\n` +
+    `// Tier thresholds: easy ≥${ZIPF_EASY_THRESHOLD}, medium ≥${ZIPF_MEDIUM_THRESHOLD} (classic = easy+medium ∩ base, per-length threshold ${classicThreshold} for ${wordLength}), hard ≥${ZIPF_HARD_THRESHOLD}.\n` +
+    `// Buckets: base (klassisch), plural + verb-finite (erweitert), all (hart). Genitive dropped completely.\n` +
+    `// Source: SUBTLEX-DE approximation via FrequencyWords de_50k (FrequencyWords + SUBTLEX Zipf per billion) at ${path.relative(path.resolve(scriptDir, ".."), frequencyTsvPath)}.\n` +
+    `export const generatedTargetWords = ${JSON.stringify(targetWords, null, 2)} as const;\n`,
+  "utf8"
+);
+
+// Also emit bucket-specific files for erweitert/hart presets (same dir).
+const erweitertPath = path.join(dir, isSharedSeven ? "erweitertWords7.ts" : "erweitertWords.ts");
+const hartPath = path.join(dir, isSharedSeven ? "hartWords7.ts" : "hartWords.ts");
+await writeFile(
+  erweitertPath,
+  `// Generated by scripts/import-dwds-words.mjs. Do not edit by hand.\n` +
+    `// Erweitert = base + plural + verb-finite ∩ Zipf≥${classicThreshold} (per-length for ${wordLength}).\n` +
+    `export const generatedErweitertWords = ${JSON.stringify(erweitertWords, null, 2)} as const;\n`,
+  "utf8"
+);
+await writeFile(
+  hartPath,
+  `// Generated by scripts/import-dwds-words.mjs. Do not edit by hand.\n` +
+    `// Hart = all buckets ∩ Zipf≥${ZIPF_HARD_THRESHOLD} (genitive excluded).\n` +
+    `export const generatedHartWords = ${JSON.stringify(hartWords, null, 2)} as const;\n`,
+  "utf8"
+);
+
+await writeFile(
+  metaPath,
+  `// Generated by scripts/import-dwds-words.mjs. Do not edit by hand.\n` +
+    `// Zipf = log10(freq per billion) from FrequencyWords de_50k (total 151M tokens). Tier thresholds: easy ≥${ZIPF_EASY_THRESHOLD}, medium ≥${ZIPF_MEDIUM_THRESHOLD}, hard ≥${ZIPF_HARD_THRESHOLD}.\n` +
+    `// Bucket: base (klassisch), plural, verb-finite (erweitert), other hard. Genitive dropped. Contains zipf/tier/bucket for every allowed guess.\n` +
+    `export const generatedWordMeta = ${JSON.stringify(wordMeta, null, 2)} as const;\n`,
+  "utf8"
+);
+
 console.log(`Generated ${sortedWords.length} ${wordLength}-letter guesses at ${path.relative(process.cwd(), outputPath)}.`);
+console.log(`  -> classic ${targetWords.length} (base ∩ ≥${classicThreshold} for ${wordLength}): ${easyWords.length} easy total, ${mediumWords.length} medium total; erweitert ${erweitertWords.length}, hart ${hartWords.length} (≥${hartThreshold}), unknown ${sortedWords.length - hartWords.length}`);
+console.log(`  -> wrote ${path.relative(process.cwd(), targetPath)}, ${path.relative(process.cwd(), erweitertPath)}, ${path.relative(process.cwd(), hartPath)}, ${path.relative(process.cwd(), metaPath)}`);

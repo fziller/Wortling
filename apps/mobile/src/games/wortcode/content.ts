@@ -1,15 +1,18 @@
 import { allowedGuesses as fiveLetterGuesses } from "../between/content";
 import { generatedAllowedGuesses as sevenLetterGuesses } from "../shared/generated/allowedGuesses7";
+import { generatedTargetWords as sevenLetterTargets } from "../shared/generated/targetWords7";
 import type { WordsByLength } from "../wordLengths";
 
 import { generatedAllowedGuesses as sixLetterGuesses } from "./generated/allowedGuesses";
+import { generatedTargetWords as sixLetterTargets } from "./generated/targetWords";
+import { generatedTargetWords as fiveLetterTargets } from "../between/generated/targetWords";
 
-export const WORTCODE_CONTENT_VERSION = 3;
+export const WORTCODE_CONTENT_VERSION = 4;
 
 export const wortcodeTargetsByLength: WordsByLength = {
-  5: [...fiveLetterGuesses],
-  6: [...sixLetterGuesses],
-  7: [...sevenLetterGuesses],
+  5: [...(fiveLetterTargets as unknown as string[])],
+  6: [...(sixLetterTargets as unknown as string[])],
+  7: [...(sevenLetterTargets as unknown as string[])],
 };
 
 export const wortcodeGuessWordsByLength: WordsByLength = {

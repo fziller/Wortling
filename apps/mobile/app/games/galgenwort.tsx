@@ -18,7 +18,9 @@ import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { updateBadgeCount } from "@/notifications/badge";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
+import { BucketPreset } from "@/games/wordBuckets";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
+import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
 type GalgenwortGame = ReturnType<typeof createNextGalgenwortGame>;
@@ -30,7 +32,12 @@ export default function GalgenwortScreen() {
   const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [game, setGame] = useState<GalgenwortGame>(() => createNextGalgenwortGame(undefined, today));
+  const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
+  const [game, setGame] = useState<GalgenwortGame>(() => createNextGalgenwortGame(undefined, today, "klassisch"));
+
+  useEffect(() => {
+    loadWordBucketSettings().then((s) => setBucketPreset(getPreset(s)));
+  }, []);
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<GalgenwortState>(game.state);
   const [message, setMessage] = useState("");
@@ -116,7 +123,7 @@ export default function GalgenwortScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createNextGalgenwortGame(puzzle.id, today);
+    const nextGame = createNextGalgenwortGame(puzzle.id, today, bucketPreset);
 
     setGame(nextGame);
     setState(nextGame.state);

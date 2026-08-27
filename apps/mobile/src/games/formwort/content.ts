@@ -1,15 +1,15 @@
-import { generatedAllowedGuesses as fiveLetterTargets } from "../between/generated/allowedGuesses";
-import { generatedAllowedGuesses as sixLetterTargets } from "../wortcode/generated/allowedGuesses";
-import { generatedAllowedGuesses as sevenLetterTargets } from "../shared/generated/allowedGuesses7";
+import { generatedTargetWords as fiveLetterTargets } from "../between/generated/targetWords";
+import { generatedTargetWords as sixLetterTargets } from "../wortcode/generated/targetWords";
+import { generatedTargetWords as sevenLetterTargets } from "../shared/generated/targetWords7";
 import { worttrefferGuessWordsByLength } from "../worttreffer/content";
 import type { WordsByLength } from "../wordLengths";
 
-export const FORMWORT_CONTENT_VERSION = 3;
+export const FORMWORT_CONTENT_VERSION = 4;
 
 export const formwortTargetsByLength: WordsByLength = {
-  5: [...fiveLetterTargets],
-  6: [...sixLetterTargets],
-  7: [...sevenLetterTargets],
+  5: [...(fiveLetterTargets as unknown as string[])],
+  6: [...(sixLetterTargets as unknown as string[])],
+  7: [...(sevenLetterTargets as unknown as string[])],
 };
 
 export const formwortGuessWordsByLength: WordsByLength = {

@@ -17,9 +17,11 @@ import type { FormwortState } from "@/games/formwort/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { getWordTileLayout } from "@/games/wordTileLayout";
+import { BucketPreset } from "@/games/wordBuckets";
 import { updateBadgeCount } from "@/notifications/badge";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
+import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
 type FormwortGame = ReturnType<typeof createNextFormwortGame>;
@@ -64,7 +66,12 @@ export default function FormwortScreen() {
   const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
-  const [game, setGame] = useState<FormwortGame>(() => createNextFormwortGame(undefined, today));
+  const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
+  const [game, setGame] = useState<FormwortGame>(() => createNextFormwortGame(undefined, today, "klassisch"));
+
+  useEffect(() => {
+    loadWordBucketSettings().then((s) => setBucketPreset(getPreset(s)));
+  }, []);
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<FormwortState>(game.state);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(game.puzzle.wordLength));
@@ -184,7 +191,7 @@ export default function FormwortScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createNextFormwortGame(puzzle.answer, today);
+    const nextGame = createNextFormwortGame(puzzle.answer, today, bucketPreset);
 
     setGame(nextGame);
     setState(nextGame.state);
