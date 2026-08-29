@@ -21,6 +21,7 @@ export type WorttrefferState = {
   puzzleId: string;
   guesses: WorttrefferGuess[];
   status: GameStatus;
+  revealedIndices?: number[];
 };
 
 export type WorttrefferSubmitResult =

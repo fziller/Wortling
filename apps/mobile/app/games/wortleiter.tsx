@@ -74,6 +74,7 @@ export default function WortleiterScreen() {
   );
   const [cursorIndex, setCursorIndex] = useState(0);
   const [message, setMessage] = useState("");
+  const [shakeTick, setShakeTick] = useState(0);
   const [helpVisible, setHelpVisible] = useState(false);
   const [revealVisible, setRevealVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
@@ -201,6 +202,7 @@ export default function WortleiterScreen() {
       setCursorIndex(0);
     } else {
       stats.recordRejectedGuess(result.reason, inputLetters.join(""));
+      setShakeTick((value) => value + 1);
     }
 
     if (result.ok && result.state.status === "won") {
@@ -326,6 +328,7 @@ export default function WortleiterScreen() {
                   cursorIndex={cursorIndex}
                   letters={inputLetters}
                   onCursorChange={setCursorIndex}
+                  shakeTrigger={shakeTick}
                 />
               </Animated.View>
             ) : null}
@@ -561,7 +564,7 @@ const styles = StyleSheet.create({
   },
   modalCard: {
     width: "100%",
-    maxHeight: "94%",
+    maxHeight: "86%",
     gap: tokens.space.sm,
     padding: tokens.space.md,
     borderRadius: tokens.radius.lg,
@@ -581,7 +584,8 @@ const styles = StyleSheet.create({
   },
   modalLadderScroll: {
     flexGrow: 0,
-    maxHeight: 300,
+    flexShrink: 1,
+    maxHeight: 260,
   },
   modalLadder: {
     alignItems: "center",

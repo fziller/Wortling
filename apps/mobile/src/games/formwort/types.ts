@@ -19,6 +19,7 @@ export type FormwortState = {
   puzzleId: string;
   guesses: FormwortGuess[];
   status: GameStatus;
+  revealedIndices?: number[];
 };
 
 export type FormwortSubmitResult =

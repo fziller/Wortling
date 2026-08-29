@@ -1,4 +1,4 @@
-import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { tokens } from "@/design/tokens";
 
@@ -28,14 +28,14 @@ export function GameResultModal({ actionLabel = "Neues Wort", guesses = [], mess
           {solution ? <Text style={styles.solution}>{solution.toLocaleUpperCase("de-DE")}</Text> : null}
           {message ? <Text style={styles.message}>{message}</Text> : null}
           {guesses.length > 0 ? (
-            <View style={styles.history}>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.historyScroll} contentContainerStyle={styles.history}>
               {guesses.map((guess, index) => (
                 <View key={`${guess}-${index}`} style={styles.guessRow}>
                   <Text style={styles.guessNumber}>{index + 1}</Text>
                   <Text style={styles.guessValue}>{guess.toLocaleUpperCase("de-DE")}</Text>
                 </View>
               ))}
-            </View>
+            </ScrollView>
           ) : null}
           {stats.length > 0 ? (
             <View style={styles.stats}>
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
   },
   card: {
     gap: tokens.space.sm,
+    maxHeight: "86%",
     padding: tokens.space.md,
     borderRadius: tokens.radius.lg,
     backgroundColor: tokens.color.card
@@ -99,6 +100,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: tokens.space.sm,
     borderRadius: tokens.radius.md,
     backgroundColor: "rgba(36, 107, 254, 0.08)"
+  },
+  historyScroll: {
+    flexGrow: 0,
+    flexShrink: 1,
+    maxHeight: 260,
+    borderRadius: tokens.radius.md
   },
   guessRow: {
     flexDirection: "row",

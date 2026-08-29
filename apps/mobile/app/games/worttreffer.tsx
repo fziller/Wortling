@@ -17,6 +17,7 @@ import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
+import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
@@ -27,7 +28,9 @@ import {
   restoreWorttrefferPuzzle,
 } from "@/games/worttreffer/daily";
 import {
+  applyWorttrefferHint,
   getWorttrefferLetterStates,
+  getWorttrefferRevealedLetters,
   revealWorttrefferSolution,
   submitWorttrefferGuess,
 } from "@/games/worttreffer/engine";
@@ -35,6 +38,9 @@ import { WorttrefferState } from "@/games/worttreffer/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
+import { HintIndicator } from "@/components/HintIndicator";
+import { useHintWallet } from "@/hints/useHintWallet";
+import { getHintPolicy, requestAdHint, shouldShowEarnedProgress } from "@/hints/policy";
 import {
   isStartedProgress,
   loadProgress,
@@ -77,6 +83,7 @@ export default function WorttrefferScreen() {
   );
   const [cursorIndex, setCursorIndex] = useState(0);
   const [message, setMessage] = useState("");
+  const [shakeTick, setShakeTick] = useState(0);
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
@@ -85,6 +92,12 @@ export default function WorttrefferScreen() {
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
   const [revealingGuessIndex, setRevealingGuessIndex] = useState<number | null>(null);
   const revealDoneTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hintWallet = useHintWallet();
+  const hintPolicy = getHintPolicy();
+  const revealedLetters = getWorttrefferRevealedLetters(puzzle, state);
+  const revealedSet = new Set(
+    revealedLetters.map((ch, i) => (ch ? i : -1)).filter((i) => i >= 0),
+  );
 
   useEffect(() => {
     return () => {
@@ -104,6 +117,10 @@ export default function WorttrefferScreen() {
     }
   }, [dateKey, posthog]);
 
+  // helper to merge draft with revealed hint letters
+  const mergeDraftWithRevealed = (draft: string[], letters: (string | null)[]) =>
+    draft.map((ch, i) => (letters[i] ? letters[i]! : ch));
+
   useEffect(() => {
     loadProgress<WorttrefferState>("worttreffer", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
@@ -114,7 +131,12 @@ export default function WorttrefferScreen() {
         setGame(nextGame);
         setState(progress.state);
         const draft = Array.isArray(progress.draft) ? progress.draft.map(String).slice(0, nextGame.puzzle.wordLength) : [];
-        setInputLetters(draft.length === nextGame.puzzle.wordLength ? draft : createEmptyInput(nextGame.puzzle.wordLength));
+        const base = draft.length === nextGame.puzzle.wordLength ? draft : createEmptyInput(nextGame.puzzle.wordLength);
+        const revealed = getWorttrefferRevealedLetters(nextGame.puzzle, progress.state as WorttrefferState);
+        setInputLetters(mergeDraftWithRevealed(base, revealed));
+        // cursor to first non-revealed empty
+        const firstEmpty = mergeDraftWithRevealed(base, revealed).findIndex((ch, i) => !ch && !revealed[i]);
+        if (firstEmpty >= 0) setCursorIndex(firstEmpty);
       }
       setProgressLoaded(true);
     });
@@ -158,36 +180,116 @@ export default function WorttrefferScreen() {
   ).size;
   const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
 
+  function nextEditableIndex(from: number, dir: 1 | -1): number {
+    let idx = from;
+    for (let step = 0; step < puzzle.wordLength; step += 1) {
+      if (!revealedSet.has(idx)) return idx;
+      idx += dir;
+      if (idx < 0) return from;
+      if (idx >= puzzle.wordLength) return from;
+    }
+    return from;
+  }
+
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
-    setInputLetters((current) =>
-      current.map((item, index) => (index === cursorIndex ? letter : item)),
-    );
-    setCursorIndex((current) => Math.min(current + 1, puzzle.wordLength - 1));
+    if (revealedSet.has(cursorIndex)) {
+      const next = nextEditableIndex(cursorIndex + 1, 1);
+      if (revealedSet.has(next)) return;
+      setCursorIndex(next);
+      setInputLetters((current) => current.map((item, index) => (index === next ? letter : item)));
+      const after = nextEditableIndex(next + 1, 1);
+      setCursorIndex(after !== next ? after : Math.min(next + 1, puzzle.wordLength - 1));
+      return;
+    }
+    setInputLetters((current) => current.map((item, index) => (index === cursorIndex ? letter : item)));
+    // move to next non-revealed
+    let next = cursorIndex + 1;
+    while (next < puzzle.wordLength && revealedSet.has(next)) next += 1;
+    setCursorIndex(Math.min(next, puzzle.wordLength - 1));
   }
 
   function backspace() {
+    // never delete revealed letters
+    if (revealedSet.has(cursorIndex)) {
+      let prev = cursorIndex - 1;
+      while (prev >= 0 && revealedSet.has(prev)) prev -= 1;
+      if (prev >= 0) {
+        setCursorIndex(prev);
+        setInputLetters((current) => current.map((item, index) => (index === prev ? "" : item)));
+      }
+      return;
+    }
     setInputLetters((current) => {
       if (current[cursorIndex]) {
-        return current.map((item, index) =>
-          index === cursorIndex ? "" : item,
-        );
+        return current.map((item, index) => (index === cursorIndex ? "" : item));
       }
-
-      const previousIndex = Math.max(cursorIndex - 1, 0);
+      let previousIndex = cursorIndex - 1;
+      while (previousIndex >= 0 && revealedSet.has(previousIndex)) previousIndex -= 1;
+      previousIndex = Math.max(previousIndex, 0);
+      if (revealedSet.has(previousIndex)) return current;
       setCursorIndex(previousIndex);
-
-      return current.map((item, index) =>
-        index === previousIndex ? "" : item,
-      );
+      return current.map((item, index) => (index === previousIndex ? "" : item));
     });
+  }
+
+  async function useHint() {
+    if (state.status !== "playing") return;
+    // ad policy branch – later shows ad, today falls through to wallet check
+    if (hintPolicy === "ads") {
+      const ok = await requestAdHint();
+      if (!ok) {
+        setMessage("Werbung gerade nicht verfügbar.");
+        return;
+      }
+      // ad succeeded -> grant without wallet
+      const next = applyWorttrefferHint(puzzle, state);
+      if (next === state) {
+        setMessage("Alle Buchstaben schon aufgedeckt.");
+        return;
+      }
+      const letters = getWorttrefferRevealedLetters(puzzle, next);
+      setState(next);
+      setInputLetters((prev) => mergeDraftWithRevealed(prev, letters));
+      stats.recordHint({ source: "ad", gameId: "worttreffer" });
+      try { posthog.capture("hint_used", { gameId: "worttreffer", dateKey, source: "ad" }); } catch {}
+      setMessage("Tipp aufgedeckt.");
+      return;
+    }
+
+    if (!hintWallet.canConsume) {
+      setMessage(
+        hintWallet.wallet.balance >= 3 ? "Tipp-Lager voll (3/3)." : `Keine Tipps. Gewinne noch ${3 - hintWallet.wallet.winsSinceLastHint} Runden.`,
+      );
+      return;
+    }
+    const consumed = await hintWallet.tryConsume();
+    if (!consumed) {
+      setMessage("Keine Tipps verfügbar.");
+      return;
+    }
+    const next = applyWorttrefferHint(puzzle, state);
+    if (next === state) {
+      setMessage("Alle Buchstaben schon aufgedeckt.");
+      return;
+    }
+    const letters = getWorttrefferRevealedLetters(puzzle, next);
+    setState(next);
+    setInputLetters((prev) => mergeDraftWithRevealed(prev, letters));
+    // cursor to next editable
+    const firstEmpty = mergeDraftWithRevealed(inputLetters, letters).findIndex((ch, i) => !ch && !letters[i]);
+    if (firstEmpty >= 0) setCursorIndex(firstEmpty);
+    startStats();
+    stats.recordHint({ source: "earned", gameId: "worttreffer", revealedCount: next.revealedIndices?.length });
+    try { posthog.capture("hint_used", { gameId: "worttreffer", dateKey, source: "earned" }); } catch {}
+    setMessage("Tipp: Buchstabe aufgedeckt.");
   }
 
   function startStats() {
     stats.start({ gameId: "worttreffer", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength });
   }
 
-  function submit() {
+  async function submit() {
     startStats();
     const result = submitWorttrefferGuess(puzzle, state, inputLetters.join(""));
 
@@ -207,13 +309,30 @@ export default function WorttrefferScreen() {
       const nextGuessIndex = result.state.guesses.length - 1;
 
       setRevealingGuessIndex(nextGuessIndex);
-      setInputLetters(createEmptyInput(puzzle.wordLength));
-      setCursorIndex(0);
+      // keep revealed hint letters prefilled
+      const nextRevealed = getWorttrefferRevealedLetters(puzzle, result.state);
+      setInputLetters(mergeDraftWithRevealed(createEmptyInput(puzzle.wordLength), nextRevealed));
+      const firstEmpty = nextRevealed.findIndex((ch) => !ch);
+      setCursorIndex(firstEmpty >= 0 ? firstEmpty : 0);
     } else {
       stats.recordRejectedGuess(result.reason, inputLetters.join(""));
+      setShakeTick((value) => value + 1);
     }
     if (result.ok && isFinishedGameStatus(result.state.status)) {
       stats.finish(result.state.status);
+      if (result.state.status === "won") {
+        // earn hint: 3 wins -> +1
+        hintWallet.onWin().then((granted) => {
+          if (granted) setMessage("Tipp erhalten! 💡");
+          try {
+            posthog.capture(granted ? "hint_earned" : "hint_progress", {
+              gameId: "worttreffer",
+              dateKey,
+              winsSinceLastHint: hintWallet.wallet.winsSinceLastHint,
+            });
+          } catch {}
+        });
+      }
       const revealDuration = puzzle.wordLength * TILE_REVEAL_DELAY_MS + TILE_REVEAL_DURATION_MS;
 
       revealDoneTimeoutRef.current = setTimeout(() => {
@@ -282,9 +401,24 @@ export default function WorttrefferScreen() {
     else router.replace("/");
   }
 
+  const hintDisabled = state.status !== "playing" || (hintPolicy !== "ads" && !hintWallet.canConsume);
+  const hintLabel = hintPolicy === "ads" ? "Tipp (Werbung)" : `Tipp (${hintWallet.wallet.balance}/3)`;
+
   return (
     <GameScreenFrame
-      actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
+      actions={
+        <View style={{ flexDirection: "row", gap: 8, alignItems: "center" }}>
+          <HintIndicator
+            balance={hintWallet.wallet.balance}
+            winsSinceLastHint={hintWallet.wallet.winsSinceLastHint}
+            showProgress={shouldShowEarnedProgress(hintPolicy)}
+          />
+          {state.status === "playing" ? (
+            <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} />
+          ) : null}
+          {state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
+        </View>
+      }
       keyboard={{
         disabled: state.status !== "playing",
         letterStates,
@@ -305,7 +439,7 @@ export default function WorttrefferScreen() {
             const inputRow = state.status === "playing" && rowIndex === state.guesses.length;
             const letters = guess ? Array.from(guess.value) : inputRow ? inputLetters : createEmptyInput(puzzle.wordLength);
 
-            return (
+            const rowContent = (
               <Animated.View
                 entering={FadeInDown.duration(tokens.motion.quick)}
                 key={rowIndex}
@@ -314,6 +448,8 @@ export default function WorttrefferScreen() {
               >
                 {letters.map((letter, letterIndex) => {
                   const mark = guess?.marks[letterIndex];
+                  const isHintLocked = inputRow && revealedSet.has(letterIndex);
+                  const hintMark: TileMark | undefined = isHintLocked ? "correct" : mark;
 
                   return (
                     <AnimatedWorttrefferTile
@@ -321,26 +457,41 @@ export default function WorttrefferScreen() {
                       disabled={
                         Boolean(guess) ||
                         !inputRow ||
-                        state.status !== "playing"
+                        state.status !== "playing" ||
+                        isHintLocked
                       }
                       key={`${rowIndex}-${letterIndex}`}
                       letter={letter}
-                      mark={mark}
+                      mark={hintMark}
                       minHeight={tileLayout.minHeight}
-                      onPress={() => setCursorIndex(letterIndex)}
-                      revealed={Boolean(mark) && rowIndex !== revealingGuessIndex}
+                      onPress={() => {
+                        if (isHintLocked) return;
+                        setCursorIndex(letterIndex);
+                      }}
+                      revealed={Boolean(hintMark) && (Boolean(mark) ? rowIndex !== revealingGuessIndex : true)}
                       revealDelay={letterIndex * TILE_REVEAL_DELAY_MS}
                       revealing={Boolean(mark) && rowIndex === revealingGuessIndex}
-                      selected={inputRow && !guess && letterIndex === cursorIndex}
+                      selected={inputRow && !guess && letterIndex === cursorIndex && !isHintLocked}
                       textSize={tileLayout.fontSize}
                     />
                   );
                 })}
               </Animated.View>
             );
+
+            if (inputRow) {
+              return (
+                <ShakeView key={rowIndex} trigger={shakeTick}>
+                  {rowContent}
+                </ShakeView>
+              );
+            }
+
+            return rowContent;
           })}
         </View>
 
+        {message ? <Text style={styles.message}>{message}</Text> : null}
         {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toUpperCase()}</Text> : null}
       </View>
       <ConfirmModal

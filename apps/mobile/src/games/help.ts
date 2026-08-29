@@ -52,9 +52,9 @@ export const gameHelp = {
     title: "So geht Wortcode",
     paragraphs: [
       "Knacke das gesuchte Wort.",
-      "Nach jedem Versuch siehst du nur, wie viele Buchstaben exakt richtig stehen und wie viele weitere enthalten sind.",
+      "Neben jedem Tipp zeigen drei Kästchen: Grün = exakt richtig, Gelb = im Wort enthalten, Rot = nicht im Wort. Die Zahlen sagen dir wie viele.",
       "Du siehst nicht, welche Positionen richtig sind.",
-      "Du kannst Buchstaben in alten Versuchen selbst markieren: Gelb heißt vielleicht enthalten, Grün heißt vielleicht exakt. Diese Farben sind nur deine Notizen."
+      "Tippe auf Buchstaben in alten Versuchen um sie zu markieren: Gelb vielleicht enthalten, Grün vielleicht exakt. Nur deine Notizen."
     ]
   }
 } as const;

@@ -2,19 +2,22 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { tokens } from "@/design/tokens";
 import { getWordTileLayout } from "@/games/wordTileLayout";
+import { ShakeView } from "@/components/ShakeView";
 
 type LetterInputTilesProps = {
   cursorIndex: number;
   disabled?: boolean;
   letters: readonly string[];
   onCursorChange: (index: number) => void;
+  shakeTrigger?: number;
 };
 
-export function LetterInputTiles({ cursorIndex, disabled = false, letters, onCursorChange }: LetterInputTilesProps) {
+export function LetterInputTiles({ cursorIndex, disabled = false, letters, onCursorChange, shakeTrigger = 0 }: LetterInputTilesProps) {
   const tileLayout = getWordTileLayout(letters.length);
 
   return (
-    <View style={[styles.row, { gap: tileLayout.gap }]}>
+    <ShakeView trigger={shakeTrigger}>
+      <View style={[styles.row, { gap: tileLayout.gap }]}>
       {letters.map((letter, index) => {
         const active = !disabled && index === cursorIndex;
 
@@ -31,7 +34,8 @@ export function LetterInputTiles({ cursorIndex, disabled = false, letters, onCur
           </Pressable>
         );
       })}
-    </View>
+      </View>
+    </ShakeView>
   );
 }
 

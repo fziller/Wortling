@@ -26,7 +26,7 @@ export function submitWortleiterGuess(puzzle: WortleiterPuzzle, state: Wortleite
     return { ok: false, state, reason: `Bitte gib ein Wort mit ${puzzle.wordLength} Buchstaben ein.` };
   }
 
-  if (!/^[a-zäöüß]+$/u.test(word)) {
+  if (!/^[a-zäöü]+$/u.test(word)) {
     return { ok: false, state, reason: "Bitte nur Buchstaben eingeben." };
   }
 

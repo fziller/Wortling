@@ -22,6 +22,7 @@ export type WortcodeState = {
   puzzleId: string;
   guesses: WortcodeGuess[];
   status: GameStatus;
+  revealedIndices?: number[];
 };
 
 export type WortcodeSubmitResult =

@@ -1,7 +1,7 @@
 import { DoppelGuessResult, DoppelPuzzle, DoppelState } from "./types";
 
 export function normalizeDoppelGuess(value: string): string {
-  return value.normalize("NFC").trim().toLocaleLowerCase("de-DE");
+  return value.normalize("NFC").trim().toLocaleLowerCase("de-DE").replace(/ß/g, "ss");
 }
 
 export function createDoppelState(puzzle: DoppelPuzzle): DoppelState {

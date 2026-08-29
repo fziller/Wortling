@@ -321,15 +321,17 @@ export default function BetweenScreen() {
             </View>
             <View style={styles.wordStack}>
               <WordTiles dimmed={state.status === "revealed"} filled word={state.lowerBound} />
-              <WordTiles
-                cursorIndex={cursorIndex}
-                disabled={Boolean(centerWord) || Boolean(clearingDirection) || state.status !== "playing"}
-                exitingDirection={clearingDirection}
-                letters={centerWord ? undefined : inputLetters}
-                onTilePress={setCursorIndex}
-                revealed={state.status === "revealed" || state.status === "won"}
-                word={centerWord}
-              />
+              <Animated.View style={shakeStyle}>
+                <WordTiles
+                  cursorIndex={cursorIndex}
+                  disabled={Boolean(centerWord) || Boolean(clearingDirection) || state.status !== "playing"}
+                  exitingDirection={clearingDirection}
+                  letters={centerWord ? undefined : inputLetters}
+                  onTilePress={setCursorIndex}
+                  revealed={state.status === "revealed" || state.status === "won"}
+                  word={centerWord}
+                />
+              </Animated.View>
               <WordTiles dimmed={state.status === "revealed"} filled word={state.upperBound} />
             </View>
           </View>
@@ -337,9 +339,6 @@ export default function BetweenScreen() {
           <Text style={styles.alphabetLabel}>Offener Alphabetbereich</Text>
           <AlphabetStrip lowerBound={state.lowerBound} upperBound={state.upperBound} />
         </Animated.View>
-
-        <Animated.View style={shakeStyle} />
-
       </View>
 
       <HelpModal {...gameHelp.between} onClose={() => setHelpVisible(false)} visible={helpVisible} />

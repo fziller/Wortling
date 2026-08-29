@@ -5,7 +5,7 @@ const allowedGuesses = new Set(guessWords);
 const markRank = { unused: 0, absent: 1, present: 2, correct: 3 } as const;
 
 export function normalizeWorttrefferGuess(value: string): string {
-  return value.normalize("NFC").trim().toLocaleLowerCase("de-DE");
+  return value.normalize("NFC").trim().toLocaleLowerCase("de-DE").replace(/ß/g, "ss");
 }
 
 export function evaluateWorttrefferGuess(answer: string, guess: string): WorttrefferTileMark[] {
@@ -50,7 +50,7 @@ export function submitWorttrefferGuess(puzzle: WorttrefferPuzzle, state: Worttre
     return { ok: false, state, reason: `Bitte gib ein Wort mit ${puzzle.wordLength} Buchstaben ein.` };
   }
 
-  if (!/^[a-zäöüß]+$/u.test(value)) {
+  if (!/^[a-zäöü]+$/u.test(value)) {
     return { ok: false, state, reason: "Bitte nur Buchstaben eingeben." };
   }
 
@@ -89,4 +89,28 @@ export function getWorttrefferLetterStates(state: WorttrefferState): Worttreffer
 
 export function revealWorttrefferSolution(state: WorttrefferState): WorttrefferState {
   return { ...state, status: "revealed" };
+}
+
+export function getWorttrefferHintPosition(puzzle: WorttrefferPuzzle, state: WorttrefferState): number | null {
+  const revealed = new Set(state.revealedIndices ?? []);
+  const available: number[] = [];
+  for (let i = 0; i < puzzle.wordLength; i += 1) {
+    if (!revealed.has(i)) available.push(i);
+  }
+  if (available.length === 0) return null;
+  // pick random unrevealed position
+  return available[Math.floor(Math.random() * available.length)];
+}
+
+export function applyWorttrefferHint(puzzle: WorttrefferPuzzle, state: WorttrefferState): WorttrefferState {
+  if (state.status !== "playing") return state;
+  const pos = getWorttrefferHintPosition(puzzle, state);
+  if (pos === null) return state;
+  return { ...state, revealedIndices: [...(state.revealedIndices ?? []), pos] };
+}
+
+export function getWorttrefferRevealedLetters(puzzle: WorttrefferPuzzle, state: WorttrefferState): (string | null)[] {
+  const letters = Array.from(normalizeWorttrefferGuess(puzzle.answer));
+  const revealed = new Set(state.revealedIndices ?? []);
+  return letters.map((ch, i) => (revealed.has(i) ? ch : null));
 }

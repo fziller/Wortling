@@ -56,6 +56,7 @@ export function isStartedProgress(progress: StoredProgress | null | undefined): 
   if (Array.isArray(state.guessedLetters) && state.guessedLetters.length > 0) return true;
   if (Array.isArray(state.words) && state.words.length > 1) return true;
   if (typeof state.unlockedHints === "number" && state.unlockedHints > 0) return true;
+  if (Array.isArray(state.revealedIndices) && state.revealedIndices.length > 0) return true;
 
   return false;
 }

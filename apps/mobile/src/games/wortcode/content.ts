@@ -7,7 +7,7 @@ import { generatedAllowedGuesses as sixLetterGuesses } from "./generated/allowed
 import { generatedTargetWords as sixLetterTargets } from "./generated/targetWords";
 import { generatedTargetWords as fiveLetterTargets } from "../between/generated/targetWords";
 
-export const WORTCODE_CONTENT_VERSION = 4;
+export const WORTCODE_CONTENT_VERSION = 5;
 
 export const wortcodeTargetsByLength: WordsByLength = {
   5: [...(fiveLetterTargets as unknown as string[])],

@@ -14,11 +14,11 @@ import { generatedHartWords as fourLetterHart } from "../wortleiter/generated/ha
 import type { GalgenwortPuzzle } from "./types";
 import type { BucketPreset } from "@/games/wordBuckets";
 
-export const GALGENWORT_CONTENT_VERSION = 4;
+export const GALGENWORT_CONTENT_VERSION = 5;
 export const GALGENWORT_MAX_WRONG_GUESSES = 8;
 
 function buildPool(words: readonly string[]): string[] {
-  return Array.from(new Set(words)).filter((w) => /^[a-zäöüß]{4,10}$/u.test(w) && !/[qx]/u.test(w));
+  return Array.from(new Set(words)).filter((w) => /^[a-zäöü]{4,10}$/u.test(w) && !/[qx]/u.test(w));
 }
 
 const classicPool = buildPool([

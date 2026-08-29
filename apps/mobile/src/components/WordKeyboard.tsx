@@ -1,5 +1,4 @@
-import { useRef, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { tokens } from "@/design/tokens";
 
@@ -16,28 +15,16 @@ type WordKeyboardProps = {
   submitDisabled?: boolean;
 };
 
-const rows = ["QWERTZUIOP", "ASDFGHJKL", "YXCVBNM"];
-
-const umlautBanks: Record<string, string[]> = {
-  a: ["ä"],
-  o: ["ö"],
-  u: ["ü"],
-  s: ["ß"],
-};
+const rows = ["QWERTZUIOP", "ASDFGHJKLÜ", "YXCVBNMÄÖ"];
 
 export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace, onLetter, onSubmit, showBackspace = true, showSubmit = true, submitDisabled = false }: WordKeyboardProps) {
   return (
     <View style={styles.keyboard}>
-      {rows.map((row, rowIndex) => (
+      {rows.map((row) => (
         <View key={row} style={styles.row}>
           {Array.from(row).map((letter) => {
             const base = letter.toLocaleLowerCase("de-DE");
-            const isUmlautCarrier = umlautBanks[base];
             const state = letterStates[base] ?? "unused";
-
-            if (isUmlautCarrier) {
-              return <UmlautKey key={letter} letter={base} disabled={disabled} letterState={state} onLetter={onLetter} />;
-            }
 
             return (
               <Pressable
@@ -62,65 +49,6 @@ export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace,
         </View>
       ) : null}
     </View>
-  );
-}
-
-type UmlautKeyProps = {
-  letter: string;
-  letterState: KeyboardLetterState;
-  disabled: boolean;
-  onLetter: (letter: string) => void;
-};
-
-function UmlautKey({ letter, letterState, disabled, onLetter }: UmlautKeyProps) {
-  const variants = umlautBanks[letter];
-  const [open, setOpen] = useState(false);
-  const longPressedRef = useRef(false);
-
-  const pick = (variant: string) => {
-    onLetter(variant);
-    setOpen(false);
-  };
-
-  return (
-    <Pressable
-      accessibilityLabel={`Buchstabe ${letter}`}
-      accessibilityRole="button"
-      disabled={disabled}
-      hitSlop={6}
-      delayLongPress={500}
-      onLongPress={() => {
-        longPressedRef.current = true;
-        setOpen(true);
-      }}
-      onPress={() => {
-        if (longPressedRef.current) {
-          longPressedRef.current = false;
-          return;
-        }
-        pick(letter);
-      }}
-      style={({ pressed }) => [styles.key, styles[letterState], pressed && !disabled && styles.pressed, disabled && styles.disabled]}
-    >
-      <Text style={[styles.keyText, letterState !== "unused" && styles.markedText]}>{letter.toUpperCase()}</Text>
-      {open ? (
-        <View style={styles.menu}>
-          {variants.map((variant) => (
-            <Pressable
-              accessibilityLabel={`Buchstabe ${variant}`}
-              accessibilityRole="button"
-              disabled={disabled}
-              hitSlop={6}
-              key={variant}
-              onPress={() => pick(variant)}
-              style={({ pressed }) => [styles.menuKey, pressed && !disabled && styles.pressed, disabled && styles.disabled]}
-            >
-              <Text style={[styles.keyText, disabled && styles.disabledText]}>{variant}</Text>
-            </Pressable>
-          ))}
-        </View>
-      ) : null}
-    </Pressable>
   );
 }
 
@@ -159,14 +87,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: tokens.radius.sm,
-    backgroundColor: "rgba(255, 255, 255, 0.82)",
+    backgroundColor: "rgba(255, 255, 255, 0.55)",
     borderWidth: 1,
     borderColor: tokens.color.line,
-    shadowColor: tokens.color.ink,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2
+    ...Platform.select({
+      ios: {
+        shadowColor: tokens.color.ink,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 0,
+      },
+      default: {
+        shadowColor: tokens.color.ink,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
+      },
+    }),
   },
   actionKey: {
     flex: 1,
@@ -176,11 +117,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: tokens.space.sm,
     borderRadius: tokens.radius.sm,
     borderWidth: 1,
-    shadowColor: tokens.color.ink,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2
+    ...Platform.select({
+      ios: {
+        shadowColor: tokens.color.ink,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 0,
+      },
+      default: {
+        shadowColor: tokens.color.ink,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
+      },
+    }),
   },
   primaryAction: {
     borderColor: tokens.color.primary,
@@ -188,7 +142,7 @@ const styles = StyleSheet.create({
   },
   secondaryAction: {
     borderColor: "rgba(23, 19, 13, 0.22)",
-    backgroundColor: "rgba(253, 251, 247, 0.72)"
+    backgroundColor: "rgba(253, 251, 247, 0.55)"
   },
   keyText: {
     color: tokens.color.ink,
@@ -212,33 +166,8 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.97 }],
     opacity: 0.72
   },
-  menu: {
-    position: "absolute",
-    bottom: "100%",
-    left: 0,
-    right: 0,
-    flexDirection: "row",
-    justifyContent: "center",
-    gap: 3,
-    paddingBottom: 4,
-    pointerEvents: "box-none"
-  },
-  menuKey: {
-    flex: 1,
-    maxWidth: 48,
-    minHeight: 48,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: tokens.radius.sm,
-    backgroundColor: tokens.color.card,
-    borderWidth: 1,
-    borderColor: tokens.color.line
-  },
   disabled: {
     opacity: 0.45
-  },
-  disabledText: {
-    color: tokens.color.muted
   },
   absent: {
     backgroundColor: "#7B736A",

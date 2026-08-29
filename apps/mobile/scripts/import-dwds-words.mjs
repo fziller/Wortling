@@ -135,11 +135,12 @@ function normalizeWord(word) {
   return String(word ?? "")
     .normalize("NFC")
     .trim()
-    .toLocaleLowerCase("de-DE");
+    .toLocaleLowerCase("de-DE")
+    .replace(/ß/g, "ss");
 }
 
 function hasValidShape(word) {
-  return Array.from(word).length === wordLength && /^[a-zäöüß]+$/u.test(word) && !BLOCKED_WORDS.has(word);
+  return Array.from(word).length === wordLength && /^[a-zäöü]+$/u.test(word) && !BLOCKED_WORDS.has(word);
 }
 
 function isAllowedDwdsEntry(entry) {

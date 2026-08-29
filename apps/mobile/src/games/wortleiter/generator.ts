@@ -1,7 +1,7 @@
 import type { WortleiterDifficulty, WortleiterPuzzle } from "./types";
 
 export function normalizeWortleiterWord(value: string): string {
-  return value.normalize("NFC").trim().toLocaleLowerCase("de-DE");
+  return value.normalize("NFC").trim().toLocaleLowerCase("de-DE").replace(/ß/g, "ss");
 }
 
 export function getWordChars(word: string): string[] {

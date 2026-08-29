@@ -6,6 +6,7 @@ import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
+import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
@@ -40,6 +41,7 @@ export default function DoppelScreen() {
   const [state, setState] = useState<DoppelState>(game.state);
   const [input, setInput] = useState("");
   const [message, setMessage] = useState("");
+  const [shakeTick, setShakeTick] = useState(0);
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
@@ -116,6 +118,7 @@ export default function DoppelScreen() {
       setInput("");
     } else {
       stats.recordRejectedGuess(result.reason, input);
+      setShakeTick((value) => value + 1);
     }
     if (result.ok && result.state.status !== "playing") {
       stats.finish("won");
@@ -195,9 +198,11 @@ export default function DoppelScreen() {
           <View style={styles.card}>
             <Text style={styles.sideWord}>{puzzle.leftWord.toUpperCase()}</Text>
             <Text style={styles.plus}>+</Text>
-            <View style={styles.answerBox}>
-              <Text style={styles.answerText}>{(state.solvedAnswer ?? input)?.toLocaleUpperCase("de-DE") || "?".repeat(Array.from(puzzle.solutions[0].answer).length)}</Text>
-            </View>
+            <ShakeView trigger={shakeTick}>
+              <View style={styles.answerBox}>
+                <Text style={styles.answerText}>{(state.solvedAnswer ?? input)?.toLocaleUpperCase("de-DE") || "?".repeat(Array.from(puzzle.solutions[0].answer).length)}</Text>
+              </View>
+            </ShakeView>
             <Text style={styles.plus}>+</Text>
             <Text style={styles.sideWord}>{puzzle.rightWord.toUpperCase()}</Text>
           </View>

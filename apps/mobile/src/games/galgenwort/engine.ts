@@ -3,7 +3,7 @@ import type { KeyboardLetterState } from "@/components/WordKeyboard";
 import type { GalgenwortGuessResult, GalgenwortPuzzle, GalgenwortState } from "./types";
 
 export function normalizeGalgenwortLetter(value: string): string {
-  return Array.from(value.normalize("NFC").trim().toLocaleLowerCase("de-DE"))[0] ?? "";
+  return Array.from(value.normalize("NFC").trim().toLocaleLowerCase("de-DE").replace(/ß/g, "ss"))[0] ?? "";
 }
 
 export function createGalgenwortState(puzzle: GalgenwortPuzzle): GalgenwortState {
@@ -11,7 +11,7 @@ export function createGalgenwortState(puzzle: GalgenwortPuzzle): GalgenwortState
 }
 
 export function getGalgenwortAnswerLetters(answer: string): string[] {
-  return Array.from(answer.normalize("NFC").toLocaleLowerCase("de-DE")).filter((letter) => /^[a-zäöüß]$/u.test(letter));
+  return Array.from(answer.normalize("NFC").toLocaleLowerCase("de-DE").replace(/ß/g, "ss")).filter((letter) => /^[a-zäöü]$/u.test(letter));
 }
 
 export function getGalgenwortWrongLetters(puzzle: GalgenwortPuzzle, state: GalgenwortState): string[] {
@@ -25,7 +25,7 @@ export function getGalgenwortRevealedLetters(puzzle: GalgenwortPuzzle, state: Ga
 
   return Array.from(puzzle.answer).map((letter) => {
     const normalized = normalizeGalgenwortLetter(letter);
-    return guessed.has(normalized) || !/^[a-zäöüß]$/u.test(normalized) ? letter : "";
+    return guessed.has(normalized) || !/^[a-zäöü]$/u.test(normalized) ? letter : "";
   });
 }
 
@@ -42,7 +42,7 @@ export function submitGalgenwortLetter(puzzle: GalgenwortPuzzle, state: Galgenwo
     return { ok: false, state, reason: "Diese Runde ist schon beendet." };
   }
 
-  if (!/^[a-zäöüß]$/u.test(letter)) {
+  if (!/^[a-zäöü]$/u.test(letter)) {
     return { ok: false, state, reason: "Bitte wähle einen Buchstaben." };
   }
 

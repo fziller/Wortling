@@ -4,7 +4,7 @@ import { generatedTargetWords as sevenLetterTargets } from "../shared/generated/
 import { worttrefferGuessWordsByLength } from "../worttreffer/content";
 import type { WordsByLength } from "../wordLengths";
 
-export const FORMWORT_CONTENT_VERSION = 4;
+export const FORMWORT_CONTENT_VERSION = 5;
 
 export const formwortTargetsByLength: WordsByLength = {
   5: [...(fiveLetterTargets as unknown as string[])],

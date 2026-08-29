@@ -8,7 +8,7 @@ import { generatedTargetWords as sixLetterTargets } from "../wortcode/generated/
 import { generatedTargetWords as sevenLetterTargets } from "../shared/generated/targetWords7";
 import type { WordsByLength } from "../wordLengths";
 
-export const WORTTREFFER_CONTENT_VERSION = 5;
+export const WORTTREFFER_CONTENT_VERSION = 6;
 
 export const worttrefferTargetsByLength: WordsByLength = {
   4: [...(fourLetterTargets as unknown as string[])],

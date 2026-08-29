@@ -6,7 +6,7 @@ const allowedGuessSet = new Set(allowedGuesses);
 const wordRankByWord = new Map(allowedGuesses.map((word, index) => [word, index]));
 
 export function normalizeWord(word: string): string {
-  return word.trim().toLocaleLowerCase("de-DE");
+  return word.trim().toLocaleLowerCase("de-DE").replace(/ß/g, "ss");
 }
 
 export function compareWords(left: string, right: string): number {

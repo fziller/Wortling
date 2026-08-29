@@ -4,7 +4,7 @@ import { WortcodeLetterMark, WortcodePuzzle, WortcodeState, WortcodeSubmitResult
 const allowedGuesses = new Set(guessWords);
 
 export function normalizeWortcodeGuess(value: string): string {
-  return value.normalize("NFC").trim().toLocaleLowerCase("de-DE");
+  return value.normalize("NFC").trim().toLocaleLowerCase("de-DE").replace(/ß/g, "ss");
 }
 
 export function evaluateGuess(answer: string, guess: string) {
@@ -57,7 +57,7 @@ export function submitWortcodeGuess(puzzle: WortcodePuzzle, state: WortcodeState
     return { ok: false, state, reason: `Bitte gib ein Wort mit ${puzzle.wordLength} Buchstaben ein.` };
   }
 
-  if (!/^[a-zäöüß]+$/u.test(value)) {
+  if (!/^[a-zäöü]+$/u.test(value)) {
     return { ok: false, state, reason: "Bitte nur Buchstaben eingeben." };
   }
 
@@ -96,4 +96,25 @@ export function toggleWortcodeLetterMark(state: WortcodeState, guessIndex: numbe
 
 export function revealWortcodeSolution(state: WortcodeState): WortcodeState {
   return { ...state, status: "revealed" };
+}
+
+export function getWortcodeHintPosition(puzzle: WortcodePuzzle, state: WortcodeState): number | null {
+  const revealed = new Set(state.revealedIndices ?? []);
+  const available: number[] = [];
+  for (let i = 0; i < puzzle.wordLength; i += 1) if (!revealed.has(i)) available.push(i);
+  if (available.length === 0) return null;
+  return available[Math.floor(Math.random() * available.length)];
+}
+
+export function applyWortcodeHint(puzzle: WortcodePuzzle, state: WortcodeState): WortcodeState {
+  if (state.status !== "playing") return state;
+  const pos = getWortcodeHintPosition(puzzle, state);
+  if (pos === null) return state;
+  return { ...state, revealedIndices: [...(state.revealedIndices ?? []), pos] };
+}
+
+export function getWortcodeRevealedLetters(puzzle: WortcodePuzzle, state: WortcodeState): (string | null)[] {
+  const letters = Array.from(normalizeWortcodeGuess(puzzle.answer));
+  const revealed = new Set(state.revealedIndices ?? []);
+  return letters.map((ch, i) => (revealed.has(i) ? ch : null));
 }

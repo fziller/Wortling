@@ -18,7 +18,7 @@ const COMMON_ENDPOINTS = new Set([
 ]);
 
 function normalizeWord(value) {
-  return String(value ?? "").normalize("NFC").trim().toLocaleLowerCase("de-DE");
+  return String(value ?? "").normalize("NFC").trim().toLocaleLowerCase("de-DE").replace(/ß/g, "ss");
 }
 
 function getChars(word) {
@@ -81,12 +81,12 @@ function difficulty(steps) {
 }
 
 function isReadableWord(word) {
-  return /^[a-zäöüß]{4}$/u.test(word) && !/[qxvy]/u.test(word) && !/^(aa|abä|aar|aas)/u.test(word) && !/(.)\1\1/u.test(word);
+  return /^[a-zäöü]{4}$/u.test(word) && !/[qxvy]/u.test(word) && !/^(aa|abä|aar|aas)/u.test(word) && !/(.)\1\1/u.test(word);
 }
 
 function pathScore(path) {
   const rareLetters = path.join("").match(/[jqxvy]/gu)?.length ?? 0;
-  const umlauts = path.join("").match(/[äöüß]/gu)?.length ?? 0;
+  const umlauts = path.join("").match(/[äöü]/gu)?.length ?? 0;
 
   return rareLetters * 8 + umlauts + Math.abs(4 - (path.length - 1));
 }

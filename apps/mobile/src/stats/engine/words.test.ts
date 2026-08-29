@@ -5,10 +5,10 @@ import { normalizeWord } from "../normalize";
 import { computeWordStats } from "./words";
 
 describe("normalizeWord", () => {
-  it("trims, lowercases and keeps umlauts native", () => {
+  it("trims, lowercases and keeps umlauts native (ß → ss)", () => {
     expect(normalizeWord("  STRASSE ")).toBe("strasse");
     expect(normalizeWord("ÄPFEL")).toBe("äpfel");
-    expect(normalizeWord("Gruß")).toBe("gruß");
+    expect(normalizeWord("Gruß")).toBe("gruss");
     expect(normalizeWord("schön")).toBe("schön");
   });
 });

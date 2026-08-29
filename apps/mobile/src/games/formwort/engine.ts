@@ -68,7 +68,7 @@ export function submitFormwortGuess(puzzle: FormwortPuzzle, state: FormwortState
     return { ok: false, state, reason: `Bitte gib ein Wort mit ${puzzle.wordLength} Buchstaben ein.` };
   }
 
-  if (!/^[a-zäöüß]+$/u.test(value)) {
+  if (!/^[a-zäöü]+$/u.test(value)) {
     return { ok: false, state, reason: "Bitte nur Buchstaben eingeben." };
   }
 
@@ -90,4 +90,25 @@ export function submitFormwortGuess(puzzle: FormwortPuzzle, state: FormwortState
 
 export function revealFormwortSolution(state: FormwortState): FormwortState {
   return { ...state, status: "revealed" };
+}
+
+export function getFormwortHintPosition(puzzle: FormwortPuzzle, state: FormwortState): number | null {
+  const revealed = new Set(state.revealedIndices ?? []);
+  const available: number[] = [];
+  for (let i = 0; i < puzzle.wordLength; i += 1) if (!revealed.has(i)) available.push(i);
+  if (available.length === 0) return null;
+  return available[Math.floor(Math.random() * available.length)];
+}
+
+export function applyFormwortHint(puzzle: FormwortPuzzle, state: FormwortState): FormwortState {
+  if (state.status !== "playing") return state;
+  const pos = getFormwortHintPosition(puzzle, state);
+  if (pos === null) return state;
+  return { ...state, revealedIndices: [...(state.revealedIndices ?? []), pos] };
+}
+
+export function getFormwortRevealedLetters(puzzle: FormwortPuzzle, state: FormwortState): (string | null)[] {
+  const letters = Array.from(normalizeWorttrefferGuess(puzzle.answer));
+  const revealed = new Set(state.revealedIndices ?? []);
+  return letters.map((ch, i) => (revealed.has(i) ? ch : null));
 }

@@ -122,13 +122,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "abäßest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "abasten",
     "zipf": 1,
     "tier": "unknown",
@@ -320,19 +314,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "abbeiße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "abbeißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "abbeize",
     "zipf": 1,
     "tier": "unknown",
@@ -662,25 +644,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "abbüßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "abbüßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "abbüßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "abcashe",
     "zipf": 1,
     "tier": "unknown",
@@ -944,13 +908,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "abendaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "abenden",
     "zipf": 3.09,
     "tier": "medium",
@@ -1232,13 +1190,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "abfloßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "abfluge",
     "zipf": 1,
     "tier": "unknown",
@@ -1310,43 +1262,19 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "abfräße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "abfraßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "abfräst",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "abfreßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "abfriss",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "abfrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "abfröre",
     "zipf": 1,
     "tier": "unknown",
@@ -1544,19 +1472,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "abgieße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "abgießt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "abginge",
     "zipf": 1,
     "tier": "unknown",
@@ -2900,19 +2816,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "abließe",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "abließt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "abliest",
     "zipf": 1,
     "tier": "unknown",
@@ -3104,25 +3008,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "abmaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "abmäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "abmäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "abmehre",
     "zipf": 1,
     "tier": "unknown",
@@ -3764,19 +3650,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "genitive"
   },
-  {
-    "word": "abreiße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "abreißt",
-    "zipf": 2.66,
-    "tier": "medium",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "abreist",
     "zipf": 2.98,
     "tier": "medium",
@@ -4160,25 +4034,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "absaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "absäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "absäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "absatze",
     "zipf": 1,
     "tier": "unknown",
@@ -4256,25 +4112,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "abschoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "abschub",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "abschuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "absegel",
     "zipf": 1,
     "tier": "unknown",
@@ -4664,13 +4508,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "abstieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "abstill",
     "zipf": 1,
     "tier": "unknown",
@@ -4688,31 +4526,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "abstoße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "abstöße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "abstoßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "abstößt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+          {
     "word": "abstraf",
     "zipf": 1,
     "tier": "unknown",
@@ -6248,13 +6062,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "aderlaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "adermin",
     "zipf": 1,
     "tier": "unknown",
@@ -8012,13 +7820,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "altweiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "aluchip",
     "zipf": 1,
     "tier": "unknown",
@@ -8408,19 +8210,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "anaßest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "anäßest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+      {
     "word": "anatmen",
     "zipf": 1,
     "tier": "unknown",
@@ -8510,19 +8300,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "anbeiße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "anbeißt",
-    "zipf": 2.63,
-    "tier": "medium",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "anbekam",
     "zipf": 1,
     "tier": "unknown",
@@ -9320,37 +9098,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "anfräße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "anfraßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "anfreßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+        {
     "word": "anfriss",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "anfrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "anfröre",
     "zipf": 1,
     "tier": "unknown",
@@ -9602,19 +9356,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "angieße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "angießt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "angifte",
     "zipf": 1,
     "tier": "unknown",
@@ -10838,19 +10580,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "anließe",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "anließt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "anliest",
     "zipf": 1,
     "tier": "unknown",
@@ -11000,37 +10730,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "anmaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "anmäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "anmaßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "anmäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "anmaßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+            {
     "word": "anmaule",
     "zipf": 1,
     "tier": "unknown",
@@ -11360,13 +11060,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "imperativ"
   },
-  {
-    "word": "anpaßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "anpatze",
     "zipf": 1,
     "tier": "unknown",
@@ -11486,13 +11180,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "anpreßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "anpries",
     "zipf": 1,
     "tier": "unknown",
@@ -11738,19 +11426,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "genitive"
   },
-  {
-    "word": "anreiße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "anreißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "anreist",
     "zipf": 1,
     "tier": "unknown",
@@ -11972,25 +11648,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "anrußen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "anrußet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "anrußte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "ansäend",
     "zipf": 1,
     "tier": "unknown",
@@ -12140,25 +11798,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "ansaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "ansäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "ansäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "ansäten",
     "zipf": 1,
     "tier": "unknown",
@@ -12242,25 +11882,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "anschiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "anschob",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "anschoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "anschub",
     "zipf": 1,
     "tier": "unknown",
@@ -12272,13 +11900,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "anschuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "ansegel",
     "zipf": 1,
     "tier": "unknown",
@@ -12494,13 +12116,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "anspieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "anspiet",
     "zipf": 1,
     "tier": "unknown",
@@ -12632,37 +12248,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "anstieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "anstoße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "anstöße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "anstoßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "anstößt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+            {
     "word": "anström",
     "zipf": 1,
     "tier": "unknown",
@@ -14618,25 +14204,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "aufaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "aufäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "aufäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "aufatme",
     "zipf": 1,
     "tier": "unknown",
@@ -14672,25 +14240,13 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "aufbeiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "aufbiss",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "aufbißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "aufbock",
     "zipf": 1,
     "tier": "unknown",
@@ -14750,13 +14306,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "auffaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "auffege",
     "zipf": 1,
     "tier": "unknown",
@@ -14798,13 +14348,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "auffraß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "auffror",
     "zipf": 1,
     "tier": "unknown",
@@ -14900,13 +14444,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "aufgieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "aufging",
     "zipf": 3,
     "tier": "medium",
@@ -14918,13 +14456,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "aufgoßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "aufgrab",
     "zipf": 1,
     "tier": "unknown",
@@ -15236,19 +14768,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "auflaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "aufläßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "auflast",
     "zipf": 1,
     "tier": "unknown",
@@ -15308,13 +14828,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "aufließ",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "auflöse",
     "zipf": 1,
     "tier": "unknown",
@@ -15350,19 +14864,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "aufmäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "aufmaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "aufmast",
     "zipf": 1,
     "tier": "unknown",
@@ -15422,13 +14924,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "aufpaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "aufpepp",
     "zipf": 1,
     "tier": "unknown",
@@ -15530,13 +15026,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "aufrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "aufritt",
     "zipf": 1,
     "tier": "unknown",
@@ -15614,19 +15104,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "aufsäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "aufsaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "aufsatz",
     "zipf": 3.68,
     "tier": "medium",
@@ -15980,25 +15458,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "ausaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "ausäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "ausäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "ausatme",
     "zipf": 1,
     "tier": "unknown",
@@ -16040,25 +15500,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "ausbeiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "ausbiss",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "ausbißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "ausböge",
     "zipf": 1,
     "tier": "unknown",
@@ -16142,31 +15590,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "ausfloß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "ausflug",
     "zipf": 4.13,
     "tier": "easy",
     "bucket": "base"
   },
-  {
-    "word": "ausfluß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "ausfraß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "ausfror",
     "zipf": 1,
     "tier": "unknown",
@@ -16244,13 +15674,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "ausgieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "ausging",
     "zipf": 3.35,
     "tier": "medium",
@@ -16262,13 +15686,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "ausgoßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "ausgrub",
     "zipf": 1,
     "tier": "unknown",
@@ -16454,19 +15872,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "auslaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "ausläßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "auslast",
     "zipf": 1,
     "tier": "unknown",
@@ -16532,13 +15938,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "ausließ",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "auslitt",
     "zipf": 1,
     "tier": "unknown",
@@ -16604,43 +16004,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "ausmaße",
-    "zipf": 2.85,
-    "tier": "medium",
-    "bucket": "genitive"
-  },
-  {
-    "word": "ausmäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "ausmaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "ausmeßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+          {
     "word": "ausmiss",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "ausmißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "ausmolk",
     "zipf": 1,
     "tier": "unknown",
@@ -16682,13 +16052,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "ausrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "ausritt",
     "zipf": 2.84,
     "tier": "medium",
@@ -16784,19 +16148,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "aussäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "aussaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "aussäst",
     "zipf": 1,
     "tier": "unknown",
@@ -16832,61 +16184,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "äußerem",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "äußeren",
-    "zipf": 3.6,
-    "tier": "medium",
-    "bucket": "genitive"
-  },
-  {
-    "word": "äußerer",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "äußeres",
-    "zipf": 3.17,
-    "tier": "medium",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "äußerln",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "äußernd",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
-    "word": "äußerns",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "äußerst",
-    "zipf": 4.34,
-    "tier": "easy",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "äußerte",
-    "zipf": 2.94,
-    "tier": "medium",
-    "bucket": "konjunktiv"
-  },
-  {
+                    {
     "word": "aussoff",
     "zipf": 1,
     "tier": "unknown",
@@ -16916,13 +16214,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "ausstoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "austern",
     "zipf": 3.51,
     "tier": "medium",
@@ -18086,19 +17378,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "bandmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "bandpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "bändsel",
     "zipf": 1,
     "tier": "unknown",
@@ -18644,13 +17924,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "baßhorn",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "bassins",
     "zipf": 1,
     "tier": "unknown",
@@ -18662,31 +17936,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "baßlage",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "baßnote",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "basston",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "baßtuba",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "bastard",
     "zipf": 4.46,
     "tier": "easy",
@@ -19046,13 +18302,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "baumnuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "baumten",
     "zipf": 1,
     "tier": "unknown",
@@ -19814,13 +19064,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "partizip"
   },
-  {
-    "word": "befaßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "befehle",
     "zipf": 4.65,
     "tier": "easy",
@@ -19874,19 +19118,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "befleiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
-    "word": "beflißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "befolge",
     "zipf": 3.38,
     "tier": "medium",
@@ -20108,19 +19340,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "begieße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "begießt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "beginge",
     "zipf": 1,
     "tier": "unknown",
@@ -20282,19 +19502,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "partizip"
   },
-  {
-    "word": "begrüße",
-    "zipf": 3.69,
-    "tier": "medium",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "begrüßt",
-    "zipf": 3.76,
-    "tier": "medium",
-    "bucket": "partizip"
-  },
-  {
+      {
     "word": "begucke",
     "zipf": 1,
     "tier": "unknown",
@@ -20804,31 +20012,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "beimäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "beimaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "beimeßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "beimißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+          {
     "word": "beinahe",
     "zipf": 4.47,
     "tier": "easy",
@@ -20906,19 +20090,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "beisäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "beisaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "beisatz",
     "zipf": 1,
     "tier": "unknown",
@@ -20936,25 +20108,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "beißend",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
-    "word": "beißens",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "beißest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "beitrag",
     "zipf": 3.87,
     "tier": "easy",
@@ -21488,19 +20642,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "beließe",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "beließt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "belizer",
     "zipf": 1,
     "tier": "unknown",
@@ -21668,13 +20810,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "partizip"
   },
-  {
-    "word": "bemaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "bembeln",
     "zipf": 1,
     "tier": "unknown",
@@ -21956,13 +21092,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "partizip"
   },
-  {
-    "word": "bepißte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "bepöbel",
     "zipf": 1,
     "tier": "unknown",
@@ -22400,13 +21530,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "berußen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "berüste",
     "zipf": 1,
     "tier": "unknown",
@@ -22490,25 +21614,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "besaßen",
-    "zipf": 3.02,
-    "tier": "medium",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "besäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "besäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "besaufe",
     "zipf": 1,
     "tier": "unknown",
@@ -22550,19 +21656,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "beschiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "beschoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "beschub",
     "zipf": 1,
     "tier": "unknown",
@@ -22574,13 +21668,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "beschuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "beseele",
     "zipf": 1,
     "tier": "unknown",
@@ -22904,13 +21992,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "bestußt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "besuche",
     "zipf": 4.05,
     "tier": "easy",
@@ -23336,13 +22418,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "bettfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "bettler",
     "zipf": 3.6,
     "tier": "medium",
@@ -23792,13 +22868,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "base"
   },
-  {
-    "word": "bewußte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
+    {
     "word": "bezahle",
     "zipf": 4.26,
     "tier": "easy",
@@ -24020,25 +23090,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "bierbaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "bierfaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "biermaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+        {
     "word": "biersud",
     "zipf": 1,
     "tier": "unknown",
@@ -24188,13 +23240,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "bildguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "bildner",
     "zipf": 1,
     "tier": "unknown",
@@ -24566,13 +23612,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "bißchen",
-    "zipf": 3.91,
-    "tier": "easy",
-    "bucket": "genitive"
-  },
-  {
+    {
     "word": "bissens",
     "zipf": 1,
     "tier": "unknown",
@@ -24584,13 +23624,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "bißfest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "bissige",
     "zipf": 1,
     "tier": "unknown",
@@ -24932,25 +23966,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "blaßrot",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "blaßten",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "blaßtet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "blastom",
     "zipf": 1,
     "tier": "unknown",
@@ -25136,19 +24152,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "bleifuß",
-    "zipf": 2.81,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
-    "word": "bleiguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "bleilot",
     "zipf": 1,
     "tier": "unknown",
@@ -25556,13 +24560,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "adj-flex"
   },
-  {
-    "word": "bloßlag",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "blouson",
     "zipf": 1,
     "tier": "unknown",
@@ -26876,13 +25874,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "braufaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "braunem",
     "zipf": 1,
     "tier": "unknown",
@@ -27524,13 +26516,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "brühfaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "brühten",
     "zipf": 1,
     "tier": "unknown",
@@ -27794,13 +26780,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "buchpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "buchsen",
     "zipf": 1,
     "tier": "unknown",
@@ -28628,13 +27608,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "busineß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+    {
     "word": "busnetz",
     "zipf": 1,
     "tier": "unknown",
@@ -28646,61 +27620,25 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "bußbank",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "busseln",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "büßende",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "büßerin",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+      {
     "word": "busserl",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "bußgang",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "bußgeld",
-    "zipf": 2.94,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "bussing",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "bußlied",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "bussole",
     "zipf": 1,
     "tier": "unknown",
@@ -28712,13 +27650,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "büßtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "bustier",
     "zipf": 1,
     "tier": "unknown",
@@ -29930,13 +28862,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "clubboß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "cluster",
     "zipf": 2.79,
     "tier": "medium",
@@ -30626,13 +29552,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "dachfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "dächsel",
     "zipf": 1,
     "tier": "unknown",
@@ -30836,19 +29756,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "daließe",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "daließt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "damalig",
     "zipf": 1,
     "tier": "unknown",
@@ -30968,13 +29876,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "dammriß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "dämmten",
     "zipf": 1,
     "tier": "unknown",
@@ -31274,31 +30176,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "dasaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "dasäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "dasaßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "dasäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+          {
     "word": "daseine",
     "zipf": 1,
     "tier": "unknown",
@@ -32480,13 +31358,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "dickfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "dickpic",
     "zipf": 1,
     "tier": "unknown",
@@ -33824,13 +32696,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "draußen",
-    "zipf": 5.42,
-    "tier": "easy",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "drazäne",
     "zipf": 1,
     "tier": "unknown",
@@ -33950,13 +32816,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "dreifuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "dreimal",
     "zipf": 4.22,
     "tier": "easy",
@@ -34100,13 +32960,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "base"
   },
-  {
-    "word": "drinsaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "drischt",
     "zipf": 1,
     "tier": "unknown",
@@ -35012,13 +33866,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "durchaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "durchix",
     "zipf": 1,
     "tier": "unknown",
@@ -35324,13 +34172,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "ebenmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "ebenste",
     "zipf": 1,
     "tier": "unknown",
@@ -35510,13 +34352,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "eckstoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "eckturm",
     "zipf": 1,
     "tier": "unknown",
@@ -35624,13 +34460,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "adj-flex"
   },
-  {
-    "word": "edelsüß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "edelton",
     "zipf": 1,
     "tier": "unknown",
@@ -35960,13 +34790,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "eichmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "eichten",
     "zipf": 1,
     "tier": "unknown",
@@ -36008,13 +34832,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "eierguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "eiernde",
     "zipf": 1,
     "tier": "unknown",
@@ -36374,25 +35192,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "einbuße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "einbüße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "einbüßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+        {
     "word": "eindick",
     "zipf": 1,
     "tier": "unknown",
@@ -36494,13 +35294,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "einfaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "einfiel",
     "zipf": 3.14,
     "tier": "medium",
@@ -36518,31 +35312,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "einfloß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "einflug",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "einfluß",
-    "zipf": 2.74,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
-    "word": "einfraß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "einfror",
     "zipf": 1,
     "tier": "unknown",
@@ -36620,13 +35396,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "eingieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "einging",
     "zipf": 2.74,
     "tier": "medium",
@@ -36644,13 +35414,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "eingoßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "eingrub",
     "zipf": 1,
     "tier": "unknown",
@@ -36992,19 +35756,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "einlaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "einläßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "einlast",
     "zipf": 1,
     "tier": "unknown",
@@ -37058,13 +35810,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "einließ",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "einlogg",
     "zipf": 1,
     "tier": "unknown",
@@ -37118,13 +35864,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "einnäßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "einnetz",
     "zipf": 1,
     "tier": "unknown",
@@ -37172,13 +35912,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "einpaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "einpenn",
     "zipf": 1,
     "tier": "unknown",
@@ -37226,13 +35960,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "einrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "einritt",
     "zipf": 1,
     "tier": "unknown",
@@ -37316,19 +36044,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "einsäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "einsaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "einsäst",
     "zipf": 1,
     "tier": "unknown",
@@ -37424,13 +36140,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "einstoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "eintast",
     "zipf": 1,
     "tier": "unknown",
@@ -37868,13 +36578,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "eisstoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "eistanz",
     "zipf": 1,
     "tier": "unknown",
@@ -37958,13 +36662,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "eiweiße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+    {
     "word": "eizelle",
     "zipf": 2.71,
     "tier": "medium",
@@ -38876,13 +37574,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "entblöß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "entchen",
     "zipf": 2.73,
     "tier": "medium",
@@ -39212,19 +37904,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "entlaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
-    "word": "entläßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "entlauf",
     "zipf": 1,
     "tier": "unknown",
@@ -39272,13 +37952,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "entließ",
-    "zipf": 2.85,
-    "tier": "medium",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "entlobe",
     "zipf": 1,
     "tier": "unknown",
@@ -39326,13 +38000,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "entnäßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "entnerv",
     "zipf": 1,
     "tier": "unknown",
@@ -39386,13 +38054,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "entreiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "entrinn",
     "zipf": 1,
     "tier": "unknown",
@@ -39404,13 +38066,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "entrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "entrück",
     "zipf": 1,
     "tier": "unknown",
@@ -39980,13 +38636,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "erblaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "erblast",
     "zipf": 1,
     "tier": "unknown",
@@ -40226,13 +38876,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "erdkloß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "erdling",
     "zipf": 2.93,
     "tier": "medium",
@@ -40310,13 +38954,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "erdstoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "erdteil",
     "zipf": 1,
     "tier": "unknown",
@@ -40424,13 +39062,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "partizip"
   },
-  {
-    "word": "erfaßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "erfinde",
     "zipf": 3.3,
     "tier": "medium",
@@ -40574,19 +39206,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "ergieße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "ergießt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "ergonom",
     "zipf": 1,
     "tier": "unknown",
@@ -41216,19 +39836,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "erließe",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "erließt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "erlisch",
     "zipf": 1,
     "tier": "unknown",
@@ -41504,13 +40112,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "erpreßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "erprobe",
     "zipf": 1,
     "tier": "unknown",
@@ -41702,13 +40304,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "erschoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "erschuf",
     "zipf": 3.42,
     "tier": "medium",
@@ -42440,49 +41036,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "eßapfel",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "essbare",
     "zipf": 2.66,
     "tier": "medium",
     "bucket": "adj-flex"
   },
-  {
-    "word": "eßbarem",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "eßbaren",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "eßbarer",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "eßbares",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "eßdiele",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+            {
     "word": "essecke",
     "zipf": 1,
     "tier": "unknown",
@@ -42506,103 +41066,37 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "eßgabel",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "eßgerät",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "essigen",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "plural"
   },
-  {
-    "word": "eßkohle",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "eßküche",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "esslust",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "eßmarke",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "essnapf",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "eßpaket",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "eßpause",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "eßplatz",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+        {
     "word": "essraum",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "eßsucht",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "eßtisch",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "essware",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "eßzwang",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "estamin",
     "zipf": 1,
     "tier": "unknown",
@@ -42746,13 +41240,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "eustreß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "eutroph",
     "zipf": 1,
     "tier": "unknown",
@@ -43370,13 +41858,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "fairneß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "fairste",
     "zipf": 1,
     "tier": "unknown",
@@ -44072,37 +42554,13 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "genitive"
   },
-  {
-    "word": "faßband",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "fassbar",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "faßbare",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "faßbier",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fäßchen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+        {
     "word": "fassend",
     "zipf": 1,
     "tier": "unknown",
@@ -44126,43 +42584,19 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "faßhahn",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "fassion",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "fäßlein",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "faßlich",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "fassten",
     "zipf": 2.73,
     "tier": "medium",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "faßtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "fasstet",
     "zipf": 1,
     "tier": "unknown",
@@ -44174,13 +42608,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "genitive"
   },
-  {
-    "word": "faßwein",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "fastend",
     "zipf": 1,
     "tier": "unknown",
@@ -44570,13 +42998,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "fehlpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "fehltag",
     "zipf": 1,
     "tier": "unknown",
@@ -44714,13 +43136,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "feinguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "feinste",
     "zipf": 3.06,
     "tier": "medium",
@@ -44756,13 +43172,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "plural"
   },
-  {
-    "word": "feldmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "feldruf",
     "zipf": 1,
     "tier": "unknown",
@@ -44828,13 +43238,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "felsriß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "felstal",
     "zipf": 1,
     "tier": "unknown",
@@ -45128,25 +43532,13 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "feßlung",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "festakt",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "festbiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "festere",
     "zipf": 1,
     "tier": "unknown",
@@ -45182,13 +43574,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "festsaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "festtag",
     "zipf": 2.73,
     "tier": "medium",
@@ -45692,13 +44078,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "filmriß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "filmset",
     "zipf": 1,
     "tier": "unknown",
@@ -46826,19 +45206,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "base"
   },
-  {
-    "word": "fleißes",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "fleißig",
-    "zipf": 3.85,
-    "tier": "easy",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "flennen",
     "zipf": 3.02,
     "tier": "medium",
@@ -46970,19 +45338,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "fließen",
-    "zipf": 3.8,
-    "tier": "easy",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "fließet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+      {
     "word": "flieste",
     "zipf": 1,
     "tier": "unknown",
@@ -47168,13 +45524,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "flohbiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "flöhest",
     "zipf": 1,
     "tier": "unknown",
@@ -47234,13 +45584,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "flößbar",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "flössel",
     "zipf": 1,
     "tier": "unknown",
@@ -47258,43 +45602,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "flößend",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
-    "word": "flößens",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "flößest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "flösset",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "flößten",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "flößtet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+      {
     "word": "flötend",
     "zipf": 1,
     "tier": "unknown",
@@ -47540,43 +45854,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "flußaal",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "flussab",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "flußarm",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "flußaue",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "flußauf",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "flußbad",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+          {
     "word": "flüssen",
     "zipf": 2.97,
     "tier": "medium",
@@ -47594,13 +45878,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "flußtal",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "flutend",
     "zipf": 1,
     "tier": "unknown",
@@ -48092,13 +46370,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "formguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "formiat",
     "zipf": 1,
     "tier": "unknown",
@@ -48188,13 +46460,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "fortgoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "forthab",
     "zipf": 1,
     "tier": "unknown",
@@ -48236,13 +46502,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "fortriß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "fortsah",
     "zipf": 1,
     "tier": "unknown",
@@ -48578,19 +46838,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "fraßest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "fräßest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+      {
     "word": "frästen",
     "zipf": 1,
     "tier": "unknown",
@@ -49964,49 +48212,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "fußbade",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußbads",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "fußball",
-    "zipf": 4.07,
-    "tier": "easy",
-    "bucket": "base"
-  },
-  {
-    "word": "fußbank",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußbett",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "füßchen",
-    "zipf": 2.84,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
-    "word": "fußdick",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+                {
     "word": "fussele",
     "zipf": 1,
     "tier": "unknown",
@@ -50030,199 +48236,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "fußende",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußfall",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußfaul",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußfrei",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußhang",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußhoch",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußhupe",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußkalt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußkäse",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußkuss",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußlahm",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußlang",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "füßlein",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+                            {
     "word": "fusslig",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "füßling",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußnote",
-    "zipf": 2.71,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
-    "word": "fußpfad",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußpilz",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußring",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußrist",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußsack",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußsatz",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußspur",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "fußtief",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußtour",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußvolk",
-    "zipf": 2.61,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
-    "word": "fußwarm",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußwege",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "fußwegs",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "fußzehe",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "fußzeug",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+                                      {
     "word": "futsals",
     "zipf": 1,
     "tier": "unknown",
@@ -51038,13 +49058,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "gäßchen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gastank",
     "zipf": 1,
     "tier": "unknown",
@@ -51662,13 +49676,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "geblaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "gebläut",
     "zipf": 1,
     "tier": "unknown",
@@ -51938,13 +49946,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "gebüßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gebüxte",
     "zipf": 1,
     "tier": "unknown",
@@ -52352,31 +50354,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "gefäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "plural"
-  },
-  {
-    "word": "gefäßes",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+      {
     "word": "gefasst",
     "zipf": 4.23,
     "tier": "easy",
     "bucket": "partizip"
   },
-  {
-    "word": "gefaßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gefauch",
     "zipf": 1,
     "tier": "unknown",
@@ -52556,13 +50540,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "geflößt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "geflöte",
     "zipf": 1,
     "tier": "unknown",
@@ -52664,13 +50642,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "gefrieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gefröre",
     "zipf": 1,
     "tier": "unknown",
@@ -52760,13 +50732,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "partizip"
   },
-  {
-    "word": "gefußte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gegafft",
     "zipf": 1,
     "tier": "unknown",
@@ -52922,13 +50888,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "gegrüßt",
-    "zipf": 3.78,
-    "tier": "medium",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "geguckt",
     "zipf": 3.69,
     "tier": "medium",
@@ -53048,13 +51008,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "partizip"
   },
-  {
-    "word": "gehaßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gehaste",
     "zipf": 1,
     "tier": "unknown",
@@ -53636,43 +51590,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "geißbub",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "geißele",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "geißeln",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "geißelt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "geißfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "geißler",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+              {
     "word": "geisten",
     "zipf": 1,
     "tier": "unknown",
@@ -54212,13 +52130,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "partizip"
   },
-  {
-    "word": "geküßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gelaber",
     "zipf": 3.2,
     "tier": "medium",
@@ -54386,19 +52298,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "gelbfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "gelbguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "gelbrot",
     "zipf": 1,
     "tier": "unknown",
@@ -54806,13 +52706,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "partizip"
   },
-  {
-    "word": "gemaßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gemäuer",
     "zipf": 1,
     "tier": "unknown",
@@ -54908,13 +52802,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "partizip"
   },
-  {
-    "word": "gemißte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gemixte",
     "zipf": 1,
     "tier": "unknown",
@@ -55094,13 +52982,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "partizip"
   },
-  {
-    "word": "genäßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "genauem",
     "zipf": 1,
     "tier": "unknown",
@@ -55322,19 +53204,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "genieße",
-    "zipf": 4,
-    "tier": "easy",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "genießt",
-    "zipf": 4.05,
-    "tier": "easy",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "geniest",
     "zipf": 2.82,
     "tier": "medium",
@@ -55652,13 +53522,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "partizip"
   },
-  {
-    "word": "gepaßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gepatzt",
     "zipf": 1,
     "tier": "unknown",
@@ -55766,13 +53630,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "partizip"
   },
-  {
-    "word": "gepißte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "geplagt",
     "zipf": 3.15,
     "tier": "medium",
@@ -55838,13 +53696,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "gepreßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "geprobt",
     "zipf": 3.28,
     "tier": "medium",
@@ -56156,13 +54008,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "gerbfaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gerbten",
     "zipf": 1,
     "tier": "unknown",
@@ -56648,19 +54494,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "verb-finite"
   },
-  {
-    "word": "geschiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "geschoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "gesehen",
     "zipf": 5.83,
     "tier": "easy",
@@ -56858,13 +54692,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "partizip"
   },
-  {
-    "word": "gespaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "gespiel",
     "zipf": 1,
     "tier": "unknown",
@@ -57158,13 +54986,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "partizip"
   },
-  {
-    "word": "gesüßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "getäfel",
     "zipf": 1,
     "tier": "unknown",
@@ -57992,13 +55814,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "partizip"
   },
-  {
-    "word": "gewußte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gewütet",
     "zipf": 1,
     "tier": "unknown",
@@ -58400,25 +56216,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "gießend",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
-    "word": "gießens",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "gießest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "giftarm",
     "zipf": 1,
     "tier": "unknown",
@@ -58586,13 +56384,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "gipsguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gipsten",
     "zipf": 1,
     "tier": "unknown",
@@ -58892,13 +56684,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "gleißen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gleiste",
     "zipf": 1,
     "tier": "unknown",
@@ -59294,13 +57080,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "gneißen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gnocchi",
     "zipf": 1,
     "tier": "unknown",
@@ -60038,13 +57818,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "grauguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "graulen",
     "zipf": 1,
     "tier": "unknown",
@@ -60374,25 +58148,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "grießen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "plural"
-  },
-  {
-    "word": "grießes",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "grießig",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+        {
     "word": "griffel",
     "zipf": 2.81,
     "tier": "medium",
@@ -60644,91 +58400,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "großbau",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "größere",
-    "zipf": 4.24,
-    "tier": "easy",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "großguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "großmut",
-    "zipf": 2.78,
-    "tier": "medium",
-    "bucket": "genitive"
-  },
-  {
-    "word": "großrat",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "großtat",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "größtem",
-    "zipf": 2.81,
-    "tier": "medium",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "größten",
-    "zipf": 4.49,
-    "tier": "easy",
-    "bucket": "genitive"
-  },
-  {
-    "word": "größter",
-    "zipf": 3.91,
-    "tier": "easy",
-    "bucket": "genitive"
-  },
-  {
-    "word": "größtes",
-    "zipf": 3.43,
-    "tier": "medium",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "großtue",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "großtun",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "großtut",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
-    "word": "großzog",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+                              {
     "word": "gröstel",
     "zipf": 1,
     "tier": "unknown",
@@ -60962,55 +58634,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "grüßend",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
-    "word": "grüßens",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "grüßest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "grüßfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "grußfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "grußlos",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "grüßten",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "grüßtet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+                  {
     "word": "grutzen",
     "zipf": 1,
     "tier": "unknown",
@@ -61028,13 +58652,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "gspaßig",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "gstanzl",
     "zipf": 1,
     "tier": "unknown",
@@ -61244,37 +58862,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "gußform",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "gußglas",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "gußnaht",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "gußteil",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "gußware",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+            {
     "word": "gustiös",
     "zipf": 1,
     "tier": "unknown",
@@ -61310,13 +58898,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "guthieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "gütigem",
     "zipf": 1,
     "tier": "unknown",
@@ -61454,13 +59036,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "haarriß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "haarten",
     "zipf": 1,
     "tier": "unknown",
@@ -62294,13 +59870,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "handguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "handhab",
     "zipf": 1,
     "tier": "unknown",
@@ -62324,13 +59894,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "handkuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "händlen",
     "zipf": 1,
     "tier": "unknown",
@@ -62372,13 +59936,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "handriß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "handsam",
     "zipf": 1,
     "tier": "unknown",
@@ -62714,13 +60272,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "hartguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "hartheu",
     "zipf": 1,
     "tier": "unknown",
@@ -62906,43 +60458,19 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "häßlich",
-    "zipf": 2.81,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
-    "word": "haßrede",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "hassten",
     "zipf": 3.17,
     "tier": "medium",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "haßtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "hasstet",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "haßvoll",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "hastend",
     "zipf": 1,
     "tier": "unknown",
@@ -63728,31 +61256,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "heißend",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
-    "word": "heißens",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "heißere",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "heißest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+          {
     "word": "heister",
     "zipf": 1,
     "tier": "unknown",
@@ -64160,13 +61664,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "herbsüß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "herdarf",
     "zipf": 1,
     "tier": "unknown",
@@ -64940,13 +62438,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "adj-flex"
   },
-  {
-    "word": "hießest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "hievend",
     "zipf": 1,
     "tier": "unknown",
@@ -65108,13 +62600,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "hinfloß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "hinflug",
     "zipf": 1,
     "tier": "unknown",
@@ -65192,13 +62678,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "hingieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "hinging",
     "zipf": 2.94,
     "tier": "medium",
@@ -65210,13 +62690,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "hingoßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "hinguck",
     "zipf": 1,
     "tier": "unknown",
@@ -65318,19 +62792,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "hinlaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "hinläßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "hinlege",
     "zipf": 1,
     "tier": "unknown",
@@ -65354,13 +62816,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "hinließ",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "hinmale",
     "zipf": 1,
     "tier": "unknown",
@@ -65402,13 +62858,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "hinrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "hinrück",
     "zipf": 1,
     "tier": "unknown",
@@ -65444,19 +62894,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "hinsäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "hinsaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "hinsaus",
     "zipf": 1,
     "tier": "unknown",
@@ -65876,25 +63314,13 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "hochpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "hochrad",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "hochriß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "hochrot",
     "zipf": 1,
     "tier": "unknown",
@@ -66218,19 +63644,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "hohlfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "hohlmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "hohlste",
     "zipf": 1,
     "tier": "unknown",
@@ -66410,13 +63824,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "holzfaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "holzgas",
     "zipf": 1,
     "tier": "unknown",
@@ -66428,13 +63836,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "holzmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "holzski",
     "zipf": 1,
     "tier": "unknown",
@@ -67976,13 +65378,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "impfpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "impften",
     "zipf": 1,
     "tier": "unknown",
@@ -69002,13 +66398,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "jagdroß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "jagdzug",
     "zipf": 1,
     "tier": "unknown",
@@ -71378,13 +68768,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "käsefuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "käserad",
     "zipf": 1,
     "tier": "unknown",
@@ -72344,13 +69728,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "keßheit",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "kessler",
     "zipf": 3.17,
     "tier": "medium",
@@ -72656,13 +70034,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "kienruß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "kiesend",
     "zipf": 1,
     "tier": "unknown",
@@ -74222,13 +71594,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "klubboß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "kluften",
     "zipf": 1,
     "tier": "unknown",
@@ -74660,13 +72026,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "kneißen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "knesset",
     "zipf": 1,
     "tier": "unknown",
@@ -75644,13 +73004,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "kolanuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "kolbens",
     "zipf": 1,
     "tier": "unknown",
@@ -76028,13 +73382,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "kongreß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "königen",
     "zipf": 3.15,
     "tier": "medium",
@@ -76328,13 +73676,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "kopfnuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "köpften",
     "zipf": 1,
     "tier": "unknown",
@@ -77522,13 +74864,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "kreißen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "kreiste",
     "zipf": 1,
     "tier": "unknown",
@@ -78968,13 +76304,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "kurzpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "kürzten",
     "zipf": 1,
     "tier": "unknown",
@@ -79046,19 +76376,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "küßchen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "kußecht",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "küssend",
     "zipf": 1,
     "tier": "unknown",
@@ -79076,31 +76394,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "kußfest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "kußhand",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "küßlein",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "kußmund",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+          {
     "word": "küssten",
     "zipf": 3.22,
     "tier": "medium",
@@ -79940,13 +77234,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "langpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "langsam",
     "zipf": 5.17,
     "tier": "easy",
@@ -80174,25 +77462,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "laßheit",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "lässige",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "läßlich",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "lastarm",
     "zipf": 1,
     "tier": "unknown",
@@ -80456,13 +77732,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "laufpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "laufrad",
     "zipf": 1,
     "tier": "unknown",
@@ -81044,19 +78314,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "leeräße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "leeraßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "leerend",
     "zipf": 1,
     "tier": "unknown",
@@ -81398,13 +78656,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "leibroß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "leibten",
     "zipf": 1,
     "tier": "unknown",
@@ -82364,13 +79616,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "ließest",
-    "zipf": 3.04,
-    "tier": "medium",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "liftboy",
     "zipf": 1,
     "tier": "unknown",
@@ -82412,13 +79658,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "ligaboß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "ligacup",
     "zipf": 1,
     "tier": "unknown",
@@ -82916,13 +80156,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "lochpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "löchrig",
     "zipf": 1,
     "tier": "unknown",
@@ -83540,19 +80774,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "loslaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "losläßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "löslich",
     "zipf": 1,
     "tier": "unknown",
@@ -83564,13 +80786,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "losließ",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "loslöse",
     "zipf": 1,
     "tier": "unknown",
@@ -83606,13 +80822,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "losrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "lossage",
     "zipf": 1,
     "tier": "unknown",
@@ -85916,13 +83126,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "genitive"
   },
-  {
-    "word": "maßband",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "masseln",
     "zipf": 1,
     "tier": "unknown",
@@ -85934,31 +83138,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "maßende",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "masseur",
     "zipf": 3.05,
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "maßgabe",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "maßhält",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "massier",
     "zipf": 1,
     "tier": "unknown",
@@ -85970,97 +83156,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "mäßigem",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "mäßigen",
-    "zipf": 2.79,
-    "tier": "medium",
-    "bucket": "genitive"
-  },
-  {
-    "word": "mäßiger",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "mäßiges",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "mäßiget",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "mäßigst",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "mäßigte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+                {
     "word": "massive",
     "zipf": 3.49,
     "tier": "medium",
     "bucket": "adj-flex"
   },
-  {
-    "word": "maßkrug",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "maßlose",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "maßstab",
-    "zipf": 3.15,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
-    "word": "maßtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "maßvoll",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "maßwerk",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "maßzahl",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+                {
     "word": "mästend",
     "zipf": 1,
     "tier": "unknown",
@@ -86660,31 +83762,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "genitive"
   },
-  {
-    "word": "meißele",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "meißeln",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "meißels",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "meißelt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+          {
     "word": "meistem",
     "zipf": 1,
     "tier": "unknown",
@@ -87134,49 +84212,19 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "genitive"
   },
-  {
-    "word": "meßband",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "messbar",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "meßbare",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "meßbild",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "messbub",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "meßbuch",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "meßdüse",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "messend",
     "zipf": 1,
     "tier": "unknown",
@@ -87206,13 +84254,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "meßglas",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "messias",
     "zipf": 3.45,
     "tier": "medium",
@@ -87248,19 +84290,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "meßstab",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "meßtext",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "messuhr",
     "zipf": 1,
     "tier": "unknown",
@@ -87272,31 +84302,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "genitive"
   },
-  {
-    "word": "meßwein",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "meßwerk",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "meßwert",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "meßzahl",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+          {
     "word": "messzug",
     "zipf": 1,
     "tier": "unknown",
@@ -87938,19 +84944,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "mißfiel",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "mißform",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+      {
     "word": "mission",
     "zipf": 4.74,
     "tier": "easy",
@@ -87962,31 +84956,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "mißlang",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "mißlaut",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "mißlich",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "mißling",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+          {
     "word": "missmut",
     "zipf": 1,
     "tier": "unknown",
@@ -87998,19 +84968,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "mißrate",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "mißriet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "misstag",
     "zipf": 1,
     "tier": "unknown",
@@ -88022,13 +84980,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "mißtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "misstet",
     "zipf": 1,
     "tier": "unknown",
@@ -88040,37 +84992,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "mißtone",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "mißtöne",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "mißtons",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "mißtrau",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
-    "word": "mißwahl",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+            {
     "word": "misteln",
     "zipf": 1,
     "tier": "unknown",
@@ -88106,25 +85028,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "mitaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "mitäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "mitäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "mitdenk",
     "zipf": 1,
     "tier": "unknown",
@@ -88238,19 +85142,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "mitlaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "mitläßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "mitlaut",
     "zipf": 1,
     "tier": "unknown",
@@ -88268,13 +85160,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "mitließ",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "mitlitt",
     "zipf": 1,
     "tier": "unknown",
@@ -88292,13 +85178,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "mitrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "mitropa",
     "zipf": 1,
     "tier": "unknown",
@@ -90140,13 +87020,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "münzfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "münzten",
     "zipf": 1,
     "tier": "unknown",
@@ -90392,43 +87266,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "müßigem",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "müßigen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "müßiger",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "müßiges",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
+          {
     "word": "müssten",
     "zipf": 4.55,
     "tier": "easy",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "müßtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "müsstet",
     "zipf": 3.26,
     "tier": "medium",
@@ -90560,19 +87404,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "mutmaße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "mutmaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "muttern",
     "zipf": 2.74,
     "tier": "medium",
@@ -90680,19 +87512,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "nachäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "nachaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "nachbar",
     "zipf": 4.1,
     "tier": "easy",
@@ -90710,13 +87530,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "nacheßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "nachgab",
     "zipf": 1,
     "tier": "unknown",
@@ -90728,19 +87542,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "nachgoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "nachguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "nachher",
     "zipf": 4.58,
     "tier": "easy",
@@ -90758,13 +87560,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "nachißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "nachkam",
     "zipf": 1,
     "tier": "unknown",
@@ -90782,25 +87578,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "nachlaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "nachlud",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "nachmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "nachruf",
     "zipf": 3.03,
     "tier": "medium",
@@ -90812,13 +87596,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "nachsaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "nächste",
     "zipf": 5.18,
     "tier": "easy",
@@ -91472,49 +88250,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "naßfest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "naßgrau",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "naßkalt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "näßlich",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "naßraum",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+            {
     "word": "nässten",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "näßtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "nässtet",
     "zipf": 1,
     "tier": "unknown",
@@ -93302,25 +90044,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "nußbaum",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "nüßchen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "nußkern",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+        {
     "word": "nutella",
     "zipf": 1,
     "tier": "unknown",
@@ -93722,19 +90446,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "ofenfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "ofenruß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "ofensau",
     "zipf": 1,
     "tier": "unknown",
@@ -93896,13 +90608,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "ohrfluß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "öhrlein",
     "zipf": 1,
     "tier": "unknown",
@@ -95336,13 +92042,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "packmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "packten",
     "zipf": 2.81,
     "tier": "medium",
@@ -95858,13 +92558,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "paranuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "parasem",
     "zipf": 1,
     "tier": "unknown",
@@ -96248,13 +92942,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "paßbild",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "passend",
     "zipf": 3.76,
     "tier": "medium",
@@ -96272,31 +92960,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "paßform",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "paßfoto",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "paßgang",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "paßhöhe",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+          {
     "word": "passier",
     "zipf": 1,
     "tier": "unknown",
@@ -96326,13 +92990,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "paßtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "passtet",
     "zipf": 1,
     "tier": "unknown",
@@ -96344,13 +93002,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "paßwort",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "pastell",
     "zipf": 1,
     "tier": "unknown",
@@ -97886,13 +94538,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "picksüß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "pickten",
     "zipf": 1,
     "tier": "unknown",
@@ -98504,13 +95150,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "pißbude",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "pissend",
     "zipf": 1,
     "tier": "unknown",
@@ -98546,25 +95186,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "pißpott",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "pissten",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "pißtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "pisstet",
     "zipf": 1,
     "tier": "unknown",
@@ -100742,31 +97370,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "preßheu",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "presste",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "preßten",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "preßtet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+      {
     "word": "pretest",
     "zipf": 1,
     "tier": "unknown",
@@ -100784,19 +97394,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "preußen",
-    "zipf": 3.25,
-    "tier": "medium",
-    "bucket": "genitive"
-  },
-  {
-    "word": "preußin",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "preview",
     "zipf": 1,
     "tier": "unknown",
@@ -100886,13 +97484,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "genitive"
   },
-  {
-    "word": "prinzeß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "prinzip",
     "zipf": 4.02,
     "tier": "easy",
@@ -101300,13 +97892,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "prüfmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "prüften",
     "zipf": 2.74,
     "tier": "medium",
@@ -102662,13 +99248,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "querpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "quertal",
     "zipf": 1,
     "tier": "unknown",
@@ -104516,13 +101096,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "raummaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "raumnot",
     "zipf": 1,
     "tier": "unknown",
@@ -105332,13 +101906,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "rehgeiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "rehkalb",
     "zipf": 1,
     "tier": "unknown",
@@ -105632,13 +102200,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "reinriß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "reinste",
     "zipf": 3.83,
     "tier": "easy",
@@ -105692,31 +102254,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "reißaus",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "reißend",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
-    "word": "reißens",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "reißest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+          {
     "word": "reistag",
     "zipf": 1,
     "tier": "unknown",
@@ -107156,19 +103694,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "rißfest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "rißfrei",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "rissige",
     "zipf": 1,
     "tier": "unknown",
@@ -107180,19 +103706,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "rißpilz",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "rißwerk",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "ritalin",
     "zipf": 2.75,
     "tier": "medium",
@@ -107936,61 +104450,19 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "roßarzt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "rößchen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "roßegel",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+        {
     "word": "rössern",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "plural"
   },
-  {
-    "word": "roßhaar",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "roßhaut",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "roßkamm",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+        {
     "word": "rosskur",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "rößlein",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "rostend",
     "zipf": 1,
     "tier": "unknown",
@@ -108554,13 +105026,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "rückpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "rückrad",
     "zipf": 1,
     "tier": "unknown",
@@ -109238,13 +105704,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "rußfrei",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "russist",
     "zipf": 1,
     "tier": "unknown",
@@ -109262,13 +105722,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "rußspur",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "rüstend",
     "zipf": 1,
     "tier": "unknown",
@@ -109886,13 +106340,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "salzfaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "salzige",
     "zipf": 2.63,
     "tier": "medium",
@@ -110606,13 +107054,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "saufraß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "saugeil",
     "zipf": 1,
     "tier": "unknown",
@@ -110678,13 +107120,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "sauheiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "sauhirt",
     "zipf": 1,
     "tier": "unknown",
@@ -111536,19 +107972,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "imperativ"
   },
-  {
-    "word": "scheiße",
-    "zipf": 5.61,
-    "tier": "easy",
-    "bucket": "genitive"
-  },
-  {
-    "word": "scheißt",
-    "zipf": 3.58,
-    "tier": "medium",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "scheite",
     "zipf": 1,
     "tier": "unknown",
@@ -111914,19 +108338,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "plural"
   },
-  {
-    "word": "schieße",
-    "zipf": 4.05,
-    "tier": "easy",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "schießt",
-    "zipf": 4.43,
-    "tier": "easy",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "schiete",
     "zipf": 1,
     "tier": "unknown",
@@ -111998,13 +108410,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "schipaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "schipfe",
     "zipf": 1,
     "tier": "unknown",
@@ -112232,13 +108638,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "imperativ"
   },
-  {
-    "word": "schleiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "schlemm",
     "zipf": 1,
     "tier": "unknown",
@@ -112286,13 +108686,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "schließ",
-    "zipf": 4.19,
-    "tier": "easy",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "schliff",
     "zipf": 2.93,
     "tier": "medium",
@@ -112328,13 +108722,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "schlißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "schlitz",
     "zipf": 3.3,
     "tier": "medium",
@@ -112346,19 +108734,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "verb-finite"
   },
-  {
-    "word": "schloße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "schloßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "schlote",
     "zipf": 1,
     "tier": "unknown",
@@ -112520,13 +108896,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "schmeiß",
-    "zipf": 3.96,
-    "tier": "easy",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "schmelz",
     "zipf": 1,
     "tier": "unknown",
@@ -112574,13 +108944,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "schmißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "schmitz",
     "zipf": 2.93,
     "tier": "medium",
@@ -113084,19 +109448,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "schößel",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "schoßes",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+      {
     "word": "schosst",
     "zipf": 1,
     "tier": "unknown",
@@ -113738,13 +110090,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "base"
   },
-  {
-    "word": "schweiß",
-    "zipf": 3.73,
-    "tier": "medium",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "schweiz",
     "zipf": 3.97,
     "tier": "easy",
@@ -114920,13 +111266,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "senkfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "senklot",
     "zipf": 1,
     "tier": "unknown",
@@ -115160,13 +111500,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "seßhaft",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "session",
     "zipf": 2.78,
     "tier": "medium",
@@ -115226,13 +111560,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "setzmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "setzten",
     "zipf": 3.77,
     "tier": "medium",
@@ -117668,61 +113996,19 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "spaßbad",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "spässen",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "plural"
   },
-  {
-    "word": "spaßend",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
-    "word": "spaßens",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+      {
     "word": "spasses",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "spaßest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "spaßige",
-    "zipf": 2.69,
-    "tier": "medium",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "spaßten",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "spaßtet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+          {
     "word": "spastik",
     "zipf": 1,
     "tier": "unknown",
@@ -118178,43 +114464,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "spießen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "spießer",
-    "zipf": 3.28,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
-    "word": "spießes",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "spießet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "spießig",
-    "zipf": 3.17,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
-    "word": "spießte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+              {
     "word": "spinate",
     "zipf": 1,
     "tier": "unknown",
@@ -118400,19 +114650,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "spleiße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "spleißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "splenom",
     "zipf": 1,
     "tier": "unknown",
@@ -118634,19 +114872,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "verb-finite"
   },
-  {
-    "word": "sprieße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "sprießt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "springe",
     "zipf": 3.71,
     "tier": "medium",
@@ -119936,13 +116162,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "staunaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "staunen",
     "zipf": 3.64,
     "tier": "medium",
@@ -120776,19 +116996,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "stießen",
-    "zipf": 3.21,
-    "tier": "medium",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "stießet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+      {
     "word": "stiften",
     "zipf": 3.38,
     "tier": "medium",
@@ -121382,49 +117590,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "genitive"
   },
-  {
-    "word": "stoßaxt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "stoßend",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
-    "word": "stoßens",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "stoßern",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "plural"
-  },
-  {
-    "word": "stoßers",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "stoßest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "stoßkur",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+                {
     "word": "stotzen",
     "zipf": 1,
     "tier": "unknown",
@@ -121550,19 +117716,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "straßab",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "straßen",
-    "zipf": 4.47,
-    "tier": "easy",
-    "bucket": "genitive"
-  },
-  {
+      {
     "word": "stratum",
     "zipf": 1,
     "tier": "unknown",
@@ -121598,19 +117752,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "strauße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "sträuße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+      {
     "word": "streame",
     "zipf": 1,
     "tier": "unknown",
@@ -121742,13 +117884,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "imperativ"
   },
-  {
-    "word": "streßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "stretch",
     "zipf": 2.94,
     "tier": "medium",
@@ -123248,115 +119384,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "süßende",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "süßerem",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "süßeren",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "süßerer",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "süßeres",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "süßeste",
-    "zipf": 3.37,
-    "tier": "medium",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "süßgras",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "süßhahn",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "süßholz",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "süßklee",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "süßkram",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "süßlich",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "süßmaul",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "süßmost",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "süßrahm",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "süßtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "süßware",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
-    "word": "süßwein",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+                                      {
     "word": "sustain",
     "zipf": 1,
     "tier": "unknown",
@@ -123932,13 +119960,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "taktmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "taktung",
     "zipf": 1,
     "tier": "unknown",
@@ -124472,13 +120494,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "genitive"
   },
-  {
-    "word": "täßchen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+    {
     "word": "tastbar",
     "zipf": 1,
     "tier": "unknown",
@@ -124988,13 +121004,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "teerfaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "teerose",
     "zipf": 1,
     "tier": "unknown",
@@ -125822,13 +121832,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "tiefpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "tiefrot",
     "zipf": 1,
     "tier": "unknown",
@@ -126206,13 +122210,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "todblaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "todböse",
     "zipf": 1,
     "tier": "unknown",
@@ -130100,19 +126098,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "base"
   },
-  {
-    "word": "überäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "überaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "überaus",
     "zipf": 3.91,
     "tier": "easy",
@@ -130124,13 +126110,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "überbiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "überbot",
     "zipf": 1,
     "tier": "unknown",
@@ -130154,13 +126134,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "base"
   },
-  {
-    "word": "übereßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "übergab",
     "zipf": 3.29,
     "tier": "medium",
@@ -130178,13 +126152,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "imperativ"
   },
-  {
-    "word": "übergoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "überhin",
     "zipf": 1,
     "tier": "unknown",
@@ -130214,13 +126182,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "überißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "überkam",
     "zipf": 2.98,
     "tier": "medium",
@@ -130274,13 +126236,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "übermaß",
-    "zipf": 2.69,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "übermut",
     "zipf": 2.64,
     "tier": "medium",
@@ -130826,13 +126782,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "partizip"
   },
-  {
-    "word": "umfaßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "umfelde",
     "zipf": 1,
     "tier": "unknown",
@@ -130862,13 +126812,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "umfließ",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "umflöge",
     "zipf": 1,
     "tier": "unknown",
@@ -130886,19 +126830,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "umflöße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "umfloßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "umforme",
     "zipf": 1,
     "tier": "unknown",
@@ -131030,19 +126962,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "umgieße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "umgießt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "umginge",
     "zipf": 1,
     "tier": "unknown",
@@ -131576,19 +127496,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "umreiße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "umreißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "umreite",
     "zipf": 1,
     "tier": "unknown",
@@ -131852,31 +127760,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "umstieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "umstoße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "umstoßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "umstößt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+          {
     "word": "umsturz",
     "zipf": 1,
     "tier": "unknown",
@@ -132272,13 +128156,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "ungemäß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "ungenau",
     "zipf": 2.98,
     "tier": "medium",
@@ -132302,13 +128180,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "ungewiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "unglück",
     "zipf": 4.3,
     "tier": "easy",
@@ -132518,13 +128390,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "unmäßig",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "unmenge",
     "zipf": 2.74,
     "tier": "medium",
@@ -132536,13 +128402,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "unmüßig",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "unmutes",
     "zipf": 1,
     "tier": "unknown",
@@ -133880,13 +129740,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "partizip"
   },
-  {
-    "word": "verbeiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "verbene",
     "zipf": 1,
     "tier": "unknown",
@@ -133928,13 +129782,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "verbißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "verbitt",
     "zipf": 1,
     "tier": "unknown",
@@ -134036,19 +129884,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "verbüße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "verbüßt",
-    "zipf": 2.68,
-    "tier": "medium",
-    "bucket": "partizip"
-  },
-  {
+      {
     "word": "verdamm",
     "zipf": 1,
     "tier": "unknown",
@@ -134126,19 +129962,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "verdroß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "verdruß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "verdumm",
     "zipf": 1,
     "tier": "unknown",
@@ -134288,13 +130112,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "verfaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "verfaul",
     "zipf": 1,
     "tier": "unknown",
@@ -134348,13 +130166,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "verfloß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "verfolg",
     "zipf": 2.63,
     "tier": "medium",
@@ -134444,19 +130256,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "vergäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "vergaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "vergast",
     "zipf": 2.71,
     "tier": "medium",
@@ -134498,25 +130298,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "vergeßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "vergibt",
     "zipf": 3.46,
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "vergieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "vergilb",
     "zipf": 1,
     "tier": "unknown",
@@ -134540,13 +130328,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "imperativ"
   },
-  {
-    "word": "vergißt",
-    "zipf": 2.8,
-    "tier": "medium",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "verglas",
     "zipf": 1,
     "tier": "unknown",
@@ -134576,13 +130358,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "vergoßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "vergrab",
     "zipf": 1,
     "tier": "unknown",
@@ -134702,13 +130478,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "verheiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "verheiz",
     "zipf": 1,
     "tier": "unknown",
@@ -134726,13 +130496,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "partizip"
   },
-  {
-    "word": "verhieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "verhilf",
     "zipf": 1,
     "tier": "unknown",
@@ -134960,19 +130724,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "imperativ"
   },
-  {
-    "word": "verlaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
-    "word": "verläßt",
-    "zipf": 3.02,
-    "tier": "medium",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "verlast",
     "zipf": 1,
     "tier": "unknown",
@@ -135092,13 +130844,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "imperativ"
   },
-  {
-    "word": "verließ",
-    "zipf": 4.35,
-    "tier": "easy",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "verlink",
     "zipf": 1,
     "tier": "unknown",
@@ -135188,19 +130934,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "partizip"
   },
-  {
-    "word": "vermäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "vermaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "vermehr",
     "zipf": 1,
     "tier": "unknown",
@@ -135230,13 +130964,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "imperativ"
   },
-  {
-    "word": "vermeßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "vermied",
     "zipf": 1,
     "tier": "unknown",
@@ -135284,13 +131012,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "imperativ"
   },
-  {
-    "word": "vermißt",
-    "zipf": 2.92,
-    "tier": "medium",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "vermöge",
     "zipf": 1,
     "tier": "unknown",
@@ -135398,13 +131120,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "imperativ"
   },
-  {
-    "word": "verpaßt",
-    "zipf": 2.92,
-    "tier": "medium",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "verpatz",
     "zipf": 1,
     "tier": "unknown",
@@ -135434,13 +131150,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "imperativ"
   },
-  {
-    "word": "verpißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "partizip"
-  },
-  {
+    {
     "word": "verplan",
     "zipf": 1,
     "tier": "unknown",
@@ -135518,13 +131228,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "verreiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "verrenk",
     "zipf": 1,
     "tier": "unknown",
@@ -135566,13 +131270,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "verrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "verrück",
     "zipf": 1,
     "tier": "unknown",
@@ -135716,13 +131414,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "imperativ"
   },
-  {
-    "word": "versfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "versieb",
     "zipf": 1,
     "tier": "unknown",
@@ -135758,13 +131450,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "genitive"
   },
-  {
-    "word": "versmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "versoff",
     "zipf": 1,
     "tier": "unknown",
@@ -135812,13 +131498,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "verstoß",
-    "zipf": 3.54,
-    "tier": "medium",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "versuch",
     "zipf": 5.05,
     "tier": "easy",
@@ -135830,19 +131510,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "versüße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "versüßt",
-    "zipf": 2.78,
-    "tier": "medium",
-    "bucket": "partizip"
-  },
-  {
+      {
     "word": "vertage",
     "zipf": 1,
     "tier": "unknown",
@@ -136862,19 +132530,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "plural"
   },
-  {
-    "word": "volläße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "vollaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "vollast",
     "zipf": 1,
     "tier": "unknown",
@@ -136898,25 +132554,13 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "adj-flex"
   },
-  {
-    "word": "volleßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "vollgas",
     "zipf": 3.3,
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "vollgoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "völlige",
     "zipf": 3.39,
     "tier": "medium",
@@ -136928,13 +132572,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "vollißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "vollste",
     "zipf": 1,
     "tier": "unknown",
@@ -137492,13 +133130,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "vorließ",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "vorlöge",
     "zipf": 1,
     "tier": "unknown",
@@ -137714,19 +133346,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "vorsäße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "vorsaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "vorsatz",
     "zipf": 3.26,
     "tier": "medium",
@@ -137762,13 +133382,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "vorstoß",
-    "zipf": 2.87,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "vortage",
     "zipf": 1,
     "tier": "unknown",
@@ -139208,13 +134822,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "wäßrige",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
+    {
     "word": "watende",
     "zipf": 1,
     "tier": "unknown",
@@ -139472,25 +135080,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "wegaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "wegäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "wegäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "wegbier",
     "zipf": 1,
     "tier": "unknown",
@@ -139556,19 +135146,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "wegfloß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "wegfraß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "wegfuhr",
     "zipf": 2.96,
     "tier": "medium",
@@ -139622,13 +135200,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "weggieß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "wegging",
     "zipf": 3.37,
     "tier": "medium",
@@ -139724,19 +135296,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "weglaßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "wegläßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "weglege",
     "zipf": 1,
     "tier": "unknown",
@@ -139754,13 +135314,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "wegließ",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "wegmüde",
     "zipf": 1,
     "tier": "unknown",
@@ -139796,13 +135350,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "wegrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "wegrufe",
     "zipf": 1,
     "tier": "unknown",
@@ -140018,13 +135566,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "wehrpaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "wehrten",
     "zipf": 1,
     "tier": "unknown",
@@ -140306,13 +135848,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "weinfaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "weingut",
     "zipf": 3.19,
     "tier": "medium",
@@ -140360,31 +135896,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "weißeln",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "weißere",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "adj-flex"
-  },
-  {
-    "word": "weißung",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
-    "word": "weißwal",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+          {
     "word": "weistum",
     "zipf": 1,
     "tier": "unknown",
@@ -140882,13 +136394,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "base"
   },
-  {
-    "word": "wertmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "wertung",
     "zipf": 1,
     "tier": "unknown",
@@ -143072,19 +138578,7 @@ export const generatedWordMeta = [
     "tier": "easy",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "wußtest",
-    "zipf": 3.11,
-    "tier": "medium",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "wüßtest",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+      {
     "word": "wusstet",
     "zipf": 3.72,
     "tier": "medium",
@@ -143408,13 +138902,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "zählmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "zahltag",
     "zipf": 3.4,
     "tier": "medium",
@@ -144140,13 +139628,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "zeitmaß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "zeitnah",
     "zipf": 1,
     "tier": "unknown",
@@ -144314,13 +139796,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "zerbeiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "zerbeul",
     "zipf": 1,
     "tier": "unknown",
@@ -144338,13 +139814,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zerbißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "zerblas",
     "zipf": 1,
     "tier": "unknown",
@@ -144398,25 +139868,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zerfloß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "zerfraß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "zerfriß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+        {
     "word": "zergehe",
     "zipf": 1,
     "tier": "unknown",
@@ -144560,13 +140012,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "imperativ"
   },
-  {
-    "word": "zerreiß",
-    "zipf": 2.84,
-    "tier": "medium",
-    "bucket": "imperativ"
-  },
-  {
+    {
     "word": "zerrend",
     "zipf": 1,
     "tier": "unknown",
@@ -144602,13 +140048,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zerrißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "zerrten",
     "zipf": 1,
     "tier": "unknown",
@@ -145118,13 +140558,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "base"
   },
-  {
-    "word": "zinnguß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "zinnlot",
     "zipf": 1,
     "tier": "unknown",
@@ -145160,13 +140594,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "zinsfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "zinsgut",
     "zipf": 1,
     "tier": "unknown",
@@ -145712,19 +141140,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "base"
   },
-  {
-    "word": "zubeiße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "zubeißt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "zubekam",
     "zipf": 1,
     "tier": "unknown",
@@ -145760,13 +141176,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "genitive"
   },
-  {
-    "word": "zubußen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
+    {
     "word": "zuccini",
     "zipf": 1,
     "tier": "unknown",
@@ -145856,13 +141266,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
-  {
-    "word": "zuckfuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "zuckrig",
     "zipf": 1,
     "tier": "unknown",
@@ -145994,13 +141398,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zufaßte",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+    {
     "word": "zufaxen",
     "zipf": 1,
     "tier": "unknown",
@@ -146030,13 +141428,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zufleiß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+    {
     "word": "zuflöge",
     "zipf": 1,
     "tier": "unknown",
@@ -146054,13 +141446,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zufloßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+    {
     "word": "zuflöte",
     "zipf": 1,
     "tier": "unknown",
@@ -146270,19 +141656,7 @@ export const generatedWordMeta = [
     "tier": "medium",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zugieße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "zugießt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "imperativ"
-  },
-  {
+      {
     "word": "zügigem",
     "zipf": 1,
     "tier": "unknown",
@@ -146768,19 +142142,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zuließe",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "zuließt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
+      {
     "word": "zulosen",
     "zipf": 1,
     "tier": "unknown",
@@ -146846,25 +142208,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zumaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "zumäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "zumäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "zumeist",
     "zipf": 2.84,
     "tier": "medium",
@@ -147380,25 +142724,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zusaßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "zusäßen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "zusäßet",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
+        {
     "word": "zusatze",
     "zipf": 1,
     "tier": "unknown",
@@ -147416,19 +142742,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zuschoß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "zuschuß",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
+      {
     "word": "zusehen",
     "zipf": 4.34,
     "tier": "easy",
@@ -147524,31 +142838,7 @@ export const generatedWordMeta = [
     "tier": "unknown",
     "bucket": "verb-finite"
   },
-  {
-    "word": "zustieß",
-    "zipf": 2.77,
-    "tier": "medium",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "zustoße",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "konjunktiv"
-  },
-  {
-    "word": "zustoßt",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "verb-finite"
-  },
-  {
-    "word": "zustößt",
-    "zipf": 3.81,
-    "tier": "easy",
-    "bucket": "verb-finite"
-  },
-  {
+          {
     "word": "zustrom",
     "zipf": 1,
     "tier": "unknown",

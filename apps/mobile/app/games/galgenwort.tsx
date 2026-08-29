@@ -8,6 +8,7 @@ import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
+import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
@@ -41,6 +42,7 @@ export default function GalgenwortScreen() {
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<GalgenwortState>(game.state);
   const [message, setMessage] = useState("");
+  const [shakeTick, setShakeTick] = useState(0);
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
@@ -99,6 +101,7 @@ export default function GalgenwortScreen() {
       stats.recordAcceptedGuess(letter);
     } else {
       stats.recordRejectedGuess(result.reason, letter);
+      setShakeTick((value) => value + 1);
     }
     if (result.ok && isFinishedGameStatus(result.state.status)) {
       stats.finish(result.state.status);
@@ -177,17 +180,19 @@ export default function GalgenwortScreen() {
             <Text style={styles.lengthPill}>{answerLength} Buchstaben</Text>
           </View>
           <Text style={styles.clue}>{puzzle.clue}</Text>
-          <View style={styles.wordRow}>
-            {revealed.map((letter, index) => letter ? (
-              <Animated.Text
-                entering={FadeInDown.duration(tokens.motion.quick).springify()}
-                key={`${index}-${letter}`}
-                style={[styles.wordTile, { fontSize: wordTileFontSize }]}
-              >
-                {letter.toLocaleUpperCase("de-DE")}
-              </Animated.Text>
-            ) : <Text key={`${index}-blank`} style={[styles.wordTile, { fontSize: wordTileFontSize }]}>_</Text>)}
-          </View>
+          <ShakeView trigger={shakeTick}>
+            <View style={styles.wordRow}>
+              {revealed.map((letter, index) => letter ? (
+                <Animated.Text
+                  entering={FadeInDown.duration(tokens.motion.quick).springify()}
+                  key={`${index}-${letter}`}
+                  style={[styles.wordTile, { fontSize: wordTileFontSize }]}
+                >
+                  {letter.toLocaleUpperCase("de-DE")}
+                </Animated.Text>
+              ) : <Text key={`${index}-blank`} style={[styles.wordTile, { fontSize: wordTileFontSize }]}>_</Text>)}
+            </View>
+          </ShakeView>
           <Text style={styles.misses}>Fehler {wrongLetters.length} / {puzzle.maxWrongGuesses}</Text>
         </View>
 
