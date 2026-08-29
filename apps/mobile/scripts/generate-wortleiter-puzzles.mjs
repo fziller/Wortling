@@ -80,8 +80,16 @@ function difficulty(steps) {
   return "hard";
 }
 
+const BLOCKED_ABBREVIATIONS = new Set([
+  "abcs", "abms", "adac", "akws", "asvg", "bdsg", "bmws", "bshg", "btmg", "bvwg",
+  "cpus", "crms", "cvjm", "daad", "ddos", "egmr", "ehec", "ehnl", "ekgs",
+  "fckw", "fdgo", "fsme", "gmbh", "gpus", "hdmi", "http", "isbn", "isdn", "issn",
+  "jvas", "kfzs", "ldpd", "lgbt", "lkws", "mbit", "mpox", "mrna", "mvas", "nvas",
+  "oecd", "oems", "öpnv", "pdfs", "pkws", "pvcs", "rfid", "scsi", "stpo", "stvo",
+]);
+
 function isReadableWord(word) {
-  return /^[a-zäöü]{4}$/u.test(word) && !/[qxvy]/u.test(word) && !/^(aa|abä|aar|aas)/u.test(word) && !/(.)\1\1/u.test(word);
+  return /^[a-zäöü]{4}$/u.test(word) && !/[qxvy]/u.test(word) && !/^(aa|abä|aar|aas)/u.test(word) && !/(.)\1\1/u.test(word) && !BLOCKED_ABBREVIATIONS.has(word);
 }
 
 function pathScore(path) {

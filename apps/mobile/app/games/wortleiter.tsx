@@ -494,16 +494,17 @@ const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.sm },
   boardPanel: {
     flex: 1,
+    minHeight: 0,
     gap: tokens.space.xs,
   },
-  ladderScroll: { flexGrow: 0, maxHeight: 340 },
+  ladderScroll: { flex: 1, minHeight: 0 },
   ladderScrollContent: {
-    alignItems: "center",
-    gap: 2,
+    alignItems: "stretch",
+    gap: 4,
     paddingBottom: tokens.space.xs,
   },
   stepWrap: { alignItems: "center", gap: tokens.space.xs },
-  inputStep: { width: "100%", alignItems: "center", gap: tokens.space.xs },
+  inputStep: { width: "100%", alignItems: "stretch", gap: tokens.space.xs },
   arrow: {
     color: tokens.color.primaryDark,
     fontSize: 14,

@@ -2466,6 +2466,15 @@ expo-asset@~57.0.12:
     "@expo/image-utils" "^0.11.4"
     expo-constants "~57.0.12"
 
+expo-build-properties@~57.0.15:
+  version "57.0.15"
+  resolved "https://registry.yarnpkg.com/expo-build-properties/-/expo-build-properties-57.0.15.tgz#f982f8ea4a27385f59325bc1cdd2577626c650e4"
+  integrity sha512-qZe9pnxlBpHT7SSNDR2a3C+P34xv67Ep9I0Erh+3xCczGlokyRd4pu9h0PrBdsVlr1d0QREQ1Do/+IgrIWkQQA==
+  dependencies:
+    "@expo/schema-utils" "^57.0.2"
+    resolve-from "^5.0.0"
+    semver "^7.6.0"
+
 expo-constants@~57.0.11, expo-constants@~57.0.12:
   version "57.0.12"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-57.0.12.tgz#f9de7d1d89227cda2ff9b89a3e7aacdbaf83860c"

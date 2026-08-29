@@ -2,7 +2,7 @@
   "expo": {
     "name": "Wortkniff",
     "slug": "wortling",
-    "version": "0.8.0",
+    "version": "0.8.5",
     "icon": "./assets/app-icon.png",
     "orientation": "portrait",
     "scheme": "wortkniff",
@@ -18,7 +18,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#F7F1E8"
       },
-      "versionCode": 4
+      "versionCode": 5
     },
     "web": {
       "bundler": "metro"
@@ -36,7 +36,20 @@
         }
       ],
       ["@sentry/react-native/expo", {}],
-      "expo-video"
+      "expo-video",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": false,
+            "enableMinifyInReleaseBuilds": false,
+            "usePrecompiledHeaders": true
+          },
+          "ios": {
+            "ccacheEnabled": true
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

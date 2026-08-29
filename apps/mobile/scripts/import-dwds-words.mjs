@@ -13,7 +13,14 @@ const LT_ZIP_URL = "https://languagetool.org/download/LanguageTool-stable.zip";
 const GERMAN_POS_JAR_URL = "https://repo.maven.apache.org/maven2/de/danielnaber/german-pos-dict/1.2.4/german-pos-dict-1.2.4.jar";
 const DEFAULT_WORD_LENGTH = 5;
 const DWDS_ALLOWED_POS = new Set(["Adjektiv", "Adverb", "Interjektion", "Substantiv", "Verb"]);
-const BLOCKED_WORDS = new Set([]);
+const BLOCKED_WORDS = new Set([
+  // 4-letter abbreviations – keep gameplay clean, English loanwords like "hash" stay allowed
+  "abcs", "abms", "adac", "akws", "asvg", "bdsg", "bmws", "bshg", "btmg", "bvwg",
+  "cpus", "crms", "cvjm", "daad", "ddos", "egmr", "ehec", "ehnl", "ekgs",
+  "fckw", "fdgo", "fsme", "gmbh", "gpus", "hdmi", "http", "isbn", "isdn", "issn",
+  "jvas", "kfzs", "ldpd", "lgbt", "lkws", "mbit", "mpox", "mrna", "mvas", "nvas",
+  "oecd", "oems", "öpnv", "pdfs", "pkws", "pvcs", "rfid", "scsi", "stpo", "stvo",
+]);
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const frequencyTsvPath = path.resolve(scriptDir, "data/subtlex-de.tsv");

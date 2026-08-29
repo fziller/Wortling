@@ -42,6 +42,7 @@ export function LetterInputTiles({ cursorIndex, disabled = false, letters, onCur
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
+    width: "100%",
   },
   tile: {
     flex: 1,

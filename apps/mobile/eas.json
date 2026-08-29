@@ -20,6 +20,23 @@
     },
     "production": {
       "channel": "production"
+    },
+    "local": {
+      "extends": "production",
+      "distribution": "internal",
+      "channel": "preview",
+      "env": {
+        "APP_VARIANT": "preview"
+      },
+      "cache": {
+        "disabled": false
+      }
+    },
+    "local-dev": {
+      "extends": "development",
+      "cache": {
+        "disabled": false
+      }
     }
   },
   "submit": {
