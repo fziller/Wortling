@@ -1,7 +1,5 @@
 import { allowedGuesses as fiveLetterGuesses } from "../between/content";
-import { generatedAllowedGuesses as sevenLetterGuesses } from "../shared/generated/allowedGuesses7";
-import { generatedAllowedGuesses as sixLetterGuesses } from "../wortcode/generated/allowedGuesses";
-import { generatedAllowedGuesses as fourLetterGuesses } from "../wortleiter/generated/allowedGuesses";
+import { getAllAllowedGuesses } from "../packs/allowed";
 import { generatedTargetWords as fourLetterTargets } from "../wortleiter/generated/targetWords";
 import { generatedTargetWords as fiveLetterTargets } from "../between/generated/targetWords";
 import { generatedTargetWords as sixLetterTargets } from "../wortcode/generated/targetWords";
@@ -18,10 +16,10 @@ export const worttrefferTargetsByLength: WordsByLength = {
 };
 
 export const worttrefferGuessWordsByLength: WordsByLength = {
-  4: Array.from(new Set([...(worttrefferTargetsByLength[4] ?? []), ...fourLetterGuesses])).sort(),
+  4: Array.from(new Set([...(worttrefferTargetsByLength[4] ?? []), ...getAllAllowedGuesses(4)])).sort(),
   5: Array.from(new Set([...(worttrefferTargetsByLength[5] ?? []), ...fiveLetterGuesses])).sort(),
-  6: Array.from(new Set([...(worttrefferTargetsByLength[6] ?? []), ...sixLetterGuesses])).sort(),
-  7: Array.from(new Set([...(worttrefferTargetsByLength[7] ?? []), ...sevenLetterGuesses])).sort(),
+  6: Array.from(new Set([...(worttrefferTargetsByLength[6] ?? []), ...getAllAllowedGuesses(6)])).sort(),
+  7: Array.from(new Set([...(worttrefferTargetsByLength[7] ?? []), ...getAllAllowedGuesses(7)])).sort(),
 };
 
 export const answerWords = Object.values(worttrefferTargetsByLength).flat();

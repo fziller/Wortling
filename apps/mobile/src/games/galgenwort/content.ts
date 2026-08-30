@@ -55,6 +55,10 @@ export function getGalgenwortPuzzlesForPreset(preset: BucketPreset): GalgenwortP
   return galgenwortPuzzles;
 }
 
+// Packs are handled in daily.ts via getGalgenwortPuzzlesForPresetWithPack — keep content pure for core pools.
+// Export pools for pack merging
+export const galgenwortPoolsByPreset = { klassisch: classicPool, erweitert: erweitertPool, hart: hartPool } as const;
+
 function puzzle(id: string, answer: string, clue: string): GalgenwortPuzzle {
   return { id, version: GALGENWORT_CONTENT_VERSION, answer, clue, maxWrongGuesses: GALGENWORT_MAX_WRONG_GUESSES };
 }

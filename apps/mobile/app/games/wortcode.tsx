@@ -29,6 +29,7 @@ import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, ty
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { updateBadgeCount } from "@/notifications/badge";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
+import { usePacksSettings } from "@/hooks/usePacksSettings";
 import { HintIndicator } from "@/components/HintIndicator";
 import { useHintWallet } from "@/hints/useHintWallet";
 import { getHintPolicy, requestAdHint, shouldShowEarnedProgress } from "@/hints/policy";
@@ -47,6 +48,7 @@ export default function WortcodeScreen() {
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
+  const { packs } = usePacksSettings();
   const [game, setGame] = useState<WortcodeGame>(() => createNextWortcodeGame(undefined, today, "klassisch"));
 
   useEffect(() => {
@@ -249,7 +251,7 @@ export default function WortcodeScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createNextWortcodeGame(puzzle.answer, today, bucketPreset);
+    const nextGame = createNextWortcodeGame(puzzle.answer, today, bucketPreset, packs);
 
     setGame(nextGame);
     setState(nextGame.state);

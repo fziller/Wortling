@@ -7,6 +7,10 @@ import { join } from "node:path";
 const projectRoot = join(import.meta.dirname, "..");
 const markers = [
   "scripts/import-dwds-words.mjs",
+  "scripts/import-bio-words.mjs",
+  "scripts/pipeline/shared.mjs",
+  "scripts/sources/bio.mjs",
+  "scripts/data/bio.tsv",
   "scripts/generate-wortleiter-puzzles.mjs",
   "src/games/wortleiter/targetWords.ts",
 ];
@@ -15,6 +19,7 @@ const outputs = [
   "src/games/between/generated/allowedGuesses.ts",
   "src/games/wortcode/generated/allowedGuesses.ts",
   "src/games/shared/generated/allowedGuesses7.ts",
+  "src/games/packs/bio/generated/bioTargets.ts",
   "src/games/wortleiter/generated/puzzles.ts",
 ];
 

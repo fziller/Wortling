@@ -23,6 +23,7 @@ import { BucketPreset } from "@/games/wordBuckets";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
+import { usePacksSettings } from "@/hooks/usePacksSettings";
 
 type GalgenwortGame = ReturnType<typeof createNextGalgenwortGame>;
 
@@ -34,6 +35,7 @@ export default function GalgenwortScreen() {
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
+  const { packs } = usePacksSettings();
   const [game, setGame] = useState<GalgenwortGame>(() => createNextGalgenwortGame(undefined, today, "klassisch"));
 
   useEffect(() => {
@@ -126,7 +128,7 @@ export default function GalgenwortScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createNextGalgenwortGame(puzzle.id, today, bucketPreset);
+    const nextGame = createNextGalgenwortGame(puzzle.id, today, bucketPreset, packs);
 
     setGame(nextGame);
     setState(nextGame.state);

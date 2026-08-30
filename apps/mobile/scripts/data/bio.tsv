@@ -1,0 +1,190 @@
+# Bio-Paket — kuratierte deutsche Biologie-Wörter (4-7 Buchstaben)
+# Quelle: manuell + Wikidata-Enrichment (scripts/sources/bio.mjs)
+# Ein Wort pro Zeile, optional Kommentar mit #. Normalisierung: NFC, lower, ß→ss.
+# Zipf wird für Bio ignoriert — alle validen Formen sind Targets (nur Shape/Bucket filtered).
+#
+# 4 Buchstaben
+zelle
+pilz
+gen
+virus
+bakterie
+# actually 8 but keep 4-7 only
+enzym
+protein
+# 5
+herz
+lunge
+leber
+niere
+knochen
+# 6 — keep 4-7 shape, examples below are filtered by length at build time
+amöbe
+# 5
+keim
+spore
+# 4
+stamm
+gewebe
+organ
+# 5-7 mixed below — script filters by wordLength
+bakterie
+# curated bio core (4-7, a-zäöü, no genitive, no abbreviations)
+alge
+algen
+amobe
+# intentionally simple seed list — expand as needed
+biom
+biome
+zelle
+zellen
+pilze
+spore
+sporen
+gewebe
+organ
+organe
+muskel
+muskeln
+nerv
+nerven
+blut
+blute
+# bonus diverse bio 4-7
+enzym
+enzyme
+protein
+proteine
+genom
+genome
+virus
+viren
+bakterie
+keim
+keime
+herz
+herzen
+lunge
+lungen
+leber
+lebern
+niere
+nieren
+knochen
+stamm
+zellen
+stammzelle
+# generic valid short bio words (will be filtered to 4-7)
+dna
+rna
+art
+arten
+taxon
+taxa
+flora
+fauna
+ökologie
+# fallback: plain 4-7 letter bio-ish words
+ferment
+mikrobe
+mikroben
+nahrung
+atmung
+photosynthese
+# erweiterte 4-7 kuratierte Bio-Wörter (alle validen Shapes, nur a-zäöü, 4-7)
+# 4 Buchstaben
+pilz
+alge
+keim
+nerv
+blut
+herz
+# 5
+zelle
+spore
+gewebe
+muskel
+nerven
+viren
+pilze
+algen
+keime
+herzen
+organ
+organe
+blute
+enzym
+genom
+taxon
+arten
+flora
+fauna
+# 6
+enzyme
+proteine
+genome
+herzen
+lungen
+lebern
+nieren
+sporen
+organe
+muskeln
+nerven
+ferment
+atmung
+mikrobe
+# 7
+genome
+biotope
+habitat
+bakterie
+# zusätzliche kuratierte Bio-Wörter (4-7, nach Länge sortiert für bessere Verteilung)
+# 4
+haut
+auge
+darm
+# 5
+magen
+tumor
+zyste
+sehn
+sehne
+gelenk
+wirbel
+rippe
+blut
+# actually 6/7 below
+gehirn
+mark
+knochen
+# 6/7 diverse
+hormon
+vitamin
+mineral
+antigen
+embryo
+fetus
+gen
+# clean list for generation
+haut
+auge
+darm
+magen
+tumor
+zyste
+sehne
+gelenk
+wirbel
+rippe
+gehirn
+hormon
+antigen
+embryo
+lymph
+lymphe
+plasma
+serum
+krebs
+ulcus
+# Note: longer words (>7) are ignored automatically by hasValidShape

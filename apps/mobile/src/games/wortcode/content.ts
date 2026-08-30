@@ -1,9 +1,8 @@
 import { allowedGuesses as fiveLetterGuesses } from "../between/content";
-import { generatedAllowedGuesses as sevenLetterGuesses } from "../shared/generated/allowedGuesses7";
-import { generatedTargetWords as sevenLetterTargets } from "../shared/generated/targetWords7";
+import { getAllAllowedGuesses } from "../packs/allowed";
 import type { WordsByLength } from "../wordLengths";
 
-import { generatedAllowedGuesses as sixLetterGuesses } from "./generated/allowedGuesses";
+import { generatedTargetWords as sevenLetterTargets } from "../shared/generated/targetWords7";
 import { generatedTargetWords as sixLetterTargets } from "./generated/targetWords";
 import { generatedTargetWords as fiveLetterTargets } from "../between/generated/targetWords";
 
@@ -19,7 +18,7 @@ export const wortcodeGuessWordsByLength: WordsByLength = {
   5: Array.from(new Set([...(wortcodeTargetsByLength[5] ?? []), ...(fiveLetterGuesses as unknown as string[])])).sort(),
   6: Array.from(new Set([
     ...(wortcodeTargetsByLength[6] ?? []),
-    ...(sixLetterGuesses as unknown as string[]),
+    ...getAllAllowedGuesses(6),
     "ananas",
     "anders",
     "arbeit",
@@ -69,7 +68,7 @@ export const wortcodeGuessWordsByLength: WordsByLength = {
     "wollen",
     "zahlen",
   ])).sort(),
-  7: Array.from(new Set([...(wortcodeTargetsByLength[7] ?? []), ...(sevenLetterGuesses as unknown as string[])])).sort(),
+  7: Array.from(new Set([...(wortcodeTargetsByLength[7] ?? []), ...getAllAllowedGuesses(7)])).sort(),
 };
 
 export const answerWords = Object.values(wortcodeTargetsByLength).flat();

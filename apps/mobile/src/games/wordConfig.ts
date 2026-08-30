@@ -17,7 +17,21 @@ export const WORD_THRESHOLDS_BY_LENGTH = {
   7: 2.2,
 } as const satisfies Record<4 | 5 | 6 | 7, number>;
 
-export const WORD_CONFIG_VERSION = 1;
+export const WORD_CONFIG_VERSION = 2;
+
+// Packs — domain word packages (bio etc). Zipf is null for domain packs (no frequency tier filtering).
+export const PACKS = {
+  bio: {
+    id: "bio" as const,
+    label: "Biologie",
+    description: "Biologie-Wörter (zelle, enzym, organ …) — ohne Zipf, alle validen Formen sind Targets.",
+    lengths: [4, 5, 6, 7] as const,
+    zipf: null as null,
+  },
+} as const;
+
+export type PackId = keyof typeof PACKS;
+export type PackFrequency = "normal" | "haeufig";
 
 // Bucket mapping for presets
 // klassisch = base only

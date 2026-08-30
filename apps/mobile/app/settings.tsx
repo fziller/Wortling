@@ -16,6 +16,9 @@ import { BUCKET_PRESET_DESCRIPTIONS } from "@/games/wordBuckets";
 import { loadWordBucketSettings, saveWordBucketSettings, WordBucketSettings } from "@/storage/wordBuckets";
 import { requestNotificationPermission } from "@/notifications/register";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
+import { PACKS } from "@/games/wordConfig";
+import { loadPacksSettings, savePacksSettings, type PacksSettings } from "@/storage/packs";
+import { hasPremiumAccess, isPackGated, setMockPremiumEnabled } from "@/premium/packsAccess";
 
 const DWDS_URL = "https://www.dwds.de/lemma/list";
 const CC_BY_SA_URL = "https://creativecommons.org/licenses/by-sa/4.0/";
@@ -28,6 +31,9 @@ export default function SettingsScreen() {
     minute: 0,
   });
   const [bucketSettings, setBucketSettings] = useState<WordBucketSettings>({ erweitert: false, hart: false });
+  const [packsSettings, setPacksSettings] = useState<PacksSettings>({ bio: { enabled: false, frequency: "normal" } });
+  const [canUsePacks, setCanUsePacks] = useState(true);
+  const [packsGated, setPacksGated] = useState(false);
   const [dailyKniffeSeedOverride, setDailyKniffeSeedOverride] = useState<number | undefined>();
   const dateKey = getBerlinDateKey();
   const productionSeed = createDailyKniffeSeed(dateKey);
@@ -41,6 +47,9 @@ export default function SettingsScreen() {
     loadNotificationSettings().then(setSettings);
     loadWordBucketSettings().then(setBucketSettings);
     loadDailyKniffeSeedOverride().then(setDailyKniffeSeedOverride);
+    loadPacksSettings().then(setPacksSettings);
+    setPacksGated(isPackGated());
+    hasPremiumAccess().then(setCanUsePacks);
   }, []);
 
   async function updateAndReschedule(next: NotificationSettings) {
@@ -70,6 +79,29 @@ export default function SettingsScreen() {
     const next = bucketSettings.hart ? { ...bucketSettings, hart: false } : { erweitert: true, hart: true };
     setBucketSettings(next);
     await saveWordBucketSettings(next);
+  }
+
+  async function toggleBioPack() {
+    if (packsGated && !canUsePacks) return;
+    const next = { ...packsSettings, bio: { ...packsSettings.bio, enabled: !packsSettings.bio.enabled } };
+    setPacksSettings(next);
+    await savePacksSettings(next);
+  }
+
+  async function setBioFrequency(freq: "normal" | "haeufig") {
+    if (packsGated && !canUsePacks) return;
+    const next = { ...packsSettings, bio: { ...packsSettings.bio, frequency: freq } };
+    setPacksSettings(next);
+    await savePacksSettings(next);
+  }
+
+  async function handlePremiumCta() {
+    // Mock: in dev, toggle premium; in prod, open paywall screen.
+    // For now, grant mock premium when gated.
+    if (packsGated) {
+      await setMockPremiumEnabled(true);
+      setCanUsePacks(true);
+    }
   }
 
   function adjustHour(delta: number) {
@@ -175,6 +207,58 @@ export default function SettingsScreen() {
               <AnimatedSwitch checked={bucketSettings.hart} onPress={toggleHart} />
             </View>
             <Text style={styles.versionText}>Aktiv: {bucketSettings.hart ? "Hart" : bucketSettings.erweitert ? "Erweitert" : "Klassisch"} · Ab nächster Runde wirksam.</Text>
+          </AppCard>
+        </Animated.View>
+
+        <Animated.View entering={FadeInDown.delay(130).duration(tokens.motion.normal)}>
+          <AppCard>
+            <View style={styles.cardTitleRow}>
+              <Text style={styles.cardTitle}>Wort-Pakete</Text>
+              {packsGated ? <View style={styles.premiumBadge}><Text style={styles.premiumBadgeText}>Premium</Text></View> : null}
+            </View>
+            <Text style={styles.body}>
+              Zusatzwörter für alle Spiele (4–7 Buchstaben). Bio-Wörter sind immer als Tipp erlaubt — das Paket beeinflusst nur, wie oft sie als Lösung kommen. Gilt für alle Spiele ab nächster Runde.
+            </Text>
+            {packsGated && !canUsePacks ? (
+              <View style={styles.premiumLocked}>
+                <Text style={styles.premiumLockedText}>🔒 Biologie-Paket ist ein Premium-Feature. Schalte es frei, um Bio-Wörter als Lösung zu bekommen.</Text>
+                <Pressable accessibilityRole="button" onPress={handlePremiumCta} style={styles.premiumButton}>
+                  <Text style={styles.premiumButtonText}>Freischalten (Mock)</Text>
+                </Pressable>
+                <Text style={styles.versionText}>Flag: EXPO_PUBLIC_PACKS_GATED=true → paywall. Ohne Flag: frei. Siehe src/premium/packsAccess.ts</Text>
+              </View>
+            ) : (
+              <>
+                <View style={styles.toggleRow}>
+                  <View style={{ flex: 1, paddingRight: 12 }}>
+                    <Text style={styles.toggleLabel}>{PACKS.bio.label}</Text>
+                    <Text style={styles.bucketDesc}>{PACKS.bio.description}</Text>
+                    <Text style={styles.versionText}>4–7 Buchstaben · {packsSettings.bio.enabled ? "an" : "aus"} · Nächste Runde wirksam</Text>
+                  </View>
+                  <AnimatedSwitch checked={packsSettings.bio.enabled} onPress={toggleBioPack} />
+                </View>
+                {packsSettings.bio.enabled ? (
+                  <View style={styles.frequencyRow}>
+                    <Text style={styles.stepperLabel}>Häufigkeit</Text>
+                    <View style={styles.frequencyButtons}>
+                      <Pressable accessibilityRole="button" onPress={() => setBioFrequency("normal")} style={[styles.frequencyButton, packsSettings.bio.frequency === "normal" && styles.frequencyButtonActive]}>
+                        <Text style={[styles.frequencyButtonText, packsSettings.bio.frequency === "normal" && styles.frequencyButtonTextActive]}>Normal</Text>
+                        <Text style={styles.bucketDesc}>Im Mix (~2%)</Text>
+                      </Pressable>
+                      <Pressable accessibilityRole="button" onPress={() => setBioFrequency("haeufig")} style={[styles.frequencyButton, packsSettings.bio.frequency === "haeufig" && styles.frequencyButtonActive]}>
+                        <Text style={[styles.frequencyButtonText, packsSettings.bio.frequency === "haeufig" && styles.frequencyButtonTextActive]}>Häufig</Text>
+                        <Text style={styles.bucketDesc}>70% Bio / 30% Mix</Text>
+                      </Pressable>
+                    </View>
+                  </View>
+                ) : null}
+                {__DEV__ && packsGated ? (
+                  <Pressable accessibilityRole="button" onPress={async () => { await setMockPremiumEnabled(false); setCanUsePacks(false); }} style={styles.linkButton}>
+                    <Text style={styles.linkText}>DEV: Premium entziehen</Text>
+                  </Pressable>
+                ) : null}
+              </>
+            )}
           </AppCard>
         </Animated.View>
 
@@ -464,5 +548,83 @@ const styles = StyleSheet.create({
     color: tokens.color.ink,
     fontSize: tokens.type.body,
     fontWeight: "900"
+  },
+  cardTitleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: tokens.space.sm
+  },
+  premiumBadge: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: tokens.radius.pill,
+    backgroundColor: tokens.color.primary
+  },
+  premiumBadgeText: {
+    color: "white",
+    fontSize: tokens.type.small,
+    fontWeight: "900",
+    letterSpacing: 0.6,
+    textTransform: "uppercase"
+  },
+  premiumLocked: {
+    gap: tokens.space.sm,
+    padding: tokens.space.md,
+    borderRadius: tokens.radius.md,
+    backgroundColor: "rgba(255,255,255,0.7)",
+    borderWidth: 1,
+    borderColor: tokens.color.line
+  },
+  premiumLockedText: {
+    color: tokens.color.ink,
+    fontSize: tokens.type.body,
+    fontWeight: "700",
+    lineHeight: 20
+  },
+  premiumButton: {
+    minHeight: 44,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: tokens.radius.pill,
+    backgroundColor: tokens.color.primary,
+    paddingHorizontal: tokens.space.md
+  },
+  premiumButtonText: {
+    color: "white",
+    fontSize: tokens.type.body,
+    fontWeight: "900"
+  },
+  frequencyRow: {
+    gap: tokens.space.xs,
+    marginBottom: tokens.space.md
+  },
+  frequencyButtons: {
+    flexDirection: "row",
+    gap: tokens.space.sm,
+    marginTop: tokens.space.xs
+  },
+  frequencyButton: {
+    flex: 1,
+    gap: 2,
+    paddingVertical: tokens.space.sm,
+    paddingHorizontal: tokens.space.md,
+    borderRadius: tokens.radius.md,
+    borderWidth: 1,
+    borderColor: tokens.color.line,
+    backgroundColor: "rgba(255,255,255,0.62)",
+    alignItems: "center"
+  },
+  frequencyButtonActive: {
+    borderColor: tokens.color.primary,
+    backgroundColor: tokens.color.primaryLight
+  },
+  frequencyButtonText: {
+    color: tokens.color.ink,
+    fontSize: tokens.type.body,
+    fontWeight: "800"
+  },
+  frequencyButtonTextActive: {
+    color: tokens.color.primaryDark
   }
 });

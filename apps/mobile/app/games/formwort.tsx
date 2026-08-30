@@ -32,6 +32,7 @@ import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
+import { usePacksSettings } from "@/hooks/usePacksSettings";
 import { HintIndicator } from "@/components/HintIndicator";
 import { useHintWallet } from "@/hints/useHintWallet";
 import { getHintPolicy, requestAdHint, shouldShowEarnedProgress } from "@/hints/policy";
@@ -79,6 +80,7 @@ export default function FormwortScreen() {
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
+  const { packs } = usePacksSettings();
   const [game, setGame] = useState<FormwortGame>(() => createNextFormwortGame(undefined, today, "klassisch"));
 
   useEffect(() => {
@@ -287,7 +289,7 @@ export default function FormwortScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createNextFormwortGame(puzzle.answer, today, bucketPreset);
+    const nextGame = createNextFormwortGame(puzzle.answer, today, bucketPreset, packs);
 
     setGame(nextGame);
     setState(nextGame.state);

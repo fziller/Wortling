@@ -36,6 +36,7 @@ import { BucketPreset } from "@/games/wordBuckets";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { useGameRecorder } from "@/stats/recorder";
+import { usePacksSettings } from "@/hooks/usePacksSettings";
 
 const BOARD_LINE_HEIGHT = 132;
 const DOT_SIZE = 20;
@@ -67,6 +68,7 @@ export default function BetweenScreen() {
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
+  const { packs } = usePacksSettings();
   const [state, setState] = useState<BetweenState>(() => createNextBetweenGame(undefined, today, "klassisch").state);
 
   useEffect(() => {
@@ -247,7 +249,7 @@ export default function BetweenScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createNextBetweenGame(state.targetWord, today, bucketPreset);
+    const nextGame = createNextBetweenGame(state.targetWord, today, bucketPreset, packs);
 
     if (clearMovingGuessTimeout.current) {
       clearTimeout(clearMovingGuessTimeout.current);

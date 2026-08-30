@@ -51,6 +51,7 @@ import {
 import { BucketPreset } from "@/games/wordBuckets";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
+import { usePacksSettings } from "@/hooks/usePacksSettings";
 
 type WorttrefferGame = ReturnType<typeof createNextWorttrefferGame>;
 type TileMark = "absent" | "present" | "correct";
@@ -71,6 +72,7 @@ export default function WorttrefferScreen() {
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
+  const { packs } = usePacksSettings();
   const [game, setGame] = useState<WorttrefferGame>(() => createNextWorttrefferGame(undefined, today, "klassisch"));
 
   useEffect(() => {
@@ -374,7 +376,7 @@ export default function WorttrefferScreen() {
   }
 
   function startNextWord() {
-    const nextGame = createNextWorttrefferGame(puzzle.answer, today, bucketPreset);
+    const nextGame = createNextWorttrefferGame(puzzle.answer, today, bucketPreset, packs);
 
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     setGame(nextGame);
