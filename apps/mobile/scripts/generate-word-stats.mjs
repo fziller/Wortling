@@ -91,7 +91,7 @@ let md = `# Wort-Statistik
 for (const r of rows) {
   md += `| ${r.len} | ${r.allowed} | ${r.target} | ${r.erweitert} | ${r.hart} | ${r.tier.easy ?? 0} | ${r.tier.medium ?? 0} | ${r.tier.hard ?? 0} | ${r.tier.unknown ?? 0} |\n`;
 }
-md += `\n* Thresholds: 4→1.0, 5–7→2.2 (\`wordConfig.ts:WORD_THRESHOLDS_BY_LENGTH\`), Tiers: easy ≥3.8, medium ≥2.2, hard ≥1.5. \`klassisch=base∩≥thr\`, \`erweitert=base+plural+verb-finite∩≥thr\`, \`hart=alle∖genitive∩≥1.5\`.*
+md += `\n* Thresholds: 4→2.2, 5–7→2.9 (\`wordConfig.ts:WORD_THRESHOLDS_BY_LENGTH\`), Tiers: easy ≥3.8, medium ≥2.9, hard ≥2.2. \`klassisch=base∩≥thr\`, \`erweitert=base+plural+verb-finite∩≥thr\`, \`hart=alle∖genitive∩≥2.2\`.*
 \n`;
 
 md += `### Buckets pro Länge (aus wordMeta)\n\n| Länge | base | plural | verb-finite | partizip | konjunktiv | imperativ | adj-flex | genitive |\n|---|---|---|---|---|---|---|---|---|\n`;

@@ -4,20 +4,21 @@
 
 export const WORD_TIERS = {
   easy: 3.8,
-  medium: 2.2,
-  hard: 1.5,
+  medium: 2.9,
+  hard: 2.2,
 } as const;
 
-// Per-length medium threshold for classic (base ∩ tier). 4 is deliberately looser for larger pool.
-// 4: Wortleiter/Worttreffer-4 needs many rotations, 671 with 1.5 was still small → use 1.0 (all base) for 4.
+// Per-length medium threshold for classic (base ∩ tier). Normal words now ≥2.9.
+// 4 stays slightly looser (2.2) to keep Wortleiter graph connected — 540 vs 1308 at 1.0.
+// Bump to 2.9 for 4 as well if you want strict 2.9 across all lengths (will cut 4-letter pool ~60%).
 export const WORD_THRESHOLDS_BY_LENGTH = {
-  4: 1.0,
-  5: 2.2,
-  6: 2.2,
-  7: 2.2,
+  4: 2.2,
+  5: 2.9,
+  6: 2.9,
+  7: 2.9,
 } as const satisfies Record<4 | 5 | 6 | 7, number>;
 
-export const WORD_CONFIG_VERSION = 2;
+export const WORD_CONFIG_VERSION = 3;
 
 // Packs — domain word packages (bio etc). Zipf is null for domain packs (no frequency tier filtering).
 export const PACKS = {
