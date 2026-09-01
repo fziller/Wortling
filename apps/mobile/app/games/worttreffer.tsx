@@ -303,7 +303,7 @@ export default function WorttrefferScreen() {
           ? "Getroffen!"
           : result.state.status === "lost"
             ? "Heute nicht getroffen."
-            : "Weiter geht's."
+            : ""
         : result.reason,
     );
     if (result.ok) {

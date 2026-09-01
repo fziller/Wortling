@@ -40,6 +40,14 @@ export const gameHelp = {
       "Grau heißt: Der Buchstabe kommt nicht im Wort vor. Die Tastatur merkt sich diese Hinweise."
     ]
   },
+  wortschmelze: {
+    title: "So geht Wortschmelze",
+    paragraphs: [
+      "Errate die Schmelze aus zwei Wörtern in sechs Versuchen.",
+      "Beide Wörter haben fünf Buchstaben. Die letzten zwei Buchstaben des ersten Wortes sind die ersten zwei Buchstaben des zweiten Wortes.",
+      "Beispiel: WALZE + ZEBRA wird zu WALZEBRA. Grün, Gelb und Grau funktionieren wie bei Worttreffer."
+    ]
+  },
   wortleiter: {
     title: "So geht Wortleiter",
     paragraphs: [

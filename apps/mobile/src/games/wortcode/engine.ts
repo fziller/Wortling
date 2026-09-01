@@ -62,7 +62,7 @@ export function submitWortcodeGuess(puzzle: WortcodePuzzle, state: WortcodeState
   }
 
   if (!allowedGuesses.has(value)) {
-    return { ok: false, state, reason: "Dieses Wort ist nicht in unserer Wortliste." };
+    return { ok: false, state, reason: "Unbekanntes Wort." };
   }
 
   if (state.guesses.some((guess) => guess.value === value)) {

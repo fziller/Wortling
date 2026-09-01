@@ -35,7 +35,7 @@ export function submitWortleiterGuess(puzzle: WortleiterPuzzle, state: Wortleite
   }
 
   if (!allowedGuessSet.has(word)) {
-    return { ok: false, state, reason: "Dieses Wort ist nicht in unserer Wortliste." };
+    return { ok: false, state, reason: "Unbekanntes Wort." };
   }
 
   if (!isValidTransition(previousWord, word)) {

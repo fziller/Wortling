@@ -38,7 +38,7 @@ describe("wortleiter engine", () => {
 
     expect(invalidWord.ok).toBe(false);
     if (invalidWord.ok) throw new Error("invalidWord unexpectedly succeeded");
-    expect(invalidWord.reason).toBe("Dieses Wort ist nicht in unserer Wortliste.");
+    expect(invalidWord.reason).toBe("Unbekanntes Wort.");
     expect(sameWord.ok).toBe(false);
     if (sameWord.ok) throw new Error("sameWord unexpectedly succeeded");
     expect(sameWord.reason).toBe("Du musst einen Buchstaben ändern.");

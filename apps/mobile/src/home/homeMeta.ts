@@ -2,6 +2,7 @@ import { tokens } from "@/design/tokens";
 
 export const homeOrder = [
   "worttreffer",
+  "wortschmelze",
   "galgenwort",
   "between",
   "wortcode",
@@ -15,6 +16,8 @@ export const previewWords = {
   galgenwort: ["K", "", "", "F", "F"],
   wortleiterTop: ["M", "A", "U", "S"],
   wortleiterBottom: ["H", "A", "U", "S"],
+  wortschmelzeTop: ["W", "A", "L", "Z", "E"],
+  wortschmelzeBottom: ["Z", "E", "B", "R", "A"],
 } as const;
 
 export const gameMeta = {
@@ -38,6 +41,13 @@ export const gameMeta = {
     description: "Errate das Wort in sechs Versuchen.",
     rotate: "1deg",
     tape: "bottomRight",
+  },
+  wortschmelze: {
+    color: "#8E5A2A",
+    dot: "#8E5A2A",
+    description: "Zwei Wörter, eine Schmelze.",
+    rotate: "-1deg",
+    tape: "topCenter",
   },
   between: {
     color: tokens.color.secondary,

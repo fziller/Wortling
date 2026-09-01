@@ -47,6 +47,15 @@ export const games = [
     dailyKniffEligible: true
   },
   {
+    id: "wortschmelze",
+    title: "Wortschmelze",
+    shortDescription: "Errate zwei überlappende Wörter als eine Schmelze.",
+    route: "/games/wortschmelze",
+    estimatedMinutes: 3,
+    badge: "5+5 Wörter",
+    dailyKniffEligible: true
+  },
+  {
     id: "wortleiter",
     title: "Wortleiter",
     shortDescription: "Verwandle ein Wort Schritt für Schritt ins Zielwort.",

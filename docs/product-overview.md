@@ -19,6 +19,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 | Galgenwort | Guess a German word before running out of mistakes. | Guess letters from a clue category; wrong guesses count against the limit. |
 | Formwort | Solve a 5- to 7-letter word with shape and color feedback. | Guess words and use visual hints to infer repeated letters and positions. |
 | Worttreffer | Guess a 4- to 7-letter word with color feedback. | Green means correct position, yellow means present elsewhere, gray means absent. |
+| Wortschmelze | Guess an 8-letter merge made from two overlapping 5-letter German words. | The last two letters of the first word are the first two letters of the second word; color feedback matches Worttreffer. |
 | Wortleiter | Transform a 4-letter start word into a target word. | Each intermediate word must be valid German and change exactly one letter. Puzzles are selected from prepared word-graph candidates. |
 | Wortcode | Crack a 5- to 7-letter word with Mastermind-style logic. | Each guess returns positional and non-positional match counts. |
 
@@ -34,6 +35,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 - Curated target lists derived from generated allowed guesses via SUBTLEX-DE Zipf tiers (easy ≥3.8, medium ≥2.9, hard ≥2.2, unknown <2.2) — normal games use easy+medium (Zipf ≥2.9 for 5–7, ≥2.2 for 4), hard/unknown stay guess-only. Sources: `apps/mobile/scripts/data/subtlex-de.tsv` (FrequencyWords de_50k, Zipf = log10(freq per billion)). Domain packs (bio) skip Zipf entirely — all valid shapes are targets.
 - Generated files per length: `allowedGuesses.ts` (full core, merged at runtime with packs), `targetWords.ts` (easy+medium), `wordMeta.ts` (all words with zipf/tier), plus `src/games/packs/bio/generated/bioTargets.ts` per length (bio targets, no Zipf).
 - Word pipeline is modular: `scripts/pipeline/shared.mjs` (normalize/shape/bucket/tier), `scripts/sources/{dwds,morphology,bio}.mjs` (adapters), `scripts/import-*.mjs` (import/bewerten), `scripts/data/{subtlex-de,bio}.tsv` (sources). New pack = 1 adapter + 1 TSV + 1 entry in `wordConfig.ts:PACKS`.
+- Wortschmelze puzzles are generated at build time from filtered 5-letter pools (`klassisch`, `erweitert`, `hart`) via `scripts/generate-wortschmelze-puzzles.mjs` into `src/games/wortschmelze/generated/puzzles.ts`.
 - Word packs: `bio` (Biologie) for all games (4–7 letters). Settings store enabled + frequency (`normal` = merged uniform, `haeufig` = 70% pack / 30% core weighted pick). See `src/storage/packs.ts` and `src/games/packs/selection.ts`. Premium-gated via `EXPO_PUBLIC_PACKS_GATED` + `src/premium/packsAccess.ts` — toggle one env flag to hide behind paywall (see Settings).
 - Word stats at a glance: `docs/word-stats.md` (auto-generated via `yarn words:stats` after `content:generate`) — counts per length & tier/bucket & pack.
 - Optional daily reminder notifications.

@@ -33,6 +33,18 @@ export function GamePreview({ color, gameId }: GamePreviewProps) {
     );
   }
 
+  if (gameId === "wortschmelze") {
+    return (
+      <View style={styles.schmelzePreview}>
+        <View style={styles.schmelzeRow}>
+          {previewWords.wortschmelzeTop.map((letter, index) => <MiniTile active={index >= 3} color={color} key={`top-${letter}-${index}`} label={letter} />)}
+          {previewWords.wortschmelzeBottom.slice(2).map((letter, index) => <MiniTile key={`bottom-${letter}-${index}`} label={letter} />)}
+        </View>
+        <Text style={[styles.schmelzeText, { color }]}>WALZE + ZEBRA</Text>
+      </View>
+    );
+  }
+
   if (gameId === "wortcode") {
     return (
       <View style={styles.wordGrid}>
@@ -266,6 +278,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 4,
     marginTop: 22,
+  },
+  schmelzePreview: {
+    alignItems: "center",
+    gap: 5,
+    marginTop: 24,
+  },
+  schmelzeRow: {
+    flexDirection: "row",
+    gap: 4,
+  },
+  schmelzeText: {
+    fontSize: 10,
+    fontWeight: "900",
+    letterSpacing: 0.4,
   },
   leiterRow: {
     flexDirection: "row",

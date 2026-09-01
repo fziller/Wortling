@@ -3,6 +3,7 @@ import { WorttrefferLetterStates, WorttrefferPuzzle, WorttrefferState, Worttreff
 
 const allowedGuesses = new Set(guessWords);
 const markRank = { unused: 0, absent: 1, present: 2, correct: 3 } as const;
+type GuessValidator = Pick<ReadonlySet<string>, "has">;
 
 export function normalizeWorttrefferGuess(value: string): string {
   return value.normalize("NFC").trim().toLocaleLowerCase("de-DE").replace(/ß/g, "ss");
@@ -39,7 +40,7 @@ export function createWorttrefferState(puzzle: WorttrefferPuzzle): WorttrefferSt
   return { puzzleId: puzzle.id, guesses: [], status: "playing" };
 }
 
-export function submitWorttrefferGuess(puzzle: WorttrefferPuzzle, state: WorttrefferState, rawGuess: string): WorttrefferSubmitResult {
+export function submitWorttrefferGuess(puzzle: WorttrefferPuzzle, state: WorttrefferState, rawGuess: string, allowed: GuessValidator = allowedGuesses): WorttrefferSubmitResult {
   const value = normalizeWorttrefferGuess(rawGuess);
 
   if (state.status !== "playing") {
@@ -54,8 +55,8 @@ export function submitWorttrefferGuess(puzzle: WorttrefferPuzzle, state: Worttre
     return { ok: false, state, reason: "Bitte nur Buchstaben eingeben." };
   }
 
-  if (!allowedGuesses.has(value)) {
-    return { ok: false, state, reason: "Dieses Wort ist nicht in unserer Wortliste." };
+  if (!allowed.has(value)) {
+    return { ok: false, state, reason: "Unbekanntes Wort." };
   }
 
   if (state.guesses.some((guess) => guess.value === value)) {

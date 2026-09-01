@@ -247,7 +247,7 @@ export default function FormwortScreen() {
     const result = submitFormwortGuess(puzzle, state, inputLetters.join(""));
 
     setState(result.state);
-    setMessage(result.ok ? result.state.status === "won" ? "Form geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "Weiter eingrenzen." : result.reason);
+    setMessage(result.ok ? result.state.status === "won" ? "Form geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "" : result.reason);
     if (result.ok) {
       stats.recordAcceptedGuess(result.guess.value, { marks: [...result.guess.marks] });
       const nextRevealed = getFormwortRevealedLetters(puzzle, result.state);

@@ -1,4 +1,8 @@
 export function getWordTileLayout(wordLength: number) {
+  if (wordLength >= 8) {
+    return { gap: 2, minHeight: 34, fontSize: 16, symbolFontSize: 15 };
+  }
+
   if (wordLength >= 7) {
     return { gap: 3, minHeight: 38, fontSize: 18, symbolFontSize: 17 };
   }

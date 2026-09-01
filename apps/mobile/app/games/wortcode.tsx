@@ -208,7 +208,7 @@ export default function WortcodeScreen() {
     const result = submitWortcodeGuess(puzzle, state, inputLetters.join(""));
 
     setState(result.state);
-    setMessage(result.ok ? result.state.status === "won" ? "Code geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "Weiter eingrenzen." : result.reason);
+    setMessage(result.ok ? result.state.status === "won" ? "Code geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "" : result.reason);
     if (result.ok) {
       const lastGuess = result.state.guesses[result.state.guesses.length - 1];
 
