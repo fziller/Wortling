@@ -2,6 +2,7 @@ import { allowedGuesses, WORD_LENGTH } from "./content";
 import { BetweenState, GuessResult } from "./types";
 
 const collator = new Intl.Collator("de-DE", { sensitivity: "base" });
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
 const allowedGuessSet = new Set(allowedGuesses);
 const wordRankByWord = new Map(allowedGuesses.map((word, index) => [word, index]));
 
@@ -104,16 +105,54 @@ export function getTargetRangeMetrics(state: BetweenState) {
   const lowerRank = getWordRank(state.lowerBound);
   const upperRank = getWordRank(state.upperBound);
   const targetRank = getWordRank(state.targetWord);
-  const totalWords = Math.max(allowedGuesses.length - 1, 1);
   const rangeSize = Math.max(upperRank - lowerRank, 1);
   const topDistance = targetRank - lowerRank;
   const bottomDistance = upperRank - targetRank;
 
   return {
     targetPositionPercent: Math.round((topDistance / rangeSize) * 100),
-    topDistancePercent: Math.round((topDistance / totalWords) * 1000) / 10,
-    bottomDistancePercent: Math.round((bottomDistance / totalWords) * 1000) / 10
+    topDistanceWords: Math.max(topDistance - 1, 0),
+    bottomDistanceWords: Math.max(bottomDistance - 1, 0),
+    remainingWords: Math.max(upperRank - lowerRank - 1, 0)
   };
+}
+
+export function getOpenAlphabetLetters(
+  lowerBound: string,
+  upperBound: string,
+  index: number,
+  inputLetters: readonly string[] = []
+): string[] {
+  const normalizedLower = normalizeWord(lowerBound);
+  const normalizedUpper = normalizeWord(upperBound);
+  const prefix = normalizeWord(inputLetters.slice(0, index).join(""));
+
+  if (prefix.length < index) {
+    return alphabet.toLocaleUpperCase("de-DE").split("");
+  }
+
+  const lowerPrefix = normalizedLower.slice(0, index);
+  const upperPrefix = normalizedUpper.slice(0, index);
+  let min = 0;
+  let max = alphabet.length - 1;
+
+  if (compareWords(prefix, lowerPrefix) < 0 || compareWords(prefix, upperPrefix) > 0) {
+    return [];
+  }
+
+  if (normalizedLower !== "aaaaa" && compareWords(prefix, lowerPrefix) === 0) {
+    min = alphabet.indexOf(normalizedLower[index]) + 1;
+  }
+
+  if (normalizedUpper !== "zzzzz" && compareWords(prefix, upperPrefix) === 0) {
+    max = alphabet.indexOf(normalizedUpper[index]) - 1;
+  }
+
+  if (min > max) {
+    return [];
+  }
+
+  return alphabet.slice(min, max + 1).toLocaleUpperCase("de-DE").split("");
 }
 
 

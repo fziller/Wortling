@@ -4,7 +4,8 @@ export const gameHelp = {
     paragraphs: [
       "Finde das Zielwort im Alphabet.",
       "Jeder Tipp sagt dir, ob das Zielwort alphabetisch davor oder danach liegt.",
-      "Der offene Bereich wird kleiner, bis du das Wort triffst."
+      "Die Zahlen zeigen, wie viele Wörter zwischen den Grenzen und dem Zielwort stehen.",
+      "Der Buchstabenstreifen zeigt für das aktuelle Eingabefeld, welche Buchstaben noch in den offenen Bereich passen."
     ]
   },
   doppel: {

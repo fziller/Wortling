@@ -513,7 +513,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   wordPill: {
-    minWidth: 124,
+    minWidth: 104,
     alignItems: "center",
     paddingHorizontal: tokens.space.sm,
     paddingVertical: 4,

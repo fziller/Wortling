@@ -26,7 +26,7 @@ import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { CONTENT_VERSION } from "@/games/between/content";
 import { createNextBetweenGame } from "@/games/between/daily";
-import { getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
+import { getOpenAlphabetLetters, getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
 import { displayWord } from "@/games/between/format";
 import { BetweenState, Guess } from "@/games/between/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
@@ -44,7 +44,9 @@ const DOT_MARGIN = 4;
 const puzzleVersion = hashSeed(CONTENT_VERSION);
 const TILE_FLIP_DELAY_MS = 45;
 const TILE_FLIP_DURATION_MS = 260;
+const wordCountFormatter = new Intl.NumberFormat("de-DE");
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedText = Animated.createAnimatedComponent(Text);
 
 function createEmptyInput(length: number) {
   return Array.from({ length }, () => "");
@@ -59,6 +61,10 @@ function formatElapsedTime(seconds: number): string {
   const rest = seconds % 60;
 
   return minutes > 0 ? `${minutes}:${String(rest).padStart(2, "0")}` : `${rest} Sek.`;
+}
+
+function formatWordCount(value: number): string {
+  return wordCountFormatter.format(value);
 }
 
 export default function BetweenScreen() {
@@ -309,7 +315,7 @@ export default function BetweenScreen() {
             <View style={styles.sideRail}>
               {showScaleHints ? (
                 <View style={[styles.distanceBubble, styles.distanceBubbleTop]}>
-                  <Text style={styles.distanceText}>{rangeMetrics.topDistancePercent}%</Text>
+                  <Text style={styles.distanceText}>{formatWordCount(rangeMetrics.topDistanceWords)}</Text>
                 </View>
               ) : null}
               <View style={styles.boardLine}>
@@ -317,7 +323,7 @@ export default function BetweenScreen() {
               </View>
               {showScaleHints ? (
                 <View style={[styles.distanceBubble, styles.distanceBubbleBottom]}>
-                  <Text style={styles.distanceText}>{rangeMetrics.bottomDistancePercent}%</Text>
+                  <Text style={styles.distanceText}>{formatWordCount(rangeMetrics.bottomDistanceWords)}</Text>
                 </View>
               ) : null}
             </View>
@@ -339,7 +345,12 @@ export default function BetweenScreen() {
           </View>
 
           <Text style={styles.alphabetLabel}>Offener Alphabetbereich</Text>
-          <AlphabetStrip lowerBound={state.lowerBound} upperBound={state.upperBound} />
+          <AlphabetStrip
+            cursorIndex={cursorIndex}
+            inputLetters={inputLetters}
+            lowerBound={state.lowerBound}
+            upperBound={state.upperBound}
+          />
         </Animated.View>
       </View>
 
@@ -361,7 +372,7 @@ export default function BetweenScreen() {
         stats={[
           { label: "Tipps", value: state.guesses.length },
           { label: "Zeit", value: formatElapsedTime(elapsedSeconds) },
-          { label: "Rest", value: `${rangeMetrics.topDistancePercent + rangeMetrics.bottomDistancePercent}%` }
+          { label: "Wörter übrig", value: formatWordCount(rangeMetrics.remainingWords) }
         ]}
         title={state.status === "won" ? "Gefunden." : "Aufgelöst."}
         visible={resultVisible && state.status !== "playing"}
@@ -489,27 +500,40 @@ function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, lett
 }
 
 type AlphabetStripProps = {
+  cursorIndex: number;
+  inputLetters: readonly string[];
   lowerBound: string;
   upperBound: string;
 };
 
-function AlphabetStrip({ lowerBound, upperBound }: AlphabetStripProps) {
-  const firstOpenLetter = lowerBound[0]?.toLocaleUpperCase("de-DE") ?? "A";
-  const lastOpenLetter = upperBound[0]?.toLocaleUpperCase("de-DE") ?? "Z";
+function AlphabetStrip({ cursorIndex, inputLetters, lowerBound, upperBound }: AlphabetStripProps) {
+  const openLetters = new Set(getOpenAlphabetLetters(lowerBound, upperBound, cursorIndex, inputLetters));
 
   return (
     <View style={styles.alphabetStrip}>
       {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => {
-        const isAvailable = letter >= firstOpenLetter && letter <= lastOpenLetter;
+        const isAvailable = openLetters.has(letter);
 
         return (
-          <Text key={letter} style={[styles.alphabetLetter, !isAvailable && styles.alphabetLetterDisabled]}>
-            {letter}
-          </Text>
+          <AlphabetLetter isAvailable={isAvailable} key={letter} letter={letter} />
         );
       })}
     </View>
   );
+}
+
+function AlphabetLetter({ isAvailable, letter }: { isAvailable: boolean; letter: string }) {
+  const availability = useSharedValue(isAvailable ? 1 : 0);
+
+  useEffect(() => {
+    availability.value = withTiming(isAvailable ? 1 : 0, { duration: tokens.motion.quick });
+  }, [availability, isAvailable]);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    color: interpolateColor(availability.value, [0, 1], ["rgba(23, 19, 13, 0.22)", tokens.color.secondary])
+  }));
+
+  return <AnimatedText style={[styles.alphabetLetter, animatedStyle]}>{letter}</AnimatedText>;
 }
 
 const styles = StyleSheet.create({
@@ -645,7 +669,4 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     textAlign: "center"
   },
-  alphabetLetterDisabled: {
-    color: "rgba(23, 19, 13, 0.22)"
-  }
 });
