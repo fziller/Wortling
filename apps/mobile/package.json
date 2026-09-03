@@ -1,6 +1,6 @@
 {
   "name": "wortkniff-mobile",
-  "version": "0.8.5",
+  "version": "0.9.0",
   "private": true,
   "main": "expo-router/entry",
   "scripts": {

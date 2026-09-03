@@ -37,7 +37,7 @@ function RootLayoutInner() {
   }, []);
 
   useEffect(() => {
-    const timeout = setTimeout(() => setShowSplash(false), 1600);
+    const timeout = setTimeout(() => setShowSplash(false), 2600);
     return () => clearTimeout(timeout);
   }, []);
 

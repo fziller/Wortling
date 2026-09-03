@@ -1,23 +1,53 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { Image, StyleSheet, Text, View } from "react-native";
-import Animated, { FadeOut } from "react-native-reanimated";
+import Animated, { FadeInDown, FadeOut, ZoomIn } from "react-native-reanimated";
 
 import { tokens } from "@/design/tokens";
 
-const mascot = require("../../assets/adaptive-icon.png");
 const glow = require("../../assets/splash-glow.png");
+const guesses = ["K____", "KN___", "KNI__", "KNIFF"];
 
 export function AppSplash() {
   return (
     <Animated.View exiting={FadeOut.duration(tokens.motion.normal)} style={styles.wrap}>
       <Image source={glow} style={styles.glow} />
-      <LinearGradient colors={["#FFFDF8", "#FFF1DF"]} style={styles.circle}>
-        <Image source={mascot} style={styles.mascot} />
+      <LinearGradient colors={["#FFFDF8", "#FFF1DF"]} style={styles.board}>
+        {guesses.map((guess, rowIndex) => (
+          <View key={guess} style={styles.row}>
+            {guess.split("").map((letter, tileIndex) => {
+              const isSolved = rowIndex === guesses.length - 1;
+              const isFilled = letter !== "_";
+              const delay = rowIndex * 360 + tileIndex * 70;
+
+              return (
+                <Animated.View
+                  entering={ZoomIn.delay(delay).springify().damping(18).stiffness(220)}
+                  key={`${guess}-${tileIndex}`}
+                  style={[
+                    styles.tile,
+                    isFilled ? styles.tileFilled : null,
+                    isSolved ? styles.tileSolved : null,
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.tileText,
+                      isFilled ? null : styles.tileTextEmpty,
+                      isSolved ? styles.tileTextSolved : null,
+                    ]}
+                  >
+                    {letter}
+                  </Text>
+                </Animated.View>
+              );
+            })}
+          </View>
+        ))}
       </LinearGradient>
-      <View style={styles.copy}>
+      <Animated.View entering={FadeInDown.delay(1600).duration(tokens.motion.slow)} style={styles.copy}>
         <Text style={styles.title}>Wortkniff</Text>
-        <Text style={styles.subtitle}>Kurz. Clever. Deutsch.</Text>
-      </View>
+        <Text style={styles.subtitle}>Treffer.</Text>
+      </Animated.View>
     </Animated.View>
   );
 }
@@ -36,22 +66,53 @@ const styles = StyleSheet.create({
     height: 390,
     resizeMode: "contain",
   },
-  circle: {
-    width: 220,
-    height: 220,
+  board: {
+    width: 278,
+    gap: tokens.space.sm,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 110,
+    borderRadius: tokens.radius.lg,
+    padding: tokens.space.lg,
     shadowColor: tokens.color.shadow,
     shadowOffset: { width: 0, height: 18 },
     shadowOpacity: 0.22,
     shadowRadius: 28,
     elevation: 12,
   },
-  mascot: {
-    width: 168,
-    height: 168,
-    resizeMode: "contain",
+  row: {
+    flexDirection: "row",
+    gap: tokens.space.xs,
+  },
+  tile: {
+    width: 38,
+    height: 42,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 2,
+    borderColor: "#E8D6BE",
+    borderRadius: tokens.radius.sm,
+    backgroundColor: "rgba(255, 255, 255, 0.62)",
+  },
+  tileFilled: {
+    borderColor: tokens.color.primary,
+    backgroundColor: "#FFF7ED",
+  },
+  tileSolved: {
+    borderColor: "#167A59",
+    backgroundColor: tokens.color.success,
+  },
+  tileText: {
+    color: tokens.color.ink,
+    fontSize: 23,
+    fontWeight: "900",
+    letterSpacing: -0.4,
+  },
+  tileTextEmpty: {
+    color: tokens.color.muted,
+    opacity: 0.45,
+  },
+  tileTextSolved: {
+    color: "white",
   },
   copy: {
     position: "absolute",
