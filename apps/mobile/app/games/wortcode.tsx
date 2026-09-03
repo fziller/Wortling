@@ -9,6 +9,7 @@ import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
 import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
+import type { KeyboardLetterState } from "@/components/WordKeyboard";
 import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
@@ -17,6 +18,7 @@ import { createNextWortcodeGame, restoreWortcodePuzzle } from "@/games/wortcode/
 import {
   applyWortcodeHint,
   getWortcodeRevealedLetters,
+  getWortcodeEffectiveMarks,
   revealWortcodeSolution,
   submitWortcodeGuess,
   toggleWortcodeLetterMark,
@@ -124,6 +126,8 @@ export default function WortcodeScreen() {
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const tileLayout = getWordTileLayout(puzzle.wordLength);
+  const effectiveMarks = getWortcodeEffectiveMarks(state);
+  const letterStates = getLetterStates(effectiveMarks, state);
   const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
 
   function addLetter(letter: string) {
@@ -290,6 +294,7 @@ export default function WortcodeScreen() {
       }
       keyboard={{
         disabled: state.status !== "playing",
+        letterStates,
         onBackspace: backspace,
         onLetter: addLetter,
         onSubmit: submit,
@@ -321,7 +326,7 @@ export default function WortcodeScreen() {
                 >
                   <View style={[styles.letterRow, { gap: tileLayout.gap, flex: 1 }]}>
                     {Array.from(guess.value).map((letter, letterIndex) => {
-                      const mark = guess.marks?.[letterIndex] ?? "none";
+                      const mark = effectiveMarks[guessIndex]?.[letterIndex] ?? "none";
 
                       return (
                         <Pressable
@@ -329,9 +334,9 @@ export default function WortcodeScreen() {
                           accessibilityRole="button"
                           key={`${guess.value}-${letterIndex}`}
                           onPress={() => toggleMark(guessIndex, letterIndex)}
-                          style={[styles.letterTile, { minHeight: tileLayout.minHeight }, mark === "included" && styles.includedTile, mark === "exact" && styles.exactTile]}
+                          style={[styles.letterTile, { minHeight: tileLayout.minHeight }, mark === "included" && styles.includedTile, mark === "exact" && styles.exactTile, mark === "excluded" && styles.excludedTile]}
                         >
-                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4 }, mark === "exact" && styles.exactLetterText]}>{letter.toUpperCase()}</Text>
+                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4 }, (mark === "exact" || mark === "excluded") && styles.markedLetterText]}>{letter.toUpperCase()}</Text>
                         </Pressable>
                       );
                     })}
@@ -377,7 +382,7 @@ export default function WortcodeScreen() {
                             isHintLocked && styles.exactTile,
                           ]}
                         >
-                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4 }, isHintLocked && styles.exactLetterText]}>{letter.toLocaleUpperCase("de-DE")}</Text>
+                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4 }, isHintLocked && styles.markedLetterText]}>{letter.toLocaleUpperCase("de-DE")}</Text>
                         </Pressable>
                       );
                     })}
@@ -421,8 +426,21 @@ export default function WortcodeScreen() {
 function markLabel(mark: WortcodeLetterMark): string {
   if (mark === "included") return "als enthalten markiert";
   if (mark === "exact") return "als exakt markiert";
+  if (mark === "excluded") return "als falsch markiert";
 
   return "nicht markiert";
+}
+
+function getLetterStates(marks: WortcodeLetterMark[][], state: WortcodeState): Record<string, KeyboardLetterState> {
+  const letterStates: Record<string, KeyboardLetterState> = {};
+
+  state.guesses.forEach((guess, guessIndex) => {
+    Array.from(guess.value).forEach((letter, letterIndex) => {
+      if (marks[guessIndex]?.[letterIndex] === "excluded") letterStates[letter] = "absent";
+    });
+  });
+
+  return letterStates;
 }
 
 const styles = StyleSheet.create({
@@ -439,8 +457,9 @@ const styles = StyleSheet.create({
   activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
   includedTile: { backgroundColor: "#FFD76A", borderColor: "#D98500" },
   exactTile: { backgroundColor: tokens.color.success, borderColor: "#127456" },
+  excludedTile: { backgroundColor: tokens.color.danger, borderColor: "#A92E2A" },
   letterText: { color: tokens.color.ink, fontSize: 18, fontWeight: "900" },
-  exactLetterText: { color: "white" },
+  markedLetterText: { color: "white" },
   feedbackBoxes: { flexDirection: "row", gap: 4, marginLeft: tokens.space.xs },
   feedbackBox: { width: 28, height: 28, alignItems: "center", justifyContent: "center", borderRadius: 6, borderWidth: 1 },
   feedbackBoxGreen: { backgroundColor: tokens.color.success, borderColor: "#127456" },

@@ -4,7 +4,7 @@ import { getWordLength, supportedWordLengths } from "../wordLengths";
 
 import { guessWords, wortcodeTargetsByLength } from "./content";
 import { createWortcodePuzzle, getWortcodeDifficulty, getWortcodeMaxAttempts, restoreWortcodePuzzle } from "./daily";
-import { createWortcodeState, evaluateGuess, submitWortcodeGuess, toggleWortcodeLetterMark } from "./engine";
+import { createWortcodeState, evaluateGuess, getWortcodeEffectiveMarks, submitWortcodeGuess, toggleWortcodeLetterMark } from "./engine";
 
 const puzzle = createWortcodePuzzle("banane", 6, "test");
 
@@ -74,13 +74,43 @@ describe("wortcode engine", () => {
     const guessed = submitWortcodeGuess(puzzle, createWortcodeState(puzzle), "ananas").state;
     const included = toggleWortcodeLetterMark(guessed, 0, 1);
     const exact = toggleWortcodeLetterMark(included, 0, 1);
-    const cleared = toggleWortcodeLetterMark(exact, 0, 1);
+    const excluded = toggleWortcodeLetterMark(exact, 0, 1);
+    const cleared = toggleWortcodeLetterMark(excluded, 0, 1);
 
     expect(included.guesses[0].marks?.[1]).toBe("included");
     expect(exact.guesses[0].marks?.[1]).toBe("exact");
+    expect(excluded.guesses[0].marks?.[1]).toBe("excluded");
     expect(cleared.guesses[0].marks?.[1]).toBe("none");
     expect(cleared.guesses[0].exactMatches).toBe(0);
     expect(toggleWortcodeLetterMark(cleared, 99, 0)).toBe(cleared);
+  });
+
+  it("applies manual red marks by letter and green marks by position", () => {
+    let state = {
+      ...createWortcodeState(puzzle),
+      guesses: [
+        { value: "ananas", exactMatches: 0, misplacedMatches: 4 },
+        { value: "ampeln", exactMatches: 0, misplacedMatches: 2 },
+      ],
+    };
+
+    state = toggleWortcodeLetterMark(state, 0, 0);
+    state = toggleWortcodeLetterMark(state, 0, 0);
+    state = toggleWortcodeLetterMark(state, 0, 1);
+    state = toggleWortcodeLetterMark(state, 0, 1);
+    state = toggleWortcodeLetterMark(state, 0, 1);
+
+    expect(getWortcodeEffectiveMarks(state)).toEqual([
+      ["exact", "excluded", "none", "excluded", "none", "none"],
+      ["exact", "none", "none", "none", "none", "excluded"],
+    ]);
+
+    state = toggleWortcodeLetterMark(state, 1, 5);
+
+    expect(getWortcodeEffectiveMarks(state)).toEqual([
+      ["exact", "none", "none", "none", "none", "none"],
+      ["exact", "none", "none", "none", "none", "none"],
+    ]);
   });
 
   it("restores old persisted puzzles without wordLength", () => {

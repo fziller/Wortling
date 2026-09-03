@@ -85,13 +85,50 @@ export function toggleWortcodeLetterMark(state: WortcodeState, guessIndex: numbe
     return state;
   }
 
-  const marks = Array.from({ length: letters.length }, (_, index) => guess.marks?.[index] ?? "none" as WortcodeLetterMark);
-  marks[letterIndex] = marks[letterIndex] === "none" ? "included" : marks[letterIndex] === "included" ? "exact" : "none";
+  const mark = getWortcodeEffectiveMarks(state)[guessIndex]?.[letterIndex] ?? "none";
+  const nextMark = mark === "none" ? "included" : mark === "included" ? "exact" : mark === "exact" ? "excluded" : "none";
+  const selectedLetter = letters[letterIndex];
 
   return {
     ...state,
-    guesses: state.guesses.map((item, index) => index === guessIndex ? { ...item, marks } : item)
+    guesses: state.guesses.map((item, index) => {
+      const itemLetters = Array.from(item.value);
+      const marks = Array.from({ length: itemLetters.length }, (_, markIndex) => item.marks?.[markIndex] ?? "none" as WortcodeLetterMark);
+
+      if (mark === "excluded") {
+        itemLetters.forEach((letter, markIndex) => {
+          if (letter === selectedLetter && marks[markIndex] === "excluded") marks[markIndex] = "none";
+        });
+      }
+
+      if (index === guessIndex) marks[letterIndex] = nextMark;
+
+      return { ...item, marks };
+    })
   };
+}
+
+export function getWortcodeEffectiveMarks(state: WortcodeState): WortcodeLetterMark[][] {
+  const excluded = new Set<string>();
+  const exactByPosition = new Map<number, Set<string>>();
+
+  for (const guess of state.guesses) {
+    Array.from(guess.value).forEach((letter, index) => {
+      const mark = guess.marks?.[index] ?? "none";
+      if (mark === "excluded") excluded.add(letter);
+      if (mark === "exact") {
+        const letters = exactByPosition.get(index) ?? new Set<string>();
+        letters.add(letter);
+        exactByPosition.set(index, letters);
+      }
+    });
+  }
+
+  return state.guesses.map((guess) => Array.from(guess.value).map((letter, index) => {
+    if (excluded.has(letter)) return "excluded";
+    if (exactByPosition.get(index)?.has(letter)) return "exact";
+    return guess.marks?.[index] ?? "none";
+  }));
 }
 
 export function revealWortcodeSolution(state: WortcodeState): WortcodeState {

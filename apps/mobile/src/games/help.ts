@@ -62,7 +62,7 @@ export const gameHelp = {
       "Knacke das gesuchte Wort.",
       "Neben jedem Tipp zeigen drei Kästchen: Grün = exakt richtig, Gelb = im Wort enthalten, Rot = nicht im Wort. Die Zahlen sagen dir wie viele.",
       "Du siehst nicht, welche Positionen richtig sind.",
-      "Tippe auf Buchstaben in alten Versuchen um sie zu markieren: Gelb vielleicht enthalten, Grün vielleicht exakt. Nur deine Notizen."
+      "Tippe auf Buchstaben in alten Versuchen um sie zu markieren: Gelb vielleicht enthalten, Grün vielleicht exakt, Rot sicher falsch. Deine Notizen werden passend auf gleiche Buchstaben übertragen."
     ]
   }
 } as const;

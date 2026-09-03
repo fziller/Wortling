@@ -1,6 +1,6 @@
 import type { GameStatus } from "@/games/types";
 
-export type WortcodeLetterMark = "none" | "included" | "exact";
+export type WortcodeLetterMark = "none" | "included" | "exact" | "excluded";
 
 export type WortcodePuzzle = {
   id: string;
