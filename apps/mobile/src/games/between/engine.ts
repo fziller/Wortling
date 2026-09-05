@@ -131,28 +131,19 @@ export function getOpenAlphabetLetters(
     return alphabet.toLocaleUpperCase("de-DE").split("");
   }
 
-  const lowerPrefix = normalizedLower.slice(0, index);
-  const upperPrefix = normalizedUpper.slice(0, index);
-  let min = 0;
-  let max = alphabet.length - 1;
+  return alphabet
+    .split("")
+    .filter((letter) => {
+      const candidatePrefix = `${prefix}${letter}`;
+      const remainingLength = WORD_LENGTH - candidatePrefix.length;
+      const lowestCandidate = `${candidatePrefix}${"a".repeat(remainingLength)}`;
+      const highestCandidate = `${candidatePrefix}${"z".repeat(remainingLength)}`;
 
-  if (compareWords(prefix, lowerPrefix) < 0 || compareWords(prefix, upperPrefix) > 0) {
-    return [];
-  }
-
-  if (normalizedLower !== "aaaaa" && compareWords(prefix, lowerPrefix) === 0) {
-    min = alphabet.indexOf(normalizedLower[index]) + 1;
-  }
-
-  if (normalizedUpper !== "zzzzz" && compareWords(prefix, upperPrefix) === 0) {
-    max = alphabet.indexOf(normalizedUpper[index]) - 1;
-  }
-
-  if (min > max) {
-    return [];
-  }
-
-  return alphabet.slice(min, max + 1).toLocaleUpperCase("de-DE").split("");
+      return compareWords(highestCandidate, normalizedLower) > 0 && compareWords(lowestCandidate, normalizedUpper) < 0;
+    })
+    .join("")
+    .toLocaleUpperCase("de-DE")
+    .split("");
 }
 
 

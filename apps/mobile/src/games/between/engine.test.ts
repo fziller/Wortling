@@ -22,8 +22,10 @@ describe("between engine", () => {
   });
 
   it("shows available letters for the active input position", () => {
-    expect(getOpenAlphabetLetters("insel", "kuppe", 0)).toEqual(["J"]);
+    expect(getOpenAlphabetLetters("insel", "kuppe", 0)).toEqual(["I", "J", "K"]);
+    expect(getOpenAlphabetLetters("hanau", "insel", 0)).toEqual(["H", "I"]);
     expect(getOpenAlphabetLetters("insel", "kuppe", 1, ["j", "", "", "", ""])).toEqual("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""));
     expect(getOpenAlphabetLetters("insel", "kuppe", 1, ["a", "", "", "", ""])).toEqual([]);
+    expect(getOpenAlphabetLetters("hanau", "hanaw", 4, ["h", "a", "n", "a", ""])).toEqual(["V"]);
   });
 });

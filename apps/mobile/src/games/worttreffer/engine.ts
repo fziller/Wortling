@@ -94,6 +94,11 @@ export function revealWorttrefferSolution(state: WorttrefferState): WorttrefferS
 
 export function getWorttrefferHintPosition(puzzle: WorttrefferPuzzle, state: WorttrefferState): number | null {
   const revealed = new Set(state.revealedIndices ?? []);
+  for (const guess of state.guesses) {
+    guess.marks.forEach((mark, index) => {
+      if (mark === "correct") revealed.add(index);
+    });
+  }
   const available: number[] = [];
   for (let i = 0; i < puzzle.wordLength; i += 1) {
     if (!revealed.has(i)) available.push(i);

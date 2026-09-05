@@ -4,7 +4,8 @@ import { getWordLength, supportedWordLengths } from "../wordLengths";
 
 import { guessWords, worttrefferTargetsByLength } from "./content";
 import { createWorttrefferPuzzle, getWorttrefferMaxAttempts, restoreWorttrefferPuzzle } from "./daily";
-import { createWorttrefferState, evaluateWorttrefferGuess, getWorttrefferLetterStates, submitWorttrefferGuess } from "./engine";
+import { createWorttrefferState, evaluateWorttrefferGuess, getWorttrefferHintPosition, getWorttrefferLetterStates, submitWorttrefferGuess } from "./engine";
+import type { WorttrefferState } from "./types";
 
 const puzzle = createWorttrefferPuzzle("ampel", 5, "test");
 
@@ -64,6 +65,16 @@ describe("worttreffer engine", () => {
     const state = submitWorttrefferGuess(puzzle, createWorttrefferState(puzzle), "apfel").state;
 
     expect(getWorttrefferLetterStates(state)).toMatchObject({ a: "correct", p: "present", f: "absent", e: "correct", l: "correct" });
+  });
+
+  it("does not reveal positions already found exactly", () => {
+    const state: WorttrefferState = {
+      ...createWorttrefferState(puzzle),
+      guesses: [{ value: "allee", marks: ["absent", "absent", "absent", "absent", "correct"] }],
+      revealedIndices: [0, 1, 2],
+    };
+
+    expect(getWorttrefferHintPosition(puzzle, state)).toBe(3);
   });
 
   it("keeps curated guesses at the configured length", () => {
