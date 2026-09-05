@@ -31053,6 +31053,12 @@ export const generatedWordMeta = [
     "bucket": "verb-finite"
   },
   {
+    "word": "sanka",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
     "word": "sänke",
     "zipf": 1,
     "tier": "unknown",

@@ -46,7 +46,7 @@ export function AppSplash() {
       </LinearGradient>
       <Animated.View entering={FadeInDown.delay(1600).duration(tokens.motion.slow)} style={styles.copy}>
         <Text style={styles.title}>Wortkniff</Text>
-        <Text style={styles.subtitle}>Treffer.</Text>
+        <Text style={styles.subtitle}>Deutsche Wörter, clever gerätselt.</Text>
       </Animated.View>
     </Animated.View>
   );
@@ -118,17 +118,20 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 82,
     alignItems: "center",
-    gap: tokens.space.xs,
+    gap: 4,
+    paddingHorizontal: tokens.space.lg,
   },
   title: {
     color: "white",
     fontSize: 46,
     fontWeight: "900",
     letterSpacing: -1.4,
+    textAlign: "center",
   },
   subtitle: {
     color: "rgba(255, 255, 255, 0.9)",
     fontSize: tokens.type.body,
     fontWeight: "800",
+    textAlign: "center",
   },
 });

@@ -14751,6 +14751,12 @@ export const generatedWordMeta = [
     "bucket": "konjunktiv"
   },
   {
+    "word": "dadrin",
+    "zipf": 2.71,
+    "tier": "hard",
+    "bucket": "base"
+  },
+  {
     "word": "daffke",
     "zipf": 1,
     "tier": "unknown",

@@ -2460,6 +2460,7 @@ export const generatedAllowedGuesses = [
   "dackel",
   "daddel",
   "daddle",
+  "dadrin",
   "daffke",
   "dagaba",
   "dagoba",

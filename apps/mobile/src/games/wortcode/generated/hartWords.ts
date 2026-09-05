@@ -364,6 +364,7 @@ export const generatedHartWords = [
   "cyborg",
   "dachte",
   "dächte",
+  "dadrin",
   "daheim",
   "damals",
   "damian",

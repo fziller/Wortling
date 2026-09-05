@@ -15,10 +15,10 @@
     "android": {
       "package": "com.existuus.wortling",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/mobile_app_icon_for_a_word_puzzle_game_styled_like_data_image_image_31._five.png",
-        "backgroundColor": "#F7F1E8"
+        "foregroundImage": "./assets/adaptive-foreground.png",
+        "backgroundColor": "#232E40"
       },
-      "versionCode": 6
+      "versionCode": 7
     },
     "web": {
       "bundler": "metro"
@@ -37,8 +37,8 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#FF6B2C",
-          "image": "./assets/mobile_app_icon_for_a_word_puzzle_game_styled_like_data_image_image_31._five.png",
-          "imageWidth": 260
+          "image": "./assets/splash-board.png",
+          "imageWidth": 280
         }
       ],
       ["@sentry/react-native/expo", {}],

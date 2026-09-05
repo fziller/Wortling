@@ -5177,6 +5177,7 @@ export const generatedAllowedGuesses = [
   "sanft",
   "sänge",
   "sangt",
+  "sanka",
   "sänke",
   "sankt",
   "sänne",

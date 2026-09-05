@@ -1,13 +1,13 @@
 # Wort-Statistik
 
 > Auto-generated — `yarn words:stats` (oder `yarn content:generate` regeneriert Bio + Core). Quelle: `src/games/**/generated/*.ts` + `src/games/packs/bio/generated/bioTargets.ts`.
-> Letztes Update: 2026-09-03 · Core via DWDS + LanguageTool POS + SUBTLEX-DE Zipf, Bio ohne Zipf (alle validen Shapes).
+> Letztes Update: 2026-09-05 · Core via DWDS + LanguageTool POS + SUBTLEX-DE Zipf, Bio ohne Zipf (alle validen Shapes).
 
 ## Überblick
 
 | Kategorie | Wörter | Hinweis |
 |---|---|---|
-| Core allowed (alle ratebaren, 4–7) | 47616 | `allowedGuesses` — immer vollständig, auch Bio ist hier drin (Union) |
+| Core allowed (alle ratebaren, 4–7) | 47620 | `allowedGuesses` — immer vollständig, auch Bio ist hier drin (Union) |
 | Core klassisch Targets (Zipf ≥ Threshold, base only) | 2685 | `targetWords` — was ohne Pack als Lösung kommt |
 | Bio Targets (4–7, ohne Zipf) | 76 | `bioTargetWordsByLength` — nur wenn Pack aktiviert |
 
@@ -18,9 +18,9 @@
 | Länge | allowed | klassisch | erweitert | hart | easy | medium | hard | unknown |
 |---|---|---|---|---|---|---|---|
 | 4 | 2726 | 666 | 717 | 1104 | 595 | 621 | 245 | 1265 |
-| 5 | 6807 | 606 | 708 | 1629 | 953 | 1300 | 498 | 4056 |
-| 6 | 13931 | 691 | 918 | 2394 | 1171 | 1985 | 868 | 9907 |
-| 7 | 24152 | 722 | 992 | 2989 | 967 | 2272 | 1156 | 19757 |
+| 5 | 6808 | 606 | 708 | 1629 | 953 | 1300 | 498 | 4057 |
+| 6 | 13932 | 691 | 918 | 2395 | 1171 | 1985 | 869 | 9907 |
+| 7 | 24154 | 722 | 992 | 2989 | 967 | 2272 | 1156 | 19759 |
 
 * Thresholds: 4→2.2, 5–7→2.9 (`wordConfig.ts:WORD_THRESHOLDS_BY_LENGTH`), Tiers: easy ≥3.8, medium ≥2.9, hard ≥2.2. `klassisch=base∩≥thr`, `erweitert=base+plural+verb-finite∩≥thr`, `hart=alle∖genitive∩≥2.2`.*
 
@@ -29,9 +29,9 @@
 | Länge | base | plural | verb-finite | partizip | konjunktiv | imperativ | adj-flex | genitive |
 |---|---|---|---|---|---|---|---|---|
 | 4 | 1308 | 0 | 78 | 0 | 120 | 593 | 23 | 604 |
-| 5 | 2573 | 35 | 306 | 10 | 873 | 837 | 140 | 2033 |
-| 6 | 4543 | 241 | 1082 | 288 | 2908 | 827 | 419 | 3623 |
-| 7 | 7479 | 574 | 1896 | 1489 | 5735 | 987 | 981 | 5011 |
+| 5 | 2574 | 35 | 306 | 10 | 873 | 837 | 140 | 2033 |
+| 6 | 4544 | 241 | 1082 | 288 | 2908 | 827 | 419 | 3623 |
+| 7 | 7481 | 574 | 1896 | 1489 | 5735 | 987 | 981 | 5011 |
 
 * Genitive nie Target, aber in allowed für Wortleiter-Graph. *
 

@@ -112401,6 +112401,12 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
+    "word": "sequoia",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
     "word": "sequoie",
     "zipf": 1,
     "tier": "unknown",
@@ -122119,6 +122125,12 @@ export const generatedWordMeta = [
     "zipf": 1,
     "tier": "unknown",
     "bucket": "genitive"
+  },
+  {
+    "word": "techbro",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
   },
   {
     "word": "techies",
