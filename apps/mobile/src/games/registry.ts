@@ -17,7 +17,7 @@ export const games = [
     route: "/games/doppel",
     estimatedMinutes: 2,
     badge: "Komposita",
-    dailyKniffEligible: true
+    dailyKniffEligible: false
   },
   {
     id: "galgenwort",

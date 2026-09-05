@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, LinearTransition, interpolate, interpolateColor, useAnimatedStyle, useSharedValue, withDelay, withTiming } from "react-native-reanimated";
 
+import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
@@ -70,10 +71,8 @@ export default function WortschmelzeScreen() {
   }, []);
 
   useEffect(() => {
-    try {
-      posthog.capture("screen_viewed", { screen: GAME_ID, params: { dateKey } });
-      posthog.capture("game_started", { gameId: GAME_ID, dateKey });
-    } catch {}
+    captureEvent(posthog, "screen_viewed", { screen: GAME_ID, params: { dateKey } });
+    captureEvent(posthog, "game_started", { gameId: GAME_ID, dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -158,9 +157,7 @@ export default function WortschmelzeScreen() {
         stats.finish(result.state.status);
         setFinishedAt(Date.now());
         setResultVisible(true);
-        try {
-          posthog.capture("game_completed", { gameId: GAME_ID, dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length });
-        } catch {}
+        captureEvent(posthog, "game_completed", { gameId: GAME_ID, dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length, outcome: result.state.status, success: result.state.status === "won" });
       }
     }, revealDuration);
   }
@@ -169,6 +166,8 @@ export default function WortschmelzeScreen() {
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     startStats();
     stats.finish("revealed");
+    captureEvent(posthog, "solution_revealed", { gameId: GAME_ID, dateKey, attempts: state.guesses.length });
+    captureEvent(posthog, "game_completed", { gameId: GAME_ID, dateKey, durationMs: elapsedSeconds * 1000, attempts: state.guesses.length, outcome: "revealed", success: false });
     setState((current) => revealWorttrefferSolution(current));
     setMessage("Lösung aufgedeckt.");
     setInputLetters(createEmptyInput(puzzle.wordLength));
@@ -195,6 +194,9 @@ export default function WortschmelzeScreen() {
   }
 
   function goBack() {
+    if (state.status === "playing" && state.guesses.length > 0) {
+      captureEvent(posthog, "game_abandoned", { gameId: GAME_ID, dateKey, attempts: state.guesses.length });
+    }
     if (router.canGoBack()) router.back();
     else router.replace("/");
   }
@@ -206,7 +208,10 @@ export default function WortschmelzeScreen() {
       actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
       keyboard={{ disabled: state.status !== "playing", letterStates, onBackspace: backspace, onLetter: addLetter, onSubmit: submit, submitDisabled: !canSubmit }}
       onBack={goBack}
-      onHelp={() => setHelpVisible(true)}
+      onHelp={() => {
+        captureEvent(posthog, "help_opened", { gameId: GAME_ID, dateKey });
+        setHelpVisible(true);
+      }}
       subtitle={`${dateKey} · 5+5 → 8 Buchstaben`}
       title="Wortschmelze"
     >

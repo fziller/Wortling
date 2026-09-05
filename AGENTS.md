@@ -66,7 +66,10 @@ Wortkniff is an Expo + React Native + TypeScript mobile app for German daily wor
   - Analytics events are fired for key user actions (game start/complete/abandon, settings changes).
   - No secrets (DSN, API keys) are hardcoded — use `EXPO_PUBLIC_` env vars.
 - When adding new screens, fire a `screen_viewed` PostHog event.
-- When adding new game modes, instrument `game_started`, `game_completed`, `game_abandoned`.
+- When adding new game modes, instrument `screen_viewed`, `game_started`, `game_completed`, `game_abandoned`, `help_opened`, `solution_revealed`, and `hint_used` if hints exist.
+- `game_completed` must include an outcome and whether the round was successful, so wins, losses, and revealed solutions can be compared consistently.
+- When adding new user-facing functionality, add the smallest useful event for key actions such as settings changes, hints, result sharing, feedback, paywall actions, and daily streak completion.
+- Never send guess words, answers, target words, or other personal gameplay content to PostHog; keep that data local in SQLite.
 - Source maps are uploaded to Sentry during EAS production builds.
 
 ## Checks

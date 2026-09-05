@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
+import { usePostHog } from "posthog-react-native";
 
+import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
@@ -32,6 +34,7 @@ function hintText(hint: DoppelHint): string {
 
 export default function DoppelScreen() {
   const router = useRouter();
+  const posthog = usePostHog();
   const today = getBerlinDateKey();
   const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
@@ -94,6 +97,11 @@ export default function DoppelScreen() {
   const canSubmit = input.trim().length > 0 && state.status === "playing";
   const maxInputLength = Math.max(...puzzle.solutions.map((item) => Array.from(item.answer).length));
 
+  useEffect(() => {
+    captureEvent(posthog, "screen_viewed", { screen: "doppel", params: { dateKey } });
+    captureEvent(posthog, "game_started", { gameId: "doppel", dateKey });
+  }, [dateKey, posthog]);
+
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
     setInput((current) => Array.from(current).length >= maxInputLength ? current : current + letter);
@@ -124,6 +132,14 @@ export default function DoppelScreen() {
       stats.finish("won");
       setFinishedAt(Date.now());
       setResultVisible(true);
+      captureEvent(posthog, "game_completed", {
+        gameId: "doppel",
+        dateKey,
+        durationMs: elapsedSeconds * 1000,
+        attempts: result.state.guesses.length,
+        outcome: "won",
+        success: true,
+      });
     }
   }
 
@@ -135,6 +151,7 @@ export default function DoppelScreen() {
       const unlockedHint = (puzzle.hints ?? [])[nextState.unlockedHints - 1];
 
       stats.recordHint(unlockedHint ? { type: unlockedHint.type } : undefined);
+      captureEvent(posthog, "hint_used", { gameId: "doppel", dateKey, source: unlockedHint?.type });
     }
     setState(nextState);
     setMessage(nextState.unlockedHints === state.unlockedHints ? "Keine weiteren Hinweise." : "Hinweis freigeschaltet.");
@@ -143,6 +160,15 @@ export default function DoppelScreen() {
   function reveal() {
     startStats();
     stats.finish("revealed");
+    captureEvent(posthog, "solution_revealed", { gameId: "doppel", dateKey, attempts: state.guesses.length });
+    captureEvent(posthog, "game_completed", {
+      gameId: "doppel",
+      dateKey,
+      durationMs: elapsedSeconds * 1000,
+      attempts: state.guesses.length,
+      outcome: "revealed",
+      success: false,
+    });
     setState(revealDoppelSolution(puzzle, state));
     setMessage("Lösung aufgedeckt.");
     setGiveUpVisible(false);
@@ -169,6 +195,9 @@ export default function DoppelScreen() {
   }
 
   function goBack() {
+    if (state.status === "playing" && state.guesses.length > 0) {
+      captureEvent(posthog, "game_abandoned", { gameId: "doppel", dateKey, attempts: state.guesses.length });
+    }
     if (router.canGoBack()) router.back();
     else router.replace("/");
   }
@@ -189,7 +218,10 @@ export default function DoppelScreen() {
         submitDisabled: !canSubmit,
       }}
       onBack={goBack}
-      onHelp={() => setHelpVisible(true)}
+      onHelp={() => {
+        captureEvent(posthog, "help_opened", { gameId: "doppel", dateKey });
+        setHelpVisible(true);
+      }}
       subtitle={dateKey}
       title="Doppel"
     >

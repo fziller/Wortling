@@ -15,7 +15,6 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 | Game | Summary | Rules Snapshot |
 | --- | --- | --- |
 | Dazwischen | Narrow down a German target word alphabetically. | Guess valid 5-letter words; each guess shows whether the target comes before or after it. |
-| Doppel | Find the word connecting two German compounds. | One answer forms a valid compound with the left clue and another with the right clue. |
 | Galgenwort | Guess a German word before running out of mistakes. | Guess letters from a clue category; wrong guesses count against the limit. |
 | Formwort | Solve a 5- to 7-letter word with shape and color feedback. | Guess words and use visual hints to infer repeated letters and positions. |
 | Worttreffer | Guess a 4- to 7-letter word with color feedback. | Green means correct position, yellow means present elsewhere, gray means absent. |
@@ -40,6 +39,10 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 - Word stats at a glance: `docs/word-stats.md` (auto-generated via `yarn words:stats` after `content:generate`) — counts per length & tier/bucket & pack.
 - Optional daily reminder notifications.
 - Sentry and PostHog instrumentation with no-op fallback behavior.
+
+## Hidden / Incubating Games
+
+- Doppel remains in code, tests, routing, and existing stats support, but is hidden from Home and excluded from Tageskniffe until its curated puzzle pool is strong enough for launch.
 
 ## Maintenance Rule
 

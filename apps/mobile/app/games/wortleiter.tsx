@@ -14,6 +14,7 @@ import Animated, {
   LinearTransition,
 } from "react-native-reanimated";
 
+import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { HelpModal } from "@/components/HelpModal";
@@ -83,15 +84,8 @@ export default function WortleiterScreen() {
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
 
   useEffect(() => {
-    try {
-      posthog.capture("screen_viewed", {
-        screen: "wortleiter",
-        params: { dateKey },
-      });
-      posthog.capture("game_started", { gameId: "wortleiter", dateKey });
-    } catch {
-      // Analytics must never break offline gameplay.
-    }
+    captureEvent(posthog, "screen_viewed", { screen: "wortleiter", params: { dateKey } });
+    captureEvent(posthog, "game_started", { gameId: "wortleiter", dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -211,16 +205,14 @@ export default function WortleiterScreen() {
       stats.finish("won");
       setFinishedAt(now);
       setResultVisible(true);
-      try {
-        posthog.capture("game_completed", {
-          gameId: "wortleiter",
-          dateKey,
-          durationMs: elapsedSeconds * 1000,
-          attempts: result.state.words.length - 1,
-        });
-      } catch {
-        // Analytics must never break offline gameplay.
-      }
+      captureEvent(posthog, "game_completed", {
+        gameId: "wortleiter",
+        dateKey,
+        durationMs: elapsedSeconds * 1000,
+        attempts: result.state.words.length - 1,
+        outcome: "won",
+        success: true,
+      });
     }
   }
 
@@ -232,6 +224,15 @@ export default function WortleiterScreen() {
   function reveal() {
     startStats();
     stats.finish("revealed");
+    captureEvent(posthog, "solution_revealed", { gameId: "wortleiter", dateKey, attempts: steps });
+    captureEvent(posthog, "game_completed", {
+      gameId: "wortleiter",
+      dateKey,
+      durationMs: elapsedSeconds * 1000,
+      attempts: steps,
+      outcome: "revealed",
+      success: false,
+    });
     const nextState = revealWortleiterSolution(puzzle, state);
     setState(nextState);
     setMessage("Lösung aufgedeckt.");
@@ -259,15 +260,7 @@ export default function WortleiterScreen() {
 
   function goBack() {
     if (state.status === "playing" && state.words.length > 1) {
-      try {
-        posthog.capture("game_abandoned", {
-          gameId: "wortleiter",
-          dateKey,
-          attempts: state.words.length - 1,
-        });
-      } catch {
-        // Analytics must never break offline gameplay.
-      }
+      captureEvent(posthog, "game_abandoned", { gameId: "wortleiter", dateKey, attempts: state.words.length - 1 });
     }
     if (router.canGoBack()) router.back();
     else router.replace("/");
@@ -289,7 +282,10 @@ export default function WortleiterScreen() {
         submitDisabled: !canSubmit,
       }}
       onBack={goBack}
-      onHelp={() => setHelpVisible(true)}
+      onHelp={() => {
+        captureEvent(posthog, "help_opened", { gameId: "wortleiter", dateKey });
+        setHelpVisible(true);
+      }}
       subtitle={dateKey}
       title="Wortleiter"
     >

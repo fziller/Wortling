@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated";
 
+import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
@@ -105,12 +106,8 @@ export default function FormwortScreen() {
   const mergeDraftWithRevealed = (draft: string[], letters: (string | null)[]) => draft.map((ch, i) => (letters[i] ? letters[i]! : ch));
 
   useEffect(() => {
-    try {
-      posthog.capture("screen_viewed", { screen: "formwort", params: { dateKey } });
-      posthog.capture("game_started", { gameId: "formwort", dateKey });
-    } catch {
-      // Analytics must never break offline gameplay.
-    }
+    captureEvent(posthog, "screen_viewed", { screen: "formwort", params: { dateKey } });
+    captureEvent(posthog, "game_started", { gameId: "formwort", dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -214,7 +211,7 @@ export default function FormwortScreen() {
       setState(next);
       setInputLetters((prev) => mergeDraftWithRevealed(prev, letters));
       stats.recordHint({ source: "ad", gameId: "formwort" });
-      try { posthog.capture("hint_used", { gameId: "formwort", dateKey, source: "ad" }); } catch {}
+      captureEvent(posthog, "hint_used", { gameId: "formwort", dateKey, source: "ad" });
       setMessage("Tipp aufgedeckt.");
       return;
     }
@@ -234,7 +231,7 @@ export default function FormwortScreen() {
     if (firstEmpty >= 0 && !revealedSet.has(firstEmpty)) setCursorIndex(firstEmpty);
     startStats();
     stats.recordHint({ source: "earned", gameId: "formwort", revealedCount: next.revealedIndices?.length });
-    try { posthog.capture("hint_used", { gameId: "formwort", dateKey, source: "earned" }); } catch {}
+    captureEvent(posthog, "hint_used", { gameId: "formwort", dateKey, source: "earned" });
     setMessage("Tipp: Buchstabe aufgedeckt.");
   }
 
@@ -268,17 +265,15 @@ export default function FormwortScreen() {
       }
       setFinishedAt(Date.now());
       setResultVisible(true);
-      try {
-        posthog.capture("game_completed", { gameId: "formwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length });
-      } catch {
-        // Analytics must never break offline gameplay.
-      }
+      captureEvent(posthog, "game_completed", { gameId: "formwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length, outcome: result.state.status, success: result.state.status === "won" });
     }
   }
 
   function reveal() {
     startStats();
     stats.finish("revealed");
+    captureEvent(posthog, "solution_revealed", { gameId: "formwort", dateKey, attempts: state.guesses.length });
+    captureEvent(posthog, "game_completed", { gameId: "formwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: state.guesses.length, outcome: "revealed", success: false });
     setState((current) => revealFormwortSolution(current));
     setMessage("Lösung aufgedeckt.");
     setInputLetters(createEmptyInput(puzzle.wordLength));
@@ -311,11 +306,7 @@ export default function FormwortScreen() {
 
   function goBack() {
     if (state.status === "playing" && state.guesses.length > 0) {
-      try {
-        posthog.capture("game_abandoned", { gameId: "formwort", dateKey, attempts: state.guesses.length });
-      } catch {
-        // Analytics must never break offline gameplay.
-      }
+      captureEvent(posthog, "game_abandoned", { gameId: "formwort", dateKey, attempts: state.guesses.length });
     }
     if (router.canGoBack()) router.back();
     else router.replace("/");
@@ -342,7 +333,10 @@ export default function FormwortScreen() {
         submitDisabled: !canSubmit,
       }}
       onBack={goBack}
-      onHelp={() => setHelpVisible(true)}
+      onHelp={() => {
+        captureEvent(posthog, "help_opened", { gameId: "formwort", dateKey });
+        setHelpVisible(true);
+      }}
       subtitle={`${dateKey} · ${puzzle.wordLength} Buchstaben`}
       title="Formwort"
     >

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 import { Screen } from "@/components/Screen";
+import { captureEvent } from "@/analytics/events";
 import { getBerlinDateKey } from "@/daily/date";
 import { generateDailyKniffe, getDailyKniffeSummary, isDailyKniffCompleted } from "@/dailyKniffe";
 import { tokens } from "@/design/tokens";
@@ -44,10 +45,8 @@ export default function HomeScreen() {
   const dailySummary = getDailyKniffeSummary(dailyKniffe, progressByGame);
 
   useEffect(() => {
-    try {
-      posthog.capture("screen_viewed", { screen: "home", params: { dateKey } });
-      posthog.capture("daily_kniffe_viewed", { dateKey, total: dailySummary.total });
-    } catch {}
+    captureEvent(posthog, "screen_viewed", { screen: "home", params: { dateKey } });
+    captureEvent(posthog, "daily_kniffe_viewed", { dateKey, total: dailySummary.total });
   }, [dateKey, dailySummary.total, posthog]);
 
   useFocusEffect(useCallback(() => {
@@ -89,9 +88,7 @@ export default function HomeScreen() {
       if (!isDailyKniffCompleted(progressByGame[kniff.gameId]) || completedEventIds.current.has(kniff.id)) continue;
 
       completedEventIds.current.add(kniff.id);
-      try {
-        posthog.capture("daily_kniff_completed", { dateKey, gameId: kniff.gameId });
-      } catch {}
+      captureEvent(posthog, "daily_kniff_completed", { dateKey, gameId: kniff.gameId });
     }
   }, [dateKey, dailyKniffe, posthog, progressByGame]);
 
@@ -99,22 +96,19 @@ export default function HomeScreen() {
     if (!dailySummary.isComplete || !winDayStreak.todayIsWinDay || celebratedDateKeys.current.has(dateKey)) return;
 
     celebratedDateKeys.current.add(dateKey);
-    try {
-      posthog.capture("daily_kniffe_all_completed", { dateKey, streak: winDayStreak.current });
-    } catch {}
+    captureEvent(posthog, "daily_kniffe_all_completed", { dateKey, streak: winDayStreak.current });
+    captureEvent(posthog, "daily_streak_updated", { dateKey, streak: winDayStreak.current });
   }, [dateKey, dailySummary.isComplete, posthog, winDayStreak]);
 
   function openDailyKniff(gameId: string) {
     const game = gameRegistry[gameId];
     if (!game) return;
 
-    try {
-      posthog.capture("daily_kniff_opened", {
-        dateKey,
-        gameId,
-        completed: String(isDailyKniffCompleted(progressByGame[gameId])),
-      });
-    } catch {}
+    captureEvent(posthog, "daily_kniff_opened", {
+      dateKey,
+      gameId,
+      completed: String(isDailyKniffCompleted(progressByGame[gameId])),
+    });
 
     router.push(game.route as never);
   }

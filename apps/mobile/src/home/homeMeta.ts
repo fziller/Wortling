@@ -8,7 +8,6 @@ export const homeOrder = [
   "wortcode",
   "formwort",
   "wortleiter",
-  "doppel",
 ] as const;
 
 export const previewWords = {

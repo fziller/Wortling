@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
+import { usePostHog } from "posthog-react-native";
 import Animated, {
   FadeInDown,
   LinearTransition,
@@ -15,6 +16,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { captureEvent } from "@/analytics/events";
 import { getBerlinDateKey } from "@/daily/date";
 import { hashSeed } from "@/daily/seed";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
@@ -69,6 +71,7 @@ function formatWordCount(value: number): string {
 
 export default function BetweenScreen() {
   const router = useRouter();
+  const posthog = usePostHog();
   const today = getBerlinDateKey();
   const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
@@ -102,6 +105,11 @@ export default function BetweenScreen() {
   const centerWord = state.status === "revealed" || state.status === "won" ? state.targetWord : undefined;
   const showScaleHints = Boolean(lastGuess);
   const puzzleId = `between-${state.targetWord}`;
+
+  useEffect(() => {
+    captureEvent(posthog, "screen_viewed", { screen: "between", params: { dateKey } });
+    captureEvent(posthog, "game_started", { gameId: "between", dateKey });
+  }, [dateKey, posthog]);
 
   useEffect(() => {
     loadProgress<BetweenState>("between", today).then((progress) => {
@@ -221,6 +229,14 @@ export default function BetweenScreen() {
 
     if (result.state.status === "won") {
       stats.finish("won");
+      captureEvent(posthog, "game_completed", {
+        gameId: "between",
+        dateKey,
+        durationMs: elapsedSeconds * 1000,
+        attempts: result.state.guesses.length,
+        outcome: "won",
+        success: true,
+      });
     }
 
     if (result.guess.direction !== "hit") {
@@ -279,6 +295,15 @@ export default function BetweenScreen() {
   function revealRound() {
     stats.start({ gameId: "between", playDate: dateKey, puzzleId, gameVersion: puzzleVersion, wordLength: 5 });
     stats.finish("revealed");
+    captureEvent(posthog, "solution_revealed", { gameId: "between", dateKey, attempts: state.guesses.length });
+    captureEvent(posthog, "game_completed", {
+      gameId: "between",
+      dateKey,
+      durationMs: elapsedSeconds * 1000,
+      attempts: state.guesses.length,
+      outcome: "revealed",
+      success: false,
+    });
     setState(revealSolution(state));
     setModal(null);
     setFinishedAt(Date.now());
@@ -286,6 +311,9 @@ export default function BetweenScreen() {
   }
 
   function goBack() {
+    if (state.status === "playing" && state.guesses.length > 0) {
+      captureEvent(posthog, "game_abandoned", { gameId: "between", dateKey, attempts: state.guesses.length });
+    }
     if (router.canGoBack()) router.back();
     else router.replace("/");
   }
@@ -301,7 +329,10 @@ export default function BetweenScreen() {
         submitDisabled: !inputLetters.every(Boolean) || state.status !== "playing",
       }}
       onBack={goBack}
-      onHelp={() => setHelpVisible(true)}
+      onHelp={() => {
+        captureEvent(posthog, "help_opened", { gameId: "between", dateKey });
+        setHelpVisible(true);
+      }}
       subtitle={dateKey}
       title="Dazwischen"
     >

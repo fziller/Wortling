@@ -3,6 +3,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated";
 
+import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
@@ -74,6 +75,11 @@ export default function WortcodeScreen() {
   const revealedLetters = getWortcodeRevealedLetters(puzzle, state);
   const revealedSet = new Set(revealedLetters.map((ch, i) => (ch ? i : -1)).filter((i) => i >= 0));
   const mergeDraftWithRevealed = (draft: string[], letters: (string | null)[]) => draft.map((ch, i) => (letters[i] ? letters[i]! : ch));
+
+  useEffect(() => {
+    captureEvent(posthog, "screen_viewed", { screen: "wortcode", params: { dateKey } });
+    captureEvent(posthog, "game_started", { gameId: "wortcode", dateKey });
+  }, [dateKey, posthog]);
 
   useEffect(() => {
     loadProgress<WortcodeState>("wortcode", today).then((progress) => {
@@ -180,7 +186,7 @@ export default function WortcodeScreen() {
       setState(next);
       setInputLetters((prev) => mergeDraftWithRevealed(prev, letters));
       stats.recordHint({ source: "ad", gameId: "wortcode" });
-      try { posthog.capture("hint_used", { gameId: "wortcode", dateKey, source: "ad" }); } catch {}
+      captureEvent(posthog, "hint_used", { gameId: "wortcode", dateKey, source: "ad" });
       setMessage("Tipp aufgedeckt.");
       return;
     }
@@ -199,7 +205,7 @@ export default function WortcodeScreen() {
     if (firstEmpty >= 0) setCursorIndex(firstEmpty);
     startStats();
     stats.recordHint({ source: "earned", gameId: "wortcode", revealedCount: next.revealedIndices?.length });
-    try { posthog.capture("hint_used", { gameId: "wortcode", dateKey, source: "earned" }); } catch {}
+    captureEvent(posthog, "hint_used", { gameId: "wortcode", dateKey, source: "earned" });
     setMessage("Tipp: Buchstabe aufgedeckt.");
   }
 
@@ -235,6 +241,14 @@ export default function WortcodeScreen() {
       }
       setFinishedAt(Date.now());
       setResultVisible(true);
+      captureEvent(posthog, "game_completed", {
+        gameId: "wortcode",
+        dateKey,
+        durationMs: elapsedSeconds * 1000,
+        attempts: result.state.guesses.length,
+        outcome: result.state.status,
+        success: result.state.status === "won",
+      });
     }
   }
 
@@ -245,6 +259,15 @@ export default function WortcodeScreen() {
   function reveal() {
     startStats();
     stats.finish("revealed");
+    captureEvent(posthog, "solution_revealed", { gameId: "wortcode", dateKey, attempts: state.guesses.length });
+    captureEvent(posthog, "game_completed", {
+      gameId: "wortcode",
+      dateKey,
+      durationMs: elapsedSeconds * 1000,
+      attempts: state.guesses.length,
+      outcome: "revealed",
+      success: false,
+    });
     setState((current) => revealWortcodeSolution(current));
     setMessage("Lösung aufgedeckt.");
     setInputLetters(createEmptyInput(puzzle.wordLength));
@@ -276,6 +299,9 @@ export default function WortcodeScreen() {
   }
 
   function goBack() {
+    if (state.status === "playing" && state.guesses.length > 0) {
+      captureEvent(posthog, "game_abandoned", { gameId: "wortcode", dateKey, attempts: state.guesses.length });
+    }
     if (router.canGoBack()) router.back();
     else router.replace("/");
   }
@@ -301,7 +327,10 @@ export default function WortcodeScreen() {
         submitDisabled: !canSubmit,
       }}
       onBack={goBack}
-      onHelp={() => setHelpVisible(true)}
+      onHelp={() => {
+        captureEvent(posthog, "help_opened", { gameId: "wortcode", dateKey });
+        setHelpVisible(true);
+      }}
       subtitle={`${dateKey} · ${puzzle.wordLength} Buchstaben`}
       title="Wortcode"
     >

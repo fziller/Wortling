@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 
+import { captureEvent } from "@/analytics/events";
 import { Screen } from "@/components/Screen";
 import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
@@ -29,9 +30,7 @@ export default function StatsScreen() {
   useFocusEffect(load);
 
   useEffect(() => {
-    try {
-      posthog.capture("screen_viewed", { screen: "stats", params: { dateKey: today } });
-    } catch {}
+    captureEvent(posthog, "screen_viewed", { screen: "stats", params: { dateKey: today } });
   }, [posthog, today]);
 
   return (

@@ -14,6 +14,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { captureEvent } from "@/analytics/events";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
@@ -108,15 +109,8 @@ export default function WorttrefferScreen() {
   }, []);
 
   useEffect(() => {
-    try {
-      posthog.capture("screen_viewed", {
-        screen: "worttreffer",
-        params: { dateKey },
-      });
-      posthog.capture("game_started", { gameId: "worttreffer", dateKey });
-    } catch {
-      // Analytics must never break offline gameplay.
-    }
+    captureEvent(posthog, "screen_viewed", { screen: "worttreffer", params: { dateKey } });
+    captureEvent(posthog, "game_started", { gameId: "worttreffer", dateKey });
   }, [dateKey, posthog]);
 
   // helper to merge draft with revealed hint letters
@@ -254,7 +248,7 @@ export default function WorttrefferScreen() {
       setState(next);
       setInputLetters((prev) => mergeDraftWithRevealed(prev, letters));
       stats.recordHint({ source: "ad", gameId: "worttreffer" });
-      try { posthog.capture("hint_used", { gameId: "worttreffer", dateKey, source: "ad" }); } catch {}
+      captureEvent(posthog, "hint_used", { gameId: "worttreffer", dateKey, source: "ad" });
       setMessage("Tipp aufgedeckt.");
       return;
     }
@@ -283,7 +277,7 @@ export default function WorttrefferScreen() {
     if (firstEmpty >= 0) setCursorIndex(firstEmpty);
     startStats();
     stats.recordHint({ source: "earned", gameId: "worttreffer", revealedCount: next.revealedIndices?.length });
-    try { posthog.capture("hint_used", { gameId: "worttreffer", dateKey, source: "earned" }); } catch {}
+    captureEvent(posthog, "hint_used", { gameId: "worttreffer", dateKey, source: "earned" });
     setMessage("Tipp: Buchstabe aufgedeckt.");
   }
 
@@ -321,6 +315,8 @@ export default function WorttrefferScreen() {
       setShakeTick((value) => value + 1);
     }
     if (result.ok && isFinishedGameStatus(result.state.status)) {
+      const outcome = result.state.status;
+
       stats.finish(result.state.status);
       if (result.state.status === "won") {
         // earn hint: 3 wins -> +1
@@ -341,16 +337,14 @@ export default function WorttrefferScreen() {
         setRevealingGuessIndex(null);
         setFinishedAt(Date.now());
         setResultVisible(true);
-        try {
-          posthog.capture("game_completed", {
-            gameId: "worttreffer",
-            dateKey,
-            durationMs: elapsedSeconds * 1000,
-            attempts: result.state.guesses.length,
-          });
-        } catch {
-          // Analytics must never break offline gameplay.
-        }
+        captureEvent(posthog, "game_completed", {
+          gameId: "worttreffer",
+          dateKey,
+          durationMs: elapsedSeconds * 1000,
+          attempts: result.state.guesses.length,
+          outcome,
+          success: outcome === "won",
+        });
       }, revealDuration);
     } else if (result.ok) {
       const revealDuration = puzzle.wordLength * TILE_REVEAL_DELAY_MS + TILE_REVEAL_DURATION_MS;
@@ -365,6 +359,15 @@ export default function WorttrefferScreen() {
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     startStats();
     stats.finish("revealed");
+    captureEvent(posthog, "solution_revealed", { gameId: "worttreffer", dateKey, attempts: state.guesses.length });
+    captureEvent(posthog, "game_completed", {
+      gameId: "worttreffer",
+      dateKey,
+      durationMs: elapsedSeconds * 1000,
+      attempts: state.guesses.length,
+      outcome: "revealed",
+      success: false,
+    });
     setRevealingGuessIndex(null);
     setState((current) => revealWorttrefferSolution(current));
     setMessage("Lösung aufgedeckt.");
@@ -399,6 +402,9 @@ export default function WorttrefferScreen() {
   }
 
   function goBack() {
+    if (state.status === "playing" && state.guesses.length > 0) {
+      captureEvent(posthog, "game_abandoned", { gameId: "worttreffer", dateKey, attempts: state.guesses.length });
+    }
     if (router.canGoBack()) router.back();
     else router.replace("/");
   }
@@ -430,7 +436,10 @@ export default function WorttrefferScreen() {
         submitDisabled: !canSubmit,
       }}
       onBack={goBack}
-      onHelp={() => setHelpVisible(true)}
+      onHelp={() => {
+        captureEvent(posthog, "help_opened", { gameId: "worttreffer", dateKey });
+        setHelpVisible(true);
+      }}
       subtitle={`${dateKey} · ${puzzle.wordLength} Buchstaben`}
       title="Worttreffer"
     >

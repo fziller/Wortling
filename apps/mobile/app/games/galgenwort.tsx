@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
+import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
@@ -53,12 +54,8 @@ export default function GalgenwortScreen() {
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
 
   useEffect(() => {
-    try {
-      posthog.capture("screen_viewed", { screen: "galgenwort", params: { dateKey } });
-      posthog.capture("game_started", { gameId: "galgenwort", dateKey });
-    } catch {
-      // Analytics must never break offline gameplay.
-    }
+    captureEvent(posthog, "screen_viewed", { screen: "galgenwort", params: { dateKey } });
+    captureEvent(posthog, "game_started", { gameId: "galgenwort", dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -109,17 +106,15 @@ export default function GalgenwortScreen() {
       stats.finish(result.state.status);
       setFinishedAt(Date.now());
       setResultVisible(true);
-      try {
-        posthog.capture("game_completed", { gameId: "galgenwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guessedLetters.length });
-      } catch {
-        // Analytics must never break offline gameplay.
-      }
+      captureEvent(posthog, "game_completed", { gameId: "galgenwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guessedLetters.length, outcome: result.state.status, success: result.state.status === "won" });
     }
   }
 
   function reveal() {
     stats.start({ gameId: "galgenwort", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version });
     stats.finish("revealed");
+    captureEvent(posthog, "solution_revealed", { gameId: "galgenwort", dateKey, attempts: state.guessedLetters.length });
+    captureEvent(posthog, "game_completed", { gameId: "galgenwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: state.guessedLetters.length, outcome: "revealed", success: false });
     setState((current) => revealGalgenwortSolution(current));
     setMessage("Lösung aufgedeckt.");
     setGiveUpVisible(false);
@@ -148,11 +143,7 @@ export default function GalgenwortScreen() {
 
   function goBack() {
     if (state.status === "playing" && state.guessedLetters.length > 0) {
-      try {
-        posthog.capture("game_abandoned", { gameId: "galgenwort", dateKey, attempts: state.guessedLetters.length });
-      } catch {
-        // Analytics must never break offline gameplay.
-      }
+      captureEvent(posthog, "game_abandoned", { gameId: "galgenwort", dateKey, attempts: state.guessedLetters.length });
     }
     if (router.canGoBack()) router.back();
     else router.replace("/");
@@ -171,7 +162,10 @@ export default function GalgenwortScreen() {
         showSubmit: false,
       }}
       onBack={goBack}
-      onHelp={() => setHelpVisible(true)}
+      onHelp={() => {
+        captureEvent(posthog, "help_opened", { gameId: "galgenwort", dateKey });
+        setHelpVisible(true);
+      }}
       subtitle={dateKey}
       title="Galgenwort"
     >

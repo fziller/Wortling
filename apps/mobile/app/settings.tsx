@@ -1,10 +1,12 @@
 import * as Application from "expo-application";
 import { useRouter } from "expo-router";
+import { usePostHog } from "posthog-react-native";
 import { useEffect, useMemo, useState } from "react";
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, FadeInUp, interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 import { AppCard } from "@/components/AppCard";
+import { captureEvent } from "@/analytics/events";
 import { Screen } from "@/components/Screen";
 import { getBerlinDateKey } from "@/daily/date";
 import { createDailyKniffeSeed, generateDailyKniffe } from "@/dailyKniffe";
@@ -25,6 +27,7 @@ const CC_BY_SA_URL = "https://creativecommons.org/licenses/by-sa/4.0/";
 
 export default function SettingsScreen() {
   const router = useRouter();
+  const posthog = usePostHog();
   const [settings, setSettings] = useState<NotificationSettings>({
     enabled: false,
     hour: 18,
@@ -44,13 +47,14 @@ export default function SettingsScreen() {
   }), [dailyKniffeSeedOverride, dateKey]);
 
   useEffect(() => {
+    captureEvent(posthog, "screen_viewed", { screen: "settings", params: { dateKey } });
     loadNotificationSettings().then(setSettings);
     loadWordBucketSettings().then(setBucketSettings);
     loadDailyKniffeSeedOverride().then(setDailyKniffeSeedOverride);
     loadPacksSettings().then(setPacksSettings);
     setPacksGated(isPackGated());
     hasPremiumAccess().then(setCanUsePacks);
-  }, []);
+  }, [dateKey, posthog]);
 
   async function updateAndReschedule(next: NotificationSettings) {
     setSettings(next);
@@ -63,7 +67,9 @@ export default function SettingsScreen() {
       const granted = await requestNotificationPermission();
       if (!granted) return;
     }
-    await updateAndReschedule({ ...settings, enabled: !settings.enabled });
+    const enabled = !settings.enabled;
+    await updateAndReschedule({ ...settings, enabled });
+    captureEvent(posthog, "settings_changed", { key: "daily_reminder", value: String(enabled) });
   }
 
   async function toggleErweitert() {
@@ -73,12 +79,14 @@ export default function SettingsScreen() {
     // if enabling erweitert while hart was off, keep hart off; if enabling hart later, it will set both
     setBucketSettings(fixed);
     await saveWordBucketSettings(fixed);
+    captureEvent(posthog, "settings_changed", { key: "word_bucket", value: fixed.hart ? "hart" : fixed.erweitert ? "erweitert" : "klassisch" });
   }
 
   async function toggleHart() {
     const next = bucketSettings.hart ? { ...bucketSettings, hart: false } : { erweitert: true, hart: true };
     setBucketSettings(next);
     await saveWordBucketSettings(next);
+    captureEvent(posthog, "settings_changed", { key: "word_bucket", value: next.hart ? "hart" : next.erweitert ? "erweitert" : "klassisch" });
   }
 
   async function toggleBioPack() {
@@ -86,6 +94,7 @@ export default function SettingsScreen() {
     const next = { ...packsSettings, bio: { ...packsSettings.bio, enabled: !packsSettings.bio.enabled } };
     setPacksSettings(next);
     await savePacksSettings(next);
+    captureEvent(posthog, "settings_changed", { key: "pack_bio_enabled", value: String(next.bio.enabled) });
   }
 
   async function setBioFrequency(freq: "normal" | "haeufig") {
@@ -93,6 +102,7 @@ export default function SettingsScreen() {
     const next = { ...packsSettings, bio: { ...packsSettings.bio, frequency: freq } };
     setPacksSettings(next);
     await savePacksSettings(next);
+    captureEvent(posthog, "settings_changed", { key: "pack_bio_frequency", value: freq });
   }
 
   async function handlePremiumCta() {
@@ -101,17 +111,20 @@ export default function SettingsScreen() {
     if (packsGated) {
       await setMockPremiumEnabled(true);
       setCanUsePacks(true);
+      captureEvent(posthog, "settings_changed", { key: "mock_premium", value: "true" });
     }
   }
 
   function adjustHour(delta: number) {
     const next = { ...settings, hour: (settings.hour + delta + 24) % 24 };
     updateAndReschedule(next);
+    captureEvent(posthog, "settings_changed", { key: "daily_reminder_time", value: `${String(next.hour).padStart(2, "0")}:${String(next.minute).padStart(2, "0")}` });
   }
 
   function adjustMinute(delta: number) {
     const next = { ...settings, minute: (settings.minute + delta + 60) % 60 };
     updateAndReschedule(next);
+    captureEvent(posthog, "settings_changed", { key: "daily_reminder_time", value: `${String(next.hour).padStart(2, "0")}:${String(next.minute).padStart(2, "0")}` });
   }
 
   async function createNewDailyKniffeSeed() {
