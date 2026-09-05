@@ -365,7 +365,7 @@ export default function WortcodeScreen() {
                           onPress={() => toggleMark(guessIndex, letterIndex)}
                           style={[styles.letterTile, { minHeight: tileLayout.minHeight }, mark === "included" && styles.includedTile, mark === "exact" && styles.exactTile, mark === "excluded" && styles.excludedTile]}
                         >
-                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4 }, (mark === "exact" || mark === "excluded") && styles.markedLetterText]}>{letter.toUpperCase()}</Text>
+                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4, minWidth: 12, textAlign: "center" }, (mark === "exact" || mark === "excluded") && styles.markedLetterText]}>{letter.toUpperCase()}</Text>
                         </Pressable>
                       );
                     })}
@@ -411,7 +411,7 @@ export default function WortcodeScreen() {
                             isHintLocked && styles.exactTile,
                           ]}
                         >
-                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4 }, isHintLocked && styles.markedLetterText]}>{letter.toLocaleUpperCase("de-DE")}</Text>
+                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4, minWidth: 12, textAlign: "center" }, isHintLocked && styles.markedLetterText]}>{letter.toUpperCase()}</Text>
                         </Pressable>
                       );
                     })}
