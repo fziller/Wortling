@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wortkniff Store Screenshots</title>
+  <style>
+    :root {
+      --ink: #17130d;
+      --muted: #74685b;
+      --paper: #f7f1e8;
+      --card: #fff9ef;
+      --line: #e5d7c5;
+      --orange: #ff6b35;
+      --orange-dark: #d94a1e;
+      --blue: #246bfe;
+      --green: #21a67a;
+      --yellow: #ffd166;
+      --red: #c73e3a;
+      --shadow: rgba(43, 23, 8, 0.22);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #2b1708; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body { width: max-content; }
+
+    .shot {
+      position: relative;
+      width: 1290px;
+      height: 2796px;
+      overflow: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(255, 209, 102, 0.95), transparent 23%),
+        radial-gradient(circle at 92% 24%, rgba(36, 107, 254, 0.2), transparent 20%),
+        linear-gradient(155deg, #fff4d6 0%, #f7f1e8 45%, #ffe0c9 100%);
+    }
+
+    .shot:nth-child(even) {
+      background:
+        radial-gradient(circle at 85% 12%, rgba(255, 107, 53, 0.8), transparent 22%),
+        radial-gradient(circle at 8% 38%, rgba(36, 107, 254, 0.2), transparent 21%),
+        linear-gradient(155deg, #fffaf0 0%, #f8ead6 48%, #ffd8ba 100%);
+    }
+
+    .grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.13;
+      background-image: radial-gradient(#17130d 1.2px, transparent 1.2px);
+      background-size: 34px 34px;
+      pointer-events: none;
+    }
+
+    .brand {
+      position: absolute;
+      top: 96px;
+      left: 82px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .logo {
+      display: grid;
+      place-items: center;
+      width: 76px;
+      height: 76px;
+      border: 5px solid var(--ink);
+      border-radius: 22px;
+      background: var(--orange);
+      color: #fff9ef;
+      box-shadow: 0 14px 0 rgba(23, 19, 13, 0.16);
+      transform: rotate(-5deg);
+    }
+
+    .copy {
+      position: absolute;
+      top: 245px;
+      left: 82px;
+      right: 82px;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 30px;
+      padding: 18px 28px;
+      border: 4px solid var(--ink);
+      border-radius: 999px;
+      background: var(--yellow);
+      box-shadow: 0 10px 0 rgba(23, 19, 13, 0.15);
+      font-size: 28px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 1010px;
+      font-size: 116px;
+      line-height: 0.91;
+      letter-spacing: -7px;
+    }
+
+    .sub {
+      margin-top: 34px;
+      max-width: 830px;
+      color: var(--muted);
+      font-size: 42px;
+      font-weight: 750;
+      line-height: 1.15;
+      letter-spacing: -1.2px;
+    }
+
+    .phone {
+      position: absolute;
+      left: 170px;
+      bottom: -78px;
+      width: 950px;
+      height: 1830px;
+      border: 22px solid #17130d;
+      border-radius: 118px;
+      background: #17130d;
+      box-shadow: 0 56px 105px var(--shadow);
+      overflow: hidden;
+      transform: rotate(-1.5deg);
+    }
+
+    .phone.alt { transform: rotate(2deg); }
+    .phone.small { bottom: -15px; height: 1650px; }
+
+    .screen {
+      position: absolute;
+      inset: 22px;
+      border-radius: 88px;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .real-shot {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .status { height: 86px; padding: 28px 48px 0; display: flex; justify-content: space-between; font-size: 24px; font-weight: 800; }
+    .app { padding: 26px 54px 56px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+    .app-title { font-size: 48px; font-weight: 950; letter-spacing: -2px; }
+    .pill { padding: 15px 22px; border: 3px solid var(--ink); border-radius: 999px; background: #fff; font-size: 22px; font-weight: 900; }
+
+    .daily-card, .game-card, .stats-card, .board-card {
+      position: relative;
+      border: 4px solid var(--ink);
+      border-radius: 38px;
+      background: var(--card);
+      box-shadow: 0 16px 0 rgba(23, 19, 13, 0.12);
+    }
+    .daily-card { padding: 38px; margin-bottom: 34px; background: linear-gradient(135deg, #fff9ef, #fff0d7); }
+    .daily-title { font-size: 48px; font-weight: 950; letter-spacing: -1.8px; }
+    .daily-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+    .daily-mini { min-height: 138px; padding: 20px 16px; border-radius: 28px; background: #fff; border: 3px solid var(--line); font-size: 24px; font-weight: 900; }
+    .check { color: var(--green); font-size: 40px; line-height: 1.4; }
+
+    .game-card { display: flex; align-items: center; gap: 24px; padding: 26px; margin: 0 0 22px; }
+    .game-icon { display: grid; place-items: center; width: 92px; height: 92px; border-radius: 28px; border: 4px solid var(--ink); background: var(--orange); color: #fff; font-size: 42px; font-weight: 950; }
+    .game-name { font-size: 34px; font-weight: 950; letter-spacing: -1px; }
+    .game-desc { margin-top: 5px; color: var(--muted); font-size: 24px; font-weight: 750; }
+    .chip { margin-left: auto; padding: 12px 18px; border-radius: 999px; background: var(--ink); color: #fff9ef; font-size: 20px; font-weight: 900; }
+
+    .tiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 34px; }
+    .tile { display: grid; place-items: center; aspect-ratio: 1; border: 4px solid var(--ink); border-radius: 20px; background: #fff; font-size: 46px; font-weight: 950; }
+    .green { background: var(--green); color: white; }
+    .orange { background: var(--orange); color: white; }
+    .gray { background: #d9d0c2; }
+    .blue { background: var(--blue); color: white; }
+    .yellow { background: var(--yellow); }
+
+    .keyboard { position: absolute; left: 54px; right: 54px; bottom: 60px; display: grid; grid-template-columns: repeat(10, 1fr); gap: 10px; }
+    .key { height: 62px; display: grid; place-items: center; border-radius: 16px; background: #fff; border: 2px solid var(--line); font-size: 24px; font-weight: 900; }
+
+    .board-card { padding: 34px; margin-top: 28px; }
+    .board-title { display: flex; justify-content: space-between; color: var(--muted); font-size: 24px; font-weight: 900; }
+    .guess-row { display: grid; grid-template-columns: 1fr 120px; align-items: center; gap: 18px; margin-top: 24px; }
+    .word { display: flex; gap: 10px; }
+    .mini-tile { display: grid; place-items: center; width: 74px; height: 74px; border-radius: 18px; border: 3px solid var(--ink); background: #fff; font-size: 31px; font-weight: 950; }
+    .score { font-size: 34px; font-weight: 950; }
+
+    .ladder { display: flex; flex-direction: column; gap: 22px; margin-top: 38px; }
+    .ladder-step { display: flex; align-items: center; gap: 18px; padding: 22px; border: 3px solid var(--line); border-radius: 26px; background: #fff; font-size: 31px; font-weight: 950; }
+    .dot { width: 48px; height: 48px; border-radius: 999px; border: 4px solid var(--ink); background: var(--yellow); }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
+    .stat { padding: 26px; border-radius: 28px; background: #fff; border: 3px solid var(--line); }
+    .stat-label { color: var(--muted); font-size: 24px; font-weight: 850; }
+    .stat-value { margin-top: 8px; font-size: 58px; font-weight: 950; letter-spacing: -2px; }
+
+    .floating { position: absolute; z-index: 1; border: 4px solid var(--ink); border-radius: 26px; background: #fff9ef; box-shadow: 0 18px 0 rgba(23, 19, 13, 0.13); font-size: 38px; font-weight: 950; }
+    .float-a { right: 66px; top: 1020px; padding: 24px 32px; transform: rotate(8deg); background: var(--blue); color: #fff; }
+    .float-b { left: 52px; bottom: 420px; padding: 22px 28px; transform: rotate(-8deg); background: var(--yellow); }
+    .float-c { right: 70px; bottom: 280px; padding: 24px 30px; transform: rotate(6deg); background: var(--orange); color: #fff; }
+
+    .privacy-card { margin-top: 40px; padding: 34px; border: 4px solid var(--ink); border-radius: 38px; background: #fff; box-shadow: 0 16px 0 rgba(23, 19, 13, 0.12); }
+    .privacy-row { display: flex; align-items: center; gap: 20px; margin: 22px 0; font-size: 33px; font-weight: 930; }
+
+    .feature {
+      position: relative;
+      width: 1024px;
+      height: 500px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fff3cf, #ffd1b4);
+      color: var(--ink);
+    }
+    .feature h2 { position: absolute; left: 54px; top: 112px; width: 560px; margin: 0; font-size: 66px; line-height: 0.9; letter-spacing: -3.5px; }
+    .feature .sub { position: absolute; left: 58px; top: 328px; width: 430px; margin: 0; font-size: 27px; }
+    .feature-phone { position: absolute; right: 78px; top: 44px; width: 240px; height: 440px; border: 12px solid var(--ink); border-radius: 42px; background: var(--paper); box-shadow: 0 26px 45px var(--shadow); transform: rotate(5deg); }
+    .feature-tiles { position: absolute; left: 485px; top: 290px; display: grid; grid-template-columns: repeat(3, 58px); gap: 10px; transform: rotate(-8deg); }
+
+    body.play .shot { width: 1080px; height: 1920px; }
+    body.play .brand { top: 58px; left: 58px; font-size: 34px; gap: 14px; }
+    body.play .logo { width: 58px; height: 58px; border-width: 4px; border-radius: 17px; }
+    body.play .copy { top: 170px; left: 58px; right: 58px; }
+    body.play .eyebrow { margin-bottom: 20px; padding: 13px 21px; border-width: 3px; font-size: 22px; }
+    body.play h1 { max-width: 850px; font-size: 82px; letter-spacing: -4.5px; }
+    body.play .sub { margin-top: 24px; max-width: 720px; font-size: 31px; }
+    body.play .phone { left: 142px; bottom: -76px; width: 796px; height: 1230px; border-width: 17px; border-radius: 88px; }
+    body.play .phone.small { bottom: -50px; height: 1180px; }
+    body.play .screen { inset: 16px; border-radius: 66px; }
+    body.play .status { height: 62px; padding: 19px 38px 0; font-size: 18px; }
+    body.play .app { padding: 20px 42px 44px; }
+    body.play .app-title { font-size: 34px; }
+    body.play .pill { padding: 10px 16px; border-width: 2px; font-size: 17px; }
+    body.play .daily-card { padding: 27px; margin-bottom: 24px; border-width: 3px; border-radius: 29px; }
+    body.play .daily-title { font-size: 34px; }
+    body.play .daily-row { gap: 12px; margin-top: 20px; }
+    body.play .daily-mini { min-height: 96px; padding: 14px 10px; border-width: 2px; border-radius: 20px; font-size: 18px; }
+    body.play .check { font-size: 28px; }
+    body.play .game-card { gap: 17px; padding: 18px; margin-bottom: 15px; border-width: 3px; border-radius: 28px; }
+    body.play .game-icon { width: 66px; height: 66px; border-width: 3px; border-radius: 20px; font-size: 30px; }
+    body.play .game-name { font-size: 25px; }
+    body.play .game-desc { font-size: 17px; }
+    body.play .chip { padding: 9px 13px; font-size: 15px; }
+    body.play .board-card { padding: 25px; margin-top: 20px; border-width: 3px; border-radius: 29px; }
+    body.play .board-title { font-size: 18px; }
+    body.play .tiles { gap: 10px; margin-top: 23px; }
+    body.play .tile { border-width: 3px; border-radius: 15px; font-size: 33px; }
+    body.play .keyboard { left: 42px; right: 42px; bottom: 42px; gap: 7px; }
+    body.play .key { height: 43px; border-radius: 11px; font-size: 17px; }
+    body.play .guess-row { grid-template-columns: 1fr 92px; gap: 13px; margin-top: 18px; }
+    body.play .word { gap: 7px; }
+    body.play .mini-tile { width: 55px; height: 55px; border-width: 2px; border-radius: 13px; font-size: 23px; }
+    body.play .score { font-size: 25px; }
+    body.play .ladder { gap: 15px; margin-top: 26px; }
+    body.play .ladder-step { gap: 13px; padding: 16px; border-width: 2px; border-radius: 19px; font-size: 23px; }
+    body.play .dot { width: 35px; height: 35px; border-width: 3px; }
+    body.play .stat-grid { gap: 14px; margin-top: 21px; }
+    body.play .stat { padding: 18px; border-width: 2px; border-radius: 20px; }
+    body.play .stat-label { font-size: 17px; }
+    body.play .stat-value { font-size: 41px; }
+    body.play .floating { border-width: 3px; border-radius: 19px; font-size: 28px; }
+    body.play .float-a { right: 48px; top: 705px; padding: 17px 24px; }
+    body.play .float-b { left: 36px; bottom: 285px; padding: 16px 21px; }
+    body.play .float-c { right: 50px; bottom: 190px; padding: 17px 22px; }
+    body.play .privacy-card { margin-top: 28px; padding: 24px; border-width: 3px; border-radius: 28px; }
+    body.play .privacy-row { gap: 14px; margin: 16px 0; font-size: 24px; }
+  </style>
+</head>
+<body>
+  <section class="shot" id="shot-01">
+    <div class="grain"></div><div class="brand"><div class="logo">W</div>Wortkniff</div>
+    <div class="copy"><div class="eyebrow">Täglich neu</div><h1>Dein täglicher Wort-Kniff</h1><div class="sub">Kurze deutsche Wortspiele, die mehr können als nur raten.</div></div>
+    <div class="floating float-a">3 Kniffe</div><div class="floating float-b">Streak!</div>
+    <div class="phone"><div class="screen"><img class="real-shot" src="../raw-app/01-home.png" /><div class="status"><span>9:41</span><span>●●●</span></div><div class="app"><div class="topbar"><div class="app-title">Wortkniff</div><div class="pill">🔥 12</div></div><div class="daily-card"><div class="daily-title">Tageskniffe</div><div class="daily-row"><div class="daily-mini"><span class="check">✓</span><br>Formwort</div><div class="daily-mini"><span class="check">✓</span><br>Wortcode</div><div class="daily-mini">Noch 1<br>Kniff</div></div></div><div class="game-card"><div class="game-icon">D</div><div><div class="game-name">Dazwischen</div><div class="game-desc">Alphabetisch eingrenzen</div></div><div class="chip">3 min</div></div><div class="game-card"><div class="game-icon blue">W</div><div><div class="game-name">Worttreffer</div><div class="game-desc">Grün, gelb, grau</div></div><div class="chip">Neu</div></div><div class="game-card"><div class="game-icon yellow">C</div><div><div class="game-name">Wortcode</div><div class="game-desc">Mastermind mit Wörtern</div></div><div class="chip">3 min</div></div></div></div></div>
+  </section>
+
+  <section class="shot" id="shot-02">
+    <div class="grain"></div><div class="brand"><div class="logo">W</div>Wortkniff</div>
+    <div class="copy"><div class="eyebrow">7 Spiele</div><h1>Mehr Kniff als Wordle</h1><div class="sub">Worttreffer, Wortcode, Galgenwort, Wortleiter und mehr in einer App.</div></div>
+    <div class="floating float-c">Deutsch</div>
+    <div class="phone alt small"><div class="screen"><img class="real-shot" src="../raw-app/02-worttreffer.png" /><div class="status"><span>9:41</span><span>●●●</span></div><div class="app"><div class="topbar"><div class="app-title">Worttreffer</div><div class="pill">?</div></div><div class="board-card"><div class="board-title"><span>Versuch 3/6</span><span>6 Buchstaben</span></div><div class="tiles"><div class="tile green">K</div><div class="tile gray">A</div><div class="tile orange">N</div><div class="tile gray">T</div><div class="tile green">E</div></div><div class="tiles"><div class="tile gray">B</div><div class="tile orange">L</div><div class="tile green">U</div><div class="tile gray">M</div><div class="tile orange">E</div></div><div class="tiles"><div class="tile">_</div><div class="tile">_</div><div class="tile">_</div><div class="tile">_</div><div class="tile">_</div></div></div><div class="keyboard"><div class="key">Q</div><div class="key">W</div><div class="key">E</div><div class="key">R</div><div class="key">T</div><div class="key">Z</div><div class="key">U</div><div class="key">I</div><div class="key">O</div><div class="key">P</div><div class="key">A</div><div class="key">S</div><div class="key">D</div><div class="key">F</div><div class="key">G</div><div class="key">H</div><div class="key">J</div><div class="key">K</div><div class="key">L</div><div class="key">✓</div></div></div></div></div>
+  </section>
+
+  <section class="shot" id="shot-03">
+    <div class="grain"></div><div class="brand"><div class="logo">W</div>Wortkniff</div>
+    <div class="copy"><div class="eyebrow">Logik statt Glück</div><h1>Knack Wörter mit System</h1><div class="sub">Wortcode zeigt dir Treffer und Positionen. Der Rest ist Hirnschmalz.</div></div>
+    <div class="floating float-a">2 exakt</div><div class="floating float-b">1 drin</div>
+    <div class="phone small"><div class="screen"><img class="real-shot" src="../raw-app/03-wortcode.png" /><div class="status"><span>9:41</span><span>●●●</span></div><div class="app"><div class="topbar"><div class="app-title">Wortcode</div><div class="pill">5 Buchstaben</div></div><div class="board-card"><div class="board-title"><span>Code knacken</span><span>Versuch 4</span></div><div class="guess-row"><div class="word"><span class="mini-tile">F</span><span class="mini-tile">A</span><span class="mini-tile">R</span><span class="mini-tile">B</span><span class="mini-tile">E</span></div><div class="score">2 · 1</div></div><div class="guess-row"><div class="word"><span class="mini-tile">L</span><span class="mini-tile">I</span><span class="mini-tile">N</span><span class="mini-tile">I</span><span class="mini-tile">E</span></div><div class="score">1 · 2</div></div><div class="guess-row"><div class="word"><span class="mini-tile green">K</span><span class="mini-tile">R</span><span class="mini-tile yellow">A</span><span class="mini-tile">F</span><span class="mini-tile green">T</span></div><div class="score">3 · 1</div></div></div><div class="daily-card"><div class="daily-title">Notizen</div><div class="tiles"><div class="tile green">K</div><div class="tile yellow">A</div><div class="tile gray">S</div><div class="tile blue">T</div><div class="tile">?</div></div></div></div></div></div>
+  </section>
+
+  <section class="shot" id="shot-04">
+    <div class="grain"></div><div class="brand"><div class="logo">W</div>Wortkniff</div>
+    <div class="copy"><div class="eyebrow">Wortleiter</div><h1>Ein Buchstabe. Neuer Weg.</h1><div class="sub">Verwandle Start in Ziel, Schritt für Schritt. Klingt easy. Ist es nicht immer.</div></div>
+    <div class="floating float-c">Aha!</div>
+    <div class="phone alt small"><div class="screen"><img class="real-shot" src="../raw-app/04-wortleiter.png" /><div class="status"><span>9:41</span><span>●●●</span></div><div class="app"><div class="topbar"><div class="app-title">Wortleiter</div><div class="pill">4 Buchstaben</div></div><div class="daily-card"><div class="daily-title">HAUS → MAUS</div><div class="ladder"><div class="ladder-step"><span class="dot"></span>HAUS</div><div class="ladder-step"><span class="dot green"></span>MAUS</div><div class="ladder-step"><span class="dot blue"></span>Ziel erreicht</div></div></div><div class="board-card"><div class="board-title"><span>Regel</span><span>1 Buchstabe</span></div><div class="sub" style="font-size:30px;margin-top:24px;max-width:680px">Jeder Schritt muss ein echtes deutsches Wort sein.</div></div></div></div></div>
+  </section>
+
+  <section class="shot" id="shot-05">
+    <div class="grain"></div><div class="brand"><div class="logo">W</div>Wortkniff</div>
+    <div class="copy"><div class="eyebrow">Fortschritt</div><h1>Streaks, Rekorde, kleine Siege</h1><div class="sub">Alles lokal gespeichert. Kein Account, kein Datenzirkus.</div></div>
+    <div class="floating float-b">🔥 12</div>
+    <div class="phone small"><div class="screen"><img class="real-shot" src="../raw-app/05-stats.png" /><div class="status"><span>9:41</span><span>●●●</span></div><div class="app"><div class="topbar"><div class="app-title">Statistik</div><div class="pill">Lokal</div></div><div class="daily-card"><div class="daily-title">Deine Zahlen</div><div class="stat-grid"><div class="stat"><div class="stat-label">Runden</div><div class="stat-value">86</div></div><div class="stat"><div class="stat-label">Quote</div><div class="stat-value" style="color:var(--green)">74%</div></div><div class="stat"><div class="stat-label">Serie</div><div class="stat-value">12</div></div><div class="stat"><div class="stat-label">Rekord</div><div class="stat-value">01:18</div></div></div></div><div class="game-card"><div class="game-icon yellow">★</div><div><div class="game-name">Lieblingsspiel</div><div class="game-desc">Wortcode · 24 Siege</div></div></div></div></div></div>
+  </section>
+
+  <section class="shot" id="shot-06">
+    <div class="grain"></div><div class="brand"><div class="logo">W</div>Wortkniff</div>
+    <div class="copy"><div class="eyebrow">Offline spielbar</div><h1>Deutsch. Ohne Account-Stress.</h1><div class="sub">Öffnen, rätseln, fertig. Auch wenn das Netz gerade wieder Drama macht.</div></div>
+    <div class="floating float-a">Offline</div>
+    <div class="phone alt small"><div class="screen"><img class="real-shot" src="../raw-app/01-home.png" /><div class="status"><span>9:41</span><span>●●●</span></div><div class="app"><div class="topbar"><div class="app-title">Wortkniff</div><div class="pill">✓</div></div><div class="privacy-card"><div class="privacy-row"><span class="game-icon green">✓</span>Deutsche Wortspiele</div><div class="privacy-row"><span class="game-icon blue">✓</span>Kein Login nötig</div><div class="privacy-row"><span class="game-icon yellow">✓</span>Läuft offline</div><div class="privacy-row"><span class="game-icon">✓</span>Stats bleiben lokal</div></div><div class="daily-card"><div class="daily-title">Bereit für heute?</div><div class="sub" style="font-size:31px;margin-top:18px">Drei Minuten reichen für einen Kniff.</div></div></div></div></div>
+  </section>
+
+  <section class="feature" id="feature-graphic">
+    <div class="grain"></div><div class="brand" style="top:34px;left:54px;font-size:30px"><div class="logo" style="width:52px;height:52px;border-radius:15px;font-size:28px">W</div>Wortkniff</div>
+    <h2>Deutsche Wortspiele mit Kniff</h2><div class="sub">Täglich neu. Offline spielbar. Ohne Account.</div>
+    <div class="feature-tiles"><div class="tile green" style="font-size:28px">W</div><div class="tile yellow" style="font-size:28px">O</div><div class="tile orange" style="font-size:28px">R</div><div class="tile blue" style="font-size:28px">T</div><div class="tile" style="font-size:28px">K</div><div class="tile" style="font-size:28px">N</div></div>
+    <div class="feature-phone"><div class="screen" style="inset:8px;border-radius:30px"><img class="real-shot" src="../raw-app/01-home.png" /><div class="app" style="padding:34px 18px"><div class="daily-card" style="padding:18px;border-radius:22px"><div class="daily-title" style="font-size:25px">Tageskniffe</div><div class="daily-row" style="gap:7px"><div class="daily-mini" style="font-size:12px;min-height:58px;padding:8px">✓</div><div class="daily-mini" style="font-size:12px;min-height:58px;padding:8px">✓</div><div class="daily-mini" style="font-size:12px;min-height:58px;padding:8px">1</div></div></div></div></div></div>
+  </section>
+</body>
+</html>

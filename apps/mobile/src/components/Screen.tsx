@@ -1,4 +1,6 @@
 import { tokens } from "@/design/tokens";
+import * as Device from "expo-device";
+import { LinearGradient } from "expo-linear-gradient";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { PropsWithChildren, ReactNode, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
@@ -11,6 +13,8 @@ const gameBackgroundVideos = [
   require("../../assets/background/game-background_4.mp4"),
 ];
 
+const useStaticGameBackground = process.env.EXPO_PUBLIC_STORE_SCREENSHOTS === "1" || !Device.isDevice;
+
 type ScreenProps = PropsWithChildren<{
   header?: ReactNode;
   headerBackgroundColor?: string;
@@ -21,7 +25,7 @@ export function Screen({ children, header, headerBackgroundColor, videoBackgroun
   if (!header) {
     return (
       <SafeAreaView style={styles.safeArea}>
-        {videoBackground ? <BackgroundVideo /> : null}
+        {videoBackground ? <GameBackground /> : null}
         <View style={styles.content}>{children}</View>
       </SafeAreaView>
     );
@@ -29,7 +33,7 @@ export function Screen({ children, header, headerBackgroundColor, videoBackgroun
 
   return (
     <View style={styles.safeArea}>
-      {videoBackground ? <BackgroundVideo /> : null}
+      {videoBackground ? <GameBackground /> : null}
       <SafeAreaView
         edges={["top", "left", "right"]}
         style={[
@@ -44,6 +48,30 @@ export function Screen({ children, header, headerBackgroundColor, videoBackgroun
         <View style={styles.content}>{children}</View>
       </SafeAreaView>
     </View>
+  );
+}
+
+function GameBackground() {
+  return (
+    <>
+      <StaticGameBackground />
+      {useStaticGameBackground ? null : <BackgroundVideo />}
+    </>
+  );
+}
+
+function StaticGameBackground() {
+  return (
+    <LinearGradient
+      colors={["#FFF3D2", tokens.color.paper, "#FFE0C9"]}
+      locations={[0, 0.48, 1]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={StyleSheet.absoluteFill}
+    >
+      <View style={[styles.backgroundBlob, styles.backgroundBlobPrimary]} />
+      <View style={[styles.backgroundBlob, styles.backgroundBlobSecondary]} />
+    </LinearGradient>
   );
 }
 
@@ -92,5 +120,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: tokens.space.md,
     paddingBottom: 8,
     gap: tokens.space.lg,
+  },
+  backgroundBlob: {
+    position: "absolute",
+    borderRadius: 999,
+    opacity: 0.28,
+  },
+  backgroundBlobPrimary: {
+    top: -90,
+    left: -70,
+    width: 230,
+    height: 230,
+    backgroundColor: tokens.color.primary,
+  },
+  backgroundBlobSecondary: {
+    right: -80,
+    bottom: 140,
+    width: 250,
+    height: 250,
+    backgroundColor: tokens.color.secondary,
   },
 });
