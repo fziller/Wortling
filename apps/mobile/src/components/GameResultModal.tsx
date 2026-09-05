@@ -1,4 +1,6 @@
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { Modal, Pressable, ScrollView, Share, StyleSheet, Text, View } from "react-native";
+import Animated, { useAnimatedStyle, useSharedValue, withDelay, withSpring, withTiming } from "react-native-reanimated";
 
 import { tokens } from "@/design/tokens";
 
@@ -7,25 +9,121 @@ export type GameResultStat = {
   value: string | number;
 };
 
+export type GameFeedbackRating = "too_easy" | "ok" | "too_hard";
+export type GameResultOutcome = string;
+
 type GameResultModalProps = {
   actionLabel?: string;
+  attempts?: number;
+  dateKey?: string;
+  durationMs?: number;
+  gameId?: string;
   guesses?: readonly string[];
   message?: string;
+  onFeedback?: (rating: GameFeedbackRating) => void;
   onHome: () => void;
   onNext: () => void;
+  onShare?: () => void;
+  onViewed?: () => void;
+  outcome?: GameResultOutcome;
+  shareText?: string;
   solution?: string;
   stats?: readonly GameResultStat[];
+  secondaryLabel?: string;
+  success?: boolean;
   title: string;
   visible: boolean;
 };
 
-export function GameResultModal({ actionLabel = "Neues Wort", guesses = [], message, onHome, onNext, solution, stats = [], title, visible }: GameResultModalProps) {
+const confetti = [
+  { left: "8%", top: "12%", color: tokens.color.primary, rotate: "18deg", delay: 20 },
+  { left: "22%", top: "4%", color: tokens.color.success, rotate: "-24deg", delay: 80 },
+  { left: "38%", top: "10%", color: tokens.color.warning, rotate: "34deg", delay: 130 },
+  { left: "58%", top: "5%", color: tokens.color.primaryDark, rotate: "-16deg", delay: 50 },
+  { left: "76%", top: "14%", color: tokens.color.secondary, rotate: "28deg", delay: 110 },
+  { left: "90%", top: "8%", color: tokens.color.success, rotate: "-32deg", delay: 170 },
+] as const;
+
+export function GameResultModal({
+  actionLabel = "Neues Wort",
+  guesses = [],
+  message,
+  onFeedback,
+  onHome,
+  onNext,
+  onShare,
+  onViewed,
+  outcome,
+  shareText,
+  solution,
+  stats = [],
+  secondaryLabel = "Startseite",
+  success,
+  title,
+  visible,
+}: GameResultModalProps) {
+  const [selectedFeedback, setSelectedFeedback] = useState<GameFeedbackRating | null>(null);
+  const [shared, setShared] = useState(false);
+  const viewedRef = useRef(false);
+  const entrance = useSharedValue(0);
+
+  useEffect(() => {
+    entrance.value = visible ? withSpring(1, { damping: 18, stiffness: 220 }) : 0;
+
+    if (visible && !viewedRef.current) {
+      viewedRef.current = true;
+      onViewed?.();
+    }
+
+    if (!visible) {
+      viewedRef.current = false;
+      setSelectedFeedback(null);
+      setShared(false);
+    }
+  }, [entrance, onViewed, visible]);
+
+  const backdropStyle = useAnimatedStyle(() => ({
+    opacity: withTiming(visible ? 1 : 0, { duration: tokens.motion.quick }),
+  }));
+
+  const cardStyle = useAnimatedStyle(() => ({
+    opacity: entrance.value,
+    transform: [
+      { translateY: 18 * (1 - entrance.value) },
+      { scale: 0.92 + 0.08 * entrance.value },
+      { rotate: `${-1.5 * (1 - entrance.value)}deg` },
+    ],
+  }));
+
+  function submitFeedback(rating: GameFeedbackRating) {
+    if (selectedFeedback === rating) return;
+
+    setSelectedFeedback(rating);
+    onFeedback?.(rating);
+  }
+
+  async function shareResult() {
+    if (!shareText) return;
+
+    try {
+      await Share.share({ message: shareText });
+      setShared(true);
+      onShare?.();
+    } catch {
+      // Native share failures should not block the result flow.
+    }
+  }
+
+  const showConfetti = success === true || outcome === "won";
+
   return (
-    <Modal animationType="fade" transparent visible={visible}>
-      <View style={styles.backdrop}>
-        <View style={styles.card}>
+    <Modal animationType="none" transparent visible={visible}>
+      <Animated.View style={[styles.backdrop, backdropStyle]}>
+        <Animated.View style={[styles.card, cardStyle]}>
+          {showConfetti ? <PaperConfetti /> : null}
+          <Text style={[styles.sticker, stickerStyle(outcome)]}>{stickerText(outcome)}</Text>
           <Text style={styles.title}>{title}</Text>
-          {solution ? <Text style={styles.solution}>{solution.toLocaleUpperCase("de-DE")}</Text> : null}
+          {solution ? <AnimatedSolution value={solution} win={showConfetti} /> : null}
           {message ? <Text style={styles.message}>{message}</Text> : null}
           {guesses.length > 0 ? (
             <ScrollView showsVerticalScrollIndicator={false} style={styles.historyScroll} contentContainerStyle={styles.history}>
@@ -39,26 +137,143 @@ export function GameResultModal({ actionLabel = "Neues Wort", guesses = [], mess
           ) : null}
           {stats.length > 0 ? (
             <View style={styles.stats}>
-              {stats.map((stat) => (
-                <View key={stat.label} style={styles.statTile}>
-                  <Text adjustsFontSizeToFit numberOfLines={1} style={styles.statValue}>{stat.value}</Text>
-                  <Text adjustsFontSizeToFit numberOfLines={1} style={styles.statLabel}>{stat.label}</Text>
-                </View>
-              ))}
+              {stats.map((stat, index) => <AnimatedStatTile index={index} key={stat.label} stat={stat} />)}
+            </View>
+          ) : null}
+          {onFeedback ? (
+            <View style={styles.feedback}>
+              <Text style={styles.feedbackTitle}>Wie fühlte sich die Runde an?</Text>
+              <View style={styles.feedbackButtons}>
+                <FeedbackButton label="zu leicht" rating="too_easy" selected={selectedFeedback === "too_easy"} onPress={submitFeedback} />
+                <FeedbackButton label="passt" rating="ok" selected={selectedFeedback === "ok"} onPress={submitFeedback} />
+                <FeedbackButton label="zu schwer" rating="too_hard" selected={selectedFeedback === "too_hard"} onPress={submitFeedback} />
+              </View>
+              {selectedFeedback ? <Text style={styles.feedbackThanks}>Danke, hilft beim Feinschliff.</Text> : null}
             </View>
           ) : null}
           <View style={styles.actions}>
             <Pressable accessibilityRole="button" onPress={onHome} style={[styles.button, styles.secondary]}>
-              <Text style={styles.secondaryText}>Startseite</Text>
+              <Text style={styles.secondaryText}>{secondaryLabel}</Text>
             </Pressable>
+            {shareText ? (
+              <Pressable accessibilityRole="button" onPress={shareResult} style={[styles.button, styles.share]}>
+                <Text style={styles.shareText}>{shared ? "Geteilt" : "Teilen"}</Text>
+              </Pressable>
+            ) : null}
             <Pressable accessibilityRole="button" onPress={onNext} style={[styles.button, styles.primary]}>
               <Text style={styles.primaryText}>{actionLabel}</Text>
             </Pressable>
           </View>
-        </View>
-      </View>
+        </Animated.View>
+      </Animated.View>
     </Modal>
   );
+}
+
+function stickerText(outcome?: GameResultOutcome) {
+  if (outcome === "revealed") return "AUFGEDECKT";
+  if (outcome === "lost") return "KNAPP DANEBEN";
+
+  return "GELÖST";
+}
+
+function stickerStyle(outcome?: GameResultOutcome) {
+  if (outcome === "revealed") return styles.stickerRevealed;
+  if (outcome === "lost") return styles.stickerLost;
+
+  return styles.stickerWon;
+}
+
+function AnimatedSolution({ value, win }: { value: string; win: boolean }) {
+  const letters = value.toLocaleUpperCase("de-DE").split("");
+
+  return (
+    <View style={[styles.solutionWrap, win && styles.solutionWin]}>
+      {letters.map((letter, index) => <AnimatedLetter index={index} key={`${letter}-${index}`} letter={letter} />)}
+    </View>
+  );
+}
+
+function AnimatedLetter({ index, letter }: { index: number; letter: string }) {
+  const progress = useSharedValue(0);
+
+  useEffect(() => {
+    progress.value = withDelay(80 + index * 35, withSpring(1, { damping: 15, stiffness: 240 }));
+  }, [index, progress]);
+
+  const style = useAnimatedStyle(() => ({
+    opacity: progress.value,
+    transform: [{ translateY: 10 * (1 - progress.value) }, { scale: 0.82 + 0.18 * progress.value }],
+  }));
+
+  return <Animated.Text style={[styles.solutionLetter, style]}>{letter}</Animated.Text>;
+}
+
+function AnimatedStatTile({ index, stat }: { index: number; stat: GameResultStat }) {
+  const progress = useSharedValue(0);
+
+  useEffect(() => {
+    progress.value = withDelay(180 + index * 70, withTiming(1, { duration: tokens.motion.normal }));
+  }, [index, progress]);
+
+  const style = useAnimatedStyle(() => ({
+    opacity: progress.value,
+    transform: [{ translateY: 8 * (1 - progress.value) }],
+  }));
+
+  return (
+    <Animated.View style={[styles.statTile, style]}>
+      <Text adjustsFontSizeToFit numberOfLines={1} style={styles.statValue}>{stat.value}</Text>
+      <Text adjustsFontSizeToFit numberOfLines={1} style={styles.statLabel}>{stat.label}</Text>
+    </Animated.View>
+  );
+}
+
+function FeedbackButton({ label, onPress, rating, selected }: { label: string; onPress: (rating: GameFeedbackRating) => void; rating: GameFeedbackRating; selected: boolean }) {
+  const progress = useSharedValue(selected ? 1 : 0);
+
+  useEffect(() => {
+    progress.value = withSpring(selected ? 1 : 0, { damping: 18, stiffness: 220 });
+  }, [progress, selected]);
+
+  const style = useAnimatedStyle(() => ({
+    transform: [{ scale: 1 + progress.value * 0.04 }],
+  }));
+
+  return (
+    <Animated.View style={[styles.feedbackButtonWrap, style]}>
+      <Pressable accessibilityRole="button" accessibilityState={{ selected }} onPress={() => onPress(rating)} style={[styles.feedbackButton, selected && styles.feedbackButtonSelected]}>
+        <Text style={[styles.feedbackButtonText, selected && styles.feedbackButtonTextSelected]}>{label}</Text>
+      </Pressable>
+    </Animated.View>
+  );
+}
+
+function PaperConfetti() {
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      {confetti.map((piece, index) => <ConfettiPiece index={index} key={`${piece.left}-${piece.top}`} piece={piece} />)}
+    </View>
+  );
+}
+
+function ConfettiPiece({ index, piece }: { index: number; piece: (typeof confetti)[number] }) {
+  const progress = useSharedValue(0);
+
+  useEffect(() => {
+    progress.value = withDelay(piece.delay, withTiming(1, { duration: tokens.motion.slow }));
+  }, [piece.delay, progress]);
+
+  const style = useAnimatedStyle(() => ({
+    opacity: 1 - Math.max(0, progress.value - 0.72) * 3.4,
+    transform: [
+      { translateY: -10 - progress.value * (18 + index * 2) },
+      { scale: 0.7 + progress.value * 0.3 },
+      { rotate: piece.rotate },
+    ],
+  }));
+
+  return <Animated.View style={[styles.confettiPiece, { backgroundColor: piece.color, left: piece.left, top: piece.top }, style]} />;
 }
 
 const styles = StyleSheet.create({
@@ -66,122 +281,211 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: tokens.space.lg,
-    backgroundColor: "rgba(23, 19, 13, 0.48)"
+    backgroundColor: "rgba(23, 19, 13, 0.54)",
   },
   card: {
     gap: tokens.space.sm,
-    maxHeight: "86%",
+    maxHeight: "88%",
     padding: tokens.space.md,
     borderRadius: tokens.radius.lg,
-    backgroundColor: tokens.color.card
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.58)",
+    backgroundColor: tokens.color.card,
+    overflow: "hidden",
   },
+  sticker: {
+    alignSelf: "center",
+    paddingHorizontal: tokens.space.md,
+    paddingVertical: 6,
+    borderRadius: tokens.radius.pill,
+    fontSize: 12,
+    fontWeight: "900",
+    letterSpacing: 1.2,
+    overflow: "hidden",
+    transform: [{ rotate: "-3deg" }],
+  },
+  stickerWon: { backgroundColor: "rgba(33, 166, 122, 0.16)", color: tokens.color.success },
+  stickerLost: { backgroundColor: "rgba(199, 62, 58, 0.14)", color: tokens.color.danger },
+  stickerRevealed: { backgroundColor: "rgba(217, 133, 0, 0.15)", color: tokens.color.warning },
   title: {
-    color: tokens.color.success,
+    color: tokens.color.ink,
     fontSize: tokens.type.h2,
     fontWeight: "900",
-    textAlign: "center"
+    textAlign: "center",
   },
-  solution: {
+  solutionWrap: {
+    alignSelf: "center",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: 2,
+    paddingHorizontal: tokens.space.sm,
+    paddingVertical: 8,
+    borderRadius: tokens.radius.md,
+  },
+  solutionWin: {
+    backgroundColor: "rgba(33, 166, 122, 0.1)",
+  },
+  solutionLetter: {
     color: tokens.color.ink,
-    fontSize: 34,
+    fontSize: 32,
     fontWeight: "900",
-    letterSpacing: 2,
-    textAlign: "center"
+    letterSpacing: 1.6,
+    textAlign: "center",
   },
   message: {
     color: tokens.color.muted,
     fontSize: tokens.type.body,
     lineHeight: 24,
-    textAlign: "center"
+    textAlign: "center",
   },
   history: {
     gap: 4,
     paddingVertical: tokens.space.xs,
     paddingHorizontal: tokens.space.sm,
     borderRadius: tokens.radius.md,
-    backgroundColor: "rgba(36, 107, 254, 0.08)"
+    backgroundColor: "rgba(36, 107, 254, 0.08)",
   },
   historyScroll: {
     flexGrow: 0,
     flexShrink: 1,
-    maxHeight: 260,
-    borderRadius: tokens.radius.md
+    maxHeight: 220,
+    borderRadius: tokens.radius.md,
   },
   guessRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: tokens.space.sm,
-    paddingVertical: 2
+    paddingVertical: 2,
   },
   guessNumber: {
     width: 22,
     color: tokens.color.primaryDark,
     fontSize: tokens.type.small,
     fontWeight: "900",
-    textAlign: "center"
+    textAlign: "center",
   },
   guessValue: {
     color: tokens.color.ink,
     fontSize: 18,
     fontWeight: "900",
-    letterSpacing: 1
+    letterSpacing: 1,
   },
   stats: {
     flexDirection: "row",
-    gap: tokens.space.xs
+    gap: tokens.space.xs,
   },
   statTile: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    minHeight: 94,
+    minHeight: 84,
     padding: tokens.space.sm,
     borderRadius: tokens.radius.md,
-    backgroundColor: "rgba(36, 107, 254, 0.1)"
+    backgroundColor: "rgba(36, 107, 254, 0.1)",
   },
   statValue: {
     color: tokens.color.ink,
-    fontSize: 26,
+    fontSize: 25,
     fontWeight: "900",
-    lineHeight: 30,
-    textAlign: "center"
+    lineHeight: 29,
+    textAlign: "center",
   },
   statLabel: {
     color: tokens.color.muted,
     fontSize: 12,
     fontWeight: "900",
-    textAlign: "center"
+    textAlign: "center",
+  },
+  feedback: {
+    gap: tokens.space.xs,
+    paddingTop: tokens.space.xs,
+  },
+  feedbackTitle: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.small,
+    fontWeight: "900",
+    textAlign: "center",
+  },
+  feedbackButtons: {
+    flexDirection: "row",
+    gap: tokens.space.xs,
+  },
+  feedbackButtonWrap: { flex: 1 },
+  feedbackButton: {
+    minHeight: 38,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 8,
+    borderRadius: tokens.radius.pill,
+    borderWidth: 1,
+    borderColor: tokens.color.line,
+    backgroundColor: "white",
+  },
+  feedbackButtonSelected: {
+    borderColor: tokens.color.primary,
+    backgroundColor: tokens.color.primaryLight,
+  },
+  feedbackButtonText: {
+    color: tokens.color.ink,
+    fontSize: 12,
+    fontWeight: "900",
+    textAlign: "center",
+  },
+  feedbackButtonTextSelected: { color: tokens.color.primaryDark },
+  feedbackThanks: {
+    color: tokens.color.success,
+    fontSize: 12,
+    fontWeight: "900",
+    textAlign: "center",
   },
   actions: {
     flexDirection: "row",
     gap: tokens.space.sm,
-    marginTop: tokens.space.sm
+    marginTop: tokens.space.sm,
   },
   button: {
     flex: 1,
     minHeight: 52,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.pill
+    borderRadius: tokens.radius.pill,
   },
   secondary: {
     borderWidth: 1,
     borderColor: tokens.color.line,
-    backgroundColor: "white"
+    backgroundColor: "white",
+  },
+  share: {
+    borderWidth: 1,
+    borderColor: "rgba(36, 107, 254, 0.28)",
+    backgroundColor: "rgba(36, 107, 254, 0.1)",
   },
   primary: {
-    backgroundColor: tokens.color.primary
+    backgroundColor: tokens.color.primary,
   },
   secondaryText: {
     color: tokens.color.ink,
     fontSize: 15,
     fontWeight: "900",
-    textAlign: "center"
+    textAlign: "center",
+  },
+  shareText: {
+    color: tokens.color.secondary,
+    fontSize: 15,
+    fontWeight: "900",
+    textAlign: "center",
   },
   primaryText: {
     color: "white",
     fontSize: 15,
     fontWeight: "900",
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
+  confettiPiece: {
+    position: "absolute",
+    width: 9,
+    height: 15,
+    borderRadius: 3,
+  },
 });

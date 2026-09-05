@@ -266,11 +266,21 @@ export default function DoppelScreen() {
       />
       <GameResultModal
         actionLabel="Neues Spiel"
+        attempts={state.guesses.length}
+        dateKey={dateKey}
+        durationMs={elapsedSeconds * 1000}
+        gameId="doppel"
         guesses={state.guesses}
         message={state.status === "won" ? `${solution.leftCompound} · ${solution.rightCompound}` : "Die Lösung ist raus. Noch eins?"}
+        onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "doppel", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         onNext={startNextGame}
+        onShare={() => captureEvent(posthog, "result_shared", { gameId: "doppel", dateKey, scope: "game", outcome: state.status })}
+        onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "doppel", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
+        outcome={state.status === "playing" ? undefined : state.status}
+        shareText={`Wortkniff Doppel ${dateKey}\n${state.status === "won" ? "Gelöst" : "Aufgedeckt"} · ${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`}
         solution={solution.answer}
+        success={state.status === "won"}
         stats={[
           { label: "Hinweise", value: state.unlockedHints },
           { label: "Zeit", value: `${elapsedSeconds} Sek.` }

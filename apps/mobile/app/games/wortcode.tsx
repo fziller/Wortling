@@ -434,11 +434,21 @@ export default function WortcodeScreen() {
         visible={giveUpVisible}
       />
       <GameResultModal
+        attempts={state.guesses.length}
+        dateKey={dateKey}
+        durationMs={elapsedSeconds * 1000}
+        gameId="wortcode"
         guesses={state.guesses.map((guess) => guess.value)}
         message={state.status === "won" ? "Sauber kombiniert." : "Die Lösung ist raus. Weiteres Wort?"}
+        onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "wortcode", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         onNext={startNextWord}
+        onShare={() => captureEvent(posthog, "result_shared", { gameId: "wortcode", dateKey, scope: "game", outcome: state.status })}
+        onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "wortcode", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
+        outcome={state.status === "playing" ? undefined : state.status}
+        shareText={`Wortkniff Wortcode ${dateKey}\n${state.status === "won" ? "Geknackt" : "Aufgedeckt"} · ${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`}
         solution={puzzle.answer}
+        success={state.status === "won"}
         stats={[
           { label: "Versuche", value: state.guesses.length },
           { label: "Zeit", value: `${elapsedSeconds} Sek.` },

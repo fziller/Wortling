@@ -200,10 +200,20 @@ export default function GalgenwortScreen() {
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <GameResultModal
+        attempts={state.guessedLetters.length}
+        dateKey={dateKey}
+        durationMs={elapsedSeconds * 1000}
+        gameId="galgenwort"
         message={state.status === "won" ? "Nice, das Wort ist frei." : "Die Lösung ist raus. Weiteres Wort?"}
+        onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "galgenwort", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         onNext={startNextWord}
+        onShare={() => captureEvent(posthog, "result_shared", { gameId: "galgenwort", dateKey, scope: "game", outcome: state.status })}
+        onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "galgenwort", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
+        outcome={state.status === "playing" ? undefined : state.status}
+        shareText={`Wortkniff Galgenwort ${dateKey}\n${state.status === "won" ? "Gelöst" : "Aufgedeckt"} · ${state.guessedLetters.length} Buchstaben · ${elapsedSeconds} Sek.`}
         solution={puzzle.answer}
+        success={state.status === "won"}
         stats={[
           { label: "Buchstaben", value: state.guessedLetters.length },
           { label: "Fehler", value: wrongLetters.length },

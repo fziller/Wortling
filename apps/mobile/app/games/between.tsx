@@ -395,11 +395,21 @@ export default function BetweenScreen() {
         visible={modal === "reveal"}
       />
       <GameResultModal
+        attempts={state.guesses.length}
+        dateKey={dateKey}
+        durationMs={elapsedSeconds * 1000}
+        gameId="between"
         guesses={state.guesses.map((guess) => guess.word)}
         message={state.status === "won" ? "Ziel sauber eingegrenzt." : "Die Lösung ist raus. Noch eins?"}
+        onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "between", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         onNext={startNextWord}
+        onShare={() => captureEvent(posthog, "result_shared", { gameId: "between", dateKey, scope: "game", outcome: state.status })}
+        onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "between", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
+        outcome={state.status === "playing" ? undefined : state.status}
+        shareText={`Wortkniff Dazwischen ${dateKey}\n${state.status === "won" ? "Gefunden" : "Aufgedeckt"} · ${state.guesses.length} Tipps · ${formatElapsedTime(elapsedSeconds)}`}
         solution={state.targetWord}
+        success={state.status === "won"}
         stats={[
           { label: "Tipps", value: state.guesses.length },
           { label: "Zeit", value: formatElapsedTime(elapsedSeconds) },

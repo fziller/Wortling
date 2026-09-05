@@ -10,6 +10,7 @@ import { generateDailyKniffe, getDailyKniffeSummary, isDailyKniffCompleted } fro
 import { tokens } from "@/design/tokens";
 import { gameRegistry, games } from "@/games/registry";
 import { DailyKniffeCard } from "@/home/DailyKniffeCard";
+import { DailyKniffeRewardModal } from "@/home/DailyKniffeRewardModal";
 import { GameCard } from "@/home/GameCard";
 import { HOME_HEADER_BACKGROUND, HomeTopBar } from "@/home/HomeTopBar";
 import { homeOrder } from "@/home/homeMeta";
@@ -23,6 +24,7 @@ export default function HomeScreen() {
   const posthog = usePostHog();
   const dateKey = getBerlinDateKey();
   const [progressByGame, setProgressByGame] = useState<Record<string, StoredProgress | null>>({});
+  const [dailyRewardVisible, setDailyRewardVisible] = useState(false);
   const [winDayStreak, setWinDayStreak] = useState({ current: 0, longest: 0, todayIsWinDay: false });
   const [seedOverride, setSeedOverride] = useState<number | undefined>();
   const completedEventIds = useRef(new Set<string>());
@@ -98,6 +100,7 @@ export default function HomeScreen() {
     celebratedDateKeys.current.add(dateKey);
     captureEvent(posthog, "daily_kniffe_all_completed", { dateKey, streak: winDayStreak.current });
     captureEvent(posthog, "daily_streak_updated", { dateKey, streak: winDayStreak.current });
+    setDailyRewardVisible(true);
   }, [dateKey, dailySummary.isComplete, posthog, winDayStreak]);
 
   function openDailyKniff(gameId: string) {
@@ -143,6 +146,15 @@ export default function HomeScreen() {
           })}
         </View>
       </ScrollView>
+      <DailyKniffeRewardModal
+        dateKey={dateKey}
+        onClose={() => setDailyRewardVisible(false)}
+        onShare={() => captureEvent(posthog, "result_shared", { dateKey, scope: "daily_kniffe", outcome: "won" })}
+        onViewed={() => captureEvent(posthog, "result_viewed", { dateKey, scope: "daily_kniffe", outcome: "won", success: true })}
+        streak={winDayStreak.current}
+        total={dailySummary.total || 3}
+        visible={dailyRewardVisible}
+      />
     </Screen>
   );
 }

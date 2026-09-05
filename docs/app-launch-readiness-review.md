@@ -26,17 +26,17 @@ Wortkniff ist stärker als viele kleine Wortspiel-Apps, weil die App deutsch-fir
 - Acht sichtbare Spiele können neue Nutzer erschlagen. Tageskniffe helfen, aber Home braucht klarer den Hauptpfad.
 - Erklärungen sitzen stark im Help-Modal. Gute Puzzle-Apps erklären zusätzlich über die erste Interaktion.
 - Share-/Ritual-Loop fehlt sichtbar. Daily Games leben davon, dass ein Abschluss teilbar und erinnerbar ist.
-- Event Tracking war uneinheitlich. Ohne sauberen Funnel werden Beta-Probleme schwer zu finden.
+- Event Tracking ist für den Launch-Funnel weitgehend geschlossen. In der Beta müssen vor allem Result-Views, Shares und Feedback ausgewertet werden.
 - Doppel hat zu wenig Content-Tiefe für sichtbaren Launch-Pool und wird deshalb vorerst versteckt.
 
 ## Vor Live Nachziehen
 
-- Einheitliches Event Tracking für jeden Screen und jedes Game: Start, Ende, Erfolg, Fail, Abbruch, Hilfe, Hinweis, Lösung anzeigen.
+- Einheitliches Event Tracking in der Beta beobachten: Start, Ende, Erfolg, Fail, Abbruch, Hilfe, Hinweis, Lösung anzeigen, Result-View, Feedback, Share.
 - Minimaler Tester-Feedback-Prompt nach Ergebnissen: `zu leicht`, `passt`, `zu schwer`.
-- Ergebnis-Momente aufwerten: Rekord, besser als Durchschnitt, optimale Lösung, Hint verdient, Tageskniff-Fortschritt.
-- Tageskniffe-Abschluss als eigener Reward-Moment: 3/3 geschafft, Streak, morgen wiederkommen.
+- Ergebnis-Momente sind mit Reanimated-Reward, Sticker, animierter Lösung, Stats und Papier-Schnipseln aufgewertet. Rekord-/Bestwert-Copy bleibt ein späterer Feinschliff.
+- Tageskniffe-Abschluss ist als eigener Reward-Moment vorhanden: 3/3 geschafft, Streak und Text-Share.
 - Home stärker kuratieren: Tageskniffe als Primärweg, restliche Spiele als Nebenangebot.
-- Share Card ergänzen: einfache Text/Grid-Zusammenfassung pro Runde und Tageskniffe.
+- Share Loop ist als native Text-Zusammenfassung pro Runde und Tageskniffe vorhanden. Bild-/Grid-Share erst nach Beta-Signal bauen.
 - Doppel erst wieder sichtbar machen, wenn genug kuratierte Rätsel und Testerfeedback vorhanden sind.
 
 ## Animationen
@@ -64,8 +64,8 @@ Für Beta und Soft Launch sollten diese Fragen messbar sein:
 
 ## Priorität
 
-1. Event Tracking schließen.
-2. Doppel verstecken, Code behalten.
-3. Kleine Reward-Momente verbessern.
-4. Testerfeedback minimal einbauen.
-5. Share/Tagesabschluss polishen.
+1. Beta-Daten aus Result-Views, Feedback und Shares auswerten.
+2. Doppel versteckt lassen, Code behalten.
+3. Wort-/Puzzlequalität weiter kuratieren.
+4. Rekord- und Bestwert-Momente verbessern.
+5. Bild-/Grid-Share nur bauen, wenn Text-Share nicht reicht.

@@ -251,11 +251,21 @@ export default function WortschmelzeScreen() {
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <GameResultModal
+        attempts={state.guesses.length}
+        dateKey={dateKey}
+        durationMs={elapsedSeconds * 1000}
+        gameId={GAME_ID}
         guesses={state.guesses.map((guess) => guess.value)}
         message={state.status === "won" ? "Sauber, die Wörter sind verschmolzen." : "Die Lösung ist raus. Noch eins?"}
+        onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: GAME_ID, dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         onNext={startNextWord}
+        onShare={() => captureEvent(posthog, "result_shared", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status })}
+        onViewed={() => captureEvent(posthog, "result_viewed", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
+        outcome={state.status === "playing" ? undefined : state.status}
+        shareText={`Wortkniff Wortschmelze ${dateKey}\n${state.status === "won" ? "Gelöst" : "Aufgedeckt"} · ${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`}
         solution={solution}
+        success={state.status === "won"}
         stats={[{ label: "Versuche", value: state.guesses.length }, { label: "Zeit", value: `${elapsedSeconds} Sek.` }, { label: "Buchstaben", value: usedLetters }]}
         title={state.status === "won" ? "Stark geschmolzen." : state.status === "lost" ? "Nicht geschmolzen." : "Aufgelöst."}
         visible={resultVisible && state.status !== "playing"}

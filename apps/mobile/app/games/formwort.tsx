@@ -407,11 +407,21 @@ export default function FormwortScreen() {
       </ScrollView>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <GameResultModal
+        attempts={state.guesses.length}
+        dateKey={dateKey}
+        durationMs={elapsedSeconds * 1000}
+        gameId="formwort"
         guesses={state.guesses.map((guess) => guess.value)}
         message={state.status === "won" ? "Alle Formen sitzen." : "Die Lösung ist raus. Weiteres Wort?"}
+        onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "formwort", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         onNext={startNextWord}
+        onShare={() => captureEvent(posthog, "result_shared", { gameId: "formwort", dateKey, scope: "game", outcome: state.status })}
+        onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "formwort", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
+        outcome={state.status === "playing" ? undefined : state.status}
+        shareText={`Wortkniff Formwort ${dateKey}\n${state.status === "won" ? "Gelöst" : "Aufgedeckt"} · ${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`}
         solution={puzzle.answer}
+        success={state.status === "won"}
         stats={[
           { label: "Versuche", value: state.guesses.length },
           { label: "Zeit", value: `${elapsedSeconds} Sek.` },

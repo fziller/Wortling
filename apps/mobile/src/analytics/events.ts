@@ -15,6 +15,9 @@ export type WortkniffEvents = {
   daily_streak_updated: { dateKey: string; streak: number };
   screen_viewed: { screen: string; params?: Record<string, string> };
   settings_changed: { key: string; value: string };
+  result_viewed: { gameId?: string; dateKey: string; scope: "game" | "daily_kniffe"; outcome?: string; success?: boolean };
+  game_feedback_submitted: { gameId: string; dateKey: string; rating: "too_easy" | "ok" | "too_hard"; outcome: string };
+  result_shared: { gameId?: string; dateKey: string; scope: "game" | "daily_kniffe"; outcome?: string };
 };
 
 export type AnalyticsClient = {

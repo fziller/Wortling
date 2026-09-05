@@ -2,7 +2,6 @@ import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 import { useEffect, useRef, useState } from "react";
 import {
-  Modal,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -16,6 +15,7 @@ import Animated, {
 
 import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { GameResultModal } from "@/components/GameResultModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { HelpModal } from "@/components/HelpModal";
 import { LetterInputTiles } from "@/components/LetterInputTiles";
@@ -361,15 +361,30 @@ export default function WortleiterScreen() {
         title="Lösung anzeigen?"
         visible={revealVisible}
       />
-      <WortleiterResultModal
-        elapsedTime={formatElapsedTime(elapsedSeconds)}
+      <GameResultModal
+        actionLabel="Neue Leiter"
+        attempts={steps}
+        dateKey={dateKey}
+        durationMs={elapsedSeconds * 1000}
+        gameId="wortleiter"
+        guesses={state.words}
+        message={state.status === "won" ? `Deine Schritte: ${steps} · Optimal: ${puzzle.optimalSteps}` : "Die kürzeste bekannte Leiter ist aufgedeckt."}
+        onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "wortleiter", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         onNext={startNextPuzzle}
-        optimalSteps={puzzle.optimalSteps}
-        status={state.status}
-        steps={steps}
+        onShare={() => captureEvent(posthog, "result_shared", { gameId: "wortleiter", dateKey, scope: "game", outcome: state.status })}
+        onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "wortleiter", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
+        outcome={state.status === "playing" ? undefined : state.status}
+        shareText={`Wortkniff Wortleiter ${dateKey}\n${state.status === "won" ? "Gelöst" : "Aufgedeckt"} · ${steps} Schritte · ${formatElapsedTime(elapsedSeconds)}`}
+        solution={state.words[state.words.length - 1]}
+        stats={[
+          { label: "Schritte", value: steps },
+          { label: "Optimal", value: puzzle.optimalSteps },
+          { label: "Zeit", value: formatElapsedTime(elapsedSeconds) }
+        ]}
+        success={state.status === "won"}
+        title={state.status === "won" ? "Geschafft!" : "Aufgelöst."}
         visible={resultVisible && state.status !== "playing"}
-        words={state.words}
       />
       <HelpModal
         {...gameHelp.wortleiter}
@@ -392,97 +407,6 @@ function LadderWord({ label, target = false, word }: LadderWordProps) {
       {label ? <Text style={styles.pillLabel}>{label}</Text> : null}
       <Text style={styles.pillWord}>{word.toLocaleUpperCase("de-DE")}</Text>
     </View>
-  );
-}
-
-type WortleiterResultModalProps = {
-  elapsedTime: string;
-  onHome: () => void;
-  onNext: () => void;
-  optimalSteps: number;
-  status: WortleiterState["status"];
-  steps: number;
-  visible: boolean;
-  words: readonly string[];
-};
-
-function WortleiterResultModal({
-  elapsedTime,
-  onHome,
-  onNext,
-  optimalSteps,
-  status,
-  steps,
-  visible,
-  words,
-}: WortleiterResultModalProps) {
-  const won = status === "won";
-
-  return (
-    <Modal animationType="fade" transparent visible={visible}>
-      <View style={styles.modalBackdrop}>
-        <View style={styles.modalCard}>
-          <Text style={styles.modalTitle}>
-            {won ? "Geschafft!" : "Aufgelöst."}
-          </Text>
-          <Text style={styles.modalMessage}>
-            {won
-              ? `Deine Schritte: ${steps} · Optimal: ${optimalSteps}`
-              : "Die kürzeste bekannte Leiter:"}
-          </Text>
-          <ScrollView
-            contentContainerStyle={styles.modalLadder}
-            showsVerticalScrollIndicator={false}
-            style={styles.modalLadderScroll}
-          >
-            {words.map((word, index) => (
-              <View key={`${word}-${index}`} style={styles.modalStep}>
-                {index > 0 ? <Text style={styles.modalArrow}>↓</Text> : null}
-                <Text style={styles.modalWord}>
-                  {word.toLocaleUpperCase("de-DE")}
-                </Text>
-              </View>
-            ))}
-          </ScrollView>
-          <View style={styles.modalStats}>
-            <View style={styles.modalStatTile}>
-              <Text style={styles.modalStatValue}>{steps}</Text>
-              <Text style={styles.modalStatLabel}>Schritte</Text>
-            </View>
-            <View style={styles.modalStatTile}>
-              <Text style={styles.modalStatValue}>{optimalSteps}</Text>
-              <Text style={styles.modalStatLabel}>Optimal</Text>
-            </View>
-            <View style={styles.modalStatTile}>
-              <Text
-                adjustsFontSizeToFit
-                numberOfLines={1}
-                style={styles.modalStatValue}
-              >
-                {elapsedTime}
-              </Text>
-              <Text style={styles.modalStatLabel}>Zeit</Text>
-            </View>
-          </View>
-          <View style={styles.modalActions}>
-            <Pressable
-              accessibilityRole="button"
-              onPress={onHome}
-              style={[styles.modalButton, styles.modalSecondary]}
-            >
-              <Text style={styles.modalSecondaryText}>Startseite</Text>
-            </Pressable>
-            <Pressable
-              accessibilityRole="button"
-              onPress={onNext}
-              style={[styles.modalButton, styles.modalPrimary]}
-            >
-              <Text style={styles.modalPrimaryText}>Neue Leiter</Text>
-            </Pressable>
-          </View>
-        </View>
-      </View>
-    </Modal>
   );
 }
 
@@ -550,111 +474,6 @@ const styles = StyleSheet.create({
   rating: {
     color: tokens.color.warning,
     fontSize: tokens.type.h2,
-    fontWeight: "900",
-    textAlign: "center",
-  },
-  modalBackdrop: {
-    flex: 1,
-    justifyContent: "center",
-    padding: tokens.space.md,
-    backgroundColor: "rgba(23, 19, 13, 0.48)",
-  },
-  modalCard: {
-    width: "100%",
-    maxHeight: "86%",
-    gap: tokens.space.sm,
-    padding: tokens.space.md,
-    borderRadius: tokens.radius.lg,
-    backgroundColor: tokens.color.card,
-  },
-  modalTitle: {
-    color: tokens.color.success,
-    fontSize: tokens.type.h2,
-    fontWeight: "900",
-    textAlign: "center",
-  },
-  modalMessage: {
-    color: tokens.color.muted,
-    fontSize: tokens.type.body,
-    lineHeight: 24,
-    textAlign: "center",
-  },
-  modalLadderScroll: {
-    flexGrow: 0,
-    flexShrink: 1,
-    maxHeight: 260,
-  },
-  modalLadder: {
-    alignItems: "center",
-    paddingVertical: tokens.space.xs,
-  },
-  modalStep: { alignItems: "center", gap: 2 },
-  modalArrow: {
-    color: tokens.color.primaryDark,
-    fontSize: 16,
-    fontWeight: "900",
-  },
-  modalWord: {
-    minWidth: 116,
-    paddingHorizontal: tokens.space.md,
-    paddingVertical: 4,
-    borderRadius: tokens.radius.pill,
-    backgroundColor: "rgba(36, 107, 254, 0.1)",
-    color: tokens.color.ink,
-    fontSize: 20,
-    fontWeight: "900",
-    letterSpacing: 3,
-    textAlign: "center",
-  },
-  modalStats: { flexDirection: "row", gap: tokens.space.xs },
-  modalStatTile: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: 76,
-    padding: tokens.space.xs,
-    borderRadius: tokens.radius.md,
-    backgroundColor: "rgba(36, 107, 254, 0.1)",
-  },
-  modalStatValue: {
-    color: tokens.color.ink,
-    fontSize: 20,
-    fontWeight: "900",
-    textAlign: "center",
-  },
-  modalStatLabel: {
-    color: tokens.color.muted,
-    fontSize: 12,
-    fontWeight: "900",
-    textAlign: "center",
-  },
-  modalActions: {
-    flexDirection: "row",
-    gap: tokens.space.sm,
-    marginTop: tokens.space.sm,
-  },
-  modalButton: {
-    flex: 1,
-    minHeight: 52,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: tokens.radius.pill,
-  },
-  modalSecondary: {
-    borderWidth: 1,
-    borderColor: tokens.color.line,
-    backgroundColor: "white",
-  },
-  modalPrimary: { backgroundColor: tokens.color.primary },
-  modalSecondaryText: {
-    color: tokens.color.ink,
-    fontSize: 15,
-    fontWeight: "900",
-    textAlign: "center",
-  },
-  modalPrimaryText: {
-    color: "white",
-    fontSize: 15,
     fontWeight: "900",
     textAlign: "center",
   },

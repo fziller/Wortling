@@ -514,15 +514,25 @@ export default function WorttrefferScreen() {
         visible={giveUpVisible}
       />
       <GameResultModal
+        attempts={state.guesses.length}
+        dateKey={dateKey}
+        durationMs={elapsedSeconds * 1000}
+        gameId="worttreffer"
         guesses={state.guesses.map((guess) => guess.value)}
         message={
           state.status === "won"
             ? "Sauber, das war das Wort."
             : "Die Lösung ist raus. Weiteres Wort?"
         }
+        onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "worttreffer", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         onNext={startNextWord}
+        onShare={() => captureEvent(posthog, "result_shared", { gameId: "worttreffer", dateKey, scope: "game", outcome: state.status })}
+        onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "worttreffer", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
+        outcome={state.status === "playing" ? undefined : state.status}
+        shareText={`Wortkniff Worttreffer ${dateKey}\n${state.status === "won" ? "Gelöst" : "Aufgedeckt"} · ${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`}
         solution={puzzle.answer}
+        success={state.status === "won"}
         stats={[
           { label: "Versuche", value: state.guesses.length },
           { label: "Zeit", value: `${elapsedSeconds} Sek.` },
