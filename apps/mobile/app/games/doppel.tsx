@@ -18,7 +18,7 @@ import { createNextDoppelGame } from "@/games/doppel/daily";
 import { revealDoppelSolution, submitDoppelGuess, unlockDoppelHint } from "@/games/doppel/engine";
 import { DoppelHint, DoppelState } from "@/games/doppel/types";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
-import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, saveProgress, type StoredProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { useGameRecorder } from "@/stats/recorder";
@@ -70,7 +70,7 @@ export default function DoppelScreen() {
     if (!progressLoaded) return;
 
     const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
-    const completedStatus = state.status !== "playing" ? state.status : completedStatusRef.current;
+    const completedStatus = mergeCompletedStatus(completedStatusRef.current, state.status !== "playing" ? state.status : undefined);
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
     saveProgress({

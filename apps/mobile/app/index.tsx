@@ -17,6 +17,9 @@ import { successHaptic } from "@/haptics";
 import { homeOrder } from "@/home/homeMeta";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
+import { currentNews } from "@/news/current";
+import { NewsModal } from "@/news/NewsModal";
+import { hasSeenNews, markNewsSeen } from "@/news/storage";
 import { OnboardingModal } from "@/onboarding/OnboardingModal";
 import { hasSeenOnboarding, markOnboardingSeen } from "@/onboarding/storage";
 import { loadDailyKniffeSeedOverride } from "@/storage/dailyKniffeDev";
@@ -30,6 +33,7 @@ export default function HomeScreen() {
   const [progressByGame, setProgressByGame] = useState<Record<string, StoredProgress | null>>({});
   const [dailyRewardVisible, setDailyRewardVisible] = useState(false);
   const [onboardingVisible, setOnboardingVisible] = useState(false);
+  const [newsVisible, setNewsVisible] = useState(false);
   const [winDayStreak, setWinDayStreak] = useState({ current: 0, longest: 0, todayIsWinDay: false });
   const [seedOverride, setSeedOverride] = useState<number | undefined>();
   const completedEventIds = useRef(new Set<string>());
@@ -59,11 +63,20 @@ export default function HomeScreen() {
   useFocusEffect(useCallback(() => {
     let mounted = true;
 
-    Promise.all([loadDailyKniffeSeedOverride(), loadCurrentWinDayStreak(), hasSeenOnboarding()]).then(([nextSeedOverride, nextStreak, seenOnboarding]) => {
+    Promise.all([
+      loadDailyKniffeSeedOverride(),
+      loadCurrentWinDayStreak(),
+      hasSeenOnboarding(),
+      currentNews ? hasSeenNews(currentNews.id) : Promise.resolve(true),
+    ]).then(([nextSeedOverride, nextStreak, seenOnboarding, seenNews]) => {
       if (!mounted) return;
       setSeedOverride(nextSeedOverride);
       setWinDayStreak(nextStreak);
       if (!seenOnboarding) setOnboardingVisible(true);
+      else if (currentNews && !seenNews) {
+        setNewsVisible(true);
+        captureEvent(posthog, "news_viewed", { id: currentNews.id });
+      }
     }).catch(() => {
       // Streak display is nice-to-have; home must stay offline-safe.
     });
@@ -128,6 +141,18 @@ export default function HomeScreen() {
     await markOnboardingSeen();
     setOnboardingVisible(false);
     captureEvent(posthog, "onboarding_completed", { dateKey, action });
+    if (currentNews && !await hasSeenNews(currentNews.id)) {
+      setNewsVisible(true);
+      captureEvent(posthog, "news_viewed", { id: currentNews.id });
+    }
+  }
+
+  async function closeNews() {
+    if (!currentNews) return;
+
+    await markNewsSeen(currentNews.id);
+    setNewsVisible(false);
+    captureEvent(posthog, "news_dismissed", { id: currentNews.id });
   }
 
   function openNextDailyKniff() {
@@ -183,6 +208,7 @@ export default function HomeScreen() {
         }}
         visible={onboardingVisible}
       />
+      {currentNews ? <NewsModal news={currentNews} onClose={closeNews} visible={newsVisible && !onboardingVisible} /> : null}
     </Screen>
   );
 }

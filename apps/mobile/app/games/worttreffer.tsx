@@ -48,6 +48,7 @@ import {
   isStartedProgress,
   loadProgress,
   loadProgressForGames,
+  mergeCompletedStatus,
   saveProgress,
   type StoredProgress,
 } from "@/storage/progress";
@@ -145,7 +146,7 @@ export default function WorttrefferScreen() {
     if (!progressLoaded) return;
 
     const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
-    const completedStatus = state.status !== "playing" ? state.status : completedStatusRef.current;
+    const completedStatus = mergeCompletedStatus(completedStatusRef.current, state.status !== "playing" ? state.status : undefined);
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
     saveProgress({

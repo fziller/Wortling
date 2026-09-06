@@ -48,6 +48,7 @@
         "@sentry/react-native/expo",
         {}
       ],
+      "expo-sharing",
       "expo-video",
       [
         "expo-build-properties",

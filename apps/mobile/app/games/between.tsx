@@ -38,7 +38,7 @@ import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { BucketPreset } from "@/games/wordBuckets";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
-import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, saveProgress, type StoredProgress } from "@/storage/progress";
 import { useGameRecorder } from "@/stats/recorder";
 import { usePacksSettings } from "@/hooks/usePacksSettings";
 import { buildSimpleShareText } from "@/games/share/grid";
@@ -135,7 +135,7 @@ export default function BetweenScreen() {
 
     const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
     const status = state.status === "abandoned" ? "revealed" : state.status;
-    const completedStatus = state.status !== "playing" ? status : completedStatusRef.current;
+    const completedStatus = mergeCompletedStatus(completedStatusRef.current, state.status !== "playing" ? status : undefined);
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
     saveProgress({

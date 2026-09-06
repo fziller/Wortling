@@ -25,7 +25,7 @@ import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
-import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
+import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, saveProgress, type StoredProgress } from "@/storage/progress";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 import { buildMarkedGridShareText } from "@/games/share/grid";
@@ -100,7 +100,7 @@ export default function WortschmelzeScreen() {
   useEffect(() => {
     if (!progressLoaded) return;
     const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
-    const completedStatus = state.status !== "playing" ? state.status : completedStatusRef.current;
+    const completedStatus = mergeCompletedStatus(completedStatusRef.current, state.status !== "playing" ? state.status : undefined);
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
     saveProgress({ gameId: GAME_ID, dateKey, draft: inputLetters, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });

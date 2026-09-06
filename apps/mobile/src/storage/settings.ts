@@ -6,12 +6,14 @@ export type NotificationSettings = {
   enabled: boolean;
   hour: number;
   minute: number;
+  unfinishedEnabled: boolean;
 };
 
 const DEFAULTS: NotificationSettings = {
   enabled: false,
   hour: 18,
   minute: 0,
+  unfinishedEnabled: true,
 };
 
 export async function loadNotificationSettings(): Promise<NotificationSettings> {

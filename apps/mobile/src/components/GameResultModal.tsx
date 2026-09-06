@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import * as Sharing from "expo-sharing";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { Modal, Pressable, ScrollView, Share, StyleSheet, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withDelay, withSpring, withTiming } from "react-native-reanimated";
+import { captureRef } from "react-native-view-shot";
 
 import { tokens } from "@/design/tokens";
 import { successHaptic, warningHaptic } from "@/haptics";
@@ -65,6 +67,7 @@ export function GameResultModal({
 }: GameResultModalProps) {
   const [selectedFeedback, setSelectedFeedback] = useState<GameFeedbackRating | null>(null);
   const [shared, setShared] = useState(false);
+  const shareCardRef = useRef<View>(null);
   const viewedRef = useRef(false);
   const entrance = useSharedValue(0);
 
@@ -109,11 +112,22 @@ export function GameResultModal({
     if (!shareText) return;
 
     try {
-      await Share.share({ message: shareText });
+      if (shareCardRef.current && await Sharing.isAvailableAsync()) {
+        const uri = await captureRef(shareCardRef.current, { format: "png", quality: 1, result: "tmpfile" });
+        await Sharing.shareAsync(uri, { dialogTitle: "Wortkniff teilen", mimeType: "image/png" });
+      } else {
+        await Share.share({ message: shareText });
+      }
       setShared(true);
       onShare?.();
     } catch {
-      // Native share failures should not block the result flow.
+      try {
+        await Share.share({ message: shareText });
+        setShared(true);
+        onShare?.();
+      } catch {
+        // Native share failures should not block the result flow.
+      }
     }
   }
 
@@ -143,6 +157,7 @@ export function GameResultModal({
               {stats.map((stat, index) => <AnimatedStatTile index={index} key={stat.label} stat={stat} />)}
             </View>
           ) : null}
+          {shareText ? <ShareCard innerRef={shareCardRef} shareText={shareText} success={showConfetti} /> : null}
           {onFeedback ? (
             <View style={styles.feedback}>
               <Text style={styles.feedbackTitle}>Wie fühlte sich die Runde an?</Text>
@@ -170,6 +185,23 @@ export function GameResultModal({
         </Animated.View>
       </Animated.View>
     </Modal>
+  );
+}
+
+function ShareCard({ innerRef, shareText, success }: { innerRef: RefObject<View | null>; shareText: string; success: boolean }) {
+  const [headline, result, ...rows] = shareText.split("\n");
+
+  return (
+    <View collapsable={false} ref={innerRef} style={styles.shareCard}>
+      <Text style={styles.shareLogo}>WORTKNIFF</Text>
+      <Text style={styles.shareHeadline}>{headline}</Text>
+      <Text style={[styles.shareResult, success && styles.shareResultWin]}>{result}</Text>
+      {rows.length > 0 ? (
+        <View style={styles.shareGrid}>
+          {rows.map((row, index) => <Text key={`${row}-${index}`} style={styles.shareGridText}>{row}</Text>)}
+        </View>
+      ) : null}
+    </View>
   );
 }
 
@@ -377,6 +409,48 @@ const styles = StyleSheet.create({
   stats: {
     flexDirection: "row",
     gap: tokens.space.xs,
+  },
+  shareCard: {
+    gap: 8,
+    padding: tokens.space.md,
+    borderRadius: tokens.radius.md,
+    borderWidth: 1,
+    borderColor: "rgba(255, 107, 53, 0.22)",
+    backgroundColor: "#FFFDF8",
+  },
+  shareLogo: {
+    color: tokens.color.primaryDark,
+    fontSize: 12,
+    fontWeight: "900",
+    letterSpacing: 1.5,
+    textAlign: "center",
+  },
+  shareHeadline: {
+    color: tokens.color.ink,
+    fontSize: 16,
+    fontWeight: "900",
+    textAlign: "center",
+  },
+  shareResult: {
+    color: tokens.color.muted,
+    fontSize: 14,
+    fontWeight: "900",
+    textAlign: "center",
+  },
+  shareResultWin: {
+    color: tokens.color.success,
+  },
+  shareGrid: {
+    alignItems: "center",
+    gap: 2,
+    paddingTop: 2,
+  },
+  shareGridText: {
+    color: tokens.color.ink,
+    fontSize: 22,
+    fontWeight: "900",
+    letterSpacing: 1.2,
+    textAlign: "center",
   },
   statTile: {
     flex: 1,

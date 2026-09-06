@@ -44,6 +44,11 @@ export async function loadProgressForGames(gameIds: readonly string[], dateKey: 
   return Object.fromEntries(entries);
 }
 
+export function mergeCompletedStatus(previous: GameStatus | undefined, next: GameStatus | undefined): GameStatus | undefined {
+  if (previous === "won" || next === "won") return "won";
+  return next ?? previous;
+}
+
 export function isStartedProgress(progress: StoredProgress | null | undefined): progress is StoredProgress {
   if (!progress || progress.status !== "playing") return false;
   if (!progress.puzzle) return false;

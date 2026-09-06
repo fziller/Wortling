@@ -18,6 +18,8 @@ import { BUCKET_PRESET_DESCRIPTIONS } from "@/games/wordBuckets";
 import { loadWordBucketSettings, saveWordBucketSettings, WordBucketSettings } from "@/storage/wordBuckets";
 import { requestNotificationPermission } from "@/notifications/register";
 import { presentDevNotification, scheduleDailyReminder } from "@/notifications/scheduler";
+import { currentNews } from "@/news/current";
+import { resetNews } from "@/news/storage";
 import { resetOnboarding } from "@/onboarding/storage";
 import { PACKS } from "@/games/wordConfig";
 import { loadPacksSettings, savePacksSettings, type PacksSettings } from "@/storage/packs";
@@ -33,12 +35,14 @@ export default function SettingsScreen() {
     enabled: false,
     hour: 18,
     minute: 0,
+    unfinishedEnabled: true,
   });
   const [bucketSettings, setBucketSettings] = useState<WordBucketSettings>({ erweitert: false, hart: false });
   const [packsSettings, setPacksSettings] = useState<PacksSettings>({ bio: { enabled: false, frequency: "normal" } });
   const [canUsePacks, setCanUsePacks] = useState(true);
   const [packsGated, setPacksGated] = useState(false);
   const [dailyKniffeSeedOverride, setDailyKniffeSeedOverride] = useState<number | undefined>();
+  const [devStatus, setDevStatus] = useState("");
   const dateKey = getBerlinDateKey();
   const productionSeed = createDailyKniffeSeed(dateKey);
   const generatedKniffe = useMemo(() => generateDailyKniffe({
@@ -66,11 +70,18 @@ export default function SettingsScreen() {
   async function toggleEnabled() {
     if (!settings.enabled) {
       const granted = await requestNotificationPermission();
+      captureEvent(posthog, "notification_permission_result", { granted, source: "settings" });
       if (!granted) return;
     }
     const enabled = !settings.enabled;
     await updateAndReschedule({ ...settings, enabled });
     captureEvent(posthog, "settings_changed", { key: "daily_reminder", value: String(enabled) });
+  }
+
+  async function toggleUnfinishedEnabled() {
+    const unfinishedEnabled = !settings.unfinishedEnabled;
+    await updateAndReschedule({ ...settings, unfinishedEnabled });
+    captureEvent(posthog, "settings_changed", { key: "unfinished_reminder", value: String(unfinishedEnabled) });
   }
 
   async function toggleErweitert() {
@@ -141,12 +152,31 @@ export default function SettingsScreen() {
 
   async function resetOnboardingDev() {
     await resetOnboarding();
+    setDevStatus("Onboarding wird beim nächsten Home-Besuch wieder angezeigt.");
     captureEvent(posthog, "onboarding_completed", { dateKey, action: "reset" });
   }
 
   async function testNotification(kind: "daily" | "unfinished") {
+    const granted = await requestNotificationPermission();
+    captureEvent(posthog, "notification_permission_result", { granted, source: "dev" });
+    if (!granted) {
+      setDevStatus("Notification-Berechtigung fehlt.");
+      return;
+    }
+
     await presentDevNotification(kind);
+    setDevStatus(`Notification ausgelöst: ${kind}`);
     captureEvent(posthog, "notification_tested", { kind });
+  }
+
+  async function resetNewsDev() {
+    if (!currentNews) {
+      setDevStatus("Keine News konfiguriert.");
+      return;
+    }
+
+    await resetNews();
+    setDevStatus(`News wird beim nächsten Home-Besuch angezeigt: ${currentNews.id}`);
   }
 
   const timeLabel = `${String(settings.hour).padStart(2, "0")}:${String(settings.minute).padStart(2, "0")}`;
@@ -200,6 +230,13 @@ export default function SettingsScreen() {
                     </View>
                   </View>
                 </View>
+                <View style={styles.toggleRow}>
+                  <View style={{ flex: 1, paddingRight: 12 }}>
+                    <Text style={styles.toggleLabel}>Abend-Erinnerung</Text>
+                    <Text style={styles.bucketDesc}>Nur wenn du heute angefangen hast und noch Tageskniffe offen sind. Kommt um 20:30.</Text>
+                  </View>
+                  <AnimatedSwitch checked={settings.unfinishedEnabled} onPress={toggleUnfinishedEnabled} />
+                </View>
               </View>
             ) : null}
           </AppCard>
@@ -238,51 +275,17 @@ export default function SettingsScreen() {
           <AppCard>
             <View style={styles.cardTitleRow}>
               <Text style={styles.cardTitle}>Wort-Pakete</Text>
-              {packsGated ? <View style={styles.premiumBadge}><Text style={styles.premiumBadgeText}>Premium</Text></View> : null}
+              <View style={styles.premiumBadge}><Text style={styles.premiumBadgeText}>Bald</Text></View>
             </View>
             <Text style={styles.body}>
-              Zusatzwörter für alle Spiele (4–7 Buchstaben). Bio-Wörter sind immer als Tipp erlaubt — das Paket beeinflusst nur, wie oft sie als Lösung kommen. Gilt für alle Spiele ab nächster Runde.
+              Themenpakete bringen später frische Lösungswörter in alle Spiele. Die Technik ist vorbereitet, die Auswahl bleibt bis zum Launch noch kuratiert.
             </Text>
-            {packsGated && !canUsePacks ? (
-              <View style={styles.premiumLocked}>
-                <Text style={styles.premiumLockedText}>🔒 Biologie-Paket ist ein Premium-Feature. Schalte es frei, um Bio-Wörter als Lösung zu bekommen.</Text>
-                <Pressable accessibilityRole="button" onPress={handlePremiumCta} style={styles.premiumButton}>
-                  <Text style={styles.premiumButtonText}>Freischalten (Mock)</Text>
-                </Pressable>
-                <Text style={styles.versionText}>Flag: EXPO_PUBLIC_PACKS_GATED=true → paywall. Ohne Flag: frei. Siehe src/premium/packsAccess.ts</Text>
-              </View>
-            ) : (
-              <>
-                <View style={styles.toggleRow}>
-                  <View style={{ flex: 1, paddingRight: 12 }}>
-                    <Text style={styles.toggleLabel}>{PACKS.bio.label}</Text>
-                    <Text style={styles.bucketDesc}>{PACKS.bio.description}</Text>
-                    <Text style={styles.versionText}>4–7 Buchstaben · {packsSettings.bio.enabled ? "an" : "aus"} · Nächste Runde wirksam</Text>
-                  </View>
-                  <AnimatedSwitch checked={packsSettings.bio.enabled} onPress={toggleBioPack} />
-                </View>
-                {packsSettings.bio.enabled ? (
-                  <View style={styles.frequencyRow}>
-                    <Text style={styles.stepperLabel}>Häufigkeit</Text>
-                    <View style={styles.frequencyButtons}>
-                      <Pressable accessibilityRole="button" onPress={() => setBioFrequency("normal")} style={[styles.frequencyButton, packsSettings.bio.frequency === "normal" && styles.frequencyButtonActive]}>
-                        <Text style={[styles.frequencyButtonText, packsSettings.bio.frequency === "normal" && styles.frequencyButtonTextActive]}>Normal</Text>
-                        <Text style={styles.bucketDesc}>Im Mix (~2%)</Text>
-                      </Pressable>
-                      <Pressable accessibilityRole="button" onPress={() => setBioFrequency("haeufig")} style={[styles.frequencyButton, packsSettings.bio.frequency === "haeufig" && styles.frequencyButtonActive]}>
-                        <Text style={[styles.frequencyButtonText, packsSettings.bio.frequency === "haeufig" && styles.frequencyButtonTextActive]}>Häufig</Text>
-                        <Text style={styles.bucketDesc}>70% Bio / 30% Mix</Text>
-                      </Pressable>
-                    </View>
-                  </View>
-                ) : null}
-                {__DEV__ && packsGated ? (
-                  <Pressable accessibilityRole="button" onPress={async () => { await setMockPremiumEnabled(false); setCanUsePacks(false); }} style={styles.linkButton}>
-                    <Text style={styles.linkText}>DEV: Premium entziehen</Text>
-                  </Pressable>
-                ) : null}
-              </>
-            )}
+            <View style={styles.packGrid}>
+              <PackPreview title="Biologie" body="Pflanzen, Tiere, Körper, Labor." />
+              <PackPreview title="Küche" body="Essen, Gewürze, Kochen." />
+              <PackPreview title="Reise" body="Städte, Länder, Orte." />
+              <PackPreview title="Sport" body="Teams, Bewegung, Wettkampf." />
+            </View>
           </AppCard>
         </Animated.View>
 
@@ -324,12 +327,16 @@ export default function SettingsScreen() {
                 <Pressable accessibilityRole="button" onPress={resetOnboardingDev} style={styles.devButtonSecondary}>
                   <Text style={styles.devButtonSecondaryText}>Onboarding neu triggern</Text>
                 </Pressable>
+                <Pressable accessibilityRole="button" onPress={resetNewsDev} style={styles.devButtonSecondary}>
+                  <Text style={styles.devButtonSecondaryText}>News neu triggern</Text>
+                </Pressable>
                 <Pressable accessibilityRole="button" onPress={() => testNotification("daily")} style={styles.devButtonSecondary}>
                   <Text style={styles.devButtonSecondaryText}>Notification testen: Daily</Text>
                 </Pressable>
                 <Pressable accessibilityRole="button" onPress={() => testNotification("unfinished")} style={styles.devButtonSecondary}>
                   <Text style={styles.devButtonSecondaryText}>Notification testen: Offen</Text>
                 </Pressable>
+                {devStatus ? <Text style={styles.versionText}>{devStatus}</Text> : null}
               </View>
             </AppCard>
           </Animated.View>
@@ -392,6 +399,18 @@ function AnimatedSwitch({ checked, onPress, disabled }: { checked: boolean; onPr
         <Animated.View style={[styles.toggleKnob, knobStyle]} />
       </Animated.View>
     </Pressable>
+  );
+}
+
+function PackPreview({ body, title }: { body: string; title: string }) {
+  return (
+    <View style={styles.packPreview}>
+      <View style={styles.packPreviewHeader}>
+        <Text style={styles.packPreviewTitle}>{title}</Text>
+        <Text style={styles.packPreviewBadge}>Bald</Text>
+      </View>
+      <Text style={styles.bucketDesc}>{body}</Text>
+    </View>
   );
 }
 
@@ -659,5 +678,36 @@ const styles = StyleSheet.create({
   },
   frequencyButtonTextActive: {
     color: tokens.color.primaryDark
+  },
+  packGrid: {
+    gap: tokens.space.sm,
+  },
+  packPreview: {
+    gap: 3,
+    padding: tokens.space.md,
+    borderRadius: tokens.radius.md,
+    borderWidth: 1,
+    borderColor: tokens.color.line,
+    backgroundColor: "rgba(255,255,255,0.62)",
+  },
+  packPreviewHeader: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: tokens.space.sm,
+  },
+  packPreviewTitle: {
+    color: tokens.color.ink,
+    fontSize: tokens.type.body,
+    fontWeight: "900",
+  },
+  packPreviewBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: tokens.radius.pill,
+    backgroundColor: tokens.color.primaryLight,
+    color: tokens.color.primaryDark,
+    fontSize: 11,
+    fontWeight: "900",
   }
 });

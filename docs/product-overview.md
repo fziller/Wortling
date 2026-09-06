@@ -26,6 +26,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 
 - Random puzzle selection when opening a game without saved in-progress input; Worttreffer chooses 4- to 7-letter words automatically, while Formwort and Wortcode choose 5-, 6-, or 7-letter words.
 - Tageskniffe: each Berlin day highlights three existing games on Home; completing one puzzle in each highlighted game completes the day.
+- Tageskniffe continuation: Home highlights unfinished Tageskniffe, result screens can jump straight to the next open Tageskniff, daily reminders deep-link to the next open Tageskniff, and an optional evening reminder is scheduled only after a player has started but not finished the Tageskniffe.
 - Local daily streaks based on consecutive completed Tageskniffe days.
 - Personal statistics stored locally in SQLite (`expo-sqlite`): every round is recorded as raw data (sessions, guesses with order/timing, hint events) via the central `StatsRecorder`. The Home streak and the `/stats` screen (lifetime summary, outcomes, streaks, per-game counts, word/letter stats, personal records) are computed from that raw data. Stats are strictly local; no guess words or answers reach PostHog.
 - Saved in-progress rounds with draft input and a Home `Weiterspielen` chip.
@@ -35,9 +36,13 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 - Generated files per length: `allowedGuesses.ts` (full core, merged at runtime with packs), `targetWords.ts` (easy+medium), `wordMeta.ts` (all words with zipf/tier), plus `src/games/packs/bio/generated/bioTargets.ts` per length (bio targets, no Zipf).
 - Word pipeline is modular: `scripts/pipeline/shared.mjs` (normalize/shape/bucket/tier), `scripts/sources/{dwds,morphology,bio}.mjs` (adapters), `scripts/import-*.mjs` (import/bewerten), `scripts/data/{subtlex-de,bio}.tsv` (sources). New pack = 1 adapter + 1 TSV + 1 entry in `wordConfig.ts:PACKS`.
 - Wortschmelze puzzles are generated at build time from filtered 5-letter pools (`klassisch`, `erweitert`, `hart`) via `scripts/generate-wortschmelze-puzzles.mjs` into `src/games/wortschmelze/generated/puzzles.ts`.
-- Word packs: `bio` (Biologie) for all games (4–7 letters). Settings store enabled + frequency (`normal` = merged uniform, `haeufig` = 70% pack / 30% core weighted pick). See `src/storage/packs.ts` and `src/games/packs/selection.ts`. Premium-gated via `EXPO_PUBLIC_PACKS_GATED` + `src/premium/packsAccess.ts` — toggle one env flag to hide behind paywall (see Settings).
+- Word packs: `bio` (Biologie) remains implemented in the code/data pipeline for all games (4–7 letters), but the Settings UI currently presents word packs only as a coming-soon teaser until packs are product-ready.
 - Word stats at a glance: `docs/word-stats.md` (auto-generated via `yarn words:stats` after `content:generate`) — counts per length & tier/bucket & pack.
 - Optional daily reminder notifications.
+- First-run onboarding explains the Tageskniffe loop and can be replayed from Home; development builds can reset it from Settings.
+- Spoiler-safe result sharing renders a dedicated share card image via native sharing, with text fallback when image sharing is unavailable.
+- A versioned news/update modal exists but is currently inactive. Set `currentNews` in `apps/mobile/src/news/current.ts` to announce newly shipped user-facing changes once per news ID; development builds can reset the seen state from Settings.
+- Lightweight haptic feedback is used for keyboard input, invalid guesses, result moments, and Tageskniffe completion.
 - Sentry and PostHog instrumentation with no-op fallback behavior.
 
 ## Hidden / Incubating Games

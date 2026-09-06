@@ -20,6 +20,10 @@ export type WortkniffEvents = {
   result_shared: { gameId?: string; dateKey: string; scope: "game" | "daily_kniffe"; outcome?: string };
   onboarding_completed: { dateKey: string; action: "started" | "dismissed" | "reset" };
   notification_tested: { kind: "daily" | "unfinished" };
+  notification_opened: { kind: "daily" | "unfinished" | "unknown"; url?: string };
+  notification_permission_result: { granted: boolean; source: "settings" | "dev" };
+  news_viewed: { id: string };
+  news_dismissed: { id: string };
 };
 
 export type AnalyticsClient = {

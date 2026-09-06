@@ -72,6 +72,14 @@ Wortkniff is an Expo + React Native + TypeScript mobile app for German daily wor
 - Never send guess words, answers, target words, or other personal gameplay content to PostHog; keep that data local in SQLite.
 - Source maps are uploaded to Sentry during EAS production builds.
 
+## News / Update Modal
+
+- A versioned one-time news modal already exists under `apps/mobile/src/news`.
+- Keep it inactive by default with `currentNews = null` in `apps/mobile/src/news/current.ts`.
+- To announce an update, set `currentNews` to a new `{ id, title, body, bullets }` object. Use a new `id` for each user-facing announcement.
+- Home shows onboarding before news and never stacks both modals.
+- Development builds can reset the seen state from Settings; do not expose this in production.
+
 ## Checks
 
 Before handing off non-trivial code changes, run from `apps/mobile`:
