@@ -18,6 +18,7 @@ import Animated, {
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { captureEvent } from "@/analytics/events";
 import { getBerlinDateKey } from "@/daily/date";
+import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { hashSeed } from "@/daily/seed";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
@@ -34,11 +35,13 @@ import { BetweenState, Guess } from "@/games/between/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
+import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { BucketPreset } from "@/games/wordBuckets";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { useGameRecorder } from "@/stats/recorder";
 import { usePacksSettings } from "@/hooks/usePacksSettings";
+import { buildSimpleShareText } from "@/games/share/grid";
 
 const BOARD_LINE_HEIGHT = 132;
 const DOT_SIZE = 20;
@@ -93,6 +96,7 @@ export default function BetweenScreen() {
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
+  const nextDailyKniffRoute = useNextOpenDailyKniff("between", dateKey, state.status === "won");
   const clearMovingGuessTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shake = useSharedValue(0);
   const winGlow = useSharedValue(0);
@@ -150,7 +154,10 @@ export default function BetweenScreen() {
 
   useEffect(() => {
     if (state.status !== "playing") {
-      loadProgressForGames(games.map((game) => game.id), dateKey).then((progress) => updateBadgeCount(progress, dateKey));
+      loadProgressForGames(games.map((game) => game.id), dateKey).then((progress) => {
+        updateBadgeCount(progress, dateKey);
+        scheduleDailyReminder().catch(() => {});
+      });
     }
   }, [state.status, dateKey]);
 
@@ -403,11 +410,12 @@ export default function BetweenScreen() {
         message={state.status === "won" ? "Ziel sauber eingegrenzt." : "Die Lösung ist raus. Noch eins?"}
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "between", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
-        onNext={startNextWord}
+        actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined}
+        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextWord()}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "between", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "between", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
-        shareText={`Wortkniff Dazwischen ${dateKey}\n${state.status === "won" ? "Gefunden" : "Aufgedeckt"} · ${state.guesses.length} Tipps · ${formatElapsedTime(elapsedSeconds)}`}
+        shareText={buildSimpleShareText("Dazwischen", dateKey, state.status, `${state.guesses.length} Tipps · ${formatElapsedTime(elapsedSeconds)}`)}
         solution={state.targetWord}
         success={state.status === "won"}
         stats={[

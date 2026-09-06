@@ -3,6 +3,7 @@ import { Modal, Pressable, ScrollView, Share, StyleSheet, Text, View } from "rea
 import Animated, { useAnimatedStyle, useSharedValue, withDelay, withSpring, withTiming } from "react-native-reanimated";
 
 import { tokens } from "@/design/tokens";
+import { successHaptic, warningHaptic } from "@/haptics";
 
 export type GameResultStat = {
   label: string;
@@ -72,6 +73,8 @@ export function GameResultModal({
 
     if (visible && !viewedRef.current) {
       viewedRef.current = true;
+      if (success === true || outcome === "won") successHaptic();
+      else warningHaptic();
       onViewed?.();
     }
 
@@ -80,7 +83,7 @@ export function GameResultModal({
       setSelectedFeedback(null);
       setShared(false);
     }
-  }, [entrance, onViewed, visible]);
+  }, [entrance, onViewed, outcome, success, visible]);
 
   const backdropStyle = useAnimatedStyle(() => ({
     opacity: withTiming(visible ? 1 : 0, { duration: tokens.motion.quick }),

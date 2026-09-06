@@ -13,8 +13,12 @@ import { DailyKniffeCard } from "@/home/DailyKniffeCard";
 import { DailyKniffeRewardModal } from "@/home/DailyKniffeRewardModal";
 import { GameCard } from "@/home/GameCard";
 import { HOME_HEADER_BACKGROUND, HomeTopBar } from "@/home/HomeTopBar";
+import { successHaptic } from "@/haptics";
 import { homeOrder } from "@/home/homeMeta";
 import { updateBadgeCount } from "@/notifications/badge";
+import { scheduleDailyReminder } from "@/notifications/scheduler";
+import { OnboardingModal } from "@/onboarding/OnboardingModal";
+import { hasSeenOnboarding, markOnboardingSeen } from "@/onboarding/storage";
 import { loadDailyKniffeSeedOverride } from "@/storage/dailyKniffeDev";
 import { loadCurrentWinDayStreak } from "@/stats/freeStats";
 import { isStartedProgress, loadProgressForGames, type StoredProgress } from "@/storage/progress";
@@ -25,6 +29,7 @@ export default function HomeScreen() {
   const dateKey = getBerlinDateKey();
   const [progressByGame, setProgressByGame] = useState<Record<string, StoredProgress | null>>({});
   const [dailyRewardVisible, setDailyRewardVisible] = useState(false);
+  const [onboardingVisible, setOnboardingVisible] = useState(false);
   const [winDayStreak, setWinDayStreak] = useState({ current: 0, longest: 0, todayIsWinDay: false });
   const [seedOverride, setSeedOverride] = useState<number | undefined>();
   const completedEventIds = useRef(new Set<string>());
@@ -54,10 +59,11 @@ export default function HomeScreen() {
   useFocusEffect(useCallback(() => {
     let mounted = true;
 
-    Promise.all([loadDailyKniffeSeedOverride(), loadCurrentWinDayStreak()]).then(([nextSeedOverride, nextStreak]) => {
+    Promise.all([loadDailyKniffeSeedOverride(), loadCurrentWinDayStreak(), hasSeenOnboarding()]).then(([nextSeedOverride, nextStreak, seenOnboarding]) => {
       if (!mounted) return;
       setSeedOverride(nextSeedOverride);
       setWinDayStreak(nextStreak);
+      if (!seenOnboarding) setOnboardingVisible(true);
     }).catch(() => {
       // Streak display is nice-to-have; home must stay offline-safe.
     });
@@ -77,6 +83,7 @@ export default function HomeScreen() {
       if (mounted) {
         setProgressByGame(progress);
         updateBadgeCount(progress, dateKey, seedOverride);
+        scheduleDailyReminder().catch(() => {});
       }
     });
 
@@ -98,6 +105,7 @@ export default function HomeScreen() {
     if (!dailySummary.isComplete || !winDayStreak.todayIsWinDay || celebratedDateKeys.current.has(dateKey)) return;
 
     celebratedDateKeys.current.add(dateKey);
+    successHaptic();
     captureEvent(posthog, "daily_kniffe_all_completed", { dateKey, streak: winDayStreak.current });
     captureEvent(posthog, "daily_streak_updated", { dateKey, streak: winDayStreak.current });
     setDailyRewardVisible(true);
@@ -116,12 +124,24 @@ export default function HomeScreen() {
     router.push(game.route as never);
   }
 
+  async function closeOnboarding(action: "started" | "dismissed") {
+    await markOnboardingSeen();
+    setOnboardingVisible(false);
+    captureEvent(posthog, "onboarding_completed", { dateKey, action });
+  }
+
+  function openNextDailyKniff() {
+    const next = dailyKniffe.find((kniff) => !isDailyKniffCompleted(progressByGame[kniff.gameId]));
+    if (next) openDailyKniff(next.gameId);
+  }
+
   return (
-    <Screen header={<HomeTopBar />} headerBackgroundColor={HOME_HEADER_BACKGROUND}>
+    <Screen header={<HomeTopBar onHelp={() => setOnboardingVisible(true)} />} headerBackgroundColor={HOME_HEADER_BACKGROUND}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <DailyKniffeCard
           completedGames={dailyKniffCompletedGames}
           games={dailyKniffGames}
+          onContinue={openNextDailyKniff}
           onOpenGame={openDailyKniff}
           streakCurrent={winDayStreak.current}
           summary={dailySummary}
@@ -154,6 +174,14 @@ export default function HomeScreen() {
         streak={winDayStreak.current}
         total={dailySummary.total || 3}
         visible={dailyRewardVisible}
+      />
+      <OnboardingModal
+        onClose={() => closeOnboarding("dismissed")}
+        onStart={() => {
+          closeOnboarding("started");
+          openNextDailyKniff();
+        }}
+        visible={onboardingVisible}
       />
     </Screen>
   );

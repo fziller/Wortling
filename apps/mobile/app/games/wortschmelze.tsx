@@ -12,6 +12,7 @@ import { HelpModal } from "@/components/HelpModal";
 import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
+import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
@@ -23,9 +24,11 @@ import { getWorttrefferLetterStates, revealWorttrefferSolution } from "@/games/w
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
+import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
+import { buildMarkedGridShareText } from "@/games/share/grid";
 
 type WortschmelzeGame = ReturnType<typeof createNextWortschmelzeGame>;
 type TileMark = "absent" | "present" | "correct";
@@ -62,6 +65,7 @@ export default function WortschmelzeScreen() {
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const [revealingGuessIndex, setRevealingGuessIndex] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
+  const nextDailyKniffRoute = useNextOpenDailyKniff(GAME_ID, dateKey, state.status === "won");
 
   useEffect(() => {
     loadWordBucketSettings().then((settings) => setBucketPreset(getPreset(settings)));
@@ -103,7 +107,10 @@ export default function WortschmelzeScreen() {
   }, [dateKey, inputLetters, progressLoaded, puzzle, state]);
 
   useEffect(() => {
-    if (state.status !== "playing") loadProgressForGames(games.map((game) => game.id), dateKey).then(updateBadgeCount);
+    if (state.status !== "playing") loadProgressForGames(games.map((game) => game.id), dateKey).then((progress) => {
+      updateBadgeCount(progress);
+      scheduleDailyReminder().catch(() => {});
+    });
   }, [dateKey, state.status]);
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
@@ -259,11 +266,12 @@ export default function WortschmelzeScreen() {
         message={state.status === "won" ? "Sauber, die Wörter sind verschmolzen." : "Die Lösung ist raus. Noch eins?"}
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: GAME_ID, dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
-        onNext={startNextWord}
+        actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined}
+        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextWord()}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
-        shareText={`Wortkniff Wortschmelze ${dateKey}\n${state.status === "won" ? "Gelöst" : "Aufgedeckt"} · ${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`}
+        shareText={buildMarkedGridShareText("Wortschmelze", dateKey, state.status, state.guesses.map((guess) => guess.marks))}
         solution={solution}
         success={state.status === "won"}
         stats={[{ label: "Versuche", value: state.guesses.length }, { label: "Zeit", value: `${elapsedSeconds} Sek.` }, { label: "Buchstaben", value: usedLetters }]}

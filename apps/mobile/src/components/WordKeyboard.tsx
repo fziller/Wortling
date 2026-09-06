@@ -1,6 +1,7 @@
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { tokens } from "@/design/tokens";
+import { selectionHaptic } from "@/haptics";
 
 export type KeyboardLetterState = "unused" | "absent" | "present" | "correct";
 
@@ -33,7 +34,7 @@ export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace,
                 disabled={disabled}
                 hitSlop={6}
                 key={letter}
-                onPress={() => onLetter(base)}
+                onPress={() => { selectionHaptic(); onLetter(base); }}
                 style={({ pressed }) => [styles.key, styles[state], pressed && !disabled && styles.pressed, disabled && styles.disabled]}
               >
                 <Text style={[styles.keyText, state !== "unused" && styles.markedText]}>{letter}</Text>
@@ -62,7 +63,7 @@ function KeyboardAction({ disabled, label, onPress }: KeyboardActionProps) {
   const primary = label === "Prüfen";
 
   return (
-    <Pressable accessibilityLabel={label} accessibilityRole="button" disabled={disabled} hitSlop={6} onPress={onPress} style={({ pressed }) => [styles.actionKey, primary ? styles.primaryAction : styles.secondaryAction, pressed && !disabled && styles.pressed, disabled && styles.disabled]}>
+    <Pressable accessibilityLabel={label} accessibilityRole="button" disabled={disabled} hitSlop={6} onPress={() => { selectionHaptic(); onPress(); }} style={({ pressed }) => [styles.actionKey, primary ? styles.primaryAction : styles.secondaryAction, pressed && !disabled && styles.pressed, disabled && styles.disabled]}>
       <Text style={[styles.actionText, primary ? styles.primaryActionText : styles.secondaryActionText]}>{label}</Text>
     </Pressable>
   );

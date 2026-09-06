@@ -12,13 +12,16 @@ import { HelpModal } from "@/components/HelpModal";
 import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
+import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
+import { buildSimpleShareText } from "@/games/share/grid";
 import { createNextGalgenwortGame } from "@/games/galgenwort/daily";
 import { getGalgenwortLetterStates, getGalgenwortRevealedLetters, getGalgenwortWrongLetters, revealGalgenwortSolution, submitGalgenwortLetter } from "@/games/galgenwort/engine";
 import type { GalgenwortState } from "@/games/galgenwort/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { updateBadgeCount } from "@/notifications/badge";
+import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { BucketPreset } from "@/games/wordBuckets";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
@@ -52,6 +55,7 @@ export default function GalgenwortScreen() {
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
+  const nextDailyKniffRoute = useNextOpenDailyKniff("galgenwort", dateKey, state.status === "won");
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "galgenwort", params: { dateKey } });
@@ -81,7 +85,10 @@ export default function GalgenwortScreen() {
   }, [dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
-    if (state.status !== "playing") loadProgressForGames(games.map((g) => g.id), dateKey).then(updateBadgeCount);
+    if (state.status !== "playing") loadProgressForGames(games.map((g) => g.id), dateKey).then((progress) => {
+      updateBadgeCount(progress);
+      scheduleDailyReminder().catch(() => {});
+    });
   }, [state.status, dateKey]);
 
   const revealed = getGalgenwortRevealedLetters(puzzle, state);
@@ -207,11 +214,12 @@ export default function GalgenwortScreen() {
         message={state.status === "won" ? "Nice, das Wort ist frei." : "Die Lösung ist raus. Weiteres Wort?"}
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "galgenwort", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
-        onNext={startNextWord}
+        actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined}
+        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextWord()}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "galgenwort", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "galgenwort", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
-        shareText={`Wortkniff Galgenwort ${dateKey}\n${state.status === "won" ? "Gelöst" : "Aufgedeckt"} · ${state.guessedLetters.length} Buchstaben · ${elapsedSeconds} Sek.`}
+        shareText={buildSimpleShareText("Galgenwort", dateKey, state.status, `${state.guessedLetters.length} Buchstaben · ${elapsedSeconds} Sek.`)}
         solution={puzzle.answer}
         success={state.status === "won"}
         stats={[

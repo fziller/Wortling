@@ -21,6 +21,7 @@ import { HelpModal } from "@/components/HelpModal";
 import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
+import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
@@ -39,6 +40,7 @@ import { WorttrefferState } from "@/games/worttreffer/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
+import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { HintIndicator } from "@/components/HintIndicator";
 import { useHintWallet } from "@/hints/useHintWallet";
 import { getHintPolicy, requestAdHint, shouldShowEarnedProgress } from "@/hints/policy";
@@ -53,6 +55,7 @@ import { BucketPreset } from "@/games/wordBuckets";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 import { usePacksSettings } from "@/hooks/usePacksSettings";
+import { buildMarkedGridShareText } from "@/games/share/grid";
 
 type WorttrefferGame = ReturnType<typeof createNextWorttrefferGame>;
 type TileMark = "absent" | "present" | "correct";
@@ -164,7 +167,10 @@ export default function WorttrefferScreen() {
       loadProgressForGames(
         games.map((g) => g.id),
         dateKey,
-      ).then(updateBadgeCount);
+      ).then((progress) => {
+        updateBadgeCount(progress);
+        scheduleDailyReminder().catch(() => {});
+      });
     }
   }, [state.status, dateKey]);
 
@@ -175,6 +181,7 @@ export default function WorttrefferScreen() {
     state.guesses.flatMap((guess) => Array.from(guess.value)),
   ).size;
   const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
+  const nextDailyKniffRoute = useNextOpenDailyKniff("worttreffer", dateKey, state.status === "won");
 
   function nextEditableIndex(from: number, dir: 1 | -1): number {
     let idx = from;
@@ -526,11 +533,12 @@ export default function WorttrefferScreen() {
         }
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "worttreffer", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
-        onNext={startNextWord}
+        actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined}
+        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextWord()}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "worttreffer", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "worttreffer", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
-        shareText={`Wortkniff Worttreffer ${dateKey}\n${state.status === "won" ? "Gelöst" : "Aufgedeckt"} · ${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`}
+        shareText={buildMarkedGridShareText("Worttreffer", dateKey, state.status, state.guesses.map((guess) => guess.marks))}
         solution={puzzle.answer}
         success={state.status === "won"}
         stats={[

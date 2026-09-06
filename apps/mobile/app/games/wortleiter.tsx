@@ -21,7 +21,9 @@ import { HelpModal } from "@/components/HelpModal";
 import { LetterInputTiles } from "@/components/LetterInputTiles";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
+import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
+import { buildSimpleShareText } from "@/games/share/grid";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import {
@@ -36,6 +38,7 @@ import {
 import type { WortleiterState } from "@/games/wortleiter/types";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
+import { scheduleDailyReminder } from "@/notifications/scheduler";
 import {
   isStartedProgress,
   loadProgress,
@@ -82,6 +85,7 @@ export default function WortleiterScreen() {
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
+  const nextDailyKniffRoute = useNextOpenDailyKniff("wortleiter", dateKey, state.status === "won");
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "wortleiter", params: { dateKey } });
@@ -140,7 +144,10 @@ export default function WortleiterScreen() {
       loadProgressForGames(
         games.map((game) => game.id),
         dateKey,
-      ).then(updateBadgeCount);
+      ).then((progress) => {
+        updateBadgeCount(progress);
+        scheduleDailyReminder().catch(() => {});
+      });
     }
   }, [state.status, dateKey]);
 
@@ -362,7 +369,7 @@ export default function WortleiterScreen() {
         visible={revealVisible}
       />
       <GameResultModal
-        actionLabel="Neue Leiter"
+        actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : "Neue Leiter"}
         attempts={steps}
         dateKey={dateKey}
         durationMs={elapsedSeconds * 1000}
@@ -371,11 +378,11 @@ export default function WortleiterScreen() {
         message={state.status === "won" ? `Deine Schritte: ${steps} · Optimal: ${puzzle.optimalSteps}` : "Die kürzeste bekannte Leiter ist aufgedeckt."}
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "wortleiter", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
-        onNext={startNextPuzzle}
+        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextPuzzle()}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "wortleiter", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "wortleiter", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
-        shareText={`Wortkniff Wortleiter ${dateKey}\n${state.status === "won" ? "Gelöst" : "Aufgedeckt"} · ${steps} Schritte · ${formatElapsedTime(elapsedSeconds)}`}
+        shareText={buildSimpleShareText("Wortleiter", dateKey, state.status, `${steps} Schritte · ${formatElapsedTime(elapsedSeconds)}`)}
         solution={state.words[state.words.length - 1]}
         stats={[
           { label: "Schritte", value: steps },

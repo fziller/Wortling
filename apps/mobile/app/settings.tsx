@@ -17,7 +17,8 @@ import { loadNotificationSettings, saveNotificationSettings, NotificationSetting
 import { BUCKET_PRESET_DESCRIPTIONS } from "@/games/wordBuckets";
 import { loadWordBucketSettings, saveWordBucketSettings, WordBucketSettings } from "@/storage/wordBuckets";
 import { requestNotificationPermission } from "@/notifications/register";
-import { scheduleDailyReminder } from "@/notifications/scheduler";
+import { presentDevNotification, scheduleDailyReminder } from "@/notifications/scheduler";
+import { resetOnboarding } from "@/onboarding/storage";
 import { PACKS } from "@/games/wordConfig";
 import { loadPacksSettings, savePacksSettings, type PacksSettings } from "@/storage/packs";
 import { hasPremiumAccess, isPackGated, setMockPremiumEnabled } from "@/premium/packsAccess";
@@ -136,6 +137,16 @@ export default function SettingsScreen() {
   async function resetDailyKniffeSeed() {
     setDailyKniffeSeedOverride(undefined);
     await clearDailyKniffeSeedOverride();
+  }
+
+  async function resetOnboardingDev() {
+    await resetOnboarding();
+    captureEvent(posthog, "onboarding_completed", { dateKey, action: "reset" });
+  }
+
+  async function testNotification(kind: "daily" | "unfinished") {
+    await presentDevNotification(kind);
+    captureEvent(posthog, "notification_tested", { kind });
   }
 
   const timeLabel = `${String(settings.hour).padStart(2, "0")}:${String(settings.minute).padStart(2, "0")}`;
@@ -291,7 +302,7 @@ export default function SettingsScreen() {
         {__DEV__ ? (
           <Animated.View entering={FadeInDown.delay(170).duration(tokens.motion.normal)}>
             <AppCard>
-              <Text style={styles.cardTitle}>DEV Tageskniffe</Text>
+              <Text style={styles.cardTitle}>DEV Menü</Text>
               <Text style={styles.body}>
                 {dailyKniffeSeedOverride === undefined ? "Production-Auswahl aktiv." : "DEV Daily Override aktiv."}
               </Text>
@@ -309,6 +320,15 @@ export default function SettingsScreen() {
                 </Pressable>
                 <Pressable accessibilityRole="button" onPress={resetDailyKniffeSeed} style={styles.devButtonSecondary}>
                   <Text style={styles.devButtonSecondaryText}>Seed Override zurücksetzen</Text>
+                </Pressable>
+                <Pressable accessibilityRole="button" onPress={resetOnboardingDev} style={styles.devButtonSecondary}>
+                  <Text style={styles.devButtonSecondaryText}>Onboarding neu triggern</Text>
+                </Pressable>
+                <Pressable accessibilityRole="button" onPress={() => testNotification("daily")} style={styles.devButtonSecondary}>
+                  <Text style={styles.devButtonSecondaryText}>Notification testen: Daily</Text>
+                </Pressable>
+                <Pressable accessibilityRole="button" onPress={() => testNotification("unfinished")} style={styles.devButtonSecondary}>
+                  <Text style={styles.devButtonSecondaryText}>Notification testen: Offen</Text>
                 </Pressable>
               </View>
             </AppCard>

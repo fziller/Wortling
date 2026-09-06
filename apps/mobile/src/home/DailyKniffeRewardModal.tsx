@@ -1,4 +1,5 @@
 import { GameResultModal } from "@/components/GameResultModal";
+import { buildDailyKniffeShareText } from "@/games/share/grid";
 
 type DailyKniffeRewardModalProps = {
   dateKey: string;
@@ -22,7 +23,7 @@ export function DailyKniffeRewardModal({ dateKey, onClose, onShare, onViewed, st
       onViewed={onViewed}
       outcome="won"
       secondaryLabel="Schließen"
-      shareText={`Wortkniff Tageskniffe ${dateKey}\n${total}/${total} geschafft · Serie ${streak || 1}`}
+      shareText={buildDailyKniffeShareText(dateKey, total, streak)}
       stats={[
         { label: "Tageskniffe", value: `${total}/${total}` },
         { label: "Serie", value: streak || 1 },

@@ -12,7 +12,9 @@ import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import type { KeyboardLetterState } from "@/components/WordKeyboard";
 import { getBerlinDateKey } from "@/daily/date";
+import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
+import { buildSimpleShareText } from "@/games/share/grid";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { createNextWortcodeGame, restoreWortcodePuzzle } from "@/games/wortcode/daily";
@@ -31,6 +33,7 @@ import { BucketPreset } from "@/games/wordBuckets";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { updateBadgeCount } from "@/notifications/badge";
+import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 import { usePacksSettings } from "@/hooks/usePacksSettings";
 import { HintIndicator } from "@/components/HintIndicator";
@@ -69,6 +72,7 @@ export default function WortcodeScreen() {
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
+  const nextDailyKniffRoute = useNextOpenDailyKniff("wortcode", dateKey, state.status === "won");
   const posthog = usePostHog();
   const hintWallet = useHintWallet();
   const hintPolicy = getHintPolicy();
@@ -126,7 +130,10 @@ export default function WortcodeScreen() {
 
   useEffect(() => {
     if (state.status !== "playing") {
-      loadProgressForGames(games.map((g) => g.id), dateKey).then(updateBadgeCount);
+      loadProgressForGames(games.map((g) => g.id), dateKey).then((progress) => {
+        updateBadgeCount(progress);
+        scheduleDailyReminder().catch(() => {});
+      });
     }
   }, [state.status, dateKey]);
 
@@ -442,11 +449,12 @@ export default function WortcodeScreen() {
         message={state.status === "won" ? "Sauber kombiniert." : "Die Lösung ist raus. Weiteres Wort?"}
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "wortcode", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
-        onNext={startNextWord}
+        actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined}
+        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextWord()}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "wortcode", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "wortcode", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
-        shareText={`Wortkniff Wortcode ${dateKey}\n${state.status === "won" ? "Geknackt" : "Aufgedeckt"} · ${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`}
+        shareText={buildSimpleShareText("Wortcode", dateKey, state.status, `${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`)}
         solution={puzzle.answer}
         success={state.status === "won"}
         stats={[

@@ -12,6 +12,7 @@ import { HelpModal } from "@/components/HelpModal";
 import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
+import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
 import { createNextFormwortGame, restoreFormwortPuzzle } from "@/games/formwort/daily";
 import {
@@ -29,6 +30,7 @@ import { games } from "@/games/registry";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { BucketPreset } from "@/games/wordBuckets";
 import { updateBadgeCount } from "@/notifications/badge";
+import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
@@ -37,6 +39,7 @@ import { usePacksSettings } from "@/hooks/usePacksSettings";
 import { HintIndicator } from "@/components/HintIndicator";
 import { useHintWallet } from "@/hints/useHintWallet";
 import { getHintPolicy, requestAdHint, shouldShowEarnedProgress } from "@/hints/policy";
+import { buildMarkedGridShareText } from "@/games/share/grid";
 
 type FormwortGame = ReturnType<typeof createNextFormwortGame>;
 
@@ -99,6 +102,7 @@ export default function FormwortScreen() {
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
+  const nextDailyKniffRoute = useNextOpenDailyKniff("formwort", dateKey, state.status === "won");
   const hintWallet = useHintWallet();
   const hintPolicy = getHintPolicy();
   const revealedLetters = getFormwortRevealedLetters(puzzle, state);
@@ -142,7 +146,10 @@ export default function FormwortScreen() {
   }, [dateKey, inputLetters, progressLoaded, puzzle, state]);
 
   useEffect(() => {
-    if (state.status !== "playing") loadProgressForGames(games.map((g) => g.id), dateKey).then(updateBadgeCount);
+    if (state.status !== "playing") loadProgressForGames(games.map((g) => g.id), dateKey).then((progress) => {
+      updateBadgeCount(progress);
+      scheduleDailyReminder().catch(() => {});
+    });
   }, [state.status, dateKey]);
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
@@ -415,11 +422,12 @@ export default function FormwortScreen() {
         message={state.status === "won" ? "Alle Formen sitzen." : "Die Lösung ist raus. Weiteres Wort?"}
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "formwort", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
-        onNext={startNextWord}
+        actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined}
+        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextWord()}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "formwort", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "formwort", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
-        shareText={`Wortkniff Formwort ${dateKey}\n${state.status === "won" ? "Gelöst" : "Aufgedeckt"} · ${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`}
+        shareText={buildMarkedGridShareText("Formwort", dateKey, state.status, state.guesses.map((guess) => guess.marks))}
         solution={puzzle.answer}
         success={state.status === "won"}
         stats={[

@@ -9,21 +9,30 @@ import { HomeTape } from "@/home/HomeTape";
 type DailyKniffeCardProps = {
   completedGames: Record<string, boolean>;
   games: readonly GameDefinition[];
+  onContinue?: () => void;
   onOpenGame: (gameId: string) => void;
   streakCurrent: number;
   summary: DailyKniffeSummary;
 };
 
-export function DailyKniffeCard({ completedGames, games, onOpenGame, streakCurrent, summary }: DailyKniffeCardProps) {
+export function DailyKniffeCard({ completedGames, games, onContinue, onOpenGame, streakCurrent, summary }: DailyKniffeCardProps) {
+  const openCount = Math.max(0, summary.total - summary.completed);
+
   return (
     <Animated.View entering={FadeInUp.duration(tokens.motion.slow)} style={styles.dailyCard}>
       <HomeTape position="dailyTopRight" />
       <View style={styles.dailyHeader}>
-        <Text style={styles.dailyTitle}>Tageskniffe</Text>
+        <Text style={styles.dailyTitle}>{summary.completed > 0 && !summary.isComplete ? `Noch ${openCount} offen` : "Tageskniffe"}</Text>
         <View style={styles.dailyCountPill}>
           <Text style={styles.dailyCountText}>{summary.completed}/{summary.total || 3} ERLEDIGT</Text>
         </View>
       </View>
+
+      {openCount > 0 && summary.completed > 0 ? (
+        <Pressable accessibilityRole="button" onPress={onContinue} style={({ pressed }) => [styles.continueButton, pressed && styles.pressed]}>
+          <Text style={styles.continueButtonText}>Weitermachen</Text>
+        </Pressable>
+      ) : null}
 
       <View style={styles.dailyRows}>
         {games.map((game) => {
@@ -63,7 +72,7 @@ export function DailyKniffeCard({ completedGames, games, onOpenGame, streakCurre
           ? `Tageskniffe geschafft · Serie ${streakCurrent || 1}`
           : summary.total < 3
             ? "Noch nicht genug Spiele freigegeben."
-            : `Noch ${summary.total - summary.completed} für deine Serie`}
+            : `Noch ${openCount} für deine Serie`}
       </Text>
     </Animated.View>
   );
@@ -113,6 +122,18 @@ const styles = StyleSheet.create({
     letterSpacing: 0.4,
   },
   dailyRows: { gap: 9 },
+  continueButton: {
+    minHeight: 48,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: tokens.radius.pill,
+    backgroundColor: tokens.color.primary,
+  },
+  continueButtonText: {
+    color: "white",
+    fontSize: tokens.type.body,
+    fontWeight: "900",
+  },
   dailyRow: {
     minHeight: 50,
     alignItems: "center",

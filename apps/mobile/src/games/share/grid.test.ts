@@ -1,0 +1,17 @@
+import { describe, expect, it } from "vitest";
+
+import { buildDailyKniffeShareText, buildMarkedGridShareText, buildSimpleShareText } from "./grid";
+
+describe("share text", () => {
+  it("builds spoiler-safe marked grids", () => {
+    expect(buildMarkedGridShareText("Worttreffer", "2026-09-06", "won", [["correct", "present", "absent"]])).toBe("Wortkniff Worttreffer 2026-09-06\nGelöst · 1 Versuche\n🟩🟨⬜");
+  });
+
+  it("builds simple share text", () => {
+    expect(buildSimpleShareText("Dazwischen", "2026-09-06", "revealed", "4 Tipps")).toBe("Wortkniff Dazwischen 2026-09-06\nAufgedeckt · 4 Tipps");
+  });
+
+  it("builds daily share text", () => {
+    expect(buildDailyKniffeShareText("2026-09-06", 3, 2)).toContain("🟩🟩🟩");
+  });
+});

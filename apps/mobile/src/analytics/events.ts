@@ -18,6 +18,8 @@ export type WortkniffEvents = {
   result_viewed: { gameId?: string; dateKey: string; scope: "game" | "daily_kniffe"; outcome?: string; success?: boolean };
   game_feedback_submitted: { gameId: string; dateKey: string; rating: "too_easy" | "ok" | "too_hard"; outcome: string };
   result_shared: { gameId?: string; dateKey: string; scope: "game" | "daily_kniffe"; outcome?: string };
+  onboarding_completed: { dateKey: string; action: "started" | "dismissed" | "reset" };
+  notification_tested: { kind: "daily" | "unfinished" };
 };
 
 export type AnalyticsClient = {

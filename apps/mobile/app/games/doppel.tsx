@@ -20,6 +20,7 @@ import { DoppelHint, DoppelState } from "@/games/doppel/types";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { isStartedProgress, loadProgress, loadProgressForGames, saveProgress, type StoredProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
+import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { useGameRecorder } from "@/stats/recorder";
 
 type DoppelGame = ReturnType<typeof createNextDoppelGame>;
@@ -88,7 +89,10 @@ export default function DoppelScreen() {
 
   useEffect(() => {
     if (state.status !== "playing") {
-      loadProgressForGames(games.map((g) => g.id), dateKey).then(updateBadgeCount);
+      loadProgressForGames(games.map((g) => g.id), dateKey).then((progress) => {
+        updateBadgeCount(progress);
+        scheduleDailyReminder().catch(() => {});
+      });
     }
   }, [state.status, dateKey]);
 
