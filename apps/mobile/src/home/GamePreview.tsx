@@ -12,8 +12,8 @@ export function GamePreview({ color, gameId }: GamePreviewProps) {
   if (gameId === "worttreffer") {
     return (
       <View style={styles.wordcodePreview}>
-        {previewWords.wortcode.map((letter) => (
-          <View key={letter} style={[styles.bigTile, { backgroundColor: "#2E7D32" }]}> 
+        {previewWords.worttreffer.map((letter, index) => (
+          <View key={`${letter}-${index}`} style={[styles.bigTile, { backgroundColor: "#2E7D32" }, !letter && styles.emptyBigTile]}> 
             <Text style={styles.bigTileText}>{letter}</Text>
           </View>
         ))}
@@ -149,6 +149,12 @@ const styles = StyleSheet.create({
     color: "#FFFDF8",
     fontSize: 17,
     fontWeight: "900",
+  },
+  emptyBigTile: {
+    backgroundColor: "#FFFDF8",
+    borderColor: "#2E7D32",
+    borderStyle: "dashed",
+    borderWidth: 2,
   },
   smallTilesRow: {
     flexDirection: "row",

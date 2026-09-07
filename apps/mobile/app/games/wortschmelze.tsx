@@ -271,7 +271,8 @@ export default function WortschmelzeScreen() {
         onShare={() => captureEvent(posthog, "result_shared", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
-        shareText={buildMarkedGridShareText("Wortschmelze", dateKey, state.status, state.guesses.map((guess) => guess.marks))}
+        shareRows={state.guesses.map((guess) => ({ guess: guess.value, marks: guess.marks }))}
+        shareText={buildMarkedGridShareText("Wortschmelze", dateKey, state.status, state.guesses.map((guess) => ({ guess: guess.value, marks: guess.marks })), solution)}
         solution={solution}
         success={state.status === "won"}
         stats={[{ label: "Versuche", value: state.guesses.length }, { label: "Zeit", value: `${elapsedSeconds} Sek.` }, { label: "Buchstaben", value: usedLetters }]}

@@ -539,7 +539,8 @@ export default function WorttrefferScreen() {
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "worttreffer", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "worttreffer", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
-        shareText={buildMarkedGridShareText("Worttreffer", dateKey, state.status, state.guesses.map((guess) => guess.marks))}
+        shareRows={state.guesses.map((guess) => ({ guess: guess.value, marks: guess.marks }))}
+        shareText={buildMarkedGridShareText("Worttreffer", dateKey, state.status, state.guesses.map((guess) => ({ guess: guess.value, marks: guess.marks })), puzzle.answer)}
         solution={puzzle.answer}
         success={state.status === "won"}
         stats={[

@@ -1,16 +1,21 @@
-type TileMark = "absent" | "present" | "correct";
+export type ShareTileMark = "absent" | "present" | "correct";
 
-const markEmoji: Record<TileMark, string> = {
+export type ShareGuessRow = {
+  guess: string;
+  marks: readonly ShareTileMark[];
+};
+
+export const markEmoji: Record<ShareTileMark, string> = {
   absent: "⬜",
   present: "🟨",
   correct: "🟩",
 };
 
-export function buildMarkedGridShareText(title: string, dateKey: string, status: string, rows: readonly (readonly TileMark[])[], attemptLabel = "Versuche"): string {
+export function buildMarkedGridShareText(title: string, dateKey: string, status: string, rows: readonly ShareGuessRow[], solution?: string, attemptLabel = "Versuche"): string {
   const result = status === "won" ? "Gelöst" : status === "lost" ? "Nicht gelöst" : "Aufgedeckt";
-  const grid = rows.map((row) => row.map((mark) => markEmoji[mark]).join("")).join("\n");
+  const grid = rows.map((row, index) => `${index + 1}. ${row.guess.toLocaleUpperCase("de-DE")} ${row.marks.map((mark) => markEmoji[mark]).join("")}`).join("\n");
 
-  return [`Wortkniff ${title} ${dateKey}`, `${result} · ${rows.length} ${attemptLabel}`, grid].filter(Boolean).join("\n");
+  return [`Wortkniff ${title} ${dateKey}`, `${result} · ${rows.length} ${attemptLabel}`, solution ? `Lösung: ${solution.toLocaleUpperCase("de-DE")}` : "", grid].filter(Boolean).join("\n");
 }
 
 export function buildSimpleShareText(title: string, dateKey: string, status: string, detail: string): string {

@@ -11,6 +11,7 @@ export const homeOrder = [
 ] as const;
 
 export const previewWords = {
+  worttreffer: ["S", "P", "", "E", "L"],
   wortcode: ["S", "P", "I", "E", "L"],
   galgenwort: ["K", "", "", "F", "F"],
   wortleiterTop: ["M", "A", "U", "S"],

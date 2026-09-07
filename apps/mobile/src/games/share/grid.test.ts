@@ -4,7 +4,7 @@ import { buildDailyKniffeShareText, buildMarkedGridShareText, buildSimpleShareTe
 
 describe("share text", () => {
   it("builds spoiler-safe marked grids", () => {
-    expect(buildMarkedGridShareText("Worttreffer", "2026-09-06", "won", [["correct", "present", "absent"]])).toBe("Wortkniff Worttreffer 2026-09-06\nGelöst · 1 Versuche\n🟩🟨⬜");
+    expect(buildMarkedGridShareText("Worttreffer", "2026-09-06", "won", [{ guess: "amp", marks: ["correct", "present", "absent"] }], "ampel")).toBe("Wortkniff Worttreffer 2026-09-06\nGelöst · 1 Versuche\nLösung: AMPEL\n1. AMP 🟩🟨⬜");
   });
 
   it("builds simple share text", () => {

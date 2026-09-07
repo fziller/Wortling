@@ -5,6 +5,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withDelay, withSpring, with
 import { captureRef } from "react-native-view-shot";
 
 import { tokens } from "@/design/tokens";
+import { markEmoji, type ShareGuessRow } from "@/games/share/grid";
 import { successHaptic, warningHaptic } from "@/haptics";
 
 export type GameResultStat = {
@@ -29,6 +30,7 @@ type GameResultModalProps = {
   onShare?: () => void;
   onViewed?: () => void;
   outcome?: GameResultOutcome;
+  shareRows?: readonly ShareGuessRow[];
   shareText?: string;
   solution?: string;
   stats?: readonly GameResultStat[];
@@ -57,6 +59,7 @@ export function GameResultModal({
   onShare,
   onViewed,
   outcome,
+  shareRows = [],
   shareText,
   solution,
   stats = [],
@@ -67,6 +70,8 @@ export function GameResultModal({
 }: GameResultModalProps) {
   const [selectedFeedback, setSelectedFeedback] = useState<GameFeedbackRating | null>(null);
   const [shared, setShared] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [sharing, setSharing] = useState(false);
   const shareCardRef = useRef<View>(null);
   const viewedRef = useRef(false);
   const entrance = useSharedValue(0);
@@ -85,6 +90,8 @@ export function GameResultModal({
       viewedRef.current = false;
       setSelectedFeedback(null);
       setShared(false);
+      setSheetOpen(false);
+      setSharing(false);
     }
   }, [entrance, onViewed, outcome, success, visible]);
 
@@ -109,73 +116,84 @@ export function GameResultModal({
   }
 
   async function shareResult() {
-    if (!shareText) return;
+    if (!shareText || sharing) return;
 
+    async function openNativeShare(action: () => Promise<unknown>) {
+      setSheetOpen(true);
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      return action();
+    }
+
+    setSharing(true);
     try {
       if (shareCardRef.current && await Sharing.isAvailableAsync()) {
         const uri = await captureRef(shareCardRef.current, { format: "png", quality: 1, result: "tmpfile" });
-        await Sharing.shareAsync(uri, { dialogTitle: "Wortkniff teilen", mimeType: "image/png" });
+        await openNativeShare(() => Sharing.shareAsync(uri, { dialogTitle: "Wortkniff teilen", mimeType: "image/png" }));
       } else {
-        await Share.share({ message: shareText });
+        await openNativeShare(() => Share.share({ message: shareText }));
       }
       setShared(true);
       onShare?.();
     } catch {
       try {
-        await Share.share({ message: shareText });
+        await openNativeShare(() => Share.share({ message: shareText }));
         setShared(true);
         onShare?.();
       } catch {
         // Native share failures should not block the result flow.
       }
+    } finally {
+      setSheetOpen(false);
+      setSharing(false);
     }
   }
 
   const showConfetti = success === true || outcome === "won";
 
   return (
-    <Modal animationType="none" transparent visible={visible}>
+    <Modal animationType="none" transparent visible={visible && !sheetOpen}>
       <Animated.View style={[styles.backdrop, backdropStyle]}>
         <Animated.View style={[styles.card, cardStyle]}>
           {showConfetti ? <PaperConfetti /> : null}
-          <Text style={[styles.sticker, stickerStyle(outcome)]}>{stickerText(outcome)}</Text>
-          <Text style={styles.title}>{title}</Text>
-          {solution ? <AnimatedSolution value={solution} win={showConfetti} /> : null}
-          {message ? <Text style={styles.message}>{message}</Text> : null}
-          {guesses.length > 0 ? (
-            <ScrollView showsVerticalScrollIndicator={false} style={styles.historyScroll} contentContainerStyle={styles.history}>
-              {guesses.map((guess, index) => (
-                <View key={`${guess}-${index}`} style={styles.guessRow}>
-                  <Text style={styles.guessNumber}>{index + 1}</Text>
-                  <Text style={styles.guessValue}>{guess.toLocaleUpperCase("de-DE")}</Text>
-                </View>
-              ))}
-            </ScrollView>
-          ) : null}
-          {stats.length > 0 ? (
-            <View style={styles.stats}>
-              {stats.map((stat, index) => <AnimatedStatTile index={index} key={stat.label} stat={stat} />)}
-            </View>
-          ) : null}
-          {shareText ? <ShareCard innerRef={shareCardRef} shareText={shareText} success={showConfetti} /> : null}
-          {onFeedback ? (
-            <View style={styles.feedback}>
-              <Text style={styles.feedbackTitle}>Wie fühlte sich die Runde an?</Text>
-              <View style={styles.feedbackButtons}>
-                <FeedbackButton label="zu leicht" rating="too_easy" selected={selectedFeedback === "too_easy"} onPress={submitFeedback} />
-                <FeedbackButton label="passt" rating="ok" selected={selectedFeedback === "ok"} onPress={submitFeedback} />
-                <FeedbackButton label="zu schwer" rating="too_hard" selected={selectedFeedback === "too_hard"} onPress={submitFeedback} />
+          <ScrollView bounces={false} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+            <Text style={[styles.sticker, stickerStyle(outcome)]}>{stickerText(outcome)}</Text>
+            <Text style={styles.title}>{title}</Text>
+            {solution ? <AnimatedSolution value={solution} win={showConfetti} /> : null}
+            {message ? <Text style={styles.message}>{message}</Text> : null}
+            {guesses.length > 0 ? (
+              <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false} style={styles.historyScroll} contentContainerStyle={styles.history}>
+                {guesses.map((guess, index) => (
+                  <View key={`${guess}-${index}`} style={styles.guessRow}>
+                    <Text style={styles.guessNumber}>{index + 1}</Text>
+                    <Text style={styles.guessValue}>{guess.toLocaleUpperCase("de-DE")}</Text>
+                  </View>
+                ))}
+              </ScrollView>
+            ) : null}
+            {stats.length > 0 ? (
+              <View style={styles.stats}>
+                {stats.map((stat, index) => <AnimatedStatTile index={index} key={stat.label} stat={stat} />)}
               </View>
-              {selectedFeedback ? <Text style={styles.feedbackThanks}>Danke, hilft beim Feinschliff.</Text> : null}
-            </View>
-          ) : null}
+            ) : null}
+            {onFeedback ? (
+              <View style={styles.feedback}>
+                <Text style={styles.feedbackTitle}>Wie fühlte sich die Runde an?</Text>
+                <View style={styles.feedbackButtons}>
+                  <FeedbackButton label="zu leicht" rating="too_easy" selected={selectedFeedback === "too_easy"} onPress={submitFeedback} />
+                  <FeedbackButton label="passt" rating="ok" selected={selectedFeedback === "ok"} onPress={submitFeedback} />
+                  <FeedbackButton label="zu schwer" rating="too_hard" selected={selectedFeedback === "too_hard"} onPress={submitFeedback} />
+                </View>
+                {selectedFeedback ? <Text style={styles.feedbackThanks}>Danke, hilft beim Feinschliff.</Text> : null}
+              </View>
+            ) : null}
+          </ScrollView>
           <View style={styles.actions}>
             <Pressable accessibilityRole="button" onPress={onHome} style={[styles.button, styles.secondary]}>
               <Text style={styles.secondaryText}>{secondaryLabel}</Text>
             </Pressable>
             {shareText ? (
-              <Pressable accessibilityRole="button" onPress={shareResult} style={[styles.button, styles.share]}>
-                <Text style={styles.shareText}>{shared ? "Geteilt" : "Teilen"}</Text>
+              <Pressable accessibilityRole="button" disabled={sharing} onPress={shareResult} style={[styles.button, styles.share, sharing && styles.disabledButton]}>
+                <Text style={styles.shareText}>{sharing ? "Teilt..." : shared ? "Geteilt" : "Teilen"}</Text>
               </Pressable>
             ) : null}
             <Pressable accessibilityRole="button" onPress={onNext} style={[styles.button, styles.primary]}>
@@ -183,22 +201,33 @@ export function GameResultModal({
             </Pressable>
           </View>
         </Animated.View>
+        {shareText ? <ShareCard innerRef={shareCardRef} rows={shareRows} shareText={shareText} solution={solution} success={showConfetti} /> : null}
       </Animated.View>
     </Modal>
   );
 }
 
-function ShareCard({ innerRef, shareText, success }: { innerRef: RefObject<View | null>; shareText: string; success: boolean }) {
-  const [headline, result, ...rows] = shareText.split("\n");
+function ShareCard({ innerRef, rows, shareText, solution, success }: { innerRef: RefObject<View | null>; rows: readonly ShareGuessRow[]; shareText: string; solution?: string; success: boolean }) {
+  const [headline, result, ...textRows] = shareText.split("\n");
 
   return (
-    <View collapsable={false} ref={innerRef} style={styles.shareCard}>
+    <View collapsable={false} pointerEvents="none" ref={innerRef} style={styles.shareCard}>
       <Text style={styles.shareLogo}>WORTKNIFF</Text>
       <Text style={styles.shareHeadline}>{headline}</Text>
       <Text style={[styles.shareResult, success && styles.shareResultWin]}>{result}</Text>
+      {solution ? <Text style={styles.shareSolution}>Lösung: {solution.toLocaleUpperCase("de-DE")}</Text> : null}
       {rows.length > 0 ? (
         <View style={styles.shareGrid}>
-          {rows.map((row, index) => <Text key={`${row}-${index}`} style={styles.shareGridText}>{row}</Text>)}
+          {rows.map((row, index) => (
+            <View key={`${row.guess}-${index}`} style={styles.shareGuessRow}>
+              <Text style={styles.shareGuessWord}>{row.guess.toLocaleUpperCase("de-DE")}</Text>
+              <Text style={styles.shareGridText}>{row.marks.map((mark) => markEmoji[mark]).join("")}</Text>
+            </View>
+          ))}
+        </View>
+      ) : textRows.length > 0 ? (
+        <View style={styles.shareGrid}>
+          {textRows.map((row, index) => <Text key={`${row}-${index}`} style={styles.shareGridText}>{row}</Text>)}
         </View>
       ) : null}
     </View>
@@ -319,19 +348,22 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(23, 19, 13, 0.54)",
   },
   card: {
-    gap: tokens.space.sm,
     maxHeight: "88%",
-    padding: tokens.space.md,
+    padding: tokens.space.sm,
     borderRadius: tokens.radius.lg,
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.58)",
     backgroundColor: tokens.color.card,
     overflow: "hidden",
   },
+  content: {
+    gap: tokens.space.xs,
+    paddingBottom: tokens.space.xs,
+  },
   sticker: {
     alignSelf: "center",
     paddingHorizontal: tokens.space.md,
-    paddingVertical: 6,
+    paddingVertical: 4,
     borderRadius: tokens.radius.pill,
     fontSize: 12,
     fontWeight: "900",
@@ -344,7 +376,7 @@ const styles = StyleSheet.create({
   stickerRevealed: { backgroundColor: "rgba(217, 133, 0, 0.15)", color: tokens.color.warning },
   title: {
     color: tokens.color.ink,
-    fontSize: tokens.type.h2,
+    fontSize: 24,
     fontWeight: "900",
     textAlign: "center",
   },
@@ -355,7 +387,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 2,
     paddingHorizontal: tokens.space.sm,
-    paddingVertical: 8,
+    paddingVertical: 5,
     borderRadius: tokens.radius.md,
   },
   solutionWin: {
@@ -363,15 +395,15 @@ const styles = StyleSheet.create({
   },
   solutionLetter: {
     color: tokens.color.ink,
-    fontSize: 32,
+    fontSize: 27,
     fontWeight: "900",
     letterSpacing: 1.6,
     textAlign: "center",
   },
   message: {
     color: tokens.color.muted,
-    fontSize: tokens.type.body,
-    lineHeight: 24,
+    fontSize: 14,
+    lineHeight: 20,
     textAlign: "center",
   },
   history: {
@@ -384,7 +416,7 @@ const styles = StyleSheet.create({
   historyScroll: {
     flexGrow: 0,
     flexShrink: 1,
-    maxHeight: 220,
+    maxHeight: 150,
     borderRadius: tokens.radius.md,
   },
   guessRow: {
@@ -402,7 +434,7 @@ const styles = StyleSheet.create({
   },
   guessValue: {
     color: tokens.color.ink,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "900",
     letterSpacing: 1,
   },
@@ -411,6 +443,11 @@ const styles = StyleSheet.create({
     gap: tokens.space.xs,
   },
   shareCard: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    transform: [{ translateX: -10000 }],
+    width: 390,
     gap: 8,
     padding: tokens.space.md,
     borderRadius: tokens.radius.md,
@@ -440,32 +477,50 @@ const styles = StyleSheet.create({
   shareResultWin: {
     color: tokens.color.success,
   },
+  shareSolution: {
+    color: tokens.color.ink,
+    fontSize: 18,
+    fontWeight: "900",
+    textAlign: "center",
+  },
   shareGrid: {
+    gap: 6,
+    paddingTop: 6,
+  },
+  shareGuessRow: {
     alignItems: "center",
-    gap: 2,
-    paddingTop: 2,
+    flexDirection: "row",
+    gap: 12,
+    justifyContent: "space-between",
+  },
+  shareGuessWord: {
+    color: tokens.color.ink,
+    flex: 1,
+    fontSize: 20,
+    fontWeight: "900",
+    letterSpacing: 1,
   },
   shareGridText: {
     color: tokens.color.ink,
     fontSize: 22,
     fontWeight: "900",
     letterSpacing: 1.2,
-    textAlign: "center",
+    textAlign: "right",
   },
   statTile: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    minHeight: 84,
-    padding: tokens.space.sm,
+    minHeight: 64,
+    padding: tokens.space.xs,
     borderRadius: tokens.radius.md,
     backgroundColor: "rgba(36, 107, 254, 0.1)",
   },
   statValue: {
     color: tokens.color.ink,
-    fontSize: 25,
     fontWeight: "900",
-    lineHeight: 29,
+    fontSize: 21,
+    lineHeight: 24,
     textAlign: "center",
   },
   statLabel: {
@@ -519,11 +574,11 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: "row",
     gap: tokens.space.sm,
-    marginTop: tokens.space.sm,
+    marginTop: tokens.space.xs,
   },
   button: {
     flex: 1,
-    minHeight: 52,
+    minHeight: 46,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: tokens.radius.pill,
@@ -540,6 +595,9 @@ const styles = StyleSheet.create({
   },
   primary: {
     backgroundColor: tokens.color.primary,
+  },
+  disabledButton: {
+    opacity: 0.58,
   },
   secondaryText: {
     color: tokens.color.ink,
