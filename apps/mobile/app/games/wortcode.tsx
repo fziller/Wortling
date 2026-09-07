@@ -36,9 +36,8 @@ import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 import { usePacksSettings } from "@/hooks/usePacksSettings";
-import { HintIndicator } from "@/components/HintIndicator";
 import { useHintWallet } from "@/hints/useHintWallet";
-import { getHintPolicy, requestAdHint, shouldShowEarnedProgress } from "@/hints/policy";
+import { getHintPolicy, requestAdHint } from "@/hints/policy";
 import { usePostHog } from "posthog-react-native";
 
 type WortcodeGame = ReturnType<typeof createNextWortcodeGame>;
@@ -77,8 +76,6 @@ export default function WortcodeScreen() {
   const hintWallet = useHintWallet();
   const hintPolicy = getHintPolicy();
   const revealedLetters = getWortcodeRevealedLetters(puzzle, state);
-  const revealedSet = new Set(revealedLetters.map((ch, i) => (ch ? i : -1)).filter((i) => i >= 0));
-  const mergeDraftWithRevealed = (draft: string[], letters: (string | null)[]) => draft.map((ch, i) => (letters[i] ? letters[i]! : ch));
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "wortcode", params: { dateKey } });
@@ -96,10 +93,8 @@ export default function WortcodeScreen() {
         setState(progress.state);
         const draft = Array.isArray(progress.draft) ? progress.draft.map(String).slice(0, nextGame.puzzle.wordLength) : [];
         const base = draft.length === nextGame.puzzle.wordLength ? draft : createEmptyInput(nextGame.puzzle.wordLength);
-        const revealed = getWortcodeRevealedLetters(nextGame.puzzle, progress.state as WortcodeState);
-        const merged = mergeDraftWithRevealed(base, revealed);
-        setInputLetters(merged);
-        const firstEmpty = merged.findIndex((ch, i) => !ch && !revealed[i]);
+        setInputLetters(base);
+        const firstEmpty = base.findIndex((ch) => !ch);
         if (firstEmpty >= 0) setCursorIndex(firstEmpty);
       }
       setProgressLoaded(true);
@@ -145,38 +140,16 @@ export default function WortcodeScreen() {
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
-    if (revealedSet.has(cursorIndex)) {
-      let nextIdx = cursorIndex + 1;
-      while (nextIdx < puzzle.wordLength && revealedSet.has(nextIdx)) nextIdx += 1;
-      if (nextIdx >= puzzle.wordLength) return;
-      setCursorIndex(nextIdx);
-      setInputLetters((current) => current.map((item, index) => (index === nextIdx ? letter : item)));
-      let after = nextIdx + 1;
-      while (after < puzzle.wordLength && revealedSet.has(after)) after += 1;
-      setCursorIndex(Math.min(after, puzzle.wordLength - 1));
-      return;
-    }
     setInputLetters((current) => current.map((item, index) => (index === cursorIndex ? letter : item)));
-    let next = cursorIndex + 1;
-    while (next < puzzle.wordLength && revealedSet.has(next)) next += 1;
-    setCursorIndex(Math.min(next, puzzle.wordLength - 1));
+    setCursorIndex((current) => Math.min(current + 1, puzzle.wordLength - 1));
   }
 
   function backspace() {
-    if (revealedSet.has(cursorIndex)) {
-      let prev = cursorIndex - 1;
-      while (prev >= 0 && revealedSet.has(prev)) prev -= 1;
-      if (prev >= 0) setCursorIndex(prev);
-      return;
-    }
     setInputLetters((current) => {
       if (current[cursorIndex]) {
         return current.map((item, index) => (index === cursorIndex ? "" : item));
       }
-      let previousIndex = cursorIndex - 1;
-      while (previousIndex >= 0 && revealedSet.has(previousIndex)) previousIndex -= 1;
-      previousIndex = Math.max(previousIndex, 0);
-      if (revealedSet.has(previousIndex)) return current;
+      const previousIndex = Math.max(cursorIndex - 1, 0);
       setCursorIndex(previousIndex);
       return current.map((item, index) => (index === previousIndex ? "" : item));
     });
@@ -189,31 +162,25 @@ export default function WortcodeScreen() {
       if (!ok) { setMessage("Werbung gerade nicht verfügbar."); return; }
       const next = applyWortcodeHint(puzzle, state);
       if (next === state) { setMessage("Alle Buchstaben schon aufgedeckt."); return; }
-      const letters = getWortcodeRevealedLetters(puzzle, next);
       setState(next);
-      setInputLetters((prev) => mergeDraftWithRevealed(prev, letters));
       stats.recordHint({ source: "ad", gameId: "wortcode" });
       captureEvent(posthog, "hint_used", { gameId: "wortcode", dateKey, source: "ad" });
-      setMessage("Tipp aufgedeckt.");
+      setMessage("Hinweis aufgedeckt.");
       return;
     }
     if (!hintWallet.canConsume) {
-      setMessage(hintWallet.wallet.balance >= 3 ? "Tipp-Lager voll (3/3)." : `Keine Tipps. Gewinne noch ${3 - hintWallet.wallet.winsSinceLastHint} Runden.`);
+      setMessage(hintWallet.wallet.balance >= 3 ? "Hinweis-Lager voll (3/3)." : `Keine Hinweise. Gewinne noch ${3 - hintWallet.wallet.winsSinceLastHint} Runden.`);
       return;
     }
-    const consumed = await hintWallet.tryConsume();
-    if (!consumed) { setMessage("Keine Tipps verfügbar."); return; }
     const next = applyWortcodeHint(puzzle, state);
     if (next === state) { setMessage("Alle Buchstaben schon aufgedeckt."); return; }
-    const letters = getWortcodeRevealedLetters(puzzle, next);
+    const consumed = await hintWallet.tryConsume();
+    if (!consumed) { setMessage("Keine Hinweise verfügbar."); return; }
     setState(next);
-    setInputLetters((prev) => mergeDraftWithRevealed(prev, letters));
-    const firstEmpty = mergeDraftWithRevealed(inputLetters, letters).findIndex((ch, i) => !ch && !letters[i]);
-    if (firstEmpty >= 0) setCursorIndex(firstEmpty);
     startStats();
     stats.recordHint({ source: "earned", gameId: "wortcode", revealedCount: next.revealedIndices?.length });
     captureEvent(posthog, "hint_used", { gameId: "wortcode", dateKey, source: "earned" });
-    setMessage("Tipp: Buchstabe aufgedeckt.");
+    setMessage("Hinweis: Buchstabe aufgedeckt.");
   }
 
   function startStats() {
@@ -230,10 +197,8 @@ export default function WortcodeScreen() {
       const lastGuess = result.state.guesses[result.state.guesses.length - 1];
 
       stats.recordAcceptedGuess(lastGuess.value, { exactMatches: lastGuess.exactMatches, misplacedMatches: lastGuess.misplacedMatches });
-      const nextRevealed = getWortcodeRevealedLetters(puzzle, result.state);
-      setInputLetters(mergeDraftWithRevealed(createEmptyInput(puzzle.wordLength), nextRevealed));
-      const firstEmpty = nextRevealed.findIndex((ch) => !ch);
-      setCursorIndex(firstEmpty >= 0 ? firstEmpty : 0);
+      setInputLetters(createEmptyInput(puzzle.wordLength));
+      setCursorIndex(0);
     } else {
       stats.recordRejectedGuess(result.reason, inputLetters.join(""));
       setShakeTick((value) => value + 1);
@@ -242,7 +207,7 @@ export default function WortcodeScreen() {
       stats.finish(result.state.status);
       if (result.state.status === "won") {
         hintWallet.onWin().then((granted) => {
-          if (granted) setMessage("Tipp erhalten! 💡");
+          if (granted) setMessage("Hinweis erhalten! 💡");
           try { posthog.capture(granted ? "hint_earned" : "hint_progress", { gameId: "wortcode", dateKey }); } catch {}
         });
       }
@@ -314,13 +279,12 @@ export default function WortcodeScreen() {
   }
 
   const hintDisabled = state.status !== "playing" || (hintPolicy !== "ads" && !hintWallet.canConsume);
-  const hintLabel = hintPolicy === "ads" ? "Tipp (Werbung)" : `Tipp (${hintWallet.wallet.balance}/3)`;
+  const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
   return (
     <GameScreenFrame
       actions={
-        <View style={{ flexDirection: "row", gap: 8, alignItems: "center" }}>
-          <HintIndicator balance={hintWallet.wallet.balance} winsSinceLastHint={hintWallet.wallet.winsSinceLastHint} showProgress={shouldShowEarnedProgress(hintPolicy)} />
+        <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
           {state.status === "playing" ? <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} /> : null}
           {state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
         </View>
@@ -338,7 +302,7 @@ export default function WortcodeScreen() {
         captureEvent(posthog, "help_opened", { gameId: "wortcode", dateKey });
         setHelpVisible(true);
       }}
-      subtitle={`${dateKey} · ${puzzle.wordLength} Buchstaben`}
+      subtitle={`${puzzle.wordLength} Buchstaben`}
       title="Wortcode"
     >
       <View style={styles.wrap}>
@@ -400,25 +364,20 @@ export default function WortcodeScreen() {
                 >
                   <View style={[styles.letterRow, { gap: tileLayout.gap }]}>
                     {inputLetters.map((letter, letterIndex) => {
-                      const isHintLocked = revealedSet.has(letterIndex);
+                      const placeholder = !letter ? revealedLetters[letterIndex] : null;
                       return (
                         <Pressable
-                          accessibilityLabel={`Buchstabe ${letterIndex + 1}${letter ? `: ${letter.toUpperCase()}` : " leer"}${isHintLocked ? " (Tipp)" : ""}`}
+                          accessibilityLabel={`Buchstabe ${letterIndex + 1}${letter ? `: ${letter.toUpperCase()}` : placeholder ? `, Hinweis ${placeholder.toUpperCase()}` : " leer"}`}
                           accessibilityRole="button"
                           key={`input-${letterIndex}`}
-                          disabled={isHintLocked}
-                          onPress={() => {
-                            if (isHintLocked) return;
-                            setCursorIndex(letterIndex);
-                          }}
+                          onPress={() => setCursorIndex(letterIndex)}
                           style={[
                             styles.letterTile,
                             { minHeight: tileLayout.minHeight },
-                            letterIndex === cursorIndex && !isHintLocked && styles.activeTile,
-                            isHintLocked && styles.exactTile,
+                            letterIndex === cursorIndex && styles.activeTile,
                           ]}
                         >
-                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4, minWidth: 12, textAlign: "center" }, isHintLocked && styles.markedLetterText]}>{letter.toUpperCase()}</Text>
+                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4, minWidth: 12, textAlign: "center" }, placeholder && styles.placeholderText]}>{(letter || placeholder || "").toUpperCase()}</Text>
                         </Pressable>
                       );
                     })}
@@ -506,6 +465,7 @@ const styles = StyleSheet.create({
   exactTile: { backgroundColor: tokens.color.success, borderColor: "#127456" },
   excludedTile: { backgroundColor: tokens.color.danger, borderColor: "#A92E2A" },
   letterText: { color: tokens.color.ink, fontSize: 18, fontWeight: "900" },
+  placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   markedLetterText: { color: "white" },
   feedbackBoxes: { flexDirection: "row", gap: 4, marginLeft: tokens.space.xs },
   feedbackBox: { width: 28, height: 28, alignItems: "center", justifyContent: "center", borderRadius: 6, borderWidth: 1 },

@@ -24,6 +24,27 @@ export function createBetweenState(targetWord: string): BetweenState {
   };
 }
 
+export function getBetweenHintPosition(state: BetweenState): number | null {
+  const letters = Array.from(state.targetWord);
+  const revealed = new Set(state.revealedHintIndices ?? []);
+  const available = letters.map((_, index) => index).filter((index) => !revealed.has(index));
+
+  return available.length > 0 ? available[Math.floor(Math.random() * available.length)] : null;
+}
+
+export function applyBetweenHint(state: BetweenState): BetweenState {
+  if (state.status !== "playing") return state;
+  const pos = getBetweenHintPosition(state);
+  if (pos === null) return state;
+
+  return { ...state, revealedHintIndices: [...(state.revealedHintIndices ?? []), pos] };
+}
+
+export function getBetweenRevealedHintLetters(state: BetweenState): (string | null)[] {
+  const revealed = new Set(state.revealedHintIndices ?? []);
+  return Array.from(state.targetWord).map((letter, index) => revealed.has(index) ? letter : null);
+}
+
 export function getWordPercent(word: string): number {
   if (word === "aaaaa") {
     return 0;

@@ -20,7 +20,7 @@ import { BucketPreset } from "@/games/wordBuckets";
 import { createNextWortschmelzeGame, restoreWortschmelzePuzzle } from "@/games/wortschmelze/daily";
 import { submitWortschmelzeGuess } from "@/games/wortschmelze/engine";
 import type { WortschmelzeState } from "@/games/wortschmelze/types";
-import { getWorttrefferLetterStates, revealWorttrefferSolution } from "@/games/worttreffer/engine";
+import { applyWorttrefferHint, getWorttrefferLetterStates, getWorttrefferRevealedLetters, revealWorttrefferSolution } from "@/games/worttreffer/engine";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
@@ -29,6 +29,8 @@ import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedSt
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 import { buildMarkedGridShareText } from "@/games/share/grid";
+import { getHintPolicy, requestAdHint } from "@/hints/policy";
+import { useHintWallet } from "@/hints/useHintWallet";
 
 type WortschmelzeGame = ReturnType<typeof createNextWortschmelzeGame>;
 type TileMark = "absent" | "present" | "correct";
@@ -47,6 +49,8 @@ export default function WortschmelzeScreen() {
   const posthog = usePostHog();
   const today = getBerlinDateKey();
   const stats = useGameRecorder();
+  const hintWallet = useHintWallet();
+  const hintPolicy = getHintPolicy();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const revealDoneTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -115,9 +119,12 @@ export default function WortschmelzeScreen() {
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getWorttrefferLetterStates(state);
+  const revealedLetters = getWorttrefferRevealedLetters(puzzle, state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
   const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
   const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
+  const hintDisabled = state.status !== "playing" || (hintPolicy !== "ads" && !hintWallet.canConsume);
+  const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
@@ -132,6 +139,37 @@ export default function WortschmelzeScreen() {
       setCursorIndex(previousIndex);
       return current.map((item, index) => (index === previousIndex ? "" : item));
     });
+  }
+
+  async function useHint() {
+    if (state.status !== "playing") return;
+    const next = applyWorttrefferHint(puzzle, state);
+    if (next === state) {
+      setMessage("Alle Buchstaben schon aufgedeckt.");
+      return;
+    }
+
+    let source = "earned";
+    if (hintPolicy === "ads") {
+      const ok = await requestAdHint();
+      if (!ok) {
+        setMessage("Werbung gerade nicht verfügbar.");
+        return;
+      }
+      source = "ad";
+    } else {
+      const consumed = await hintWallet.tryConsume();
+      if (!consumed) {
+        setMessage("Keine Hinweise verfügbar.");
+        return;
+      }
+    }
+
+    startStats();
+    setState(next);
+    stats.recordHint({ source, gameId: GAME_ID, revealedCount: next.revealedIndices?.length });
+    captureEvent(posthog, "hint_used", { gameId: GAME_ID, dateKey, source });
+    setMessage("Hinweis: Buchstabe aufgedeckt.");
   }
 
   function startStats() {
@@ -162,6 +200,11 @@ export default function WortschmelzeScreen() {
       setRevealingGuessIndex(null);
       if (isFinishedGameStatus(result.state.status)) {
         stats.finish(result.state.status);
+        if (result.state.status === "won") {
+          hintWallet.onWin().then((granted) => {
+            if (granted) setMessage("Hinweis erhalten! 💡");
+          });
+        }
         setFinishedAt(Date.now());
         setResultVisible(true);
         captureEvent(posthog, "game_completed", { gameId: GAME_ID, dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length, outcome: result.state.status, success: result.state.status === "won" });
@@ -212,14 +255,19 @@ export default function WortschmelzeScreen() {
 
   return (
     <GameScreenFrame
-      actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
+      actions={state.status === "playing" ? (
+        <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
+          <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} />
+          <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} />
+        </View>
+      ) : null}
       keyboard={{ disabled: state.status !== "playing", letterStates, onBackspace: backspace, onLetter: addLetter, onSubmit: submit, submitDisabled: !canSubmit }}
       onBack={goBack}
       onHelp={() => {
         captureEvent(posthog, "help_opened", { gameId: GAME_ID, dateKey });
         setHelpVisible(true);
       }}
-      subtitle={`${dateKey} · 5+5 → 8 Buchstaben`}
+      subtitle="5+5 → 8 Buchstaben"
       title="Wortschmelze"
     >
       <View style={styles.wrap}>
@@ -232,6 +280,7 @@ export default function WortschmelzeScreen() {
               <Animated.View entering={FadeInDown.duration(tokens.motion.quick)} key={rowIndex} layout={LinearTransition.springify().damping(16)} style={[styles.tileRow, { gap: tileLayout.gap }]}> 
                 {letters.map((letter, letterIndex) => {
                   const mark = guess?.marks[letterIndex];
+                  const placeholder = inputRow && !letter ? revealedLetters[letterIndex] : null;
                   return (
                     <AnimatedWortschmelzeTile
                       disabled={Boolean(guess) || !inputRow || state.status !== "playing"}
@@ -240,6 +289,7 @@ export default function WortschmelzeScreen() {
                       mark={mark}
                       minHeight={tileLayout.minHeight}
                       onPress={() => setCursorIndex(letterIndex)}
+                      placeholder={placeholder}
                       revealed={Boolean(mark) && rowIndex !== revealingGuessIndex}
                       revealDelay={letterIndex * TILE_REVEAL_DELAY_MS}
                       revealing={Boolean(mark) && rowIndex === revealingGuessIndex}
@@ -290,6 +340,7 @@ type AnimatedWortschmelzeTileProps = {
   mark?: TileMark;
   minHeight: number;
   onPress: () => void;
+  placeholder?: string | null;
   revealed: boolean;
   revealDelay: number;
   revealing: boolean;
@@ -304,7 +355,7 @@ function markColor(mark?: TileMark) {
   return "rgba(255,255,255,0.5)";
 }
 
-function AnimatedWortschmelzeTile({ disabled, letter, mark, minHeight, onPress, revealed, revealDelay, revealing, selected, textSize }: AnimatedWortschmelzeTileProps) {
+function AnimatedWortschmelzeTile({ disabled, letter, mark, minHeight, onPress, placeholder, revealed, revealDelay, revealing, selected, textSize }: AnimatedWortschmelzeTileProps) {
   const targetColor = markColor(mark);
   const progress = useSharedValue(revealed ? 1 : 0);
 
@@ -330,7 +381,7 @@ function AnimatedWortschmelzeTile({ disabled, letter, mark, minHeight, onPress, 
 
   return (
     <AnimatedPressable accessibilityRole="button" disabled={disabled} onPress={onPress} style={[styles.tile, { minHeight }, tileStyle]}>
-      <Animated.Text style={[styles.tileText, { fontSize: textSize }, textStyle]}>{letter.trim().toLocaleUpperCase("de-DE")}</Animated.Text>
+      <Animated.Text style={[styles.tileText, { fontSize: textSize }, placeholder && !letter && styles.placeholderText, textStyle]}>{(letter || placeholder || "").trim().toLocaleUpperCase("de-DE")}</Animated.Text>
     </AnimatedPressable>
   );
 }
@@ -350,6 +401,7 @@ const styles = StyleSheet.create({
     minWidth: 0,
   },
   tileText: { color: tokens.color.ink, fontWeight: "900" },
+  placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   answer: { color: tokens.color.ink, fontSize: tokens.type.body, fontWeight: "900", textAlign: "center" },
 });

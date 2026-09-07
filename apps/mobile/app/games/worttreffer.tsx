@@ -41,9 +41,8 @@ import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
-import { HintIndicator } from "@/components/HintIndicator";
 import { useHintWallet } from "@/hints/useHintWallet";
-import { getHintPolicy, requestAdHint, shouldShowEarnedProgress } from "@/hints/policy";
+import { getHintPolicy, requestAdHint } from "@/hints/policy";
 import {
   isStartedProgress,
   loadProgress,
@@ -102,9 +101,6 @@ export default function WorttrefferScreen() {
   const hintWallet = useHintWallet();
   const hintPolicy = getHintPolicy();
   const revealedLetters = getWorttrefferRevealedLetters(puzzle, state);
-  const revealedSet = new Set(
-    revealedLetters.map((ch, i) => (ch ? i : -1)).filter((i) => i >= 0),
-  );
 
   useEffect(() => {
     return () => {
@@ -117,10 +113,6 @@ export default function WorttrefferScreen() {
     captureEvent(posthog, "game_started", { gameId: "worttreffer", dateKey });
   }, [dateKey, posthog]);
 
-  // helper to merge draft with revealed hint letters
-  const mergeDraftWithRevealed = (draft: string[], letters: (string | null)[]) =>
-    draft.map((ch, i) => (letters[i] ? letters[i]! : ch));
-
   useEffect(() => {
     loadProgress<WorttrefferState>("worttreffer", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
@@ -132,10 +124,8 @@ export default function WorttrefferScreen() {
         setState(progress.state);
         const draft = Array.isArray(progress.draft) ? progress.draft.map(String).slice(0, nextGame.puzzle.wordLength) : [];
         const base = draft.length === nextGame.puzzle.wordLength ? draft : createEmptyInput(nextGame.puzzle.wordLength);
-        const revealed = getWorttrefferRevealedLetters(nextGame.puzzle, progress.state as WorttrefferState);
-        setInputLetters(mergeDraftWithRevealed(base, revealed));
-        // cursor to first non-revealed empty
-        const firstEmpty = mergeDraftWithRevealed(base, revealed).findIndex((ch, i) => !ch && !revealed[i]);
+        setInputLetters(base);
+        const firstEmpty = base.findIndex((ch) => !ch);
         if (firstEmpty >= 0) setCursorIndex(firstEmpty);
       }
       setProgressLoaded(true);
@@ -184,54 +174,18 @@ export default function WorttrefferScreen() {
   const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
   const nextDailyKniffRoute = useNextOpenDailyKniff("worttreffer", dateKey, state.status === "won");
 
-  function nextEditableIndex(from: number, dir: 1 | -1): number {
-    let idx = from;
-    for (let step = 0; step < puzzle.wordLength; step += 1) {
-      if (!revealedSet.has(idx)) return idx;
-      idx += dir;
-      if (idx < 0) return from;
-      if (idx >= puzzle.wordLength) return from;
-    }
-    return from;
-  }
-
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
-    if (revealedSet.has(cursorIndex)) {
-      const next = nextEditableIndex(cursorIndex + 1, 1);
-      if (revealedSet.has(next)) return;
-      setCursorIndex(next);
-      setInputLetters((current) => current.map((item, index) => (index === next ? letter : item)));
-      const after = nextEditableIndex(next + 1, 1);
-      setCursorIndex(after !== next ? after : Math.min(next + 1, puzzle.wordLength - 1));
-      return;
-    }
     setInputLetters((current) => current.map((item, index) => (index === cursorIndex ? letter : item)));
-    // move to next non-revealed
-    let next = cursorIndex + 1;
-    while (next < puzzle.wordLength && revealedSet.has(next)) next += 1;
-    setCursorIndex(Math.min(next, puzzle.wordLength - 1));
+    setCursorIndex((current) => Math.min(current + 1, puzzle.wordLength - 1));
   }
 
   function backspace() {
-    // never delete revealed letters
-    if (revealedSet.has(cursorIndex)) {
-      let prev = cursorIndex - 1;
-      while (prev >= 0 && revealedSet.has(prev)) prev -= 1;
-      if (prev >= 0) {
-        setCursorIndex(prev);
-        setInputLetters((current) => current.map((item, index) => (index === prev ? "" : item)));
-      }
-      return;
-    }
     setInputLetters((current) => {
       if (current[cursorIndex]) {
         return current.map((item, index) => (index === cursorIndex ? "" : item));
       }
-      let previousIndex = cursorIndex - 1;
-      while (previousIndex >= 0 && revealedSet.has(previousIndex)) previousIndex -= 1;
-      previousIndex = Math.max(previousIndex, 0);
-      if (revealedSet.has(previousIndex)) return current;
+      const previousIndex = Math.max(cursorIndex - 1, 0);
       setCursorIndex(previousIndex);
       return current.map((item, index) => (index === previousIndex ? "" : item));
     });
@@ -252,24 +206,17 @@ export default function WorttrefferScreen() {
         setMessage("Alle Buchstaben schon aufgedeckt.");
         return;
       }
-      const letters = getWorttrefferRevealedLetters(puzzle, next);
       setState(next);
-      setInputLetters((prev) => mergeDraftWithRevealed(prev, letters));
       stats.recordHint({ source: "ad", gameId: "worttreffer" });
       captureEvent(posthog, "hint_used", { gameId: "worttreffer", dateKey, source: "ad" });
-      setMessage("Tipp aufgedeckt.");
+      setMessage("Hinweis aufgedeckt.");
       return;
     }
 
     if (!hintWallet.canConsume) {
       setMessage(
-        hintWallet.wallet.balance >= 3 ? "Tipp-Lager voll (3/3)." : `Keine Tipps. Gewinne noch ${3 - hintWallet.wallet.winsSinceLastHint} Runden.`,
+        hintWallet.wallet.balance >= 3 ? "Hinweis-Lager voll (3/3)." : `Keine Hinweise. Gewinne noch ${3 - hintWallet.wallet.winsSinceLastHint} Runden.`,
       );
-      return;
-    }
-    const consumed = await hintWallet.tryConsume();
-    if (!consumed) {
-      setMessage("Keine Tipps verfügbar.");
       return;
     }
     const next = applyWorttrefferHint(puzzle, state);
@@ -277,16 +224,16 @@ export default function WorttrefferScreen() {
       setMessage("Alle Buchstaben schon aufgedeckt.");
       return;
     }
-    const letters = getWorttrefferRevealedLetters(puzzle, next);
+    const consumed = await hintWallet.tryConsume();
+    if (!consumed) {
+      setMessage("Keine Hinweise verfügbar.");
+      return;
+    }
     setState(next);
-    setInputLetters((prev) => mergeDraftWithRevealed(prev, letters));
-    // cursor to next editable
-    const firstEmpty = mergeDraftWithRevealed(inputLetters, letters).findIndex((ch, i) => !ch && !letters[i]);
-    if (firstEmpty >= 0) setCursorIndex(firstEmpty);
     startStats();
     stats.recordHint({ source: "earned", gameId: "worttreffer", revealedCount: next.revealedIndices?.length });
     captureEvent(posthog, "hint_used", { gameId: "worttreffer", dateKey, source: "earned" });
-    setMessage("Tipp: Buchstabe aufgedeckt.");
+    setMessage("Hinweis: Buchstabe aufgedeckt.");
   }
 
   function startStats() {
@@ -313,11 +260,8 @@ export default function WorttrefferScreen() {
       const nextGuessIndex = result.state.guesses.length - 1;
 
       setRevealingGuessIndex(nextGuessIndex);
-      // keep revealed hint letters prefilled
-      const nextRevealed = getWorttrefferRevealedLetters(puzzle, result.state);
-      setInputLetters(mergeDraftWithRevealed(createEmptyInput(puzzle.wordLength), nextRevealed));
-      const firstEmpty = nextRevealed.findIndex((ch) => !ch);
-      setCursorIndex(firstEmpty >= 0 ? firstEmpty : 0);
+      setInputLetters(createEmptyInput(puzzle.wordLength));
+      setCursorIndex(0);
     } else {
       stats.recordRejectedGuess(result.reason, inputLetters.join(""));
       setShakeTick((value) => value + 1);
@@ -329,7 +273,7 @@ export default function WorttrefferScreen() {
       if (result.state.status === "won") {
         // earn hint: 3 wins -> +1
         hintWallet.onWin().then((granted) => {
-          if (granted) setMessage("Tipp erhalten! 💡");
+          if (granted) setMessage("Hinweis erhalten! 💡");
           try {
             posthog.capture(granted ? "hint_earned" : "hint_progress", {
               gameId: "worttreffer",
@@ -418,17 +362,12 @@ export default function WorttrefferScreen() {
   }
 
   const hintDisabled = state.status !== "playing" || (hintPolicy !== "ads" && !hintWallet.canConsume);
-  const hintLabel = hintPolicy === "ads" ? "Tipp (Werbung)" : `Tipp (${hintWallet.wallet.balance}/3)`;
+  const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
   return (
     <GameScreenFrame
       actions={
-        <View style={{ flexDirection: "row", gap: 8, alignItems: "center" }}>
-          <HintIndicator
-            balance={hintWallet.wallet.balance}
-            winsSinceLastHint={hintWallet.wallet.winsSinceLastHint}
-            showProgress={shouldShowEarnedProgress(hintPolicy)}
-          />
+        <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
           {state.status === "playing" ? (
             <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} />
           ) : null}
@@ -448,7 +387,7 @@ export default function WorttrefferScreen() {
         captureEvent(posthog, "help_opened", { gameId: "worttreffer", dateKey });
         setHelpVisible(true);
       }}
-      subtitle={`${dateKey} · ${puzzle.wordLength} Buchstaben`}
+      subtitle={`${puzzle.wordLength} Buchstaben`}
       title="Worttreffer"
     >
       <View style={styles.wrap}>
@@ -467,8 +406,7 @@ export default function WorttrefferScreen() {
               >
                 {letters.map((letter, letterIndex) => {
                   const mark = guess?.marks[letterIndex];
-                  const isHintLocked = inputRow && revealedSet.has(letterIndex);
-                  const hintMark: TileMark | undefined = isHintLocked ? "correct" : mark;
+                  const placeholder = inputRow && !letter ? revealedLetters[letterIndex] : null;
 
                   return (
                     <AnimatedWorttrefferTile
@@ -476,21 +414,18 @@ export default function WorttrefferScreen() {
                       disabled={
                         Boolean(guess) ||
                         !inputRow ||
-                        state.status !== "playing" ||
-                        isHintLocked
+                        state.status !== "playing"
                       }
                       key={`${rowIndex}-${letterIndex}`}
                       letter={letter}
-                      mark={hintMark}
+                      mark={mark}
                       minHeight={tileLayout.minHeight}
-                      onPress={() => {
-                        if (isHintLocked) return;
-                        setCursorIndex(letterIndex);
-                      }}
-                      revealed={Boolean(hintMark) && (Boolean(mark) ? rowIndex !== revealingGuessIndex : true)}
+                      onPress={() => setCursorIndex(letterIndex)}
+                      placeholder={placeholder}
+                      revealed={Boolean(mark) && rowIndex !== revealingGuessIndex}
                       revealDelay={letterIndex * TILE_REVEAL_DELAY_MS}
                       revealing={Boolean(mark) && rowIndex === revealingGuessIndex}
-                      selected={inputRow && !guess && letterIndex === cursorIndex && !isHintLocked}
+                      selected={inputRow && !guess && letterIndex === cursorIndex}
                       textSize={tileLayout.fontSize}
                     />
                   );
@@ -567,6 +502,7 @@ type AnimatedWorttrefferTileProps = {
   mark?: TileMark;
   minHeight: number;
   onPress: () => void;
+  placeholder?: string | null;
   revealed: boolean;
   revealDelay: number;
   revealing: boolean;
@@ -582,7 +518,7 @@ function markColor(mark?: TileMark) {
   return "rgba(255,255,255,0.5)";
 }
 
-function AnimatedWorttrefferTile({ accessibilityRole, disabled, letter, mark, minHeight, onPress, revealed, revealDelay, revealing, selected, textSize }: AnimatedWorttrefferTileProps) {
+function AnimatedWorttrefferTile({ accessibilityRole, disabled, letter, mark, minHeight, onPress, placeholder, revealed, revealDelay, revealing, selected, textSize }: AnimatedWorttrefferTileProps) {
   const targetColor = markColor(mark);
   const progress = useSharedValue(revealed ? 1 : 0);
 
@@ -621,7 +557,7 @@ function AnimatedWorttrefferTile({ accessibilityRole, disabled, letter, mark, mi
       onPress={onPress}
       style={[styles.tile, { minHeight }, tileStyle]}
     >
-      <Animated.Text style={[styles.tileText, { fontSize: textSize }, textStyle]}>{letter.trim().toLocaleUpperCase("de-DE")}</Animated.Text>
+      <Animated.Text style={[styles.tileText, { fontSize: textSize }, placeholder && !letter && styles.placeholderText, textStyle]}>{(letter || placeholder || "").trim().toLocaleUpperCase("de-DE")}</Animated.Text>
     </AnimatedPressable>
   );
 }
@@ -646,6 +582,7 @@ const styles = StyleSheet.create({
   },
   activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
   tileText: { color: tokens.color.ink, fontSize: 25, fontWeight: "900" },
+  placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   markedTileText: { color: "white" },
   absent: { backgroundColor: "#7B736A", borderColor: "#7B736A" },
   present: { backgroundColor: "#D98500", borderColor: "#D98500" },

@@ -9,7 +9,7 @@ type GameScreenHeaderProps = {
   helpLabel?: string;
   onBack: () => void;
   onHelp: () => void;
-  subtitle: string;
+  subtitle?: string;
   title: string;
 };
 
@@ -33,14 +33,14 @@ export function GameScreenHeader({
 }
 
 type GameHeaderTitleProps = {
-  subtitle: string;
+  subtitle?: string;
   title: string;
 };
 
 export function GameHeaderTitle({ subtitle, title }: GameHeaderTitleProps) {
   return (
     <View style={styles.titleBlock}>
-      <Text style={styles.subtitle}>{subtitle}</Text>
+      {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
       <Text adjustsFontSizeToFit numberOfLines={1} style={styles.title}>{title}</Text>
     </View>
   );

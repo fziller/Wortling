@@ -1,8 +1,14 @@
 import { allowedGuesses } from "./content";
-import { isValidTransition, normalizeWortleiterWord } from "./generator";
+import { buildPatternBuckets, getWortleiterNeighbors, isValidTransition, normalizeWortleiterWord } from "./generator";
 import type { WortleiterPuzzle, WortleiterState, WortleiterSubmitResult } from "./types";
 
 const allowedGuessSet = new Set<string>(allowedGuesses);
+let hintBuckets: Map<string, string[]> | null = null;
+
+function getHintBuckets() {
+  hintBuckets ??= buildPatternBuckets(allowedGuesses);
+  return hintBuckets;
+}
 
 export { isValidTransition, normalizeWortleiterWord };
 
@@ -72,6 +78,36 @@ export function revealWortleiterSolution(puzzle: WortleiterPuzzle, state: Wortle
     words: puzzle.solution.map(normalizeWortleiterWord),
     status: "revealed"
   };
+}
+
+export function getWortleiterHintWord(puzzle: WortleiterPuzzle, state: WortleiterState): string | null {
+  if (state.status !== "playing") return null;
+  const start = normalizeWortleiterWord(state.words[state.words.length - 1] ?? puzzle.startWord);
+  const target = normalizeWortleiterWord(puzzle.targetWord);
+  const used = new Set(state.words.map(normalizeWortleiterWord));
+  const queue: string[][] = [[start]];
+  const seen = new Set([start]);
+
+  while (queue.length > 0) {
+    const path = queue.shift()!;
+    const word = path[path.length - 1];
+    if (word === target) return path[1] ?? null;
+
+    for (const neighbor of getWortleiterNeighbors(word, getHintBuckets())) {
+      if (seen.has(neighbor) || used.has(neighbor)) continue;
+      seen.add(neighbor);
+      queue.push([...path, neighbor]);
+    }
+  }
+
+  return null;
+}
+
+export function applyWortleiterHint(puzzle: WortleiterPuzzle, state: WortleiterState): WortleiterState {
+  const word = getWortleiterHintWord(puzzle, state);
+  if (!word) return state;
+
+  return { ...state, words: [...state.words, word], status: word === normalizeWortleiterWord(puzzle.targetWord) ? "won" : "playing" };
 }
 
 export function getWortleiterRating(puzzle: WortleiterPuzzle, state: WortleiterState): string {

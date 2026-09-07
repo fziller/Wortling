@@ -8,7 +8,7 @@ describe("share text", () => {
   });
 
   it("builds simple share text", () => {
-    expect(buildSimpleShareText("Dazwischen", "2026-09-06", "revealed", "4 Tipps")).toBe("Wortkniff Dazwischen 2026-09-06\nAufgedeckt · 4 Tipps");
+    expect(buildSimpleShareText("Dazwischen", "2026-09-06", "revealed", "4 Versuche")).toBe("Wortkniff Dazwischen 2026-09-06\nAufgedeckt · 4 Versuche");
   });
 
   it("builds daily share text", () => {

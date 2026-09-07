@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { createWortleiterState, isValidTransition, revealWortleiterSolution, submitWortleiterGuess, undoWortleiterStep } from "./engine";
+import { applyWortleiterHint, createWortleiterState, getWortleiterHintWord, isValidTransition, revealWortleiterSolution, submitWortleiterGuess, undoWortleiterStep } from "./engine";
 import type { WortleiterPuzzle, WortleiterState } from "./types";
 
 const puzzle: WortleiterPuzzle = {
@@ -72,6 +72,16 @@ describe("wortleiter engine", () => {
 
     expect(state.status).toBe("revealed");
     expect(state.words).toEqual(["haus", "maus", "mais"]);
+  });
+
+  it("adds a valid next hint step toward the target", () => {
+    const state = createWortleiterState(puzzle);
+    const hint = getWortleiterHintWord(puzzle, state);
+    const next = applyWortleiterHint(puzzle, state);
+
+    expect(hint).toBeTruthy();
+    expect(next.words).toHaveLength(2);
+    expect(isValidTransition("haus", next.words[1])).toBe(true);
   });
 
   it("persists and restores the full ladder state", () => {

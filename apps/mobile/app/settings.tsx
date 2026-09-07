@@ -22,6 +22,8 @@ import { currentNews } from "@/news/current";
 import { resetNews } from "@/news/storage";
 import { resetOnboarding } from "@/onboarding/storage";
 import { PACKS } from "@/games/wordConfig";
+import { HINT_MAX_BALANCE, HINT_STORAGE_VERSION, type HintWallet } from "@/hints/types";
+import { loadHintWallet, saveHintWallet } from "@/hints/storage";
 import { loadPacksSettings, savePacksSettings, type PacksSettings } from "@/storage/packs";
 import { hasPremiumAccess, isPackGated, setMockPremiumEnabled } from "@/premium/packsAccess";
 
@@ -42,6 +44,7 @@ export default function SettingsScreen() {
   const [canUsePacks, setCanUsePacks] = useState(true);
   const [packsGated, setPacksGated] = useState(false);
   const [dailyKniffeSeedOverride, setDailyKniffeSeedOverride] = useState<number | undefined>();
+  const [hintWallet, setHintWallet] = useState<HintWallet | null>(null);
   const [devStatus, setDevStatus] = useState("");
   const dateKey = getBerlinDateKey();
   const productionSeed = createDailyKniffeSeed(dateKey);
@@ -56,6 +59,7 @@ export default function SettingsScreen() {
     loadNotificationSettings().then(setSettings);
     loadWordBucketSettings().then(setBucketSettings);
     loadDailyKniffeSeedOverride().then(setDailyKniffeSeedOverride);
+    if (__DEV__) loadHintWallet().then(setHintWallet);
     loadPacksSettings().then(setPacksSettings);
     setPacksGated(isPackGated());
     hasPremiumAccess().then(setCanUsePacks);
@@ -177,6 +181,20 @@ export default function SettingsScreen() {
 
     await resetNews();
     setDevStatus(`News wird beim nächsten Home-Besuch angezeigt: ${currentNews.id}`);
+  }
+
+  async function setDevHintBalance(balance: number) {
+    const next = {
+      version: HINT_STORAGE_VERSION,
+      balance,
+      winsSinceLastHint: 0,
+      totalEarned: balance,
+      totalSpent: 0,
+    };
+
+    setHintWallet(next);
+    await saveHintWallet(next);
+    setDevStatus(`Hinweise gesetzt: ${balance}/${HINT_MAX_BALANCE}`);
   }
 
   const timeLabel = `${String(settings.hour).padStart(2, "0")}:${String(settings.minute).padStart(2, "0")}`;
@@ -311,6 +329,7 @@ export default function SettingsScreen() {
               </Text>
               <Text style={styles.versionText}>Datum: {dateKey}</Text>
               <Text style={styles.versionText}>Quest Seed: {dailyKniffeSeedOverride ?? productionSeed}</Text>
+              <Text style={styles.versionText}>Hinweise: {hintWallet?.balance ?? 0}/{HINT_MAX_BALANCE}</Text>
               <View style={styles.devGenerated}>
                 <Text style={styles.stepperLabel}>Generated</Text>
                 {generatedKniffe.map((kniff) => (
@@ -330,6 +349,13 @@ export default function SettingsScreen() {
                 <Pressable accessibilityRole="button" onPress={resetNewsDev} style={styles.devButtonSecondary}>
                   <Text style={styles.devButtonSecondaryText}>News neu triggern</Text>
                 </Pressable>
+                <View style={styles.devHintRow}>
+                  {Array.from({ length: HINT_MAX_BALANCE + 1 }).map((_, value) => (
+                    <Pressable accessibilityRole="button" key={value} onPress={() => setDevHintBalance(value)} style={styles.devHintButton}>
+                      <Text style={styles.devButtonSecondaryText}>Hinweise {value}</Text>
+                    </Pressable>
+                  ))}
+                </View>
                 <Pressable accessibilityRole="button" onPress={() => testNotification("daily")} style={styles.devButtonSecondary}>
                   <Text style={styles.devButtonSecondaryText}>Notification testen: Daily</Text>
                 </Pressable>
@@ -574,6 +600,22 @@ const styles = StyleSheet.create({
   },
   devActions: {
     gap: tokens.space.sm
+  },
+  devHintRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: tokens.space.xs,
+  },
+  devHintButton: {
+    flexGrow: 1,
+    minHeight: 42,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: tokens.space.sm,
+    borderRadius: tokens.radius.pill,
+    borderWidth: 1,
+    borderColor: tokens.color.line,
+    backgroundColor: "white",
   },
   devButton: {
     minHeight: 48,

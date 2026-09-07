@@ -21,6 +21,7 @@ export function OnboardingModal({ onClose, onStart, visible }: OnboardingModalPr
             <Text style={styles.step}>1 · Tageskniff auswählen</Text>
             <Text style={styles.step}>2 · Rätsel lösen</Text>
             <Text style={styles.step}>3 · Nächsten offenen Kniff spielen</Text>
+            <Text style={styles.step}>💡 3 gelöste Rätsel bringen 1 Hinweis</Text>
           </View>
           <View style={styles.actions}>
             <Pressable accessibilityRole="button" onPress={onClose} style={styles.secondary}>

@@ -31,12 +31,16 @@ import {
 } from "@/games/wortleiter/daily";
 import {
   getWortleiterRating,
+  getWortleiterHintWord,
+  applyWortleiterHint,
   revealWortleiterSolution,
   submitWortleiterGuess,
   undoWortleiterStep,
 } from "@/games/wortleiter/engine";
 import type { WortleiterState } from "@/games/wortleiter/types";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
+import { getHintPolicy, requestAdHint } from "@/hints/policy";
+import { useHintWallet } from "@/hints/useHintWallet";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
 import {
@@ -69,6 +73,8 @@ export default function WortleiterScreen() {
   const posthog = usePostHog();
   const today = getBerlinDateKey();
   const stats = useGameRecorder();
+  const hintWallet = useHintWallet();
+  const hintPolicy = getHintPolicy();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [game, setGame] = useState<WortleiterGame>(() => createNextWortleiterGame(undefined, today));
@@ -154,6 +160,9 @@ export default function WortleiterScreen() {
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const steps = Math.max(0, state.words.length - 1);
+  const hintWord = getWortleiterHintWord(puzzle, state);
+  const hintDisabled = state.status !== "playing" || !hintWord || (hintPolicy !== "ads" && !hintWallet.canConsume);
+  const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
@@ -211,6 +220,9 @@ export default function WortleiterScreen() {
       const now = Date.now();
 
       stats.finish("won");
+      hintWallet.onWin().then((granted) => {
+        if (granted) setMessage("Hinweis erhalten! 💡");
+      });
       setFinishedAt(now);
       setResultVisible(true);
       captureEvent(posthog, "game_completed", {
@@ -221,6 +233,50 @@ export default function WortleiterScreen() {
         outcome: "won",
         success: true,
       });
+    }
+  }
+
+  async function useHint() {
+    startStats();
+    const nextState = applyWortleiterHint(puzzle, state);
+    const hintedWord = nextState.words[nextState.words.length - 1];
+
+    if (nextState === state) {
+      setMessage("Von hier finde ich keinen sauberen nächsten Schritt.");
+      return;
+    }
+
+    let source = "earned";
+    if (hintPolicy === "ads") {
+      const ok = await requestAdHint();
+      if (!ok) {
+        setMessage("Werbung gerade nicht verfügbar.");
+        return;
+      }
+      source = "ad";
+    } else {
+      const consumed = await hintWallet.tryConsume();
+      if (!consumed) {
+        setMessage("Keine Hinweise verfügbar.");
+        return;
+      }
+    }
+
+    setState(nextState);
+    setInputLetters(createEmptyInput(puzzle.wordLength));
+    setCursorIndex(0);
+    stats.recordHint({ source, gameId: "wortleiter", wordAdded: hintedWord });
+    captureEvent(posthog, "hint_used", { gameId: "wortleiter", dateKey, source });
+    setMessage(nextState.status === "won" ? "Geschafft!" : "Hinweis: nächster Schritt ergänzt.");
+
+    if (nextState.status === "won") {
+      stats.finish("won");
+      hintWallet.onWin().then((granted) => {
+        if (granted) setMessage("Hinweis erhalten! 💡");
+      });
+      setFinishedAt(Date.now());
+      setResultVisible(true);
+      captureEvent(posthog, "game_completed", { gameId: "wortleiter", dateKey, durationMs: elapsedSeconds * 1000, attempts: nextState.words.length - 1, outcome: "won", success: true });
     }
   }
 
@@ -277,10 +333,11 @@ export default function WortleiterScreen() {
   return (
     <GameScreenFrame
       actions={state.status === "playing" ? (
-        <>
+        <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
           <SmallGameAction disabled={state.words.length <= 1} label="Zurück" onPress={undo} />
+          <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} />
           <SmallGameAction label="Lösung anzeigen" onPress={() => setRevealVisible(true)} />
-        </>
+        </View>
       ) : null}
       keyboard={{
         disabled: state.status !== "playing",
@@ -294,7 +351,6 @@ export default function WortleiterScreen() {
         captureEvent(posthog, "help_opened", { gameId: "wortleiter", dateKey });
         setHelpVisible(true);
       }}
-      subtitle={dateKey}
       title="Wortleiter"
     >
       <View style={styles.wrap}>

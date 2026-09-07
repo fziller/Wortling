@@ -7,12 +7,13 @@ import { ShakeView } from "@/components/ShakeView";
 type LetterInputTilesProps = {
   cursorIndex: number;
   disabled?: boolean;
+  placeholders?: readonly (string | null)[];
   letters: readonly string[];
   onCursorChange: (index: number) => void;
   shakeTrigger?: number;
 };
 
-export function LetterInputTiles({ cursorIndex, disabled = false, letters, onCursorChange, shakeTrigger = 0 }: LetterInputTilesProps) {
+export function LetterInputTiles({ cursorIndex, disabled = false, letters, onCursorChange, placeholders = [], shakeTrigger = 0 }: LetterInputTilesProps) {
   const tileLayout = getWordTileLayout(letters.length);
 
   return (
@@ -20,17 +21,18 @@ export function LetterInputTiles({ cursorIndex, disabled = false, letters, onCur
       <View style={[styles.row, { gap: tileLayout.gap }]}>
       {letters.map((letter, index) => {
         const active = !disabled && index === cursorIndex;
+        const placeholder = !letter ? placeholders[index] : undefined;
 
         return (
           <Pressable
-            accessibilityLabel={`Buchstabe ${index + 1}${letter ? `: ${letter.toUpperCase()}` : " leer"}`}
+            accessibilityLabel={`Buchstabe ${index + 1}${letter ? `: ${letter.toUpperCase()}` : placeholder ? `, Hinweis ${placeholder.toUpperCase()}` : " leer"}`}
             accessibilityRole="button"
             disabled={disabled}
             key={index}
             onPress={() => onCursorChange(index)}
             style={[styles.tile, { minHeight: tileLayout.minHeight }, active && styles.activeTile]}
           >
-            <Text style={[styles.tileText, { fontSize: tileLayout.fontSize }]}>{letter.toLocaleUpperCase("de-DE")}</Text>
+            <Text style={[styles.tileText, { fontSize: tileLayout.fontSize }, placeholder && styles.placeholderText]}>{(letter || placeholder || "").toLocaleUpperCase("de-DE")}</Text>
           </Pressable>
         );
       })}
@@ -62,5 +64,9 @@ const styles = StyleSheet.create({
     color: tokens.color.ink,
     fontSize: 22,
     fontWeight: "900"
+  },
+  placeholderText: {
+    color: tokens.color.muted,
+    opacity: 0.45,
   }
 });

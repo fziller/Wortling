@@ -25,7 +25,7 @@ type GameScreenFrameProps = {
   keyboard: GameKeyboardConfig;
   onBack: () => void;
   onHelp: () => void;
-  subtitle: string;
+  subtitle?: string;
   title: string;
 };
 
@@ -72,8 +72,9 @@ const styles = StyleSheet.create({
   },
   actions: {
     alignItems: "center",
+    flexWrap: "wrap",
     flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     gap: tokens.space.sm,
   },
 });

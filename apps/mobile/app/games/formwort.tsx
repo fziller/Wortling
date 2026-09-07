@@ -36,9 +36,8 @@ import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedSt
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 import { usePacksSettings } from "@/hooks/usePacksSettings";
-import { HintIndicator } from "@/components/HintIndicator";
 import { useHintWallet } from "@/hints/useHintWallet";
-import { getHintPolicy, requestAdHint, shouldShowEarnedProgress } from "@/hints/policy";
+import { getHintPolicy, requestAdHint } from "@/hints/policy";
 import { buildMarkedGridShareText } from "@/games/share/grid";
 
 type FormwortGame = ReturnType<typeof createNextFormwortGame>;
@@ -106,8 +105,6 @@ export default function FormwortScreen() {
   const hintWallet = useHintWallet();
   const hintPolicy = getHintPolicy();
   const revealedLetters = getFormwortRevealedLetters(puzzle, state);
-  const revealedSet = new Set(revealedLetters.map((ch, i) => (ch ? i : -1)).filter((i) => i >= 0));
-  const mergeDraftWithRevealed = (draft: string[], letters: (string | null)[]) => draft.map((ch, i) => (letters[i] ? letters[i]! : ch));
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "formwort", params: { dateKey } });
@@ -125,10 +122,8 @@ export default function FormwortScreen() {
         setState(progress.state);
         const draft = Array.isArray(progress.draft) ? progress.draft.map(String).slice(0, nextGame.puzzle.wordLength) : [];
         const base = draft.length === nextGame.puzzle.wordLength ? draft : createEmptyInput(nextGame.puzzle.wordLength);
-        const revealed = getFormwortRevealedLetters(nextGame.puzzle, progress.state as FormwortState);
-        const merged = mergeDraftWithRevealed(base, revealed);
-        setInputLetters(merged);
-        const firstEmpty = merged.findIndex((ch, i) => !ch && !revealed[i]);
+        setInputLetters(base);
+        const firstEmpty = base.findIndex((ch) => !ch);
         if (firstEmpty >= 0) setCursorIndex(firstEmpty);
       }
       setProgressLoaded(true);
@@ -160,50 +155,18 @@ export default function FormwortScreen() {
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
-    if (revealedSet.has(cursorIndex)) {
-      // skip locked slot
-      let nextIdx = cursorIndex + 1;
-      while (nextIdx < puzzle.wordLength && revealedSet.has(nextIdx)) nextIdx += 1;
-      if (nextIdx >= puzzle.wordLength) return;
-      setCursorIndex(nextIdx);
-      setInputLetters((current) => {
-        const next = applyFormwortInputLetter(puzzle.symbols, current, nextIdx, letter);
-        // re-apply hint locks
-        const merged = mergeDraftWithRevealed(next.letters as string[], revealedLetters);
-        setCursorIndex(next.cursorIndex);
-        // ensure cursor not on locked
-        let c = next.cursorIndex;
-        while (c < puzzle.wordLength && revealedSet.has(c)) c += 1;
-        if (c < puzzle.wordLength) setCursorIndex(c);
-        return merged;
-      });
-      return;
-    }
     setInputLetters((current) => {
       const next = applyFormwortInputLetter(puzzle.symbols, current, cursorIndex, letter);
-      const merged = mergeDraftWithRevealed(next.letters as string[], revealedLetters);
-      let c = next.cursorIndex;
-      while (c < puzzle.wordLength && revealedSet.has(c)) c += 1;
-      setCursorIndex(c < puzzle.wordLength ? c : next.cursorIndex);
-      return merged;
+      setCursorIndex(next.cursorIndex);
+      return next.letters as string[];
     });
   }
 
   function backspace() {
-    if (revealedSet.has(cursorIndex)) {
-      let prev = cursorIndex - 1;
-      while (prev >= 0 && revealedSet.has(prev)) prev -= 1;
-      if (prev >= 0) setCursorIndex(prev);
-      return;
-    }
     setInputLetters((current) => {
       const next = removeFormwortInputLetter(puzzle.symbols, current, cursorIndex);
-      // don't clear locked positions
-      const merged = mergeDraftWithRevealed(next.letters as string[], revealedLetters);
-      let c = next.cursorIndex;
-      while (c >= 0 && revealedSet.has(c)) c -= 1;
-      setCursorIndex(c >= 0 ? c : next.cursorIndex);
-      return merged;
+      setCursorIndex(next.cursorIndex);
+      return next.letters as string[];
     });
   }
 
@@ -214,32 +177,25 @@ export default function FormwortScreen() {
       if (!ok) { setMessage("Werbung gerade nicht verfügbar."); return; }
       const next = applyFormwortHint(puzzle, state);
       if (next === state) { setMessage("Alle Buchstaben schon aufgedeckt."); return; }
-      const letters = getFormwortRevealedLetters(puzzle, next);
       setState(next);
-      setInputLetters((prev) => mergeDraftWithRevealed(prev, letters));
       stats.recordHint({ source: "ad", gameId: "formwort" });
       captureEvent(posthog, "hint_used", { gameId: "formwort", dateKey, source: "ad" });
-      setMessage("Tipp aufgedeckt.");
+      setMessage("Hinweis aufgedeckt.");
       return;
     }
     if (!hintWallet.canConsume) {
-      setMessage(hintWallet.wallet.balance >= 3 ? "Tipp-Lager voll (3/3)." : `Keine Tipps. Gewinne noch ${3 - hintWallet.wallet.winsSinceLastHint} Runden.`);
+      setMessage(hintWallet.wallet.balance >= 3 ? "Hinweis-Lager voll (3/3)." : `Keine Hinweise. Gewinne noch ${3 - hintWallet.wallet.winsSinceLastHint} Runden.`);
       return;
     }
-    const consumed = await hintWallet.tryConsume();
-    if (!consumed) { setMessage("Keine Tipps verfügbar."); return; }
     const next = applyFormwortHint(puzzle, state);
     if (next === state) { setMessage("Alle Buchstaben schon aufgedeckt."); return; }
-    const letters = getFormwortRevealedLetters(puzzle, next);
+    const consumed = await hintWallet.tryConsume();
+    if (!consumed) { setMessage("Keine Hinweise verfügbar."); return; }
     setState(next);
-    setInputLetters((prev) => mergeDraftWithRevealed(prev, letters));
-    const firstEmpty = letters.findIndex((ch) => !ch);
-    // keep cursor on first non-locked empty, fallback to current
-    if (firstEmpty >= 0 && !revealedSet.has(firstEmpty)) setCursorIndex(firstEmpty);
     startStats();
     stats.recordHint({ source: "earned", gameId: "formwort", revealedCount: next.revealedIndices?.length });
     captureEvent(posthog, "hint_used", { gameId: "formwort", dateKey, source: "earned" });
-    setMessage("Tipp: Buchstabe aufgedeckt.");
+    setMessage("Hinweis: Buchstabe aufgedeckt.");
   }
 
   function startStats() {
@@ -254,10 +210,8 @@ export default function FormwortScreen() {
     setMessage(result.ok ? result.state.status === "won" ? "Form geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "" : result.reason);
     if (result.ok) {
       stats.recordAcceptedGuess(result.guess.value, { marks: [...result.guess.marks] });
-      const nextRevealed = getFormwortRevealedLetters(puzzle, result.state);
-      setInputLetters(mergeDraftWithRevealed(createEmptyInput(puzzle.wordLength), nextRevealed));
-      const firstEmpty = nextRevealed.findIndex((ch) => !ch);
-      setCursorIndex(firstEmpty >= 0 ? firstEmpty : 0);
+      setInputLetters(createEmptyInput(puzzle.wordLength));
+      setCursorIndex(0);
     } else {
       stats.recordRejectedGuess(result.reason, inputLetters.join(""));
       setShakeTick((value) => value + 1);
@@ -266,7 +220,7 @@ export default function FormwortScreen() {
       stats.finish(result.state.status);
       if (result.state.status === "won") {
         hintWallet.onWin().then((granted) => {
-          if (granted) setMessage("Tipp erhalten! 💡");
+          if (granted) setMessage("Hinweis erhalten! 💡");
           try { posthog.capture(granted ? "hint_earned" : "hint_progress", { gameId: "formwort", dateKey }); } catch {}
         });
       }
@@ -320,13 +274,12 @@ export default function FormwortScreen() {
   }
 
   const hintDisabled = state.status !== "playing" || (hintPolicy !== "ads" && !hintWallet.canConsume);
-  const hintLabel = hintPolicy === "ads" ? "Tipp (Werbung)" : `Tipp (${hintWallet.wallet.balance}/3)`;
+  const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
   return (
     <GameScreenFrame
       actions={
-        <View style={{ flexDirection: "row", gap: 8, alignItems: "center" }}>
-          <HintIndicator balance={hintWallet.wallet.balance} winsSinceLastHint={hintWallet.wallet.winsSinceLastHint} showProgress={shouldShowEarnedProgress(hintPolicy)} />
+        <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
           {state.status === "playing" ? <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} /> : null}
           {state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
         </View>
@@ -344,7 +297,7 @@ export default function FormwortScreen() {
         captureEvent(posthog, "help_opened", { gameId: "formwort", dateKey });
         setHelpVisible(true);
       }}
-      subtitle={`${dateKey} · ${puzzle.wordLength} Buchstaben`}
+      subtitle={`${puzzle.wordLength} Buchstaben`}
       title="Formwort"
     >
       <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
@@ -364,31 +317,30 @@ export default function FormwortScreen() {
                 >
                   {letters.map((letter, letterIndex) => {
                     const mark = guess?.marks[letterIndex];
-                    const isHintLocked = inputRow && revealedSet.has(letterIndex);
-                    const hintMark = isHintLocked ? "correct" : mark;
+                    const placeholder = inputRow && !letter ? revealedLetters[letterIndex] : null;
                     const symbol = inputRow && !letter ? puzzle.symbols[letterIndex] : "";
-                    const isActive = inputRow && !guess && letterIndex === cursorIndex && state.status === "playing" && !isHintLocked;
+                    const isActive = inputRow && !guess && letterIndex === cursorIndex && state.status === "playing";
 
                     return (
                       <Pressable
-                        disabled={Boolean(guess) || isHintLocked}
+                        disabled={Boolean(guess)}
                         key={`${rowIndex}-${letterIndex}`}
                         onPress={() => {
-                          if (isHintLocked) return;
                           if (inputRow) setCursorIndex(letterIndex);
                         }}
-                        style={tileStyle(tileLayout.minHeight, symbol, symbolColor, hintMark, isActive)}
+                        style={tileStyle(tileLayout.minHeight, symbol, symbolColor, mark, isActive)}
                       >
                         <Text
                           style={[
                             styles.tileText,
                             { fontSize: tileLayout.fontSize },
-                            symbol && !isHintLocked && styles.symbolText,
-                            symbol && !isHintLocked && { color: symbolColor(symbol), fontSize: tileLayout.symbolFontSize },
-                            hintMark && styles.markedTileText,
+                            symbol && !placeholder && styles.symbolText,
+                            symbol && !placeholder && { color: symbolColor(symbol), fontSize: tileLayout.symbolFontSize },
+                            placeholder && styles.placeholderText,
+                            mark && styles.markedTileText,
                           ]}
                         >
-                          {letter ? letter.toLocaleUpperCase("de-DE") : symbol}
+                          {(letter || placeholder || symbol).toLocaleUpperCase("de-DE")}
                         </Text>
                       </Pressable>
                     );
@@ -453,6 +405,7 @@ const styles = StyleSheet.create({
   activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
   tileText: { color: tokens.color.ink, fontSize: 25, fontWeight: "900" },
   symbolText: { color: "#E99B88", fontSize: 24 },
+  placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   markedTileText: { color: "white" },
   absent: { backgroundColor: "#7B736A", borderColor: "#7B736A" },
   present: { backgroundColor: "#D98500", borderColor: "#D98500" },

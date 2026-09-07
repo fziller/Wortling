@@ -16,7 +16,7 @@ import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
 import { buildSimpleShareText } from "@/games/share/grid";
 import { createNextGalgenwortGame } from "@/games/galgenwort/daily";
-import { getGalgenwortLetterStates, getGalgenwortRevealedLetters, getGalgenwortWrongLetters, revealGalgenwortSolution, submitGalgenwortLetter } from "@/games/galgenwort/engine";
+import { applyGalgenwortHint, getGalgenwortHintLetter, getGalgenwortLetterStates, getGalgenwortRevealedLetters, getGalgenwortWrongLetters, revealGalgenwortSolution, submitGalgenwortLetter } from "@/games/galgenwort/engine";
 import type { GalgenwortState } from "@/games/galgenwort/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
@@ -28,6 +28,8 @@ import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedSt
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 import { usePacksSettings } from "@/hooks/usePacksSettings";
+import { getHintPolicy, requestAdHint } from "@/hints/policy";
+import { useHintWallet } from "@/hints/useHintWallet";
 
 type GalgenwortGame = ReturnType<typeof createNextGalgenwortGame>;
 
@@ -36,6 +38,8 @@ export default function GalgenwortScreen() {
   const posthog = usePostHog();
   const today = getBerlinDateKey();
   const stats = useGameRecorder();
+  const hintWallet = useHintWallet();
+  const hintPolicy = getHintPolicy();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
@@ -96,9 +100,15 @@ export default function GalgenwortScreen() {
   const wordTileFontSize = answerLength > 10 ? 22 : answerLength > 8 ? 26 : 30;
   const wrongLetters = getGalgenwortWrongLetters(puzzle, state);
   const letterStates = getGalgenwortLetterStates(puzzle, state);
+  const hintDisabled = state.status !== "playing" || !getGalgenwortHintLetter(puzzle, state) || (hintPolicy !== "ads" && !hintWallet.canConsume);
+  const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
+
+  function startStats() {
+    stats.start({ gameId: "galgenwort", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version });
+  }
 
   function guess(letter: string) {
-    stats.start({ gameId: "galgenwort", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version });
+    startStats();
     const result = submitGalgenwortLetter(puzzle, state, letter);
 
     setState(result.state);
@@ -111,9 +121,55 @@ export default function GalgenwortScreen() {
     }
     if (result.ok && isFinishedGameStatus(result.state.status)) {
       stats.finish(result.state.status);
+      if (result.state.status === "won") {
+        hintWallet.onWin().then((granted) => {
+          if (granted) setMessage("Hinweis erhalten! 💡");
+        });
+      }
       setFinishedAt(Date.now());
       setResultVisible(true);
       captureEvent(posthog, "game_completed", { gameId: "galgenwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guessedLetters.length, outcome: result.state.status, success: result.state.status === "won" });
+    }
+  }
+
+  async function useHint() {
+    if (state.status !== "playing") return;
+    const next = applyGalgenwortHint(puzzle, state);
+    if (next === state) {
+      setMessage("Alle Buchstaben schon aufgedeckt.");
+      return;
+    }
+
+    let source = "earned";
+    if (hintPolicy === "ads") {
+      const ok = await requestAdHint();
+      if (!ok) {
+        setMessage("Werbung gerade nicht verfügbar.");
+        return;
+      }
+      source = "ad";
+    } else {
+      const consumed = await hintWallet.tryConsume();
+      if (!consumed) {
+        setMessage("Keine Hinweise verfügbar.");
+        return;
+      }
+    }
+
+    startStats();
+    setState(next);
+    stats.recordHint({ source, gameId: "galgenwort" });
+    captureEvent(posthog, "hint_used", { gameId: "galgenwort", dateKey, source });
+    setMessage(next.status === "won" ? "Gelöst!" : "Hinweis: Buchstabe aufgedeckt.");
+
+    if (next.status === "won") {
+      stats.finish("won");
+      hintWallet.onWin().then((granted) => {
+        if (granted) setMessage("Hinweis erhalten! 💡");
+      });
+      setFinishedAt(Date.now());
+      setResultVisible(true);
+      captureEvent(posthog, "game_completed", { gameId: "galgenwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: next.guessedLetters.length, outcome: "won", success: true });
     }
   }
 
@@ -158,7 +214,12 @@ export default function GalgenwortScreen() {
 
   return (
     <GameScreenFrame
-      actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
+      actions={
+        <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
+          {state.status === "playing" ? <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} /> : null}
+          {state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} /> : null}
+        </View>
+      }
       keyboard={{
         disabled: state.status !== "playing",
         letterStates,
@@ -173,7 +234,6 @@ export default function GalgenwortScreen() {
         captureEvent(posthog, "help_opened", { gameId: "galgenwort", dateKey });
         setHelpVisible(true);
       }}
-      subtitle={dateKey}
       title="Galgenwort"
     >
       <View style={styles.wrap}>

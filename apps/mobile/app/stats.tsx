@@ -105,7 +105,7 @@ export default function StatsScreen() {
                 <Metric label="Aktive Zeit" value={formatDuration(stats.lifetime.totalActiveMs)} />
                 <Metric label="Ø pro Runde" value={formatDuration(stats.lifetime.avgActiveMsPerSession ?? 0)} />
                 <Metric label="Ø Versuche" value={formatNumber(stats.lifetime.avgAttempts)} />
-                <Metric label="Ø Tipps" value={formatNumber(stats.lifetime.avgHints)} />
+                <Metric label="Ø Hinweise" value={formatNumber(stats.lifetime.avgHints)} />
               </View>
             </TapeSection>
 

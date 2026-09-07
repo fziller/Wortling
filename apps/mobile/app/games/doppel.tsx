@@ -18,6 +18,8 @@ import { createNextDoppelGame } from "@/games/doppel/daily";
 import { revealDoppelSolution, submitDoppelGuess, unlockDoppelHint } from "@/games/doppel/engine";
 import { DoppelHint, DoppelState } from "@/games/doppel/types";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
+import { getHintPolicy, requestAdHint } from "@/hints/policy";
+import { useHintWallet } from "@/hints/useHintWallet";
 import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, saveProgress, type StoredProgress } from "@/storage/progress";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
@@ -38,6 +40,8 @@ export default function DoppelScreen() {
   const posthog = usePostHog();
   const today = getBerlinDateKey();
   const stats = useGameRecorder();
+  const hintWallet = useHintWallet();
+  const hintPolicy = getHintPolicy();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [game, setGame] = useState<DoppelGame>(() => createNextDoppelGame(undefined, today));
@@ -100,6 +104,9 @@ export default function DoppelScreen() {
   const visibleHints = (puzzle.hints ?? []).slice(0, state.unlockedHints);
   const canSubmit = input.trim().length > 0 && state.status === "playing";
   const maxInputLength = Math.max(...puzzle.solutions.map((item) => Array.from(item.answer).length));
+  const hasMoreHints = state.unlockedHints < (puzzle.hints?.length ?? 0);
+  const hintDisabled = state.status !== "playing" || !hasMoreHints || (hintPolicy !== "ads" && !hintWallet.canConsume);
+  const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "doppel", params: { dateKey } });
@@ -134,6 +141,9 @@ export default function DoppelScreen() {
     }
     if (result.ok && result.state.status !== "playing") {
       stats.finish("won");
+      hintWallet.onWin().then((granted) => {
+        if (granted) setMessage("Hinweis erhalten! 💡");
+      });
       setFinishedAt(Date.now());
       setResultVisible(true);
       captureEvent(posthog, "game_completed", {
@@ -147,18 +157,36 @@ export default function DoppelScreen() {
     }
   }
 
-  function hint() {
+  async function hint() {
     startStats();
     const nextState = unlockDoppelHint(puzzle, state);
-
-    if (nextState.unlockedHints > state.unlockedHints) {
-      const unlockedHint = (puzzle.hints ?? [])[nextState.unlockedHints - 1];
-
-      stats.recordHint(unlockedHint ? { type: unlockedHint.type } : undefined);
-      captureEvent(posthog, "hint_used", { gameId: "doppel", dateKey, source: unlockedHint?.type });
+    if (nextState.unlockedHints === state.unlockedHints) {
+      setMessage("Keine weiteren Hinweise.");
+      return;
     }
+
+    let source = "earned";
+    if (hintPolicy === "ads") {
+      const ok = await requestAdHint();
+      if (!ok) {
+        setMessage("Werbung gerade nicht verfügbar.");
+        return;
+      }
+      source = "ad";
+    } else {
+      const consumed = await hintWallet.tryConsume();
+      if (!consumed) {
+        setMessage("Keine Hinweise verfügbar.");
+        return;
+      }
+    }
+
+    const unlockedHint = (puzzle.hints ?? [])[nextState.unlockedHints - 1];
+
+    stats.recordHint(unlockedHint ? { source, type: unlockedHint.type } : { source });
+    captureEvent(posthog, "hint_used", { gameId: "doppel", dateKey, source });
     setState(nextState);
-    setMessage(nextState.unlockedHints === state.unlockedHints ? "Keine weiteren Hinweise." : "Hinweis freigeschaltet.");
+    setMessage("Hinweis freigeschaltet.");
   }
 
   function reveal() {
@@ -209,10 +237,10 @@ export default function DoppelScreen() {
   return (
     <GameScreenFrame
       actions={state.status === "playing" ? (
-        <>
-          <SmallGameAction label="Hinweis" onPress={hint} />
+        <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
+          <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={hint} />
           <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} />
-        </>
+        </View>
       ) : null}
       keyboard={{
         disabled: state.status !== "playing",
@@ -226,7 +254,6 @@ export default function DoppelScreen() {
         captureEvent(posthog, "help_opened", { gameId: "doppel", dateKey });
         setHelpVisible(true);
       }}
-      subtitle={dateKey}
       title="Doppel"
     >
       <View style={styles.wrap}>

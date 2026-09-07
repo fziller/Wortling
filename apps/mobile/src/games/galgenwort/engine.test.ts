@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { createGalgenwortState, getGalgenwortRevealedLetters, getGalgenwortWrongLetters, submitGalgenwortLetter } from "./engine";
+import { applyGalgenwortHint, createGalgenwortState, getGalgenwortRevealedLetters, getGalgenwortWrongLetters, submitGalgenwortLetter } from "./engine";
 import type { GalgenwortPuzzle } from "./types";
 
 const puzzle: GalgenwortPuzzle = {
@@ -37,5 +37,12 @@ describe("galgenwort engine", () => {
     expect(wonState.status).toBe("won");
     expect(lostState.status).toBe("lost");
     expect(getGalgenwortWrongLetters(puzzle, lostState)).toEqual(["x", "y"]);
+  });
+
+  it("reveals a correct unguessed letter as hint", () => {
+    const state = applyGalgenwortHint(puzzle, createGalgenwortState(puzzle));
+
+    expect(state.guessedLetters).toEqual(["b"]);
+    expect(getGalgenwortRevealedLetters(puzzle, state)).toEqual(["b", "", "", "", "", ""]);
   });
 });

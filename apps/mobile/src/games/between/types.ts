@@ -11,6 +11,7 @@ export type GameStatus = "playing" | "won" | "revealed" | "abandoned";
 export type BetweenState = {
   targetWord: string;
   lowerBound: string;
+  revealedHintIndices?: number[];
   upperBound: string;
   guesses: Guess[];
   status: GameStatus;

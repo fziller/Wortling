@@ -29,7 +29,7 @@ import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
 import { CONTENT_VERSION } from "@/games/between/content";
 import { createNextBetweenGame } from "@/games/between/daily";
-import { getOpenAlphabetLetters, getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
+import { applyBetweenHint, getBetweenRevealedHintLetters, getOpenAlphabetLetters, getTargetRangeMetrics, revealSolution, submitGuess } from "@/games/between/engine";
 import { displayWord } from "@/games/between/format";
 import { BetweenState, Guess } from "@/games/between/types";
 import { getWordTileLayout } from "@/games/wordTileLayout";
@@ -42,6 +42,8 @@ import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedSt
 import { useGameRecorder } from "@/stats/recorder";
 import { usePacksSettings } from "@/hooks/usePacksSettings";
 import { buildSimpleShareText } from "@/games/share/grid";
+import { getHintPolicy, requestAdHint } from "@/hints/policy";
+import { useHintWallet } from "@/hints/useHintWallet";
 
 const BOARD_LINE_HEIGHT = 132;
 const DOT_SIZE = 20;
@@ -77,6 +79,8 @@ export default function BetweenScreen() {
   const posthog = usePostHog();
   const today = getBerlinDateKey();
   const stats = useGameRecorder();
+  const hintWallet = useHintWallet();
+  const hintPolicy = getHintPolicy();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
@@ -109,6 +113,9 @@ export default function BetweenScreen() {
   const centerWord = state.status === "revealed" || state.status === "won" ? state.targetWord : undefined;
   const showScaleHints = Boolean(lastGuess);
   const puzzleId = `between-${state.targetWord}`;
+  const hintPlaceholders = getBetweenRevealedHintLetters(state);
+  const hintDisabled = state.status !== "playing" || (state.revealedHintIndices?.length ?? 0) >= Array.from(state.targetWord).length || (hintPolicy !== "ads" && !hintWallet.canConsume);
+  const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "between", params: { dateKey } });
@@ -236,6 +243,11 @@ export default function BetweenScreen() {
 
     if (result.state.status === "won") {
       stats.finish("won");
+      hintWallet.onWin().then((granted) => {
+        if (granted) {
+          // Preserve the result modal message; the wallet indicator updates after returning.
+        }
+      });
       captureEvent(posthog, "game_completed", {
         gameId: "between",
         dateKey,
@@ -275,6 +287,28 @@ export default function BetweenScreen() {
 
       return current.map((item, index) => index === previousIndex ? "" : item);
     });
+  }
+
+  async function useHint() {
+    const next = applyBetweenHint(state);
+    if (next === state) {
+      return;
+    }
+
+    let source = "earned";
+    if (hintPolicy === "ads") {
+      const ok = await requestAdHint();
+      if (!ok) return;
+      source = "ad";
+    } else {
+      const consumed = await hintWallet.tryConsume();
+      if (!consumed) return;
+    }
+
+    stats.start({ gameId: "between", playDate: dateKey, puzzleId, gameVersion: puzzleVersion, wordLength: 5 });
+    setState(next);
+    stats.recordHint({ source, gameId: "between", revealedCount: next.revealedHintIndices?.length });
+    captureEvent(posthog, "hint_used", { gameId: "between", dateKey, source });
   }
 
   function startNextWord() {
@@ -327,7 +361,12 @@ export default function BetweenScreen() {
 
   return (
     <GameScreenFrame
-      actions={state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setModal("reveal")} /> : null}
+      actions={state.status === "playing" ? (
+        <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
+          <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} />
+          <SmallGameAction label="Lösung anzeigen" onPress={() => setModal("reveal")} />
+        </View>
+      ) : null}
       keyboard={{
         disabled: state.status !== "playing",
         onBackspace: backspace,
@@ -340,13 +379,12 @@ export default function BetweenScreen() {
         captureEvent(posthog, "help_opened", { gameId: "between", dateKey });
         setHelpVisible(true);
       }}
-      subtitle={dateKey}
       title="Dazwischen"
     >
       <View style={styles.keyboard}>
         <Animated.View entering={FadeInDown.delay(80)} layout={LinearTransition.springify()} style={[styles.boardCard, glowStyle]}>
           <View style={styles.rangeStats}>
-            <Text style={styles.statText}>{state.guesses.length} Tipps</Text>
+            <Text style={styles.statText}>{state.guesses.length} Versuche</Text>
           </View>
 
           <View style={styles.boardWrap}>
@@ -374,6 +412,7 @@ export default function BetweenScreen() {
                   exitingDirection={clearingDirection}
                   letters={centerWord ? undefined : inputLetters}
                   onTilePress={setCursorIndex}
+                  placeholders={hintPlaceholders}
                   revealed={state.status === "revealed" || state.status === "won"}
                   word={centerWord}
                 />
@@ -415,11 +454,11 @@ export default function BetweenScreen() {
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "between", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "between", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
-        shareText={buildSimpleShareText("Dazwischen", dateKey, state.status, `${state.guesses.length} Tipps · ${formatElapsedTime(elapsedSeconds)}`)}
+        shareText={buildSimpleShareText("Dazwischen", dateKey, state.status, `${state.guesses.length} Versuche · ${formatElapsedTime(elapsedSeconds)}`)}
         solution={state.targetWord}
         success={state.status === "won"}
         stats={[
-          { label: "Tipps", value: state.guesses.length },
+          { label: "Versuche", value: state.guesses.length },
           { label: "Zeit", value: formatElapsedTime(elapsedSeconds) },
           { label: "Wörter übrig", value: formatWordCount(rangeMetrics.remainingWords) }
         ]}
@@ -438,11 +477,12 @@ type WordTilesProps = {
   filled?: boolean;
   dimmed?: boolean;
   onTilePress?: (index: number) => void;
+  placeholders?: readonly (string | null)[];
   revealed?: boolean;
   exitingDirection?: Guess["direction"];
 };
 
-function WordTiles({ cursorIndex = 0, disabled = true, word, letters: inputLetters, filled = false, dimmed = false, onTilePress, revealed = false, exitingDirection }: WordTilesProps) {
+function WordTiles({ cursorIndex = 0, disabled = true, word, letters: inputLetters, filled = false, dimmed = false, onTilePress, placeholders = [], revealed = false, exitingDirection }: WordTilesProps) {
   const letters = word ? Array.from(displayWord(word)) : inputLetters ?? Array.from({ length: 5 }, () => "");
   const tileLayout = getWordTileLayout(letters.length);
   const flipChanges = Boolean(word) || Boolean(exitingDirection) || filled || revealed;
@@ -461,6 +501,7 @@ function WordTiles({ cursorIndex = 0, disabled = true, word, letters: inputLette
           letter={letter}
           minHeight={tileLayout.minHeight}
           onPress={() => onTilePress?.(index)}
+          placeholder={!word && !letter ? placeholders[index] : null}
           revealed={revealed}
           textSize={tileLayout.fontSize}
         />
@@ -479,11 +520,12 @@ type FlipWordTileProps = {
   letter: string;
   minHeight: number;
   onPress: () => void;
+  placeholder?: string | null;
   revealed: boolean;
   textSize: number;
 };
 
-function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, letter, minHeight, onPress, revealed, textSize }: FlipWordTileProps) {
+function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, letter, minHeight, onPress, placeholder, revealed, textSize }: FlipWordTileProps) {
   const [displayLetter, setDisplayLetter] = useState(letter);
   const progress = useSharedValue(1);
 
@@ -528,7 +570,7 @@ function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, lett
 
   return (
     <AnimatedPressable
-      accessibilityLabel={`Buchstabe ${index + 1}${displayLetter ? `: ${displayLetter.toUpperCase()}` : " leer"}`}
+      accessibilityLabel={`Buchstabe ${index + 1}${displayLetter ? `: ${displayLetter.toUpperCase()}` : placeholder ? `, Hinweis ${placeholder.toUpperCase()}` : " leer"}`}
       accessibilityRole="button"
       disabled={disabled}
       entering={FadeInDown.delay(index * 35).duration(tokens.motion.quick)}
@@ -543,7 +585,7 @@ function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, lett
         animatedStyle,
       ]}
     >
-      <Text style={[styles.wordTileText, { fontSize: textSize }, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty]}>{displayLetter.toLocaleUpperCase("de-DE")}</Text>
+      <Text style={[styles.wordTileText, { fontSize: textSize }, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty, placeholder && !displayLetter && styles.placeholderText]}>{(displayLetter || placeholder || "").toLocaleUpperCase("de-DE")}</Text>
     </AnimatedPressable>
   );
 }
@@ -700,6 +742,10 @@ const styles = StyleSheet.create({
   },
   wordTileTextEmpty: {
     color: tokens.color.ink
+  },
+  placeholderText: {
+    color: tokens.color.muted,
+    opacity: 0.45,
   },
   alphabetLabel: {
     color: tokens.color.muted,

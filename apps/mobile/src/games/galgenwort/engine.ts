@@ -62,3 +62,21 @@ export function submitGalgenwortLetter(puzzle: GalgenwortPuzzle, state: Galgenwo
 export function revealGalgenwortSolution(state: GalgenwortState): GalgenwortState {
   return { ...state, status: "revealed" };
 }
+
+export function getGalgenwortHintLetter(puzzle: GalgenwortPuzzle, state: GalgenwortState): string | null {
+  const guessed = new Set(state.guessedLetters);
+  const available = [...new Set(getGalgenwortAnswerLetters(puzzle.answer))].filter((letter) => !guessed.has(letter));
+
+  return available[0] ?? null;
+}
+
+export function applyGalgenwortHint(puzzle: GalgenwortPuzzle, state: GalgenwortState): GalgenwortState {
+  if (state.status !== "playing") return state;
+  const letter = getGalgenwortHintLetter(puzzle, state);
+  if (!letter) return state;
+  const guessedLetters = [...state.guessedLetters, letter];
+  const nextState = { ...state, guessedLetters };
+  const won = getGalgenwortRevealedLetters(puzzle, nextState).every(Boolean);
+
+  return { ...nextState, status: won ? "won" : "playing" };
+}
