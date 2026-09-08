@@ -57,18 +57,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "bi"
     },
     {
-      "answer": "alienorm",
-      "left": "alien",
-      "right": "enorm",
-      "overlap": "en"
-    },
-    {
-      "answer": "alienzym",
-      "left": "alien",
-      "right": "enzym",
-      "overlap": "en"
-    },
-    {
       "answer": "allzudem",
       "left": "allzu",
       "right": "zudem",
@@ -126,12 +114,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "alphandy",
       "left": "alpha",
       "right": "handy",
-      "overlap": "ha"
-    },
-    {
-      "answer": "alphappy",
-      "left": "alpha",
-      "right": "happy",
       "overlap": "ha"
     },
     {
@@ -219,12 +201,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "go"
     },
     {
-      "answer": "anbaudio",
-      "left": "anbau",
-      "right": "audio",
-      "overlap": "au"
-    },
-    {
       "answer": "anbautor",
       "left": "anbau",
       "right": "autor",
@@ -276,12 +252,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "arealibi",
       "left": "areal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "arealien",
-      "left": "areal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -552,12 +522,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "banalibi",
       "left": "banal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "banalien",
-      "left": "banal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -2241,12 +2205,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "extradio",
-      "left": "extra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "extradon",
       "left": "extra",
       "right": "radon",
@@ -2358,12 +2316,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "fatalibi",
       "left": "fatal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "fatalien",
-      "left": "fatal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -2557,18 +2509,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "first",
       "right": "stuss",
       "overlap": "st"
-    },
-    {
-      "answer": "flushake",
-      "left": "flush",
-      "right": "shake",
-      "overlap": "sh"
-    },
-    {
-      "answer": "flushirt",
-      "left": "flush",
-      "right": "shirt",
-      "overlap": "sh"
     },
     {
       "answer": "forcello",
@@ -3157,12 +3097,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "gecko",
       "right": "koran",
       "overlap": "ko"
-    },
-    {
-      "answer": "genaudio",
-      "left": "genau",
-      "right": "audio",
-      "overlap": "au"
     },
     {
       "answer": "genautor",
@@ -3975,12 +3909,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "hurradio",
-      "left": "hurra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "hurradon",
       "left": "hurra",
       "right": "radon",
@@ -4041,12 +3969,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "hydradio",
-      "left": "hydra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "hydradon",
       "left": "hydra",
       "right": "radon",
@@ -4098,12 +4020,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "idealibi",
       "left": "ideal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "idealien",
-      "left": "ideal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -4380,12 +4296,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "kanalibi",
       "left": "kanal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "kanalien",
-      "left": "kanal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -5181,12 +5091,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "lauradio",
-      "left": "laura",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "lauradon",
       "left": "laura",
       "right": "radon",
@@ -5247,12 +5151,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "legalien",
-      "left": "legal",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "legallez",
       "left": "legal",
       "right": "allez",
@@ -5286,12 +5184,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "lepradar",
       "left": "lepra",
       "right": "radar",
-      "overlap": "ra"
-    },
-    {
-      "answer": "lepradio",
-      "left": "lepra",
-      "right": "radio",
       "overlap": "ra"
     },
     {
@@ -5397,12 +5289,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "lokalien",
-      "left": "lokal",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "lokallez",
       "left": "lokal",
       "right": "allez",
@@ -5478,12 +5364,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "loyalibi",
       "left": "loyal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "loyalien",
-      "left": "loyal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -6891,12 +6771,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "pedalien",
-      "left": "pedal",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "pedallez",
       "left": "pedal",
       "right": "allez",
@@ -7068,12 +6942,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "pokalibi",
       "left": "pokal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "pokalien",
-      "left": "pokal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -7743,12 +7611,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "regalien",
-      "left": "regal",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "regallez",
       "left": "regal",
       "right": "allez",
@@ -8235,12 +8097,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "sa"
     },
     {
-      "answer": "sambacon",
-      "left": "samba",
-      "right": "bacon",
-      "overlap": "ba"
-    },
-    {
       "answer": "sambader",
       "left": "samba",
       "right": "bader",
@@ -8413,18 +8269,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "serum",
       "right": "umzug",
       "overlap": "um"
-    },
-    {
-      "answer": "shakebab",
-      "left": "shake",
-      "right": "kebab",
-      "overlap": "ke"
-    },
-    {
-      "answer": "shakelch",
-      "left": "shake",
-      "right": "kelch",
-      "overlap": "ke"
     },
     {
       "answer": "sigmacho",
@@ -8739,12 +8583,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ke"
     },
     {
-      "answer": "squaward",
-      "left": "squaw",
-      "right": "award",
-      "overlap": "aw"
-    },
-    {
       "answer": "steaktiv",
       "left": "steak",
       "right": "aktiv",
@@ -8803,24 +8641,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "süden",
       "right": "enzym",
       "overlap": "en"
-    },
-    {
-      "answer": "superdöl",
-      "left": "super",
-      "right": "erdöl",
-      "overlap": "er"
-    },
-    {
-      "answer": "superika",
-      "left": "super",
-      "right": "erika",
-      "overlap": "er"
-    },
-    {
-      "answer": "supernst",
-      "left": "super",
-      "right": "ernst",
-      "overlap": "er"
     },
     {
       "answer": "tabaktiv",
@@ -9234,12 +9054,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "totalibi",
       "left": "total",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "totalien",
-      "left": "total",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -9777,12 +9591,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "ultradio",
-      "left": "ultra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "ultradon",
       "left": "ultra",
       "right": "radon",
@@ -9817,12 +9625,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "ultra",
       "right": "raven",
       "overlap": "ra"
-    },
-    {
-      "answer": "umbaudio",
-      "left": "umbau",
-      "right": "audio",
-      "overlap": "au"
     },
     {
       "answer": "umbautor",
@@ -10347,12 +10149,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "zebradio",
-      "left": "zebra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "zebradon",
       "left": "zebra",
       "right": "radon",
@@ -10745,18 +10541,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "bi"
     },
     {
-      "answer": "alienorm",
-      "left": "alien",
-      "right": "enorm",
-      "overlap": "en"
-    },
-    {
-      "answer": "alienzym",
-      "left": "alien",
-      "right": "enzym",
-      "overlap": "en"
-    },
-    {
       "answer": "allzudem",
       "left": "allzu",
       "right": "zudem",
@@ -10820,12 +10604,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "alphandy",
       "left": "alpha",
       "right": "handy",
-      "overlap": "ha"
-    },
-    {
-      "answer": "alphappy",
-      "left": "alpha",
-      "right": "happy",
       "overlap": "ha"
     },
     {
@@ -10943,12 +10721,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "go"
     },
     {
-      "answer": "anbaudio",
-      "left": "anbau",
-      "right": "audio",
-      "overlap": "au"
-    },
-    {
       "answer": "anbautor",
       "left": "anbau",
       "right": "autor",
@@ -11042,12 +10814,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "arealibi",
       "left": "areal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "arealien",
-      "left": "areal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -11378,12 +11144,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "banalibi",
       "left": "banal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "banalien",
-      "left": "banal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -14087,12 +13847,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "extradio",
-      "left": "extra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "extradon",
       "left": "extra",
       "right": "radon",
@@ -14258,12 +14012,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "fatalibi",
       "left": "fatal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "fatalien",
-      "left": "fatal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -14505,18 +14253,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "first",
       "right": "stuss",
       "overlap": "st"
-    },
-    {
-      "answer": "flushake",
-      "left": "flush",
-      "right": "shake",
-      "overlap": "sh"
-    },
-    {
-      "answer": "flushirt",
-      "left": "flush",
-      "right": "shirt",
-      "overlap": "sh"
     },
     {
       "answer": "forcello",
@@ -15765,12 +15501,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "geist",
       "right": "stuss",
       "overlap": "st"
-    },
-    {
-      "answer": "genaudio",
-      "left": "genau",
-      "right": "audio",
-      "overlap": "au"
     },
     {
       "answer": "genautor",
@@ -17603,12 +17333,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "hurradio",
-      "left": "hurra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "hurradon",
       "left": "hurra",
       "right": "radon",
@@ -17669,12 +17393,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "hydradio",
-      "left": "hydra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "hydradon",
       "left": "hydra",
       "right": "radon",
@@ -17726,12 +17444,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "idealibi",
       "left": "ideal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "idealien",
-      "left": "ideal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -18572,12 +18284,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "kanalibi",
       "left": "kanal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "kanalien",
-      "left": "kanal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -20081,12 +19787,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "lauradio",
-      "left": "laura",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "lauradon",
       "left": "laura",
       "right": "radon",
@@ -20321,12 +20021,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "legalien",
-      "left": "legal",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "legallez",
       "left": "legal",
       "right": "allez",
@@ -20534,12 +20228,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "lepradar",
       "left": "lepra",
       "right": "radar",
-      "overlap": "ra"
-    },
-    {
-      "answer": "lepradio",
-      "left": "lepra",
-      "right": "radio",
       "overlap": "ra"
     },
     {
@@ -20849,12 +20537,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "lokalien",
-      "left": "lokal",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "lokallez",
       "left": "lokal",
       "right": "allez",
@@ -20930,12 +20612,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "loyalibi",
       "left": "loyal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "loyalien",
-      "left": "loyal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -23063,12 +22739,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "pedalien",
-      "left": "pedal",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "pedallez",
       "left": "pedal",
       "right": "allez",
@@ -23252,12 +22922,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "pokalibi",
       "left": "pokal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "pokalien",
-      "left": "pokal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -24026,12 +23690,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "regalibi",
       "left": "regal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "regalien",
-      "left": "regal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -25541,12 +25199,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "sa"
     },
     {
-      "answer": "sambacon",
-      "left": "samba",
-      "right": "bacon",
-      "overlap": "ba"
-    },
-    {
       "answer": "sambader",
       "left": "samba",
       "right": "bader",
@@ -25809,18 +25461,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "serum",
       "right": "umzug",
       "overlap": "um"
-    },
-    {
-      "answer": "shakebab",
-      "left": "shake",
-      "right": "kebab",
-      "overlap": "ke"
-    },
-    {
-      "answer": "shakelch",
-      "left": "shake",
-      "right": "kelch",
-      "overlap": "ke"
     },
     {
       "answer": "sigmacho",
@@ -26189,12 +25829,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ke"
     },
     {
-      "answer": "squaward",
-      "left": "squaw",
-      "right": "award",
-      "overlap": "aw"
-    },
-    {
       "answer": "stachamp",
       "left": "stach",
       "right": "champ",
@@ -26289,36 +25923,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "süden",
       "right": "enzym",
       "overlap": "en"
-    },
-    {
-      "answer": "superdöl",
-      "left": "super",
-      "right": "erdöl",
-      "overlap": "er"
-    },
-    {
-      "answer": "supergab",
-      "left": "super",
-      "right": "ergab",
-      "overlap": "er"
-    },
-    {
-      "answer": "superhob",
-      "left": "super",
-      "right": "erhob",
-      "overlap": "er"
-    },
-    {
-      "answer": "superika",
-      "left": "super",
-      "right": "erika",
-      "overlap": "er"
-    },
-    {
-      "answer": "supernst",
-      "left": "super",
-      "right": "ernst",
-      "overlap": "er"
     },
     {
       "answer": "tabaktiv",
@@ -26834,12 +26438,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "totalibi",
       "left": "total",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "totalien",
-      "left": "total",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -27455,12 +27053,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "ultradio",
-      "left": "ultra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "ultradon",
       "left": "ultra",
       "right": "radon",
@@ -27495,12 +27087,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "ultra",
       "right": "raven",
       "overlap": "ra"
-    },
-    {
-      "answer": "umbaudio",
-      "left": "umbau",
-      "right": "audio",
-      "overlap": "au"
     },
     {
       "answer": "umbautor",
@@ -28841,12 +28427,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "zebradio",
-      "left": "zebra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "zebradon",
       "left": "zebra",
       "right": "radon",
@@ -29034,12 +28614,6 @@ export const generatedWortschmelzePuzzles = {
     }
   ],
   "hart": [
-    {
-      "answer": "abbaudio",
-      "left": "abbau",
-      "right": "audio",
-      "overlap": "au"
-    },
     {
       "answer": "abbautor",
       "left": "abbau",
@@ -29893,42 +29467,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "bi"
     },
     {
-      "answer": "aliendet",
-      "left": "alien",
-      "right": "endet",
-      "overlap": "en"
-    },
-    {
-      "answer": "aliengem",
-      "left": "alien",
-      "right": "engem",
-      "overlap": "en"
-    },
-    {
-      "answer": "alienges",
-      "left": "alien",
-      "right": "enges",
-      "overlap": "en"
-    },
-    {
-      "answer": "alienorm",
-      "left": "alien",
-      "right": "enorm",
-      "overlap": "en"
-    },
-    {
-      "answer": "alienter",
-      "left": "alien",
-      "right": "enter",
-      "overlap": "en"
-    },
-    {
-      "answer": "alienzym",
-      "left": "alien",
-      "right": "enzym",
-      "overlap": "en"
-    },
-    {
       "answer": "allzuckt",
       "left": "allzu",
       "right": "zuckt",
@@ -30034,12 +29572,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "alphandy",
       "left": "alpha",
       "right": "handy",
-      "overlap": "ha"
-    },
-    {
-      "answer": "alphappy",
-      "left": "alpha",
-      "right": "happy",
       "overlap": "ha"
     },
     {
@@ -30341,12 +29873,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "amigo",
       "right": "gouda",
       "overlap": "go"
-    },
-    {
-      "answer": "anbaudio",
-      "left": "anbau",
-      "right": "audio",
-      "overlap": "au"
     },
     {
       "answer": "anbautor",
@@ -30814,12 +30340,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "arealibi",
       "left": "areal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "arealien",
-      "left": "areal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -31732,12 +31252,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "banalibi",
       "left": "banal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "banalien",
-      "left": "banal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -37867,18 +37381,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "so"
     },
     {
-      "answer": "crashake",
-      "left": "crash",
-      "right": "shake",
-      "overlap": "sh"
-    },
-    {
-      "answer": "crashirt",
-      "left": "crash",
-      "right": "shirt",
-      "overlap": "sh"
-    },
-    {
       "answer": "creekeln",
       "left": "creek",
       "right": "ekeln",
@@ -43231,12 +42733,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "extradio",
-      "left": "extra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "extradon",
       "left": "extra",
       "right": "radon",
@@ -44515,12 +44011,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "fatalien",
-      "left": "fatal",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "fatallez",
       "left": "fatal",
       "right": "allez",
@@ -45271,12 +44761,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "finalien",
-      "left": "final",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "finallez",
       "left": "final",
       "right": "allez",
@@ -45901,18 +45385,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ir"
     },
     {
-      "answer": "flashake",
-      "left": "flash",
-      "right": "shake",
-      "overlap": "sh"
-    },
-    {
-      "answer": "flashirt",
-      "left": "flash",
-      "right": "shirt",
-      "overlap": "sh"
-    },
-    {
       "answer": "fleethan",
       "left": "fleet",
       "right": "ethan",
@@ -46211,18 +45683,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "fluch",
       "right": "chunk",
       "overlap": "ch"
-    },
-    {
-      "answer": "flushake",
-      "left": "flush",
-      "right": "shake",
-      "overlap": "sh"
-    },
-    {
-      "answer": "flushirt",
-      "left": "flush",
-      "right": "shirt",
-      "overlap": "sh"
     },
     {
       "answer": "forcello",
@@ -51461,12 +50921,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "gelte",
       "right": "teure",
       "overlap": "te"
-    },
-    {
-      "answer": "genaudio",
-      "left": "genau",
-      "right": "audio",
-      "overlap": "au"
     },
     {
       "answer": "genautor",
@@ -60181,12 +59635,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "hurradio",
-      "left": "hurra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "hurradon",
       "left": "hurra",
       "right": "radon",
@@ -60883,12 +60331,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "hydradio",
-      "left": "hydra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "hydradon",
       "left": "hydra",
       "right": "radon",
@@ -60976,12 +60418,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "idealibi",
       "left": "ideal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "idealien",
-      "left": "ideal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -61217,90 +60653,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "intim",
       "right": "immun",
       "overlap": "im"
-    },
-    {
-      "answer": "introbot",
-      "left": "intro",
-      "right": "robot",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introche",
-      "left": "intro",
-      "right": "roche",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introckt",
-      "left": "intro",
-      "right": "rockt",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introger",
-      "left": "intro",
-      "right": "roger",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introhes",
-      "left": "intro",
-      "right": "rohes",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introllo",
-      "left": "intro",
-      "right": "rollo",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introllt",
-      "left": "intro",
-      "right": "rollt",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introman",
-      "left": "intro",
-      "right": "roman",
-      "overlap": "ro"
-    },
-    {
-      "answer": "intronin",
-      "left": "intro",
-      "right": "ronin",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introsig",
-      "left": "intro",
-      "right": "rosig",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introtem",
-      "left": "intro",
-      "right": "rotem",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introtes",
-      "left": "intro",
-      "right": "rotes",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introuge",
-      "left": "intro",
-      "right": "rouge",
-      "overlap": "ro"
-    },
-    {
-      "answer": "introwdy",
-      "left": "intro",
-      "right": "rowdy",
-      "overlap": "ro"
     },
     {
       "answer": "irressay",
@@ -63493,12 +62845,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "in"
     },
     {
-      "answer": "kamintro",
-      "left": "kamin",
-      "right": "intro",
-      "overlap": "in"
-    },
-    {
       "answer": "kamintus",
       "left": "kamin",
       "right": "intus",
@@ -63976,12 +63322,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "kanalibi",
       "left": "kanal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "kanalien",
-      "left": "kanal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -65437,12 +64777,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "re"
     },
     {
-      "answer": "klarobot",
-      "left": "klaro",
-      "right": "robot",
-      "overlap": "ro"
-    },
-    {
       "answer": "klaroche",
       "left": "klaro",
       "right": "roche",
@@ -65704,12 +65038,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "kleintim",
       "left": "klein",
       "right": "intim",
-      "overlap": "in"
-    },
-    {
-      "answer": "kleintro",
-      "left": "klein",
-      "right": "intro",
       "overlap": "in"
     },
     {
@@ -70825,12 +70153,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "lauradio",
-      "left": "laura",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "lauradon",
       "left": "laura",
       "right": "radon",
@@ -71782,12 +71104,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "legalibi",
       "left": "legal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "legalien",
-      "left": "legal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -72901,12 +72217,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "lepradio",
-      "left": "lepra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "lepradon",
       "left": "lepra",
       "right": "radon",
@@ -73807,12 +73117,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "lokalien",
-      "left": "lokal",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "lokallez",
       "left": "lokal",
       "right": "allez",
@@ -74266,12 +73570,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "loyalibi",
       "left": "loyal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "loyalien",
-      "left": "loyal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -76081,12 +75379,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "in"
     },
     {
-      "answer": "marintro",
-      "left": "marin",
-      "right": "intro",
-      "overlap": "in"
-    },
-    {
       "answer": "marintus",
       "left": "marin",
       "right": "intus",
@@ -77651,12 +76943,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "miese",
       "right": "setzt",
       "overlap": "se"
-    },
-    {
-      "answer": "mikrobot",
-      "left": "mikro",
-      "right": "robot",
-      "overlap": "ro"
     },
     {
       "answer": "mikroche",
@@ -83101,12 +82387,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "pedalien",
-      "left": "pedal",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "pedallez",
       "left": "pedal",
       "right": "allez",
@@ -83812,12 +83092,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "pokalibi",
       "left": "pokal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "pokalien",
-      "left": "pokal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -85915,12 +85189,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ar"
     },
     {
-      "answer": "radaudio",
-      "left": "radau",
-      "right": "audio",
-      "overlap": "au"
-    },
-    {
       "answer": "radautor",
       "left": "radau",
       "right": "autor",
@@ -87082,12 +86350,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "regalibi",
       "left": "regal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "regalien",
-      "left": "regal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -88465,12 +87727,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ne"
     },
     {
-      "answer": "retrobot",
-      "left": "retro",
-      "right": "robot",
-      "overlap": "ro"
-    },
-    {
       "answer": "retroche",
       "left": "retro",
       "right": "roche",
@@ -88636,12 +87892,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "rheintim",
       "left": "rhein",
       "right": "intim",
-      "overlap": "in"
-    },
-    {
-      "answer": "rheintro",
-      "left": "rhein",
-      "right": "intro",
       "overlap": "in"
     },
     {
@@ -89359,12 +88609,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "in"
     },
     {
-      "answer": "ronintro",
-      "left": "ronin",
-      "right": "intro",
-      "overlap": "in"
-    },
-    {
       "answer": "ronintus",
       "left": "ronin",
       "right": "intus",
@@ -89686,12 +88930,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "rubintim",
       "left": "rubin",
       "right": "intim",
-      "overlap": "in"
-    },
-    {
-      "answer": "rubintro",
-      "left": "rubin",
-      "right": "intro",
       "overlap": "in"
     },
     {
@@ -92119,12 +91357,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ba"
     },
     {
-      "answer": "sambacon",
-      "left": "samba",
-      "right": "bacon",
-      "overlap": "ba"
-    },
-    {
       "answer": "sambaden",
       "left": "samba",
       "right": "baden",
@@ -93001,12 +92233,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "in"
     },
     {
-      "answer": "satintro",
-      "left": "satin",
-      "right": "intro",
-      "overlap": "in"
-    },
-    {
       "answer": "satintus",
       "left": "satin",
       "right": "intus",
@@ -93784,12 +93010,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "schalibi",
       "left": "schal",
       "right": "alibi",
-      "overlap": "al"
-    },
-    {
-      "answer": "schalien",
-      "left": "schal",
-      "right": "alien",
       "overlap": "al"
     },
     {
@@ -95185,36 +94405,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ze"
     },
     {
-      "answer": "shakebab",
-      "left": "shake",
-      "right": "kebab",
-      "overlap": "ke"
-    },
-    {
-      "answer": "shakehrt",
-      "left": "shake",
-      "right": "kehrt",
-      "overlap": "ke"
-    },
-    {
-      "answer": "shakelch",
-      "left": "shake",
-      "right": "kelch",
-      "overlap": "ke"
-    },
-    {
-      "answer": "shakenne",
-      "left": "shake",
-      "right": "kenne",
-      "overlap": "ke"
-    },
-    {
-      "answer": "shakennt",
-      "left": "shake",
-      "right": "kennt",
-      "overlap": "ke"
-    },
-    {
       "answer": "sieheavy",
       "left": "siehe",
       "right": "heavy",
@@ -96203,18 +95393,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "skype",
       "right": "petit",
       "overlap": "pe"
-    },
-    {
-      "answer": "slashake",
-      "left": "slash",
-      "right": "shake",
-      "overlap": "sh"
-    },
-    {
-      "answer": "slashirt",
-      "left": "slash",
-      "right": "shirt",
-      "overlap": "sh"
     },
     {
       "answer": "sodomega",
@@ -97603,12 +96781,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "re"
     },
     {
-      "answer": "squaward",
-      "left": "squaw",
-      "right": "award",
-      "overlap": "aw"
-    },
-    {
       "answer": "staatmen",
       "left": "staat",
       "right": "atmen",
@@ -97906,12 +97078,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "steintim",
       "left": "stein",
       "right": "intim",
-      "overlap": "in"
-    },
-    {
-      "answer": "steintro",
-      "left": "stein",
-      "right": "intro",
       "overlap": "in"
     },
     {
@@ -98633,78 +97799,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "sumpf",
       "right": "pfund",
       "overlap": "pf"
-    },
-    {
-      "answer": "superbte",
-      "left": "super",
-      "right": "erbte",
-      "overlap": "er"
-    },
-    {
-      "answer": "superdöl",
-      "left": "super",
-      "right": "erdöl",
-      "overlap": "er"
-    },
-    {
-      "answer": "supergab",
-      "left": "super",
-      "right": "ergab",
-      "overlap": "er"
-    },
-    {
-      "answer": "supergib",
-      "left": "super",
-      "right": "ergib",
-      "overlap": "er"
-    },
-    {
-      "answer": "superhob",
-      "left": "super",
-      "right": "erhob",
-      "overlap": "er"
-    },
-    {
-      "answer": "superhol",
-      "left": "super",
-      "right": "erhol",
-      "overlap": "er"
-    },
-    {
-      "answer": "superika",
-      "left": "super",
-      "right": "erika",
-      "overlap": "er"
-    },
-    {
-      "answer": "superlag",
-      "left": "super",
-      "right": "erlag",
-      "overlap": "er"
-    },
-    {
-      "answer": "superlös",
-      "left": "super",
-      "right": "erlös",
-      "overlap": "er"
-    },
-    {
-      "answer": "supernst",
-      "left": "super",
-      "right": "ernst",
-      "overlap": "er"
-    },
-    {
-      "answer": "superste",
-      "left": "super",
-      "right": "erste",
-      "overlap": "er"
-    },
-    {
-      "answer": "superzog",
-      "left": "super",
-      "right": "erzog",
-      "overlap": "er"
     },
     {
       "answer": "süssegen",
@@ -100045,12 +99139,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "thoradio",
-      "left": "thora",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "thoradon",
       "left": "thora",
       "right": "radon",
@@ -100138,12 +99226,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "tiaradau",
       "left": "tiara",
       "right": "radau",
-      "overlap": "ra"
-    },
-    {
-      "answer": "tiaradio",
-      "left": "tiara",
-      "right": "radio",
       "overlap": "ra"
     },
     {
@@ -101179,12 +100261,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "al"
     },
     {
-      "answer": "totalien",
-      "left": "total",
-      "right": "alien",
-      "overlap": "al"
-    },
-    {
       "answer": "totallez",
       "left": "total",
       "right": "allez",
@@ -101695,12 +100771,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "in"
     },
     {
-      "answer": "traintro",
-      "left": "train",
-      "right": "intro",
-      "overlap": "in"
-    },
-    {
       "answer": "traintus",
       "left": "train",
       "right": "intus",
@@ -101722,12 +100792,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "traradau",
       "left": "trara",
       "right": "radau",
-      "overlap": "ra"
-    },
-    {
-      "answer": "traradio",
-      "left": "trara",
-      "right": "radio",
       "overlap": "ra"
     },
     {
@@ -104263,12 +103327,6 @@ export const generatedWortschmelzePuzzles = {
       "overlap": "ra"
     },
     {
-      "answer": "ultradio",
-      "left": "ultra",
-      "right": "radio",
-      "overlap": "ra"
-    },
-    {
       "answer": "ultradon",
       "left": "ultra",
       "right": "radon",
@@ -104339,12 +103397,6 @@ export const generatedWortschmelzePuzzles = {
       "left": "ultra",
       "right": "raven",
       "overlap": "ra"
-    },
-    {
-      "answer": "umbaudio",
-      "left": "umbau",
-      "right": "audio",
-      "overlap": "au"
     },
     {
       "answer": "umbautor",
@@ -104494,12 +103546,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "umhintim",
       "left": "umhin",
       "right": "intim",
-      "overlap": "in"
-    },
-    {
-      "answer": "umhintro",
-      "left": "umhin",
-      "right": "intro",
       "overlap": "in"
     },
     {
@@ -111466,12 +110512,6 @@ export const generatedWortschmelzePuzzles = {
       "answer": "zebradau",
       "left": "zebra",
       "right": "radau",
-      "overlap": "ra"
-    },
-    {
-      "answer": "zebradio",
-      "left": "zebra",
-      "right": "radio",
       "overlap": "ra"
     },
     {

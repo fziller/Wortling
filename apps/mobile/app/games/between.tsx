@@ -229,6 +229,7 @@ export default function BetweenScreen() {
 
     if (!result.ok) {
       fail();
+      setClearingDirection(undefined);
       stats.recordRejectedGuess(result.reason, inputLetters.join(""));
       return;
     }
@@ -602,7 +603,7 @@ function AlphabetStrip({ cursorIndex, inputLetters, lowerBound, upperBound }: Al
 
   return (
     <View style={styles.alphabetStrip}>
-      {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => {
+      {"AÄBCDEFGHIJKLMNOÖPQRSTUÜVWXYZ".split("").map((letter) => {
         const isAvailable = openLetters.has(letter);
 
         return (

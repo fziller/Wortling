@@ -35,6 +35,7 @@ import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
+import { rejectMessage } from "@/games/rejectMessages";
 import { usePacksSettings } from "@/hooks/usePacksSettings";
 import { useHintWallet } from "@/hints/useHintWallet";
 import { getHintPolicy, requestAdHint } from "@/hints/policy";
@@ -192,7 +193,7 @@ export default function WortcodeScreen() {
     const result = submitWortcodeGuess(puzzle, state, inputLetters.join(""));
 
     setState(result.state);
-    setMessage(result.ok ? result.state.status === "won" ? "Code geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "" : result.reason);
+    setMessage(result.ok ? result.state.status === "won" ? "Code geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "" : rejectMessage(result.reason));
     if (result.ok) {
       const lastGuess = result.state.guesses[result.state.guesses.length - 1];
 
@@ -302,6 +303,7 @@ export default function WortcodeScreen() {
         captureEvent(posthog, "help_opened", { gameId: "wortcode", dateKey });
         setHelpVisible(true);
       }}
+      progressLabel={`${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
       subtitle={`${puzzle.wordLength} Buchstaben`}
       title="Wortcode"
     >
@@ -309,7 +311,6 @@ export default function WortcodeScreen() {
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
           <View style={styles.summaryCard}>
             <Text style={styles.summaryTitle}>Gesucht: {puzzle.wordLength} Buchstaben</Text>
-            <Text style={styles.summaryText}>Versuch {Math.min(state.guesses.length + 1, puzzle.maxAttempts)} / {puzzle.maxAttempts}</Text>
           </View>
 
           <View style={styles.history}>

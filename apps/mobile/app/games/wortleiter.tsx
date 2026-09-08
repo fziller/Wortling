@@ -52,6 +52,7 @@ import {
   type StoredProgress,
 } from "@/storage/progress";
 import { useGameRecorder } from "@/stats/recorder";
+import { rejectMessage } from "@/games/rejectMessages";
 
 type WortleiterGame = ReturnType<typeof createNextWortleiterGame>;
 
@@ -202,7 +203,7 @@ export default function WortleiterScreen() {
         ? result.state.status === "won"
           ? "Geschafft!"
           : ""
-        : result.reason,
+        : rejectMessage(result.reason),
     );
 
     if (result.ok) {

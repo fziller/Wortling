@@ -14,6 +14,12 @@ const inputs = {
   hart: "src/games/between/generated/hartWords.ts",
 };
 
+const BLOCKED_COMPONENTS = new Set([
+  "admin", "alien", "audio", "award", "bacon", "basic", "comic", "crash", "flash", "flush",
+  "happy", "image", "intro", "joker", "laser", "level", "login", "party", "pixel", "radio",
+  "robot", "shake", "shirt", "smart", "sport", "story", "super", "team", "video",
+]);
+
 function parseGeneratedArray(fileText) {
   const match = fileText.match(/= (\[[\s\S]*?\]) as const/);
   if (!match) throw new Error("Generated word array not found.");
@@ -29,7 +35,9 @@ function sliceLetters(word, start, end) {
 }
 
 function buildPuzzles(words) {
-  const cleanWords = [...new Set(words)].filter((word) => lengthOf(word) === 5).sort(collator.compare);
+  const cleanWords = [...new Set(words)]
+    .filter((word) => lengthOf(word) === 5 && !BLOCKED_COMPONENTS.has(word))
+    .sort(collator.compare);
   const byPrefix = new Map();
 
   for (const word of cleanWords) {

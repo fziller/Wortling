@@ -11,6 +11,7 @@ const DAILY_IDENTIFIER = "wortkniff-daily-reminder";
 const UNFINISHED_IDENTIFIER = "wortkniff-unfinished-reminder";
 const UNFINISHED_HOUR = 20;
 const UNFINISHED_MINUTE = 30;
+const SCHEDULE_DAYS = 7;
 
 export async function scheduleDailyReminder(): Promise<void> {
   const settings = await loadNotificationSettings();
@@ -20,31 +21,36 @@ export async function scheduleDailyReminder(): Promise<void> {
     return;
   }
 
-  await Notifications.cancelScheduledNotificationAsync(DAILY_IDENTIFIER).catch(() => {});
-  await Notifications.cancelScheduledNotificationAsync(UNFINISHED_IDENTIFIER).catch(() => {});
+  await cancelDailyReminder();
 
-  const reminder = await createReminderContent();
+  const now = new Date();
+  for (let dayOffset = 0; dayOffset < SCHEDULE_DAYS; dayOffset += 1) {
+    const triggerDate = dateAtLocalTime(dayOffset, settings.hour, settings.minute);
+    if (triggerDate <= now) continue;
 
-  await Notifications.scheduleNotificationAsync({
-    identifier: DAILY_IDENTIFIER,
-    content: reminder.content,
-    trigger: {
-      type: Notifications.SchedulableTriggerInputTypes.DAILY,
-      hour: settings.hour,
-      minute: settings.minute,
-    },
-  });
+    const reminder = await createReminderContent(getBerlinDateKey(triggerDate));
+    await Notifications.scheduleNotificationAsync({
+      identifier: `${DAILY_IDENTIFIER}:${getBerlinDateKey(triggerDate)}`,
+      content: reminder.content,
+      trigger: {
+        type: Notifications.SchedulableTriggerInputTypes.DATE,
+        date: triggerDate,
+      },
+    });
+  }
 
-  if (reminder.open > 0 && reminder.completed > 0) {
+  const reminder = await createReminderContent(getBerlinDateKey(now));
+
+  const unfinishedDate = dateAtLocalTime(0, UNFINISHED_HOUR, UNFINISHED_MINUTE);
+  if (reminder.open > 0 && reminder.completed > 0 && unfinishedDate > now) {
     if (settings.unfinishedEnabled === false) return;
 
     await Notifications.scheduleNotificationAsync({
-      identifier: UNFINISHED_IDENTIFIER,
+      identifier: `${UNFINISHED_IDENTIFIER}:${getBerlinDateKey(now)}`,
       content: notificationContent(`Noch ${reminder.open} Tageskniff${reminder.open === 1 ? "" : "e"} offen`, "Kurz fertig machen und die Serie sichern.", "unfinished", reminder.nextUrl),
       trigger: {
-        type: Notifications.SchedulableTriggerInputTypes.DAILY,
-        hour: UNFINISHED_HOUR,
-        minute: UNFINISHED_MINUTE,
+        type: Notifications.SchedulableTriggerInputTypes.DATE,
+        date: unfinishedDate,
       },
     });
   }
@@ -56,18 +62,19 @@ export async function presentDevNotification(kind: "daily" | "unfinished"): Prom
   await Notifications.scheduleNotificationAsync({
     content: kind === "unfinished"
       ? notificationContent("Noch Tageskniffe offen", "Du hast heute noch offene Rätsel. Kurz fertig machen?", "unfinished", "/")
-      : (await createReminderContent()).content,
+      : (await createReminderContent(getBerlinDateKey())).content,
     trigger: null,
   });
 }
 
 export async function cancelDailyReminder(): Promise<void> {
-  await Notifications.cancelScheduledNotificationAsync(DAILY_IDENTIFIER).catch(() => {});
-  await Notifications.cancelScheduledNotificationAsync(UNFINISHED_IDENTIFIER).catch(() => {});
+  const scheduled = await Notifications.getAllScheduledNotificationsAsync().catch(() => []);
+  await Promise.all(scheduled
+    .filter((notification) => notification.identifier.startsWith(DAILY_IDENTIFIER) || notification.identifier.startsWith(UNFINISHED_IDENTIFIER))
+    .map((notification) => Notifications.cancelScheduledNotificationAsync(notification.identifier).catch(() => {})));
 }
 
-async function createReminderContent(): Promise<{ completed: number; content: Notifications.NotificationContentInput; nextUrl: string; open: number }> {
-  const dateKey = getBerlinDateKey();
+async function createReminderContent(dateKey: string): Promise<{ completed: number; content: Notifications.NotificationContentInput; nextUrl: string; open: number }> {
   const dailyKniffe = generateDailyKniffe({ dateKey, games });
   const progress = await loadProgressForGames(dailyKniffe.map((kniff) => kniff.gameId), dateKey).catch(() => ({} as Awaited<ReturnType<typeof loadProgressForGames>>));
   const summary = getDailyKniffeSummary(dailyKniffe, progress);
@@ -86,6 +93,13 @@ async function createReminderContent(): Promise<{ completed: number; content: No
     nextUrl,
     open,
   };
+}
+
+function dateAtLocalTime(dayOffset: number, hour: number, minute: number): Date {
+  const date = new Date();
+  date.setDate(date.getDate() + dayOffset);
+  date.setHours(hour, minute, 0, 0);
+  return date;
 }
 
 function notificationContent(title: string, body: string, kind: "daily" | "unfinished", url: string): Notifications.NotificationContentInput {

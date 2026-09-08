@@ -234,6 +234,7 @@ export default function GalgenwortScreen() {
         captureEvent(posthog, "help_opened", { gameId: "galgenwort", dateKey });
         setHelpVisible(true);
       }}
+      progressLabel={`${wrongLetters.length}/${puzzle.maxWrongGuesses} Fehler`}
       title="Galgenwort"
     >
       <View style={styles.wrap}>
@@ -256,7 +257,6 @@ export default function GalgenwortScreen() {
               ) : <Text key={`${index}-blank`} style={[styles.wordTile, { fontSize: wordTileFontSize }]}>_</Text>)}
             </View>
           </ShakeView>
-          <Text style={styles.misses}>Fehler {wrongLetters.length} / {puzzle.maxWrongGuesses}</Text>
         </View>
 
         <View style={styles.statusBlock}>
@@ -271,6 +271,7 @@ export default function GalgenwortScreen() {
         dateKey={dateKey}
         durationMs={elapsedSeconds * 1000}
         gameId="galgenwort"
+        guesses={state.guessedLetters}
         message={state.status === "won" ? "Nice, das Wort ist frei." : "Die Lösung ist raus. Weiteres Wort?"}
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "galgenwort", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}

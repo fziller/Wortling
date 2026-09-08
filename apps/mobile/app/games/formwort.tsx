@@ -39,6 +39,7 @@ import { usePacksSettings } from "@/hooks/usePacksSettings";
 import { useHintWallet } from "@/hints/useHintWallet";
 import { getHintPolicy, requestAdHint } from "@/hints/policy";
 import { buildMarkedGridShareText } from "@/games/share/grid";
+import { rejectMessage } from "@/games/rejectMessages";
 
 type FormwortGame = ReturnType<typeof createNextFormwortGame>;
 
@@ -207,7 +208,7 @@ export default function FormwortScreen() {
     const result = submitFormwortGuess(puzzle, state, inputLetters.join(""));
 
     setState(result.state);
-    setMessage(result.ok ? result.state.status === "won" ? "Form geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "" : result.reason);
+    setMessage(result.ok ? result.state.status === "won" ? "Form geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "" : rejectMessage(result.reason));
     if (result.ok) {
       stats.recordAcceptedGuess(result.guess.value, { marks: [...result.guess.marks] });
       setInputLetters(createEmptyInput(puzzle.wordLength));
@@ -297,6 +298,7 @@ export default function FormwortScreen() {
         captureEvent(posthog, "help_opened", { gameId: "formwort", dateKey });
         setHelpVisible(true);
       }}
+      progressLabel={`${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
       subtitle={`${puzzle.wordLength} Buchstaben`}
       title="Formwort"
     >

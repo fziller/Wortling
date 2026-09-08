@@ -9,6 +9,7 @@ type GameScreenHeaderProps = {
   helpLabel?: string;
   onBack: () => void;
   onHelp: () => void;
+  progressLabel?: string;
   subtitle?: string;
   title: string;
 };
@@ -20,28 +21,31 @@ export function GameScreenHeader({
   helpLabel = "?",
   onBack,
   onHelp,
+  progressLabel,
   subtitle,
   title,
 }: GameScreenHeaderProps) {
   return (
     <View style={styles.screenHeader}>
       <GameHeaderButton accessibilityLabel={backAccessibilityLabel} label={backLabel} onPress={onBack} />
-      <GameHeaderTitle subtitle={subtitle} title={title} />
+      <GameHeaderTitle progressLabel={progressLabel} subtitle={subtitle} title={title} />
       <GameHeaderButton accessibilityLabel={helpAccessibilityLabel} label={helpLabel} onPress={onHelp} />
     </View>
   );
 }
 
 type GameHeaderTitleProps = {
+  progressLabel?: string;
   subtitle?: string;
   title: string;
 };
 
-export function GameHeaderTitle({ subtitle, title }: GameHeaderTitleProps) {
+export function GameHeaderTitle({ progressLabel, subtitle, title }: GameHeaderTitleProps) {
   return (
     <View style={styles.titleBlock}>
       {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
       <Text adjustsFontSizeToFit numberOfLines={1} style={styles.title}>{title}</Text>
+      {progressLabel ? <Text style={styles.progress}>{progressLabel}</Text> : null}
     </View>
   );
 }
@@ -120,5 +124,10 @@ const styles = StyleSheet.create({
     fontSize: tokens.type.h2,
     fontWeight: "900",
     lineHeight: 24
+  },
+  progress: {
+    color: tokens.color.primaryDark,
+    fontSize: tokens.type.small,
+    fontWeight: "900"
   }
 });

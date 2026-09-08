@@ -29,6 +29,7 @@ import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedSt
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 import { buildMarkedGridShareText } from "@/games/share/grid";
+import { rejectMessage } from "@/games/rejectMessages";
 import { getHintPolicy, requestAdHint } from "@/hints/policy";
 import { useHintWallet } from "@/hints/useHintWallet";
 
@@ -181,7 +182,7 @@ export default function WortschmelzeScreen() {
     const result = submitWortschmelzeGuess(puzzle, state, inputLetters.join(""));
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     setState(result.state);
-    setMessage(result.ok ? result.state.status === "won" ? "Verschmolzen!" : result.state.status === "lost" ? "Heute nicht geschmolzen." : "" : result.reason);
+    setMessage(result.ok ? result.state.status === "won" ? "Verschmolzen!" : result.state.status === "lost" ? "Heute nicht geschmolzen." : "" : rejectMessage(result.reason));
 
     if (!result.ok) {
       stats.recordRejectedGuess(result.reason, inputLetters.join(""));
@@ -267,6 +268,7 @@ export default function WortschmelzeScreen() {
         captureEvent(posthog, "help_opened", { gameId: GAME_ID, dateKey });
         setHelpVisible(true);
       }}
+      progressLabel={`${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
       subtitle="5+5 → 8 Buchstaben"
       title="Wortschmelze"
     >

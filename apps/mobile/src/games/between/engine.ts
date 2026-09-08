@@ -2,7 +2,7 @@ import { allowedGuesses, WORD_LENGTH } from "./content";
 import { BetweenState, GuessResult } from "./types";
 
 const collator = new Intl.Collator("de-DE", { sensitivity: "base" });
-const alphabet = "abcdefghijklmnopqrstuvwxyz";
+const alphabet = "aäbcdefghijklmnoöpqrstuüvwxyz";
 const allowedGuessSet = new Set(allowedGuesses);
 const wordRankByWord = new Map(allowedGuesses.map((word, index) => [word, index]));
 

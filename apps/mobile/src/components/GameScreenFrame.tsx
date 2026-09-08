@@ -25,6 +25,7 @@ type GameScreenFrameProps = {
   keyboard: GameKeyboardConfig;
   onBack: () => void;
   onHelp: () => void;
+  progressLabel?: string;
   subtitle?: string;
   title: string;
 };
@@ -35,12 +36,13 @@ export function GameScreenFrame({
   keyboard,
   onBack,
   onHelp,
+  progressLabel,
   subtitle,
   title,
 }: GameScreenFrameProps) {
   return (
     <Screen
-      header={<GameScreenHeader onBack={onBack} onHelp={onHelp} subtitle={subtitle} title={title} />}
+      header={<GameScreenHeader onBack={onBack} onHelp={onHelp} progressLabel={progressLabel} subtitle={subtitle} title={title} />}
       headerBackgroundColor={GAME_HEADER_BACKGROUND}
       videoBackground
     >

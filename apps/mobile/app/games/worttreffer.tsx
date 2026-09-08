@@ -56,6 +56,7 @@ import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 import { usePacksSettings } from "@/hooks/usePacksSettings";
 import { buildMarkedGridShareText } from "@/games/share/grid";
+import { rejectMessage } from "@/games/rejectMessages";
 
 type WorttrefferGame = ReturnType<typeof createNextWorttrefferGame>;
 type TileMark = "absent" | "present" | "correct";
@@ -253,7 +254,7 @@ export default function WorttrefferScreen() {
           : result.state.status === "lost"
             ? "Heute nicht getroffen."
             : ""
-        : result.reason,
+        : rejectMessage(result.reason),
     );
     if (result.ok) {
       stats.recordAcceptedGuess(result.guess.value, { marks: [...result.guess.marks] });
@@ -387,6 +388,7 @@ export default function WorttrefferScreen() {
         captureEvent(posthog, "help_opened", { gameId: "worttreffer", dateKey });
         setHelpVisible(true);
       }}
+      progressLabel={`${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
       subtitle={`${puzzle.wordLength} Buchstaben`}
       title="Worttreffer"
     >

@@ -2,7 +2,7 @@ import { generatedAllowedGuesses as fiveLetterGuesses } from "@/games/between/ge
 
 import { generatedWortschmelzePuzzles } from "./generated/puzzles";
 
-export const WORTSCHMELZE_CONTENT_VERSION = 1;
+export const WORTSCHMELZE_CONTENT_VERSION = 2;
 export const wortschmelzePuzzlesByPreset = generatedWortschmelzePuzzles;
 const fiveLetterGuessSet = new Set(fiveLetterGuesses as unknown as string[]);
 
