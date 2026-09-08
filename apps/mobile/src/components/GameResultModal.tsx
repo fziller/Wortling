@@ -201,27 +201,51 @@ export function GameResultModal({
             </Pressable>
           </View>
         </Animated.View>
-        {shareText ? <ShareCard innerRef={shareCardRef} rows={shareRows} shareText={shareText} solution={solution} success={showConfetti} /> : null}
+        {shareText ? <ShareCard guesses={guesses} innerRef={shareCardRef} rows={shareRows} shareText={shareText} solution={solution} success={showConfetti} /> : null}
       </Animated.View>
     </Modal>
   );
 }
 
-function ShareCard({ innerRef, rows, shareText, solution, success }: { innerRef: RefObject<View | null>; rows: readonly ShareGuessRow[]; shareText: string; solution?: string; success: boolean }) {
+function ShareCard({ guesses = [], innerRef, rows, shareText, solution, success }: { guesses?: readonly string[]; innerRef: RefObject<View | null>; rows: readonly ShareGuessRow[]; shareText: string; solution?: string; success: boolean }) {
   const [headline, result, ...textRows] = shareText.split("\n");
+  const attempts = rows.length > 0
+    ? rows.map((row) => ({ guess: row.guess, marks: row.marks.map((mark) => markEmoji[mark]).join("") }))
+    : guesses.map((guess) => ({ guess, marks: "" }));
+  const solutionLetters = solution?.toLocaleUpperCase("de-DE").split("") ?? [];
+  const tileable = solutionLetters.length > 0 && solutionLetters.every((letter) => /[A-ZÄÖÜß]/.test(letter));
 
   return (
     <View collapsable={false} pointerEvents="none" ref={innerRef} style={styles.shareCard}>
       <Text style={styles.shareLogo}>WORTKNIFF</Text>
       <Text style={styles.shareHeadline}>{headline}</Text>
-      <Text style={[styles.shareResult, success && styles.shareResultWin]}>{result}</Text>
-      {solution ? <Text style={styles.shareSolution}>Lösung: {solution.toLocaleUpperCase("de-DE")}</Text> : null}
-      {rows.length > 0 ? (
-        <View style={styles.shareGrid}>
-          {rows.map((row, index) => (
-            <View key={`${row.guess}-${index}`} style={styles.shareGuessRow}>
-              <Text style={styles.shareGuessWord}>{row.guess.toLocaleUpperCase("de-DE")}</Text>
-              <Text style={styles.shareGridText}>{row.marks.map((mark) => markEmoji[mark]).join("")}</Text>
+      <View style={styles.shareResultPill}>
+        <Text style={[styles.shareResult, success && styles.shareResultWin]}>{result}</Text>
+      </View>
+      {solutionLetters.length > 0 ? (
+        <View style={styles.shareSolutionBlock}>
+          <Text style={styles.shareSectionLabel}>LÖSUNG</Text>
+          {tileable ? (
+            <View style={styles.shareSolutionTiles}>
+              {solutionLetters.map((letter, index) => (
+                <View key={`${letter}-${index}`} style={[styles.shareSolutionTile, success && styles.shareSolutionTileWin]}>
+                  <Text style={styles.shareSolutionLetter}>{letter}</Text>
+                </View>
+              ))}
+            </View>
+          ) : (
+            <Text style={styles.shareSolutionFallback}>{solution?.toLocaleUpperCase("de-DE")}</Text>
+          )}
+        </View>
+      ) : null}
+      {attempts.length > 0 ? (
+        <View style={styles.shareAttemptsBlock}>
+          <Text style={styles.shareSectionLabel}>VERSUCHE · {attempts.length}</Text>
+          {attempts.map((attempt, index) => (
+            <View key={`${attempt.guess}-${index}`} style={styles.shareAttemptRow}>
+              <Text style={styles.shareAttemptNumber}>{index + 1}</Text>
+              <Text style={styles.shareGuessWord}>{attempt.guess.toLocaleUpperCase("de-DE")}</Text>
+              {attempt.marks ? <Text style={styles.shareGridText}>{attempt.marks}</Text> : null}
             </View>
           ))}
         </View>
@@ -468,6 +492,13 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     textAlign: "center",
   },
+  shareResultPill: {
+    alignSelf: "center",
+    paddingHorizontal: tokens.space.md,
+    paddingVertical: 4,
+    borderRadius: tokens.radius.pill,
+    backgroundColor: "rgba(23, 19, 13, 0.06)",
+  },
   shareResult: {
     color: tokens.color.muted,
     fontSize: 14,
@@ -477,9 +508,63 @@ const styles = StyleSheet.create({
   shareResultWin: {
     color: tokens.color.success,
   },
-  shareSolution: {
+  shareSectionLabel: {
+    color: tokens.color.muted,
+    fontSize: 11,
+    fontWeight: "900",
+    letterSpacing: 1.4,
+    textAlign: "center",
+  },
+  shareSolutionBlock: {
+    gap: 6,
+    paddingTop: 4,
+  },
+  shareSolutionTiles: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: 4,
+  },
+  shareSolutionTile: {
+    minWidth: 32,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 6,
+    paddingVertical: 6,
+    borderRadius: 8,
+    backgroundColor: tokens.color.ink,
+  },
+  shareSolutionTileWin: {
+    backgroundColor: tokens.color.success,
+  },
+  shareSolutionLetter: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "900",
+  },
+  shareSolutionFallback: {
     color: tokens.color.ink,
     fontSize: 18,
+    fontWeight: "900",
+    textAlign: "center",
+  },
+  shareAttemptsBlock: {
+    gap: 4,
+    paddingTop: 4,
+  },
+  shareAttemptRow: {
+    alignItems: "center",
+    flexDirection: "row",
+    gap: 10,
+    paddingHorizontal: tokens.space.sm,
+    paddingVertical: 5,
+    borderRadius: 10,
+    backgroundColor: "rgba(23, 19, 13, 0.05)",
+  },
+  shareAttemptNumber: {
+    width: 20,
+    color: tokens.color.muted,
+    fontSize: 12,
     fontWeight: "900",
     textAlign: "center",
   },
@@ -487,24 +572,18 @@ const styles = StyleSheet.create({
     gap: 6,
     paddingTop: 6,
   },
-  shareGuessRow: {
-    alignItems: "center",
-    flexDirection: "row",
-    gap: 12,
-    justifyContent: "space-between",
-  },
   shareGuessWord: {
     color: tokens.color.ink,
     flex: 1,
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: "900",
     letterSpacing: 1,
   },
   shareGridText: {
     color: tokens.color.ink,
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: "900",
-    letterSpacing: 1.2,
+    letterSpacing: 1,
     textAlign: "right",
   },
   statTile: {
