@@ -15,7 +15,7 @@ export function HomeTopBar({ onHelp }: { onHelp?: () => void }) {
         </Pressable>
       </Link>
       <Pressable accessibilityLabel="Tageskniffe erklären" accessibilityRole="button" onPress={onHelp} style={styles.logoButton}>
-        <Text style={styles.logo}>WORTKNIFF</Text>
+        <Text adjustsFontSizeToFit minimumFontScale={0.82} numberOfLines={1} style={styles.logo}>WORTKNIFF</Text>
         <Text style={styles.helpIcon}>?</Text>
       </Pressable>
       <Link href="/settings" asChild>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginHorizontal: -tokens.space.md,
-    paddingHorizontal: tokens.space.lg,
+    paddingHorizontal: tokens.space.md,
     paddingVertical: 14,
   },
   iconButton: {
@@ -47,14 +47,19 @@ const styles = StyleSheet.create({
   },
   logo: {
     color: "#E65100",
+    flexShrink: 1,
     fontSize: 20,
     fontFamily: tokens.font.ui.semibold,
     letterSpacing: -0.6,
   },
   logoButton: {
     alignItems: "center",
+    flex: 1,
     flexDirection: "row",
+    flexShrink: 1,
     gap: 6,
+    justifyContent: "center",
+    minWidth: 0,
   },
   helpIcon: {
     width: 20,
@@ -62,6 +67,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: tokens.color.primaryLight,
     color: tokens.color.primaryDark,
+    flexShrink: 0,
     fontSize: 13,
     fontFamily: tokens.font.ui.semibold,
     lineHeight: 20,

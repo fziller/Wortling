@@ -37,10 +37,10 @@ export function GamePreview({ color, gameId }: GamePreviewProps) {
     return (
       <View style={styles.schmelzePreview}>
         <View style={styles.schmelzeRow}>
-          {previewWords.wortschmelzeTop.map((letter, index) => <MiniTile active={index >= 3} color={color} key={`top-${letter}-${index}`} label={letter} />)}
-          {previewWords.wortschmelzeBottom.slice(2).map((letter, index) => <MiniTile key={`bottom-${letter}-${index}`} label={letter} />)}
+          {previewWords.wortschmelzeTop.map((letter, index) => <MiniTile active={index === 3} color={tokens.color.warning} key={`top-${letter}-${index}`} label={letter} />)}
+          {previewWords.wortschmelzeBottom.slice(2).map((letter, index) => <MiniTile active={index === 0} color={tokens.color.success} key={`bottom-${letter}-${index}`} label={letter} />)}
         </View>
-        <Text style={[styles.schmelzeText, { color }]}>WALZE + ZEBRA</Text>
+        <Text style={styles.schmelzeText}>WALZE + ZEBRA</Text>
       </View>
     );
   }
@@ -106,7 +106,7 @@ export function GamePreview({ color, gameId }: GamePreviewProps) {
 function WordChip({ color, dashed = false, label, small = false }: { color?: string; dashed?: boolean; label: string; small?: boolean }) {
   return (
     <View style={[styles.wordChip, small && styles.wordChipSmall, dashed && { borderColor: color, borderStyle: "dashed", borderWidth: 1 }]}>
-      <Text style={[styles.wordChipText, dashed && { color }]}>{label}</Text>
+      <Text adjustsFontSizeToFit minimumFontScale={0.82} numberOfLines={1} style={[styles.wordChipText, dashed && { color }]}>{label}</Text>
     </View>
   );
 }
@@ -205,8 +205,11 @@ const styles = StyleSheet.create({
   },
   wordChipText: {
     color: tokens.color.ink,
+    flexShrink: 1,
     fontSize: 12,
     fontWeight: "900",
+    minWidth: 12,
+    textAlign: "center",
   },
   betweenPreview: {
     alignItems: "center",
@@ -234,7 +237,7 @@ const styles = StyleSheet.create({
   },
   wordChipSmall: {
     minWidth: 43,
-    paddingHorizontal: 8,
+    paddingHorizontal: 6,
     paddingVertical: 5,
   },
   doppelPreview: {
@@ -295,6 +298,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   schmelzeText: {
+    color: tokens.color.muted,
     fontSize: 10,
     fontWeight: "900",
     letterSpacing: 0.4,

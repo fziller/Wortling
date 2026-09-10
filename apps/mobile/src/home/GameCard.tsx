@@ -33,7 +33,7 @@ export function GameCard({ dailyKniffComplete, game, hasDailyKniff, inProgress, 
       >
         <View style={styles.cardHeader}>
           <View style={styles.titleRow}>
-            <Text numberOfLines={1} style={styles.cardTitle}>{game.title}</Text>
+            <Text adjustsFontSizeToFit minimumFontScale={0.86} numberOfLines={1} style={styles.cardTitle}>{game.title}</Text>
             <View style={[styles.statusDot, { backgroundColor: statusDotColor(status, meta.dot) }]} />
           </View>
         </View>
@@ -93,9 +93,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     letterSpacing: -0.7,
     lineHeight: 28,
+    minWidth: 0,
   },
   statusDot: {
     borderRadius: 999,
+    flexShrink: 0,
     height: 9,
     width: 9,
   },
