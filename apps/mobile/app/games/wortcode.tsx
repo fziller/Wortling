@@ -137,7 +137,6 @@ export default function WortcodeScreen() {
   const tileLayout = getWordTileLayout(puzzle.wordLength);
   const effectiveMarks = getWortcodeEffectiveMarks(state);
   const letterStates = getLetterStates(effectiveMarks, state);
-  const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;
@@ -309,10 +308,6 @@ export default function WortcodeScreen() {
     >
       <View style={styles.wrap}>
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-          <View style={styles.summaryCard}>
-            <Text style={styles.summaryTitle}>Gesucht: {puzzle.wordLength} Buchstaben</Text>
-          </View>
-
           <View style={styles.history}>
             {state.guesses.map((guess, guessIndex) => {
               const absent = puzzle.wordLength - guess.exactMatches - guess.misplacedMatches;
@@ -389,7 +384,6 @@ export default function WortcodeScreen() {
           </View>
 
           {message ? <Text style={styles.answer}>{message}</Text> : null}
-          {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toUpperCase()}</Text> : null}
         </ScrollView>
       </View>
       <ConfirmModal
@@ -420,7 +414,6 @@ export default function WortcodeScreen() {
         stats={[
           { label: "Versuche", value: state.guesses.length },
           { label: "Zeit", value: `${elapsedSeconds} Sek.` },
-          { label: "Buchstaben", value: usedLetters }
         ]}
         title={resultTitle()}
         visible={resultVisible && state.status !== "playing"}
@@ -453,9 +446,6 @@ function getLetterStates(marks: WortcodeLetterMark[][], state: WortcodeState): R
 const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.sm },
   scrollContent: { flexGrow: 1, gap: tokens.space.md, paddingBottom: tokens.space.md },
-  summaryCard: { gap: tokens.space.xs, padding: tokens.space.lg, borderRadius: tokens.radius.lg, backgroundColor: tokens.color.card, borderWidth: 1, borderColor: tokens.color.line },
-  summaryTitle: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900" },
-  summaryText: { color: tokens.color.primaryDark, fontSize: tokens.type.body, fontWeight: "900" },
   history: { flex: 1, gap: tokens.space.sm },
   guessRow: { flexDirection: "row", alignItems: "center", gap: tokens.space.sm },
   inputRow: { gap: tokens.space.sm },

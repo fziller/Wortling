@@ -123,7 +123,6 @@ export default function WortschmelzeScreen() {
   const revealedLetters = getWorttrefferRevealedLetters(puzzle, state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
   const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
-  const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
   const hintDisabled = state.status !== "playing" || (hintPolicy !== "ads" && !hintWallet.canConsume);
   const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
@@ -306,7 +305,6 @@ export default function WortschmelzeScreen() {
           })}
         </View>
         {message ? <Text style={styles.message}>{message}</Text> : null}
-        {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>{solution}</Text> : null}
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <GameResultModal
@@ -327,7 +325,7 @@ export default function WortschmelzeScreen() {
         shareText={buildMarkedGridShareText("Wortschmelze", dateKey, state.status, state.guesses.map((guess) => ({ guess: guess.value, marks: guess.marks })), solution)}
         solution={solution}
         success={state.status === "won"}
-        stats={[{ label: "Versuche", value: state.guesses.length }, { label: "Zeit", value: `${elapsedSeconds} Sek.` }, { label: "Buchstaben", value: usedLetters }]}
+        stats={[{ label: "Versuche", value: state.guesses.length }, { label: "Zeit", value: `${elapsedSeconds} Sek.` }]}
         title={state.status === "won" ? "Stark geschmolzen." : state.status === "lost" ? "Nicht geschmolzen." : "Aufgelöst."}
         visible={resultVisible && state.status !== "playing"}
       />
@@ -405,5 +403,4 @@ const styles = StyleSheet.create({
   tileText: { color: tokens.color.ink, ...tokens.typography.gameLetter },
   placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
-  answer: { color: tokens.color.ink, fontSize: tokens.type.body, fontWeight: "900", textAlign: "center" },
 });

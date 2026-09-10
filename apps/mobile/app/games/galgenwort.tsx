@@ -262,7 +262,6 @@ export default function GalgenwortScreen() {
         <View style={styles.statusBlock}>
           {message && state.status !== "playing" ? <Text style={styles.message}>{message}</Text> : null}
           {wrongLetters.length > 0 ? <Text style={styles.wrong}>Falsch: {wrongLetters.join(" ").toLocaleUpperCase("de-DE")}</Text> : null}
-          {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toLocaleUpperCase("de-DE")}</Text> : null}
         </View>
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
@@ -309,5 +308,4 @@ const styles = StyleSheet.create({
   statusBlock: { flex: 1, justifyContent: "center", gap: tokens.space.sm },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   wrong: { color: tokens.color.ink, fontSize: tokens.type.body, fontWeight: "900", textAlign: "center" },
-  answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" }
 });

@@ -277,14 +277,6 @@ export default function DoppelScreen() {
             </View>
           ) : null}
 
-          {state.status === "won" || state.status === "revealed" ? (
-            <View style={styles.resultCard}>
-              <Text style={styles.resultTitle}>{state.status === "won" ? "Stark." : "Heute gelernt:"}</Text>
-              <Text style={styles.compound}>{solution.leftCompound}</Text>
-              <Text style={styles.compound}>{solution.rightCompound}</Text>
-            </View>
-          ) : null}
-
         </ScrollView>
       </View>
       <ConfirmModal
@@ -335,7 +327,4 @@ const styles = StyleSheet.create({
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center", lineHeight: 24 },
   hints: { gap: tokens.space.xs, padding: tokens.space.sm, borderRadius: tokens.radius.md, backgroundColor: "rgba(255,255,255,0.5)" },
   hint: { color: tokens.color.ink, fontSize: tokens.type.body, fontWeight: "700" },
-  resultCard: { gap: tokens.space.sm, padding: tokens.space.lg, borderRadius: tokens.radius.lg, backgroundColor: "#E5F7EF" },
-  resultTitle: { color: tokens.color.success, fontSize: tokens.type.h2, fontWeight: "900" },
-  compound: { color: tokens.color.ink, fontSize: 24, fontWeight: "900" }
 });

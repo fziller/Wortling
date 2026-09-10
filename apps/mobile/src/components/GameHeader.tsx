@@ -95,15 +95,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: tokens.color.line,
-    borderRadius: tokens.radius.sm,
-    backgroundColor: tokens.surface.raised
+    borderColor: tokens.border.controlSubtle,
+    borderRadius: tokens.radius.md,
+    backgroundColor: "rgba(255, 253, 248, 0.7)",
   },
   buttonText: {
     color: tokens.color.ink,
-    fontSize: 28,
+    fontSize: 24,
     fontFamily: tokens.font.ui.semibold,
-    lineHeight: 30
+    lineHeight: 28,
   },
   helpWrap: {
     alignItems: "flex-end"

@@ -157,7 +157,7 @@ export function GameResultModal({
           {showConfetti ? <PaperConfetti /> : null}
           <ScrollView bounces={false} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
             <Text style={[styles.sticker, stickerStyle(outcome)]}>{stickerText(outcome)}</Text>
-            <Text style={styles.title}>{title}</Text>
+            {outcome !== "revealed" ? <Text style={styles.title}>{title}</Text> : null}
             {solution ? <AnimatedSolution value={solution} win={showConfetti} /> : null}
             {message ? <Text style={styles.message}>{message}</Text> : null}
             {guesses.length > 0 ? (
@@ -175,6 +175,21 @@ export function GameResultModal({
                 {stats.map((stat, index) => <AnimatedStatTile index={index} key={stat.label} stat={stat} />)}
               </View>
             ) : null}
+          </ScrollView>
+          <View style={styles.actions}>
+            <Pressable accessibilityRole="button" onPress={onNext} style={[styles.button, styles.primary]}>
+              <Text style={styles.primaryText}>{actionLabel}</Text>
+            </Pressable>
+            <View style={styles.secondaryActions}>
+              {shareText ? (
+                <Pressable accessibilityRole="button" disabled={sharing} onPress={shareResult} style={[styles.button, styles.share, sharing && styles.disabledButton]}>
+                  <Text style={styles.shareText}>{sharing ? "Teilt..." : shared ? "Geteilt" : "Teilen"}</Text>
+                </Pressable>
+              ) : null}
+              <Pressable accessibilityRole="button" onPress={onHome} style={[styles.button, styles.secondary]}>
+                <Text style={styles.secondaryText}>{secondaryLabel}</Text>
+              </Pressable>
+            </View>
             {onFeedback ? (
               <View style={styles.feedback}>
                 <Text style={styles.feedbackTitle}>Wie fühlte sich die Runde an?</Text>
@@ -186,19 +201,6 @@ export function GameResultModal({
                 {selectedFeedback ? <Text style={styles.feedbackThanks}>Danke, hilft beim Feinschliff.</Text> : null}
               </View>
             ) : null}
-          </ScrollView>
-          <View style={styles.actions}>
-            <Pressable accessibilityRole="button" onPress={onHome} style={[styles.button, styles.secondary]}>
-              <Text style={styles.secondaryText}>{secondaryLabel}</Text>
-            </Pressable>
-            {shareText ? (
-              <Pressable accessibilityRole="button" disabled={sharing} onPress={shareResult} style={[styles.button, styles.share, sharing && styles.disabledButton]}>
-                <Text style={styles.shareText}>{sharing ? "Teilt..." : shared ? "Geteilt" : "Teilen"}</Text>
-              </Pressable>
-            ) : null}
-            <Pressable accessibilityRole="button" onPress={onNext} style={[styles.button, styles.primary]}>
-              <Text style={styles.primaryText}>{actionLabel}</Text>
-            </Pressable>
           </View>
         </Animated.View>
         {shareText ? <ShareCard guesses={guesses} innerRef={shareCardRef} rows={shareRows} shareText={shareText} solution={solution} success={showConfetti} /> : null}
@@ -273,28 +275,24 @@ function stickerStyle(outcome?: GameResultOutcome) {
 }
 
 function AnimatedSolution({ value, win }: { value: string; win: boolean }) {
-  const letters = value.toLocaleUpperCase("de-DE").split("");
-
-  return (
-    <View style={[styles.solutionWrap, win && styles.solutionWin]}>
-      {letters.map((letter, index) => <AnimatedLetter index={index} key={`${letter}-${index}`} letter={letter} />)}
-    </View>
-  );
-}
-
-function AnimatedLetter({ index, letter }: { index: number; letter: string }) {
   const progress = useSharedValue(0);
 
   useEffect(() => {
-    progress.value = withDelay(80 + index * 35, withSpring(1, { damping: 15, stiffness: 240 }));
-  }, [index, progress]);
+    progress.value = withSpring(1, { damping: 15, stiffness: 240 });
+  }, [progress]);
 
   const style = useAnimatedStyle(() => ({
     opacity: progress.value,
     transform: [{ translateY: 10 * (1 - progress.value) }, { scale: 0.82 + 0.18 * progress.value }],
   }));
 
-  return <Animated.Text style={[styles.solutionLetter, style]}>{letter}</Animated.Text>;
+  return (
+    <View style={[styles.solutionWrap, win && styles.solutionWin]}>
+      <Animated.Text adjustsFontSizeToFit minimumFontScale={0.65} numberOfLines={2} style={[styles.solutionValue, style]}>
+        {value.toLocaleUpperCase("de-DE")}
+      </Animated.Text>
+    </View>
+  );
 }
 
 function AnimatedStatTile({ index, stat }: { index: number; stat: GameResultStat }) {
@@ -406,10 +404,7 @@ const styles = StyleSheet.create({
   },
   solutionWrap: {
     alignSelf: "center",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: 2,
+    maxWidth: "100%",
     paddingHorizontal: tokens.space.sm,
     paddingVertical: 5,
     borderRadius: tokens.radius.md,
@@ -417,11 +412,11 @@ const styles = StyleSheet.create({
   solutionWin: {
     backgroundColor: "rgba(33, 166, 122, 0.1)",
   },
-  solutionLetter: {
+  solutionValue: {
     color: tokens.color.ink,
     fontSize: 27,
     ...tokens.typography.gameLetter,
-    letterSpacing: 1.6,
+    letterSpacing: 1.2,
     textAlign: "center",
   },
   message: {
@@ -436,7 +431,7 @@ const styles = StyleSheet.create({
     paddingVertical: tokens.space.xs,
     paddingHorizontal: tokens.space.sm,
     borderRadius: tokens.radius.md,
-    backgroundColor: "rgba(36, 107, 254, 0.08)",
+    backgroundColor: tokens.surface.subdued,
   },
   historyScroll: {
     flexGrow: 0,
@@ -465,7 +460,11 @@ const styles = StyleSheet.create({
   },
   stats: {
     flexDirection: "row",
-    gap: tokens.space.xs,
+    borderBottomColor: tokens.border.subtle,
+    borderBottomWidth: 1,
+    borderTopColor: tokens.border.subtle,
+    borderTopWidth: 1,
+    paddingVertical: tokens.space.sm,
   },
   shareCard: {
     position: "absolute",
@@ -591,10 +590,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    minHeight: 64,
-    padding: tokens.space.xs,
-    borderRadius: tokens.radius.md,
-    backgroundColor: "rgba(36, 107, 254, 0.1)",
+    minHeight: 48,
+    paddingHorizontal: tokens.space.xs,
   },
   statValue: {
     color: tokens.color.ink,
@@ -611,7 +608,7 @@ const styles = StyleSheet.create({
   },
   feedback: {
     gap: tokens.space.xs,
-    paddingTop: tokens.space.xs,
+    paddingTop: 2,
   },
   feedbackTitle: {
     color: tokens.color.muted,
@@ -625,7 +622,7 @@ const styles = StyleSheet.create({
   },
   feedbackButtonWrap: { flex: 1 },
   feedbackButton: {
-    minHeight: 38,
+    minHeight: 32,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 8,
@@ -652,29 +649,30 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   actions: {
-    flexDirection: "row",
-    gap: tokens.space.sm,
+    gap: tokens.space.xs,
     marginTop: tokens.space.xs,
   },
   button: {
     flex: 1,
-    minHeight: 46,
+    minHeight: 40,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: tokens.radius.md,
   },
   secondary: {
-    borderWidth: 1,
-    borderColor: tokens.color.line,
-    backgroundColor: "white",
+    backgroundColor: "transparent",
   },
   share: {
     borderWidth: 1,
-    borderColor: "rgba(36, 107, 254, 0.28)",
-    backgroundColor: "rgba(36, 107, 254, 0.1)",
+    borderColor: tokens.border.subtle,
+    backgroundColor: tokens.surface.raised,
   },
   primary: {
     backgroundColor: tokens.color.primary,
+  },
+  secondaryActions: {
+    flexDirection: "row",
+    gap: tokens.space.sm,
   },
   disabledButton: {
     opacity: 0.58,
@@ -686,7 +684,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   shareText: {
-    color: tokens.color.secondary,
+    color: tokens.color.ink,
     fontSize: 15,
     fontFamily: tokens.font.ui.semibold,
     textAlign: "center",

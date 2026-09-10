@@ -151,7 +151,6 @@ export default function FormwortScreen() {
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getFormwortLetterStates(state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
-  const usedLetters = new Set(state.guesses.flatMap((guess) => Array.from(guess.value))).size;
   const visibleRows = state.guesses.length + (state.status === "playing" ? 1 : 0);
 
   function addLetter(letter: string) {
@@ -363,7 +362,6 @@ export default function FormwortScreen() {
           </View>
 
           {message ? <Text style={styles.answer}>{message}</Text> : null}
-          {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toLocaleUpperCase("de-DE")}</Text> : null}
         </View>
       </ScrollView>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
@@ -388,7 +386,6 @@ export default function FormwortScreen() {
         stats={[
           { label: "Versuche", value: state.guesses.length },
           { label: "Zeit", value: `${elapsedSeconds} Sek.` },
-          { label: "Buchstaben", value: usedLetters }
         ]}
         title={resultTitle()}
         visible={resultVisible && state.status !== "playing"}

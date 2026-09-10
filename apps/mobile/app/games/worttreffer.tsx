@@ -169,9 +169,6 @@ export default function WorttrefferScreen() {
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getWorttrefferLetterStates(state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
-  const usedLetters = new Set(
-    state.guesses.flatMap((guess) => Array.from(guess.value)),
-  ).size;
   const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
   const nextDailyKniffRoute = useNextOpenDailyKniff("worttreffer", dateKey, state.status === "won");
 
@@ -448,7 +445,6 @@ export default function WorttrefferScreen() {
         </View>
 
         {message ? <Text style={styles.message}>{message}</Text> : null}
-        {state.status === "lost" || state.status === "revealed" ? <Text style={styles.answer}>Lösung: {puzzle.answer.toUpperCase()}</Text> : null}
       </View>
       <ConfirmModal
         confirmLabel="Lösung zeigen"
@@ -483,7 +479,6 @@ export default function WorttrefferScreen() {
         stats={[
           { label: "Versuche", value: state.guesses.length },
           { label: "Zeit", value: `${elapsedSeconds} Sek.` },
-          { label: "Buchstaben", value: usedLetters },
         ]}
         title={resultTitle()}
         visible={resultVisible && state.status !== "playing"}
@@ -595,12 +590,6 @@ const styles = StyleSheet.create({
   message: {
     color: tokens.color.muted,
     ...tokens.typography.uiBody,
-    textAlign: "center",
-  },
-  answer: {
-    color: tokens.color.ink,
-    fontSize: tokens.type.h2,
-    ...tokens.typography.brand,
     textAlign: "center",
   },
 });
