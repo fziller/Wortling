@@ -35,7 +35,7 @@ export function DailyKniffeCard({ completedGames, games, onContinue, onOpenGame,
       ) : null}
 
       <View style={styles.dailyRows}>
-        {games.map((game) => {
+        {games.map((game, index) => {
           const complete = completedGames[game.id] === true;
 
           return (
@@ -45,7 +45,7 @@ export function DailyKniffeCard({ completedGames, games, onContinue, onOpenGame,
               accessibilityState={{ selected: complete }}
               key={game.id}
               onPress={() => onOpenGame(game.id)}
-              style={({ pressed }) => [styles.dailyRow, complete && styles.dailyRowDone, pressed && styles.pressed]}
+              style={({ pressed }) => [styles.dailyRow, index > 0 && styles.dailyRowDivider, complete && styles.dailyRowDone, pressed && styles.pressed]}
             >
               {complete ? (
                 <Text style={styles.dailyCheck}>✓</Text>
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     fontFamily: tokens.font.ui.semibold,
     letterSpacing: 0.4,
   },
-  dailyRows: { gap: 9 },
+  dailyRows: { gap: 0 },
   continueButton: {
     minHeight: 48,
     alignItems: "center",
@@ -139,24 +139,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     gap: 12,
-    paddingHorizontal: 12,
-    paddingVertical: 9,
-    borderRadius: tokens.radius.md,
-    backgroundColor: "#FFFFFF",
-    borderWidth: 1,
-    borderColor: "#EDE5DA",
-    shadowColor: tokens.color.shadow,
-    shadowOffset: { height: 4, width: 0 },
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    elevation: 1,
+    paddingHorizontal: 4,
+    paddingVertical: 11,
+  },
+  dailyRowDivider: {
+    borderTopColor: tokens.border.subtle,
+    borderTopWidth: 1,
   },
   dailyRowDone: {
-    backgroundColor: "rgba(245, 240, 230, 0.35)",
-    borderColor: "#E0D8CD",
-    borderStyle: "dashed",
-    shadowOpacity: 0,
-    elevation: 0,
+    opacity: 0.78,
   },
   pressed: { opacity: 0.72 },
   dailyCheck: {
@@ -174,10 +165,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 999,
     backgroundColor: "#F5F0E6",
-    shadowColor: tokens.color.shadow,
-    shadowOffset: { height: 2, width: 1 },
-    shadowOpacity: 0.08,
-    shadowRadius: 4,
   },
   dailyOpenDot: {
     width: 8,
@@ -205,11 +192,6 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
     borderRadius: tokens.radius.pill,
     backgroundColor: tokens.color.primary,
-    shadowColor: tokens.color.primaryDark,
-    shadowOffset: { height: 2, width: 0 },
-    shadowOpacity: 0.16,
-    shadowRadius: 4,
-    elevation: 2,
   },
   dailyPlayText: {
     color: "white",

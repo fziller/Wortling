@@ -4,7 +4,6 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 import { tokens } from "@/design/tokens";
 import type { GameDefinition, GameStatus } from "@/games/types";
 import { GamePreview } from "@/home/GamePreview";
-import { HomeTape } from "@/home/HomeTape";
 import { gameMeta, HomeGameId } from "@/home/homeMeta";
 
 type GameCardProps = {
@@ -32,10 +31,9 @@ export function GameCard({ dailyKniffComplete, game, hasDailyKniff, inProgress, 
           { transform: [{ rotate: meta.rotate }, { scale: pressed ? 0.98 : 1 }] },
         ]}
       >
-        <HomeTape position={meta.tape} />
         <View style={styles.cardHeader}>
           <View style={styles.titleRow}>
-            <Text style={styles.cardTitle}>{game.title}</Text>
+            <Text numberOfLines={1} style={styles.cardTitle}>{game.title}</Text>
             <View style={[styles.statusDot, { backgroundColor: statusDotColor(status, meta.dot) }]} />
           </View>
         </View>
@@ -70,34 +68,35 @@ const styles = StyleSheet.create({
     overflow: "visible",
     padding: 20,
     shadowColor: tokens.color.shadow,
-    shadowOffset: { height: 9, width: 0 },
-    shadowOpacity: 0.08,
-    shadowRadius: 18,
-    elevation: 2,
+    shadowOffset: { height: 5, width: 0 },
+    shadowOpacity: 0.05,
+    shadowRadius: 12,
+    elevation: 1,
   },
   cardHeader: {
     alignItems: "flex-start",
     flexDirection: "row",
     justifyContent: "space-between",
+    minWidth: 0,
   },
   titleRow: {
     alignItems: "center",
+    flex: 1,
     flexDirection: "row",
     gap: 8,
+    minWidth: 0,
   },
   cardTitle: {
     color: tokens.color.ink,
-    fontSize: 22,
     fontFamily: tokens.font.ui.semibold,
+    flexShrink: 1,
+    fontSize: 20,
     letterSpacing: -0.7,
+    lineHeight: 28,
   },
   statusDot: {
     borderRadius: 999,
     height: 9,
-    shadowColor: "#000",
-    shadowOffset: { height: 1, width: 0 },
-    shadowOpacity: 0.22,
-    shadowRadius: 2,
     width: 9,
   },
   cardText: {
@@ -127,8 +126,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: tokens.space.sm,
     paddingVertical: 4,
     borderRadius: tokens.radius.pill,
-    backgroundColor: "rgba(36, 107, 254, 0.12)",
-    color: tokens.color.secondary,
+    backgroundColor: tokens.surface.subdued,
+    color: tokens.color.primaryDark,
     fontSize: tokens.type.small,
     fontFamily: tokens.font.ui.semibold,
   },

@@ -1,4 +1,5 @@
 import { useRouter, useFocusEffect } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 import { usePostHog } from "posthog-react-native";
 import { useCallback, useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -12,8 +13,6 @@ import { gameRegistry } from "@/games/registry";
 import { HomeTape, type TapePosition } from "@/home/HomeTape";
 import { loadFreeStats, type FreeStats } from "@/stats/freeStats";
 import type { GameSessionRow } from "@/stats/types";
-
-const tapeCycle: TapePosition[] = ["topRight", "topLeft", "topCenter", "bottomRight", "bottomLeft", "topRight"];
 
 export default function StatsScreen() {
   const router = useRouter();
@@ -53,7 +52,7 @@ export default function StatsScreen() {
           </Animated.View>
         ) : (
           <>
-            <TapeSection delay={80} tape={tapeCycle[0]}>
+            <TapeSection delay={80} tape="topRight">
               <View style={styles.grid2}>
                 <View style={styles.statTileLarge}>
                   <Text style={styles.tileLabel}>Runden gespielt</Text>
@@ -70,17 +69,17 @@ export default function StatsScreen() {
               </View>
             </TapeSection>
 
-            <TapeSection delay={110} tape={tapeCycle[1]}>
+            <TapeSection delay={110}>
               <Text style={styles.cardTitle}>Streaks</Text>
               <View style={styles.twoCol}>
                 <View style={styles.streakTile}>
-                  <Text style={styles.streakIcon}>🔥</Text>
+                  <Ionicons color={tokens.color.warning} name="flame-outline" size={20} />
                   <Text style={styles.tileLabel}>Aktive Serie</Text>
-                  <Text style={styles.streakValue}>{stats.activityStreak.current}</Text>
+                  <Text style={[styles.streakValue, styles.streakValueActive]}>{stats.activityStreak.current}</Text>
                   <Text style={styles.streakBest}>Beste: {stats.activityStreak.longest}</Text>
                 </View>
                 <View style={styles.streakTile}>
-                  <Text style={styles.streakIcon}>⭐</Text>
+                  <Ionicons color={tokens.color.primary} name="star-outline" size={20} />
                   <Text style={styles.tileLabel}>Tägliches Rätsel</Text>
                   <Text style={styles.streakValue}>{stats.winDayStreak.current}</Text>
                   <Text style={styles.streakBest}>Beste: {stats.winDayStreak.longest}</Text>
@@ -88,7 +87,7 @@ export default function StatsScreen() {
               </View>
             </TapeSection>
 
-            <TapeSection delay={140} tape={tapeCycle[2]}>
+            <TapeSection delay={140}>
               <Text style={styles.sectionTitle}>Ergebnisse</Text>
               <View style={styles.grid2}>
                 <OutcomeTile label="Gewonnen" value={stats.lifetime.won} color={tokens.color.success} />
@@ -98,7 +97,7 @@ export default function StatsScreen() {
               </View>
             </TapeSection>
 
-            <TapeSection delay={170} tape={tapeCycle[3]}>
+            <TapeSection delay={170}>
               <Text style={styles.cardTitle}>Zeit & Versuche</Text>
               <View style={styles.divider} />
               <View style={styles.metricsGrid}>
@@ -109,7 +108,7 @@ export default function StatsScreen() {
               </View>
             </TapeSection>
 
-            <TapeSection delay={200} tape={tapeCycle[4]}>
+            <TapeSection delay={200}>
               <Text style={styles.cardTitle}>Deine Spiele</Text>
               {stats.lifetime.perGame.map((entry) => (
                 <View key={entry.gameId} style={styles.listRow}>
@@ -122,7 +121,7 @@ export default function StatsScreen() {
               ))}
             </TapeSection>
 
-            <TapeSection delay={230} tape={tapeCycle[0]}>
+            <TapeSection delay={230}>
               <Text style={styles.cardTitle}>Wörter & Buchstaben</Text>
               <View style={styles.twoCol}>
                 <View style={styles.miniTile}>
@@ -138,7 +137,7 @@ export default function StatsScreen() {
               <TopList title="Häufigste Buchstaben" entries={stats.words.topLetters} emptyFallback="–" />
             </TapeSection>
 
-            <TapeSection delay={260} tape={tapeCycle[1]}>
+            <TapeSection delay={260}>
               <Text style={styles.cardTitle}>Wortlängen</Text>
               {Object.keys(stats.lifetime.gamesByWordLength).length === 0 ? (
                 <Text style={styles.listValue}>–</Text>
@@ -156,7 +155,7 @@ export default function StatsScreen() {
               )}
             </TapeSection>
 
-            <TapeSection delay={290} tape={tapeCycle[2]}>
+            <TapeSection delay={290}>
               <Text style={styles.cardTitle}>Rekorde</Text>
               <RecordRow label="Schnellster Sieg" value={formatDuration(stats.records.fastestWinMs ?? 0)} />
               <RecordRow label="Wenigste Versuche (Sieg)" value={stats.records.fewestAttemptsWin === null ? "–" : String(stats.records.fewestAttemptsWin)} />
@@ -164,7 +163,7 @@ export default function StatsScreen() {
               <RecordRow label="Meiste Siege an einem Tag" value={stats.records.mostWinsInADay === null ? "–" : String(stats.records.mostWinsInADay)} />
             </TapeSection>
 
-            <TapeSection delay={310} tape={tapeCycle[3]}>
+            <TapeSection delay={310}>
               <Text style={styles.cardTitle}>Letzte Runden</Text>
               {stats.recent.length === 0 ? (
                 <Text style={styles.body}>Noch keine Runden.</Text>
@@ -188,7 +187,7 @@ export default function StatsScreen() {
   );
 }
 
-function TapeSection({ children, delay, tape }: { children: React.ReactNode; delay: number; tape: TapePosition }) {
+function TapeSection({ children, delay, tape }: { children: React.ReactNode; delay: number; tape?: TapePosition }) {
   return (
     <Animated.View entering={FadeInDown.delay(delay).duration(tokens.motion.normal)}>
       <TapeCard tape={tape}>{children}</TapeCard>
@@ -196,10 +195,10 @@ function TapeSection({ children, delay, tape }: { children: React.ReactNode; del
   );
 }
 
-function TapeCard({ children, tape }: { children: React.ReactNode; tape: TapePosition }) {
+function TapeCard({ children, tape }: { children: React.ReactNode; tape?: TapePosition }) {
   return (
     <View style={styles.tapeCard}>
-      <HomeTape position={tape} />
+      {tape ? <HomeTape position={tape} /> : null}
       <View style={styles.tapeCardContent}>{children}</View>
     </View>
   );
@@ -346,48 +345,47 @@ const styles = StyleSheet.create({
   backButton: { alignSelf: "flex-start", paddingHorizontal: 16, paddingVertical: 8, borderWidth: 1, borderColor: tokens.border.subtle, borderRadius: tokens.radius.md, backgroundColor: tokens.surface.raised },
   backButtonText: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold },
   kicker: { color: tokens.color.primaryDark, fontFamily: tokens.font.ui.semibold, fontSize: 13, letterSpacing: 1.6, textTransform: "uppercase" },
-  title: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: tokens.type.title, letterSpacing: -1.8 },
-  // tape card — same look as GameCard
+  title: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 38, letterSpacing: -1.5 },
   tapeCard: { backgroundColor: tokens.surface.raised, borderColor: tokens.border.subtle, borderRadius: tokens.radius.lg, borderWidth: 1, overflow: "visible" as const, padding: 20, shadowColor: tokens.shadow.raised.color, shadowOffset: tokens.shadow.raised.offset, shadowOpacity: tokens.shadow.raised.opacity, shadowRadius: tokens.shadow.raised.radius, elevation: tokens.shadow.raised.elevation },
   tapeCardContent: { gap: 12 },
   cardTitle: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 22 },
   sectionTitle: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 20 },
   body: { color: tokens.color.muted, ...tokens.typography.uiBody },
-  footer: { color: tokens.color.muted, fontSize: 13, fontWeight: "600", textAlign: "center", marginTop: 4 },
+  footer: { color: tokens.color.muted, fontFamily: tokens.font.ui.semibold, fontSize: 13, textAlign: "center", marginTop: 4 },
   grid2: { flexDirection: "row", gap: 12, flexWrap: "wrap" as const },
   twoCol: { flexDirection: "row", gap: 12 },
-  statTileLarge: { flex: 1, minWidth: 140, backgroundColor: "rgba(255,255,255,0.55)", borderWidth: 1, borderColor: tokens.color.line, borderRadius: 16, padding: 14, gap: 4 },
-  fullWidthTile: { flexBasis: "100%" as unknown as number },
+  statTileLarge: { flex: 1, minWidth: 120, gap: 4 },
+  fullWidthTile: { borderTopColor: tokens.border.subtle, borderTopWidth: 1, flexBasis: "100%" as unknown as number, marginTop: 2, paddingTop: 14 },
   tileLabel: { color: tokens.color.muted, fontFamily: tokens.font.ui.semibold, fontSize: 11, letterSpacing: 0.6, textTransform: "uppercase" as const },
   tileValueBig: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 36, letterSpacing: -1, fontVariant: ["tabular-nums"] as const },
   tileValue: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 22, fontVariant: ["tabular-nums"] as const },
-  streakTile: { flex: 1, alignItems: "center", backgroundColor: "rgba(255,255,255,0.55)", borderWidth: 1, borderColor: tokens.color.line, borderRadius: 16, padding: 14, gap: 2 },
-  streakIcon: { fontSize: 20 },
-  streakValue: { color: tokens.color.primaryDark, fontSize: 36, fontWeight: "900" },
-  streakBest: { color: tokens.color.muted, fontSize: 12, fontWeight: "700" },
-  outcomeTile: { flex: 1, minWidth: 120, flexDirection: "row", justifyContent: "space-between", alignItems: "center", backgroundColor: "rgba(255,255,255,0.55)", borderWidth: 1, borderColor: tokens.color.line, borderRadius: 14, paddingHorizontal: 14, paddingVertical: 12 },
-  outcomeLabel: { color: tokens.color.ink, fontSize: 14, fontWeight: "800" },
-  outcomeValue: { fontSize: 18, fontWeight: "900" },
+  streakTile: { flex: 1, gap: 2 },
+  streakValue: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 36, letterSpacing: -1, fontVariant: ["tabular-nums"] as const },
+  streakValueActive: { color: tokens.color.warning },
+  streakBest: { color: tokens.color.muted, fontFamily: tokens.font.ui.medium, fontSize: 12 },
+  outcomeTile: { flex: 1, minWidth: 120, flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingVertical: 8 },
+  outcomeLabel: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 14 },
+  outcomeValue: { fontFamily: tokens.font.ui.semibold, fontSize: 18, fontVariant: ["tabular-nums"] as const },
   metricsGrid: { flexDirection: "row", flexWrap: "wrap" as const, gap: 16 },
-  metricLabel: { color: tokens.color.muted, fontSize: 11, fontWeight: "800", textTransform: "uppercase" as const, marginBottom: 2 },
-  metricValue: { color: tokens.color.ink, fontSize: 16, fontWeight: "900" },
+  metricLabel: { color: tokens.color.muted, fontFamily: tokens.font.ui.semibold, fontSize: 11, textTransform: "uppercase" as const, marginBottom: 2 },
+  metricValue: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 16 },
   divider: { height: 1, backgroundColor: tokens.color.line, opacity: 0.6 },
-  miniTile: { flex: 1, minWidth: 120, backgroundColor: "rgba(255,255,255,0.55)", borderWidth: 1, borderColor: tokens.color.line, borderRadius: 14, padding: 12, gap: 2 },
+  miniTile: { flex: 1, minWidth: 120, gap: 2, paddingVertical: 4 },
   // lists
   topList: { gap: 6, marginTop: 4 },
-  subTitle: { color: tokens.color.muted, fontSize: 11, fontWeight: "900", letterSpacing: 0.6, textTransform: "uppercase" as const, marginTop: 8 },
+  subTitle: { color: tokens.color.muted, fontFamily: tokens.font.ui.semibold, fontSize: 11, letterSpacing: 0.6, textTransform: "uppercase" as const, marginTop: 8 },
   listRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingVertical: 2 },
-  listLabel: { color: tokens.color.ink, fontSize: 15, fontWeight: "800", flexShrink: 1 },
-  favorite: { color: tokens.color.secondary },
-  listValue: { color: tokens.color.muted, fontSize: 14, fontWeight: "800" },
-  recentList: { gap: 0, backgroundColor: "rgba(255,255,255,0.55)", borderWidth: 1, borderColor: tokens.color.line, borderRadius: 16, padding: 4, overflow: "hidden" },
-  recentRow: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 8, paddingVertical: 10 },
+  listLabel: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 15, flexShrink: 1 },
+  favorite: { color: tokens.color.primaryDark },
+  listValue: { color: tokens.color.muted, fontFamily: tokens.font.ui.semibold, fontSize: 14 },
+  recentList: { gap: 0 },
+  recentRow: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 10 },
   outcomeDot: { width: 36, height: 36, borderRadius: 18, alignItems: "center", justifyContent: "center" },
-  outcomeDotText: { fontSize: 16, fontWeight: "900", color: tokens.color.ink },
+  outcomeDotText: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 16 },
   recentMain: { flex: 1, gap: 2 },
-  recentTitle: { color: tokens.color.ink, fontSize: 14, fontWeight: "800" },
-  recentSub: { color: tokens.color.muted, fontSize: 12, fontWeight: "600" },
+  recentTitle: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 14 },
+  recentSub: { color: tokens.color.muted, fontFamily: tokens.font.ui.medium, fontSize: 12 },
   pill: { paddingHorizontal: 10, paddingVertical: 5, borderRadius: 999 },
-  pillText: { fontSize: 11, fontWeight: "800" },
-  rowDivider: { height: 1, backgroundColor: tokens.color.line, opacity: 0.5, marginHorizontal: 8 },
+  pillText: { fontFamily: tokens.font.ui.semibold, fontSize: 11 },
+  rowDivider: { height: 1, backgroundColor: tokens.color.line, opacity: 0.5 },
 });

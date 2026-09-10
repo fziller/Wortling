@@ -1,4 +1,5 @@
 import { Link } from "expo-router";
+import { Feather } from "@expo/vector-icons";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { tokens } from "@/design/tokens";
@@ -10,7 +11,7 @@ export function HomeTopBar({ onHelp }: { onHelp?: () => void }) {
     <View style={styles.topBar}>
       <Link href="/stats" asChild>
         <Pressable accessibilityLabel="Statistiken öffnen" accessibilityRole="button" style={styles.iconButton}>
-          <Text style={styles.statsIcon}>📊</Text>
+          <Feather color={tokens.color.muted} name="bar-chart-2" size={22} />
         </Pressable>
       </Link>
       <Pressable accessibilityLabel="Tageskniffe erklären" accessibilityRole="button" onPress={onHelp} style={styles.logoButton}>
@@ -19,7 +20,7 @@ export function HomeTopBar({ onHelp }: { onHelp?: () => void }) {
       </Pressable>
       <Link href="/settings" asChild>
         <Pressable accessibilityLabel="Einstellungen öffnen" accessibilityRole="button" style={styles.iconButton}>
-          <Text style={styles.settingsIcon}>⚙</Text>
+          <Feather color={tokens.color.muted} name="settings" size={22} />
         </Pressable>
       </Link>
     </View>
@@ -43,16 +44,6 @@ const styles = StyleSheet.create({
     height: 38,
     justifyContent: "center",
     width: 38,
-  },
-  settingsIcon: {
-    color: "#5F6368",
-    fontSize: 26,
-    fontFamily: tokens.font.ui.semibold,
-    lineHeight: 25,
-  },
-  statsIcon: {
-    fontSize: 20,
-    textAlign: "center",
   },
   logo: {
     color: "#E65100",
