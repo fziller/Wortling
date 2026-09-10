@@ -104,10 +104,10 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     fontSize: 19,
     fontFamily: tokens.font.ui.semibold,
-    letterSpacing: -0.6,
   },
   dailyCountPill: {
     alignItems: "center",
+    flexShrink: 0,
     paddingHorizontal: tokens.space.sm,
     paddingVertical: 4,
     borderRadius: tokens.radius.badge,
@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
     color: tokens.color.primaryDark,
     fontSize: 11,
     fontFamily: tokens.font.ui.semibold,
-    letterSpacing: 0.4,
   },
   dailyRows: { gap: 0 },
   continueButton: {
@@ -181,11 +180,11 @@ const styles = StyleSheet.create({
     color: tokens.semantic.correct,
     fontSize: 10,
     fontFamily: tokens.font.ui.medium,
-    letterSpacing: 0.4,
   },
   dailyPlayPill: {
     minWidth: 72,
     alignItems: "center",
+    flexShrink: 0,
     paddingHorizontal: tokens.space.sm,
     paddingVertical: 6,
     borderRadius: tokens.radius.action,
@@ -195,7 +194,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 11,
     fontFamily: tokens.font.ui.semibold,
-    letterSpacing: 0.3,
   },
   dailyFooter: {
     color: tokens.color.muted,
