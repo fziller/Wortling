@@ -122,7 +122,8 @@ const styles = StyleSheet.create({
     color: tokens.color.ink,
     fontSize: tokens.type.h2,
     ...tokens.typography.brand,
-    lineHeight: 24
+    lineHeight: 32,
+    paddingTop: 2,
   },
   progress: {
     color: tokens.color.primaryDark,

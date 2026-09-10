@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     color: tokens.color.ink,
     flexShrink: 1,
     fontSize: 19,
-    ...tokens.typography.brand,
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: -0.6,
   },
   dailyCountPill: {
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     color: tokens.color.ink,
     flex: 1,
     fontSize: 16,
-    ...tokens.typography.brand,
+    fontFamily: tokens.font.ui.semibold,
   },
   dailyGameTitleDone: { color: tokens.color.ink },
   dailyDoneLabel: {

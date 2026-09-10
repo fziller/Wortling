@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
   logo: {
     color: "#E65100",
     fontSize: 20,
-    ...tokens.typography.brand,
-    letterSpacing: -1,
+    fontFamily: tokens.font.ui.semibold,
+    letterSpacing: -0.6,
   },
   logoButton: {
     alignItems: "center",

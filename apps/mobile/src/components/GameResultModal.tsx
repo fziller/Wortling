@@ -483,7 +483,7 @@ const styles = StyleSheet.create({
   shareLogo: {
     color: tokens.color.primaryDark,
     fontSize: 12,
-    ...tokens.typography.brand,
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: 1.5,
     textAlign: "center",
   },

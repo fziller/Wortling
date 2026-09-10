@@ -346,7 +346,7 @@ const styles = StyleSheet.create({
   backButton: { alignSelf: "flex-start", paddingHorizontal: 16, paddingVertical: 8, borderWidth: 1, borderColor: tokens.border.subtle, borderRadius: tokens.radius.md, backgroundColor: tokens.surface.raised },
   backButtonText: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold },
   kicker: { color: tokens.color.primaryDark, fontFamily: tokens.font.ui.semibold, fontSize: 13, letterSpacing: 1.6, textTransform: "uppercase" },
-  title: { color: tokens.color.ink, ...tokens.typography.brandTitle },
+  title: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: tokens.type.title, letterSpacing: -1.8 },
   // tape card — same look as GameCard
   tapeCard: { backgroundColor: tokens.surface.raised, borderColor: tokens.border.subtle, borderRadius: tokens.radius.lg, borderWidth: 1, overflow: "visible" as const, padding: 20, shadowColor: tokens.shadow.raised.color, shadowOffset: tokens.shadow.raised.offset, shadowOpacity: tokens.shadow.raised.opacity, shadowRadius: tokens.shadow.raised.radius, elevation: tokens.shadow.raised.elevation },
   tapeCardContent: { gap: 12 },

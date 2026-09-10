@@ -110,9 +110,7 @@ function KeyboardKey({ accessibilityLabel, children, disabled, hitSlop, onPress,
 const styles = StyleSheet.create({
   keyboard: {
     gap: tokens.space.xs,
-    padding: tokens.space.xs,
-    borderRadius: tokens.radius.large,
-    backgroundColor: tokens.surface.keyboard,
+    paddingVertical: tokens.space.xs,
   },
   pressable: { flex: 1 },
   row: {
@@ -130,7 +128,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: tokens.radius.compact,
-    backgroundColor: tokens.surface.keyboard,
+    backgroundColor: tokens.surface.raised,
     borderWidth: 1,
     borderColor: tokens.border.controlSubtle,
   },
@@ -140,15 +138,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: tokens.space.sm,
-    borderRadius: tokens.radius.medium,
+    borderRadius: tokens.radius.compact,
   },
   primaryAction: {
     backgroundColor: tokens.color.primary
   },
   secondaryAction: {
-    borderWidth: 1,
-    borderColor: tokens.border.controlSubtle,
-    backgroundColor: tokens.surface.raised,
+    backgroundColor: tokens.surface.subdued,
   },
   keyText: {
     color: tokens.color.ink,

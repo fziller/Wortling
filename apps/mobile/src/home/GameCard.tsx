@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     color: tokens.color.ink,
     fontSize: 22,
-    ...tokens.typography.brand,
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: -0.7,
   },
   statusDot: {
