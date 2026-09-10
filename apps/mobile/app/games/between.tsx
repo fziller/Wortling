@@ -586,7 +586,7 @@ function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, lett
         animatedStyle,
       ]}
     >
-      <Text style={[styles.wordTileText, { fontSize: textSize }, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty, placeholder && !displayLetter && styles.placeholderText]}>{(displayLetter || placeholder || "").toLocaleUpperCase("de-DE")}</Text>
+      <Text style={[styles.wordTileText, { fontSize: textSize, minWidth: 12, textAlign: "center" }, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty, placeholder && !displayLetter && styles.placeholderText]}>{(displayLetter || placeholder || "").toLocaleUpperCase("de-DE")}</Text>
     </AnimatedPressable>
   );
 }

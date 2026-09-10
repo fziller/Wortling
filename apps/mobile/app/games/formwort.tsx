@@ -334,7 +334,7 @@ export default function FormwortScreen() {
                         <Text
                           style={[
                             styles.tileText,
-                            { fontSize: tileLayout.fontSize },
+                            { fontSize: tileLayout.fontSize, minWidth: 12, textAlign: "center" },
                             symbol && !placeholder && styles.symbolText,
                             symbol && !placeholder && { color: symbolColor(symbol), fontSize: tileLayout.symbolFontSize },
                             placeholder && styles.placeholderText,

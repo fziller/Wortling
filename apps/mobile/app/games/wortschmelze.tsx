@@ -381,7 +381,7 @@ function AnimatedWortschmelzeTile({ disabled, letter, mark, minHeight, onPress, 
 
   return (
     <AnimatedPressable accessibilityRole="button" disabled={disabled} onPress={onPress} style={[styles.tile, { minHeight }, tileStyle]}>
-      <Animated.Text style={[styles.tileText, { fontSize: textSize }, placeholder && !letter && styles.placeholderText, textStyle]}>{(letter || placeholder || "").trim().toLocaleUpperCase("de-DE")}</Animated.Text>
+      <Animated.Text style={[styles.tileText, { fontSize: textSize, minWidth: 12, textAlign: "center" }, placeholder && !letter && styles.placeholderText, textStyle]}>{(letter || placeholder || "").trim().toLocaleUpperCase("de-DE")}</Animated.Text>
     </AnimatedPressable>
   );
 }

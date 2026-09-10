@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
   sideWord: { color: tokens.color.ink, fontSize: 24, fontWeight: "900", letterSpacing: 1 },
   plus: { color: tokens.color.muted, fontSize: 18, fontWeight: "900" },
   answerBox: { minWidth: 120, alignItems: "center", paddingHorizontal: tokens.space.md, paddingVertical: tokens.space.sm, borderRadius: tokens.radius.pill, backgroundColor: "rgba(255,255,255,0.58)", borderWidth: 1, borderColor: tokens.color.line },
-  answerText: { color: tokens.color.ink, fontSize: 22, fontWeight: "900", letterSpacing: 2 },
+  answerText: { color: tokens.color.ink, fontSize: 22, fontWeight: "900", letterSpacing: 2, minWidth: 12, textAlign: "center" },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center", lineHeight: 24 },
   hints: { gap: tokens.space.xs, padding: tokens.space.sm, borderRadius: tokens.radius.md, backgroundColor: "rgba(255,255,255,0.5)" },
   hint: { color: tokens.color.ink, fontSize: tokens.type.body, fontWeight: "700" },

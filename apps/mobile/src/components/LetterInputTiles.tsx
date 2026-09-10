@@ -32,7 +32,7 @@ export function LetterInputTiles({ cursorIndex, disabled = false, letters, onCur
             onPress={() => onCursorChange(index)}
             style={[styles.tile, { minHeight: tileLayout.minHeight }, active && styles.activeTile]}
           >
-            <Text style={[styles.tileText, { fontSize: tileLayout.fontSize }, placeholder && styles.placeholderText]}>{(letter || placeholder || "").toLocaleUpperCase("de-DE")}</Text>
+            <Text style={[styles.tileText, { fontSize: tileLayout.fontSize, minWidth: 12, textAlign: "center" }, placeholder && styles.placeholderText]}>{(letter || placeholder || "").toLocaleUpperCase("de-DE")}</Text>
           </Pressable>
         );
       })}
