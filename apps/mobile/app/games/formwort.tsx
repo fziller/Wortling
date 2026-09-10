@@ -45,16 +45,14 @@ import { rejectMessage } from "@/games/rejectMessages";
 type FormwortGame = ReturnType<typeof createNextFormwortGame>;
 
 const symbolColors = [
-  "#E85D3F",
-  "#246BFE",
-  "#2E7D32",
-  "#7B1FA2",
-  "#D98500",
-  "#00838F",
-  "#C2185B",
-  "#6D4C41",
-  "#5E35B1",
-  "#558B2F",
+  tokens.semantic.brandAccent,
+  tokens.gameAccent.between,
+  tokens.semantic.correct,
+  tokens.gameAccent.doppel,
+  tokens.semantic.partial,
+  tokens.gameAccent.wortleiter,
+  tokens.gameAccent.formwort,
+  tokens.gameAccent.wortschmelze,
 ];
 
 function createEmptyInput(length: number) {
@@ -402,14 +400,14 @@ const styles = StyleSheet.create({
   scrollContent: { flexGrow: 1, paddingBottom: tokens.space.md },
   wrap: { gap: tokens.space.sm },
   tileRow: { flexDirection: "row" },
-  tile: { flex: 1, minWidth: 0, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
+  tile: { flex: 1, minWidth: 0, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: tokens.surface.control },
   activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
   tileText: { color: tokens.color.ink, fontSize: 25, ...tokens.typography.gameLetter },
-  symbolText: { color: "#E99B88", fontSize: 24 },
+  symbolText: { color: tokens.color.primaryDark, fontSize: 24 },
   placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   markedTileText: { color: "white" },
-  absent: { backgroundColor: "#7B736A", borderColor: "#7B736A" },
-  present: { backgroundColor: "#D98500", borderColor: "#D98500" },
-  correct: { backgroundColor: tokens.color.success, borderColor: tokens.color.success },
+  absent: { backgroundColor: tokens.semantic.eliminated, borderColor: tokens.semantic.eliminated },
+  present: { backgroundColor: tokens.semantic.partial, borderColor: tokens.semantic.partial },
+  correct: { backgroundColor: tokens.semantic.correct, borderColor: tokens.semantic.correct },
   answer: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", textAlign: "center" },
 });

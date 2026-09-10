@@ -551,10 +551,10 @@ function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, lett
   const isActive = !disabled && index === cursorIndex;
   const animatedStyle = useAnimatedStyle(() => {
     const scaleY = interpolate(progress.value, [0, 0.5, 1], [1, 0.08, 1]);
-    const baseBg = isActive ? tokens.color.primaryLight : "rgba(255,255,255,0.5)";
+    const baseBg = isActive ? tokens.color.primaryLight : tokens.surface.control;
     const baseBorder = isActive ? tokens.color.primary : tokens.color.line;
-    const targetColor = isActive ? tokens.color.primaryLight : revealed ? tokens.color.success : filled ? tokens.color.secondary : "rgba(255,255,255,0.5)";
-    const targetBorderColor = isActive ? tokens.color.primary : revealed ? tokens.color.success : filled ? tokens.color.secondary : tokens.color.line;
+    const targetColor = isActive ? tokens.color.primaryLight : revealed ? tokens.semantic.correct : filled ? tokens.gameAccent.between : tokens.surface.control;
+    const targetBorderColor = isActive ? tokens.color.primary : revealed ? tokens.semantic.correct : filled ? tokens.gameAccent.between : tokens.color.line;
     const backgroundColor = interpolateColor(
       progress.value,
       [0, 0.5, 1],
@@ -622,7 +622,7 @@ function AlphabetLetter({ isAvailable, letter }: { isAvailable: boolean; letter:
   }, [availability, isAvailable]);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    color: interpolateColor(availability.value, [0, 1], ["rgba(23, 19, 13, 0.22)", tokens.color.secondary])
+    color: interpolateColor(availability.value, [0, 1], ["rgba(23, 19, 13, 0.22)", tokens.gameAccent.between])
   }));
 
   return <AnimatedText style={[styles.alphabetLetter, animatedStyle]}>{letter}</AnimatedText>;
@@ -672,7 +672,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: tokens.space.sm,
     paddingVertical: 4,
     borderRadius: tokens.radius.sm,
-    backgroundColor: tokens.color.secondary
+    backgroundColor: tokens.gameAccent.between
   },
   distanceBubbleTop: {
     top: -6
@@ -689,7 +689,7 @@ const styles = StyleSheet.create({
     width: 6,
     height: BOARD_LINE_HEIGHT,
     borderRadius: tokens.radius.pill,
-    backgroundColor: tokens.color.secondary
+    backgroundColor: tokens.gameAccent.between
   },
   orangeDot: {
     position: "absolute",
@@ -698,7 +698,7 @@ const styles = StyleSheet.create({
     width: DOT_SIZE,
     height: DOT_SIZE,
     borderRadius: DOT_SIZE / 2,
-    backgroundColor: "#FF8500"
+    backgroundColor: tokens.semantic.brandAccent
   },
   wordStack: {
     flex: 1,
@@ -715,13 +715,13 @@ const styles = StyleSheet.create({
   },
   wordTileFilled: {
     borderWidth: 2,
-    borderColor: tokens.color.secondary,
-    backgroundColor: tokens.color.secondary
+    borderColor: tokens.gameAccent.between,
+    backgroundColor: tokens.gameAccent.between
   },
   wordTileRevealed: {
     borderWidth: 2,
-    borderColor: tokens.color.success,
-    backgroundColor: tokens.color.success
+    borderColor: tokens.semantic.correct,
+    backgroundColor: tokens.semantic.correct
   },
   wordTileDimmed: {
     opacity: 0.28
@@ -729,7 +729,7 @@ const styles = StyleSheet.create({
   wordTileEmpty: {
     borderWidth: 2,
     borderColor: tokens.color.line,
-    backgroundColor: "rgba(255,255,255,0.5)"
+    backgroundColor: tokens.surface.control
   },
   wordTileActive: {
     borderColor: tokens.color.primary,
@@ -760,7 +760,7 @@ const styles = StyleSheet.create({
   },
   alphabetLetter: {
     minWidth: 20,
-    color: tokens.color.secondary,
+    color: tokens.gameAccent.between,
     fontSize: tokens.type.small,
     fontWeight: "900",
     textAlign: "center"

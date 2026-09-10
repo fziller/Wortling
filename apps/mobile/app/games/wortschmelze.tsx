@@ -352,10 +352,10 @@ type AnimatedWortschmelzeTileProps = {
 };
 
 function markColor(mark?: TileMark) {
-  if (mark === "correct") return tokens.color.success;
-  if (mark === "present") return "#D98500";
-  if (mark === "absent") return "#7B736A";
-  return "rgba(255,255,255,0.5)";
+  if (mark === "correct") return tokens.semantic.correct;
+  if (mark === "present") return tokens.semantic.partial;
+  if (mark === "absent") return tokens.semantic.eliminated;
+  return tokens.surface.control;
 }
 
 function AnimatedWortschmelzeTile({ disabled, letter, mark, minHeight, onPress, placeholder, revealed, revealDelay, revealing, selected, textSize }: AnimatedWortschmelzeTileProps) {
@@ -373,7 +373,7 @@ function AnimatedWortschmelzeTile({ disabled, letter, mark, minHeight, onPress, 
 
   const tileStyle = useAnimatedStyle(() => {
     const baseBorder = selected ? tokens.color.primary : tokens.color.line;
-    const baseBg = selected ? tokens.color.primaryLight : "rgba(255,255,255,0.5)";
+    const baseBg = selected ? tokens.color.primaryLight : tokens.surface.control;
     return {
       backgroundColor: interpolateColor(progress.value, [0, 0.5, 1], [baseBg, baseBg, targetColor]),
       borderColor: interpolateColor(progress.value, [0, 0.5, 1], [baseBorder, baseBorder, targetColor]),
@@ -394,7 +394,7 @@ const styles = StyleSheet.create({
   tileRow: { flexDirection: "row" },
   tile: {
     alignItems: "center",
-    backgroundColor: "rgba(255,255,255,0.5)",
+    backgroundColor: tokens.surface.control,
     borderColor: tokens.color.line,
     borderRadius: tokens.radius.sm,
     borderWidth: 2,

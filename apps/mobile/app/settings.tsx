@@ -459,7 +459,7 @@ const styles = StyleSheet.create({
     paddingVertical: tokens.space.xs
   },
   linkText: {
-    color: tokens.color.secondary,
+    color: tokens.color.primaryDark,
     fontSize: tokens.type.body,
     fontFamily: tokens.font.ui.semibold,
   },

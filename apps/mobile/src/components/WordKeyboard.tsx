@@ -179,16 +179,16 @@ const styles = StyleSheet.create({
     color: tokens.state.disabledText,
   },
   absent: {
-    backgroundColor: "#7B736A",
-    borderColor: "#7B736A"
+    backgroundColor: tokens.semantic.eliminated,
+    borderColor: tokens.semantic.eliminated
   },
   present: {
-    backgroundColor: "#D98500",
-    borderColor: "#D98500"
+    backgroundColor: tokens.semantic.partial,
+    borderColor: tokens.semantic.partial
   },
   correct: {
-    backgroundColor: tokens.color.success,
-    borderColor: tokens.color.success
+    backgroundColor: tokens.semantic.correct,
+    borderColor: tokens.semantic.correct
   },
   unused: {}
 });

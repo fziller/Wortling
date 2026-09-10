@@ -21,6 +21,7 @@ export const tokens = {
     success: "#21A67A",
     warning: "#D98500",
     danger: "#C73E3A",
+    eliminated: "#7B736A",
     shadow: "#2B1708"
   },
   surface: {
@@ -97,6 +98,34 @@ export const tokens = {
     disabledSurface: "#E5D7C5",
     disabledControl: "rgba(229, 215, 197, 0.62)",
     disabledText: "#74685B",
+  },
+  semantic: {
+    brandAccent: "#FF6B35",
+    primaryText: "#17130D",
+    secondaryText: "#74685B",
+    surface: "#FFFDF8",
+    border: "#E5D7C5",
+    correct: "#21A67A",
+    partial: "#D98500",
+    wrong: "#C73E3A",
+    eliminated: "#7B736A",
+    disabled: "#E5D7C5",
+  },
+  gameAccent: {
+    between: "#246BFE",
+    worttreffer: "#D98500",
+    wortcode: "#21A67A",
+    galgenwort: "#D98500",
+    wortschmelze: "#8E5A2A",
+    doppel: "#7B1FA2",
+    formwort: "#C2185B",
+    wortleiter: "#00796B",
+  },
+  decoration: {
+    warmBlob: "rgba(255, 107, 53, 0.14)",
+    creamBlob: "rgba(255, 241, 232, 0.42)",
+    tape: "rgba(255, 253, 248, 0.64)",
+    tapeBorder: "rgba(43, 23, 8, 0.06)",
   },
   shadow: {
     raised: { color: "#2B1708", opacity: 0.09, radius: 18, offset: { width: 0, height: 9 }, elevation: 2 },

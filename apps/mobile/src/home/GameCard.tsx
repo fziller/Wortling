@@ -51,9 +51,9 @@ export function GameCard({ dailyKniffComplete, game, hasDailyKniff, inProgress, 
 }
 
 function statusDotColor(status?: GameStatus, fallback: string = tokens.color.primary): string {
-  if (status === "won") return tokens.color.success;
-  if (status === "playing") return "#FBC02D";
-  if (status === "lost" || status === "revealed") return tokens.color.danger;
+  if (status === "won") return tokens.semantic.correct;
+  if (status === "playing") return tokens.semantic.partial;
+  if (status === "lost" || status === "revealed") return tokens.semantic.wrong;
 
   return fallback;
 }
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     width: 9,
   },
   cardText: {
-    color: "#5F6368",
+    color: tokens.semantic.secondaryText,
     fontSize: 14,
     fontFamily: tokens.font.ui.regular,
     marginTop: 4,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   },
   dailyBadgeDone: {
     backgroundColor: "rgba(33, 166, 122, 0.14)",
-    color: tokens.color.success,
+    color: tokens.semantic.correct,
   },
   resumeBadge: {
     alignSelf: "flex-start",

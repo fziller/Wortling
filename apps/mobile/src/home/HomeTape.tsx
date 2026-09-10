@@ -1,5 +1,7 @@
 import { StyleSheet, View } from "react-native";
 
+import { tokens } from "@/design/tokens";
+
 export type TapePosition = keyof typeof tapePositions;
 
 export function HomeTape({ position }: { position: TapePosition }) {
@@ -46,13 +48,13 @@ const tapePositions = StyleSheet.create({
 
 const styles = StyleSheet.create({
   tape: {
-    backgroundColor: "rgba(253, 251, 247, 0.72)",
-    borderColor: "rgba(0,0,0,0.05)",
+    backgroundColor: tokens.decoration.tape,
+    borderColor: tokens.decoration.tapeBorder,
     borderWidth: 1,
     height: 23,
-    opacity: 0.9,
+    opacity: 0.76,
     position: "absolute",
-    shadowColor: "#000",
+    shadowColor: tokens.color.shadow,
     shadowOffset: { height: 1, width: 0 },
     shadowOpacity: 0.08,
     shadowRadius: 3,

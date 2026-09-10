@@ -13,7 +13,7 @@ export function GamePreview({ color, gameId }: GamePreviewProps) {
     return (
       <View style={styles.wordcodePreview}>
         {previewWords.worttreffer.map((letter, index) => (
-          <View key={`${letter}-${index}`} style={[styles.bigTile, { backgroundColor: "#2E7D32" }, !letter && styles.emptyBigTile]}> 
+          <View key={`${letter}-${index}`} style={[styles.bigTile, { backgroundColor: tokens.semantic.correct }, !letter && styles.emptyBigTile]}> 
             <Text style={styles.bigTileText}>{letter}</Text>
           </View>
         ))}
@@ -37,8 +37,8 @@ export function GamePreview({ color, gameId }: GamePreviewProps) {
     return (
       <View style={styles.schmelzePreview}>
         <View style={styles.schmelzeRow}>
-          {previewWords.wortschmelzeTop.map((letter, index) => <MiniTile active={index === 3} color={tokens.color.warning} key={`top-${letter}-${index}`} label={letter} />)}
-          {previewWords.wortschmelzeBottom.slice(2).map((letter, index) => <MiniTile active={index === 0} color={tokens.color.success} key={`bottom-${letter}-${index}`} label={letter} />)}
+          {previewWords.wortschmelzeTop.map((letter, index) => <MiniTile active={index === 3} color={tokens.semantic.partial} key={`top-${letter}-${index}`} label={letter} />)}
+          {previewWords.wortschmelzeBottom.slice(2).map((letter, index) => <MiniTile active={index === 0} color={tokens.semantic.correct} key={`bottom-${letter}-${index}`} label={letter} />)}
         </View>
         <Text style={styles.schmelzeText}>WALZE + ZEBRA</Text>
       </View>
@@ -139,20 +139,20 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     height: 41,
     justifyContent: "center",
-    shadowColor: "#000",
+    shadowColor: tokens.color.shadow,
     shadowOffset: { height: 3, width: 0 },
     shadowOpacity: 0.18,
     shadowRadius: 4,
     width: 41,
   },
   bigTileText: {
-    color: "#FFFDF8",
+    color: tokens.text.inverse,
     fontSize: 17,
     fontWeight: "900",
   },
   emptyBigTile: {
-    backgroundColor: "#FFFDF8",
-    borderColor: "#2E7D32",
+    backgroundColor: tokens.surface.tile,
+    borderColor: tokens.semantic.correct,
     borderStyle: "dashed",
     borderWidth: 2,
   },
@@ -164,18 +164,18 @@ const styles = StyleSheet.create({
   },
   smallTile: {
     alignItems: "center",
-    backgroundColor: "#F2EFE8",
+    backgroundColor: tokens.surface.subdued,
     borderRadius: 7,
     height: 29,
     justifyContent: "center",
-    shadowColor: "#000",
+    shadowColor: tokens.color.shadow,
     shadowOffset: { height: 2, width: 0 },
     shadowOpacity: 0.08,
     shadowRadius: 4,
     width: 29,
   },
   emptyHangmanTile: {
-    borderBottomColor: "#E65100",
+    borderBottomColor: tokens.semantic.brandAccent,
     borderBottomWidth: 1,
     borderStyle: "dashed",
   },
@@ -194,11 +194,11 @@ const styles = StyleSheet.create({
   },
   wordChipWide: {
     alignItems: "center",
-    backgroundColor: "#F2EFE8",
+    backgroundColor: tokens.surface.subdued,
     borderRadius: 7,
     minWidth: "47%",
     paddingVertical: 9,
-    shadowColor: "#000",
+    shadowColor: tokens.color.shadow,
     shadowOffset: { height: 2, width: 0 },
     shadowOpacity: 0.08,
     shadowRadius: 5,
@@ -225,12 +225,12 @@ const styles = StyleSheet.create({
   },
   wordChip: {
     alignItems: "center",
-    backgroundColor: "#F2EFE8",
+    backgroundColor: tokens.surface.subdued,
     borderRadius: 7,
     minWidth: 58,
     paddingHorizontal: 11,
     paddingVertical: 8,
-    shadowColor: "#000",
+    shadowColor: tokens.color.shadow,
     shadowOffset: { height: 2, width: 0 },
     shadowOpacity: 0.08,
     shadowRadius: 5,
@@ -263,13 +263,13 @@ const styles = StyleSheet.create({
   },
   shapeTile: {
     alignItems: "center",
-    backgroundColor: "#F2EFE8",
-    borderColor: "#E0D9CF",
+    backgroundColor: tokens.surface.subdued,
+    borderColor: tokens.border.subtle,
     borderRadius: 7,
     borderWidth: 1,
     height: 36,
     justifyContent: "center",
-    shadowColor: "#000",
+    shadowColor: tokens.color.shadow,
     shadowOffset: { height: 2, width: 0 },
     shadowOpacity: 0.08,
     shadowRadius: 5,
@@ -309,11 +309,11 @@ const styles = StyleSheet.create({
   },
   miniTile: {
     alignItems: "center",
-    backgroundColor: "#F2EFE8",
+    backgroundColor: tokens.surface.subdued,
     borderRadius: 6,
     height: 21,
     justifyContent: "center",
-    shadowColor: "#000",
+    shadowColor: tokens.color.shadow,
     shadowOffset: { height: 1, width: 0 },
     shadowOpacity: 0.08,
     shadowRadius: 3,
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: "900",
   },
-  activeMiniTileText: { color: "#FFFDF8" },
+  activeMiniTileText: { color: tokens.text.inverse },
   arrow: {
     fontSize: 16,
     fontWeight: "900",

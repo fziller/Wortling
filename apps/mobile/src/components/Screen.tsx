@@ -63,7 +63,7 @@ function GameBackground() {
 function StaticGameBackground() {
   return (
     <LinearGradient
-      colors={["#FFF3D2", tokens.color.paper, "#FFE0C9"]}
+      colors={[tokens.color.primaryLight, tokens.color.paper, tokens.surface.subdued]}
       locations={[0, 0.48, 1]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     backgroundColor: tokens.color.paper,
   },
   videoHeaderSafeArea: {
-    backgroundColor: "rgba(253, 251, 247, 0.72)",
+    backgroundColor: tokens.surface.control,
   },
   contentSafeArea: {
     flex: 1,
@@ -124,20 +124,20 @@ const styles = StyleSheet.create({
   backgroundBlob: {
     position: "absolute",
     borderRadius: 999,
-    opacity: 0.28,
+    opacity: 1,
   },
   backgroundBlobPrimary: {
     top: -90,
     left: -70,
     width: 230,
     height: 230,
-    backgroundColor: tokens.color.primary,
+    backgroundColor: tokens.decoration.warmBlob,
   },
   backgroundBlobSecondary: {
     right: -80,
-    bottom: 140,
-    width: 250,
-    height: 250,
-    backgroundColor: tokens.color.secondary,
+    bottom: 170,
+    width: 220,
+    height: 220,
+    backgroundColor: tokens.decoration.creamBlob,
   },
 });

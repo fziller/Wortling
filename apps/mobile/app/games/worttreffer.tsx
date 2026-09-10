@@ -511,9 +511,9 @@ type AnimatedWorttrefferTileProps = {
 };
 
 function markColor(mark?: TileMark) {
-  if (mark === "correct") return tokens.color.success;
-  if (mark === "present") return "#D98500";
-  if (mark === "absent") return "#7B736A";
+  if (mark === "correct") return tokens.semantic.correct;
+  if (mark === "present") return tokens.semantic.partial;
+  if (mark === "absent") return tokens.semantic.eliminated;
 
   return tokens.surface.input;
 }
@@ -579,11 +579,11 @@ const styles = StyleSheet.create({
   tileText: { color: tokens.color.ink, fontSize: 25, ...tokens.typography.gameLetter },
   placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   markedTileText: { color: "white" },
-  absent: { backgroundColor: "#7B736A", borderColor: "#7B736A" },
-  present: { backgroundColor: "#D98500", borderColor: "#D98500" },
+  absent: { backgroundColor: tokens.semantic.eliminated, borderColor: tokens.semantic.eliminated },
+  present: { backgroundColor: tokens.semantic.partial, borderColor: tokens.semantic.partial },
   correct: {
-    backgroundColor: tokens.color.success,
-    borderColor: tokens.color.success,
+    backgroundColor: tokens.semantic.correct,
+    borderColor: tokens.semantic.correct,
   },
   message: {
     color: tokens.color.muted,

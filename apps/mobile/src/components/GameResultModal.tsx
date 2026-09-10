@@ -45,7 +45,7 @@ const confetti = [
   { left: "22%", top: "4%", color: tokens.color.success, rotate: "-24deg", delay: 80 },
   { left: "38%", top: "10%", color: tokens.color.warning, rotate: "34deg", delay: 130 },
   { left: "58%", top: "5%", color: tokens.color.primaryDark, rotate: "-16deg", delay: 50 },
-  { left: "76%", top: "14%", color: tokens.color.secondary, rotate: "28deg", delay: 110 },
+  { left: "76%", top: "14%", color: tokens.color.primaryLight, rotate: "28deg", delay: 110 },
   { left: "90%", top: "8%", color: tokens.color.success, rotate: "-32deg", delay: 170 },
 ] as const;
 

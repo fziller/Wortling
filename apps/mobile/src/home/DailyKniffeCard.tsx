@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: tokens.space.sm,
     paddingVertical: 4,
     borderRadius: tokens.radius.badge,
-    backgroundColor: "#FFE0B2",
+    backgroundColor: tokens.surface.chip,
   },
   dailyCountText: {
     color: tokens.color.primaryDark,
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 999,
-    backgroundColor: "#F5F0E6",
+    backgroundColor: tokens.surface.subdued,
   },
   dailyOpenDot: {
     width: 8,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   },
   dailyGameTitleDone: { color: tokens.color.ink },
   dailyDoneLabel: {
-    color: "#2E7D32",
+    color: tokens.semantic.correct,
     fontSize: 10,
     fontFamily: tokens.font.ui.medium,
     letterSpacing: 0.4,
