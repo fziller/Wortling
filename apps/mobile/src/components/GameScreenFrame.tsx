@@ -2,11 +2,9 @@ import { ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
 
 import { tokens } from "@/design/tokens";
-import { GameScreenHeader } from "@/components/GameHeader";
+import { GAME_HEADER_BACKGROUND, GameHeader } from "@/components/AppHeader";
 import { KeyboardLetterState, WordKeyboard } from "@/components/WordKeyboard";
 import { Screen } from "@/components/Screen";
-
-export const GAME_HEADER_BACKGROUND = "rgba(253, 251, 247, 0.72)";
 
 export type GameKeyboardConfig = {
   disabled?: boolean;
@@ -42,7 +40,7 @@ export function GameScreenFrame({
 }: GameScreenFrameProps) {
   return (
     <Screen
-      header={<GameScreenHeader onBack={onBack} onHelp={onHelp} progressLabel={progressLabel} subtitle={subtitle} title={title} />}
+      header={<GameHeader onBack={onBack} onHelp={onHelp} progressLabel={progressLabel} subtitle={subtitle} title={title} />}
       headerBackgroundColor={GAME_HEADER_BACKGROUND}
       videoBackground
     >

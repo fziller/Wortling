@@ -3,9 +3,10 @@ import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 import { useEffect, useMemo, useState } from "react";
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import Animated, { FadeInDown, FadeInUp, interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, { FadeInDown, interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 import { AppCard } from "@/components/AppCard";
+import { APP_HEADER_BACKGROUND, PageHeader } from "@/components/AppHeader";
 import { captureEvent } from "@/analytics/events";
 import { Screen } from "@/components/Screen";
 import { getBerlinDateKey } from "@/daily/date";
@@ -200,16 +201,8 @@ export default function SettingsScreen() {
   const timeLabel = `${String(settings.hour).padStart(2, "0")}:${String(settings.minute).padStart(2, "0")}`;
 
   return (
-    <Screen>
+    <Screen header={<PageHeader onBack={() => router.back()} title="Einstellungen" />} headerBackgroundColor={APP_HEADER_BACKGROUND}>
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <Animated.View entering={FadeInUp.duration(tokens.motion.normal)} style={styles.header}>
-          <Pressable accessibilityRole="button" onPress={() => router.back()} style={styles.backButton}>
-            <Text style={styles.backButtonText}>Zurück</Text>
-          </Pressable>
-          <Text style={styles.kicker}>Wortkniff</Text>
-          <Text style={styles.title}>Einstellungen</Text>
-        </Animated.View>
-
         <Animated.View entering={FadeInDown.delay(80).duration(tokens.motion.normal)}>
           <AppCard>
             <Text style={styles.cardTitle}>Erinnerung</Text>
@@ -444,34 +437,6 @@ const styles = StyleSheet.create({
   scroll: {
     gap: tokens.space.lg,
     paddingBottom: tokens.space.xl
-  },
-  header: {
-    gap: tokens.space.sm,
-    paddingTop: tokens.space.md
-  },
-  backButton: {
-    alignSelf: "flex-start",
-    paddingHorizontal: tokens.space.md,
-    paddingVertical: tokens.space.sm,
-    borderWidth: 1,
-    borderColor: tokens.color.line,
-    borderRadius: tokens.radius.md,
-    backgroundColor: tokens.surface.raised
-  },
-  backButtonText: {
-    color: tokens.color.ink,
-    fontFamily: tokens.font.ui.semibold,
-  },
-  kicker: {
-    color: tokens.color.primaryDark,
-    fontSize: tokens.type.small,
-    fontFamily: tokens.font.ui.semibold,
-    letterSpacing: 1.6,
-    textTransform: "uppercase"
-  },
-  title: {
-    color: tokens.color.ink,
-    ...tokens.typography.brandTitle,
   },
   cardTitle: {
     color: tokens.color.ink,

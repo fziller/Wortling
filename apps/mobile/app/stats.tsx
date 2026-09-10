@@ -2,9 +2,10 @@ import { useRouter, useFocusEffect } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { usePostHog } from "posthog-react-native";
 import { useCallback, useEffect, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
+import { APP_HEADER_BACKGROUND, PageHeader } from "@/components/AppHeader";
 import { captureEvent } from "@/analytics/events";
 import { Screen } from "@/components/Screen";
 import { getBerlinDateKey } from "@/daily/date";
@@ -33,16 +34,8 @@ export default function StatsScreen() {
   }, [posthog, today]);
 
   return (
-    <Screen>
+    <Screen header={<PageHeader onBack={() => router.back()} title="Statistik" />} headerBackgroundColor={APP_HEADER_BACKGROUND}>
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <Animated.View entering={FadeInUp.duration(tokens.motion.normal)} style={styles.header}>
-          <Pressable accessibilityRole="button" onPress={() => router.back()} style={styles.backButton}>
-            <Text style={styles.backButtonText}>Zurück</Text>
-          </Pressable>
-          <Text style={styles.kicker}>Wortkniff</Text>
-          <Text style={styles.title}>Statistik</Text>
-        </Animated.View>
-
         {!stats || stats.lifetime.totalSessions === 0 ? (
           <Animated.View entering={FadeInDown.delay(80).duration(tokens.motion.normal)}>
             <TapeCard tape="topRight">
@@ -341,11 +334,6 @@ function formatDurationShort(ms: number): string {
 
 const styles = StyleSheet.create({
   scroll: { gap: 20, paddingBottom: 34, paddingTop: 16 },
-  header: { gap: 10, paddingTop: 8 },
-  backButton: { alignSelf: "flex-start", paddingHorizontal: 16, paddingVertical: 8, borderWidth: 1, borderColor: tokens.border.subtle, borderRadius: tokens.radius.md, backgroundColor: tokens.surface.raised },
-  backButtonText: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold },
-  kicker: { color: tokens.color.primaryDark, fontFamily: tokens.font.ui.semibold, fontSize: 13, letterSpacing: 1.6, textTransform: "uppercase" },
-  title: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 38, letterSpacing: -1.5 },
   tapeCard: { backgroundColor: tokens.surface.raised, borderColor: tokens.border.subtle, borderRadius: tokens.radius.lg, borderWidth: 1, overflow: "visible" as const, padding: 20, shadowColor: tokens.shadow.raised.color, shadowOffset: tokens.shadow.raised.offset, shadowOpacity: tokens.shadow.raised.opacity, shadowRadius: tokens.shadow.raised.radius, elevation: tokens.shadow.raised.elevation },
   tapeCardContent: { gap: 12 },
   cardTitle: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 22 },

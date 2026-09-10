@@ -1,5 +1,6 @@
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 
+import { HeaderActionButton } from "@/components/AppHeader";
 import { tokens } from "@/design/tokens";
 
 type HelpModalProps = {
@@ -10,11 +11,7 @@ type HelpModalProps = {
 };
 
 export function HelpButton({ onPress }: { onPress: () => void }) {
-  return (
-    <Pressable accessibilityLabel="Hilfe öffnen" accessibilityRole="button" onPress={onPress} style={styles.helpButton}>
-      <Text style={styles.helpButtonText}>?</Text>
-    </Pressable>
-  );
+  return <HeaderActionButton accessibilityLabel="Hilfe öffnen" icon="help-circle" onPress={onPress} />;
 }
 
 export function HelpModal({ title, paragraphs, visible, onClose }: HelpModalProps) {
@@ -36,21 +33,6 @@ export function HelpModal({ title, paragraphs, visible, onClose }: HelpModalProp
 }
 
 const styles = StyleSheet.create({
-  helpButton: {
-    width: 44,
-    height: 44,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: tokens.radius.sm,
-    backgroundColor: tokens.surface.raised,
-    borderWidth: 1,
-    borderColor: tokens.color.line
-  },
-  helpButtonText: {
-    color: tokens.color.primaryDark,
-    fontSize: 22,
-    fontFamily: tokens.font.ui.semibold,
-  },
   backdrop: {
     flex: 1,
     justifyContent: "center",
