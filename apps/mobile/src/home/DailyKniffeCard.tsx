@@ -104,6 +104,8 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     fontSize: 19,
     fontFamily: tokens.font.ui.semibold,
+    // Android: trailing glyph guard for custom-font measuring.
+    paddingRight: 4,
   },
   dailyCountPill: {
     alignItems: "center",
@@ -117,6 +119,8 @@ const styles = StyleSheet.create({
     color: tokens.color.primaryDark,
     fontSize: 11,
     fontFamily: tokens.font.ui.semibold,
+    // Android: trailing glyph guard for custom-font measuring.
+    paddingRight: 4,
   },
   dailyRows: { gap: 0 },
   continueButton: {
@@ -180,6 +184,8 @@ const styles = StyleSheet.create({
     color: tokens.semantic.correct,
     fontSize: 10,
     fontFamily: tokens.font.ui.medium,
+    // Android: trailing glyph guard for custom-font measuring.
+    paddingRight: 4,
   },
   dailyPlayPill: {
     minWidth: 72,
@@ -194,6 +200,8 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 11,
     fontFamily: tokens.font.ui.semibold,
+    // Android: trailing glyph guard for custom-font measuring.
+    paddingRight: 4,
   },
   dailyFooter: {
     color: tokens.color.muted,

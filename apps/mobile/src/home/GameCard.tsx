@@ -90,6 +90,8 @@ const styles = StyleSheet.create({
     letterSpacing: -0.7,
     lineHeight: 28,
     minWidth: 0,
+    // Android: trailing glyph guard for custom-font measuring.
+    paddingRight: 4,
   },
   gameDot: {
     borderRadius: 999,
@@ -113,6 +115,8 @@ const styles = StyleSheet.create({
     color: tokens.color.primaryDark,
     fontSize: tokens.type.small,
     fontFamily: tokens.font.ui.semibold,
+    // Android: trailing glyph guard for custom-font measuring (adds to paddingHorizontal).
+    paddingRight: tokens.space.sm + 4,
   },
   dailyBadgeDone: {
     backgroundColor: "rgba(33, 166, 122, 0.14)",
@@ -128,6 +132,8 @@ const styles = StyleSheet.create({
     color: tokens.color.primaryDark,
     fontSize: tokens.type.small,
     fontFamily: tokens.font.ui.semibold,
+    // Android: trailing glyph guard for custom-font measuring (adds to paddingHorizontal).
+    paddingRight: tokens.space.sm + 4,
   },
   dailySubtle: {
     alignSelf: "flex-start",
@@ -135,5 +141,7 @@ const styles = StyleSheet.create({
     color: tokens.semantic.secondaryText,
     fontSize: tokens.type.small,
     fontFamily: tokens.font.ui.medium,
+    // Android: trailing glyph guard for custom-font measuring.
+    paddingRight: 4,
   },
 });
