@@ -16,9 +16,12 @@ type GameCardProps = {
   status?: GameStatus;
 };
 
-export function GameCard({ dailyKniffComplete, game, hasDailyKniff, inProgress, index, onPress, status }: GameCardProps) {
+export function GameCard({ dailyKniffComplete, game, hasDailyKniff, inProgress, index, onPress }: GameCardProps) {
   const gameId = game.id as HomeGameId;
   const meta = gameMeta[gameId];
+  const showResume = inProgress;
+  const showDailyChip = hasDailyKniff && !inProgress;
+  const showDailySubtle = hasDailyKniff && inProgress;
 
   return (
     <Animated.View entering={FadeInDown.delay(90 + index * 45).duration(tokens.motion.slow)}>
@@ -34,28 +37,23 @@ export function GameCard({ dailyKniffComplete, game, hasDailyKniff, inProgress, 
         <View style={styles.cardHeader}>
           <View style={styles.titleRow}>
             <Text adjustsFontSizeToFit minimumFontScale={0.86} numberOfLines={1} style={styles.cardTitle}>{game.title}</Text>
-            <View style={[styles.statusDot, { backgroundColor: statusDotColor(status, meta.dot) }]} />
+            <View style={[styles.gameDot, { backgroundColor: meta.dot }]} />
           </View>
         </View>
-        {hasDailyKniff ? (
+        {showResume ? <Text style={styles.resumeBadge}>Weiterspielen</Text> : null}
+        {showDailyChip ? (
           <Text style={[styles.dailyBadge, dailyKniffComplete && styles.dailyBadgeDone]}>
             {dailyKniffComplete ? "✓ Tageskniff" : "✦ Tageskniff"}
           </Text>
         ) : null}
-        {inProgress ? <Text style={styles.resumeBadge}>Weiterspielen</Text> : null}
+        {showDailySubtle ? (
+          <Text style={styles.dailySubtle}>{dailyKniffComplete ? "✓ Tageskniff" : "✦ Tageskniff"}</Text>
+        ) : null}
         <Text style={styles.cardText}>{meta.description}</Text>
         <GamePreview color={meta.color} gameId={gameId} />
       </Pressable>
     </Animated.View>
   );
-}
-
-function statusDotColor(status?: GameStatus, fallback: string = tokens.color.primary): string {
-  if (status === "won") return tokens.semantic.correct;
-  if (status === "playing") return tokens.semantic.partial;
-  if (status === "lost" || status === "revealed") return tokens.semantic.wrong;
-
-  return fallback;
 }
 
 const styles = StyleSheet.create({
@@ -93,7 +91,7 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     minWidth: 0,
   },
-  statusDot: {
+  gameDot: {
     borderRadius: 999,
     flexShrink: 0,
     height: 9,
@@ -130,5 +128,12 @@ const styles = StyleSheet.create({
     color: tokens.color.primaryDark,
     fontSize: tokens.type.small,
     fontFamily: tokens.font.ui.semibold,
+  },
+  dailySubtle: {
+    alignSelf: "flex-start",
+    marginTop: tokens.space.xs,
+    color: tokens.semantic.secondaryText,
+    fontSize: tokens.type.small,
+    fontFamily: tokens.font.ui.medium,
   },
 });

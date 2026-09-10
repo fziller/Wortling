@@ -86,7 +86,7 @@ function KeyboardKey({ accessibilityLabel, children, disabled, hitSlop, onPress,
   }, [disabled, disabledProgress]);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    opacity: 1 - disabledProgress.value * 0.18,
+    opacity: 1 - disabledProgress.value * 0.36,
     transform: [{ scale: 1 - pressed.value * 0.035 }],
   }));
 
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     borderColor: tokens.state.disabledSurface,
   },
   disabledAction: {
-    backgroundColor: tokens.state.disabledSurface,
+    backgroundColor: tokens.state.disabledControl,
     borderColor: tokens.border.hairline,
   },
   disabledActionText: {

@@ -262,7 +262,9 @@ export default function SettingsScreen() {
                 <Text style={styles.toggleLabel}>Klassisch</Text>
                 <Text style={styles.bucketDesc}>{BUCKET_PRESET_DESCRIPTIONS.klassisch}</Text>
               </View>
-              <AnimatedSwitch checked disabled />
+              <View accessibilityLabel="Klassisch, immer aktiv" accessibilityRole="text" style={styles.alwaysActiveBadge}>
+                <Text style={styles.alwaysActiveText}>✓ Immer aktiv</Text>
+              </View>
             </View>
             <View style={styles.toggleRow}>
               <View style={{ flex: 1, paddingRight: 12 }}>
@@ -497,6 +499,20 @@ const styles = StyleSheet.create({
   },
   toggleDisabled: {
     opacity: 0.6
+  },
+  alwaysActiveBadge: {
+    alignItems: "center",
+    borderColor: tokens.border.strong,
+    borderRadius: tokens.radius.badge,
+    borderWidth: 1,
+    paddingHorizontal: tokens.space.sm,
+    paddingVertical: 5,
+    backgroundColor: tokens.surface.chip,
+  },
+  alwaysActiveText: {
+    color: tokens.color.primaryDark,
+    fontFamily: tokens.font.ui.semibold,
+    fontSize: tokens.type.small,
   },
   bucketDesc: {
     color: tokens.color.muted,

@@ -22,26 +22,27 @@ const styles = StyleSheet.create({
     minHeight: 30,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 9,
+    paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: tokens.radius.action,
     borderWidth: 1,
   },
   secondary: {
     borderColor: tokens.border.strong,
-    backgroundColor: tokens.surface.chip,
+    backgroundColor: tokens.surface.raised,
   },
   tertiary: {
     borderColor: tokens.border.control,
     backgroundColor: "transparent",
   },
   reveal: {
-    borderColor: "rgba(199, 62, 58, 0.22)",
-    backgroundColor: "transparent",
+    borderColor: tokens.border.strong,
+    backgroundColor: tokens.surface.chip,
   },
   disabled: {
-    backgroundColor: tokens.state.disabledControl,
+    backgroundColor: "transparent",
     borderColor: tokens.border.hairline,
+    opacity: 0.56,
   },
   text: {
     fontSize: 12,
@@ -49,6 +50,6 @@ const styles = StyleSheet.create({
   },
   secondaryText: { color: tokens.color.primaryDark },
   tertiaryText: { color: tokens.color.muted },
-  revealText: { color: tokens.color.danger },
+  revealText: { color: tokens.color.primaryDark },
   disabledText: { color: tokens.state.disabledText },
 });
