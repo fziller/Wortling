@@ -8,6 +8,7 @@ import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
+import { GrowingGuessBoard } from "@/components/GrowingGuessBoard";
 import { HelpModal } from "@/components/HelpModal";
 import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
@@ -122,6 +123,8 @@ export default function WortschmelzeScreen() {
   const letterStates = getWorttrefferLetterStates(state);
   const revealedLetters = getWorttrefferRevealedLetters(puzzle, state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
+  const boardTileMinHeight = tileLayout.minHeight + 4;
+  const boardTileTextSize = tileLayout.fontSize + 1;
   const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
   const hintDisabled = state.status !== "playing" || (hintPolicy !== "ads" && !hintWallet.canConsume);
   const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
@@ -272,7 +275,7 @@ export default function WortschmelzeScreen() {
       title="Wortschmelze"
     >
       <View style={styles.wrap}>
-        <View style={styles.board}>
+        <GrowingGuessBoard compactRows={5} maxRows={puzzle.maxAttempts} rowGap={6} rowMinHeight={boardTileMinHeight}>
           {Array.from({ length: visibleRows }).map((_, rowIndex) => {
             const guess = state.guesses[rowIndex];
             const inputRow = state.status === "playing" && rowIndex === state.guesses.length;
@@ -288,14 +291,14 @@ export default function WortschmelzeScreen() {
                       key={`${rowIndex}-${letterIndex}`}
                       letter={letter}
                       mark={mark}
-                      minHeight={tileLayout.minHeight}
+                      minHeight={boardTileMinHeight}
                       onPress={() => setCursorIndex(letterIndex)}
                       placeholder={placeholder}
                       revealed={Boolean(mark) && rowIndex !== revealingGuessIndex}
                       revealDelay={letterIndex * TILE_REVEAL_DELAY_MS}
                       revealing={Boolean(mark) && rowIndex === revealingGuessIndex}
                       selected={inputRow && letterIndex === cursorIndex}
-                      textSize={tileLayout.fontSize}
+                      textSize={boardTileTextSize}
                     />
                   );
                 })}
@@ -303,8 +306,8 @@ export default function WortschmelzeScreen() {
             );
             return inputRow ? <ShakeView key={rowIndex} trigger={shakeTick}>{rowContent}</ShakeView> : rowContent;
           })}
-        </View>
-        {message ? <Text style={styles.message}>{message}</Text> : null}
+        </GrowingGuessBoard>
+        <Text style={[styles.message, !message && styles.hiddenMessage]}>{message || " "}</Text>
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <GameResultModal
@@ -388,7 +391,6 @@ function AnimatedWortschmelzeTile({ disabled, letter, mark, minHeight, onPress, 
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.sm },
-  board: { flex: 1, gap: 5, justifyContent: "flex-start" },
   tileRow: { flexDirection: "row" },
   tile: {
     alignItems: "center",
@@ -403,4 +405,5 @@ const styles = StyleSheet.create({
   tileText: { color: tokens.color.ink, ...tokens.typography.gameLetter },
   placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
+  hiddenMessage: { opacity: 0 },
 });

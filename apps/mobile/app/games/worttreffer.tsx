@@ -17,6 +17,7 @@ import { ConfirmModal } from "@/components/ConfirmModal";
 import { captureEvent } from "@/analytics/events";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
+import { GrowingGuessBoard } from "@/components/GrowingGuessBoard";
 import { HelpModal } from "@/components/HelpModal";
 import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
@@ -169,6 +170,8 @@ export default function WorttrefferScreen() {
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getWorttrefferLetterStates(state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
+  const boardTileMinHeight = tileLayout.minHeight + (puzzle.wordLength >= 8 ? 4 : 6);
+  const boardTileTextSize = tileLayout.fontSize + (puzzle.wordLength >= 8 ? 1 : 2);
   const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
   const nextDailyKniffRoute = useNextOpenDailyKniff("worttreffer", dateKey, state.status === "won");
 
@@ -390,7 +393,7 @@ export default function WorttrefferScreen() {
       title="Worttreffer"
     >
       <View style={styles.wrap}>
-        <View style={styles.board}>
+        <GrowingGuessBoard compactRows={5} maxRows={puzzle.maxAttempts} rowGap={6} rowMinHeight={boardTileMinHeight}>
           {Array.from({ length: visibleRows }).map((_, rowIndex) => {
             const guess = state.guesses[rowIndex];
             const inputRow = state.status === "playing" && rowIndex === state.guesses.length;
@@ -418,14 +421,14 @@ export default function WorttrefferScreen() {
                       key={`${rowIndex}-${letterIndex}`}
                       letter={letter}
                       mark={mark}
-                      minHeight={tileLayout.minHeight}
+                      minHeight={boardTileMinHeight}
                       onPress={() => setCursorIndex(letterIndex)}
                       placeholder={placeholder}
                       revealed={Boolean(mark) && rowIndex !== revealingGuessIndex}
                       revealDelay={letterIndex * TILE_REVEAL_DELAY_MS}
                       revealing={Boolean(mark) && rowIndex === revealingGuessIndex}
                       selected={inputRow && !guess && letterIndex === cursorIndex}
-                      textSize={tileLayout.fontSize}
+                      textSize={boardTileTextSize}
                     />
                   );
                 })}
@@ -442,9 +445,9 @@ export default function WorttrefferScreen() {
 
             return rowContent;
           })}
-        </View>
+        </GrowingGuessBoard>
 
-        {message ? <Text style={styles.message}>{message}</Text> : null}
+        <Text style={[styles.message, !message && styles.hiddenMessage]}>{message || " "}</Text>
       </View>
       <ConfirmModal
         confirmLabel="Lösung zeigen"
@@ -561,11 +564,6 @@ function AnimatedWorttrefferTile({ accessibilityRole, disabled, letter, mark, mi
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.sm },
-  board: {
-    flex: 1,
-    justifyContent: "flex-start",
-    gap: 5,
-  },
   tileRow: { flexDirection: "row" },
   tile: {
     flex: 1,
@@ -592,4 +590,5 @@ const styles = StyleSheet.create({
     ...tokens.typography.uiBody,
     textAlign: "center",
   },
+  hiddenMessage: { opacity: 0 },
 });

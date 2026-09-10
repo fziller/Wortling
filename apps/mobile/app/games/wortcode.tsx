@@ -7,6 +7,7 @@ import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
+import { GrowingGuessBoard } from "@/components/GrowingGuessBoard";
 import { HelpModal } from "@/components/HelpModal";
 import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
@@ -308,7 +309,7 @@ export default function WortcodeScreen() {
     >
       <View style={styles.wrap}>
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-          <View style={styles.history}>
+          <GrowingGuessBoard compactRows={5} maxRows={puzzle.maxAttempts} rowGap={tokens.space.sm} rowMinHeight={tileLayout.minHeight} style={styles.history}>
             {state.guesses.map((guess, guessIndex) => {
               const absent = puzzle.wordLength - guess.exactMatches - guess.misplacedMatches;
 
@@ -381,7 +382,7 @@ export default function WortcodeScreen() {
                 </Animated.View>
               </ShakeView>
             ) : null}
-          </View>
+          </GrowingGuessBoard>
 
           {message ? <Text style={styles.answer}>{message}</Text> : null}
         </ScrollView>
@@ -446,7 +447,7 @@ function getLetterStates(marks: WortcodeLetterMark[][], state: WortcodeState): R
 const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.sm },
   scrollContent: { flexGrow: 1, gap: tokens.space.md, paddingBottom: tokens.space.md },
-  history: { flex: 1, gap: tokens.space.sm },
+  history: { flex: 1 },
   guessRow: { flexDirection: "row", alignItems: "center", gap: tokens.space.sm },
   inputRow: { gap: tokens.space.sm },
   letterRow: { flexDirection: "row" },

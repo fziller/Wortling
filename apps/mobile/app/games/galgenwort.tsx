@@ -97,7 +97,7 @@ export default function GalgenwortScreen() {
 
   const revealed = getGalgenwortRevealedLetters(puzzle, state);
   const answerLength = Array.from(puzzle.answer).length;
-  const wordTileFontSize = answerLength > 10 ? 22 : answerLength > 8 ? 26 : 30;
+  const wordTileFontSize = answerLength > 10 ? 24 : answerLength > 8 ? 28 : 34;
   const wrongLetters = getGalgenwortWrongLetters(puzzle, state);
   const letterStates = getGalgenwortLetterStates(puzzle, state);
   const hintDisabled = state.status !== "playing" || !getGalgenwortHintLetter(puzzle, state) || (hintPolicy !== "ads" && !hintWallet.canConsume);
@@ -257,12 +257,12 @@ export default function GalgenwortScreen() {
               ) : <Text key={`${index}-blank`} style={[styles.wordTile, { fontSize: wordTileFontSize }]}>_</Text>)}
             </View>
           </ShakeView>
-        </View>
-
-        <View style={styles.statusBlock}>
-          {message && state.status !== "playing" ? <Text style={styles.message}>{message}</Text> : null}
           {wrongLetters.length > 0 ? <Text style={styles.wrong}>Falsch: {wrongLetters.join(" ").toLocaleUpperCase("de-DE")}</Text> : null}
         </View>
+
+        {message && state.status !== "playing" ? <View style={styles.statusBlock}>
+          <Text style={styles.message}>{message}</Text>
+        </View> : null}
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <GameResultModal
@@ -296,16 +296,16 @@ export default function GalgenwortScreen() {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, gap: tokens.space.lg },
-  card: { gap: tokens.space.md, padding: tokens.space.lg, borderRadius: tokens.radius.lg, backgroundColor: tokens.color.card, borderWidth: 1, borderColor: tokens.color.line },
+  wrap: { flex: 1, gap: tokens.space.md, justifyContent: "center" },
+  card: { gap: tokens.space.sm, padding: tokens.space.md, borderRadius: tokens.radius.lg, backgroundColor: "rgba(255, 249, 239, 0.78)", borderWidth: 1, borderColor: tokens.color.line },
   cardHeader: { alignItems: "center", flexDirection: "row", justifyContent: "space-between", gap: tokens.space.sm },
   kicker: { color: tokens.color.primaryDark, fontSize: tokens.type.small, fontWeight: "900", textTransform: "uppercase" },
   lengthPill: { color: tokens.color.primaryDark, fontSize: tokens.type.small, fontWeight: "900" },
-  clue: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900" },
-  wordRow: { flexDirection: "row", gap: 4, justifyContent: "center" },
+  clue: { color: tokens.color.ink, fontSize: tokens.type.h2, fontWeight: "900", lineHeight: 28 },
+  wordRow: { flexDirection: "row", gap: 4, justifyContent: "center", marginTop: tokens.space.xs },
   wordTile: { flex: 1, minWidth: 0, color: tokens.color.ink, fontWeight: "900", textAlign: "center" },
   misses: { color: tokens.color.primaryDark, fontSize: tokens.type.body, fontWeight: "900", textAlign: "center" },
-  statusBlock: { flex: 1, justifyContent: "center", gap: tokens.space.sm },
+  statusBlock: { minHeight: 24, justifyContent: "center" },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
-  wrong: { color: tokens.color.ink, fontSize: tokens.type.body, fontWeight: "900", textAlign: "center" },
+  wrong: { color: tokens.color.ink, fontSize: tokens.type.body, fontWeight: "900", marginTop: tokens.space.xs, textAlign: "center" },
 });

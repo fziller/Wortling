@@ -8,6 +8,7 @@ import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
+import { GrowingGuessBoard } from "@/components/GrowingGuessBoard";
 import { HelpModal } from "@/components/HelpModal";
 import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
@@ -151,6 +152,8 @@ export default function FormwortScreen() {
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getFormwortLetterStates(state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
+  const boardTileMinHeight = tileLayout.minHeight + (puzzle.wordLength >= 8 ? 4 : 6);
+  const boardTileTextSize = tileLayout.fontSize + (puzzle.wordLength >= 8 ? 1 : 2);
   const visibleRows = state.guesses.length + (state.status === "playing" ? 1 : 0);
 
   function addLetter(letter: string) {
@@ -303,7 +306,7 @@ export default function FormwortScreen() {
     >
       <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
         <View style={styles.wrap}>
-          <View style={styles.board}>
+          <GrowingGuessBoard compactRows={5} maxRows={puzzle.maxAttempts} rowGap={6} rowMinHeight={boardTileMinHeight}>
             {Array.from({ length: visibleRows }).map((_, rowIndex) => {
               const guess = state.guesses[rowIndex];
               const inputRow = state.status === "playing" && rowIndex === state.guesses.length;
@@ -329,12 +332,12 @@ export default function FormwortScreen() {
                         onPress={() => {
                           if (inputRow) setCursorIndex(letterIndex);
                         }}
-                        style={tileStyle(tileLayout.minHeight, symbol, symbolColor, mark, isActive)}
+                        style={tileStyle(boardTileMinHeight, symbol, symbolColor, mark, isActive)}
                       >
                         <Text
                           style={[
                             styles.tileText,
-                            { fontSize: tileLayout.fontSize, minWidth: 12, textAlign: "center" },
+                            { fontSize: boardTileTextSize, minWidth: 12, textAlign: "center" },
                             symbol && !placeholder && styles.symbolText,
                             symbol && !placeholder && { color: symbolColor(symbol), fontSize: tileLayout.symbolFontSize },
                             placeholder && styles.placeholderText,
@@ -359,7 +362,7 @@ export default function FormwortScreen() {
 
               return rowContent;
             })}
-          </View>
+          </GrowingGuessBoard>
 
           {message ? <Text style={styles.answer}>{message}</Text> : null}
         </View>
@@ -398,7 +401,6 @@ export default function FormwortScreen() {
 const styles = StyleSheet.create({
   scrollContent: { flexGrow: 1, paddingBottom: tokens.space.md },
   wrap: { gap: tokens.space.sm },
-  board: { gap: 5 },
   tileRow: { flexDirection: "row" },
   tile: { flex: 1, minWidth: 0, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
   activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
