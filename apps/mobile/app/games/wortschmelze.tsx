@@ -261,7 +261,7 @@ export default function WortschmelzeScreen() {
       actions={state.status === "playing" ? (
         <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
           <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} />
-          <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} />
+          <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} variant="reveal" />
         </View>
       ) : null}
       keyboard={{ disabled: state.status !== "playing", letterStates, onBackspace: backspace, onLetter: addLetter, onSubmit: submit, submitDisabled: !canSubmit }}

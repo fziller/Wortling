@@ -6,12 +6,13 @@ type SmallGameActionProps = {
   disabled?: boolean;
   label: string;
   onPress: () => void;
+  variant?: "secondary" | "tertiary" | "reveal";
 };
 
-export function SmallGameAction({ disabled = false, label, onPress }: SmallGameActionProps) {
+export function SmallGameAction({ disabled = false, label, onPress, variant = "secondary" }: SmallGameActionProps) {
   return (
-    <Pressable accessibilityRole="button" disabled={disabled} onPress={onPress} style={[styles.button, disabled && styles.disabled]}>
-      <Text style={[styles.text, disabled && styles.disabledText]}>{label}</Text>
+    <Pressable accessibilityRole="button" disabled={disabled} onPress={onPress} style={[styles.button, styles[variant], disabled && styles.disabled]}>
+      <Text style={[styles.text, styles[`${variant}Text`], disabled && styles.disabledText]}>{label}</Text>
     </Pressable>
   );
 }
@@ -23,19 +24,31 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 9,
     paddingVertical: 4,
-    borderWidth: 1,
-    borderColor: tokens.border.control,
     borderRadius: tokens.radius.action,
+    borderWidth: 1,
+  },
+  secondary: {
+    borderColor: tokens.border.strong,
+    backgroundColor: tokens.surface.chip,
+  },
+  tertiary: {
+    borderColor: tokens.border.control,
+    backgroundColor: "transparent",
+  },
+  reveal: {
+    borderColor: "rgba(199, 62, 58, 0.22)",
     backgroundColor: "transparent",
   },
   disabled: {
     backgroundColor: tokens.state.disabledControl,
-    borderColor: "transparent",
+    borderColor: tokens.border.hairline,
   },
   text: {
-    color: tokens.color.muted,
     fontSize: 12,
     fontFamily: tokens.font.ui.semibold,
   },
+  secondaryText: { color: tokens.color.primaryDark },
+  tertiaryText: { color: tokens.color.muted },
+  revealText: { color: tokens.color.danger },
   disabledText: { color: tokens.state.disabledText },
 });

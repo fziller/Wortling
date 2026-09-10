@@ -47,8 +47,8 @@ export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace,
       ))}
       {showSubmit || showBackspace ? (
         <View style={styles.actionRow}>
-          {showSubmit ? <KeyboardAction disabled={disabled || submitDisabled} label="Prüfen" onPress={onSubmit} /> : null}
-          {showBackspace ? <KeyboardAction disabled={disabled} label="Löschen" onPress={onBackspace} /> : null}
+          {showBackspace ? <KeyboardAction disabled={disabled} label="Löschen" onPress={onBackspace} variant="utility" /> : null}
+          {showSubmit ? <KeyboardAction disabled={disabled || submitDisabled} label="Prüfen" onPress={onSubmit} variant="primary" /> : null}
         </View>
       ) : null}
     </View>
@@ -59,14 +59,13 @@ type KeyboardActionProps = {
   disabled: boolean;
   label: string;
   onPress: () => void;
+  variant: "primary" | "utility";
 };
 
-function KeyboardAction({ disabled, label, onPress }: KeyboardActionProps) {
-  const primary = label === "Prüfen";
-
+function KeyboardAction({ disabled, label, onPress, variant }: KeyboardActionProps) {
   return (
-    <KeyboardKey accessibilityLabel={label} disabled={disabled} hitSlop={6} onPress={() => { selectionHaptic(); onPress(); }} style={[styles.actionKey, primary ? styles.primaryAction : styles.secondaryAction, disabled && styles.disabledAction]}>
-      <Text style={[styles.actionText, primary ? styles.primaryActionText : styles.secondaryActionText, disabled && styles.disabledActionText]}>{label}</Text>
+    <KeyboardKey accessibilityLabel={label} disabled={disabled} hitSlop={6} onPress={() => { selectionHaptic(); onPress(); }} style={[styles.actionKey, variant === "primary" ? styles.primaryAction : styles.utilityAction, disabled && styles.disabledAction]}>
+      <Text style={[styles.actionText, variant === "primary" ? styles.primaryActionText : styles.utilityActionText, disabled && styles.disabledActionText]}>{label}</Text>
     </KeyboardKey>
   );
 }
@@ -120,7 +119,8 @@ const styles = StyleSheet.create({
   },
   actionRow: {
     flexDirection: "row",
-    gap: tokens.space.xs
+    gap: tokens.space.xs,
+    alignItems: "stretch",
   },
   key: {
     flex: 1,
@@ -133,7 +133,6 @@ const styles = StyleSheet.create({
     borderColor: tokens.border.control,
   },
   actionKey: {
-    flex: 1,
     minHeight: 48,
     alignItems: "center",
     justifyContent: "center",
@@ -141,12 +140,14 @@ const styles = StyleSheet.create({
     borderRadius: tokens.radius.action,
   },
   primaryAction: {
+    flex: 1.45,
     backgroundColor: tokens.color.primary
   },
-  secondaryAction: {
+  utilityAction: {
+    flex: 0.85,
     borderWidth: 1,
     borderColor: tokens.border.control,
-    backgroundColor: tokens.surface.control,
+    backgroundColor: "transparent",
   },
   keyText: {
     color: tokens.color.ink,
@@ -160,8 +161,8 @@ const styles = StyleSheet.create({
   primaryActionText: {
     color: "white"
   },
-  secondaryActionText: {
-    color: tokens.color.ink
+  utilityActionText: {
+    color: tokens.color.muted
   },
   markedText: {
     color: "white"
@@ -172,6 +173,7 @@ const styles = StyleSheet.create({
   },
   disabledAction: {
     backgroundColor: tokens.state.disabledSurface,
+    borderColor: tokens.border.hairline,
   },
   disabledActionText: {
     color: tokens.state.disabledText,

@@ -239,7 +239,7 @@ export default function DoppelScreen() {
       actions={state.status === "playing" ? (
         <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
           <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={hint} />
-          <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} />
+          <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} variant="reveal" />
         </View>
       ) : null}
       keyboard={{

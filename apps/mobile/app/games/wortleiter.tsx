@@ -335,9 +335,9 @@ export default function WortleiterScreen() {
     <GameScreenFrame
       actions={state.status === "playing" ? (
         <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
-          <SmallGameAction disabled={state.words.length <= 1} label="Zurück" onPress={undo} />
+          <SmallGameAction disabled={state.words.length <= 1} label="Zurück" onPress={undo} variant="tertiary" />
           <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} />
-          <SmallGameAction label="Lösung anzeigen" onPress={() => setRevealVisible(true)} />
+          <SmallGameAction label="Lösung anzeigen" onPress={() => setRevealVisible(true)} variant="reveal" />
         </View>
       ) : null}
       keyboard={{

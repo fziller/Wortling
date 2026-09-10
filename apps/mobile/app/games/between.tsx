@@ -365,7 +365,7 @@ export default function BetweenScreen() {
       actions={state.status === "playing" ? (
         <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
           <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} />
-          <SmallGameAction label="Lösung anzeigen" onPress={() => setModal("reveal")} />
+          <SmallGameAction label="Lösung anzeigen" onPress={() => setModal("reveal")} variant="reveal" />
         </View>
       ) : null}
       keyboard={{

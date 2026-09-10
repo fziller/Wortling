@@ -22,8 +22,8 @@ export function ConfirmModal({ confirmLabel, message, onCancel, onConfirm, title
             <Pressable accessibilityRole="button" onPress={onCancel} style={[styles.button, styles.secondary]}>
               <Text style={styles.secondaryText}>Weiterspielen</Text>
             </Pressable>
-            <Pressable accessibilityRole="button" onPress={onConfirm} style={[styles.button, styles.primary]}>
-              <Text style={styles.primaryText}>{confirmLabel}</Text>
+            <Pressable accessibilityRole="button" onPress={onConfirm} style={[styles.button, styles.reveal]}>
+              <Text style={styles.revealText}>{confirmLabel}</Text>
             </Pressable>
           </View>
         </View>
@@ -67,19 +67,19 @@ const styles = StyleSheet.create({
     borderRadius: tokens.radius.control
   },
   secondary: {
-    borderWidth: 1,
-    borderColor: tokens.border.control,
-    backgroundColor: tokens.surface.control
-  },
-  primary: {
     backgroundColor: tokens.color.primary
   },
+  reveal: {
+    borderWidth: 1,
+    borderColor: "rgba(199, 62, 58, 0.28)",
+    backgroundColor: "transparent"
+  },
   secondaryText: {
-    color: tokens.color.ink,
+    color: "white",
     fontFamily: tokens.font.ui.semibold,
   },
-  primaryText: {
-    color: "white",
+  revealText: {
+    color: tokens.color.danger,
     fontFamily: tokens.font.ui.semibold,
   }
 });
