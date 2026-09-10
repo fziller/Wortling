@@ -32,13 +32,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: tokens.space.lg,
-    borderRadius: tokens.radius.pill,
+    borderRadius: tokens.radius.md,
     backgroundColor: tokens.color.primary,
-    shadowColor: tokens.color.shadow,
-    shadowOpacity: 0.18,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 4
+    shadowColor: tokens.shadow.raised.color,
+    shadowOpacity: tokens.shadow.raised.opacity,
+    shadowRadius: tokens.shadow.raised.radius,
+    shadowOffset: tokens.shadow.raised.offset,
+    elevation: tokens.shadow.raised.elevation,
   },
   disabled: {
     opacity: 0.45
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
   },
   label: {
     color: "white",
-    fontSize: 17,
-    fontWeight: "800",
+    ...tokens.typography.uiControl,
+    fontFamily: tokens.font.ui.bold,
     textAlign: "center"
   }
 });

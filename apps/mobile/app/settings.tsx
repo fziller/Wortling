@@ -400,7 +400,7 @@ function AnimatedSwitch({ checked, onPress, disabled }: { checked: boolean; onPr
   const progress = useSharedValue(checked ? 1 : 0);
 
   useEffect(() => {
-    progress.value = withTiming(checked ? 1 : 0, { duration: 160 });
+    progress.value = withTiming(checked ? 1 : 0, { duration: tokens.motion.quick });
   }, [checked, progress]);
 
   const trackStyle = useAnimatedStyle(() => ({
@@ -455,42 +455,39 @@ const styles = StyleSheet.create({
     paddingVertical: tokens.space.sm,
     borderWidth: 1,
     borderColor: tokens.color.line,
-    borderRadius: tokens.radius.pill,
-    backgroundColor: "rgba(255, 255, 255, 0.62)"
+    borderRadius: tokens.radius.md,
+    backgroundColor: tokens.surface.raised
   },
   backButtonText: {
     color: tokens.color.ink,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.semibold,
   },
   kicker: {
     color: tokens.color.primaryDark,
     fontSize: tokens.type.small,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: 1.6,
     textTransform: "uppercase"
   },
   title: {
     color: tokens.color.ink,
-    fontSize: tokens.type.title,
-    fontWeight: "900",
-    letterSpacing: -1.8
+    ...tokens.typography.displayTitle,
   },
   cardTitle: {
     color: tokens.color.ink,
     fontSize: tokens.type.h2,
-    fontWeight: "900",
+    ...tokens.typography.display,
     marginBottom: tokens.space.sm
   },
   body: {
     color: tokens.color.muted,
-    fontSize: tokens.type.body,
-    lineHeight: 24,
+    ...tokens.typography.uiBody,
     marginBottom: tokens.space.md
   },
   versionText: {
     color: tokens.color.muted,
     fontSize: tokens.type.small,
-    fontWeight: "700"
+    fontFamily: tokens.font.ui.medium,
   },
   linkButton: {
     alignSelf: "flex-start",
@@ -499,7 +496,7 @@ const styles = StyleSheet.create({
   linkText: {
     color: tokens.color.secondary,
     fontSize: tokens.type.body,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.semibold,
   },
   toggleRow: {
     flexDirection: "row",
@@ -510,7 +507,7 @@ const styles = StyleSheet.create({
   toggleLabel: {
     color: tokens.color.ink,
     fontSize: tokens.type.body,
-    fontWeight: "800"
+    fontFamily: tokens.font.ui.semibold,
   },
   toggle: {
     width: 52,
@@ -548,12 +545,12 @@ const styles = StyleSheet.create({
   timeLabel: {
     color: tokens.color.muted,
     fontSize: tokens.type.small,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.bold,
   },
   timeValue: {
     color: tokens.color.ink,
     fontSize: 44,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: -1.5
   },
   timeStepperGrid: {
@@ -567,7 +564,7 @@ const styles = StyleSheet.create({
   stepperLabel: {
     color: tokens.color.muted,
     fontSize: tokens.type.small,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.bold,
   },
   stepperButtons: {
     flexDirection: "row",

@@ -43,17 +43,16 @@ const styles = StyleSheet.create({
     gap: tokens.space.md,
     padding: tokens.space.lg,
     borderRadius: tokens.radius.lg,
-    backgroundColor: tokens.color.card
+    backgroundColor: tokens.surface.raised
   },
   title: {
     color: tokens.color.ink,
     fontSize: tokens.type.h2,
-    fontWeight: "900"
+    ...tokens.typography.display,
   },
   message: {
     color: tokens.color.muted,
-    fontSize: tokens.type.body,
-    lineHeight: 24
+    ...tokens.typography.uiBody,
   },
   actions: {
     flexDirection: "row",
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
     minHeight: 52,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.pill
+    borderRadius: tokens.radius.md
   },
   secondary: {
     borderWidth: 1,
@@ -77,10 +76,10 @@ const styles = StyleSheet.create({
   },
   secondaryText: {
     color: tokens.color.ink,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.semibold,
   },
   primaryText: {
     color: "white",
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.bold,
   }
 });

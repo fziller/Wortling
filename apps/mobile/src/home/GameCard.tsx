@@ -62,9 +62,9 @@ function statusDotColor(status?: GameStatus, fallback: string = tokens.color.pri
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#FFFDF8",
-    borderColor: "#EEE6DA",
-    borderRadius: 18,
+    backgroundColor: tokens.surface.raised,
+    borderColor: tokens.border.subtle,
+    borderRadius: tokens.radius.lg,
     borderWidth: 1,
     minHeight: 158,
     overflow: "visible",
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     color: tokens.color.ink,
     fontSize: 22,
-    fontWeight: "900",
+    ...tokens.typography.display,
     letterSpacing: -0.7,
   },
   statusDot: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   cardText: {
     color: "#5F6368",
     fontSize: 14,
-    fontWeight: "600",
+    fontFamily: tokens.font.ui.medium,
     marginTop: 4,
   },
   dailyBadge: {
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 107, 53, 0.12)",
     color: tokens.color.primaryDark,
     fontSize: tokens.type.small,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
   },
   dailyBadgeDone: {
     backgroundColor: "rgba(33, 166, 122, 0.14)",
@@ -130,6 +130,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(36, 107, 254, 0.12)",
     color: tokens.color.secondary,
     fontSize: tokens.type.small,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
   },
 });

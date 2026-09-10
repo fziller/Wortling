@@ -368,7 +368,7 @@ export default function WorttrefferScreen() {
   return (
     <GameScreenFrame
       actions={
-        <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
+          <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: tokens.space.sm, alignItems: "center", justifyContent: "center" }}>
           {state.status === "playing" ? (
             <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} />
           ) : null}
@@ -517,7 +517,7 @@ function markColor(mark?: TileMark) {
   if (mark === "present") return "#D98500";
   if (mark === "absent") return "#7B736A";
 
-  return "rgba(255,255,255,0.5)";
+  return tokens.surface.input;
 }
 
 function AnimatedWorttrefferTile({ accessibilityRole, disabled, letter, mark, minHeight, onPress, placeholder, revealed, revealDelay, revealing, selected, textSize }: AnimatedWorttrefferTileProps) {
@@ -536,7 +536,7 @@ function AnimatedWorttrefferTile({ accessibilityRole, disabled, letter, mark, mi
 
   const tileStyle = useAnimatedStyle(() => {
     const baseBorder = selected ? tokens.color.primary : tokens.color.line;
-    const baseBg = selected ? tokens.color.primaryLight : "rgba(255,255,255,0.5)";
+    const baseBg = selected ? tokens.color.primaryLight : tokens.surface.input;
     const endBorder = selected ? tokens.color.primary : targetColor;
     const endBg = selected ? tokens.color.primaryLight : targetColor;
     const backgroundColor = interpolateColor(progress.value, [0, 0.5, 1], [baseBg, baseBg, endBg]);
@@ -580,10 +580,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: tokens.color.line,
     borderRadius: tokens.radius.sm,
-    backgroundColor: "rgba(255,255,255,0.5)",
+    backgroundColor: tokens.surface.input,
   },
   activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
-  tileText: { color: tokens.color.ink, fontSize: 25, fontWeight: "900" },
+  tileText: { color: tokens.color.ink, fontFamily: tokens.font.ui.bold, fontSize: 25 },
   placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   markedTileText: { color: "white" },
   absent: { backgroundColor: "#7B736A", borderColor: "#7B736A" },
@@ -594,13 +594,13 @@ const styles = StyleSheet.create({
   },
   message: {
     color: tokens.color.muted,
-    fontSize: tokens.type.body,
+    ...tokens.typography.uiBody,
     textAlign: "center",
   },
   answer: {
     color: tokens.color.ink,
     fontSize: tokens.type.h2,
-    fontWeight: "900",
+    ...tokens.typography.display,
     textAlign: "center",
   },
 });

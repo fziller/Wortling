@@ -66,6 +66,9 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 0,
     paddingTop: tokens.space.md,
+    paddingHorizontal: tokens.space.xs,
+    borderRadius: tokens.radius.lg,
+    backgroundColor: "rgba(247, 241, 232, 0.48)",
   },
   footer: {
     gap: tokens.space.sm,

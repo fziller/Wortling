@@ -1,4 +1,7 @@
-import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { useEffect } from "react";
+import type { ReactNode } from "react";
 
 import { tokens } from "@/design/tokens";
 import { selectionHaptic } from "@/haptics";
@@ -28,17 +31,16 @@ export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace,
             const state = letterStates[base] ?? "unused";
 
             return (
-              <Pressable
+              <KeyboardKey
                 accessibilityLabel={`Buchstabe ${letter}`}
-                accessibilityRole="button"
                 disabled={disabled}
                 hitSlop={6}
                 key={letter}
                 onPress={() => { selectionHaptic(); onLetter(base); }}
-                style={({ pressed }) => [styles.key, styles[state], pressed && !disabled && styles.pressed, disabled && styles.disabled]}
+                style={[styles.key, styles[state]]}
               >
                 <Text style={[styles.keyText, state !== "unused" && styles.markedText]}>{letter}</Text>
-              </Pressable>
+              </KeyboardKey>
             );
           })}
         </View>
@@ -63,19 +65,61 @@ function KeyboardAction({ disabled, label, onPress }: KeyboardActionProps) {
   const primary = label === "Prüfen";
 
   return (
-    <Pressable accessibilityLabel={label} accessibilityRole="button" disabled={disabled} hitSlop={6} onPress={() => { selectionHaptic(); onPress(); }} style={({ pressed }) => [styles.actionKey, primary ? styles.primaryAction : styles.secondaryAction, pressed && !disabled && styles.pressed, disabled && styles.disabled]}>
+    <KeyboardKey accessibilityLabel={label} disabled={disabled} hitSlop={6} onPress={() => { selectionHaptic(); onPress(); }} style={[styles.actionKey, primary ? styles.primaryAction : styles.secondaryAction]}>
       <Text style={[styles.actionText, primary ? styles.primaryActionText : styles.secondaryActionText]}>{label}</Text>
+    </KeyboardKey>
+  );
+}
+
+function KeyboardKey({ accessibilityLabel, children, disabled, hitSlop, onPress, style }: {
+  accessibilityLabel: string;
+  children: ReactNode;
+  disabled: boolean;
+  hitSlop: number;
+  onPress: () => void;
+  style: StyleProp<ViewStyle>;
+}) {
+  const pressed = useSharedValue(0);
+  const disabledProgress = useSharedValue(disabled ? 1 : 0);
+
+  useEffect(() => {
+    disabledProgress.value = withTiming(disabled ? 1 : 0, { duration: tokens.motion.quick });
+  }, [disabled, disabledProgress]);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: 1 - disabledProgress.value * 0.5,
+    transform: [{ scale: 1 - pressed.value * 0.035 }],
+  }));
+
+  return (
+    <Pressable
+      accessibilityLabel={accessibilityLabel}
+      accessibilityRole="button"
+      disabled={disabled}
+      hitSlop={hitSlop}
+      onPress={onPress}
+      onPressIn={() => { pressed.value = withTiming(1, { duration: tokens.motion.quick }); }}
+      onPressOut={() => { pressed.value = withTiming(0, { duration: tokens.motion.quick }); }}
+      style={styles.pressable}
+    >
+      <Animated.View style={[style, animatedStyle]}>{children}</Animated.View>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   keyboard: {
-    gap: 7
+    gap: tokens.space.xs,
+    padding: tokens.space.xs,
+    borderWidth: 1,
+    borderColor: "rgba(229, 215, 197, 0.78)",
+    borderRadius: tokens.radius.lg,
+    backgroundColor: tokens.surface.keyboard,
   },
+  pressable: { flex: 1 },
   row: {
     flexDirection: "row",
-    gap: 2,
+    gap: 4,
     justifyContent: "center"
   },
   actionRow: {
@@ -88,27 +132,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: tokens.radius.sm,
-    backgroundColor: "rgba(255, 255, 255, 0.55)",
+    backgroundColor: tokens.surface.keyboard,
     borderWidth: 1,
-    borderColor: tokens.color.line,
-    ...Platform.select({
-      ios: {
-        shadowColor: tokens.color.ink,
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 0,
-      },
-      default: {
-        shadowColor: tokens.color.ink,
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-      },
-    }),
+    borderColor: "rgba(229, 215, 197, 0.7)",
   },
   actionKey: {
     flex: 1,
@@ -118,24 +144,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: tokens.space.sm,
     borderRadius: tokens.radius.sm,
     borderWidth: 1,
-    ...Platform.select({
-      ios: {
-        shadowColor: tokens.color.ink,
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 0,
-      },
-      default: {
-        shadowColor: tokens.color.ink,
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-      },
-    }),
   },
   primaryAction: {
     borderColor: tokens.color.primary,
@@ -143,16 +151,16 @@ const styles = StyleSheet.create({
   },
   secondaryAction: {
     borderColor: "rgba(23, 19, 13, 0.22)",
-    backgroundColor: "rgba(253, 251, 247, 0.55)"
+    backgroundColor: tokens.surface.keyboard
   },
   keyText: {
     color: tokens.color.ink,
     fontSize: 20,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.bold,
   },
   actionText: {
     fontSize: 14,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.bold,
   },
   primaryActionText: {
     color: "white"
@@ -162,13 +170,6 @@ const styles = StyleSheet.create({
   },
   markedText: {
     color: "white"
-  },
-  pressed: {
-    transform: [{ scale: 0.97 }],
-    opacity: 0.72
-  },
-  disabled: {
-    opacity: 0.45
   },
   absent: {
     backgroundColor: "#7B736A",

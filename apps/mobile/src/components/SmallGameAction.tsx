@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderWidth: 1,
     borderColor: "rgba(23, 19, 13, 0.18)",
-    borderRadius: tokens.radius.pill,
-    backgroundColor: "rgba(253, 251, 247, 0.62)",
+    borderRadius: tokens.radius.md,
+    backgroundColor: tokens.surface.keyboard,
   },
   disabled: {
     opacity: 0.45,
@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
   text: {
     color: tokens.color.muted,
     fontSize: tokens.type.small,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
   },
 });

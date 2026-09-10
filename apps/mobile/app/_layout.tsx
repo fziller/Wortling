@@ -1,6 +1,7 @@
 import "react-native-gesture-handler";
 
 import { Stack } from "expo-router";
+import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -24,6 +25,12 @@ function RootLayoutInner() {
   const router = useRouter();
   const posthog = usePostHog();
   const [showSplash, setShowSplash] = useState(true);
+  const [fontsLoaded] = useFonts({
+    "InstrumentSans-Regular": require("../assets/fonts/InstrumentSans-Regular.ttf"),
+    "InstrumentSans-Medium": require("../assets/fonts/InstrumentSans-Medium.ttf"),
+    "InstrumentSans-SemiBold": require("../assets/fonts/InstrumentSans-SemiBold.ttf"),
+    "InstrumentSans-Bold": require("../assets/fonts/InstrumentSans-Bold.ttf"),
+  });
 
   useEffect(() => {
     try {
@@ -55,9 +62,10 @@ function RootLayoutInner() {
   }, [posthog, router]);
 
   useEffect(() => {
+    if (!fontsLoaded) return;
     const timeout = setTimeout(() => setShowSplash(false), 2600);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [fontsLoaded]);
 
   return (
     <>

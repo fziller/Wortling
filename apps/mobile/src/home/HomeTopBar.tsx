@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   settingsIcon: {
     color: "#5F6368",
     fontSize: 26,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     lineHeight: 25,
   },
   statsIcon: {
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: tokens.color.primaryLight,
     color: tokens.color.primaryDark,
     fontSize: 13,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     lineHeight: 20,
     textAlign: "center",
   },

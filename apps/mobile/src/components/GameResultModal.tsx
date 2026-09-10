@@ -377,7 +377,7 @@ const styles = StyleSheet.create({
     borderRadius: tokens.radius.lg,
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.58)",
-    backgroundColor: tokens.color.card,
+    backgroundColor: tokens.surface.raised,
     overflow: "hidden",
   },
   content: {
@@ -390,7 +390,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: tokens.radius.pill,
     fontSize: 12,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     letterSpacing: 1.2,
     overflow: "hidden",
     transform: [{ rotate: "-3deg" }],
@@ -401,7 +401,7 @@ const styles = StyleSheet.create({
   title: {
     color: tokens.color.ink,
     fontSize: 24,
-    fontWeight: "900",
+    ...tokens.typography.display,
     textAlign: "center",
   },
   solutionWrap: {
@@ -420,12 +420,13 @@ const styles = StyleSheet.create({
   solutionLetter: {
     color: tokens.color.ink,
     fontSize: 27,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     letterSpacing: 1.6,
     textAlign: "center",
   },
   message: {
     color: tokens.color.muted,
+    fontFamily: tokens.font.ui.regular,
     fontSize: 14,
     lineHeight: 20,
     textAlign: "center",
@@ -453,13 +454,13 @@ const styles = StyleSheet.create({
     width: 22,
     color: tokens.color.primaryDark,
     fontSize: tokens.type.small,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     textAlign: "center",
   },
   guessValue: {
     color: tokens.color.ink,
     fontSize: 16,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     letterSpacing: 1,
   },
   stats: {
@@ -482,27 +483,27 @@ const styles = StyleSheet.create({
   shareLogo: {
     color: tokens.color.primaryDark,
     fontSize: 12,
-    fontWeight: "900",
+    ...tokens.typography.display,
     letterSpacing: 1.5,
     textAlign: "center",
   },
   shareHeadline: {
     color: tokens.color.ink,
     fontSize: 16,
-    fontWeight: "900",
+    ...tokens.typography.display,
     textAlign: "center",
   },
   shareResultPill: {
     alignSelf: "center",
     paddingHorizontal: tokens.space.md,
     paddingVertical: 4,
-    borderRadius: tokens.radius.pill,
+    borderRadius: tokens.radius.md,
     backgroundColor: "rgba(23, 19, 13, 0.06)",
   },
   shareResult: {
     color: tokens.color.muted,
     fontSize: 14,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   shareResultWin: {
@@ -511,7 +512,7 @@ const styles = StyleSheet.create({
   shareSectionLabel: {
     color: tokens.color.muted,
     fontSize: 11,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: 1.4,
     textAlign: "center",
   },
@@ -540,12 +541,12 @@ const styles = StyleSheet.create({
   shareSolutionLetter: {
     color: "white",
     fontSize: 20,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
   },
   shareSolutionFallback: {
     color: tokens.color.ink,
     fontSize: 18,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     textAlign: "center",
   },
   shareAttemptsBlock: {
@@ -565,7 +566,7 @@ const styles = StyleSheet.create({
     width: 20,
     color: tokens.color.muted,
     fontSize: 12,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     textAlign: "center",
   },
   shareGrid: {
@@ -576,13 +577,13 @@ const styles = StyleSheet.create({
     color: tokens.color.ink,
     flex: 1,
     fontSize: 17,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     letterSpacing: 1,
   },
   shareGridText: {
     color: tokens.color.ink,
     fontSize: 18,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     letterSpacing: 1,
     textAlign: "right",
   },
@@ -597,7 +598,7 @@ const styles = StyleSheet.create({
   },
   statValue: {
     color: tokens.color.ink,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     fontSize: 21,
     lineHeight: 24,
     textAlign: "center",
@@ -605,7 +606,7 @@ const styles = StyleSheet.create({
   statLabel: {
     color: tokens.color.muted,
     fontSize: 12,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   feedback: {
@@ -615,7 +616,7 @@ const styles = StyleSheet.create({
   feedbackTitle: {
     color: tokens.color.muted,
     fontSize: tokens.type.small,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   feedbackButtons: {
@@ -628,7 +629,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 8,
-    borderRadius: tokens.radius.pill,
+    borderRadius: tokens.radius.md,
     borderWidth: 1,
     borderColor: tokens.color.line,
     backgroundColor: "white",
@@ -640,14 +641,14 @@ const styles = StyleSheet.create({
   feedbackButtonText: {
     color: tokens.color.ink,
     fontSize: 12,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   feedbackButtonTextSelected: { color: tokens.color.primaryDark },
   feedbackThanks: {
     color: tokens.color.success,
     fontSize: 12,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   actions: {
@@ -660,7 +661,7 @@ const styles = StyleSheet.create({
     minHeight: 46,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.pill,
+    borderRadius: tokens.radius.md,
   },
   secondary: {
     borderWidth: 1,
@@ -681,19 +682,19 @@ const styles = StyleSheet.create({
   secondaryText: {
     color: tokens.color.ink,
     fontSize: 15,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   shareText: {
     color: tokens.color.secondary,
     fontSize: 15,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   primaryText: {
     color: "white",
     fontSize: 15,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     textAlign: "center",
   },
   confettiPiece: {

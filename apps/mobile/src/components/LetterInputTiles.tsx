@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: tokens.color.line,
     borderRadius: tokens.radius.sm,
-    backgroundColor: "white"
+    backgroundColor: tokens.surface.input
   },
   activeTile: {
     borderColor: tokens.color.primary,
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   tileText: {
     color: tokens.color.ink,
     fontSize: 22,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.bold,
   },
   placeholderText: {
     color: tokens.color.muted,

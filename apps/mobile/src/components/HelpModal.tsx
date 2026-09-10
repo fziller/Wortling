@@ -41,15 +41,15 @@ const styles = StyleSheet.create({
     height: 44,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.pill,
-    backgroundColor: tokens.color.card,
+    borderRadius: tokens.radius.sm,
+    backgroundColor: tokens.surface.raised,
     borderWidth: 1,
     borderColor: tokens.color.line
   },
   helpButtonText: {
     color: tokens.color.primaryDark,
     fontSize: 22,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.bold,
   },
   backdrop: {
     flex: 1,
@@ -61,31 +61,30 @@ const styles = StyleSheet.create({
     gap: tokens.space.md,
     padding: tokens.space.lg,
     borderRadius: tokens.radius.lg,
-    backgroundColor: tokens.color.card,
+    backgroundColor: tokens.surface.raised,
     borderWidth: 1,
     borderColor: tokens.color.line
   },
   title: {
     color: tokens.color.ink,
     fontSize: tokens.type.h1,
-    fontWeight: "900"
+    ...tokens.typography.display,
   },
   body: {
     color: tokens.color.muted,
-    fontSize: tokens.type.body,
-    lineHeight: 24
+    ...tokens.typography.uiBody,
   },
   closeButton: {
     minHeight: 52,
     alignItems: "center",
     justifyContent: "center",
     marginTop: tokens.space.sm,
-    borderRadius: tokens.radius.pill,
+    borderRadius: tokens.radius.md,
     backgroundColor: tokens.color.primary
   },
   closeText: {
     color: "white",
-    fontSize: 17,
-    fontWeight: "900"
+    ...tokens.typography.uiControl,
+    fontFamily: tokens.font.ui.bold,
   }
 });

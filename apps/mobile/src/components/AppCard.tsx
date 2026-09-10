@@ -11,13 +11,13 @@ const styles = StyleSheet.create({
   card: {
     padding: tokens.space.lg,
     borderWidth: 1,
-    borderColor: tokens.color.line,
+    borderColor: tokens.border.subtle,
     borderRadius: tokens.radius.lg,
-    backgroundColor: tokens.color.card,
-    shadowColor: tokens.color.shadow,
-    shadowOpacity: 0.1,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 3
+    backgroundColor: tokens.surface.raised,
+    shadowColor: tokens.shadow.raised.color,
+    shadowOpacity: tokens.shadow.raised.opacity,
+    shadowRadius: tokens.shadow.raised.radius,
+    shadowOffset: tokens.shadow.raised.offset,
+    elevation: tokens.shadow.raised.elevation
   }
 });

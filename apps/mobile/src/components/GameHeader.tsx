@@ -96,13 +96,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderWidth: 1,
     borderColor: tokens.color.line,
-    borderRadius: tokens.radius.pill,
-    backgroundColor: tokens.color.card
+    borderRadius: tokens.radius.sm,
+    backgroundColor: tokens.surface.raised
   },
   buttonText: {
     color: tokens.color.ink,
     fontSize: 28,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.bold,
     lineHeight: 30
   },
   helpWrap: {
@@ -116,18 +116,16 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: tokens.color.primaryDark,
-    fontSize: tokens.type.small,
-    fontWeight: "900"
+    ...tokens.typography.uiLabel,
   },
   title: {
     color: tokens.color.ink,
     fontSize: tokens.type.h2,
-    fontWeight: "900",
+    ...tokens.typography.display,
     lineHeight: 24
   },
   progress: {
     color: tokens.color.primaryDark,
-    fontSize: tokens.type.small,
-    fontWeight: "900"
+    ...tokens.typography.uiLabel,
   }
 });

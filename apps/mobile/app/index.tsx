@@ -215,11 +215,11 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   scrollContent: {
-    gap: 22,
+    gap: tokens.space.lg,
     paddingBottom: tokens.space.xl,
     paddingTop: tokens.space.lg,
   },
   gameList: {
-    gap: 20,
+    gap: tokens.space.lg,
   },
 });
