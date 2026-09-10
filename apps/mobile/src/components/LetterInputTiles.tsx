@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   tileText: {
     color: tokens.color.ink,
     fontSize: 22,
-    fontFamily: tokens.font.ui.bold,
+    ...tokens.typography.gameLetter,
   },
   placeholderText: {
     color: tokens.color.muted,

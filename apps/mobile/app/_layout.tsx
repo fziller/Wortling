@@ -29,7 +29,7 @@ function RootLayoutInner() {
     "InstrumentSans-Regular": require("../assets/fonts/InstrumentSans-Regular.ttf"),
     "InstrumentSans-Medium": require("../assets/fonts/InstrumentSans-Medium.ttf"),
     "InstrumentSans-SemiBold": require("../assets/fonts/InstrumentSans-SemiBold.ttf"),
-    "InstrumentSans-Bold": require("../assets/fonts/InstrumentSans-Bold.ttf"),
+    "Kalam-Bold": require("../assets/fonts/Kalam-Bold.ttf"),
   });
 
   useEffect(() => {

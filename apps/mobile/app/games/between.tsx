@@ -736,7 +736,7 @@ const styles = StyleSheet.create({
     backgroundColor: tokens.color.primaryLight
   },
   wordTileText: {
-    fontWeight: "900"
+    ...tokens.typography.gameLetter,
   },
   wordTileTextFilled: {
     color: "white"

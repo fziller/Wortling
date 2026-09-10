@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
     letterSpacing: 4,
     textAlign: "center",
   },
-  inputTileText: { color: tokens.color.ink, fontSize: 20, fontWeight: "900" },
+  inputTileText: { color: tokens.color.ink, fontSize: 20, ...tokens.typography.gameLetter },
   statusBlock: {
     minHeight: 32,
     justifyContent: "center",

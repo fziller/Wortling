@@ -583,7 +583,7 @@ const styles = StyleSheet.create({
     backgroundColor: tokens.surface.input,
   },
   activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
-  tileText: { color: tokens.color.ink, fontFamily: tokens.font.ui.bold, fontSize: 25 },
+  tileText: { color: tokens.color.ink, fontSize: 25, ...tokens.typography.gameLetter },
   placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   markedTileText: { color: "white" },
   absent: { backgroundColor: "#7B736A", borderColor: "#7B736A" },
@@ -600,7 +600,7 @@ const styles = StyleSheet.create({
   answer: {
     color: tokens.color.ink,
     fontSize: tokens.type.h2,
-    ...tokens.typography.display,
+    ...tokens.typography.brand,
     textAlign: "center",
   },
 });

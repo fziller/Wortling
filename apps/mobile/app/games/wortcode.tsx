@@ -465,7 +465,7 @@ const styles = StyleSheet.create({
   includedTile: { backgroundColor: "#FFD76A", borderColor: "#D98500" },
   exactTile: { backgroundColor: tokens.color.success, borderColor: "#127456" },
   excludedTile: { backgroundColor: tokens.color.danger, borderColor: "#A92E2A" },
-  letterText: { color: tokens.color.ink, fontSize: 18, fontWeight: "900" },
+  letterText: { color: tokens.color.ink, fontSize: 18, ...tokens.typography.gameLetter },
   placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   markedLetterText: { color: "white" },
   feedbackBoxes: { flexDirection: "row", gap: 4, marginLeft: tokens.space.xs },

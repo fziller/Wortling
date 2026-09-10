@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   helpButtonText: {
     color: tokens.color.primaryDark,
     fontSize: 22,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
   },
   backdrop: {
     flex: 1,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   title: {
     color: tokens.color.ink,
     fontSize: tokens.type.h1,
-    ...tokens.typography.display,
+    fontFamily: tokens.font.ui.semibold,
   },
   body: {
     color: tokens.color.muted,
@@ -85,6 +85,6 @@ const styles = StyleSheet.create({
   closeText: {
     color: "white",
     ...tokens.typography.uiControl,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
   }
 });

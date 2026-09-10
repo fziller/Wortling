@@ -405,7 +405,7 @@ const styles = StyleSheet.create({
   tileRow: { flexDirection: "row" },
   tile: { flex: 1, minWidth: 0, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, backgroundColor: "rgba(255,255,255,0.5)" },
   activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
-  tileText: { color: tokens.color.ink, fontSize: 25, fontWeight: "900" },
+  tileText: { color: tokens.color.ink, fontSize: 25, ...tokens.typography.gameLetter },
   symbolText: { color: "#E99B88", fontSize: 24 },
   placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   markedTileText: { color: "white" },

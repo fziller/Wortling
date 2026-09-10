@@ -37,7 +37,7 @@ export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace,
                 hitSlop={6}
                 key={letter}
                 onPress={() => { selectionHaptic(); onLetter(base); }}
-                style={[styles.key, styles[state]]}
+                style={[styles.key, styles[state], disabled && styles.disabledKey]}
               >
                 <Text style={[styles.keyText, state !== "unused" && styles.markedText]}>{letter}</Text>
               </KeyboardKey>
@@ -65,8 +65,8 @@ function KeyboardAction({ disabled, label, onPress }: KeyboardActionProps) {
   const primary = label === "Prüfen";
 
   return (
-    <KeyboardKey accessibilityLabel={label} disabled={disabled} hitSlop={6} onPress={() => { selectionHaptic(); onPress(); }} style={[styles.actionKey, primary ? styles.primaryAction : styles.secondaryAction]}>
-      <Text style={[styles.actionText, primary ? styles.primaryActionText : styles.secondaryActionText]}>{label}</Text>
+    <KeyboardKey accessibilityLabel={label} disabled={disabled} hitSlop={6} onPress={() => { selectionHaptic(); onPress(); }} style={[styles.actionKey, primary ? styles.primaryAction : styles.secondaryAction, disabled && styles.disabledAction]}>
+      <Text style={[styles.actionText, primary ? styles.primaryActionText : styles.secondaryActionText, disabled && styles.disabledActionText]}>{label}</Text>
     </KeyboardKey>
   );
 }
@@ -87,7 +87,7 @@ function KeyboardKey({ accessibilityLabel, children, disabled, hitSlop, onPress,
   }, [disabled, disabledProgress]);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    opacity: 1 - disabledProgress.value * 0.5,
+    opacity: 1 - disabledProgress.value * 0.18,
     transform: [{ scale: 1 - pressed.value * 0.035 }],
   }));
 
@@ -111,9 +111,7 @@ const styles = StyleSheet.create({
   keyboard: {
     gap: tokens.space.xs,
     padding: tokens.space.xs,
-    borderWidth: 1,
-    borderColor: "rgba(229, 215, 197, 0.78)",
-    borderRadius: tokens.radius.lg,
+    borderRadius: tokens.radius.large,
     backgroundColor: tokens.surface.keyboard,
   },
   pressable: { flex: 1 },
@@ -131,10 +129,10 @@ const styles = StyleSheet.create({
     minHeight: 56,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.sm,
+    borderRadius: tokens.radius.compact,
     backgroundColor: tokens.surface.keyboard,
     borderWidth: 1,
-    borderColor: "rgba(229, 215, 197, 0.7)",
+    borderColor: tokens.border.controlSubtle,
   },
   actionKey: {
     flex: 1,
@@ -142,25 +140,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: tokens.space.sm,
-    borderRadius: tokens.radius.sm,
-    borderWidth: 1,
+    borderRadius: tokens.radius.medium,
   },
   primaryAction: {
-    borderColor: tokens.color.primary,
     backgroundColor: tokens.color.primary
   },
   secondaryAction: {
-    borderColor: "rgba(23, 19, 13, 0.22)",
-    backgroundColor: tokens.surface.keyboard
+    borderWidth: 1,
+    borderColor: tokens.border.controlSubtle,
+    backgroundColor: tokens.surface.raised,
   },
   keyText: {
     color: tokens.color.ink,
     fontSize: 20,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
   },
   actionText: {
     fontSize: 14,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
   },
   primaryActionText: {
     color: "white"
@@ -170,6 +167,16 @@ const styles = StyleSheet.create({
   },
   markedText: {
     color: "white"
+  },
+  disabledKey: {
+    backgroundColor: tokens.state.disabledSurface,
+    borderColor: tokens.state.disabledSurface,
+  },
+  disabledAction: {
+    backgroundColor: tokens.state.disabledSurface,
+  },
+  disabledActionText: {
+    color: tokens.state.disabledText,
   },
   absent: {
     backgroundColor: "#7B736A",

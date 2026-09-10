@@ -390,7 +390,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: tokens.radius.pill,
     fontSize: 12,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: 1.2,
     overflow: "hidden",
     transform: [{ rotate: "-3deg" }],
@@ -401,7 +401,7 @@ const styles = StyleSheet.create({
   title: {
     color: tokens.color.ink,
     fontSize: 24,
-    ...tokens.typography.display,
+    ...tokens.typography.brand,
     textAlign: "center",
   },
   solutionWrap: {
@@ -420,7 +420,7 @@ const styles = StyleSheet.create({
   solutionLetter: {
     color: tokens.color.ink,
     fontSize: 27,
-    fontFamily: tokens.font.ui.bold,
+    ...tokens.typography.gameLetter,
     letterSpacing: 1.6,
     textAlign: "center",
   },
@@ -454,13 +454,13 @@ const styles = StyleSheet.create({
     width: 22,
     color: tokens.color.primaryDark,
     fontSize: tokens.type.small,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   guessValue: {
     color: tokens.color.ink,
     fontSize: 16,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: 1,
   },
   stats: {
@@ -483,14 +483,14 @@ const styles = StyleSheet.create({
   shareLogo: {
     color: tokens.color.primaryDark,
     fontSize: 12,
-    ...tokens.typography.display,
+    ...tokens.typography.brand,
     letterSpacing: 1.5,
     textAlign: "center",
   },
   shareHeadline: {
     color: tokens.color.ink,
     fontSize: 16,
-    ...tokens.typography.display,
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   shareResultPill: {
@@ -541,12 +541,12 @@ const styles = StyleSheet.create({
   shareSolutionLetter: {
     color: "white",
     fontSize: 20,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
   },
   shareSolutionFallback: {
     color: tokens.color.ink,
     fontSize: 18,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   shareAttemptsBlock: {
@@ -566,7 +566,7 @@ const styles = StyleSheet.create({
     width: 20,
     color: tokens.color.muted,
     fontSize: 12,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   shareGrid: {
@@ -577,13 +577,13 @@ const styles = StyleSheet.create({
     color: tokens.color.ink,
     flex: 1,
     fontSize: 17,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: 1,
   },
   shareGridText: {
     color: tokens.color.ink,
     fontSize: 18,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: 1,
     textAlign: "right",
   },
@@ -598,7 +598,7 @@ const styles = StyleSheet.create({
   },
   statValue: {
     color: tokens.color.ink,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     fontSize: 21,
     lineHeight: 24,
     textAlign: "center",
@@ -694,7 +694,7 @@ const styles = StyleSheet.create({
   primaryText: {
     color: "white",
     fontSize: 15,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center",
   },
   confettiPiece: {

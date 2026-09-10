@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   settingsIcon: {
     color: "#5F6368",
     fontSize: 26,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     lineHeight: 25,
   },
   statsIcon: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   logo: {
     color: "#E65100",
     fontSize: 20,
-    fontWeight: "900",
+    ...tokens.typography.brand,
     letterSpacing: -1,
   },
   logoButton: {
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: tokens.color.primaryLight,
     color: tokens.color.primaryDark,
     fontSize: 13,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     lineHeight: 20,
     textAlign: "center",
   },

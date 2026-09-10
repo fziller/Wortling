@@ -471,12 +471,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: tokens.color.ink,
-    ...tokens.typography.displayTitle,
+    ...tokens.typography.brandTitle,
   },
   cardTitle: {
     color: tokens.color.ink,
     fontSize: tokens.type.h2,
-    ...tokens.typography.display,
+    fontFamily: tokens.font.ui.semibold,
     marginBottom: tokens.space.sm
   },
   body: {
@@ -535,6 +535,7 @@ const styles = StyleSheet.create({
   },
   bucketDesc: {
     color: tokens.color.muted,
+    fontFamily: tokens.font.ui.regular,
     fontSize: tokens.type.small,
     lineHeight: 16,
     marginTop: 2
@@ -545,7 +546,7 @@ const styles = StyleSheet.create({
   timeLabel: {
     color: tokens.color.muted,
     fontSize: tokens.type.small,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.medium,
   },
   timeValue: {
     color: tokens.color.ink,
@@ -564,7 +565,7 @@ const styles = StyleSheet.create({
   stepperLabel: {
     color: tokens.color.muted,
     fontSize: tokens.type.small,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.medium,
   },
   stepperButtons: {
     flexDirection: "row",
@@ -583,7 +584,7 @@ const styles = StyleSheet.create({
   timeButtonText: {
     color: tokens.color.ink,
     fontSize: 20,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.semibold,
   },
   devGenerated: {
     gap: tokens.space.xs,
@@ -593,7 +594,7 @@ const styles = StyleSheet.create({
   devGameText: {
     color: tokens.color.ink,
     fontSize: tokens.type.body,
-    fontWeight: "800"
+    fontFamily: tokens.font.ui.semibold,
   },
   devActions: {
     gap: tokens.space.sm
@@ -624,7 +625,7 @@ const styles = StyleSheet.create({
   devButtonText: {
     color: "white",
     fontSize: tokens.type.body,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.semibold,
   },
   devButtonSecondary: {
     minHeight: 48,
@@ -638,7 +639,7 @@ const styles = StyleSheet.create({
   devButtonSecondaryText: {
     color: tokens.color.ink,
     fontSize: tokens.type.body,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.semibold,
   },
   cardTitleRow: {
     flexDirection: "row",
@@ -655,7 +656,7 @@ const styles = StyleSheet.create({
   premiumBadgeText: {
     color: "white",
     fontSize: tokens.type.small,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: 0.6,
     textTransform: "uppercase"
   },
@@ -670,7 +671,7 @@ const styles = StyleSheet.create({
   premiumLockedText: {
     color: tokens.color.ink,
     fontSize: tokens.type.body,
-    fontWeight: "700",
+    fontFamily: tokens.font.ui.regular,
     lineHeight: 20
   },
   premiumButton: {
@@ -684,7 +685,7 @@ const styles = StyleSheet.create({
   premiumButtonText: {
     color: "white",
     fontSize: tokens.type.body,
-    fontWeight: "900"
+    fontFamily: tokens.font.ui.semibold,
   },
   frequencyRow: {
     gap: tokens.space.xs,
@@ -713,7 +714,7 @@ const styles = StyleSheet.create({
   frequencyButtonText: {
     color: tokens.color.ink,
     fontSize: tokens.type.body,
-    fontWeight: "800"
+    fontFamily: tokens.font.ui.semibold,
   },
   frequencyButtonTextActive: {
     color: tokens.color.primaryDark
@@ -738,7 +739,7 @@ const styles = StyleSheet.create({
   packPreviewTitle: {
     color: tokens.color.ink,
     fontSize: tokens.type.body,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.semibold,
   },
   packPreviewBadge: {
     paddingHorizontal: 8,
@@ -747,6 +748,6 @@ const styles = StyleSheet.create({
     backgroundColor: tokens.color.primaryLight,
     color: tokens.color.primaryDark,
     fontSize: 11,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.medium,
   }
 });

@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   label: {
     color: "white",
     ...tokens.typography.uiControl,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     textAlign: "center"
   }
 });

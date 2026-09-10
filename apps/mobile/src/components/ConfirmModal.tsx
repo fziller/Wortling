@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   title: {
     color: tokens.color.ink,
     fontSize: tokens.type.h2,
-    ...tokens.typography.display,
+    fontFamily: tokens.font.ui.semibold,
   },
   message: {
     color: tokens.color.muted,
@@ -80,6 +80,6 @@ const styles = StyleSheet.create({
   },
   primaryText: {
     color: "white",
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
   }
 });

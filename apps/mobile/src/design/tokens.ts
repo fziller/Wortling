@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 export const tokens = {
   palette: {
     primary: { 50: "#FFF1E8", 100: "#FFE0CC", 200: "#FFC39F", 500: "#FF6B35", 600: "#E95827", 700: "#C9421B" },
@@ -37,12 +39,16 @@ export const tokens = {
   border: {
     subtle: "#E5D7C5",
     strong: "#FFC39F",
+    controlSubtle: "rgba(229, 215, 197, 0.7)",
   },
   radius: {
     sm: 10,
     md: 16,
     lg: 24,
-    pill: 999
+    pill: 999,
+    compact: 8,
+    medium: 16,
+    large: 24,
   },
   space: {
     xs: 6,
@@ -59,20 +65,25 @@ export const tokens = {
     small: 13
   },
   font: {
+    brand: "Kalam-Bold",
     ui: {
       regular: "InstrumentSans-Regular",
       medium: "InstrumentSans-Medium",
       semibold: "InstrumentSans-SemiBold",
-      bold: "InstrumentSans-Bold",
     },
   },
   typography: {
-    display: { fontWeight: "900" as const },
-    displayTitle: { fontSize: 42, fontWeight: "900" as const, letterSpacing: -1.8 },
+    brand: { fontFamily: "Kalam-Bold" },
+    brandTitle: { fontFamily: "Kalam-Bold", fontSize: 42, letterSpacing: -1.8 },
     uiBody: { fontFamily: "InstrumentSans-Regular", fontSize: 17, lineHeight: 24 },
-    uiLabel: { fontFamily: "InstrumentSans-SemiBold", fontSize: 13, letterSpacing: 0.5 },
+    uiLabel: { fontFamily: "InstrumentSans-Medium", fontSize: 13, letterSpacing: 0.5 },
     uiControl: { fontFamily: "InstrumentSans-SemiBold", fontSize: 16 },
-    uiNumeric: { fontFamily: "InstrumentSans-Bold", fontVariant: ["tabular-nums"] as const },
+    uiNumeric: { fontFamily: "InstrumentSans-SemiBold", fontVariant: ["tabular-nums"] as const },
+    gameLetter: { fontFamily: Platform.select({ android: "sans-serif", ios: undefined }), fontWeight: "700" as const },
+  },
+  state: {
+    disabledSurface: "#E5D7C5",
+    disabledText: "#74685B",
   },
   shadow: {
     raised: { color: "#2B1708", opacity: 0.09, radius: 18, offset: { width: 0, height: 9 }, elevation: 2 },

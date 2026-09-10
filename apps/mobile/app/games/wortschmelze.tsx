@@ -402,7 +402,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     minWidth: 0,
   },
-  tileText: { color: tokens.color.ink, fontWeight: "900" },
+  tileText: { color: tokens.color.ink, ...tokens.typography.gameLetter },
   placeholderText: { color: tokens.color.muted, opacity: 0.45 },
   message: { color: tokens.color.muted, fontSize: tokens.type.body, textAlign: "center" },
   answer: { color: tokens.color.ink, fontSize: tokens.type.body, fontWeight: "900", textAlign: "center" },

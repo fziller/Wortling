@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     color: tokens.color.ink,
     fontSize: 22,
-    ...tokens.typography.display,
+    ...tokens.typography.brand,
     letterSpacing: -0.7,
   },
   statusDot: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   cardText: {
     color: "#5F6368",
     fontSize: 14,
-    fontFamily: tokens.font.ui.medium,
+    fontFamily: tokens.font.ui.regular,
     marginTop: 4,
   },
   dailyBadge: {

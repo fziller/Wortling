@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: tokens.color.ink,
     fontSize: 28,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     lineHeight: 30
   },
   helpWrap: {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   title: {
     color: tokens.color.ink,
     fontSize: tokens.type.h2,
-    ...tokens.typography.display,
+    ...tokens.typography.brand,
     lineHeight: 24
   },
   progress: {

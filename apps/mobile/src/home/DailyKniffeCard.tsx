@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     color: tokens.color.ink,
     flexShrink: 1,
     fontSize: 19,
-    ...tokens.typography.display,
+    ...tokens.typography.brand,
     letterSpacing: -0.6,
   },
   dailyCountPill: {
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   dailyCountText: {
     color: tokens.color.primaryDark,
     fontSize: 11,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     letterSpacing: 0.4,
   },
   dailyRows: { gap: 9 },
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   continueButtonText: {
     color: "white",
     fontSize: tokens.type.body,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
   },
   dailyRow: {
     minHeight: 50,
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     width: 32,
     color: tokens.color.success,
     fontSize: 26,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.semibold,
     lineHeight: 28,
     textAlign: "center",
   },
@@ -189,13 +189,13 @@ const styles = StyleSheet.create({
     color: tokens.color.ink,
     flex: 1,
     fontSize: 16,
-    fontFamily: tokens.font.ui.semibold,
+    ...tokens.typography.brand,
   },
   dailyGameTitleDone: { color: tokens.color.ink },
   dailyDoneLabel: {
     color: "#2E7D32",
     fontSize: 10,
-    fontFamily: tokens.font.ui.bold,
+    fontFamily: tokens.font.ui.medium,
     letterSpacing: 0.4,
   },
   dailyPlayPill: {
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   dailyFooter: {
     color: tokens.color.muted,
     fontSize: tokens.type.small,
-    fontWeight: "900",
+    fontFamily: tokens.font.ui.medium,
     textAlign: "center",
   },
 });
