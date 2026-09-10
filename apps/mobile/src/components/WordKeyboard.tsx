@@ -127,10 +127,10 @@ const styles = StyleSheet.create({
     minHeight: 56,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.compact,
-    backgroundColor: tokens.surface.raised,
+    borderRadius: tokens.radius.tile,
+    backgroundColor: tokens.surface.tile,
     borderWidth: 1,
-    borderColor: tokens.border.controlSubtle,
+    borderColor: tokens.border.control,
   },
   actionKey: {
     flex: 1,
@@ -138,13 +138,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: tokens.space.sm,
-    borderRadius: tokens.radius.compact,
+    borderRadius: tokens.radius.action,
   },
   primaryAction: {
     backgroundColor: tokens.color.primary
   },
   secondaryAction: {
-    backgroundColor: tokens.surface.subdued,
+    borderWidth: 1,
+    borderColor: tokens.border.control,
+    backgroundColor: tokens.surface.control,
   },
   keyText: {
     color: tokens.color.ink,

@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderWidth: 2,
     borderColor: tokens.color.line,
-    borderRadius: tokens.radius.sm,
-    backgroundColor: tokens.surface.input
+    borderRadius: tokens.radius.tile,
+    backgroundColor: tokens.surface.tile
   },
   activeTile: {
     borderColor: tokens.color.primary,

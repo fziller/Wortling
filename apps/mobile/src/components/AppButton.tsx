@@ -21,7 +21,7 @@ export function AppButton({ label, onPress, disabled }: AppButtonProps) {
         pressed && !disabled && styles.pressed
       ]}
     >
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, disabled && styles.disabledLabel]}>{label}</Text>
     </Pressable>
   );
 }
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: tokens.space.lg,
-    borderRadius: tokens.radius.md,
+    borderRadius: tokens.radius.control,
     backgroundColor: tokens.color.primary,
     shadowColor: tokens.shadow.raised.color,
     shadowOpacity: tokens.shadow.raised.opacity,
@@ -41,7 +41,9 @@ const styles = StyleSheet.create({
     elevation: tokens.shadow.raised.elevation,
   },
   disabled: {
-    opacity: 0.45
+    backgroundColor: tokens.state.disabledControl,
+    shadowOpacity: 0,
+    elevation: 0,
   },
   pressed: {
     transform: [{ translateY: 2 }],
@@ -52,5 +54,8 @@ const styles = StyleSheet.create({
     ...tokens.typography.uiControl,
     fontFamily: tokens.font.ui.semibold,
     textAlign: "center"
+  },
+  disabledLabel: {
+    color: tokens.state.disabledText,
   }
 });

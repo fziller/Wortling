@@ -334,7 +334,7 @@ function formatDurationShort(ms: number): string {
 
 const styles = StyleSheet.create({
   scroll: { gap: 20, paddingBottom: 34, paddingTop: 16 },
-  tapeCard: { backgroundColor: tokens.surface.raised, borderColor: tokens.border.subtle, borderRadius: tokens.radius.lg, borderWidth: 1, overflow: "visible" as const, padding: 20, shadowColor: tokens.shadow.raised.color, shadowOffset: tokens.shadow.raised.offset, shadowOpacity: tokens.shadow.raised.opacity, shadowRadius: tokens.shadow.raised.radius, elevation: tokens.shadow.raised.elevation },
+  tapeCard: { backgroundColor: tokens.surface.raised, borderRadius: tokens.radius.surface, overflow: "visible" as const, padding: 20, shadowColor: tokens.shadow.raised.color, shadowOffset: tokens.shadow.raised.offset, shadowOpacity: tokens.shadow.raised.opacity, shadowRadius: tokens.shadow.raised.radius, elevation: tokens.shadow.raised.elevation },
   tapeCardContent: { gap: 12 },
   cardTitle: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 22 },
   sectionTitle: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 20 },
@@ -373,7 +373,7 @@ const styles = StyleSheet.create({
   recentMain: { flex: 1, gap: 2 },
   recentTitle: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 14 },
   recentSub: { color: tokens.color.muted, fontFamily: tokens.font.ui.medium, fontSize: 12 },
-  pill: { paddingHorizontal: 10, paddingVertical: 5, borderRadius: 999 },
+  pill: { paddingHorizontal: 9, paddingVertical: 4, borderRadius: tokens.radius.badge },
   pillText: { fontFamily: tokens.font.ui.semibold, fontSize: 11 },
   rowDivider: { height: 1, backgroundColor: tokens.color.line, opacity: 0.5 },
 });

@@ -42,10 +42,8 @@ const styles = StyleSheet.create({
   card: {
     gap: tokens.space.md,
     padding: tokens.space.lg,
-    borderRadius: tokens.radius.lg,
+    borderRadius: tokens.radius.surface,
     backgroundColor: tokens.surface.raised,
-    borderWidth: 1,
-    borderColor: tokens.color.line
   },
   title: {
     color: tokens.color.ink,
@@ -61,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: tokens.space.sm,
-    borderRadius: tokens.radius.md,
+    borderRadius: tokens.radius.control,
     backgroundColor: tokens.color.primary
   },
   closeText: {

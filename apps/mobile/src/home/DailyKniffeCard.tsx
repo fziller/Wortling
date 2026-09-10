@@ -82,9 +82,7 @@ const styles = StyleSheet.create({
   dailyCard: {
     gap: tokens.space.md,
     padding: tokens.space.lg,
-    borderRadius: tokens.radius.lg,
-    borderWidth: 1,
-    borderColor: tokens.border.subtle,
+    borderRadius: tokens.radius.surface,
     backgroundColor: tokens.surface.raised,
     overflow: "visible",
     shadowColor: tokens.color.shadow,
@@ -111,8 +109,8 @@ const styles = StyleSheet.create({
   dailyCountPill: {
     alignItems: "center",
     paddingHorizontal: tokens.space.sm,
-    paddingVertical: 5,
-    borderRadius: tokens.radius.pill,
+    paddingVertical: 4,
+    borderRadius: tokens.radius.badge,
     backgroundColor: "#FFE0B2",
   },
   dailyCountText: {
@@ -126,7 +124,7 @@ const styles = StyleSheet.create({
     minHeight: 48,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.md,
+    borderRadius: tokens.radius.control,
     backgroundColor: tokens.color.primary,
   },
   continueButtonText: {
@@ -189,8 +187,8 @@ const styles = StyleSheet.create({
     minWidth: 72,
     alignItems: "center",
     paddingHorizontal: tokens.space.sm,
-    paddingVertical: 7,
-    borderRadius: tokens.radius.pill,
+    paddingVertical: 6,
+    borderRadius: tokens.radius.action,
     backgroundColor: tokens.color.primary,
   },
   dailyPlayText: {

@@ -10,10 +10,8 @@ export function AppCard({ children }: PropsWithChildren) {
 const styles = StyleSheet.create({
   card: {
     padding: tokens.space.lg,
-    borderWidth: 1,
-    borderColor: tokens.border.subtle,
-    borderRadius: tokens.radius.lg,
-    backgroundColor: tokens.surface.raised,
+    borderRadius: tokens.radius.surface,
+    backgroundColor: tokens.surface.card,
     shadowColor: tokens.shadow.raised.color,
     shadowOpacity: tokens.shadow.raised.opacity,
     shadowRadius: tokens.shadow.raised.radius,

@@ -504,8 +504,8 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderWidth: 1,
     borderColor: tokens.color.line,
-    borderRadius: tokens.radius.pill,
-    backgroundColor: "rgba(255,255,255,0.78)",
+    borderRadius: tokens.radius.tile,
+    backgroundColor: tokens.surface.tile,
   },
   targetPill: {
     backgroundColor: "#EAF6F0",

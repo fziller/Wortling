@@ -18,23 +18,23 @@ export function SmallGameAction({ disabled = false, label, onPress }: SmallGameA
 
 const styles = StyleSheet.create({
   button: {
-    minHeight: 32,
+    minHeight: 30,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: tokens.space.sm,
-    paddingVertical: 5,
+    paddingHorizontal: 9,
+    paddingVertical: 4,
     borderWidth: 1,
-    borderColor: tokens.border.controlSubtle,
-    borderRadius: tokens.radius.md,
-    backgroundColor: tokens.surface.keyboard,
+    borderColor: tokens.border.control,
+    borderRadius: tokens.radius.action,
+    backgroundColor: "transparent",
   },
   disabled: {
-    backgroundColor: tokens.surface.subdued,
-    borderColor: "rgba(229, 215, 197, 0.5)",
+    backgroundColor: tokens.state.disabledControl,
+    borderColor: "transparent",
   },
   text: {
     color: tokens.color.muted,
-    fontSize: tokens.type.small,
+    fontSize: 12,
     fontFamily: tokens.font.ui.semibold,
   },
   disabledText: { color: tokens.state.disabledText },

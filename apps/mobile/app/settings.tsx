@@ -541,10 +541,10 @@ const styles = StyleSheet.create({
     minHeight: 44,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.sm,
-    backgroundColor: "rgba(255, 255, 255, 0.62)",
+    borderRadius: tokens.radius.action,
+    backgroundColor: tokens.surface.control,
     borderWidth: 1,
-    borderColor: tokens.color.line
+    borderColor: tokens.border.control
   },
   timeButtonText: {
     color: tokens.color.ink,
@@ -575,16 +575,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: tokens.space.sm,
-    borderRadius: tokens.radius.pill,
+    borderRadius: tokens.radius.action,
     borderWidth: 1,
-    borderColor: tokens.color.line,
-    backgroundColor: "white",
+    borderColor: tokens.border.control,
+    backgroundColor: tokens.surface.control,
   },
   devButton: {
     minHeight: 48,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.pill,
+    borderRadius: tokens.radius.control,
     backgroundColor: tokens.color.primary
   },
   devButtonText: {
@@ -596,10 +596,10 @@ const styles = StyleSheet.create({
     minHeight: 48,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.pill,
+    borderRadius: tokens.radius.control,
     borderWidth: 1,
-    borderColor: tokens.color.line,
-    backgroundColor: "white"
+    borderColor: tokens.border.control,
+    backgroundColor: tokens.surface.control
   },
   devButtonSecondaryText: {
     color: tokens.color.ink,
@@ -614,8 +614,8 @@ const styles = StyleSheet.create({
   },
   premiumBadge: {
     paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: tokens.radius.pill,
+    paddingVertical: 3,
+    borderRadius: tokens.radius.badge,
     backgroundColor: tokens.color.primary
   },
   premiumBadgeText: {
@@ -628,10 +628,8 @@ const styles = StyleSheet.create({
   premiumLocked: {
     gap: tokens.space.sm,
     padding: tokens.space.md,
-    borderRadius: tokens.radius.md,
-    backgroundColor: "rgba(255,255,255,0.7)",
-    borderWidth: 1,
-    borderColor: tokens.color.line
+    borderRadius: tokens.radius.control,
+    backgroundColor: tokens.surface.control,
   },
   premiumLockedText: {
     color: tokens.color.ink,
@@ -643,7 +641,7 @@ const styles = StyleSheet.create({
     minHeight: 44,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.pill,
+    borderRadius: tokens.radius.control,
     backgroundColor: tokens.color.primary,
     paddingHorizontal: tokens.space.md
   },
@@ -666,10 +664,10 @@ const styles = StyleSheet.create({
     gap: 2,
     paddingVertical: tokens.space.sm,
     paddingHorizontal: tokens.space.md,
-    borderRadius: tokens.radius.md,
+    borderRadius: tokens.radius.action,
     borderWidth: 1,
-    borderColor: tokens.color.line,
-    backgroundColor: "rgba(255,255,255,0.62)",
+    borderColor: tokens.border.control,
+    backgroundColor: tokens.surface.control,
     alignItems: "center"
   },
   frequencyButtonActive: {
@@ -690,10 +688,8 @@ const styles = StyleSheet.create({
   packPreview: {
     gap: 3,
     padding: tokens.space.md,
-    borderRadius: tokens.radius.md,
-    borderWidth: 1,
-    borderColor: tokens.color.line,
-    backgroundColor: "rgba(255,255,255,0.62)",
+    borderRadius: tokens.radius.control,
+    backgroundColor: tokens.surface.control,
   },
   packPreviewHeader: {
     alignItems: "center",
@@ -708,8 +704,8 @@ const styles = StyleSheet.create({
   },
   packPreviewBadge: {
     paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: tokens.radius.pill,
+    paddingVertical: 2,
+    borderRadius: tokens.radius.badge,
     backgroundColor: tokens.color.primaryLight,
     color: tokens.color.primaryDark,
     fontSize: 11,

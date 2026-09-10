@@ -297,7 +297,7 @@ export default function GalgenwortScreen() {
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.md, justifyContent: "center" },
-  card: { gap: tokens.space.sm, padding: tokens.space.md, borderRadius: tokens.radius.lg, backgroundColor: "rgba(255, 249, 239, 0.78)", borderWidth: 1, borderColor: tokens.color.line },
+  card: { gap: tokens.space.sm, padding: tokens.space.md, borderRadius: tokens.radius.surface, backgroundColor: "rgba(255, 249, 239, 0.78)" },
   cardHeader: { alignItems: "center", flexDirection: "row", justifyContent: "space-between", gap: tokens.space.sm },
   kicker: { color: tokens.color.primaryDark, fontSize: tokens.type.small, fontWeight: "900", textTransform: "uppercase" },
   lengthPill: { color: tokens.color.primaryDark, fontSize: tokens.type.small, fontWeight: "900" },

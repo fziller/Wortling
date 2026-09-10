@@ -26,6 +26,10 @@ export const tokens = {
   surface: {
     canvas: "#F7F1E8",
     raised: "#FFFDF8",
+    card: "#FFFDF8",
+    control: "rgba(255, 253, 248, 0.72)",
+    chip: "rgba(255, 241, 232, 0.78)",
+    tile: "#FFFDF8",
     keyboard: "rgba(255, 253, 248, 0.94)",
     input: "rgba(255, 253, 248, 0.92)",
     subdued: "#FFF1E8",
@@ -40,6 +44,8 @@ export const tokens = {
     subtle: "#E5D7C5",
     strong: "#FFC39F",
     controlSubtle: "rgba(229, 215, 197, 0.7)",
+    hairline: "rgba(229, 215, 197, 0.45)",
+    control: "rgba(116, 104, 91, 0.18)",
   },
   radius: {
     sm: 10,
@@ -49,6 +55,12 @@ export const tokens = {
     compact: 8,
     medium: 16,
     large: 24,
+    surface: 24,
+    control: 12,
+    action: 10,
+    badge: 7,
+    tile: 9,
+    icon: 14,
   },
   space: {
     xs: 6,
@@ -83,6 +95,7 @@ export const tokens = {
   },
   state: {
     disabledSurface: "#E5D7C5",
+    disabledControl: "rgba(229, 215, 197, 0.62)",
     disabledText: "#74685B",
   },
   shadow: {

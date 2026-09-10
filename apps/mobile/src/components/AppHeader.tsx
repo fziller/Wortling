@@ -82,13 +82,13 @@ export function GameHeader({ onBack, onHelp, progressLabel, subtitle, title }: G
 const styles = StyleSheet.create({
   actionButton: {
     alignItems: "center",
-    backgroundColor: "rgba(255, 253, 248, 0.82)",
-    borderColor: tokens.border.controlSubtle,
-    borderRadius: tokens.radius.md,
+    backgroundColor: tokens.surface.control,
+    borderColor: tokens.border.hairline,
+    borderRadius: tokens.radius.icon,
     borderWidth: 1,
-    height: 44,
+    height: 42,
     justifyContent: "center",
-    width: 44,
+    width: 42,
   },
   brandTitle: {
     color: tokens.color.primaryDark,

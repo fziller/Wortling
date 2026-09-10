@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   card: {
     gap: tokens.space.md,
     padding: tokens.space.lg,
-    borderRadius: tokens.radius.lg,
+    borderRadius: tokens.radius.surface,
     backgroundColor: tokens.surface.raised
   },
   title: {
@@ -64,12 +64,12 @@ const styles = StyleSheet.create({
     minHeight: 52,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: tokens.radius.md
+    borderRadius: tokens.radius.control
   },
   secondary: {
     borderWidth: 1,
-    borderColor: tokens.color.line,
-    backgroundColor: "white"
+    borderColor: tokens.border.control,
+    backgroundColor: tokens.surface.control
   },
   primary: {
     backgroundColor: tokens.color.primary
