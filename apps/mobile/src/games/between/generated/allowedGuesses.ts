@@ -3381,6 +3381,7 @@ export const generatedAllowedGuesses = [
   "lands",
   "lange",
   "länge",
+  "längs",
   "langt",
   "lanze",
   "laote",

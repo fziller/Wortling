@@ -16053,6 +16053,12 @@ export const generatedWordMeta = [
     "bucket": "verb-finite"
   },
   {
+    "word": "auskehr",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
     "word": "auskenn",
     "zipf": 1,
     "tier": "unknown",
@@ -103882,6 +103888,12 @@ export const generatedWordMeta = [
   },
   {
     "word": "resümee",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
+    "word": "retabel",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"

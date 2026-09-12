@@ -20277,6 +20277,12 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
+    "word": "längs",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
     "word": "langt",
     "zipf": 3.17,
     "tier": "medium",

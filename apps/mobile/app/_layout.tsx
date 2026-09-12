@@ -25,7 +25,7 @@ function RootLayoutInner() {
   const router = useRouter();
   const posthog = usePostHog();
   const [showSplash, setShowSplash] = useState(true);
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     "InstrumentSans-Regular": require("../assets/fonts/InstrumentSans-Regular.ttf"),
     "InstrumentSans-Medium": require("../assets/fonts/InstrumentSans-Medium.ttf"),
     "InstrumentSans-SemiBold": require("../assets/fonts/InstrumentSans-SemiBold.ttf"),
@@ -62,19 +62,23 @@ function RootLayoutInner() {
   }, [posthog, router]);
 
   useEffect(() => {
-    if (!fontsLoaded) return;
+    if (!fontsLoaded && !fontError) return;
     const timeout = setTimeout(() => setShowSplash(false), 2600);
     return () => clearTimeout(timeout);
-  }, [fontsLoaded]);
+  }, [fontError, fontsLoaded]);
+
+  const appReady = fontsLoaded || Boolean(fontError);
 
   return (
     <>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { backgroundColor: "#F7F1E8" },
-        }}
-      />
+      {appReady ? (
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: "#F7F1E8" },
+          }}
+        />
+      ) : null}
       {showSplash ? <AppSplash /> : null}
       <StatusBar style={showSplash ? "light" : "dark"} />
     </>

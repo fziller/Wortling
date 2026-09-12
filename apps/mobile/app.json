@@ -45,6 +45,17 @@
         }
       ],
       ["@sentry/react-native/expo", {}],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/InstrumentSans-Regular.ttf",
+            "./assets/fonts/InstrumentSans-Medium.ttf",
+            "./assets/fonts/InstrumentSans-SemiBold.ttf",
+            "./assets/fonts/Kalam-Bold.ttf"
+          ]
+        }
+      ],
       "expo-sharing",
       "expo-video",
       [

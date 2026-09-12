@@ -2331,6 +2331,12 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
+    "word": "cosy",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
     "word": "coup",
     "zipf": 3.53,
     "tier": "medium",
@@ -2338,6 +2344,12 @@ export const generatedWordMeta = [
   },
   {
     "word": "cour",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
+    "word": "cozy",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
