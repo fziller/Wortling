@@ -4,7 +4,6 @@ import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 import Animated, {
   FadeInDown,
-  LinearTransition,
   interpolate,
   interpolateColor,
   useAnimatedStyle,
@@ -129,7 +128,7 @@ export default function BetweenScreen() {
       if (isStartedProgress(progress)) {
         setState(progress.state);
         setDateKey(progress.dateKey);
-        setInputLetters(Array.isArray(progress.draft) ? progress.draft.map(String) : createEmptyInput(5));
+        setInputLetters(createEmptyInput(5));
         setFinishedAt(progress.completedAt ? Date.parse(progress.completedAt) : null);
         setResultVisible(progress.status !== "playing");
       }
@@ -148,7 +147,6 @@ export default function BetweenScreen() {
     saveProgress({
       gameId: "between",
       dateKey,
-      draft: inputLetters,
       puzzle: { targetWord: state.targetWord },
       puzzleId,
       puzzleVersion,
@@ -157,7 +155,7 @@ export default function BetweenScreen() {
       state,
       completedAt,
     });
-  }, [dateKey, inputLetters, progressLoaded, puzzleId, state]);
+  }, [dateKey, progressLoaded, puzzleId, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -383,7 +381,7 @@ export default function BetweenScreen() {
       title="Dazwischen"
     >
       <View style={styles.keyboard}>
-        <Animated.View entering={FadeInDown.delay(80)} layout={LinearTransition.springify()} style={[styles.boardCard, glowStyle]}>
+        <Animated.View entering={FadeInDown.delay(80)} style={[styles.boardCard, glowStyle]}>
           <View style={styles.rangeStats}>
             <Text style={styles.statText}>{state.guesses.length} Versuche</Text>
           </View>
@@ -451,7 +449,12 @@ export default function BetweenScreen() {
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "between", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined}
-        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextWord()}
+        onNext={() => {
+          setResultVisible(false);
+
+          if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0);
+          else startNextWord();
+        }}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "between", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "between", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
@@ -575,7 +578,6 @@ function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, lett
       accessibilityRole="button"
       disabled={disabled}
       entering={FadeInDown.delay(index * 35).duration(tokens.motion.quick)}
-      layout={LinearTransition.springify().damping(16)}
       onPress={onPress}
       style={[
         styles.wordTile,

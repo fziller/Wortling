@@ -94,10 +94,8 @@ export default function WortschmelzeScreen() {
         const nextGame = { dateKey: progress.dateKey, puzzle: restoredPuzzle, state: progress.state };
         setGame(nextGame);
         setState(progress.state);
-        const draft = Array.isArray(progress.draft) ? progress.draft.map(String).slice(0, nextGame.puzzle.wordLength) : [];
-        setInputLetters(draft.length === nextGame.puzzle.wordLength ? draft : createEmptyInput(nextGame.puzzle.wordLength));
-        const firstEmpty = draft.findIndex((letter) => !letter);
-        if (firstEmpty >= 0) setCursorIndex(firstEmpty);
+        setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
+        setCursorIndex(0);
       }
       setProgressLoaded(true);
     });
@@ -109,8 +107,8 @@ export default function WortschmelzeScreen() {
     const completedStatus = mergeCompletedStatus(completedStatusRef.current, state.status !== "playing" ? state.status : undefined);
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
-    saveProgress({ gameId: GAME_ID, dateKey, draft: inputLetters, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });
-  }, [dateKey, inputLetters, progressLoaded, puzzle, state]);
+    saveProgress({ gameId: GAME_ID, dateKey, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });
+  }, [dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") loadProgressForGames(games.map((game) => game.id), dateKey).then((progress) => {
@@ -320,7 +318,12 @@ export default function WortschmelzeScreen() {
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: GAME_ID, dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined}
-        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextWord()}
+        onNext={() => {
+          setResultVisible(false);
+
+          if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0);
+          else startNextWord();
+        }}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}

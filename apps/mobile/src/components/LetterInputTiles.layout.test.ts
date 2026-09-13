@@ -25,11 +25,11 @@ describe("LetterInputTiles layout regression", () => {
     expect(src).toMatch(/row:\s*\{\s*flexDirection:\s*"row",\s*width:\s*"100%"/s);
   });
 
-  it("Wortleiter screen layout does not squeeze input (stretch + flex)", () => {
+  it("Wortleiter screen layout keeps the ladder compact vertically", () => {
     const src = readFileSync(path.resolve(dirname, "../../app/games/wortleiter.tsx"), "utf8");
-    // boardPanel must be flex:1 with minHeight:0, ladderScroll flex:1, content stretch
-    expect(src).toMatch(/boardPanel:\s*\{\s*flex:\s*1,\s*minHeight:\s*0/s);
-    expect(src).toMatch(/ladderScroll:\s*\{\s*flex:\s*1,\s*minHeight:\s*0\s*\}/);
+    expect(src).toMatch(/wrap:\s*\{\s*flex:\s*1,\s*justifyContent:\s*"center"/s);
+    expect(src).toMatch(/boardPanel:\s*\{\s*flexShrink:\s*1,\s*minHeight:\s*0/s);
+    expect(src).toMatch(/ladderScroll:\s*\{\s*flexGrow:\s*0,\s*flexShrink:\s*1,\s*minHeight:\s*0\s*\}/);
     expect(src).toMatch(/ladderScrollContent:\s*\{\s*alignItems:\s*"stretch"/s);
     expect(src).toMatch(/inputStep:\s*\{\s*width:\s*"100%",\s*alignItems:\s*"stretch"/s);
   });

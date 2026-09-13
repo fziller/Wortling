@@ -108,7 +108,7 @@ export default function WortleiterScreen() {
         const nextGame = { dateKey: progress.dateKey, puzzle: progress.puzzle as WortleiterGame["puzzle"], state: progress.state };
         setGame(nextGame);
         setState(progress.state);
-        setInputLetters(Array.isArray(progress.draft) ? progress.draft.map(String) : createEmptyInput(nextGame.puzzle.wordLength));
+        setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
         setFinishedAt(
           progress.completedAt ? Date.parse(progress.completedAt) : null,
         );
@@ -131,7 +131,6 @@ export default function WortleiterScreen() {
     saveProgress({
       gameId: "wortleiter",
       dateKey,
-      draft: inputLetters,
       completedStatus,
       puzzle,
       puzzleId: puzzle.id,
@@ -145,7 +144,7 @@ export default function WortleiterScreen() {
       startedAt: state.startedAt ?? new Date().toISOString(),
       completedAt,
     });
-  }, [dateKey, inputLetters, progressLoaded, puzzle, state]);
+  }, [dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -436,7 +435,12 @@ export default function WortleiterScreen() {
         message={state.status === "won" ? `Deine Schritte: ${steps} · Optimal: ${puzzle.optimalSteps}` : "Die kürzeste bekannte Leiter ist aufgedeckt."}
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "wortleiter", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
-        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextPuzzle()}
+        onNext={() => {
+          setResultVisible(false);
+
+          if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0);
+          else startNextPuzzle();
+        }}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "wortleiter", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "wortleiter", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
@@ -476,13 +480,13 @@ function LadderWord({ label, target = false, word }: LadderWordProps) {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, gap: tokens.space.sm },
+  wrap: { flex: 1, justifyContent: "center", gap: tokens.space.md },
   boardPanel: {
-    flex: 1,
+    flexShrink: 1,
     minHeight: 0,
     gap: tokens.space.xs,
   },
-  ladderScroll: { flex: 1, minHeight: 0 },
+  ladderScroll: { flexGrow: 0, flexShrink: 1, minHeight: 0 },
   ladderScrollContent: {
     alignItems: "stretch",
     gap: 4,

@@ -64,7 +64,7 @@ export default function DoppelScreen() {
       if (isStartedProgress(progress)) {
         setGame({ dateKey: progress.dateKey, puzzle: progress.puzzle as DoppelGame["puzzle"], state: progress.state });
         setState(progress.state);
-        setInput(typeof progress.draft === "string" ? progress.draft : "");
+        setInput("");
       }
       setProgressLoaded(true);
     });
@@ -80,7 +80,6 @@ export default function DoppelScreen() {
     saveProgress({
       gameId: "doppel",
       dateKey,
-      draft: input,
       completedStatus,
       puzzle,
       puzzleId: puzzle.id,
@@ -89,7 +88,7 @@ export default function DoppelScreen() {
       state,
       completedAt
     });
-  }, [dateKey, input, progressLoaded, puzzle, state]);
+  }, [dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {

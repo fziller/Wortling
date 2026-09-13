@@ -275,7 +275,12 @@ export default function GalgenwortScreen() {
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "galgenwort", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined}
-        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextWord()}
+        onNext={() => {
+          setResultVisible(false);
+
+          if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0);
+          else startNextWord();
+        }}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "galgenwort", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "galgenwort", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}

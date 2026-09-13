@@ -8,6 +8,7 @@ import { StatusBar } from "expo-status-bar";
 import * as Sentry from "@sentry/react-native";
 import { PostHogProvider, usePostHog } from "posthog-react-native";
 import { useEffect, useState } from "react";
+import { View } from "react-native";
 
 import { AppSplash } from "@/components/AppSplash";
 import { getBerlinDateKey } from "@/daily/date";
@@ -69,16 +70,23 @@ function RootLayoutInner() {
 
   const appReady = fontsLoaded || Boolean(fontError);
 
+  if (!appReady) {
+    return (
+      <View style={{ flex: 1 }}>
+        <AppSplash />
+        <StatusBar style="light" />
+      </View>
+    );
+  }
+
   return (
     <>
-      {appReady ? (
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: { backgroundColor: "#F7F1E8" },
-          }}
-        />
-      ) : null}
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: "#F7F1E8" },
+        }}
+      />
       {showSplash ? <AppSplash /> : null}
       <StatusBar style={showSplash ? "light" : "dark"} />
     </>

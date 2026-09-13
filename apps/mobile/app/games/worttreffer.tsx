@@ -124,11 +124,8 @@ export default function WorttrefferScreen() {
         const nextGame = { dateKey: progress.dateKey, puzzle: restoredPuzzle, state: progress.state };
         setGame(nextGame);
         setState(progress.state);
-        const draft = Array.isArray(progress.draft) ? progress.draft.map(String).slice(0, nextGame.puzzle.wordLength) : [];
-        const base = draft.length === nextGame.puzzle.wordLength ? draft : createEmptyInput(nextGame.puzzle.wordLength);
-        setInputLetters(base);
-        const firstEmpty = base.findIndex((ch) => !ch);
-        if (firstEmpty >= 0) setCursorIndex(firstEmpty);
+        setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));
+        setCursorIndex(0);
       }
       setProgressLoaded(true);
     });
@@ -144,7 +141,6 @@ export default function WorttrefferScreen() {
     saveProgress({
       gameId: "worttreffer",
       dateKey,
-      draft: inputLetters,
       completedStatus,
       puzzle,
       puzzleId: puzzle.id,
@@ -153,7 +149,7 @@ export default function WorttrefferScreen() {
       state,
       completedAt,
     });
-  }, [dateKey, inputLetters, progressLoaded, puzzle, state]);
+  }, [dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -471,7 +467,12 @@ export default function WorttrefferScreen() {
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "worttreffer", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined}
-        onNext={() => nextDailyKniffRoute ? router.push(nextDailyKniffRoute as never) : startNextWord()}
+        onNext={() => {
+          setResultVisible(false);
+
+          if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0);
+          else startNextWord();
+        }}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "worttreffer", dateKey, scope: "game", outcome: state.status })}
         onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "worttreffer", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })}
         outcome={state.status === "playing" ? undefined : state.status}
