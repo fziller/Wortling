@@ -1,4 +1,4 @@
-import * as Application from "expo-application";
+import { getBuildLabel } from "@/config/buildInfo";
 import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 import { useEffect, useMemo, useState } from "react";
@@ -310,7 +310,7 @@ export default function SettingsScreen() {
               Dazwischen, Doppel, Galgenwort, Formwort, Worttreffer und Wortcode.
             </Text>
             <Text style={styles.versionText}>
-              Version {Application.nativeApplicationVersion ?? "?"} (Build {Application.nativeBuildVersion ?? "?"})
+              {getBuildLabel()}
             </Text>
           </AppCard>
         </Animated.View>

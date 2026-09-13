@@ -45,6 +45,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 - A versioned news/update modal exists but is currently inactive. Set `currentNews` in `apps/mobile/src/news/current.ts` to announce newly shipped user-facing changes once per news ID; development builds can reset the seen state from Settings.
 - Lightweight haptic feedback is used for keyboard input, invalid guesses, result moments, and Tageskniffe completion.
 - Sentry and PostHog instrumentation with no-op fallback behavior.
+- The splash screen footer and Settings ("Über Wortkniff") show the app version plus the short EAS Update ID when an OTA update is active, so support cases can identify the exact running build.
 
 ## Hidden / Incubating Games
 

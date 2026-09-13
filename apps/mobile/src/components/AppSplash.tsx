@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, FadeOut, ZoomIn } from "react-native-reanimated";
 
 import { tokens } from "@/design/tokens";
+import { getSplashBuildLabel } from "@/config/buildInfo";
 
 const glow = require("../../assets/splash-glow.png");
 const guesses = ["K____", "KN___", "KNI__", "KNIFF"];
@@ -48,6 +49,7 @@ export function AppSplash() {
         <Text style={styles.title}>Wortkniff</Text>
         <Text style={styles.subtitle}>Deutsche Wörter, clever gerätselt.</Text>
       </Animated.View>
+      <Text style={styles.buildLabel}>{getSplashBuildLabel()}</Text>
     </Animated.View>
   );
 }
@@ -132,6 +134,14 @@ const styles = StyleSheet.create({
     color: "rgba(255, 255, 255, 0.9)",
     fontSize: tokens.type.body,
     fontWeight: "800",
+    textAlign: "center",
+  },
+  buildLabel: {
+    position: "absolute",
+    bottom: 30,
+    color: "rgba(255, 255, 255, 0.75)",
+    fontSize: 12,
+    fontWeight: "600",
     textAlign: "center",
   },
 });
