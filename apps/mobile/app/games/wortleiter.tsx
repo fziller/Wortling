@@ -3,6 +3,7 @@ import { usePostHog } from "posthog-react-native";
 import { useEffect, useRef, useState } from "react";
 import {
   Pressable,
+  InteractionManager,
   ScrollView,
   StyleSheet,
   Text,
@@ -92,6 +93,7 @@ export default function WortleiterScreen() {
   const [resultVisible, setResultVisible] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
+  const [hintWord, setHintWord] = useState<string | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
   const nextDailyKniffRoute = useNextOpenDailyKniff("wortleiter", dateKey, state.status === "won");
 
@@ -158,9 +160,23 @@ export default function WortleiterScreen() {
     }
   }, [state.status, dateKey]);
 
+  useEffect(() => {
+    setHintWord(null);
+    if (state.status !== "playing") return;
+
+    let mounted = true;
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (mounted) setHintWord(getWortleiterHintWord(puzzle, state));
+    });
+
+    return () => {
+      mounted = false;
+      task.cancel();
+    };
+  }, [puzzle, state]);
+
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const steps = Math.max(0, state.words.length - 1);
-  const hintWord = getWortleiterHintWord(puzzle, state);
   const hintDisabled = state.status !== "playing" || !hintWord || (hintPolicy !== "ads" && !hintWallet.canConsume);
   const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 

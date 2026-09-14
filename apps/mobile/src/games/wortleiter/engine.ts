@@ -88,8 +88,8 @@ export function getWortleiterHintWord(puzzle: WortleiterPuzzle, state: Wortleite
   const queue: string[][] = [[start]];
   const seen = new Set([start]);
 
-  while (queue.length > 0) {
-    const path = queue.shift()!;
+  for (let queueIndex = 0; queueIndex < queue.length; queueIndex += 1) {
+    const path = queue[queueIndex]!;
     const word = path[path.length - 1];
     if (word === target) return path[1] ?? null;
 

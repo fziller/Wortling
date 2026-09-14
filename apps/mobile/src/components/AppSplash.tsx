@@ -1,6 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { Image, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, FadeOut, ZoomIn } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { tokens } from "@/design/tokens";
 import { getSplashBuildLabel } from "@/config/buildInfo";
@@ -9,6 +10,10 @@ const glow = require("../../assets/splash-glow.png");
 const guesses = ["K____", "KN___", "KNI__", "KNIFF"];
 
 export function AppSplash() {
+  const insets = useSafeAreaInsets();
+  const buildLabelBottom = insets.bottom + 16;
+  const copyBottom = Math.max(82, buildLabelBottom + 52);
+
   return (
     <Animated.View exiting={FadeOut.duration(tokens.motion.normal)} style={styles.wrap}>
       <Image source={glow} style={styles.glow} />
@@ -45,11 +50,11 @@ export function AppSplash() {
           </View>
         ))}
       </LinearGradient>
-      <Animated.View entering={FadeInDown.delay(1600).duration(tokens.motion.slow)} style={styles.copy}>
+      <Animated.View entering={FadeInDown.delay(1600).duration(tokens.motion.slow)} style={[styles.copy, { bottom: copyBottom }]}>
         <Text style={styles.title}>Wortkniff</Text>
         <Text style={styles.subtitle}>Deutsche Wörter, clever gerätselt.</Text>
       </Animated.View>
-      <Text style={styles.buildLabel}>{getSplashBuildLabel()}</Text>
+      <Text style={[styles.buildLabel, { bottom: buildLabelBottom }]}>{getSplashBuildLabel()}</Text>
     </Animated.View>
   );
 }
@@ -118,7 +123,6 @@ const styles = StyleSheet.create({
   },
   copy: {
     position: "absolute",
-    bottom: 82,
     alignItems: "center",
     gap: 4,
     paddingHorizontal: tokens.space.lg,
@@ -138,7 +142,6 @@ const styles = StyleSheet.create({
   },
   buildLabel: {
     position: "absolute",
-    bottom: 30,
     color: "rgba(255, 255, 255, 0.75)",
     fontSize: 12,
     fontWeight: "600",

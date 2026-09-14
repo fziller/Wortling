@@ -30,7 +30,9 @@ export function buildPatternBuckets(words: readonly string[]): Map<string, strin
     const chars = getWordChars(word);
     for (let index = 0; index < chars.length; index += 1) {
       const pattern = `${chars.slice(0, index).join("")}_${chars.slice(index + 1).join("")}`;
-      buckets.set(pattern, [...buckets.get(pattern) ?? [], word]);
+      const bucket = buckets.get(pattern);
+      if (bucket) bucket.push(word);
+      else buckets.set(pattern, [word]);
     }
   }
 
@@ -57,8 +59,8 @@ export function findShortestPath(start: string, target: string, buckets: Map<str
   const queue: string[][] = [[normalizedStart]];
   const seen = new Set([normalizedStart]);
 
-  while (queue.length > 0) {
-    const path = queue.shift()!;
+  for (let queueIndex = 0; queueIndex < queue.length; queueIndex += 1) {
+    const path = queue[queueIndex]!;
     const word = path[path.length - 1];
 
     if (word === normalizedTarget) return path;
