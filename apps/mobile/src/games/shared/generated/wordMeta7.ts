@@ -25809,12 +25809,6 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "bosniak",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
     "word": "bosnier",
     "zipf": 1,
     "tier": "unknown",
@@ -73147,6 +73141,12 @@ export const generatedWordMeta = [
     "zipf": 1,
     "tier": "unknown",
     "bucket": "genitive"
+  },
+  {
+    "word": "knödlig",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
   },
   {
     "word": "knollen",
@@ -137463,6 +137463,12 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
+    "word": "wendbar",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
     "word": "wendeln",
     "zipf": 1,
     "tier": "unknown",
@@ -139033,6 +139039,12 @@ export const generatedWordMeta = [
     "zipf": 1,
     "tier": "unknown",
     "bucket": "imperativ"
+  },
+  {
+    "word": "wohnbar",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
   },
   {
     "word": "wohnbau",
@@ -141045,7 +141057,7 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
-    "word": "zemstwo",
+    "word": "zemstvo",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
@@ -141643,6 +141655,12 @@ export const generatedWordMeta = [
     "zipf": 1,
     "tier": "unknown",
     "bucket": "genitive"
+  },
+  {
+    "word": "ziehbar",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
   },
   {
     "word": "ziehend",

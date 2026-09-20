@@ -24897,6 +24897,12 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
+    "word": "freske",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
     "word": "fresko",
     "zipf": 1,
     "tier": "unknown",
@@ -42688,6 +42694,12 @@ export const generatedWordMeta = [
   },
   {
     "word": "lactat",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
+    "word": "ladbar",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
@@ -66258,12 +66270,6 @@ export const generatedWordMeta = [
     "word": "skript",
     "zipf": 3.52,
     "tier": "medium",
-    "bucket": "base"
-  },
-  {
-    "word": "skrubs",
-    "zipf": 1,
-    "tier": "unknown",
     "bucket": "base"
   },
   {

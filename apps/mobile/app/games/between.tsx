@@ -381,52 +381,54 @@ export default function BetweenScreen() {
       title="Dazwischen"
     >
       <View style={styles.keyboard}>
-        <Animated.View entering={FadeInDown.delay(80)} style={[styles.boardCard, glowStyle]}>
-          <View style={styles.rangeStats}>
-            <Text style={styles.statText}>{state.guesses.length} Versuche</Text>
-          </View>
+        <Animated.View entering={FadeInDown.delay(80)}>
+          <Animated.View style={[styles.boardCard, glowStyle]}>
+            <View style={styles.rangeStats}>
+              <Text style={styles.statText}>{state.guesses.length} Versuche</Text>
+            </View>
 
-          <View style={styles.boardWrap}>
-            <View style={styles.sideRail}>
-              {showScaleHints ? (
-                <View style={[styles.distanceBubble, styles.distanceBubbleTop]}>
-                  <Text style={styles.distanceText}>{formatWordCount(rangeMetrics.topDistanceWords)}</Text>
+            <View style={styles.boardWrap}>
+              <View style={styles.sideRail}>
+                {showScaleHints ? (
+                  <View style={[styles.distanceBubble, styles.distanceBubbleTop]}>
+                    <Text style={styles.distanceText}>{formatWordCount(rangeMetrics.topDistanceWords)}</Text>
+                  </View>
+                ) : null}
+                <View style={styles.boardLine}>
+                  {showScaleHints ? <Animated.View style={[styles.orangeDot, markerStyle]} /> : null}
                 </View>
-              ) : null}
-              <View style={styles.boardLine}>
-                {showScaleHints ? <Animated.View style={[styles.orangeDot, markerStyle]} /> : null}
+                {showScaleHints ? (
+                  <View style={[styles.distanceBubble, styles.distanceBubbleBottom]}>
+                    <Text style={styles.distanceText}>{formatWordCount(rangeMetrics.bottomDistanceWords)}</Text>
+                  </View>
+                ) : null}
               </View>
-              {showScaleHints ? (
-                <View style={[styles.distanceBubble, styles.distanceBubbleBottom]}>
-                  <Text style={styles.distanceText}>{formatWordCount(rangeMetrics.bottomDistanceWords)}</Text>
-                </View>
-              ) : null}
+              <View style={styles.wordStack}>
+                <WordTiles dimmed={state.status === "revealed"} filled word={state.lowerBound} />
+                <Animated.View style={shakeStyle}>
+                  <WordTiles
+                    cursorIndex={cursorIndex}
+                    disabled={Boolean(centerWord) || Boolean(clearingDirection) || state.status !== "playing"}
+                    exitingDirection={clearingDirection}
+                    letters={centerWord ? undefined : inputLetters}
+                    onTilePress={setCursorIndex}
+                    placeholders={hintPlaceholders}
+                    revealed={state.status === "revealed" || state.status === "won"}
+                    word={centerWord}
+                  />
+                </Animated.View>
+                <WordTiles dimmed={state.status === "revealed"} filled word={state.upperBound} />
+              </View>
             </View>
-            <View style={styles.wordStack}>
-              <WordTiles dimmed={state.status === "revealed"} filled word={state.lowerBound} />
-              <Animated.View style={shakeStyle}>
-                <WordTiles
-                  cursorIndex={cursorIndex}
-                  disabled={Boolean(centerWord) || Boolean(clearingDirection) || state.status !== "playing"}
-                  exitingDirection={clearingDirection}
-                  letters={centerWord ? undefined : inputLetters}
-                  onTilePress={setCursorIndex}
-                  placeholders={hintPlaceholders}
-                  revealed={state.status === "revealed" || state.status === "won"}
-                  word={centerWord}
-                />
-              </Animated.View>
-              <WordTiles dimmed={state.status === "revealed"} filled word={state.upperBound} />
-            </View>
-          </View>
 
-          <Text style={styles.alphabetLabel}>Offener Alphabetbereich</Text>
-          <AlphabetStrip
-            cursorIndex={cursorIndex}
-            inputLetters={inputLetters}
-            lowerBound={state.lowerBound}
-            upperBound={state.upperBound}
-          />
+            <Text style={styles.alphabetLabel}>Offener Alphabetbereich</Text>
+            <AlphabetStrip
+              cursorIndex={cursorIndex}
+              inputLetters={inputLetters}
+              lowerBound={state.lowerBound}
+              upperBound={state.upperBound}
+            />
+          </Animated.View>
         </Animated.View>
       </View>
 
@@ -573,23 +575,24 @@ function FlipWordTile({ cursorIndex, disabled, dimmed, filled, flip, index, lett
   });
 
   return (
-    <AnimatedPressable
-      accessibilityLabel={`Buchstabe ${index + 1}${displayLetter ? `: ${displayLetter.toUpperCase()}` : placeholder ? `, Hinweis ${placeholder.toUpperCase()}` : " leer"}`}
-      accessibilityRole="button"
-      disabled={disabled}
-      entering={FadeInDown.delay(index * 35).duration(tokens.motion.quick)}
-      onPress={onPress}
-      style={[
-        styles.wordTile,
-        { minHeight },
-        filled ? styles.wordTileFilled : styles.wordTileEmpty,
-        revealed && styles.wordTileRevealed,
-        dimmed && styles.wordTileDimmed,
-        animatedStyle,
-      ]}
-    >
-      <Text style={[styles.wordTileText, { fontSize: textSize, minWidth: 12, textAlign: "center" }, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty, placeholder && !displayLetter && styles.placeholderText]}>{(displayLetter || placeholder || "").toLocaleUpperCase("de-DE")}</Text>
-    </AnimatedPressable>
+    <Animated.View entering={FadeInDown.delay(index * 35).duration(tokens.motion.quick)} style={styles.wordTileShell}>
+      <AnimatedPressable
+        accessibilityLabel={`Buchstabe ${index + 1}${displayLetter ? `: ${displayLetter.toUpperCase()}` : placeholder ? `, Hinweis ${placeholder.toUpperCase()}` : " leer"}`}
+        accessibilityRole="button"
+        disabled={disabled}
+        onPress={onPress}
+        style={[
+          styles.wordTile,
+          { minHeight },
+          filled ? styles.wordTileFilled : styles.wordTileEmpty,
+          revealed && styles.wordTileRevealed,
+          dimmed && styles.wordTileDimmed,
+          animatedStyle,
+        ]}
+      >
+        <Text style={[styles.wordTileText, { fontSize: textSize, minWidth: 12, textAlign: "center" }, filled || revealed ? styles.wordTileTextFilled : styles.wordTileTextEmpty, placeholder && !displayLetter && styles.placeholderText]}>{(displayLetter || placeholder || "").toLocaleUpperCase("de-DE")}</Text>
+      </AnimatedPressable>
+    </Animated.View>
   );
 }
 
@@ -709,8 +712,10 @@ const styles = StyleSheet.create({
   tileRow: {
     flexDirection: "row"
   },
-  wordTile: {
+  wordTileShell: {
     flex: 1,
+  },
+  wordTile: {
     alignItems: "center",
     justifyContent: "center",
     borderRadius: tokens.radius.sm

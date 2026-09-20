@@ -85,18 +85,29 @@ export function getWortleiterHintWord(puzzle: WortleiterPuzzle, state: Wortleite
   const start = normalizeWortleiterWord(state.words[state.words.length - 1] ?? puzzle.startWord);
   const target = normalizeWortleiterWord(puzzle.targetWord);
   const used = new Set(state.words.map(normalizeWortleiterWord));
-  const queue: string[][] = [[start]];
+  const queue = [start];
   const seen = new Set([start]);
+  const previous = new Map<string, string>();
 
   for (let queueIndex = 0; queueIndex < queue.length; queueIndex += 1) {
-    const path = queue[queueIndex]!;
-    const word = path[path.length - 1];
-    if (word === target) return path[1] ?? null;
+    const word = queue[queueIndex]!;
+    if (word === target) {
+      let step = target;
+      let parent = previous.get(step);
+
+      while (parent && parent !== start) {
+        step = parent;
+        parent = previous.get(step);
+      }
+
+      return parent === start ? step : null;
+    }
 
     for (const neighbor of getWortleiterNeighbors(word, getHintBuckets())) {
       if (seen.has(neighbor) || used.has(neighbor)) continue;
       seen.add(neighbor);
-      queue.push([...path, neighbor]);
+      previous.set(neighbor, word);
+      queue.push(neighbor);
     }
   }
 

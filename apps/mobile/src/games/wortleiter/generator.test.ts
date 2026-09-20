@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { buildPatternBuckets, createWortleiterPuzzle, findShortestPath, isSuitableWortleiterPath } from "./generator";
+import { buildPatternBuckets, createWortleiterPuzzle, findShortestPath, getWortleiterNeighbors, isSuitableWortleiterPath } from "./generator";
 
 describe("wortleiter generator helpers", () => {
   it("returns null when no path exists", () => {
@@ -15,6 +15,12 @@ describe("wortleiter generator helpers", () => {
 
     expect(path).toEqual(["haus", "maus"]);
     expect(isSuitableWortleiterPath(path)).toBe(false);
+  });
+
+  it("does not return the normalized source word as its own neighbor", () => {
+    const buckets = buildPatternBuckets(["haus", "maus"]);
+
+    expect(getWortleiterNeighbors("HAUS", buckets)).toEqual(["maus"]);
   });
 
   it("finds a shortest path across multiple options", () => {

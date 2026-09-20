@@ -40,13 +40,14 @@ export function buildPatternBuckets(words: readonly string[]): Map<string, strin
 }
 
 export function getWortleiterNeighbors(word: string, buckets: Map<string, string[]>): string[] {
-  const chars = getWordChars(word);
+  const normalizedWord = normalizeWortleiterWord(word);
+  const chars = Array.from(normalizedWord);
   const neighbors = new Set<string>();
 
   for (let index = 0; index < chars.length; index += 1) {
     const pattern = `${chars.slice(0, index).join("")}_${chars.slice(index + 1).join("")}`;
     for (const neighbor of buckets.get(pattern) ?? []) {
-      if (neighbor !== word && isValidTransition(word, neighbor)) neighbors.add(neighbor);
+      if (neighbor !== normalizedWord) neighbors.add(neighbor);
     }
   }
 
