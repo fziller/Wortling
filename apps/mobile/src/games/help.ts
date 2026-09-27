@@ -54,6 +54,15 @@ export const gameHelp = {
       "Ein Hinweis zeigt einen Lösungsbuchstaben als Platzhalter, schränkt deine Eingabe aber nicht ein."
     ]
   },
+  wabenwort: {
+    title: "So geht Wabenwort",
+    paragraphs: [
+      "Finde so viele Wörter wie möglich aus der Wabe. Jedes Wort braucht mindestens vier Buchstaben.",
+      "Der Buchstabe in der Mitte muss immer vorkommen. Alle Buchstaben dürfen sich wiederholen.",
+      "Über der Wabe siehst du, wie viele Wörter du für Bronze, Silber und Gold brauchst. Erreiche Gold, damit die Runde zählt.",
+      "Ein Hinweis deckt ein komplettes noch fehlendes Wort auf."
+    ]
+  },
   wortleiter: {
     title: "So geht Wortleiter",
     paragraphs: [

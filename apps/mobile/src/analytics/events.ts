@@ -3,11 +3,11 @@ type AnalyticsProperties = Record<string, AnalyticsValue>;
 
 export type WortkniffEvents = {
   game_started: { gameId: string; dateKey: string };
-  game_completed: { gameId: string; dateKey: string; durationMs: number; attempts: number; outcome: "won" | "lost" | "revealed"; success: boolean };
-  game_abandoned: { gameId: string; dateKey: string; attempts: number };
+  game_completed: { gameId: string; dateKey: string; durationMs: number; attempts: number; outcome: "won" | "lost" | "revealed"; success: boolean; score?: number; rank?: string; foundWordCount?: number; totalWords?: number; pangramCount?: number; highestWordLength?: number };
+  game_abandoned: { gameId: string; dateKey: string; attempts: number; score?: number; foundWordCount?: number };
   help_opened: { gameId?: string; screen?: string; dateKey?: string };
   hint_used: { gameId: string; dateKey: string; source?: string };
-  solution_revealed: { gameId: string; dateKey: string; attempts: number };
+  solution_revealed: { gameId: string; dateKey: string; attempts: number; foundWordCount?: number };
   daily_kniffe_viewed: { dateKey: string; total: number };
   daily_kniff_opened: { gameId: string; dateKey: string; completed: string };
   daily_kniff_completed: { gameId: string; dateKey: string };

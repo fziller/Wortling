@@ -56,6 +56,15 @@ export const games = [
     dailyKniffEligible: true
   },
   {
+    id: "wabenwort",
+    title: "Wabenwort",
+    shortDescription: "Finde Wörter aus sieben Buchstaben und knacke Gold.",
+    route: "/games/wabenwort",
+    estimatedMinutes: 3,
+    badge: "7 Buchstaben",
+    dailyKniffEligible: true
+  },
+  {
     id: "wortleiter",
     title: "Wortleiter",
     shortDescription: "Verwandle ein Wort Schritt für Schritt ins Zielwort.",

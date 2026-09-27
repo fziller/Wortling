@@ -19,6 +19,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 | Formwort | Solve a 5- to 7-letter word with shape and color feedback. | Guess words and use visual hints to infer repeated letters and positions. |
 | Worttreffer | Guess a 4- to 7-letter word with color feedback. | Green means correct position, yellow means present elsewhere, gray means absent. |
 | Wortschmelze | Guess an 8-letter merge made from two overlapping 5-letter German words. | The last two letters of the first word are the first two letters of the second word; color feedback matches Worttreffer. |
+| Wabenwort | Build German words from a seven-letter honeycomb. | Words have at least four letters, must use the center letter, and may repeat letters. Longer words score more; pangrams use all seven letters. Reach Gold to complete a round. |
 | Wortleiter | Transform a 4-letter start word into a target word. | Each intermediate word must be valid German and change exactly one letter. Puzzles are selected from prepared word-graph candidates. |
 | Wortcode | Crack a 5- to 7-letter word with Mastermind-style logic. | Each guess returns positional and non-positional match counts; manual notes can mark letters as included, exact, or absent. |
 
@@ -37,6 +38,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 - Generated files per length: `allowedGuesses.ts` (full core, merged at runtime with packs), `targetWords.ts` (easy+medium), `wordMeta.ts` (all words with zipf/tier), plus `src/games/packs/bio/generated/bioTargets.ts` per length (bio targets, no Zipf).
 - Word pipeline is modular: `scripts/pipeline/shared.mjs` (normalize/shape/bucket/tier), `scripts/sources/{dwds,morphology,bio}.mjs` (adapters), `scripts/import-*.mjs` (import/bewerten), `scripts/data/{subtlex-de,bio}.tsv` (sources). New pack = 1 adapter + 1 TSV + 1 entry in `wordConfig.ts:PACKS`.
 - Wortschmelze puzzles are generated at build time from filtered 5-letter pools (`klassisch`, `erweitert`, `hart`) via `scripts/generate-wortschmelze-puzzles.mjs` into `src/games/wortschmelze/generated/puzzles.ts`.
+- Wabenwort puzzles are generated at build time from validated 4- to 12-letter word data via `scripts/generate-wabenwort-puzzles.mjs`. Each generated puzzle stores its exact accepted words, score thresholds, and pangrams for offline runtime lookups.
 - Word packs: `bio` (Biologie) remains implemented in the code/data pipeline for all games (4–7 letters), but the Settings UI currently presents word packs only as a coming-soon teaser until packs are product-ready.
 - Word stats at a glance: `docs/word-stats.md` (auto-generated via `yarn words:stats` after `content:generate`) — counts per length & tier/bucket & pack.
 - Optional daily reminder notifications.

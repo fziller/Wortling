@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
+import { HexTile } from "@/components/HexTile";
 import { tokens } from "@/design/tokens";
 import { HomeGameId, previewWords } from "@/home/homeMeta";
 
@@ -90,6 +91,28 @@ export function GamePreview({ color, gameId }: GamePreviewProps) {
         <ShapeTile label="R" shape="circle" />
         <ShapeTile label="O" shape="diamond" />
         <ShapeTile label="T" />
+      </View>
+    );
+  }
+
+  if (gameId === "wabenwort") {
+    const letters = previewWords.wabenwort;
+    const spots = [
+      { key: 0, left: 17, top: 0 },
+      { key: 1, left: 51, top: 0 },
+      { key: 2, left: 0, top: 30 },
+      { key: 3, left: 34, top: 30 },
+      { key: 4, left: 68, top: 30 },
+      { key: 5, left: 17, top: 60 },
+      { key: 6, left: 51, top: 60 },
+    ];
+    return (
+      <View style={styles.wabenPreview}>
+        {spots.map((spot) => (
+          <View key={`${letters[spot.key]}-${spot.key}`} style={[styles.wabenSpot, { left: spot.left, top: spot.top }]}>
+            <HexTile label={letters[spot.key] ?? ""} size={30} variant={spot.key === 3 ? "center" : "default"} />
+          </View>
+        ))}
       </View>
     );
   }
@@ -260,6 +283,17 @@ const styles = StyleSheet.create({
     gap: 11,
     justifyContent: "center",
     marginTop: 28,
+  },
+  wabenPreview: {
+    alignSelf: "center",
+    height: 100,
+    marginTop: 18,
+    width: 100,
+  },
+  wabenSpot: {
+    height: 40,
+    position: "absolute",
+    width: 36,
   },
   shapeTile: {
     alignItems: "center",

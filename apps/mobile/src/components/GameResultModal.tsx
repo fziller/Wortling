@@ -1,5 +1,5 @@
 import * as Sharing from "expo-sharing";
-import { RefObject, useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useMemo, useRef, useState } from "react";
 import { Modal, Pressable, ScrollView, Share, StyleSheet, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withDelay, withSpring, withTiming } from "react-native-reanimated";
 import { captureRef } from "react-native-view-shot";
@@ -15,6 +15,7 @@ export type GameResultStat = {
 
 export type GameFeedbackRating = "too_easy" | "ok" | "too_hard";
 export type GameResultOutcome = string;
+export type GameResultWord = { word: string; found: boolean };
 
 type GameResultModalProps = {
   actionLabel?: string;
@@ -38,6 +39,7 @@ type GameResultModalProps = {
   success?: boolean;
   title: string;
   visible: boolean;
+  wordList?: readonly GameResultWord[];
 };
 
 const confetti = [
@@ -67,6 +69,7 @@ export function GameResultModal({
   success,
   title,
   visible,
+  wordList,
 }: GameResultModalProps) {
   const [selectedFeedback, setSelectedFeedback] = useState<GameFeedbackRating | null>(null);
   const [shared, setShared] = useState(false);
@@ -170,6 +173,7 @@ export function GameResultModal({
                 ))}
               </ScrollView>
             ) : null}
+            {wordList?.length ? <WordListGroups wordList={wordList} /> : null}
             {stats.length > 0 ? (
               <View style={styles.stats}>
                 {stats.map((stat, index) => <AnimatedStatTile index={index} key={stat.label} stat={stat} />)}
@@ -206,6 +210,40 @@ export function GameResultModal({
         {shareText ? <ShareCard guesses={guesses} innerRef={shareCardRef} rows={shareRows} shareText={shareText} solution={solution} success={showConfetti} /> : null}
       </Animated.View>
     </Modal>
+  );
+}
+
+function WordListGroups({ wordList }: { wordList: readonly GameResultWord[] }) {
+  const groups = useMemo(() => {
+    const byLength = new Map<number, GameResultWord[]>();
+    for (const item of wordList) {
+      const length = Array.from(item.word).length;
+      byLength.set(length, [...(byLength.get(length) ?? []), item]);
+    }
+    return [...byLength.entries()]
+      .sort(([a], [b]) => a - b)
+      .map(([length, items]) => ({
+        length,
+        items: [...items].sort((a, b) => Number(b.found) - Number(a.found)),
+      }));
+  }, [wordList]);
+
+  return (
+    <View style={styles.wordList}>
+      <Text style={styles.wordListTitle}>ALLE WÖRTER · {wordList.filter((item) => item.found).length}/{wordList.length}</Text>
+      {groups.map((group) => (
+        <View key={group.length} style={styles.wordListGroup}>
+          <Text style={styles.wordListGroupLabel}>{group.length} BUCHSTABEN</Text>
+          <View style={styles.wordListChips}>
+            {group.items.map((item) => (
+              <View key={item.word} style={[styles.wordListChip, item.found ? styles.wordListChipFound : styles.wordListChipMissed]}>
+                <Text style={[styles.wordListWord, item.found ? styles.wordListWordFound : styles.wordListWordMissed]}>{item.word.toLocaleUpperCase("de-DE")}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+      ))}
+    </View>
   );
 }
 
@@ -455,6 +493,57 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: tokens.font.ui.semibold,
     letterSpacing: 1,
+  },
+  wordList: {
+    gap: tokens.space.xs,
+    paddingTop: tokens.space.xs,
+  },
+  wordListGroup: {
+    gap: 4,
+  },
+  wordListGroupLabel: {
+    color: tokens.color.muted,
+    fontFamily: tokens.font.ui.semibold,
+    fontSize: 10,
+    letterSpacing: 0.8,
+    textAlign: "center",
+  },
+  wordListTitle: {
+    color: tokens.color.muted,
+    fontFamily: tokens.font.ui.semibold,
+    fontSize: 11,
+    letterSpacing: 0.8,
+    textAlign: "center",
+  },
+  wordListChips: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 5,
+    justifyContent: "center",
+  },
+  wordListChip: {
+    borderRadius: tokens.radius.pill,
+    borderWidth: 1,
+    paddingHorizontal: 7,
+    paddingVertical: 3,
+  },
+  wordListChipFound: {
+    backgroundColor: "rgba(33, 166, 122, 0.12)",
+    borderColor: "rgba(33, 166, 122, 0.36)",
+  },
+  wordListChipMissed: {
+    backgroundColor: tokens.surface.subdued,
+    borderColor: tokens.border.subtle,
+  },
+  wordListWord: {
+    fontFamily: tokens.font.ui.semibold,
+    fontSize: 11,
+  },
+  wordListWordFound: {
+    color: tokens.semantic.correct,
+  },
+  wordListWordMissed: {
+    color: tokens.color.muted,
   },
   stats: {
     flexDirection: "row",

@@ -12,7 +12,8 @@ const markers = [
   "scripts/sources/bio.mjs",
   "scripts/data/bio.tsv",
   "scripts/generate-wortleiter-puzzles.mjs",
-  "scripts/generate-wortschmelze-puzzles.mjs",
+    "scripts/generate-wortschmelze-puzzles.mjs",
+    "scripts/generate-wabenwort-puzzles.mjs",
   "src/games/wortleiter/targetWords.ts",
 ];
 const outputs = [
@@ -22,7 +23,13 @@ const outputs = [
   "src/games/shared/generated/allowedGuesses7.ts",
   "src/games/packs/bio/generated/bioTargets.ts",
   "src/games/wortleiter/generated/puzzles.ts",
-  "src/games/wortschmelze/generated/puzzles.ts",
+    "src/games/wortschmelze/generated/puzzles.ts",
+    "src/games/wabenwort/generated/puzzles.ts",
+    "src/games/wabenwort/generated/8/allowedGuesses.ts",
+    "src/games/wabenwort/generated/9/allowedGuesses.ts",
+    "src/games/wabenwort/generated/10/allowedGuesses.ts",
+    "src/games/wabenwort/generated/11/allowedGuesses.ts",
+    "src/games/wabenwort/generated/12/allowedGuesses.ts",
 ];
 
 const newestInput = Math.max(...markers.map((p) => {

@@ -7,6 +7,7 @@ export const homeOrder = [
   "between",
   "wortcode",
   "formwort",
+  "wabenwort",
   "wortleiter",
 ] as const;
 
@@ -18,6 +19,7 @@ export const previewWords = {
   wortleiterBottom: ["H", "A", "U", "S"],
   wortschmelzeTop: ["W", "A", "L", "Z", "E"],
   wortschmelzeBottom: ["Z", "E", "B", "R", "A"],
+  wabenwort: ["A", "E", "M", "N", "R", "S", "T"],
 } as const;
 
 export const gameMeta = {
@@ -76,6 +78,13 @@ export const gameMeta = {
     description: "Schritt für Schritt.",
     rotate: "1deg",
     tape: "bottomCenter",
+  },
+  wabenwort: {
+    color: tokens.gameAccent.wabenwort,
+    dot: tokens.gameAccent.wabenwort,
+    description: "Sieben Buchstaben, viele Wörter.",
+    rotate: "-1deg",
+    tape: "topCenter",
   },
 } as const;
 

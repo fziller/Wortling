@@ -13,6 +13,7 @@ export type GameKeyboardConfig = {
   onLetter: (letter: string) => void;
   onSubmit: () => void;
   showBackspace?: boolean;
+  showLetters?: boolean;
   showSubmit?: boolean;
   submitDisabled?: boolean;
 };
@@ -20,7 +21,7 @@ export type GameKeyboardConfig = {
 type GameScreenFrameProps = {
   actions?: ReactNode;
   children: ReactNode;
-  keyboard: GameKeyboardConfig;
+  keyboard?: GameKeyboardConfig;
   onBack: () => void;
   onHelp: () => void;
   progressLabel?: string;
@@ -48,7 +49,7 @@ export function GameScreenFrame({
         <View style={styles.content}>{children}</View>
         <View style={styles.footer}>
           {actions ? <View style={styles.actions}>{actions}</View> : null}
-          <WordKeyboard {...keyboard} />
+          {keyboard ? <WordKeyboard {...keyboard} /> : null}
         </View>
       </View>
     </Screen>

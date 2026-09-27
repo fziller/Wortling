@@ -120,6 +120,7 @@ export const tokens = {
     doppel: "#7B1FA2",
     formwort: "#C2185B",
     wortleiter: "#00796B",
+    wabenwort: "#B87800",
   },
   decoration: {
     warmBlob: "rgba(255, 107, 53, 0.14)",

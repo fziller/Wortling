@@ -15,16 +15,17 @@ type WordKeyboardProps = {
   onLetter: (letter: string) => void;
   onSubmit: () => void;
   showBackspace?: boolean;
+  showLetters?: boolean;
   showSubmit?: boolean;
   submitDisabled?: boolean;
 };
 
 const rows = ["QWERTZUIOP", "ASDFGHJKLÜ", "YXCVBNMÄÖ"];
 
-export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace, onLetter, onSubmit, showBackspace = true, showSubmit = true, submitDisabled = false }: WordKeyboardProps) {
+export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace, onLetter, onSubmit, showBackspace = true, showLetters = true, showSubmit = true, submitDisabled = false }: WordKeyboardProps) {
   return (
     <View style={styles.keyboard}>
-      {rows.map((row) => (
+      {showLetters ? rows.map((row) => (
         <View key={row} style={styles.row}>
           {Array.from(row).map((letter) => {
             const base = letter.toLocaleLowerCase("de-DE");
@@ -44,7 +45,7 @@ export function WordKeyboard({ disabled = false, letterStates = {}, onBackspace,
             );
           })}
         </View>
-      ))}
+      )) : null}
       {showSubmit || showBackspace ? (
         <View style={styles.actionRow}>
           {showBackspace ? <KeyboardAction disabled={disabled} label="Löschen" onPress={onBackspace} variant="utility" /> : null}
