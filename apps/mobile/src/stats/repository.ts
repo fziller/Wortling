@@ -249,6 +249,27 @@ export async function getValidWordGuesses(): Promise<ValidGuessRow[]> {
   return rows;
 }
 
+export type GameGuessDataRow = {
+  sessionId: string;
+  gameData: Record<string, unknown>;
+};
+
+export async function getGameGuessData(gameId: string): Promise<GameGuessDataRow[]> {
+  const db = await initStats();
+  const rows = await db.getAllAsync<{ sessionId: string; gameData: string | null }>(
+    "SELECT guesses.session_id AS sessionId, guesses.game_data AS gameData FROM guesses INNER JOIN game_sessions ON game_sessions.id = guesses.session_id WHERE game_sessions.game_id = ? AND guesses.game_data IS NOT NULL",
+    [gameId],
+  );
+  return rows.flatMap((row) => {
+    try {
+      const gameData = row.gameData ? JSON.parse(row.gameData) : null;
+      return gameData && typeof gameData === "object" && !Array.isArray(gameData) ? [{ sessionId: row.sessionId, gameData: gameData as Record<string, unknown> }] : [];
+    } catch {
+      return [];
+    }
+  });
+}
+
 function mapSessionRow(row: Record<string, unknown>): GameSessionRow {
   return {
     id: String(row.id),

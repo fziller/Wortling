@@ -72,6 +72,15 @@ export const gameHelp = {
       "Ein Hinweis deckt ein komplettes noch fehlendes Wort auf."
     ]
   },
+  silbenmix: {
+    title: "So geht Silbenmix",
+    paragraphs: [
+      "Setze aus dem gemischten Silbenpool alle gesuchten Wörter zusammen.",
+      "Tippe Silben an, um dein Wort zu bauen. In deiner Wortzeile kannst du sie wieder entfernen.",
+      "Prüfe dein Wort, sobald es fertig ist. Richtige Wörter bleiben gefunden und ihre Silben verschwinden aus dem Pool.",
+      "Hinweise markieren eine Startsilbe oder ein Silbenpaar – oder decken ein fehlendes Wort auf."
+    ]
+  },
   wortleiter: {
     title: "So geht Wortleiter",
     paragraphs: [

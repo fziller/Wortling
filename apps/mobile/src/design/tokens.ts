@@ -121,6 +121,7 @@ export const tokens = {
     formwort: "#C2185B",
     wortleiter: "#00796B",
     wabenwort: "#B87800",
+    silbenmix: "#5E5CE6",
   },
   decoration: {
     warmBlob: "rgba(255, 107, 53, 0.14)",

@@ -7,7 +7,8 @@ import { computeStreaks, type StreakSummary } from "./engine/streaks";
 import { summarizeWinDays } from "./engine/winDays";
 import { computeWordStats, type WordStats } from "./engine/words";
 import { computeAnagrammStats, type AnagrammStats } from "./engine/anagramm";
-import { getAllSessions, getRecentSessions, getValidWordGuesses } from "./repository";
+import { computeSilbenmixStats, type SilbenmixStats } from "./engine/silbenmix";
+import { getAllSessions, getGameGuessData, getRecentSessions, getValidWordGuesses } from "./repository";
 import type { GameSessionRow } from "./types";
 
 export type FreeStats = {
@@ -17,11 +18,12 @@ export type FreeStats = {
   words: WordStats;
   records: PersonalRecords;
   anagramm: AnagrammStats;
+  silbenmix: SilbenmixStats;
   recent: GameSessionRow[];
 };
 
 export async function loadFreeStats(todayKey = getBerlinDateKey()): Promise<FreeStats> {
-  const [sessions, guesses, recent] = await Promise.all([getAllSessions(), getValidWordGuesses(), getRecentSessions(5)]);
+  const [sessions, guesses, silbenmixGuesses, recent] = await Promise.all([getAllSessions(), getValidWordGuesses(), getGameGuessData("silbenmix"), getRecentSessions(5)]);
 
   return {
     activityStreak: computeStreaks(sessions.map((session) => session.playDate), todayKey),
@@ -30,6 +32,7 @@ export async function loadFreeStats(todayKey = getBerlinDateKey()): Promise<Free
     words: computeWordStats(guesses),
     records: computePersonalRecords(sessions),
     anagramm: computeAnagrammStats(sessions),
+    silbenmix: computeSilbenmixStats(sessions, silbenmixGuesses),
     recent,
   };
 }

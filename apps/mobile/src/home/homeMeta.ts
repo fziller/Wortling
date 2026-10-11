@@ -9,6 +9,7 @@ export const homeOrder = [
   "wortcode",
   "formwort",
   "wabenwort",
+  "silbenmix",
   "wortleiter",
 ] as const;
 
@@ -22,6 +23,7 @@ export const previewWords = {
   wortschmelzeTop: ["W", "A", "L", "Z", "E"],
   wortschmelzeBottom: ["Z", "E", "B", "R", "A"],
   wabenwort: ["A", "E", "M", "N", "R", "S", "T"],
+  silbenmix: ["BA", "NA", "NE"],
 } as const;
 
 export const gameMeta = {
@@ -94,6 +96,13 @@ export const gameMeta = {
     description: "Sieben Buchstaben, viele Wörter.",
     rotate: "-1deg",
     tape: "topCenter",
+  },
+  silbenmix: {
+    color: tokens.gameAccent.silbenmix,
+    dot: tokens.gameAccent.silbenmix,
+    description: "Silben zu Wörtern mischen.",
+    rotate: "1deg",
+    tape: "bottomLeft",
   },
 } as const;
 

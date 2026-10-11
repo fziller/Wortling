@@ -27,6 +27,7 @@ Wortkniff is an offline-first German word-game app. It provides short daily puzz
 | **Worttreffer** | Four letters / 5 guesses, five / 6, six / 7, seven / 8. Four-, five-, six-, and seven-letter targets are weighted 15%, 40%, 30%, and 15%. | Wordle-style color feedback: green exact, yellow elsewhere, gray absent. |
 | **Wortschmelze** | Fixed eight-letter merged answer; 6 guesses. | Combine two five-letter German words that overlap by two letters. Example: WALZE + ZEBRA becomes WALZEBRA. Color feedback follows Worttreffer. |
 | **Wabenwort** | Seven puzzle letters; accepted words have four to twelve letters. | Form words from the honeycomb, always including the center letter. Letters may repeat. Longer words score more and pangrams use all seven letters. Each puzzle defines Bronze, Silber, and Gold thresholds; Gold completes the round. |
+| **Silbenmix** | Two words / 4–6 syllables is easy, three / 7–10 medium, four / 10–14 hard; new rounds vary randomly and start at medium. | Tap mixed syllables into a word row, then check the word. Correct words consume their tiles; complete every word to win. Start-syllable and pair hints mark tiles, while a word hint reveals one missing word and still lets the remaining words continue. |
 | **Wortleiter** | Prepared four-letter word-graph puzzles; difficulty derives from optimal path length. | Change exactly one letter per valid German word until reaching the target. A word cannot repeat in the same ladder. |
 | **Wortcode** | Five letters / 7 guesses / easy, six / 8 / medium, seven / 9 / hard. | Mastermind-style counts show exact matches, letters found in another position, and absent letters, without revealing their positions. Players can add manual letter notes. |
 | **Doppel** *(currently hidden from Home)* | Curated compound-word puzzles; all current entries are easy. | Find a middle word that forms a valid compound with both shown sides, for example KINDER + SPIEL + PLATZ. Hints unlock length, first letter, then a definition. |
@@ -34,7 +35,7 @@ Wortkniff is an offline-first German word-game app. It provides short daily puzz
 ## Hints and round outcomes
 
 - A new installation starts with **three hints**. Hints are global across games and regenerate one every 30 minutes until the balance reaches three.
-- Hint behavior is game-specific: most word games reveal a target-letter placeholder; Anagramm locks one correct unresolved position; Galgenwort reveals a correct letter; Wortleiter inserts a valid next step; Wabenwort reveals a missing word; Doppel reveals its staged clues.
+- Hint behavior is game-specific: most word games reveal a target-letter placeholder; Anagramm locks one correct unresolved position; Galgenwort reveals a correct letter; Wortleiter inserts a valid next step; Wabenwort reveals a missing word; Silbenmix marks a start syllable or adjacent pair, or reveals one missing word; Doppel reveals its staged clues.
 - Revealing a solution ends the official round without a win. Games with attempt limits allow continued play after an official loss; that later solve does not change the official loss used for streaks and win rates.
 
 ## Daily loop and progression

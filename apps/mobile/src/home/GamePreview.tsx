@@ -22,6 +22,18 @@ export function GamePreview({ color, gameId }: GamePreviewProps) {
     );
   }
 
+  if (gameId === "silbenmix") {
+    return (
+      <View style={styles.smallTilesRow}>
+        {previewWords.silbenmix.map((syllable, index) => (
+          <View key={`${syllable}-${index}`} style={[styles.syllablePreviewTile, index === 1 && { backgroundColor: color }]}>
+            <Text style={[styles.syllablePreviewText, index === 1 && styles.activeMiniTileText]}>{syllable}</Text>
+          </View>
+        ))}
+      </View>
+    );
+  }
+
   if (gameId === "worttreffer") {
     return (
       <View style={styles.wordcodePreview}>
@@ -219,6 +231,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "900",
   },
+  syllablePreviewTile: {
+    alignItems: "center",
+    backgroundColor: tokens.surface.subdued,
+    borderRadius: 7,
+    height: 30,
+    justifyContent: "center",
+    minWidth: 36,
+    paddingHorizontal: 5,
+  },
+  syllablePreviewText: { color: tokens.color.ink, fontSize: 11, fontWeight: "900" },
   wordGrid: {
     columnGap: 8,
     flexDirection: "row",

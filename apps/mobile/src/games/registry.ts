@@ -74,6 +74,15 @@ export const games = [
     dailyKniffEligible: true
   },
   {
+    id: "silbenmix",
+    title: "Silbenmix",
+    shortDescription: "Setze gemischte Silben zu mehreren Wörtern zusammen.",
+    route: "/games/silbenmix",
+    estimatedMinutes: 3,
+    badge: "2-4 Wörter",
+    dailyKniffEligible: true
+  },
+  {
     id: "wortleiter",
     title: "Wortleiter",
     shortDescription: "Verwandle ein Wort Schritt für Schritt ins Zielwort.",

@@ -173,6 +173,20 @@ export default function StatsScreen() {
               </TapeSection>
             ) : null}
 
+            {stats.silbenmix.rounds > 0 ? (
+              <TapeSection delay={320}>
+                <Text style={styles.cardTitle}>Silbenmix</Text>
+                <View style={styles.metricsGrid}>
+                  <Metric label="Runden" value={String(stats.silbenmix.rounds)} />
+                  <Metric label="Lösungsquote" value={formatPercent(stats.silbenmix.solvedRate)} />
+                  <Metric label="Wörter gefunden" value={String(stats.silbenmix.totalSelfFoundWords)} />
+                  <Metric label="Ø Zeit" value={formatDuration(stats.silbenmix.averageActiveMs ?? 0)} />
+                  <Metric label="Ø Hinweise" value={formatNumber(stats.silbenmix.averageHints)} />
+                  <Metric label="Größte gelöste Runde" value={stats.silbenmix.largestSolvedRound ? `${stats.silbenmix.largestSolvedRound} Wörter` : "–"} />
+                </View>
+              </TapeSection>
+            ) : null}
+
             <TapeSection delay={330}>
               <Text style={styles.cardTitle}>Letzte Runden</Text>
               {stats.recent.length === 0 ? (
