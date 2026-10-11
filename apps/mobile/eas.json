@@ -34,6 +34,9 @@
     },
     "local-dev": {
       "extends": "development",
+      "android": {
+        "buildType": "apk"
+      },
       "cache": {
         "disabled": false
       }

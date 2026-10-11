@@ -42,7 +42,7 @@
     "build:prod:ios": "yarn content:generate && dotenvx run -- eas build --platform ios --profile production --local",
     "build:prod:android": "yarn content:generate && dotenvx run -- eas build --platform android --profile production --local",
     "build:local:android": "yarn content:generate && dotenvx run -- eas build --platform android --profile local --local --clear-cache=false --output=./build-local.aab",
-    "build:local:android:dev": "yarn content:generate && APP_VARIANT=development dotenvx run -- eas build --platform android --profile local-dev --local --clear-cache=false",
+    "build:local:android:dev": "yarn content:generate && APP_VARIANT=development dotenvx run -- eas build --platform android --profile local-dev --local --clear-cache=false --output=./build-wortkniff-dev.apk",
     "sentry:upload": "dotenvx run -- npx sentry-expo-upload-sourcemaps dist",
     "eas:build": "yarn content:generate && eas build --platform all --profile production",
     "eas:build:dev": "yarn content:generate && eas build --platform all --profile development",
