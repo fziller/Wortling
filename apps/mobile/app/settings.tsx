@@ -27,6 +27,7 @@ import { HINT_MAX_BALANCE, HINT_STORAGE_VERSION, type HintWallet } from "@/hints
 import { loadHintWallet, saveHintWallet } from "@/hints/storage";
 import { loadPacksSettings, savePacksSettings, type PacksSettings } from "@/storage/packs";
 import { hasPremiumAccess, isPackGated, setMockPremiumEnabled } from "@/premium/packsAccess";
+import { requestStoreReview } from "@/review/storeReview";
 
 const DWDS_URL = "https://www.dwds.de/lemma/list";
 const CC_BY_SA_URL = "https://creativecommons.org/licenses/by-sa/4.0/";
@@ -199,6 +200,12 @@ export default function SettingsScreen() {
     setDevStatus(`Hinweise gesetzt: ${balance}/${HINT_MAX_BALANCE}`);
   }
 
+  async function rateApp() {
+    const result = await requestStoreReview();
+    if (result === "requested") captureEvent(posthog, "store_review_requested", { source: "settings" });
+    else captureEvent(posthog, "store_review_unavailable", { source: "settings" });
+  }
+
   const timeLabel = `${String(settings.hour).padStart(2, "0")}:${String(settings.minute).padStart(2, "0")}`;
 
   return (
@@ -313,6 +320,9 @@ export default function SettingsScreen() {
             <Text style={styles.versionText}>
               {getBuildLabel()}
             </Text>
+            <Pressable accessibilityRole="button" onPress={rateApp} style={styles.reviewButton}>
+              <Text style={styles.reviewButtonText}>App bewerten</Text>
+            </Pressable>
           </AppCard>
         </Animated.View>
 
@@ -464,6 +474,21 @@ const styles = StyleSheet.create({
   linkText: {
     color: tokens.color.primaryDark,
     fontSize: tokens.type.body,
+    fontFamily: tokens.font.ui.semibold,
+  },
+  reviewButton: {
+    alignSelf: "flex-start",
+    minHeight: 44,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: tokens.space.md,
+    paddingHorizontal: tokens.space.md,
+    borderRadius: tokens.radius.action,
+    backgroundColor: tokens.color.primary,
+  },
+  reviewButtonText: {
+    color: "white",
+    ...tokens.typography.uiControl,
     fontFamily: tokens.font.ui.semibold,
   },
   toggleRow: {

@@ -5,7 +5,7 @@ export type WortkniffEvents = {
   game_started: { gameId: string; dateKey: string };
   game_completed: { gameId: string; dateKey: string; durationMs: number; attempts: number; outcome: "won" | "lost" | "revealed"; success: boolean; score?: number; rank?: string; foundWordCount?: number; totalWords?: number; pangramCount?: number; highestWordLength?: number };
   game_abandoned: { gameId: string; dateKey: string; attempts: number; score?: number; foundWordCount?: number };
-  help_opened: { gameId?: string; screen?: string; dateKey?: string };
+  help_opened: { gameId?: string; screen?: string; dateKey?: string; source?: "automatic" | "manual" };
   hint_used: { gameId: string; dateKey: string; source?: string };
   game_continued_after_loss: { gameId: string; dateKey: string; attempts: number };
   game_solved_after_loss: { gameId: string; dateKey: string; attempts: number };
@@ -26,6 +26,8 @@ export type WortkniffEvents = {
   notification_permission_result: { granted: boolean; source: "settings" | "dev" };
   news_viewed: { id: string };
   news_dismissed: { id: string };
+  store_review_requested: { source: "first_result" | "settings" };
+  store_review_unavailable: { source: "first_result" | "settings" };
 };
 
 export type AnalyticsClient = {

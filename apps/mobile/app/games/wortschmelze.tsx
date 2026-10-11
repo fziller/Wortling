@@ -17,6 +17,7 @@ import { getBerlinDateKey } from "@/daily/date";
 import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
+import { useFirstGameHelp } from "@/games/useFirstGameHelp";
 import { games } from "@/games/registry";
 import { BucketPreset } from "@/games/wordBuckets";
 import { createNextWortschmelzeGame, restoreWortschmelzePuzzle } from "@/games/wortschmelze/daily";
@@ -65,7 +66,6 @@ export default function WortschmelzeScreen() {
   const [cursorIndex, setCursorIndex] = useState(0);
   const [message, setMessage] = useState("");
   const [shakeTick, setShakeTick] = useState(0);
-  const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [lossVisible, setLossVisible] = useState(false);
@@ -75,6 +75,11 @@ export default function WortschmelzeScreen() {
   const [revealingGuessIndex, setRevealingGuessIndex] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
   const nextDailyKniffRoute = useNextOpenDailyKniff(GAME_ID, dateKey, state.status === "won");
+  const help = useFirstGameHelp({
+    enabled: progressLoaded && state.status === "playing",
+    gameId: GAME_ID,
+    onAutomaticOpen: () => captureEvent(posthog, "help_opened", { gameId: GAME_ID, dateKey, source: "automatic" }),
+  });
 
   useEffect(() => {
     loadWordBucketSettings().then((settings) => setBucketPreset(getPreset(settings)));
@@ -284,8 +289,8 @@ export default function WortschmelzeScreen() {
       keyboard={{ disabled: state.status !== "playing", letterStates, onBackspace: backspace, onLetter: addLetter, onSubmit: submit, submitDisabled: !canSubmit }}
       onBack={goBack}
       onHelp={() => {
-        captureEvent(posthog, "help_opened", { gameId: GAME_ID, dateKey });
-        setHelpVisible(true);
+        captureEvent(posthog, "help_opened", { gameId: GAME_ID, dateKey, source: "manual" });
+        help.open();
       }}
        progressLabel={continuedAfterLoss ? `${state.guesses.length} Versuche · frei` : `${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
       subtitle="5+5 → 8 Buchstaben"
@@ -355,7 +360,7 @@ export default function WortschmelzeScreen() {
         title={state.status === "won" ? "Stark geschmolzen." : state.status === "lost" ? "Nicht geschmolzen." : "Aufgelöst."}
         visible={resultVisible && state.status !== "playing"}
       />
-      <HelpModal {...gameHelp.wortschmelze} onClose={() => setHelpVisible(false)} visible={helpVisible} />
+      <HelpModal {...gameHelp.wortschmelze} onClose={help.close} visible={help.visible} />
     </GameScreenFrame>
   );
 }

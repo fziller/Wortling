@@ -15,6 +15,7 @@ import { getBerlinDateKey } from "@/daily/date";
 import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
+import { useFirstGameHelp } from "@/games/useFirstGameHelp";
 import { games } from "@/games/registry";
 import { buildSimpleShareText } from "@/games/share/grid";
 import { createNextWabenwortGame, restoreWabenwortPuzzle } from "@/games/wabenwort/daily";
@@ -54,7 +55,6 @@ export default function WabenwortScreen() {
   const [state, setState] = useState<WabenwortState>(game.state);
   const [input, setInput] = useState("");
   const [message, setMessage] = useState("");
-  const [helpVisible, setHelpVisible] = useState(false);
   const [revealVisible, setRevealVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
@@ -69,6 +69,11 @@ export default function WabenwortScreen() {
   const pangramCount = state.foundWords.filter((word) => getWabenwortWord(puzzle, word)?.isPangram).length;
   const hintDisabled = state.status !== "playing" || (hintPolicy !== "ads" && !hintWallet.canConsume);
   const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
+  const help = useFirstGameHelp({
+    enabled: progressLoaded && state.status === "playing",
+    gameId: GAME_ID,
+    onAutomaticOpen: () => captureEvent(posthog, "help_opened", { gameId: GAME_ID, dateKey, source: "automatic" }),
+  });
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: GAME_ID, params: { dateKey } });
@@ -232,7 +237,7 @@ export default function WabenwortScreen() {
       actions={state.status === "playing" ? <View style={styles.actionRow}><SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} /><SmallGameAction label="Lösung anzeigen" onPress={() => setRevealVisible(true)} variant="reveal" /></View> : null}
       keyboard={{ disabled: state.status !== "playing", onBackspace: backspace, onLetter: addLetter, onSubmit: submit, showLetters: false, submitDisabled: !input }}
       onBack={goBack}
-      onHelp={() => { captureEvent(posthog, "help_opened", { gameId: GAME_ID, dateKey }); setHelpVisible(true); }}
+      onHelp={() => { captureEvent(posthog, "help_opened", { gameId: GAME_ID, dateKey, source: "manual" }); help.open(); }}
       progressLabel={`${foundCount}/${puzzle.goldWords} Wörter`}
       title="Wabenwort"
     >
@@ -246,7 +251,7 @@ export default function WabenwortScreen() {
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Alle verfügbaren Wörter werden angezeigt. Die Runde zählt nicht als geschafft." onCancel={() => setRevealVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={revealVisible} />
       <GameResultModal actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : "Neue Wabe"} dateKey={dateKey} durationMs={elapsedSeconds * 1000} gameId={GAME_ID} message={state.status === "won" ? "Gold erreicht. Sauber." : "Alle verfügbaren Wörter sind aufgedeckt."} onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: GAME_ID, dateKey, rating, outcome: state.status })} onHome={() => router.replace("/")} onNext={() => { setResultVisible(false); if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0); else startNextPuzzle(); }} onShare={() => captureEvent(posthog, "result_shared", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status })} onViewed={() => captureEvent(posthog, "result_viewed", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status, success: state.status === "won" })} outcome={state.status === "playing" ? undefined : state.status} shareText={buildSimpleShareText("Wabenwort", dateKey, state.status, `${rankLabel(rank)} · ${foundCount}/${puzzle.goldWords} für Gold`)} stats={[{ label: "Wörter", value: `${foundCount}/${puzzle.goldWords} für Gold` }, { label: "Pangramme", value: pangramCount }, { label: "Zeit", value: formatElapsedTime(elapsedSeconds) }]} success={state.status === "won"} title={state.status === "won" ? "Gold!" : "Aufgelöst."} visible={resultVisible && state.status !== "playing"} wordList={resultWordList} />
-      <HelpModal {...gameHelp.wabenwort} onClose={() => setHelpVisible(false)} visible={helpVisible} />
+      <HelpModal {...gameHelp.wabenwort} onClose={help.close} visible={help.visible} />
     </GameScreenFrame>
   );
 }

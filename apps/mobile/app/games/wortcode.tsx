@@ -18,6 +18,7 @@ import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
 import { buildSimpleShareText } from "@/games/share/grid";
 import { gameHelp } from "@/games/help";
+import { useFirstGameHelp } from "@/games/useFirstGameHelp";
 import { games } from "@/games/registry";
 import { createNextWortcodeGame, restoreWortcodePuzzle } from "@/games/wortcode/daily";
 import {
@@ -68,7 +69,6 @@ export default function WortcodeScreen() {
   const [cursorIndex, setCursorIndex] = useState(0);
   const [message, setMessage] = useState("");
   const [shakeTick, setShakeTick] = useState(0);
-  const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [lossVisible, setLossVisible] = useState(false);
@@ -81,6 +81,11 @@ export default function WortcodeScreen() {
   const hintWallet = useHintWallet();
   const hintPolicy = getHintPolicy();
   const revealedLetters = getWortcodeRevealedLetters(puzzle, state);
+  const help = useFirstGameHelp({
+    enabled: progressLoaded && state.status === "playing",
+    gameId: "wortcode",
+    onAutomaticOpen: () => captureEvent(posthog, "help_opened", { gameId: "wortcode", dateKey, source: "automatic" }),
+  });
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "wortcode", params: { dateKey } });
@@ -321,8 +326,8 @@ export default function WortcodeScreen() {
       }}
       onBack={goBack}
       onHelp={() => {
-        captureEvent(posthog, "help_opened", { gameId: "wortcode", dateKey });
-        setHelpVisible(true);
+        captureEvent(posthog, "help_opened", { gameId: "wortcode", dateKey, source: "manual" });
+        help.open();
       }}
        progressLabel={continuedAfterLoss ? `${state.guesses.length} Versuche · frei` : `${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
       subtitle={`${puzzle.wordLength} Buchstaben`}
@@ -446,7 +451,7 @@ export default function WortcodeScreen() {
         title={continuedAfterLoss && state.status === "won" ? "Nachträglich gelöst." : resultTitle()}
         visible={resultVisible && state.status !== "playing"}
       />
-      <HelpModal {...gameHelp.wortcode} onClose={() => setHelpVisible(false)} visible={helpVisible} />
+      <HelpModal {...gameHelp.wortcode} onClose={help.close} visible={help.visible} />
     </GameScreenFrame>
   );
 }

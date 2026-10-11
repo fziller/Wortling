@@ -1,5 +1,5 @@
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
-import Animated, { FadeIn, FadeOut, ZoomIn } from "react-native-reanimated";
+import Animated, { FadeIn, FadeInDown, FadeOut } from "react-native-reanimated";
 
 import { tokens } from "@/design/tokens";
 
@@ -13,7 +13,7 @@ export function OnboardingModal({ onClose, onStart, visible }: OnboardingModalPr
   return (
     <Modal animationType="none" transparent visible={visible}>
       <Animated.View entering={FadeIn.duration(tokens.motion.quick)} exiting={FadeOut.duration(tokens.motion.quick)} style={styles.backdrop}>
-        <Animated.View entering={ZoomIn.springify().damping(18).stiffness(220)} style={styles.card}>
+        <Animated.View entering={FadeInDown.duration(tokens.motion.quick).withInitialValues({ transform: [{ translateY: 10 }] })} style={styles.card}>
           <Text style={styles.kicker}>Tageskniffe</Text>
           <Text style={styles.title}>Jeden Tag 3 kurze Worträtsel.</Text>
           <Text style={styles.body}>Spiel eins an, löse alle drei und halte deine Serie am Leben. Kein Account, kein Stress.</Text>
@@ -21,7 +21,7 @@ export function OnboardingModal({ onClose, onStart, visible }: OnboardingModalPr
             <Text style={styles.step}>1 · Tageskniff auswählen</Text>
             <Text style={styles.step}>2 · Rätsel lösen</Text>
             <Text style={styles.step}>3 · Nächsten offenen Kniff spielen</Text>
-            <Text style={styles.step}>💡 3 gelöste Rätsel bringen 1 Hinweis</Text>
+            <Text style={styles.step}>💡 Du startest mit 3 Hinweisen. Danach kommt alle 30 Minuten einer dazu.</Text>
           </View>
           <View style={styles.actions}>
             <Pressable accessibilityRole="button" onPress={onClose} style={styles.secondary}>

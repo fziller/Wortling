@@ -1,4 +1,4 @@
-// Hint wallet: global across all games, earned by winning rounds.
+// Hint wallet: global across all games, starts full and regenerates over time.
 export const HINT_MAX_BALANCE = 3;
 export const HINT_STORAGE_KEY = "wortkniff:hints:wallet";
 export const HINT_STORAGE_VERSION = 2;

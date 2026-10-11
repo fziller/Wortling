@@ -13,6 +13,7 @@ Wortkniff is an Expo + React Native + TypeScript mobile app for German daily wor
 - Keep user-facing game text in German unless the product direction changes.
 - Write README, agent-facing docs, and code comments in English.
 - Keep `docs/product-overview.md` updated when adding games, changing game rules, or shipping user-facing features.
+- Keep `docs/features.md` updated when adding games, changing game rules, game difficulty or word lengths, or shipping user-facing features.
 - Do not add backend, accounts, or extra game modes unless explicitly requested.
 - Prefer existing Expo/React Native APIs before adding dependencies.
 - Only change dependencies when the user explicitly asks for it, or when a bug fix or requested feature genuinely requires a package/version change. Do not update packages just to make hygiene checks pass; report that as separate maintenance instead.

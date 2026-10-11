@@ -13,6 +13,7 @@ import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
+import { useFirstGameHelp } from "@/games/useFirstGameHelp";
 import { games } from "@/games/registry";
 import { createNextDoppelGame } from "@/games/doppel/daily";
 import { revealDoppelSolution, submitDoppelGuess, unlockDoppelHint } from "@/games/doppel/engine";
@@ -50,12 +51,16 @@ export default function DoppelScreen() {
   const [input, setInput] = useState("");
   const [message, setMessage] = useState("");
   const [shakeTick, setShakeTick] = useState(0);
-  const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
+  const help = useFirstGameHelp({
+    enabled: progressLoaded && state.status === "playing",
+    gameId: "doppel",
+    onAutomaticOpen: () => captureEvent(posthog, "help_opened", { gameId: "doppel", dateKey, source: "automatic" }),
+  });
 
   useEffect(() => {
     loadProgress<DoppelState>("doppel", today).then((progress) => {
@@ -250,8 +255,8 @@ export default function DoppelScreen() {
       }}
       onBack={goBack}
       onHelp={() => {
-        captureEvent(posthog, "help_opened", { gameId: "doppel", dateKey });
-        setHelpVisible(true);
+        captureEvent(posthog, "help_opened", { gameId: "doppel", dateKey, source: "manual" });
+        help.open();
       }}
       title="Doppel"
     >
@@ -310,7 +315,7 @@ export default function DoppelScreen() {
         title={resultTitle()}
         visible={resultVisible && state.status !== "playing"}
       />
-      <HelpModal {...gameHelp.doppel} onClose={() => setHelpVisible(false)} visible={helpVisible} />
+      <HelpModal {...gameHelp.doppel} onClose={help.close} visible={help.visible} />
     </GameScreenFrame>
   );
 }

@@ -25,6 +25,7 @@ import { HelpModal } from "@/components/HelpModal";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { tokens } from "@/design/tokens";
 import { gameHelp } from "@/games/help";
+import { useFirstGameHelp } from "@/games/useFirstGameHelp";
 import { games } from "@/games/registry";
 import { CONTENT_VERSION } from "@/games/between/content";
 import { createNextBetweenGame } from "@/games/between/daily";
@@ -93,7 +94,6 @@ export default function BetweenScreen() {
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(5));
   const [cursorIndex, setCursorIndex] = useState(0);
   const [modal, setModal] = useState<"reveal" | null>(null);
-  const [helpVisible, setHelpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [clearingDirection, setClearingDirection] = useState<Guess["direction"] | undefined>(undefined);
   const [progressLoaded, setProgressLoaded] = useState(false);
@@ -113,6 +113,11 @@ export default function BetweenScreen() {
   const showScaleHints = Boolean(lastGuess);
   const puzzleId = `between-${state.targetWord}`;
   const hintPlaceholders = getBetweenRevealedHintLetters(state);
+  const help = useFirstGameHelp({
+    enabled: progressLoaded && state.status === "playing",
+    gameId: "between",
+    onAutomaticOpen: () => captureEvent(posthog, "help_opened", { gameId: "between", dateKey, source: "automatic" }),
+  });
   const hintDisabled = state.status !== "playing" || (state.revealedHintIndices?.length ?? 0) >= Array.from(state.targetWord).length || (hintPolicy !== "ads" && !hintWallet.canConsume);
   const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
@@ -375,8 +380,8 @@ export default function BetweenScreen() {
       }}
       onBack={goBack}
       onHelp={() => {
-        captureEvent(posthog, "help_opened", { gameId: "between", dateKey });
-        setHelpVisible(true);
+        captureEvent(posthog, "help_opened", { gameId: "between", dateKey, source: "manual" });
+        help.open();
       }}
       title="Dazwischen"
     >
@@ -432,7 +437,7 @@ export default function BetweenScreen() {
         </Animated.View>
       </View>
 
-      <HelpModal {...gameHelp.between} onClose={() => setHelpVisible(false)} visible={helpVisible} />
+      <HelpModal {...gameHelp.between} onClose={help.close} visible={help.visible} />
       <ConfirmModal
         confirmLabel="Lösung zeigen"
         message="Die Runde wird beendet und nicht als gewonnen gewertet."

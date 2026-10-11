@@ -28,6 +28,7 @@ import {
 } from "@/games/formwort/engine";
 import type { FormwortState } from "@/games/formwort/types";
 import { gameHelp } from "@/games/help";
+import { useFirstGameHelp } from "@/games/useFirstGameHelp";
 import { games } from "@/games/registry";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { BucketPreset } from "@/games/wordBuckets";
@@ -96,7 +97,6 @@ export default function FormwortScreen() {
   const [cursorIndex, setCursorIndex] = useState(0);
   const [message, setMessage] = useState("");
   const [shakeTick, setShakeTick] = useState(0);
-  const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [lossVisible, setLossVisible] = useState(false);
@@ -108,6 +108,11 @@ export default function FormwortScreen() {
   const hintWallet = useHintWallet();
   const hintPolicy = getHintPolicy();
   const revealedLetters = getFormwortRevealedLetters(puzzle, state);
+  const help = useFirstGameHelp({
+    enabled: progressLoaded && state.status === "playing",
+    gameId: "formwort",
+    onAutomaticOpen: () => captureEvent(posthog, "help_opened", { gameId: "formwort", dateKey, source: "automatic" }),
+  });
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "formwort", params: { dateKey } });
@@ -310,8 +315,8 @@ export default function FormwortScreen() {
       }}
       onBack={goBack}
       onHelp={() => {
-        captureEvent(posthog, "help_opened", { gameId: "formwort", dateKey });
-        setHelpVisible(true);
+        captureEvent(posthog, "help_opened", { gameId: "formwort", dateKey, source: "manual" });
+        help.open();
       }}
        progressLabel={continuedAfterLoss ? `${state.guesses.length} Versuche · frei` : `${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
       subtitle={`${puzzle.wordLength} Buchstaben`}
@@ -412,7 +417,7 @@ export default function FormwortScreen() {
         title={resultTitle()}
         visible={resultVisible && state.status !== "playing"}
       />
-      <HelpModal {...gameHelp.formwort} onClose={() => setHelpVisible(false)} visible={helpVisible} />
+      <HelpModal {...gameHelp.formwort} onClose={help.close} visible={help.visible} />
     </GameScreenFrame>
   );
 }

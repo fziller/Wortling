@@ -25,6 +25,7 @@ import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
 import { buildSimpleShareText } from "@/games/share/grid";
 import { gameHelp } from "@/games/help";
+import { useFirstGameHelp } from "@/games/useFirstGameHelp";
 import { games } from "@/games/registry";
 import {
   createNextWortleiterGame,
@@ -86,13 +87,17 @@ export default function WortleiterScreen() {
   const [cursorIndex, setCursorIndex] = useState(0);
   const [message, setMessage] = useState("");
   const [shakeTick, setShakeTick] = useState(0);
-  const [helpVisible, setHelpVisible] = useState(false);
   const [revealVisible, setRevealVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
   const nextDailyKniffRoute = useNextOpenDailyKniff("wortleiter", dateKey, state.status === "won");
+  const help = useFirstGameHelp({
+    enabled: progressLoaded && state.status === "playing",
+    gameId: "wortleiter",
+    onAutomaticOpen: () => captureEvent(posthog, "help_opened", { gameId: "wortleiter", dateKey, source: "automatic" }),
+  });
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "wortleiter", params: { dateKey } });
@@ -346,8 +351,8 @@ export default function WortleiterScreen() {
       }}
       onBack={goBack}
       onHelp={() => {
-        captureEvent(posthog, "help_opened", { gameId: "wortleiter", dateKey });
-        setHelpVisible(true);
+        captureEvent(posthog, "help_opened", { gameId: "wortleiter", dateKey, source: "manual" });
+        help.open();
       }}
       title="Wortleiter"
     >
@@ -455,8 +460,8 @@ export default function WortleiterScreen() {
       />
       <HelpModal
         {...gameHelp.wortleiter}
-        onClose={() => setHelpVisible(false)}
-        visible={helpVisible}
+        onClose={help.close}
+        visible={help.visible}
       />
     </GameScreenFrame>
   );

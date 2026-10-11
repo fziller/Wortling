@@ -1,12 +1,15 @@
 import * as Sharing from "expo-sharing";
+import { usePostHog } from "posthog-react-native";
 import { RefObject, useEffect, useMemo, useRef, useState } from "react";
 import { Modal, Pressable, ScrollView, Share, StyleSheet, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withDelay, withSpring, withTiming } from "react-native-reanimated";
 import { captureRef } from "react-native-view-shot";
 
+import { captureEvent } from "@/analytics/events";
 import { tokens } from "@/design/tokens";
 import { markEmoji, type ShareGuessRow } from "@/games/share/grid";
 import { successHaptic, warningHaptic } from "@/haptics";
+import { requestStoreReviewOnce } from "@/review/storeReview";
 
 export type GameResultStat = {
   label: string;
@@ -71,12 +74,14 @@ export function GameResultModal({
   visible,
   wordList,
 }: GameResultModalProps) {
+  const posthog = usePostHog();
   const [selectedFeedback, setSelectedFeedback] = useState<GameFeedbackRating | null>(null);
   const [shared, setShared] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [sharing, setSharing] = useState(false);
   const shareCardRef = useRef<View>(null);
   const viewedRef = useRef(false);
+  const reviewAttemptedRef = useRef(false);
   const entrance = useSharedValue(0);
 
   useEffect(() => {
@@ -97,6 +102,16 @@ export function GameResultModal({
       setSharing(false);
     }
   }, [entrance, onViewed, outcome, success, visible]);
+
+  useEffect(() => {
+    if (!visible || reviewAttemptedRef.current) return;
+
+    reviewAttemptedRef.current = true;
+    requestStoreReviewOnce().then((result) => {
+      if (result === "requested") captureEvent(posthog, "store_review_requested", { source: "first_result" });
+      else if (result === "unavailable") captureEvent(posthog, "store_review_unavailable", { source: "first_result" });
+    });
+  }, [posthog, visible]);
 
   const backdropStyle = useAnimatedStyle(() => ({
     opacity: withTiming(visible ? 1 : 0, { duration: tokens.motion.quick }),

@@ -5,8 +5,8 @@ import { HINT_STORAGE_KEY, HINT_STORAGE_VERSION, HINT_MAX_BALANCE, HINT_REGENERA
 function defaultWallet(): HintWallet {
   return {
     version: HINT_STORAGE_VERSION,
-    balance: 0,
-    nextRegenerationAt: Date.now() + HINT_REGENERATION_MS,
+    balance: HINT_MAX_BALANCE,
+    nextRegenerationAt: null,
     winsSinceLastHint: 0,
     totalEarned: 0,
     totalSpent: 0,

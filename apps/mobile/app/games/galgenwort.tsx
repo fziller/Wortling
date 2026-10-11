@@ -20,6 +20,7 @@ import { createNextGalgenwortGame } from "@/games/galgenwort/daily";
 import { applyGalgenwortHint, getGalgenwortHintLetter, getGalgenwortLetterStates, getGalgenwortRevealedLetters, getGalgenwortWrongLetters, revealGalgenwortSolution, submitGalgenwortLetter } from "@/games/galgenwort/engine";
 import type { GalgenwortState } from "@/games/galgenwort/types";
 import { gameHelp } from "@/games/help";
+import { useFirstGameHelp } from "@/games/useFirstGameHelp";
 import { games } from "@/games/registry";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
@@ -54,7 +55,6 @@ export default function GalgenwortScreen() {
   const [state, setState] = useState<GalgenwortState>(game.state);
   const [message, setMessage] = useState("");
   const [shakeTick, setShakeTick] = useState(0);
-  const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [lossVisible, setLossVisible] = useState(false);
@@ -63,6 +63,11 @@ export default function GalgenwortScreen() {
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
   const nextDailyKniffRoute = useNextOpenDailyKniff("galgenwort", dateKey, state.status === "won");
+  const help = useFirstGameHelp({
+    enabled: progressLoaded && state.status === "playing",
+    gameId: "galgenwort",
+    onAutomaticOpen: () => captureEvent(posthog, "help_opened", { gameId: "galgenwort", dateKey, source: "automatic" }),
+  });
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "galgenwort", params: { dateKey } });
@@ -250,8 +255,8 @@ export default function GalgenwortScreen() {
       }}
       onBack={goBack}
       onHelp={() => {
-        captureEvent(posthog, "help_opened", { gameId: "galgenwort", dateKey });
-        setHelpVisible(true);
+        captureEvent(posthog, "help_opened", { gameId: "galgenwort", dateKey, source: "manual" });
+        help.open();
       }}
        progressLabel={continuedAfterLoss ? `${wrongLetters.length} Fehler · frei` : `${wrongLetters.length}/${puzzle.maxWrongGuesses} Fehler`}
       title="Galgenwort"
@@ -315,7 +320,7 @@ export default function GalgenwortScreen() {
         title={resultTitle()}
         visible={resultVisible && state.status !== "playing"}
       />
-      <HelpModal {...gameHelp.galgenwort} onClose={() => setHelpVisible(false)} visible={helpVisible} />
+      <HelpModal {...gameHelp.galgenwort} onClose={help.close} visible={help.visible} />
     </GameScreenFrame>
   );
 }

@@ -1,4 +1,5 @@
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
 
 import { HeaderActionButton } from "@/components/AppHeader";
 import { tokens } from "@/design/tokens";
@@ -16,9 +17,9 @@ export function HelpButton({ onPress }: { onPress: () => void }) {
 
 export function HelpModal({ title, paragraphs, visible, onClose }: HelpModalProps) {
   return (
-    <Modal animationType="fade" onRequestClose={onClose} transparent visible={visible}>
-      <View style={styles.backdrop}>
-        <View style={styles.card}>
+    <Modal animationType="none" onRequestClose={onClose} transparent visible={visible}>
+      <Animated.View entering={FadeIn.duration(tokens.motion.quick)} style={styles.backdrop}>
+        <Animated.View entering={FadeInDown.duration(tokens.motion.quick).withInitialValues({ transform: [{ translateY: 10 }] })} style={styles.card}>
           <Text style={styles.title}>{title}</Text>
           {paragraphs.map((paragraph) => (
             <Text key={paragraph} style={styles.body}>{paragraph}</Text>
@@ -26,8 +27,8 @@ export function HelpModal({ title, paragraphs, visible, onClose }: HelpModalProp
           <Pressable accessibilityRole="button" onPress={onClose} style={styles.closeButton}>
             <Text style={styles.closeText}>Alles klar</Text>
           </Pressable>
-        </View>
-      </View>
+        </Animated.View>
+      </Animated.View>
     </Modal>
   );
 }

@@ -24,6 +24,16 @@ export async function findOpenSession(gameId: string, playDate: string, puzzleId
   return row ? mapSessionRow(row) : null;
 }
 
+export async function hasStartedGame(gameId: string): Promise<boolean> {
+  const db = await initStats();
+  const row = await db.getFirstAsync<{ started: number }>(
+    "SELECT 1 AS started FROM game_sessions WHERE game_id = ? LIMIT 1",
+    [gameId],
+  );
+
+  return Boolean(row?.started);
+}
+
 export async function findResumableSession(gameId: string, playDate: string, puzzleId: string): Promise<GameSessionRow | null> {
   const db = await initStats();
   const row = await db.getFirstAsync<Record<string, unknown>>(
