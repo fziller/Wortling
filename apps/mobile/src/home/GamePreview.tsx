@@ -10,6 +10,18 @@ type GamePreviewProps = {
 };
 
 export function GamePreview({ color, gameId }: GamePreviewProps) {
+  if (gameId === "anagramm") {
+    return (
+      <View style={styles.smallTilesRow}>
+        {previewWords.anagramm.map((letter, index) => (
+          <View key={`${letter}-${index}`} style={[styles.smallTile, index === 2 && { backgroundColor: color }]}>
+            <Text style={[styles.smallTileText, index === 2 && styles.activeMiniTileText]}>{letter}</Text>
+          </View>
+        ))}
+      </View>
+    );
+  }
+
   if (gameId === "worttreffer") {
     return (
       <View style={styles.wordcodePreview}>

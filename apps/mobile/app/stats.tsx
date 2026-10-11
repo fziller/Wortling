@@ -159,7 +159,21 @@ export default function StatsScreen() {
               <RecordRow label="Meiste Siege an einem Tag" value={stats.records.mostWinsInADay === null ? "–" : String(stats.records.mostWinsInADay)} />
             </TapeSection>
 
-            <TapeSection delay={310}>
+            {stats.anagramm.rounds > 0 ? (
+              <TapeSection delay={300}>
+                <Text style={styles.cardTitle}>Anagramm</Text>
+                <View style={styles.metricsGrid}>
+                  <Metric label="Runden" value={String(stats.anagramm.rounds)} />
+                  <Metric label="Lösungsquote" value={formatPercent(stats.anagramm.solvedRate)} />
+                  <Metric label="Ø Zeit" value={formatDuration(stats.anagramm.averageActiveMs ?? 0)} />
+                  <Metric label="Ø Fehler" value={formatNumber(stats.anagramm.averageWrongAttempts)} />
+                  <Metric label="Ø Hinweise" value={formatNumber(stats.anagramm.averageHints)} />
+                  <Metric label="Längstes gelöstes Wort" value={stats.anagramm.longestSolvedWordLength ? `${stats.anagramm.longestSolvedWordLength} Buchstaben` : "–"} />
+                </View>
+              </TapeSection>
+            ) : null}
+
+            <TapeSection delay={330}>
               <Text style={styles.cardTitle}>Letzte Runden</Text>
               {stats.recent.length === 0 ? (
                 <Text style={styles.body}>Noch keine Runden.</Text>

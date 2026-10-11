@@ -16,7 +16,8 @@ export const WORD_THRESHOLDS_BY_LENGTH = {
   5: 2.9,
   6: 2.9,
   7: 2.9,
-} as const satisfies Record<4 | 5 | 6 | 7, number>;
+  8: 2.9,
+} as const satisfies Record<4 | 5 | 6 | 7 | 8, number>;
 
 export const WORD_CONFIG_VERSION = 3;
 

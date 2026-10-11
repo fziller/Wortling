@@ -14,6 +14,8 @@ const markers = [
   "scripts/generate-wortleiter-puzzles.mjs",
     "scripts/generate-wortschmelze-puzzles.mjs",
     "scripts/generate-wabenwort-puzzles.mjs",
+    "scripts/generate-anagramm-content.mjs",
+    "src/games/wordConfig.ts",
   "src/games/wortleiter/targetWords.ts",
 ];
 const outputs = [
@@ -30,6 +32,7 @@ const outputs = [
     "src/games/wabenwort/generated/10/allowedGuesses.ts",
     "src/games/wabenwort/generated/11/allowedGuesses.ts",
     "src/games/wabenwort/generated/12/allowedGuesses.ts",
+    "src/games/anagramm/generated/content.ts",
 ];
 
 const newestInput = Math.max(...markers.map((p) => {

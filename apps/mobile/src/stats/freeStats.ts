@@ -6,6 +6,7 @@ import { computeLifetimeStats, computePersonalRecords, type LifetimeStats, type 
 import { computeStreaks, type StreakSummary } from "./engine/streaks";
 import { summarizeWinDays } from "./engine/winDays";
 import { computeWordStats, type WordStats } from "./engine/words";
+import { computeAnagrammStats, type AnagrammStats } from "./engine/anagramm";
 import { getAllSessions, getRecentSessions, getValidWordGuesses } from "./repository";
 import type { GameSessionRow } from "./types";
 
@@ -15,6 +16,7 @@ export type FreeStats = {
   lifetime: LifetimeStats;
   words: WordStats;
   records: PersonalRecords;
+  anagramm: AnagrammStats;
   recent: GameSessionRow[];
 };
 
@@ -27,6 +29,7 @@ export async function loadFreeStats(todayKey = getBerlinDateKey()): Promise<Free
     lifetime: computeLifetimeStats(sessions),
     words: computeWordStats(guesses),
     records: computePersonalRecords(sessions),
+    anagramm: computeAnagrammStats(sessions),
     recent,
   };
 }

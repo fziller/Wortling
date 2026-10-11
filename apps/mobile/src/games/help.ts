@@ -1,4 +1,13 @@
 export const gameHelp = {
+  anagramm: {
+    title: "So geht Anagramm",
+    paragraphs: [
+      "Sortiere die gemischten Buchstaben zum gesuchten Wort.",
+      "Tippe einen Buchstaben an, um ihn in die Lösungszeile zu setzen. Dort kannst du ihn wieder entfernen.",
+      "Du hast fünf falsche Lösungsversuche. Mehrere gültige Anagramme zählen als Lösung.",
+      "Ein Hinweis fixiert einen noch ungelösten Buchstaben an seiner richtigen Stelle."
+    ]
+  },
   between: {
     title: "So geht Dazwischen",
     paragraphs: [

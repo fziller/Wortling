@@ -14,6 +14,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 
 | Game | Summary | Rules Snapshot |
 | --- | --- | --- |
+| Anagramm | Reorder scrambled letters into a German word. | Curated four- to eight-letter words are shuffled for each round. Place every tile once, solve within five wrong attempts, and use hints to lock correct positions. Valid alternative anagrams also win. |
 | Dazwischen | Narrow down a German target word alphabetically. | Guess valid 5-letter words; each guess shows whether the target comes before or after it. |
 | Galgenwort | Guess a German word before running out of mistakes. | Guess letters from a clue category; wrong guesses count against the limit. |
 | Formwort | Solve a 5- to 7-letter word with shape and color feedback. | Guess words and use visual hints to infer repeated letters and positions. |
@@ -25,11 +26,11 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 
 ## Current Features
 
-- Random puzzle selection when opening a game without saved in-progress input; Worttreffer chooses 4- to 7-letter words automatically, while Formwort and Wortcode choose 5-, 6-, or 7-letter words.
+- Random puzzle selection when opening a game without saved in-progress input; Anagramm chooses curated 4- to 8-letter words automatically, Worttreffer chooses 4- to 7-letter words automatically, while Formwort and Wortcode choose 5-, 6-, or 7-letter words.
 - Tageskniffe: each Berlin day highlights three existing games on Home; completing one puzzle in each highlighted game completes the day.
 - Tageskniffe continuation: Home highlights unfinished Tageskniffe, result screens can jump straight to the next open Tageskniff, daily reminders deep-link to the next open Tageskniff, and an optional evening reminder is scheduled only after a player has started but not finished the Tageskniffe.
 - Local daily streaks based on consecutive completed Tageskniffe days.
-- Personal statistics stored locally in SQLite (`expo-sqlite`): every round is recorded as raw data (sessions, guesses with order/timing, hint events) via the central `StatsRecorder`. The Home streak and the `/stats` screen (lifetime summary, outcomes, streaks, per-game counts, word/letter stats, personal records) are computed from that raw data. Stats are strictly local; no guess words or answers reach PostHog.
+- Personal statistics stored locally in SQLite (`expo-sqlite`): every round is recorded as raw data (sessions, guesses with order/timing, hint events) via the central `StatsRecorder`. The Home streak and the `/stats` screen (lifetime summary, outcomes, streaks, per-game counts, word/letter stats, personal records, and Anagramm-specific free metrics) are computed from that raw data. Stats are strictly local; no guess words or answers reach PostHog.
 - Saved in-progress rounds with draft input and a Home `Weiterspielen` chip.
 - New installs start with three global Hinweise. Spent hints regenerate every 30 minutes up to three and can be spent across all games. A local reminder is scheduled when the wallet is full. Letter-based Hinweise render as ghost placeholders without locking player input; Galgenwort reveals a correct letter, Wortleiter inserts a valid next step toward the target, Dazwischen reveals a random target letter as a placeholder, Wortschmelze reuses Worttreffer-style letter placeholders, and Doppel unlocks its staged clues.
 - Games with a fixed attempt limit offer unlimited continued play after the official loss. The loss remains final for win rate and Tageskniff streaks; a later solve is recorded separately.

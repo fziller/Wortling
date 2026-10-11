@@ -1,6 +1,7 @@
 import { tokens } from "@/design/tokens";
 
 export const homeOrder = [
+  "anagramm",
   "worttreffer",
   "wortschmelze",
   "galgenwort",
@@ -12,6 +13,7 @@ export const homeOrder = [
 ] as const;
 
 export const previewWords = {
+  anagramm: ["M", "L", "E", "B", "U"],
   worttreffer: ["S", "P", "", "E", "L"],
   wortcode: ["S", "P", "I", "E", "L"],
   galgenwort: ["K", "", "", "F", "F"],
@@ -23,6 +25,13 @@ export const previewWords = {
 } as const;
 
 export const gameMeta = {
+  anagramm: {
+    color: tokens.gameAccent.worttreffer,
+    dot: tokens.gameAccent.worttreffer,
+    description: "Sortiere die Buchstaben.",
+    rotate: "-1deg",
+    tape: "topLeft",
+  },
   wortcode: {
     color: tokens.gameAccent.wortcode,
     dot: tokens.gameAccent.wortcode,

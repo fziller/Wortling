@@ -13,13 +13,14 @@ Wortkniff is an offline-first German word-game app. It provides short daily puzz
   - **Klassisch:** familiar base forms; verbs are infinitives and nouns are singular.
   - **Erweitert:** Klassisch plus plurals and conjugated verbs.
   - **Hart:** Erweitert plus participles, subjunctive forms, imperatives, and inflected adjectives. Genitive-only forms are never targets.
-- Core targets use curated static German word lists. The classic pool uses a Zipf-frequency threshold of 2.9 for five- to seven-letter words and 2.2 for four-letter words so Wortleiter stays connected.
+- Core targets use curated static German word lists. The classic pool uses a Zipf-frequency threshold of 2.9 for five- to eight-letter words and 2.2 for four-letter words so Wortleiter stays connected.
 - The current Biologie word pack exists in the content pipeline, but is not yet presented as an active player option.
 
 ## Game modes
 
 | Game | Target and difficulty | Round rules |
 | --- | --- | --- |
+| **Anagramm** | Curated four- and five-letter words are easy, six and seven medium, eight hard. | Reorder every scrambled tile into a valid German word. Each tile may be used once; five wrong complete attempts lose the round. Valid alternatives with the same letters also count. |
 | **Dazwischen** | Curated five-letter target words. No separate difficulty label. | Enter valid five-letter German words to narrow the target alphabetically. Each guess says whether the target comes before or after it. There is no guess limit. |
 | **Galgenwort** | Curated four- to seven-letter words. Eight wrong letters are allowed. | Guess letters from the target word. Correct letters reveal every matching position; each wrong letter uses one of eight mistakes. |
 | **Formwort** | Five letters / 6 guesses, six / 7, seven / 8. | Shapes show equal letters before guessing. After a guess, green is exact position, yellow exists elsewhere, gray is absent. |
@@ -33,7 +34,7 @@ Wortkniff is an offline-first German word-game app. It provides short daily puzz
 ## Hints and round outcomes
 
 - A new installation starts with **three hints**. Hints are global across games and regenerate one every 30 minutes until the balance reaches three.
-- Hint behavior is game-specific: most word games reveal a target-letter placeholder; Galgenwort reveals a correct letter; Wortleiter inserts a valid next step; Wabenwort reveals a missing word; Doppel reveals its staged clues.
+- Hint behavior is game-specific: most word games reveal a target-letter placeholder; Anagramm locks one correct unresolved position; Galgenwort reveals a correct letter; Wortleiter inserts a valid next step; Wabenwort reveals a missing word; Doppel reveals its staged clues.
 - Revealing a solution ends the official round without a win. Games with attempt limits allow continued play after an official loss; that later solve does not change the official loss used for streaks and win rates.
 
 ## Daily loop and progression
@@ -52,6 +53,6 @@ Wortkniff is an offline-first German word-game app. It provides short daily puzz
 
 ## Statistics, reminders, and privacy
 
-- Personal stats are calculated from local SQLite session and guess records. They cover outcomes, attempts, active time, streaks, per-game performance, word/letter stats, and personal records.
+- Personal stats are calculated from local SQLite session and guess records. They cover outcomes, attempts, active time, streaks, per-game performance, word/letter stats, and personal records. Anagramm additionally shows played rounds, solve rate, average time, wrong attempts, hints, and longest solved word.
 - Guess words, solutions, and other personal gameplay content never leave the device through analytics.
 - Optional daily and unfinished-Tageskniffe reminders are local notifications. The app remains playable without notification permissions or network access.

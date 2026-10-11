@@ -2,6 +2,15 @@ import type { GameDefinition } from "./types";
 
 export const games = [
   {
+    id: "anagramm",
+    title: "Anagramm",
+    shortDescription: "Sortiere durcheinandergewürfelte Buchstaben zum Wort.",
+    route: "/games/anagramm",
+    estimatedMinutes: 2,
+    badge: "4-8 Buchstaben",
+    dailyKniffEligible: true
+  },
+  {
     id: "between",
     title: "Dazwischen",
     shortDescription: "Grenze ein deutsches Wort alphabetisch ein.",
