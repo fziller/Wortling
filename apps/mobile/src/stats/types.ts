@@ -1,6 +1,6 @@
 export type GameOutcome = "won" | "lost" | "revealed" | "abandoned";
 
-export const STATS_SCHEMA_VERSION = 1;
+export const STATS_SCHEMA_VERSION = 2;
 export const STATS_DB_NAME = "wortkniff-stats.db";
 
 export type GameSessionRow = {
@@ -19,6 +19,10 @@ export type GameSessionRow = {
   invalidGuessCount: number;
   duplicateGuessCount: number;
   activeDurationMs: number;
+  continuedAfterLoss: boolean;
+  solvedAfterLoss: boolean;
+  officialLossAttemptCount: number | null;
+  postLossCompletion: "solved" | "revealed" | null;
   createdAt: string;
   updatedAt: string;
   schemaVersion: number;
@@ -56,6 +60,7 @@ export type ValidGuessRow = {
 };
 
 export type StatsEventType = "hint_used";
+export type PostLossCompletion = "solved" | "revealed";
 
 export type StatsEventInput = {
   sessionId: string;

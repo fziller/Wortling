@@ -36,6 +36,7 @@ export const generatedHartWords = [
   "avec",
   "axel",
   "azur",
+  "baba",
   "babe",
   "baby",
   "bach",

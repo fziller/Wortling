@@ -5,6 +5,7 @@ import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated"
 
 import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GrowingGuessBoard } from "@/components/GrowingGuessBoard";
@@ -70,6 +71,8 @@ export default function WortcodeScreen() {
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
+  const [lossVisible, setLossVisible] = useState(false);
+  const [continuedAfterLoss, setContinuedAfterLoss] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
@@ -88,6 +91,7 @@ export default function WortcodeScreen() {
     loadProgress<WortcodeState>("wortcode", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
+      setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreWortcodePuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
         const nextGame = { dateKey: progress.dateKey, puzzle: restoredPuzzle, state: progress.state };
@@ -103,8 +107,9 @@ export default function WortcodeScreen() {
   useEffect(() => {
     if (!progressLoaded) return;
 
-    const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
-    const completedStatus = mergeCompletedStatus(completedStatusRef.current, state.status !== "playing" ? state.status : undefined);
+    const officialOutcome = continuedAfterLoss ? "lost" : state.status === "lost" ? "lost" : undefined;
+    const completedAt = officialOutcome || state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    const completedStatus = mergeCompletedStatus(completedStatusRef.current, officialOutcome ?? (state.status !== "playing" ? state.status : undefined));
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
 
@@ -117,9 +122,14 @@ export default function WortcodeScreen() {
       puzzleVersion: puzzle.version,
       status: state.status,
       state,
-      completedAt
+      completedAt,
+      officialOutcome,
+      continuedAfterLoss,
+      officialLossAttemptCount: continuedAfterLoss ? puzzle.maxAttempts : undefined,
+      solvedAfterLoss: continuedAfterLoss && state.status === "won",
+      postLossCompletion: continuedAfterLoss && state.status === "won" ? "solved" : state.status === "revealed" && continuedAfterLoss ? "revealed" : undefined,
     });
-  }, [dateKey, progressLoaded, puzzle, state]);
+  }, [continuedAfterLoss, dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -166,7 +176,7 @@ export default function WortcodeScreen() {
       return;
     }
     if (!hintWallet.canConsume) {
-      setMessage(hintWallet.wallet.balance >= 3 ? "Hinweis-Lager voll (3/3)." : `Keine Hinweise. Gewinne noch ${3 - hintWallet.wallet.winsSinceLastHint} Runden.`);
+      setMessage(`Keine Hinweise. Nächster Hinweis in ${Math.max(1, Math.ceil((hintWallet.nextHintInMs ?? 0) / 60_000))} Min.`);
       return;
     }
     const next = applyWortcodeHint(puzzle, state);
@@ -186,7 +196,7 @@ export default function WortcodeScreen() {
 
   function submit() {
     startStats();
-    const result = submitWortcodeGuess(puzzle, state, inputLetters.join(""));
+    const result = submitWortcodeGuess(puzzle, state, inputLetters.join(""), { ignoreAttemptLimit: continuedAfterLoss });
 
     setState(result.state);
     setMessage(result.ok ? result.state.status === "won" ? "Code geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "" : rejectMessage(result.reason));
@@ -200,13 +210,16 @@ export default function WortcodeScreen() {
       stats.recordRejectedGuess(result.reason, inputLetters.join(""));
       setShakeTick((value) => value + 1);
     }
-    if (result.ok && isFinishedGameStatus(result.state.status)) {
-      stats.finish(result.state.status);
+    if (result.ok && result.state.status === "lost") {
+      stats.finish("lost");
+      setFinishedAt(Date.now());
+      setLossVisible(true);
+      captureEvent(posthog, "game_completed", { gameId: "wortcode", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length, outcome: "lost", success: false });
+    } else if (result.ok && isFinishedGameStatus(result.state.status)) {
+      if (continuedAfterLoss && result.state.status === "won") stats.finishAfterLoss("solved");
+      else stats.finish(result.state.status);
       if (result.state.status === "won") {
-        hintWallet.onWin().then((granted) => {
-          if (granted) setMessage("Hinweis erhalten! 💡");
-          try { posthog.capture(granted ? "hint_earned" : "hint_progress", { gameId: "wortcode", dateKey }); } catch {}
-        });
+        if (continuedAfterLoss) captureEvent(posthog, "game_solved_after_loss", { gameId: "wortcode", dateKey, attempts: result.state.guesses.length });
       }
       setFinishedAt(Date.now());
       setResultVisible(true);
@@ -216,7 +229,7 @@ export default function WortcodeScreen() {
         durationMs: elapsedSeconds * 1000,
         attempts: result.state.guesses.length,
         outcome: result.state.status,
-        success: result.state.status === "won",
+        success: result.state.status === "won" && !continuedAfterLoss,
       });
     }
   }
@@ -227,7 +240,8 @@ export default function WortcodeScreen() {
 
   function reveal() {
     startStats();
-    stats.finish("revealed");
+    if (continuedAfterLoss) stats.finishAfterLoss("revealed");
+    else stats.finish("revealed");
     captureEvent(posthog, "solution_revealed", { gameId: "wortcode", dateKey, attempts: state.guesses.length });
     captureEvent(posthog, "game_completed", {
       gameId: "wortcode",
@@ -246,6 +260,15 @@ export default function WortcodeScreen() {
     setResultVisible(true);
   }
 
+  function continueAfterLoss() {
+    setState((current) => ({ ...current, status: "playing" }));
+    setContinuedAfterLoss(true);
+    setLossVisible(false);
+    setFinishedAt(null);
+    stats.continueAfterLoss(state.guesses.length);
+    captureEvent(posthog, "game_continued_after_loss", { gameId: "wortcode", dateKey, attempts: state.guesses.length });
+  }
+
   function startNextWord() {
     const nextGame = createNextWortcodeGame(puzzle.answer, today, bucketPreset, packs);
 
@@ -255,6 +278,8 @@ export default function WortcodeScreen() {
     setCursorIndex(0);
     setMessage("");
     setResultVisible(false);
+    setLossVisible(false);
+    setContinuedAfterLoss(false);
     setFinishedAt(null);
     setProgressLoaded(true);
     resetTimer();
@@ -299,7 +324,7 @@ export default function WortcodeScreen() {
         captureEvent(posthog, "help_opened", { gameId: "wortcode", dateKey });
         setHelpVisible(true);
       }}
-      progressLabel={`${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
+       progressLabel={continuedAfterLoss ? `${state.guesses.length} Versuche · frei` : `${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
       subtitle={`${puzzle.wordLength} Buchstaben`}
       title="Wortcode"
     >
@@ -391,13 +416,14 @@ export default function WortcodeScreen() {
         title="Lösung anzeigen?"
         visible={giveUpVisible}
       />
+      <ContinueAfterLossModal onContinue={continueAfterLoss} onGiveUp={reveal} visible={lossVisible} />
       <GameResultModal
         attempts={state.guesses.length}
         dateKey={dateKey}
         durationMs={elapsedSeconds * 1000}
         gameId="wortcode"
         guesses={state.guesses.map((guess) => guess.value)}
-        message={state.status === "won" ? "Sauber kombiniert." : "Die Lösung ist raus. Weiteres Wort?"}
+        message={continuedAfterLoss && state.status === "won" ? "Nach der Niederlage doch noch geknackt." : state.status === "won" ? "Sauber kombiniert." : "Die Lösung ist raus. Weiteres Wort?"}
         onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "wortcode", dateKey, rating, outcome: state.status })}
         onHome={() => router.replace("/")}
         actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined}
@@ -412,12 +438,12 @@ export default function WortcodeScreen() {
         outcome={state.status === "playing" ? undefined : state.status}
         shareText={buildSimpleShareText("Wortcode", dateKey, state.status, `${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`)}
         solution={puzzle.answer}
-        success={state.status === "won"}
+        success={state.status === "won" && !continuedAfterLoss}
         stats={[
           { label: "Versuche", value: state.guesses.length },
           { label: "Zeit", value: `${elapsedSeconds} Sek.` },
         ]}
-        title={resultTitle()}
+        title={continuedAfterLoss && state.status === "won" ? "Nachträglich gelöst." : resultTitle()}
         visible={resultVisible && state.status !== "playing"}
       />
       <HelpModal {...gameHelp.wortcode} onClose={() => setHelpVisible(false)} visible={helpVisible} />

@@ -63,6 +63,13 @@ describe("wortcode engine", () => {
     expect(state.status).toBe("lost");
   });
 
+  it("allows a later solve when continuation ignores the attempt limit", () => {
+    const limited = { ...puzzle, maxAttempts: 1 };
+    const lost = submitWortcodeGuess(limited, createWortcodeState(limited), "ananas").state;
+    const continued = { ...lost, status: "playing" as const };
+    expect(submitWortcodeGuess(limited, continued, "banane", { ignoreAttemptLimit: true }).state.status).toBe("won");
+  });
+
   it("keeps curated guesses at the configured length", () => {
     expect(guessWords.every((word) => supportedWordLengths.some((length) => length === getWordLength(word)))).toBe(true);
     for (const length of [5, 6, 7] as const) {

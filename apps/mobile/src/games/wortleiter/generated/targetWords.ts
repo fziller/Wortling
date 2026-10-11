@@ -32,6 +32,7 @@ export const generatedTargetWords = [
   "avec",
   "axel",
   "azur",
+  "baba",
   "babe",
   "baby",
   "bach",

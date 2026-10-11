@@ -40,7 +40,7 @@ export function createWorttrefferState(puzzle: WorttrefferPuzzle): WorttrefferSt
   return { puzzleId: puzzle.id, guesses: [], status: "playing" };
 }
 
-export function submitWorttrefferGuess(puzzle: WorttrefferPuzzle, state: WorttrefferState, rawGuess: string, allowed: GuessValidator = allowedGuesses): WorttrefferSubmitResult {
+export function submitWorttrefferGuess(puzzle: WorttrefferPuzzle, state: WorttrefferState, rawGuess: string, allowed: GuessValidator = allowedGuesses, options: { ignoreAttemptLimit?: boolean } = {}): WorttrefferSubmitResult {
   const value = normalizeWorttrefferGuess(rawGuess);
 
   if (state.status !== "playing") {
@@ -66,7 +66,7 @@ export function submitWorttrefferGuess(puzzle: WorttrefferPuzzle, state: Worttre
   const marks = evaluateWorttrefferGuess(puzzle.answer, value);
   const guess = { value, marks };
   const won = marks.every((mark) => mark === "correct");
-  const lost = !won && state.guesses.length + 1 >= puzzle.maxAttempts;
+  const lost = !options.ignoreAttemptLimit && !won && state.guesses.length + 1 >= puzzle.maxAttempts;
 
   return { ok: true, guess, state: { ...state, guesses: [...state.guesses, guess], status: won ? "won" : lost ? "lost" : "playing" } };
 }

@@ -17,5 +17,10 @@ export function configureNotifications(): void {
       importance: Notifications.AndroidImportance.DEFAULT,
       vibrationPattern: [0, 250, 250, 250],
     });
+    Notifications.setNotificationChannelAsync("hint-wallet", {
+      name: "Hinweise",
+      importance: Notifications.AndroidImportance.DEFAULT,
+      vibrationPattern: [0, 250],
+    });
   }
 }

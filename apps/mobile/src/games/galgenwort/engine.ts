@@ -35,7 +35,7 @@ export function getGalgenwortLetterStates(puzzle: GalgenwortPuzzle, state: Galge
   return Object.fromEntries(state.guessedLetters.map((letter) => [letter, answerLetters.has(letter) ? "correct" : "absent"]));
 }
 
-export function submitGalgenwortLetter(puzzle: GalgenwortPuzzle, state: GalgenwortState, rawLetter: string): GalgenwortGuessResult {
+export function submitGalgenwortLetter(puzzle: GalgenwortPuzzle, state: GalgenwortState, rawLetter: string, options: { ignoreAttemptLimit?: boolean } = {}): GalgenwortGuessResult {
   const letter = normalizeGalgenwortLetter(rawLetter);
 
   if (state.status !== "playing") {
@@ -54,7 +54,7 @@ export function submitGalgenwortLetter(puzzle: GalgenwortPuzzle, state: Galgenwo
   const nextState = { ...state, guessedLetters };
   const correct = getGalgenwortAnswerLetters(puzzle.answer).includes(letter);
   const won = getGalgenwortRevealedLetters(puzzle, nextState).every(Boolean);
-  const lost = !won && getGalgenwortWrongLetters(puzzle, nextState).length >= puzzle.maxWrongGuesses;
+  const lost = !options.ignoreAttemptLimit && !won && getGalgenwortWrongLetters(puzzle, nextState).length >= puzzle.maxWrongGuesses;
 
   return { ok: true, correct, state: { ...nextState, status: won ? "won" : lost ? "lost" : "playing" } };
 }

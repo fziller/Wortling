@@ -1,11 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { HINT_STORAGE_KEY, HINT_STORAGE_VERSION, HINT_MAX_BALANCE, HINT_WINS_PER_HINT, type HintWallet } from "./types";
+import { HINT_STORAGE_KEY, HINT_STORAGE_VERSION, HINT_MAX_BALANCE, HINT_REGENERATION_MS, type HintWallet } from "./types";
 
 function defaultWallet(): HintWallet {
   return {
     version: HINT_STORAGE_VERSION,
     balance: 0,
+    nextRegenerationAt: Date.now() + HINT_REGENERATION_MS,
     winsSinceLastHint: 0,
     totalEarned: 0,
     totalSpent: 0,
@@ -17,11 +18,15 @@ function normalizeWallet(raw: unknown): HintWallet {
   if (!raw || typeof raw !== "object") return fallback;
   const r = raw as Record<string, unknown>;
   const balance = typeof r.balance === "number" ? Math.max(0, Math.min(HINT_MAX_BALANCE, Math.floor(r.balance))) : 0;
-  const winsSinceLastHint =
-    typeof r.winsSinceLastHint === "number" ? Math.max(0, Math.min(HINT_WINS_PER_HINT - 1, Math.floor(r.winsSinceLastHint))) : 0;
+  const winsSinceLastHint = 0;
+  const nextRegenerationAt = balance >= HINT_MAX_BALANCE
+    ? null
+    : typeof r.nextRegenerationAt === "number" && Number.isFinite(r.nextRegenerationAt)
+      ? Math.floor(r.nextRegenerationAt)
+      : Date.now() + HINT_REGENERATION_MS;
   const totalEarned = typeof r.totalEarned === "number" ? Math.max(0, Math.floor(r.totalEarned)) : 0;
   const totalSpent = typeof r.totalSpent === "number" ? Math.max(0, Math.floor(r.totalSpent)) : 0;
-  return { version: HINT_STORAGE_VERSION, balance, winsSinceLastHint, totalEarned, totalSpent };
+  return { version: HINT_STORAGE_VERSION, balance, nextRegenerationAt, winsSinceLastHint, totalEarned, totalSpent };
 }
 
 export async function loadHintWallet(): Promise<HintWallet> {

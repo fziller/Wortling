@@ -14,6 +14,12 @@ export type StoredProgress<TState = unknown> = {
   state: TState;
   startedAt?: string;
   completedAt?: string;
+  /** Official scoring outcome is immutable even while a player keeps solving. */
+  officialOutcome?: Extract<GameStatus, "lost">;
+  continuedAfterLoss?: boolean;
+  solvedAfterLoss?: boolean;
+  officialLossAttemptCount?: number;
+  postLossCompletion?: "solved" | "revealed";
 };
 
 function progressKey(gameId: string, dateKey: string): string {
@@ -46,6 +52,7 @@ export async function loadProgressForGames(gameIds: readonly string[], dateKey: 
 
 export function mergeCompletedStatus(previous: GameStatus | undefined, next: GameStatus | undefined): GameStatus | undefined {
   if (previous === "won" || next === "won") return "won";
+  if (previous === "lost") return "lost";
   return next ?? previous;
 }
 

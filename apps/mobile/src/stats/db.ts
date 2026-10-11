@@ -60,6 +60,12 @@ const MIGRATIONS: Record<number, string> = {
     );
     CREATE INDEX IF NOT EXISTS idx_game_events_session_id ON game_events (session_id);
   `,
+  2: `
+    ALTER TABLE game_sessions ADD COLUMN continued_after_loss INTEGER NOT NULL DEFAULT 0;
+    ALTER TABLE game_sessions ADD COLUMN solved_after_loss INTEGER NOT NULL DEFAULT 0;
+    ALTER TABLE game_sessions ADD COLUMN official_loss_attempt_count INTEGER;
+    ALTER TABLE game_sessions ADD COLUMN post_loss_completion TEXT;
+  `,
 };
 
 export function initStats(): Promise<SQLite.SQLiteDatabase> {

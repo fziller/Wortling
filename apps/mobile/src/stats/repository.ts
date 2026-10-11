@@ -24,6 +24,18 @@ export async function findOpenSession(gameId: string, playDate: string, puzzleId
   return row ? mapSessionRow(row) : null;
 }
 
+export async function findResumableSession(gameId: string, playDate: string, puzzleId: string): Promise<GameSessionRow | null> {
+  const db = await initStats();
+  const row = await db.getFirstAsync<Record<string, unknown>>(
+    `SELECT * FROM game_sessions
+     WHERE game_id = ? AND play_date = ? AND puzzle_id = ?
+       AND (outcome IS NULL OR (outcome = 'lost' AND continued_after_loss = 1 AND post_loss_completion IS NULL))
+     ORDER BY started_at DESC LIMIT 1`,
+    [gameId, playDate, puzzleId],
+  );
+  return row ? mapSessionRow(row) : null;
+}
+
 export async function createSession(input: SessionStartInput): Promise<GameSessionRow> {
   const db = await initStats();
   const now = new Date().toISOString();
@@ -43,6 +55,10 @@ export async function createSession(input: SessionStartInput): Promise<GameSessi
     invalidGuessCount: 0,
     duplicateGuessCount: 0,
     activeDurationMs: 0,
+    continuedAfterLoss: false,
+    solvedAfterLoss: false,
+    officialLossAttemptCount: null,
+    postLossCompletion: null,
     createdAt: now,
     updatedAt: now,
     schemaVersion: STATS_SCHEMA_VERSION,
@@ -120,6 +136,24 @@ export async function finishSession(
       now,
       id,
     ],
+  );
+}
+
+export async function markContinuedAfterLoss(id: string, officialLossAttemptCount: number): Promise<void> {
+  const db = await initStats();
+  await db.runAsync(
+    "UPDATE game_sessions SET continued_after_loss = 1, official_loss_attempt_count = ?, updated_at = ? WHERE id = ?",
+    [officialLossAttemptCount, new Date().toISOString(), id],
+  );
+}
+
+export async function finishPostLossSession(id: string, completion: "solved" | "revealed", counters: Required<SessionCountersPatch>): Promise<void> {
+  const db = await initStats();
+  const now = new Date().toISOString();
+  await db.runAsync(
+    `UPDATE game_sessions SET solved_after_loss = ?, post_loss_completion = ?, attempt_count = ?, hint_count = ?,
+      invalid_guess_count = ?, duplicate_guess_count = ?, active_duration_ms = ?, updated_at = ? WHERE id = ?`,
+    [completion === "solved" ? 1 : 0, completion, counters.attemptCount, counters.hintCount, counters.invalidGuessCount, counters.duplicateGuessCount, counters.activeDurationMs, now, id],
   );
 }
 
@@ -222,6 +256,10 @@ function mapSessionRow(row: Record<string, unknown>): GameSessionRow {
     invalidGuessCount: Number(row.invalid_guess_count ?? 0),
     duplicateGuessCount: Number(row.duplicate_guess_count ?? 0),
     activeDurationMs: Number(row.active_duration_ms ?? 0),
+    continuedAfterLoss: Number(row.continued_after_loss ?? 0) === 1,
+    solvedAfterLoss: Number(row.solved_after_loss ?? 0) === 1,
+    officialLossAttemptCount: row.official_loss_attempt_count == null ? null : Number(row.official_loss_attempt_count),
+    postLossCompletion: row.post_loss_completion === "solved" || row.post_loss_completion === "revealed" ? row.post_loss_completion : null,
     createdAt: String(row.created_at),
     updatedAt: String(row.updated_at),
     schemaVersion: Number(row.schema_version ?? 0),

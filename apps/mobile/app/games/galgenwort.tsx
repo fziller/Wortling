@@ -6,6 +6,7 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 
 import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { HelpModal } from "@/components/HelpModal";
@@ -56,6 +57,8 @@ export default function GalgenwortScreen() {
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
+  const [lossVisible, setLossVisible] = useState(false);
+  const [continuedAfterLoss, setContinuedAfterLoss] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
@@ -70,6 +73,7 @@ export default function GalgenwortScreen() {
     loadProgress<GalgenwortState>("galgenwort", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
+      setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       if (isStartedProgress(progress)) {
         setGame({ dateKey: progress.dateKey, puzzle: progress.puzzle as GalgenwortGame["puzzle"], state: progress.state });
         setState(progress.state);
@@ -81,12 +85,13 @@ export default function GalgenwortScreen() {
   useEffect(() => {
     if (!progressLoaded) return;
 
-    const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
-    const completedStatus = mergeCompletedStatus(completedStatusRef.current, state.status !== "playing" ? state.status : undefined);
+    const officialOutcome = continuedAfterLoss ? "lost" : state.status === "lost" ? "lost" : undefined;
+    const completedAt = officialOutcome || state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    const completedStatus = mergeCompletedStatus(completedStatusRef.current, officialOutcome ?? (state.status !== "playing" ? state.status : undefined));
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
-    saveProgress({ gameId: "galgenwort", dateKey, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });
-  }, [dateKey, progressLoaded, puzzle, state]);
+    saveProgress({ gameId: "galgenwort", dateKey, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt, officialOutcome, continuedAfterLoss, officialLossAttemptCount: continuedAfterLoss ? state.guessedLetters.length : undefined, solvedAfterLoss: continuedAfterLoss && state.status === "won", postLossCompletion: continuedAfterLoss && state.status === "won" ? "solved" : continuedAfterLoss && state.status === "revealed" ? "revealed" : undefined });
+  }, [continuedAfterLoss, dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") loadProgressForGames(games.map((g) => g.id), dateKey).then((progress) => {
@@ -109,7 +114,7 @@ export default function GalgenwortScreen() {
 
   function guess(letter: string) {
     startStats();
-    const result = submitGalgenwortLetter(puzzle, state, letter);
+    const result = submitGalgenwortLetter(puzzle, state, letter, { ignoreAttemptLimit: continuedAfterLoss });
 
     setState(result.state);
     setMessage(result.ok ? result.state.status === "won" ? "Gelöst!" : result.state.status === "lost" ? "Heute nicht gerettet." : result.correct ? "Treffer." : "Leider nicht drin." : result.reason);
@@ -119,12 +124,15 @@ export default function GalgenwortScreen() {
       stats.recordRejectedGuess(result.reason, letter);
       setShakeTick((value) => value + 1);
     }
-    if (result.ok && isFinishedGameStatus(result.state.status)) {
-      stats.finish(result.state.status);
+    if (result.ok && result.state.status === "lost") {
+      stats.finish("lost");
+      setFinishedAt(Date.now());
+      setLossVisible(true);
+      captureEvent(posthog, "game_completed", { gameId: "galgenwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guessedLetters.length, outcome: "lost", success: false });
+    } else if (result.ok && isFinishedGameStatus(result.state.status)) {
+      if (continuedAfterLoss && result.state.status === "won") stats.finishAfterLoss("solved"); else stats.finish(result.state.status);
       if (result.state.status === "won") {
-        hintWallet.onWin().then((granted) => {
-          if (granted) setMessage("Hinweis erhalten! 💡");
-        });
+        if (continuedAfterLoss) captureEvent(posthog, "game_solved_after_loss", { gameId: "galgenwort", dateKey, attempts: result.state.guessedLetters.length });
       }
       setFinishedAt(Date.now());
       setResultVisible(true);
@@ -163,19 +171,19 @@ export default function GalgenwortScreen() {
     setMessage(next.status === "won" ? "Gelöst!" : "Hinweis: Buchstabe aufgedeckt.");
 
     if (next.status === "won") {
-      stats.finish("won");
-      hintWallet.onWin().then((granted) => {
-        if (granted) setMessage("Hinweis erhalten! 💡");
-      });
+      if (continuedAfterLoss) {
+        stats.finishAfterLoss("solved");
+        captureEvent(posthog, "game_solved_after_loss", { gameId: "galgenwort", dateKey, attempts: next.guessedLetters.length });
+      } else stats.finish("won");
       setFinishedAt(Date.now());
       setResultVisible(true);
-      captureEvent(posthog, "game_completed", { gameId: "galgenwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: next.guessedLetters.length, outcome: "won", success: true });
+      captureEvent(posthog, "game_completed", { gameId: "galgenwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: next.guessedLetters.length, outcome: "won", success: !continuedAfterLoss });
     }
   }
 
   function reveal() {
     stats.start({ gameId: "galgenwort", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version });
-    stats.finish("revealed");
+    if (continuedAfterLoss) stats.finishAfterLoss("revealed"); else stats.finish("revealed");
     captureEvent(posthog, "solution_revealed", { gameId: "galgenwort", dateKey, attempts: state.guessedLetters.length });
     captureEvent(posthog, "game_completed", { gameId: "galgenwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: state.guessedLetters.length, outcome: "revealed", success: false });
     setState((current) => revealGalgenwortSolution(current));
@@ -185,6 +193,15 @@ export default function GalgenwortScreen() {
     setResultVisible(true);
   }
 
+  function continueAfterLoss() {
+    setState((current) => ({ ...current, status: "playing" }));
+    setContinuedAfterLoss(true);
+    setLossVisible(false);
+    setFinishedAt(null);
+    stats.continueAfterLoss(state.guessedLetters.length);
+    captureEvent(posthog, "game_continued_after_loss", { gameId: "galgenwort", dateKey, attempts: state.guessedLetters.length });
+  }
+
   function startNextWord() {
     const nextGame = createNextGalgenwortGame(puzzle.id, today, bucketPreset, packs);
 
@@ -192,6 +209,8 @@ export default function GalgenwortScreen() {
     setState(nextGame.state);
     setMessage("");
     setResultVisible(false);
+    setLossVisible(false);
+    setContinuedAfterLoss(false);
     setFinishedAt(null);
     setProgressLoaded(true);
     resetTimer();
@@ -234,7 +253,7 @@ export default function GalgenwortScreen() {
         captureEvent(posthog, "help_opened", { gameId: "galgenwort", dateKey });
         setHelpVisible(true);
       }}
-      progressLabel={`${wrongLetters.length}/${puzzle.maxWrongGuesses} Fehler`}
+       progressLabel={continuedAfterLoss ? `${wrongLetters.length} Fehler · frei` : `${wrongLetters.length}/${puzzle.maxWrongGuesses} Fehler`}
       title="Galgenwort"
     >
       <View style={styles.wrap}>
@@ -265,6 +284,7 @@ export default function GalgenwortScreen() {
         </View> : null}
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
+      <ContinueAfterLossModal onContinue={continueAfterLoss} onGiveUp={reveal} visible={lossVisible} />
       <GameResultModal
         attempts={state.guessedLetters.length}
         dateKey={dateKey}

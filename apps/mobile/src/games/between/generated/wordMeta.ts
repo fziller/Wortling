@@ -1215,6 +1215,12 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
+    "word": "aliud",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
     "word": "alkan",
     "zipf": 1,
     "tier": "unknown",
@@ -2025,6 +2031,12 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
+    "word": "arsis",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
     "word": "arten",
     "zipf": 4.1,
     "tier": "easy",
@@ -2061,16 +2073,16 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "äsche",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
     "word": "asche",
     "zipf": 4.21,
     "tier": "easy",
     "bucket": "genitive"
+  },
+  {
+    "word": "äsche",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
   },
   {
     "word": "äsern",
@@ -2157,15 +2169,15 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "ästen",
-    "zipf": 2.75,
-    "tier": "hard",
-    "bucket": "konjunktiv"
-  },
-  {
     "word": "asten",
     "zipf": 1,
     "tier": "unknown",
+    "bucket": "konjunktiv"
+  },
+  {
+    "word": "ästen",
+    "zipf": 2.75,
+    "tier": "hard",
     "bucket": "konjunktiv"
   },
   {
@@ -2289,16 +2301,16 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "atzen",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
     "word": "ätzen",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "konjunktiv"
+  },
+  {
+    "word": "atzen",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
   },
   {
     "word": "ätzer",
@@ -2622,6 +2634,12 @@ export const generatedWordMeta = [
     "word": "bagel",
     "zipf": 3.22,
     "tier": "medium",
+    "bucket": "base"
+  },
+  {
+    "word": "bahai",
+    "zipf": 1,
+    "tier": "unknown",
     "bucket": "base"
   },
   {
@@ -5013,6 +5031,12 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
+    "word": "brill",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
     "word": "bring",
     "zipf": 5.18,
     "tier": "easy",
@@ -7137,15 +7161,15 @@ export const generatedWordMeta = [
     "bucket": "imperativ"
   },
   {
-    "word": "dodel",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
     "word": "dödel",
     "zipf": 3.12,
     "tier": "medium",
+    "bucket": "base"
+  },
+  {
+    "word": "dodel",
+    "zipf": 1,
+    "tier": "unknown",
     "bucket": "base"
   },
   {
@@ -11943,13 +11967,13 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
-    "word": "garen",
+    "word": "gären",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
   {
-    "word": "gären",
+    "word": "garen",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "konjunktiv"
@@ -13803,16 +13827,16 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "hafen",
-    "zipf": 4.28,
-    "tier": "easy",
-    "bucket": "base"
-  },
-  {
     "word": "häfen",
     "zipf": 3.19,
     "tier": "medium",
     "bucket": "genitive"
+  },
+  {
+    "word": "hafen",
+    "zipf": 4.28,
+    "tier": "easy",
+    "bucket": "base"
   },
   {
     "word": "hafer",
@@ -13845,13 +13869,13 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
-    "word": "häger",
+    "word": "hager",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
   {
-    "word": "hager",
+    "word": "häger",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
@@ -14217,16 +14241,16 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "harte",
-    "zipf": 4.43,
-    "tier": "easy",
-    "bucket": "adj-flex"
-  },
-  {
     "word": "härte",
     "zipf": 3.3,
     "tier": "medium",
     "bucket": "genitive"
+  },
+  {
+    "word": "harte",
+    "zipf": 4.43,
+    "tier": "easy",
+    "bucket": "adj-flex"
   },
   {
     "word": "harze",
@@ -15291,16 +15315,16 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "holle",
-    "zipf": 2.93,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
     "word": "hölle",
     "zipf": 5.15,
     "tier": "easy",
     "bucket": "genitive"
+  },
+  {
+    "word": "holle",
+    "zipf": 2.93,
+    "tier": "medium",
+    "bucket": "base"
   },
   {
     "word": "holst",
@@ -17385,13 +17409,13 @@ export const generatedWordMeta = [
     "bucket": "konjunktiv"
   },
   {
-    "word": "kaser",
+    "word": "käser",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
   {
-    "word": "käser",
+    "word": "kaser",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
@@ -19167,15 +19191,15 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "kötze",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
     "word": "kotze",
     "zipf": 3.57,
     "tier": "medium",
+    "bucket": "genitive"
+  },
+  {
+    "word": "kötze",
+    "zipf": 1,
+    "tier": "unknown",
     "bucket": "genitive"
   },
   {
@@ -19665,15 +19689,15 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "kuhle",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
     "word": "kühle",
     "zipf": 3.24,
     "tier": "medium",
+    "bucket": "genitive"
+  },
+  {
+    "word": "kuhle",
+    "zipf": 1,
+    "tier": "unknown",
     "bucket": "genitive"
   },
   {
@@ -20265,16 +20289,16 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
-    "word": "lange",
-    "zipf": 5.74,
-    "tier": "easy",
-    "bucket": "konjunktiv"
-  },
-  {
     "word": "länge",
     "zipf": 3.71,
     "tier": "medium",
     "bucket": "genitive"
+  },
+  {
+    "word": "lange",
+    "zipf": 5.74,
+    "tier": "easy",
+    "bucket": "konjunktiv"
   },
   {
     "word": "längs",
@@ -21285,16 +21309,16 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "limos",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "genitive"
-  },
-  {
     "word": "limös",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
+  },
+  {
+    "word": "limos",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "genitive"
   },
   {
     "word": "linde",
@@ -21741,13 +21765,13 @@ export const generatedWordMeta = [
     "bucket": "konjunktiv"
   },
   {
-    "word": "loten",
+    "word": "löten",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "konjunktiv"
   },
   {
-    "word": "löten",
+    "word": "loten",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "konjunktiv"
@@ -24033,16 +24057,16 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "muhen",
-    "zipf": 3.11,
-    "tier": "medium",
-    "bucket": "base"
-  },
-  {
     "word": "mühen",
     "zipf": 3.37,
     "tier": "medium",
     "bucket": "genitive"
+  },
+  {
+    "word": "muhen",
+    "zipf": 3.11,
+    "tier": "medium",
+    "bucket": "base"
   },
   {
     "word": "mühet",
@@ -25245,16 +25269,16 @@ export const generatedWordMeta = [
     "bucket": "plural"
   },
   {
-    "word": "notig",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
     "word": "nötig",
     "zipf": 4.99,
     "tier": "easy",
     "bucket": "imperativ"
+  },
+  {
+    "word": "notig",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
   },
   {
     "word": "notiz",
@@ -26865,13 +26889,13 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
-    "word": "pfuhl",
+    "word": "pfühl",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
   {
-    "word": "pfühl",
+    "word": "pfuhl",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
@@ -27225,15 +27249,15 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "pläne",
-    "zipf": 4.62,
-    "tier": "easy",
-    "bucket": "genitive"
-  },
-  {
     "word": "plane",
     "zipf": 3.79,
     "tier": "medium",
+    "bucket": "genitive"
+  },
+  {
+    "word": "pläne",
+    "zipf": 4.62,
+    "tier": "easy",
     "bucket": "genitive"
   },
   {
@@ -27723,6 +27747,12 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
+    "word": "präon",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
     "word": "prass",
     "zipf": 1,
     "tier": "unknown",
@@ -28005,13 +28035,13 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "pulpe",
+    "word": "pülpe",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
   {
-    "word": "pülpe",
+    "word": "pulpe",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
@@ -28767,16 +28797,16 @@ export const generatedWordMeta = [
     "bucket": "verb-finite"
   },
   {
-    "word": "ränke",
-    "zipf": 1,
-    "tier": "unknown",
-    "bucket": "base"
-  },
-  {
     "word": "ranke",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "genitive"
+  },
+  {
+    "word": "ränke",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
   },
   {
     "word": "rankt",
@@ -30735,15 +30765,15 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
-    "word": "sagen",
-    "zipf": 6,
-    "tier": "easy",
-    "bucket": "genitive"
-  },
-  {
     "word": "sägen",
     "zipf": 3.13,
     "tier": "medium",
+    "bucket": "genitive"
+  },
+  {
+    "word": "sagen",
+    "zipf": 6,
+    "tier": "easy",
     "bucket": "genitive"
   },
   {
@@ -31467,16 +31497,16 @@ export const generatedWordMeta = [
     "bucket": "base"
   },
   {
-    "word": "schon",
-    "zipf": 6,
-    "tier": "easy",
-    "bucket": "imperativ"
-  },
-  {
     "word": "schön",
     "zipf": 5.85,
     "tier": "easy",
     "bucket": "base"
+  },
+  {
+    "word": "schon",
+    "zipf": 6,
+    "tier": "easy",
+    "bucket": "imperativ"
   },
   {
     "word": "schor",
@@ -34005,15 +34035,15 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
-    "word": "stück",
-    "zipf": 5.08,
-    "tier": "easy",
-    "bucket": "base"
-  },
-  {
     "word": "stuck",
     "zipf": 2.93,
     "tier": "medium",
+    "bucket": "base"
+  },
+  {
+    "word": "stück",
+    "zipf": 5.08,
+    "tier": "easy",
     "bucket": "base"
   },
   {
@@ -34990,6 +35020,12 @@ export const generatedWordMeta = [
   },
   {
     "word": "tauig",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
+    "word": "tauon",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
@@ -36579,13 +36615,13 @@ export const generatedWordMeta = [
     "bucket": "genitive"
   },
   {
-    "word": "tucke",
+    "word": "tücke",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
   },
   {
-    "word": "tücke",
+    "word": "tucke",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"
@@ -37744,6 +37780,12 @@ export const generatedWordMeta = [
   },
   {
     "word": "vigne",
+    "zipf": 1,
+    "tier": "unknown",
+    "bucket": "base"
+  },
+  {
+    "word": "vigor",
     "zipf": 1,
     "tier": "unknown",
     "bucket": "base"

@@ -5,8 +5,10 @@ import {
   addEvent,
   addGuess,
   createSession,
-  findOpenSession,
+  findResumableSession,
+  finishPostLossSession,
   finishSession,
+  markContinuedAfterLoss,
   updateSessionProgress,
 } from "./repository";
 import type { GameOutcome, GameSessionRow, SessionStartInput } from "./types";
@@ -24,6 +26,8 @@ export type GameRecorder = {
   recordRejectedGuess: (reason: string, word?: string) => void;
   recordHint: (metadata?: Record<string, unknown>) => void;
   finish: (outcome: GameOutcome) => void;
+  continueAfterLoss: (officialLossAttemptCount: number) => void;
+  finishAfterLoss: (completion: "solved" | "revealed") => void;
 };
 
 const DUPLICATE_REASONS = new Set([
@@ -48,6 +52,7 @@ type RecorderState = {
   input: RecorderStartInput | null;
   session: GameSessionRow | null;
   finished: boolean;
+  officialLost: boolean;
   attempts: number;
   hints: number;
   invalid: number;
@@ -62,6 +67,7 @@ function initialState(): RecorderState {
     input: null,
     session: null,
     finished: false,
+    officialLost: false,
     attempts: 0,
     hints: 0,
     invalid: 0,
@@ -115,7 +121,7 @@ export function useGameRecorder(): GameRecorder {
 
     enqueue(async () => {
       try {
-        const existing = await findOpenSession(input.gameId, input.playDate, input.puzzleId);
+        const existing = await findResumableSession(input.gameId, input.playDate, input.puzzleId);
 
         if (existing) {
           next.session = existing;
@@ -125,6 +131,7 @@ export function useGameRecorder(): GameRecorder {
           next.duplicates = existing.duplicateGuessCount;
           next.sequence = existing.attemptCount + existing.invalidGuessCount + existing.duplicateGuessCount;
           next.activeMs = existing.activeDurationMs;
+          next.officialLost = existing.outcome === "lost";
 
           return;
         }
@@ -202,14 +209,35 @@ export function useGameRecorder(): GameRecorder {
     const state = stateRef.current;
     if (!state.input || state.finished) return;
 
-    state.finished = true;
+    if (outcome === "lost") state.officialLost = true;
+    else state.finished = true;
     foldActiveSegment(state);
 
     enqueue(async () => {
       const sessionId = state.session?.id;
       if (!sessionId) return;
 
-      await finishSession(sessionId, outcome, countersOf(state));
+        await finishSession(sessionId, outcome, countersOf(state));
+      });
+  };
+
+  const continueAfterLoss = (officialLossAttemptCount: number) => {
+    const state = stateRef.current;
+    if (!state.input || !state.officialLost) return;
+    enqueue(async () => {
+      const sessionId = state.session?.id;
+      if (sessionId) await markContinuedAfterLoss(sessionId, officialLossAttemptCount);
+    });
+  };
+
+  const finishAfterLoss = (completion: "solved" | "revealed") => {
+    const state = stateRef.current;
+    if (!state.input || !state.officialLost || state.finished) return;
+    state.finished = true;
+    foldActiveSegment(state);
+    enqueue(async () => {
+      const sessionId = state.session?.id;
+      if (sessionId) await finishPostLossSession(sessionId, completion, countersOf(state));
     });
   };
 
@@ -254,5 +282,5 @@ export function useGameRecorder(): GameRecorder {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { start, recordAcceptedGuess, recordRejectedGuess, recordHint, finish };
+  return { start, recordAcceptedGuess, recordRejectedGuess, recordHint, finish, continueAfterLoss, finishAfterLoss };
 }

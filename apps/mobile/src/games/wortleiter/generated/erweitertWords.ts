@@ -30,6 +30,7 @@ export const generatedErweitertWords = [
   "avec",
   "axel",
   "azur",
+  "baba",
   "babe",
   "baby",
   "bach",

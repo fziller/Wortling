@@ -7,6 +7,8 @@ export type WortkniffEvents = {
   game_abandoned: { gameId: string; dateKey: string; attempts: number; score?: number; foundWordCount?: number };
   help_opened: { gameId?: string; screen?: string; dateKey?: string };
   hint_used: { gameId: string; dateKey: string; source?: string };
+  game_continued_after_loss: { gameId: string; dateKey: string; attempts: number };
+  game_solved_after_loss: { gameId: string; dateKey: string; attempts: number };
   solution_revealed: { gameId: string; dateKey: string; attempts: number; foundWordCount?: number };
   daily_kniffe_viewed: { dateKey: string; total: number };
   daily_kniff_opened: { gameId: string; dateKey: string; completed: string };
@@ -20,7 +22,7 @@ export type WortkniffEvents = {
   result_shared: { gameId?: string; dateKey: string; scope: "game" | "daily_kniffe"; outcome?: string };
   onboarding_completed: { dateKey: string; action: "started" | "dismissed" | "reset" };
   notification_tested: { kind: "daily" | "unfinished" };
-  notification_opened: { kind: "daily" | "unfinished" | "unknown"; url?: string };
+  notification_opened: { kind: "daily" | "unfinished" | "hint_wallet_full" | "unknown"; url?: string };
   notification_permission_result: { granted: boolean; source: "settings" | "dev" };
   news_viewed: { id: string };
   news_dismissed: { id: string };

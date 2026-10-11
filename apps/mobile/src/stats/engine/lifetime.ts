@@ -8,6 +8,9 @@ export type LifetimeStats = {
   lost: number;
   revealed: number;
   abandoned: number;
+  continuedAfterLoss: number;
+  solvedAfterLoss: number;
+  gaveUpAfterLoss: number;
   solvedRate: number | null;
   playedDays: number;
   totalActiveMs: number;
@@ -59,6 +62,9 @@ export function computeLifetimeStats(sessions: readonly GameSessionRow[]): Lifet
     lost: decided.filter((session) => session.outcome === "lost").length,
     revealed: decided.filter((session) => session.outcome === "revealed").length,
     abandoned: sessions.filter((session) => session.outcome === "abandoned").length,
+    continuedAfterLoss: sessions.filter((session) => session.outcome === "lost" && session.continuedAfterLoss).length,
+    solvedAfterLoss: sessions.filter((session) => session.outcome === "lost" && session.solvedAfterLoss).length,
+    gaveUpAfterLoss: sessions.filter((session) => session.outcome === "lost" && session.postLossCompletion === "revealed").length,
     solvedRate: decided.length > 0 ? wonSessions.length / decided.length : null,
     playedDays,
     totalActiveMs,

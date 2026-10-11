@@ -14,6 +14,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { captureEvent } from "@/analytics/events";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
@@ -95,6 +96,8 @@ export default function WorttrefferScreen() {
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
+  const [lossVisible, setLossVisible] = useState(false);
+  const [continuedAfterLoss, setContinuedAfterLoss] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
@@ -119,6 +122,7 @@ export default function WorttrefferScreen() {
     loadProgress<WorttrefferState>("worttreffer", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
+      setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreWorttrefferPuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
         const nextGame = { dateKey: progress.dateKey, puzzle: restoredPuzzle, state: progress.state };
@@ -134,8 +138,9 @@ export default function WorttrefferScreen() {
   useEffect(() => {
     if (!progressLoaded) return;
 
-    const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
-    const completedStatus = mergeCompletedStatus(completedStatusRef.current, state.status !== "playing" ? state.status : undefined);
+    const officialOutcome = continuedAfterLoss ? "lost" : state.status === "lost" ? "lost" : undefined;
+    const completedAt = officialOutcome || state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    const completedStatus = mergeCompletedStatus(completedStatusRef.current, officialOutcome ?? (state.status !== "playing" ? state.status : undefined));
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
     saveProgress({
@@ -148,8 +153,13 @@ export default function WorttrefferScreen() {
       status: state.status,
       state,
       completedAt,
+      officialOutcome,
+      continuedAfterLoss,
+      officialLossAttemptCount: continuedAfterLoss ? puzzle.maxAttempts : undefined,
+      solvedAfterLoss: continuedAfterLoss && state.status === "won",
+      postLossCompletion: continuedAfterLoss && state.status === "won" ? "solved" : continuedAfterLoss && state.status === "revealed" ? "revealed" : undefined,
     });
-  }, [dateKey, progressLoaded, puzzle, state]);
+  }, [continuedAfterLoss, dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") {
@@ -212,7 +222,7 @@ export default function WorttrefferScreen() {
 
     if (!hintWallet.canConsume) {
       setMessage(
-        hintWallet.wallet.balance >= 3 ? "Hinweis-Lager voll (3/3)." : `Keine Hinweise. Gewinne noch ${3 - hintWallet.wallet.winsSinceLastHint} Runden.`,
+        `Keine Hinweise. Nächster Hinweis in ${Math.max(1, Math.ceil((hintWallet.nextHintInMs ?? 0) / 60_000))} Min.`,
       );
       return;
     }
@@ -239,7 +249,7 @@ export default function WorttrefferScreen() {
 
   async function submit() {
     startStats();
-    const result = submitWorttrefferGuess(puzzle, state, inputLetters.join(""));
+    const result = submitWorttrefferGuess(puzzle, state, inputLetters.join(""), undefined, { ignoreAttemptLimit: continuedAfterLoss });
 
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     setState(result.state);
@@ -266,33 +276,23 @@ export default function WorttrefferScreen() {
     if (result.ok && isFinishedGameStatus(result.state.status)) {
       const outcome = result.state.status;
 
-      stats.finish(result.state.status);
-      if (result.state.status === "won") {
-        // earn hint: 3 wins -> +1
-        hintWallet.onWin().then((granted) => {
-          if (granted) setMessage("Hinweis erhalten! 💡");
-          try {
-            posthog.capture(granted ? "hint_earned" : "hint_progress", {
-              gameId: "worttreffer",
-              dateKey,
-              winsSinceLastHint: hintWallet.wallet.winsSinceLastHint,
-            });
-          } catch {}
-        });
-      }
+      if (outcome === "lost") stats.finish("lost");
+      else if (continuedAfterLoss && outcome === "won") stats.finishAfterLoss("solved");
+      else stats.finish(outcome);
+      if (continuedAfterLoss && outcome === "won") captureEvent(posthog, "game_solved_after_loss", { gameId: "worttreffer", dateKey, attempts: result.state.guesses.length });
       const revealDuration = puzzle.wordLength * TILE_REVEAL_DELAY_MS + TILE_REVEAL_DURATION_MS;
 
       revealDoneTimeoutRef.current = setTimeout(() => {
         setRevealingGuessIndex(null);
         setFinishedAt(Date.now());
-        setResultVisible(true);
+        if (outcome === "lost") setLossVisible(true); else setResultVisible(true);
         captureEvent(posthog, "game_completed", {
           gameId: "worttreffer",
           dateKey,
           durationMs: elapsedSeconds * 1000,
           attempts: result.state.guesses.length,
           outcome,
-          success: outcome === "won",
+          success: outcome === "won" && !continuedAfterLoss,
         });
       }, revealDuration);
     } else if (result.ok) {
@@ -307,7 +307,7 @@ export default function WorttrefferScreen() {
   function reveal() {
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     startStats();
-    stats.finish("revealed");
+    if (continuedAfterLoss) stats.finishAfterLoss("revealed"); else stats.finish("revealed");
     captureEvent(posthog, "solution_revealed", { gameId: "worttreffer", dateKey, attempts: state.guesses.length });
     captureEvent(posthog, "game_completed", {
       gameId: "worttreffer",
@@ -327,6 +327,15 @@ export default function WorttrefferScreen() {
     setResultVisible(true);
   }
 
+  function continueAfterLoss() {
+    setState((current) => ({ ...current, status: "playing" }));
+    setContinuedAfterLoss(true);
+    setLossVisible(false);
+    setFinishedAt(null);
+    stats.continueAfterLoss(state.guesses.length);
+    captureEvent(posthog, "game_continued_after_loss", { gameId: "worttreffer", dateKey, attempts: state.guesses.length });
+  }
+
   function startNextWord() {
     const nextGame = createNextWorttrefferGame(puzzle.answer, today, bucketPreset, packs);
 
@@ -337,6 +346,8 @@ export default function WorttrefferScreen() {
     setCursorIndex(0);
     setMessage("");
     setResultVisible(false);
+    setLossVisible(false);
+    setContinuedAfterLoss(false);
     setFinishedAt(null);
     setProgressLoaded(true);
     resetTimer();
@@ -359,7 +370,7 @@ export default function WorttrefferScreen() {
   }
 
   const hintDisabled = state.status !== "playing" || (hintPolicy !== "ads" && !hintWallet.canConsume);
-  const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
+   const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
   return (
     <GameScreenFrame
@@ -384,7 +395,7 @@ export default function WorttrefferScreen() {
         captureEvent(posthog, "help_opened", { gameId: "worttreffer", dateKey });
         setHelpVisible(true);
       }}
-      progressLabel={`${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
+       progressLabel={continuedAfterLoss ? `${state.guesses.length} Versuche · frei` : `${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
       subtitle={`${puzzle.wordLength} Buchstaben`}
       title="Worttreffer"
     >
@@ -453,6 +464,7 @@ export default function WorttrefferScreen() {
         title="Lösung anzeigen?"
         visible={giveUpVisible}
       />
+      <ContinueAfterLossModal onContinue={continueAfterLoss} onGiveUp={reveal} visible={lossVisible} />
       <GameResultModal
         attempts={state.guesses.length}
         dateKey={dateKey}

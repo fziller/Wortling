@@ -6,6 +6,7 @@ import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated"
 
 import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GrowingGuessBoard } from "@/components/GrowingGuessBoard";
@@ -98,6 +99,8 @@ export default function FormwortScreen() {
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
+  const [lossVisible, setLossVisible] = useState(false);
+  const [continuedAfterLoss, setContinuedAfterLoss] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
@@ -115,6 +118,7 @@ export default function FormwortScreen() {
     loadProgress<FormwortState>("formwort", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
+      setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreFormwortPuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
         const nextGame = { dateKey: progress.dateKey, puzzle: restoredPuzzle, state: progress.state };
@@ -130,12 +134,13 @@ export default function FormwortScreen() {
   useEffect(() => {
     if (!progressLoaded) return;
 
-    const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
-    const completedStatus = mergeCompletedStatus(completedStatusRef.current, state.status !== "playing" ? state.status : undefined);
+    const officialOutcome = continuedAfterLoss ? "lost" : state.status === "lost" ? "lost" : undefined;
+    const completedAt = officialOutcome || state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    const completedStatus = mergeCompletedStatus(completedStatusRef.current, officialOutcome ?? (state.status !== "playing" ? state.status : undefined));
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
-    saveProgress({ gameId: "formwort", dateKey, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });
-  }, [dateKey, progressLoaded, puzzle, state]);
+    saveProgress({ gameId: "formwort", dateKey, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt, officialOutcome, continuedAfterLoss, officialLossAttemptCount: continuedAfterLoss ? puzzle.maxAttempts : undefined, solvedAfterLoss: continuedAfterLoss && state.status === "won", postLossCompletion: continuedAfterLoss && state.status === "won" ? "solved" : continuedAfterLoss && state.status === "revealed" ? "revealed" : undefined });
+  }, [continuedAfterLoss, dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") loadProgressForGames(games.map((g) => g.id), dateKey).then((progress) => {
@@ -182,7 +187,7 @@ export default function FormwortScreen() {
       return;
     }
     if (!hintWallet.canConsume) {
-      setMessage(hintWallet.wallet.balance >= 3 ? "Hinweis-Lager voll (3/3)." : `Keine Hinweise. Gewinne noch ${3 - hintWallet.wallet.winsSinceLastHint} Runden.`);
+      setMessage(`Keine Hinweise. Nächster Hinweis in ${Math.max(1, Math.ceil((hintWallet.nextHintInMs ?? 0) / 60_000))} Min.`);
       return;
     }
     const next = applyFormwortHint(puzzle, state);
@@ -202,7 +207,7 @@ export default function FormwortScreen() {
 
   function submit() {
     startStats();
-    const result = submitFormwortGuess(puzzle, state, inputLetters.join(""));
+    const result = submitFormwortGuess(puzzle, state, inputLetters.join(""), { ignoreAttemptLimit: continuedAfterLoss });
 
     setState(result.state);
     setMessage(result.ok ? result.state.status === "won" ? "Form geknackt!" : result.state.status === "lost" ? "Heute nicht geknackt." : "" : rejectMessage(result.reason));
@@ -214,23 +219,25 @@ export default function FormwortScreen() {
       stats.recordRejectedGuess(result.reason, inputLetters.join(""));
       setShakeTick((value) => value + 1);
     }
-    if (result.ok && isFinishedGameStatus(result.state.status)) {
-      stats.finish(result.state.status);
+    if (result.ok && result.state.status === "lost") {
+      stats.finish("lost");
+      setFinishedAt(Date.now());
+      setLossVisible(true);
+      captureEvent(posthog, "game_completed", { gameId: "formwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length, outcome: "lost", success: false });
+    } else if (result.ok && isFinishedGameStatus(result.state.status)) {
+      if (continuedAfterLoss && result.state.status === "won") stats.finishAfterLoss("solved"); else stats.finish(result.state.status);
       if (result.state.status === "won") {
-        hintWallet.onWin().then((granted) => {
-          if (granted) setMessage("Hinweis erhalten! 💡");
-          try { posthog.capture(granted ? "hint_earned" : "hint_progress", { gameId: "formwort", dateKey }); } catch {}
-        });
+        if (continuedAfterLoss) captureEvent(posthog, "game_solved_after_loss", { gameId: "formwort", dateKey, attempts: result.state.guesses.length });
       }
       setFinishedAt(Date.now());
       setResultVisible(true);
-      captureEvent(posthog, "game_completed", { gameId: "formwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length, outcome: result.state.status, success: result.state.status === "won" });
+      captureEvent(posthog, "game_completed", { gameId: "formwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length, outcome: result.state.status, success: result.state.status === "won" && !continuedAfterLoss });
     }
   }
 
   function reveal() {
     startStats();
-    stats.finish("revealed");
+    if (continuedAfterLoss) stats.finishAfterLoss("revealed"); else stats.finish("revealed");
     captureEvent(posthog, "solution_revealed", { gameId: "formwort", dateKey, attempts: state.guesses.length });
     captureEvent(posthog, "game_completed", { gameId: "formwort", dateKey, durationMs: elapsedSeconds * 1000, attempts: state.guesses.length, outcome: "revealed", success: false });
     setState((current) => revealFormwortSolution(current));
@@ -242,6 +249,15 @@ export default function FormwortScreen() {
     setResultVisible(true);
   }
 
+  function continueAfterLoss() {
+    setState((current) => ({ ...current, status: "playing" }));
+    setContinuedAfterLoss(true);
+    setLossVisible(false);
+    setFinishedAt(null);
+    stats.continueAfterLoss(state.guesses.length);
+    captureEvent(posthog, "game_continued_after_loss", { gameId: "formwort", dateKey, attempts: state.guesses.length });
+  }
+
   function startNextWord() {
     const nextGame = createNextFormwortGame(puzzle.answer, today, bucketPreset, packs);
 
@@ -251,6 +267,8 @@ export default function FormwortScreen() {
     setCursorIndex(0);
     setMessage("");
     setResultVisible(false);
+    setLossVisible(false);
+    setContinuedAfterLoss(false);
     setFinishedAt(null);
     setProgressLoaded(true);
     resetTimer();
@@ -295,7 +313,7 @@ export default function FormwortScreen() {
         captureEvent(posthog, "help_opened", { gameId: "formwort", dateKey });
         setHelpVisible(true);
       }}
-      progressLabel={`${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
+       progressLabel={continuedAfterLoss ? `${state.guesses.length} Versuche · frei` : `${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
       subtitle={`${puzzle.wordLength} Buchstaben`}
       title="Formwort"
     >
@@ -363,6 +381,7 @@ export default function FormwortScreen() {
         </View>
       </ScrollView>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
+      <ContinueAfterLossModal onContinue={continueAfterLoss} onGiveUp={reveal} visible={lossVisible} />
       <GameResultModal
         attempts={state.guesses.length}
         dateKey={dateKey}

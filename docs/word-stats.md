@@ -1,14 +1,14 @@
 # Wort-Statistik
 
 > Auto-generated — `yarn words:stats` (oder `yarn content:generate` regeneriert Bio + Core). Quelle: `src/games/**/generated/*.ts` + `src/games/packs/bio/generated/bioTargets.ts`.
-> Letztes Update: 2026-09-20 · Core via DWDS + LanguageTool POS + SUBTLEX-DE Zipf, Bio ohne Zipf (alle validen Shapes).
+> Letztes Update: 2026-10-09 · Core via DWDS + LanguageTool POS + SUBTLEX-DE Zipf, Bio ohne Zipf (alle validen Shapes).
 
 ## Überblick
 
 | Kategorie | Wörter | Hinweis |
 |---|---|---|
-| Core allowed (alle ratebaren, 4–7) | 47629 | `allowedGuesses` — immer vollständig, auch Bio ist hier drin (Union) |
-| Core klassisch Targets (Zipf ≥ Threshold, base only) | 2685 | `targetWords` — was ohne Pack als Lösung kommt |
+| Core allowed (alle ratebaren, 4–7) | 47669 | `allowedGuesses` — immer vollständig, auch Bio ist hier drin (Union) |
+| Core klassisch Targets (Zipf ≥ Threshold, base only) | 2686 | `targetWords` — was ohne Pack als Lösung kommt |
 | Bio Targets (4–7, ohne Zipf) | 76 | `bioTargetWordsByLength` — nur wenn Pack aktiviert |
 
 * `allowedGuesses` enthält **immer** Core ∪ Bio (auch wenn Bio in Settings aus) — nur Targets sind gated. Siehe `src/games/packs/allowed.ts`.*
@@ -17,10 +17,10 @@
 
 | Länge | allowed | klassisch | erweitert | hart | easy | medium | hard | unknown |
 |---|---|---|---|---|---|---|---|
-| 4 | 2728 | 666 | 717 | 1104 | 595 | 621 | 245 | 1267 |
-| 5 | 6809 | 606 | 708 | 1629 | 953 | 1300 | 498 | 4058 |
-| 6 | 13933 | 691 | 918 | 2395 | 1171 | 1985 | 869 | 9908 |
-| 7 | 24159 | 722 | 992 | 2989 | 967 | 2272 | 1156 | 19764 |
+| 4 | 2730 | 667 | 718 | 1105 | 595 | 622 | 245 | 1268 |
+| 5 | 6816 | 606 | 708 | 1629 | 953 | 1300 | 498 | 4065 |
+| 6 | 13950 | 691 | 918 | 2396 | 1171 | 1985 | 870 | 9924 |
+| 7 | 24173 | 722 | 992 | 2989 | 967 | 2272 | 1156 | 19778 |
 
 * Thresholds: 4→2.2, 5–7→2.9 (`wordConfig.ts:WORD_THRESHOLDS_BY_LENGTH`), Tiers: easy ≥3.8, medium ≥2.9, hard ≥2.2. `klassisch=base∩≥thr`, `erweitert=base+plural+verb-finite∩≥thr`, `hart=alle∖genitive∩≥2.2`.*
 
@@ -28,10 +28,10 @@
 
 | Länge | base | plural | verb-finite | partizip | konjunktiv | imperativ | adj-flex | genitive |
 |---|---|---|---|---|---|---|---|---|
-| 4 | 1310 | 0 | 78 | 0 | 120 | 593 | 23 | 604 |
-| 5 | 2575 | 35 | 306 | 10 | 873 | 837 | 140 | 2033 |
-| 6 | 4545 | 241 | 1082 | 288 | 2908 | 827 | 419 | 3623 |
-| 7 | 7486 | 574 | 1896 | 1489 | 5735 | 987 | 981 | 5011 |
+| 4 | 1312 | 0 | 78 | 0 | 120 | 593 | 23 | 604 |
+| 5 | 2582 | 35 | 306 | 10 | 873 | 837 | 140 | 2033 |
+| 6 | 4562 | 241 | 1082 | 288 | 2908 | 827 | 419 | 3623 |
+| 7 | 7500 | 574 | 1896 | 1489 | 5735 | 987 | 981 | 5011 |
 
 * Genitive nie Target, aber in allowed für Wortleiter-Graph. *
 
@@ -39,7 +39,7 @@
 
 | Länge | Bio Targets | Anteil an Core klassisch | Beispiele |
 |---|---|---|---|
-| 4 | 13 | 2.0% | alge, auge, biom, blut, darm |
+| 4 | 13 | 1.9% | alge, auge, biom, blut, darm |
 | 5 | 32 | 5.3% | algen, amöbe, amobe, arten, biome |
 | 6 | 20 | 2.9% | atmung, embryo, enzyme, gehirn, gelenk |
 | 7 | 11 | 1.5% | antigen, biotope, ferment, habitat, knochen |

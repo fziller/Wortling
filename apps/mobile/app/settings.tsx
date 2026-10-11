@@ -188,6 +188,7 @@ export default function SettingsScreen() {
     const next = {
       version: HINT_STORAGE_VERSION,
       balance,
+      nextRegenerationAt: balance >= HINT_MAX_BALANCE ? null : Date.now() + 30 * 60 * 1000,
       winsSinceLastHint: 0,
       totalEarned: balance,
       totalSpent: 0,

@@ -39,6 +39,11 @@ describe("galgenwort engine", () => {
     expect(getGalgenwortWrongLetters(puzzle, lostState)).toEqual(["x", "y"]);
   });
 
+  it("does not lose again while continuing after the official loss", () => {
+    const state = submitGalgenwortLetter(puzzle, createGalgenwortState(puzzle), "x", { ignoreAttemptLimit: true }).state;
+    expect(state.status).toBe("playing");
+  });
+
   it("reveals a correct unguessed letter as hint", () => {
     const state = applyGalgenwortHint(puzzle, createGalgenwortState(puzzle));
 

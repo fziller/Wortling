@@ -6,6 +6,7 @@ import Animated, { FadeInDown, LinearTransition, interpolate, interpolateColor, 
 
 import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GrowingGuessBoard } from "@/components/GrowingGuessBoard";
@@ -67,6 +68,8 @@ export default function WortschmelzeScreen() {
   const [helpVisible, setHelpVisible] = useState(false);
   const [giveUpVisible, setGiveUpVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
+  const [lossVisible, setLossVisible] = useState(false);
+  const [continuedAfterLoss, setContinuedAfterLoss] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const [revealingGuessIndex, setRevealingGuessIndex] = useState<number | null>(null);
@@ -89,6 +92,7 @@ export default function WortschmelzeScreen() {
     loadProgress<WortschmelzeState>(GAME_ID, today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
+      setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreWortschmelzePuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
         const nextGame = { dateKey: progress.dateKey, puzzle: restoredPuzzle, state: progress.state };
@@ -103,12 +107,13 @@ export default function WortschmelzeScreen() {
 
   useEffect(() => {
     if (!progressLoaded) return;
-    const completedAt = state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
-    const completedStatus = mergeCompletedStatus(completedStatusRef.current, state.status !== "playing" ? state.status : undefined);
+    const officialOutcome = continuedAfterLoss ? "lost" : state.status === "lost" ? "lost" : undefined;
+    const completedAt = officialOutcome || state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
+    const completedStatus = mergeCompletedStatus(completedStatusRef.current, officialOutcome ?? (state.status !== "playing" ? state.status : undefined));
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
-    saveProgress({ gameId: GAME_ID, dateKey, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt });
-  }, [dateKey, progressLoaded, puzzle, state]);
+    saveProgress({ gameId: GAME_ID, dateKey, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt, officialOutcome, continuedAfterLoss, officialLossAttemptCount: continuedAfterLoss ? puzzle.maxAttempts : undefined, solvedAfterLoss: continuedAfterLoss && state.status === "won", postLossCompletion: continuedAfterLoss && state.status === "won" ? "solved" : continuedAfterLoss && state.status === "revealed" ? "revealed" : undefined });
+  }, [continuedAfterLoss, dateKey, progressLoaded, puzzle, state]);
 
   useEffect(() => {
     if (state.status !== "playing") loadProgressForGames(games.map((game) => game.id), dateKey).then((progress) => {
@@ -179,7 +184,7 @@ export default function WortschmelzeScreen() {
 
   function submit() {
     startStats();
-    const result = submitWortschmelzeGuess(puzzle, state, inputLetters.join(""));
+    const result = submitWortschmelzeGuess(puzzle, state, inputLetters.join(""), { ignoreAttemptLimit: continuedAfterLoss });
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     setState(result.state);
     setMessage(result.ok ? result.state.status === "won" ? "Verschmolzen!" : result.state.status === "lost" ? "Heute nicht geschmolzen." : "" : rejectMessage(result.reason));
@@ -199,16 +204,19 @@ export default function WortschmelzeScreen() {
     const revealDuration = puzzle.wordLength * TILE_REVEAL_DELAY_MS + TILE_REVEAL_DURATION_MS;
     revealDoneTimeoutRef.current = setTimeout(() => {
       setRevealingGuessIndex(null);
-      if (isFinishedGameStatus(result.state.status)) {
-        stats.finish(result.state.status);
+      if (result.state.status === "lost") {
+        stats.finish("lost");
+        setFinishedAt(Date.now());
+        setLossVisible(true);
+        captureEvent(posthog, "game_completed", { gameId: GAME_ID, dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length, outcome: "lost", success: false });
+      } else if (isFinishedGameStatus(result.state.status)) {
+        if (continuedAfterLoss && result.state.status === "won") stats.finishAfterLoss("solved"); else stats.finish(result.state.status);
         if (result.state.status === "won") {
-          hintWallet.onWin().then((granted) => {
-            if (granted) setMessage("Hinweis erhalten! 💡");
-          });
+          if (continuedAfterLoss) captureEvent(posthog, "game_solved_after_loss", { gameId: GAME_ID, dateKey, attempts: result.state.guesses.length });
         }
         setFinishedAt(Date.now());
         setResultVisible(true);
-        captureEvent(posthog, "game_completed", { gameId: GAME_ID, dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length, outcome: result.state.status, success: result.state.status === "won" });
+        captureEvent(posthog, "game_completed", { gameId: GAME_ID, dateKey, durationMs: elapsedSeconds * 1000, attempts: result.state.guesses.length, outcome: result.state.status, success: result.state.status === "won" && !continuedAfterLoss });
       }
     }, revealDuration);
   }
@@ -216,7 +224,7 @@ export default function WortschmelzeScreen() {
   function reveal() {
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
     startStats();
-    stats.finish("revealed");
+    if (continuedAfterLoss) stats.finishAfterLoss("revealed"); else stats.finish("revealed");
     captureEvent(posthog, "solution_revealed", { gameId: GAME_ID, dateKey, attempts: state.guesses.length });
     captureEvent(posthog, "game_completed", { gameId: GAME_ID, dateKey, durationMs: elapsedSeconds * 1000, attempts: state.guesses.length, outcome: "revealed", success: false });
     setState((current) => revealWorttrefferSolution(current));
@@ -229,6 +237,15 @@ export default function WortschmelzeScreen() {
     setRevealingGuessIndex(null);
   }
 
+  function continueAfterLoss() {
+    setState((current) => ({ ...current, status: "playing" }));
+    setContinuedAfterLoss(true);
+    setLossVisible(false);
+    setFinishedAt(null);
+    stats.continueAfterLoss(state.guesses.length);
+    captureEvent(posthog, "game_continued_after_loss", { gameId: GAME_ID, dateKey, attempts: state.guesses.length });
+  }
+
   function startNextWord() {
     const nextGame = createNextWortschmelzeGame(puzzle.answer, today, bucketPreset);
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
@@ -238,6 +255,8 @@ export default function WortschmelzeScreen() {
     setCursorIndex(0);
     setMessage("");
     setResultVisible(false);
+    setLossVisible(false);
+    setContinuedAfterLoss(false);
     setFinishedAt(null);
     setProgressLoaded(true);
     setRevealingGuessIndex(null);
@@ -268,7 +287,7 @@ export default function WortschmelzeScreen() {
         captureEvent(posthog, "help_opened", { gameId: GAME_ID, dateKey });
         setHelpVisible(true);
       }}
-      progressLabel={`${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
+       progressLabel={continuedAfterLoss ? `${state.guesses.length} Versuche · frei` : `${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
       subtitle="5+5 → 8 Buchstaben"
       title="Wortschmelze"
     >
@@ -308,6 +327,7 @@ export default function WortschmelzeScreen() {
         <Text style={[styles.message, !message && styles.hiddenMessage]}>{message || " "}</Text>
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
+      <ContinueAfterLossModal onContinue={continueAfterLoss} onGiveUp={reveal} visible={lossVisible} />
       <GameResultModal
         attempts={state.guesses.length}
         dateKey={dateKey}

@@ -117,23 +117,29 @@ export default function WabenwortScreen() {
     return [...groups.entries()].sort(([a], [b]) => a - b);
   }, [state.foundWords]);
 
-  const sortedAllowedWords = useMemo(() => [...puzzle.allowedWords].sort((a, b) => a.length - b.length || a.localeCompare(b, "de")), [puzzle]);
   const resultWordList = useMemo(() => {
     const found = new Set(state.foundWords);
+    const curated = puzzle.words.map((item) => item.word);
+    const curatedSet = new Set(curated);
+    const extraFoundWords = state.foundWords
+      .filter((word) => !curatedSet.has(word))
+      .sort((a, b) => a.length - b.length || a.localeCompare(b, "de"));
+
     return [
-      ...sortedAllowedWords.filter((word) => found.has(word)),
-      ...sortedAllowedWords.filter((word) => !found.has(word)),
+      ...extraFoundWords,
+      ...curated.filter((word) => found.has(word)),
+      ...curated.filter((word) => !found.has(word)),
     ].map((word) => ({ word, found: found.has(word) }));
-  }, [sortedAllowedWords, state.foundWords]);
+  }, [puzzle.words, state.foundWords]);
 
   const totalByLength = useMemo(() => {
     const counts = new Map<number, number>();
-    for (const word of puzzle.allowedWords) {
+    for (const { word } of puzzle.words) {
       const length = Array.from(word).length;
       counts.set(length, (counts.get(length) ?? 0) + 1);
     }
     return counts;
-  }, [puzzle]);
+  }, [puzzle.words]);
 
   function startStats() {
     stats.start({ gameId: GAME_ID, playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: 7 });
@@ -239,7 +245,7 @@ export default function WabenwortScreen() {
         </ScrollView>
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Alle verfügbaren Wörter werden angezeigt. Die Runde zählt nicht als geschafft." onCancel={() => setRevealVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={revealVisible} />
-      <GameResultModal actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : "Neue Wabe"} dateKey={dateKey} durationMs={elapsedSeconds * 1000} gameId={GAME_ID} message={state.status === "won" ? "Gold erreicht. Sauber." : "Alle verfügbaren Wörter sind aufgedeckt."} onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: GAME_ID, dateKey, rating, outcome: state.status })} onHome={() => router.replace("/")} onNext={() => { setResultVisible(false); if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0); else startNextPuzzle(); }} onShare={() => captureEvent(posthog, "result_shared", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status })} onViewed={() => captureEvent(posthog, "result_viewed", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status, success: state.status === "won" })} outcome={state.status === "playing" ? undefined : state.status} shareText={buildSimpleShareText("Wabenwort", dateKey, state.status, `${rankLabel(rank)} · ${foundCount}/${puzzle.allowedWords.length} Wörter`)} stats={[{ label: "Wörter", value: `${foundCount}/${puzzle.allowedWords.length}` }, { label: "Pangramme", value: pangramCount }, { label: "Zeit", value: formatElapsedTime(elapsedSeconds) }]} success={state.status === "won"} title={state.status === "won" ? "Gold!" : "Aufgelöst."} visible={resultVisible && state.status !== "playing"} wordList={resultWordList} />
+      <GameResultModal actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : "Neue Wabe"} dateKey={dateKey} durationMs={elapsedSeconds * 1000} gameId={GAME_ID} message={state.status === "won" ? "Gold erreicht. Sauber." : "Alle verfügbaren Wörter sind aufgedeckt."} onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: GAME_ID, dateKey, rating, outcome: state.status })} onHome={() => router.replace("/")} onNext={() => { setResultVisible(false); if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0); else startNextPuzzle(); }} onShare={() => captureEvent(posthog, "result_shared", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status })} onViewed={() => captureEvent(posthog, "result_viewed", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status, success: state.status === "won" })} outcome={state.status === "playing" ? undefined : state.status} shareText={buildSimpleShareText("Wabenwort", dateKey, state.status, `${rankLabel(rank)} · ${foundCount}/${puzzle.goldWords} für Gold`)} stats={[{ label: "Wörter", value: `${foundCount}/${puzzle.goldWords} für Gold` }, { label: "Pangramme", value: pangramCount }, { label: "Zeit", value: formatElapsedTime(elapsedSeconds) }]} success={state.status === "won"} title={state.status === "won" ? "Gold!" : "Aufgelöst."} visible={resultVisible && state.status !== "playing"} wordList={resultWordList} />
       <HelpModal {...gameHelp.wabenwort} onClose={() => setHelpVisible(false)} visible={helpVisible} />
     </GameScreenFrame>
   );

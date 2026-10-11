@@ -87,6 +87,9 @@ export default function StatsScreen() {
                 <OutcomeTile label="Verloren" value={stats.lifetime.lost} color={tokens.color.danger} />
                 <OutcomeTile label="Aufgedeckt" value={stats.lifetime.revealed} color={tokens.color.warning} />
                 <OutcomeTile label="Abgebrochen" value={stats.lifetime.abandoned} color={tokens.color.muted} />
+                <OutcomeTile label="Davon weitergespielt" value={stats.lifetime.continuedAfterLoss} color={tokens.color.primary} />
+                <OutcomeTile label="Danach gelöst" value={stats.lifetime.solvedAfterLoss} color={tokens.color.success} />
+                <OutcomeTile label="Danach aufgegeben" value={stats.lifetime.gaveUpAfterLoss} color={tokens.color.warning} />
               </View>
             </TapeSection>
 

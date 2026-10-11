@@ -9,6 +9,7 @@ import { loadNotificationSettings } from "@/storage/settings";
 
 const DAILY_IDENTIFIER = "wortkniff-daily-reminder";
 const UNFINISHED_IDENTIFIER = "wortkniff-unfinished-reminder";
+const HINT_WALLET_IDENTIFIER = "wortkniff-hint-wallet-full";
 const UNFINISHED_HOUR = 20;
 const UNFINISHED_MINUTE = 30;
 const SCHEDULE_DAYS = 7;
@@ -72,6 +73,26 @@ export async function cancelDailyReminder(): Promise<void> {
   await Promise.all(scheduled
     .filter((notification) => notification.identifier.startsWith(DAILY_IDENTIFIER) || notification.identifier.startsWith(UNFINISHED_IDENTIFIER))
     .map((notification) => Notifications.cancelScheduledNotificationAsync(notification.identifier).catch(() => {})));
+}
+
+export async function scheduleHintWalletFullReminder(fullAt: number | null): Promise<void> {
+  const settings = await loadNotificationSettings();
+  const scheduled = await Notifications.getAllScheduledNotificationsAsync().catch(() => []);
+  await Promise.all(scheduled
+    .filter((notification) => notification.identifier === HINT_WALLET_IDENTIFIER)
+    .map((notification) => Notifications.cancelScheduledNotificationAsync(notification.identifier).catch(() => {})));
+  if (!settings.enabled || fullAt === null || fullAt <= Date.now()) return;
+  await Notifications.scheduleNotificationAsync({
+    identifier: HINT_WALLET_IDENTIFIER,
+    content: {
+      title: "Hinweise sind wieder voll 💡",
+      body: "Gönn dir einen Kniff.",
+      data: { kind: "hint_wallet_full", url: "/" },
+      sound: true,
+      ...(Platform.OS === "android" ? { channelId: "hint-wallet" } : {}),
+    },
+    trigger: { type: Notifications.SchedulableTriggerInputTypes.DATE, date: new Date(fullAt) },
+  });
 }
 
 async function createReminderContent(dateKey: string): Promise<{ completed: number; content: Notifications.NotificationContentInput; nextUrl: string; open: number }> {

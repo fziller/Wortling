@@ -1,13 +1,16 @@
 // Hint wallet: global across all games, earned by winning rounds.
 export const HINT_MAX_BALANCE = 3;
-export const HINT_WINS_PER_HINT = 3;
 export const HINT_STORAGE_KEY = "wortkniff:hints:wallet";
-export const HINT_STORAGE_VERSION = 1;
+export const HINT_STORAGE_VERSION = 2;
+export const HINT_REGENERATION_MS = 30 * 60 * 1000;
 
 export type HintWallet = {
   version: number;
   balance: number; // 0..HINT_MAX_BALANCE
-  winsSinceLastHint: number; // 0..HINT_WINS_PER_HINT-1
+  /** Epoch milliseconds when the next hint is regenerated; null while full. */
+  nextRegenerationAt: number | null;
+  // Kept only to read wallets saved before time regeneration shipped.
+  winsSinceLastHint: number;
   totalEarned: number;
   totalSpent: number;
 };

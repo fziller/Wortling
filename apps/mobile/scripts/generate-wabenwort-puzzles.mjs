@@ -7,6 +7,9 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const appDir = path.resolve(scriptDir, "..");
 const outputPath = path.join(appDir, "src/games/wabenwort/generated/puzzles.ts");
 const lengths = [4, 5, 6, 7, 8, 9, 10, 11, 12];
+const requiredAllowedWords = [
+  { puzzleId: "wabe-aegnpst-t", word: "tangente" },
+];
 const sourceForLength = (length) => length === 4
   ? "src/games/wortleiter/generated/allowedGuesses.ts"
   : length === 5
@@ -98,11 +101,18 @@ const qualityWords = new Set(imported.flatMap(({ meta }) => meta
   .filter((item) => item.zipf >= 2.9 && item.bucket === "base")
   .map((item) => item.word)));
 const words = imported.flatMap(({ words }) => words.filter((word) => qualityWords.has(word)));
-const allowedWords = new Set(imported.flatMap(({ meta }) => meta
-  .filter((item) => item.zipf >= 2.9)
-  .map((item) => item.word)));
+// Wabenwort accepts every valid word form in the generated lists. Frequency and
+// morphology still curate puzzle selection, hints, and the visible solution pool.
+const allowedWords = new Set(imported.flatMap(({ words }) => words));
 const puzzles = buildPuzzles(words, allowedWords);
 if (puzzles.length < 30) throw new Error(`Only ${puzzles.length} Wabenwort puzzles passed quality checks.`);
+
+for (const { puzzleId, word } of requiredAllowedWords) {
+  const puzzle = puzzles.find((item) => item.id === puzzleId);
+  if (!puzzle?.allowedWords.includes(word)) {
+    throw new Error(`Wabenwort puzzle ${puzzleId} is missing required allowed word: ${word}.`);
+  }
+}
 
 await mkdir(path.dirname(outputPath), { recursive: true });
 await writeFile(

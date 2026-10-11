@@ -2,7 +2,7 @@
   "expo": {
     "name": "Wortkniff",
     "slug": "wortling",
-    "version": "0.9.9",
+    "version": "1.1.0",
     "icon": "./assets/mobile_app_icon_for_a_word_puzzle_game_styled_like_data_image_image_31._five.png",
     "orientation": "portrait",
     "scheme": "wortkniff",

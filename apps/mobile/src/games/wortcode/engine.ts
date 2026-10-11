@@ -46,7 +46,7 @@ export function createWortcodeState(puzzle: WortcodePuzzle): WortcodeState {
   return { puzzleId: puzzle.id, guesses: [], status: "playing" };
 }
 
-export function submitWortcodeGuess(puzzle: WortcodePuzzle, state: WortcodeState, rawGuess: string): WortcodeSubmitResult {
+export function submitWortcodeGuess(puzzle: WortcodePuzzle, state: WortcodeState, rawGuess: string, options: { ignoreAttemptLimit?: boolean } = {}): WortcodeSubmitResult {
   const value = normalizeWortcodeGuess(rawGuess);
 
   if (state.status !== "playing") {
@@ -72,7 +72,7 @@ export function submitWortcodeGuess(puzzle: WortcodePuzzle, state: WortcodeState
   const result = evaluateGuess(puzzle.answer, value);
   const guess = { value, ...result };
   const won = result.exactMatches === puzzle.wordLength;
-  const lost = !won && state.guesses.length + 1 >= puzzle.maxAttempts;
+  const lost = !options.ignoreAttemptLimit && !won && state.guesses.length + 1 >= puzzle.maxAttempts;
 
   return { ok: true, guess, state: { ...state, guesses: [...state.guesses, guess], status: won ? "won" : lost ? "lost" : "playing" } };
 }

@@ -53,7 +53,7 @@ function RootLayoutInner() {
     const subscription = Notifications.addNotificationResponseReceivedListener((response) => {
       const data = response.notification.request.content.data ?? {};
       const url = typeof data.url === "string" ? data.url : "/";
-      const kind = data.kind === "daily" || data.kind === "unfinished" ? data.kind : "unknown";
+      const kind = data.kind === "daily" || data.kind === "unfinished" || data.kind === "hint_wallet_full" ? data.kind : "unknown";
 
       captureEvent(posthog, "notification_opened", { kind, url });
       router.push(url as never);
