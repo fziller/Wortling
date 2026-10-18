@@ -26,8 +26,11 @@ export type WortkniffEvents = {
   notification_permission_result: { granted: boolean; source: "settings" | "dev" | "startup" };
   news_viewed: { id: string };
   news_dismissed: { id: string };
-  store_review_requested: { source: "first_result" | "settings" };
-  store_review_unavailable: { source: "first_result" | "settings" };
+  store_review_prompt_shown: { source: "first_result" };
+  store_review_prompt_responded: { source: "first_result"; response: "accepted" | "declined" };
+  store_review_native_requested: { source: "first_result" };
+  store_review_store_opened: { source: "first_result" | "settings" };
+  store_review_store_unavailable: { source: "first_result" | "settings" };
 };
 
 export type AnalyticsClient = {

@@ -1,11 +1,15 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as StoreReview from "expo-store-review";
+import { Linking, Platform } from "react-native";
 
-const STORAGE_KEY = "wortkniff:store-review-requested:v1";
+import { getStoreReviewUrls, hasSeenReviewPrompt, type StoreReviewPlatform } from "./storeReviewLogic";
 
-export type StoreReviewRequestResult = "requested" | "unavailable" | "already_requested";
+const STORAGE_KEY = "wortkniff:store-review-prompt-seen:v2";
 
-export async function requestStoreReview(): Promise<Exclude<StoreReviewRequestResult, "already_requested">> {
+export type StoreReviewRequestResult = "requested" | "unavailable";
+export type StoreReviewPageResult = "opened" | "unavailable";
+
+export async function requestStoreReview(): Promise<StoreReviewRequestResult> {
   try {
     if (!await StoreReview.isAvailableAsync()) return "unavailable";
 
@@ -17,26 +21,39 @@ export async function requestStoreReview(): Promise<Exclude<StoreReviewRequestRe
   }
 }
 
-export async function requestStoreReviewOnce(): Promise<StoreReviewRequestResult> {
+export async function shouldShowStoreReviewPrompt(): Promise<boolean> {
   try {
-    if (await AsyncStorage.getItem(STORAGE_KEY) === "1") return "already_requested";
-
-    if (!await StoreReview.isAvailableAsync()) return "unavailable";
-
-    const result = await requestStoreReview();
-    if (result === "requested") await AsyncStorage.setItem(STORAGE_KEY, "1");
-
-    return result;
+    return !hasSeenReviewPrompt(await AsyncStorage.getItem(STORAGE_KEY));
   } catch {
-    // Native review prompts are optional and platform-quota limited.
-    return "unavailable";
+    // Do not repeatedly interrupt results when local storage is unavailable.
+    return false;
   }
 }
 
-export async function isStoreReviewAvailable(): Promise<boolean> {
+export async function markStoreReviewPromptSeen(): Promise<void> {
   try {
-    return await StoreReview.isAvailableAsync();
+    await AsyncStorage.setItem(STORAGE_KEY, "1");
   } catch {
-    return false;
+    // Storage failures must not block the result flow.
+  }
+}
+
+export async function openStoreReviewPage(platform: StoreReviewPlatform = Platform.OS === "android" ? "android" : Platform.OS === "ios" ? "ios" : "other"): Promise<StoreReviewPageResult> {
+  const { fallback, primary } = getStoreReviewUrls(platform);
+
+  try {
+    await Linking.openURL(primary);
+    return "opened";
+  } catch {
+    // Android market links and platform URL handlers can be unavailable.
+  }
+
+  if (!fallback) return "unavailable";
+
+  try {
+    await Linking.openURL(fallback);
+    return "opened";
+  } catch {
+    return "unavailable";
   }
 }

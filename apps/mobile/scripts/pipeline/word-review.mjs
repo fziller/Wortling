@@ -1,7 +1,9 @@
 import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import path from "node:path";
 
 export const ENGLISH_FREQUENCY_URL = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/en/en_50k.txt";
+export const ENGLISH_FREQUENCY_SHA256 = "5351ff405b1126ef555791dd4d9798a48e3e9a501a9fc481a9da957752cfb458";
 export const REJECT_AMBIGUOUS_ENGLISH_WORDS = true;
 
 export function normalizeWord(word) {
@@ -22,13 +24,25 @@ export async function exists(filePath) {
 }
 
 export async function ensureEnglishFrequencyList(cachePath) {
-  if (await exists(cachePath)) return;
+  if (await exists(cachePath)) {
+    await assertEnglishFrequencyIntegrity(cachePath);
+    return;
+  }
 
   const response = await fetch(ENGLISH_FREQUENCY_URL);
   if (!response.ok) throw new Error(`Failed to download English frequency data: ${response.status} ${response.statusText}`);
 
   await mkdir(path.dirname(cachePath), { recursive: true });
   await writeFile(cachePath, await response.text(), "utf8");
+  await assertEnglishFrequencyIntegrity(cachePath);
+}
+
+async function assertEnglishFrequencyIntegrity(cachePath) {
+  const contents = await readFile(cachePath);
+  const actual = createHash("sha256").update(contents).digest("hex");
+  if (actual !== ENGLISH_FREQUENCY_SHA256) {
+    throw new Error(`English frequency source changed unexpectedly at ${ENGLISH_FREQUENCY_URL}. Expected SHA-256 ${ENGLISH_FREQUENCY_SHA256}, got ${actual}. Review and intentionally update the pinned hash before generating word data.`);
+  }
 }
 
 export async function loadEnglishWords(cachePath) {

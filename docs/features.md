@@ -49,7 +49,7 @@ Wortkniff is an offline-first German word-game app. It provides short daily puzz
 
 - First-run onboarding explains the Tageskniffe loop.
 - Each game opens its rules modal once for players with no local history in that game. The help button in every game header remains available afterwards.
-- After a player's first visible result, the app makes one best-effort native App Store or Play Store review request. Settings also contains `App bewerten` and explains when native review is unavailable; platform quota can suppress either dialog.
+- After a player's first visible game result, Wortkniff first asks in its own modal whether they enjoy the app and want to rate it. The response is saved locally, including `Nein, danke`, so the result prompt appears only once. An accepted request tries the native review UI and falls back to the store review page when native review is unavailable. Settings always offers `App bewerten`, which directly opens the App Store or Play Store review page.
 - Result screens support spoiler-safe sharing and lightweight difficulty feedback.
 
 ## Statistics, reminders, and privacy

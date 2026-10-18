@@ -30,7 +30,7 @@ import { DEBUG_HINT_INTERVALS, loadDebugHintRegenerationMs, saveDebugHintRegener
 import { fullHintsAt } from "@/hints/wallet";
 import { loadPacksSettings, savePacksSettings, type PacksSettings } from "@/storage/packs";
 import { hasPremiumAccess, isPackGated, setMockPremiumEnabled } from "@/premium/packsAccess";
-import { isStoreReviewAvailable, requestStoreReview } from "@/review/storeReview";
+import { openStoreReviewPage } from "@/review/storeReview";
 
 const DWDS_URL = "https://www.dwds.de/lemma/list";
 const CC_BY_SA_URL = "https://creativecommons.org/licenses/by-sa/4.0/";
@@ -235,13 +235,21 @@ export default function SettingsScreen() {
   }
 
   async function rateApp() {
-    const result = await requestStoreReview();
-    if (result === "requested") {
-      setReviewStatus("Bewertungsdialog geöffnet.");
-      captureEvent(posthog, "store_review_requested", { source: "settings" });
+    const result = await openStoreReviewPage();
+    if (result === "opened") {
+      setReviewStatus("Bewertungsseite geöffnet.");
+      captureEvent(posthog, "store_review_store_opened", { source: "settings" });
     } else {
-      setReviewStatus("Bewertungen sind in diesem Build gerade nicht verfügbar.");
-      captureEvent(posthog, "store_review_unavailable", { source: "settings" });
+      setReviewStatus("Bewertungsseite konnte gerade nicht geöffnet werden.");
+      captureEvent(posthog, "store_review_store_unavailable", { source: "settings" });
+    }
+  }
+
+  async function openExternalUrl(url: string) {
+    try {
+      await Linking.openURL(url);
+    } catch {
+      // External links are optional and must not break Settings offline.
     }
   }
 
@@ -383,7 +391,6 @@ export default function SettingsScreen() {
               <Text style={styles.versionText}>Datum: {dateKey}</Text>
               <Text style={styles.versionText}>Quest Seed: {dailyKniffeSeedOverride ?? productionSeed}</Text>
                 <Text style={styles.versionText}>Hinweise: {hintWallet?.balance ?? 0}/{HINT_MAX_BALANCE}</Text>
-                <ReviewAvailability />
               <View style={styles.devGenerated}>
                 <Text style={styles.stepperLabel}>Generated</Text>
                 {generatedKniffe.map((kniff) => (
@@ -445,13 +452,13 @@ export default function SettingsScreen() {
               Die generierte Spielliste wird für fünf Buchstaben gefiltert und angepasst. Zielwörter werden zusätzlich
               manuell kuratiert, damit die Runden fair bleiben.
             </Text>
-            <Pressable accessibilityRole="link" onPress={() => Linking.openURL(DWDS_URL)} style={styles.linkButton}>
+            <Pressable accessibilityRole="link" onPress={() => void openExternalUrl(DWDS_URL)} style={styles.linkButton}>
               <Text style={styles.linkText}>DWDS-Lemmadatenbank</Text>
             </Pressable>
-            <Pressable accessibilityRole="link" onPress={() => Linking.openURL(CC_BY_SA_URL)} style={styles.linkButton}>
+            <Pressable accessibilityRole="link" onPress={() => void openExternalUrl(CC_BY_SA_URL)} style={styles.linkButton}>
               <Text style={styles.linkText}>Lizenz: CC BY-SA 4.0</Text>
             </Pressable>
-            <Pressable accessibilityRole="link" onPress={() => Linking.openURL("https://github.com/languagetool-org/german-pos-dict")} style={styles.linkButton}>
+            <Pressable accessibilityRole="link" onPress={() => void openExternalUrl("https://github.com/languagetool-org/german-pos-dict")} style={styles.linkButton}>
               <Text style={styles.linkText}>German POS Dictionary</Text>
             </Pressable>
           </AppCard>
@@ -463,16 +470,6 @@ export default function SettingsScreen() {
 
 function formatDebugInterval(value: number): string {
   return value < 60_000 ? `${Math.round(value / 1_000)} Sek.` : `${Math.round(value / 60_000)} Min.`;
-}
-
-function ReviewAvailability() {
-  const [available, setAvailable] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    isStoreReviewAvailable().then(setAvailable);
-  }, []);
-
-  return <Text style={styles.versionText}>Native Bewertung: {available === null ? "wird geprüft" : available ? "verfügbar" : "in diesem Build nicht verfügbar"}</Text>;
 }
 
 function AnimatedSwitch({ checked, onPress, disabled }: { checked: boolean; onPress?: () => void; disabled?: boolean }) {

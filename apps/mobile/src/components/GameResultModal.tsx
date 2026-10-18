@@ -9,7 +9,7 @@ import { captureEvent } from "@/analytics/events";
 import { tokens } from "@/design/tokens";
 import { markEmoji, type ShareGuessRow } from "@/games/share/grid";
 import { successHaptic, warningHaptic } from "@/haptics";
-import { requestStoreReviewOnce } from "@/review/storeReview";
+import { markStoreReviewPromptSeen, openStoreReviewPage, requestStoreReview, shouldShowStoreReviewPrompt } from "@/review/storeReview";
 
 export type GameResultStat = {
   label: string;
@@ -56,6 +56,7 @@ const confetti = [
 
 export function GameResultModal({
   actionLabel = "Neues Wort",
+  gameId,
   guesses = [],
   message,
   onFeedback,
@@ -81,7 +82,8 @@ export function GameResultModal({
   const [sharing, setSharing] = useState(false);
   const shareCardRef = useRef<View>(null);
   const viewedRef = useRef(false);
-  const reviewAttemptedRef = useRef(false);
+  const reviewPromptCheckedRef = useRef(false);
+  const [reviewPromptVisible, setReviewPromptVisible] = useState(false);
   const entrance = useSharedValue(0);
 
   useEffect(() => {
@@ -104,14 +106,35 @@ export function GameResultModal({
   }, [entrance, onViewed, outcome, success, visible]);
 
   useEffect(() => {
-    if (!visible || reviewAttemptedRef.current) return;
+    if (!visible || !gameId || reviewPromptCheckedRef.current) return;
 
-    reviewAttemptedRef.current = true;
-    requestStoreReviewOnce().then((result) => {
-      if (result === "requested") captureEvent(posthog, "store_review_requested", { source: "first_result" });
-      else if (result === "unavailable") captureEvent(posthog, "store_review_unavailable", { source: "first_result" });
+    reviewPromptCheckedRef.current = true;
+    let active = true;
+    shouldShowStoreReviewPrompt().then((shouldShow) => {
+      if (!active || !shouldShow) return;
+      setReviewPromptVisible(true);
+      captureEvent(posthog, "store_review_prompt_shown", { source: "first_result" });
     });
-  }, [posthog, visible]);
+
+    return () => { active = false; };
+  }, [gameId, posthog, visible]);
+
+  async function respondToReviewPrompt(response: "accepted" | "declined") {
+    setReviewPromptVisible(false);
+    captureEvent(posthog, "store_review_prompt_responded", { source: "first_result", response });
+    await markStoreReviewPromptSeen();
+
+    if (response === "declined") return;
+
+    const nativeResult = await requestStoreReview();
+    if (nativeResult === "requested") {
+      captureEvent(posthog, "store_review_native_requested", { source: "first_result" });
+      return;
+    }
+
+    const storeResult = await openStoreReviewPage();
+    captureEvent(posthog, storeResult === "opened" ? "store_review_store_opened" : "store_review_store_unavailable", { source: "first_result" });
+  }
 
   const backdropStyle = useAnimatedStyle(() => ({
     opacity: withTiming(visible ? 1 : 0, { duration: tokens.motion.quick }),
@@ -224,6 +247,37 @@ export function GameResultModal({
         </Animated.View>
         {shareText ? <ShareCard guesses={guesses} innerRef={shareCardRef} rows={shareRows} shareText={shareText} solution={solution} success={showConfetti} /> : null}
       </Animated.View>
+      <ReviewPromptModal onDecline={() => void respondToReviewPrompt("declined")} onRate={() => void respondToReviewPrompt("accepted")} visible={reviewPromptVisible} />
+    </Modal>
+  );
+}
+
+function ReviewPromptModal({ onDecline, onRate, visible }: { onDecline: () => void; onRate: () => void; visible: boolean }) {
+  const entrance = useSharedValue(0);
+
+  useEffect(() => {
+    entrance.value = visible ? withSpring(1, { damping: 18, stiffness: 220 }) : 0;
+  }, [entrance, visible]);
+
+  const cardStyle = useAnimatedStyle(() => ({
+    opacity: entrance.value,
+    transform: [{ translateY: 18 * (1 - entrance.value) }, { scale: 0.94 + 0.06 * entrance.value }],
+  }));
+
+  return (
+    <Modal animationType="none" onRequestClose={onDecline} transparent visible={visible}>
+      <View style={styles.reviewPromptBackdrop}>
+        <Animated.View style={[styles.reviewPromptCard, cardStyle]}>
+          <Text style={styles.reviewPromptTitle}>Gefällt dir Wortkniff?</Text>
+          <Text style={styles.reviewPromptBody}>Dann bewerte uns bitte. Das hilft, noch mehr Wortspiel-Fans zu erreichen.</Text>
+          <Pressable accessibilityRole="button" onPress={onRate} style={[styles.reviewPromptButton, styles.reviewPromptPrimary]}>
+            <Text style={styles.reviewPromptPrimaryText}>Jetzt bewerten</Text>
+          </Pressable>
+          <Pressable accessibilityRole="button" onPress={onDecline} style={[styles.reviewPromptButton, styles.reviewPromptSecondary]}>
+            <Text style={styles.reviewPromptSecondaryText}>Nein, danke</Text>
+          </Pressable>
+        </Animated.View>
+      </View>
     </Modal>
   );
 }
@@ -421,6 +475,55 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: tokens.space.lg,
     backgroundColor: "rgba(23, 19, 13, 0.54)",
+  },
+  reviewPromptBackdrop: {
+    flex: 1,
+    justifyContent: "center",
+    padding: tokens.space.lg,
+    backgroundColor: "rgba(23, 19, 13, 0.62)",
+  },
+  reviewPromptCard: {
+    gap: tokens.space.sm,
+    padding: tokens.space.lg,
+    borderRadius: tokens.radius.surface,
+    backgroundColor: tokens.surface.raised,
+  },
+  reviewPromptTitle: {
+    color: tokens.color.ink,
+    fontSize: tokens.type.h2,
+    fontFamily: tokens.font.ui.semibold,
+    textAlign: "center",
+  },
+  reviewPromptBody: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.body,
+    fontFamily: tokens.font.ui.regular,
+    lineHeight: 21,
+    textAlign: "center",
+  },
+  reviewPromptButton: {
+    minHeight: 48,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: tokens.radius.control,
+  },
+  reviewPromptPrimary: {
+    marginTop: tokens.space.xs,
+    backgroundColor: tokens.color.primary,
+  },
+  reviewPromptSecondary: {
+    borderWidth: 1,
+    borderColor: tokens.border.control,
+  },
+  reviewPromptPrimaryText: {
+    color: "white",
+    fontSize: tokens.type.body,
+    fontFamily: tokens.font.ui.semibold,
+  },
+  reviewPromptSecondaryText: {
+    color: tokens.color.muted,
+    fontSize: tokens.type.body,
+    fontFamily: tokens.font.ui.semibold,
   },
   card: {
     maxHeight: "88%",

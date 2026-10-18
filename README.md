@@ -82,7 +82,7 @@ Generated files contain a header and should not be edited by hand. If target lis
 
 ### Core word review
 
-Core solutions must be common SUBTLEX-DE words and pass the English-word review policy. English-only matches and ambiguous German/English matches are excluded automatically. A manual `keep-*` decision is required to restore any excluded word. The review uses the [FrequencyWords English 50k list](https://github.com/hermitdave/FrequencyWords) (MIT) only at development time.
+Core solutions must be common SUBTLEX-DE words and pass the English-word review policy. English-only matches and ambiguous German/English matches are excluded automatically. A manual `keep-*` decision is required to restore any excluded word. The review uses the [FrequencyWords English 50k list](https://github.com/hermitdave/FrequencyWords) (MIT) only at development time; its SHA-256 is pinned in `scripts/pipeline/word-review.mjs`, so upstream changes fail generation instead of silently changing gameplay data.
 
 ```bash
 cd apps/mobile
