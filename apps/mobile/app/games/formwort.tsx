@@ -30,6 +30,7 @@ import type { FormwortState } from "@/games/formwort/types";
 import { gameHelp } from "@/games/help";
 import { useFirstGameHelp } from "@/games/useFirstGameHelp";
 import { games } from "@/games/registry";
+import { useFittedBoardMetrics } from "@/games/useFittedBoardMetrics";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { BucketPreset } from "@/games/wordBuckets";
 import { updateBadgeCount } from "@/notifications/badge";
@@ -45,6 +46,8 @@ import { buildMarkedGridShareText } from "@/games/share/grid";
 import { rejectMessage } from "@/games/rejectMessages";
 
 type FormwortGame = ReturnType<typeof createNextFormwortGame>;
+
+const ROW_GAP = 6;
 
 const symbolColors = [
   tokens.semantic.brandAccent,
@@ -157,8 +160,16 @@ export default function FormwortScreen() {
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getFormwortLetterStates(state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
-  const boardTileMinHeight = tileLayout.minHeight + (puzzle.wordLength >= 8 ? 4 : 6);
-  const boardTileTextSize = tileLayout.fontSize + (puzzle.wordLength >= 8 ? 1 : 2);
+  const board = useFittedBoardMetrics({
+    maxAttempts: puzzle.maxAttempts,
+    rowGap: ROW_GAP,
+    tile: {
+      minHeight: tileLayout.minHeight + (puzzle.wordLength >= 8 ? 4 : 6),
+      fontSize: tileLayout.fontSize + (puzzle.wordLength >= 8 ? 1 : 2),
+    },
+  });
+  const boardTileMinHeight = board.minHeight;
+  const boardTileTextSize = board.fontSize;
   const visibleRows = state.guesses.length + (state.status === "playing" ? 1 : 0);
 
   function addLetter(letter: string) {
@@ -299,6 +310,7 @@ export default function FormwortScreen() {
 
   return (
     <GameScreenFrame
+      onContentLayout={board.onContentLayout}
       actions={
         <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
           {state.status === "playing" ? <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} /> : null}
@@ -324,7 +336,7 @@ export default function FormwortScreen() {
     >
       <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
         <View style={styles.wrap}>
-          <GrowingGuessBoard compactRows={5} maxRows={puzzle.maxAttempts} rowGap={6} rowMinHeight={boardTileMinHeight}>
+          <GrowingGuessBoard maxRows={puzzle.maxAttempts} rowGap={ROW_GAP} rowMinHeight={boardTileMinHeight}>
             {Array.from({ length: visibleRows }).map((_, rowIndex) => {
               const guess = state.guesses[rowIndex];
               const inputRow = state.status === "playing" && rowIndex === state.guesses.length;

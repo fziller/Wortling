@@ -24,6 +24,7 @@ import { createNextWortschmelzeGame, restoreWortschmelzePuzzle } from "@/games/w
 import { submitWortschmelzeGuess } from "@/games/wortschmelze/engine";
 import type { WortschmelzeState } from "@/games/wortschmelze/types";
 import { applyWorttrefferHint, getWorttrefferLetterStates, getWorttrefferRevealedLetters, revealWorttrefferSolution } from "@/games/worttreffer/engine";
+import { useFittedBoardMetrics } from "@/games/useFittedBoardMetrics";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
@@ -42,6 +43,7 @@ type TileMark = "absent" | "present" | "correct";
 const GAME_ID = "wortschmelze";
 const TILE_REVEAL_DELAY_MS = 100;
 const TILE_REVEAL_DURATION_MS = 320;
+const ROW_GAP = 6;
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 function createEmptyInput(length: number) {
@@ -131,8 +133,13 @@ export default function WortschmelzeScreen() {
   const letterStates = getWorttrefferLetterStates(state);
   const revealedLetters = getWorttrefferRevealedLetters(puzzle, state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
-  const boardTileMinHeight = tileLayout.minHeight + 4;
-  const boardTileTextSize = tileLayout.fontSize + 1;
+  const board = useFittedBoardMetrics({
+    maxAttempts: puzzle.maxAttempts,
+    rowGap: ROW_GAP,
+    tile: { minHeight: tileLayout.minHeight + 4, fontSize: tileLayout.fontSize + 1 },
+  });
+  const boardTileMinHeight = board.minHeight;
+  const boardTileTextSize = board.fontSize;
   const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
   const hintDisabled = state.status !== "playing" || (hintPolicy !== "ads" && !hintWallet.canConsume);
   const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
@@ -280,6 +287,8 @@ export default function WortschmelzeScreen() {
 
   return (
     <GameScreenFrame
+      contentScroll
+      onContentLayout={board.onContentLayout}
       actions={state.status === "playing" ? (
         <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
           <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} />
@@ -297,7 +306,7 @@ export default function WortschmelzeScreen() {
       title="Wortschmelze"
     >
       <View style={styles.wrap}>
-        <GrowingGuessBoard compactRows={5} maxRows={puzzle.maxAttempts} rowGap={6} rowMinHeight={boardTileMinHeight}>
+        <GrowingGuessBoard maxRows={puzzle.maxAttempts} rowGap={ROW_GAP} rowMinHeight={boardTileMinHeight}>
           {Array.from({ length: visibleRows }).map((_, rowIndex) => {
             const guess = state.guesses[rowIndex];
             const inputRow = state.status === "playing" && rowIndex === state.guesses.length;

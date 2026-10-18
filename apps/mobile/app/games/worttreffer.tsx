@@ -35,6 +35,7 @@ import {
   submitWorttrefferGuess,
 } from "@/games/worttreffer/engine";
 import { WorttrefferState } from "@/games/worttreffer/types";
+import { useFittedBoardMetrics } from "@/games/useFittedBoardMetrics";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
@@ -61,6 +62,7 @@ type TileMark = "absent" | "present" | "correct";
 
 const TILE_REVEAL_DELAY_MS = 120;
 const TILE_REVEAL_DURATION_MS = 360;
+const ROW_GAP = 6;
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 function createEmptyInput(length: number) {
@@ -176,8 +178,16 @@ export default function WorttrefferScreen() {
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const letterStates = getWorttrefferLetterStates(state);
   const tileLayout = getWordTileLayout(puzzle.wordLength);
-  const boardTileMinHeight = tileLayout.minHeight + (puzzle.wordLength >= 8 ? 4 : 6);
-  const boardTileTextSize = tileLayout.fontSize + (puzzle.wordLength >= 8 ? 1 : 2);
+  const board = useFittedBoardMetrics({
+    maxAttempts: puzzle.maxAttempts,
+    rowGap: ROW_GAP,
+    tile: {
+      minHeight: tileLayout.minHeight + (puzzle.wordLength >= 8 ? 4 : 6),
+      fontSize: tileLayout.fontSize + (puzzle.wordLength >= 8 ? 1 : 2),
+    },
+  });
+  const boardTileMinHeight = board.minHeight;
+  const boardTileTextSize = board.fontSize;
   const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
   const nextDailyKniffRoute = useNextOpenDailyKniff("worttreffer", dateKey, state.status === "won");
 
@@ -374,6 +384,8 @@ export default function WorttrefferScreen() {
 
   return (
     <GameScreenFrame
+      contentScroll
+      onContentLayout={board.onContentLayout}
       actions={
           <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: tokens.space.sm, alignItems: "center", justifyContent: "center" }}>
           {state.status === "playing" ? (
@@ -400,7 +412,7 @@ export default function WorttrefferScreen() {
       title="Worttreffer"
     >
       <View style={styles.wrap}>
-        <GrowingGuessBoard compactRows={5} maxRows={puzzle.maxAttempts} rowGap={6} rowMinHeight={boardTileMinHeight}>
+        <GrowingGuessBoard maxRows={puzzle.maxAttempts} rowGap={ROW_GAP} rowMinHeight={boardTileMinHeight}>
           {Array.from({ length: visibleRows }).map((_, rowIndex) => {
             const guess = state.guesses[rowIndex];
             const inputRow = state.status === "playing" && rowIndex === state.guesses.length;

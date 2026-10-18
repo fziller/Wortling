@@ -1,21 +1,22 @@
 import { ReactNode } from "react";
-import { StyleProp, StyleSheet, useWindowDimensions, View, ViewStyle } from "react-native";
+import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
-import { tokens } from "@/design/tokens";
+import { BOARD_PADDING_TOP } from "@/games/boardFit";
 
 type GrowingGuessBoardProps = {
   children: ReactNode;
-  compactRows?: number;
+  /** Attempts the game allows. The board also renders an input row on top while playing. */
   maxRows: number;
   rowGap: number;
   rowMinHeight: number;
   style?: StyleProp<ViewStyle>;
 };
 
-export function GrowingGuessBoard({ children, compactRows, maxRows, rowGap, rowMinHeight, style }: GrowingGuessBoardProps) {
-  const { height } = useWindowDimensions();
-  const rows = height < 720 && compactRows ? Math.min(maxRows, compactRows) : maxRows;
-  const minHeight = rows * rowMinHeight + Math.max(0, rows - 1) * rowGap;
+export function GrowingGuessBoard({ children, maxRows, rowGap, rowMinHeight, style }: GrowingGuessBoardProps) {
+  // Reserve the input row as well: reserving only `maxRows` pushed the last row of every
+  // game under the footer, where it could be seen but not tapped.
+  const reservedRows = Math.max(maxRows + 1, 1);
+  const minHeight = BOARD_PADDING_TOP + reservedRows * rowMinHeight + (reservedRows - 1) * rowGap;
 
   return <View style={[styles.board, { gap: rowGap, minHeight }, style]}>{children}</View>;
 }
@@ -23,6 +24,6 @@ export function GrowingGuessBoard({ children, compactRows, maxRows, rowGap, rowM
 const styles = StyleSheet.create({
   board: {
     justifyContent: "flex-start",
-    paddingTop: tokens.space.xs,
+    paddingTop: BOARD_PADDING_TOP,
   },
 });

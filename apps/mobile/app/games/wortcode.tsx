@@ -30,6 +30,7 @@ import {
   toggleWortcodeLetterMark,
 } from "@/games/wortcode/engine";
 import { WortcodeLetterMark, WortcodeState } from "@/games/wortcode/types";
+import { useFittedBoardMetrics } from "@/games/useFittedBoardMetrics";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { BucketPreset } from "@/games/wordBuckets";
@@ -45,6 +46,8 @@ import { getHintPolicy, requestAdHint } from "@/hints/policy";
 import { usePostHog } from "posthog-react-native";
 
 type WortcodeGame = ReturnType<typeof createNextWortcodeGame>;
+
+const ROW_GAP = tokens.space.sm;
 
 function createEmptyInput(length: number) {
   return Array.from({ length }, () => "");
@@ -147,6 +150,12 @@ export default function WortcodeScreen() {
 
   const canSubmit = inputLetters.every(Boolean) && state.status === "playing";
   const tileLayout = getWordTileLayout(puzzle.wordLength);
+  const board = useFittedBoardMetrics({
+    maxAttempts: puzzle.maxAttempts,
+    reservedHeight: tokens.space.md * 2,
+    rowGap: ROW_GAP,
+    tile: { minHeight: tileLayout.minHeight, fontSize: tileLayout.fontSize - 4 },
+  });
   const effectiveMarks = getWortcodeEffectiveMarks(state);
   const letterStates = getLetterStates(effectiveMarks, state);
 
@@ -310,6 +319,7 @@ export default function WortcodeScreen() {
 
   return (
     <GameScreenFrame
+      onContentLayout={board.onContentLayout}
       actions={
         <View style={{ flexDirection: "row", flexShrink: 1, flexWrap: "wrap", gap: 8, alignItems: "center", justifyContent: "center" }}>
           {state.status === "playing" ? <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} /> : null}
@@ -335,7 +345,7 @@ export default function WortcodeScreen() {
     >
       <View style={styles.wrap}>
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-          <GrowingGuessBoard compactRows={5} maxRows={puzzle.maxAttempts} rowGap={tokens.space.sm} rowMinHeight={tileLayout.minHeight} style={styles.history}>
+          <GrowingGuessBoard maxRows={puzzle.maxAttempts} rowGap={ROW_GAP} rowMinHeight={board.minHeight} style={styles.history}>
             {state.guesses.map((guess, guessIndex) => {
               const absent = puzzle.wordLength - guess.exactMatches - guess.misplacedMatches;
 
@@ -357,9 +367,9 @@ export default function WortcodeScreen() {
                           accessibilityRole="button"
                           key={`${guess.value}-${letterIndex}`}
                           onPress={() => toggleMark(guessIndex, letterIndex)}
-                          style={[styles.letterTile, { minHeight: tileLayout.minHeight }, mark === "included" && styles.includedTile, mark === "exact" && styles.exactTile, mark === "excluded" && styles.excludedTile]}
+                          style={[styles.letterTile, { minHeight: board.minHeight }, mark === "included" && styles.includedTile, mark === "exact" && styles.exactTile, mark === "excluded" && styles.excludedTile]}
                         >
-                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4, minWidth: 12, textAlign: "center" }, (mark === "exact" || mark === "excluded") && styles.markedLetterText]}>{letter.toUpperCase()}</Text>
+                          <Text style={[styles.letterText, { fontSize: board.fontSize, minWidth: 12, textAlign: "center" }, (mark === "exact" || mark === "excluded") && styles.markedLetterText]}>{letter.toUpperCase()}</Text>
                         </Pressable>
                       );
                     })}
@@ -396,11 +406,11 @@ export default function WortcodeScreen() {
                           onPress={() => setCursorIndex(letterIndex)}
                           style={[
                             styles.letterTile,
-                            { minHeight: tileLayout.minHeight },
+                            { minHeight: board.minHeight },
                             letterIndex === cursorIndex && styles.activeTile,
                           ]}
                         >
-                          <Text style={[styles.letterText, { fontSize: tileLayout.fontSize - 4, minWidth: 12, textAlign: "center" }, placeholder && styles.placeholderText]}>{(letter || placeholder || "").toUpperCase()}</Text>
+                          <Text style={[styles.letterText, { fontSize: board.fontSize, minWidth: 12, textAlign: "center" }, placeholder && styles.placeholderText]}>{(letter || placeholder || "").toUpperCase()}</Text>
                         </Pressable>
                       );
                     })}
