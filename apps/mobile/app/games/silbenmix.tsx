@@ -199,9 +199,9 @@ export default function SilbenmixScreen() {
         <SmallGameAction disabled={hintDisabled} label={`${hintLabel}: Start`} onPress={() => consumeHint("start")} />
         <SmallGameAction disabled={hintDisabled} label="💡 Paar" onPress={() => consumeHint("pair")} />
         <SmallGameAction disabled={hintDisabled} label="💡 Wort" onPress={() => consumeHint("word")} />
-        <SmallGameAction disabled={!state.selectedTileIds.length} label="Prüfen" onPress={submit} />
-        <SmallGameAction label="Lösung anzeigen" onPress={() => setRevealVisible(true)} variant="reveal" />
+        <SmallGameAction label="Lösung anzeigen" onPress={() => setRevealVisible(true)} size="large" variant="reveal" />
       </View> : null}
+      keyboard={{ disabled: state.status !== "playing", onBackspace: () => undefined, onLetter: () => undefined, onSubmit: submit, showBackspace: false, showLetters: false, showSubmit: true, submitDisabled: !state.selectedTileIds.length }}
       onBack={goBack}
       onHelp={() => { captureEvent(posthog, "help_opened", { gameId: GAME_ID, dateKey, source: "manual" }); help.open(); }}
       progressLabel={`${solvedCount} / ${puzzle.targets.length} Wörter`}
@@ -226,14 +226,14 @@ export default function SilbenmixScreen() {
           {puzzle.targets.map((target) => {
             const found = solvedIds.has(target.id) || revealedIds.has(target.id);
             return <Animated.View key={target.id} layout={LinearTransition.springify().damping(18).stiffness(220)} style={[styles.targetRow, found && styles.targetFound, revealedIds.has(target.id) && styles.targetRevealed]}>
-              <Text style={styles.targetText}>{found ? target.word.toLocaleUpperCase("de-DE") : "• • •"}</Text>
+              <Text style={[styles.targetText, solvedIds.has(target.id) && styles.targetFoundText]}>{found ? target.word.toLocaleUpperCase("de-DE") : "• • •"}</Text>
               {revealedIds.has(target.id) ? <Text style={styles.revealedMark}>aufgedeckt</Text> : null}
             </Animated.View>;
           })}
         </ScrollView>
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Alle fehlenden Wörter werden aufgedeckt. Die Runde zählt nicht als geschafft." onCancel={() => setRevealVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={revealVisible} />
-      <GameResultModal actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : "Neuer Mix"} attempts={state.solvedTargetIds.length} dateKey={dateKey} durationMs={elapsedSeconds * 1000} gameId={GAME_ID} guesses={state.solvedTargetIds.map((id) => getSilbenmixTarget(puzzle, id)?.word ?? "")} message={state.status === "won" ? "Alle Wörter sauber zusammengesetzt." : "Die fehlenden Wörter sind aufgedeckt."} onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: GAME_ID, dateKey, rating, outcome: state.status })} onHome={() => router.replace("/")} onNext={() => { setResultVisible(false); if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0); else nextGame(); }} onShare={() => captureEvent(posthog, "result_shared", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status })} onViewed={() => captureEvent(posthog, "result_viewed", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status, success: state.status === "won" })} outcome={state.status === "playing" ? undefined : state.status} shareText={buildSimpleShareText("Silbenmix", dateKey, state.status, `${state.solvedTargetIds.length}/${puzzle.targets.length} selbst gefunden · ${formatElapsedTime(elapsedSeconds)}`)} solution={puzzle.targets.map((target) => target.word).join(" · ")} stats={[{ label: "Wörter", value: `${state.solvedTargetIds.length}/${puzzle.targets.length}` }, { label: "Hinweise", value: state.hintedTileIds.length ? "genutzt" : "–" }, { label: "Zeit", value: formatElapsedTime(elapsedSeconds) }]} success={state.status === "won"} title={state.status === "won" ? "Geschafft!" : "Aufgedeckt."} visible={resultVisible && state.status !== "playing"} wordList={puzzle.targets.map((target) => ({ word: target.word, found: solvedIds.has(target.id) }))} />
+      <GameResultModal actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : "Neuer Mix"} attempts={state.solvedTargetIds.length} dateKey={dateKey} durationMs={elapsedSeconds * 1000} gameId={GAME_ID} guesses={state.solvedTargetIds.map((id) => getSilbenmixTarget(puzzle, id)?.word ?? "")} message={state.status === "won" ? "Alle Wörter sauber zusammengesetzt." : "Die fehlenden Wörter sind aufgedeckt."} onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: GAME_ID, dateKey, rating, outcome: state.status })} onHome={() => router.replace("/")} onNext={() => { setResultVisible(false); if (nextDailyKniffRoute) setTimeout(() => router.replace(nextDailyKniffRoute as never), 0); else nextGame(); }} onShare={() => captureEvent(posthog, "result_shared", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status })} onViewed={() => captureEvent(posthog, "result_viewed", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status, success: state.status === "won" })} outcome={state.status === "playing" ? undefined : state.status} shareText={buildSimpleShareText("Silbenmix", dateKey, state.status, `${state.solvedTargetIds.length}/${puzzle.targets.length} selbst gefunden · ${formatElapsedTime(elapsedSeconds)}`)} solution={puzzle.targets.map((target) => target.word).join(" · ")} stats={[{ label: "Wörter", value: `${state.solvedTargetIds.length}/${puzzle.targets.length}` }, { label: "Hinweise", value: state.hintedTileIds.length ? "genutzt" : "–" }, { label: "Zeit", value: formatElapsedTime(elapsedSeconds) }]} success={state.status === "won"} title={state.status === "won" ? "Geschafft!" : "Aufgedeckt."} visible={resultVisible && state.status !== "playing"} wordList={puzzle.targets.map((target) => ({ word: target.word, found: solvedIds.has(target.id) }))} />
       <HelpModal {...gameHelp.silbenmix} onClose={help.close} visible={help.visible} />
     </GameScreenFrame>
   );
@@ -255,16 +255,17 @@ const styles = StyleSheet.create({
   emptyDraft: { color: tokens.color.muted, fontFamily: tokens.font.ui.medium, fontSize: 14 },
   pool: { alignItems: "center", flexDirection: "row", flexWrap: "wrap", gap: 7, justifyContent: "center" },
   tile: { backgroundColor: tokens.surface.control, borderColor: tokens.border.control, borderRadius: tokens.radius.sm, borderWidth: 2, minHeight: 42, justifyContent: "center", paddingHorizontal: 11 },
-  tileSelected: { backgroundColor: "rgba(0, 121, 107, 0.14)", borderColor: tokens.gameAccent.wortleiter },
+   tileSelected: { backgroundColor: tokens.semantic.correct, borderColor: tokens.semantic.correct },
   tileHinted: { borderColor: tokens.semantic.partial, shadowColor: tokens.semantic.partial, shadowOpacity: 0.2, shadowRadius: 6 },
   tileText: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 16, letterSpacing: 0.7 },
-  tileSelectedText: { color: tokens.gameAccent.wortleiter },
+   tileSelectedText: { color: tokens.text.inverse },
   message: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: tokens.type.body, minHeight: 20, textAlign: "center" },
   foundScroll: { flex: 1, minHeight: 0 },
   foundList: { gap: 6, paddingBottom: tokens.space.xs },
   targetRow: { alignItems: "center", backgroundColor: tokens.surface.subdued, borderColor: tokens.color.line, borderRadius: tokens.radius.sm, borderWidth: 1, flexDirection: "row", justifyContent: "center", minHeight: 36, paddingHorizontal: tokens.space.sm },
-  targetFound: { backgroundColor: "rgba(33, 166, 122, 0.13)", borderColor: "rgba(33, 166, 122, 0.35)" },
+   targetFound: { backgroundColor: tokens.semantic.correct, borderColor: tokens.semantic.correct },
   targetRevealed: { backgroundColor: "rgba(217, 133, 0, 0.12)", borderColor: "rgba(217, 133, 0, 0.32)" },
-  targetText: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 15, letterSpacing: 1.1 },
+   targetText: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: 15, letterSpacing: 1.1 },
+   targetFoundText: { color: tokens.text.inverse },
   revealedMark: { color: tokens.color.muted, fontFamily: tokens.font.ui.medium, fontSize: 10, marginLeft: 8 },
 });

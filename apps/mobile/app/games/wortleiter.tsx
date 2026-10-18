@@ -441,7 +441,7 @@ export default function WortleiterScreen() {
         onNext={() => {
           setResultVisible(false);
 
-          if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0);
+          if (nextDailyKniffRoute) setTimeout(() => router.replace(nextDailyKniffRoute as never), 0);
           else startNextPuzzle();
         }}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "wortleiter", dateKey, scope: "game", outcome: state.status })}

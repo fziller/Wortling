@@ -1,11 +1,11 @@
 import { tokens } from "@/design/tokens";
 
 export const homeOrder = [
-  "anagramm",
   "worttreffer",
+  "between",
+  "anagramm",
   "wortschmelze",
   "galgenwort",
-  "between",
   "wortcode",
   "formwort",
   "wabenwort",

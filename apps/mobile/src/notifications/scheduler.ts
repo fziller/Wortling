@@ -1,6 +1,7 @@
 import * as Notifications from "expo-notifications";
 import { Platform } from "react-native";
 
+import { isDebugBuild } from "@/config/runtime";
 import { getBerlinDateKey } from "@/daily/date";
 import { generateDailyKniffe, getDailyKniffeSummary } from "@/dailyKniffe";
 import { gameRegistry, games } from "@/games/registry";
@@ -57,11 +58,19 @@ export async function scheduleDailyReminder(): Promise<void> {
   }
 }
 
-export async function presentDevNotification(kind: "daily" | "unfinished"): Promise<void> {
-  if (!__DEV__) return;
+export async function presentDevNotification(kind: "daily" | "unfinished" | "hint_wallet_full"): Promise<void> {
+  if (!isDebugBuild) return;
 
   await Notifications.scheduleNotificationAsync({
-    content: kind === "unfinished"
+    content: kind === "hint_wallet_full"
+      ? {
+        title: "Hinweise sind wieder voll 💡",
+        body: "Gönn dir einen Kniff.",
+        data: { kind, url: "/" },
+        sound: true,
+        ...(Platform.OS === "android" ? { channelId: "hint-wallet" } : {}),
+      }
+      : kind === "unfinished"
       ? notificationContent("Noch Tageskniffe offen", "Du hast heute noch offene Rätsel. Kurz fertig machen?", "unfinished", "/")
       : (await createReminderContent(getBerlinDateKey())).content,
     trigger: null,
@@ -81,7 +90,7 @@ export async function scheduleHintWalletFullReminder(fullAt: number | null): Pro
   await Promise.all(scheduled
     .filter((notification) => notification.identifier === HINT_WALLET_IDENTIFIER)
     .map((notification) => Notifications.cancelScheduledNotificationAsync(notification.identifier).catch(() => {})));
-  if (!settings.enabled || fullAt === null || fullAt <= Date.now()) return;
+  if (!settings.hintWalletEnabled || fullAt === null || fullAt <= Date.now()) return;
   await Notifications.scheduleNotificationAsync({
     identifier: HINT_WALLET_IDENTIFIER,
     content: {

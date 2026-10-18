@@ -5,12 +5,6 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, {
   FadeInDown,
   LinearTransition,
-  interpolate,
-  interpolateColor,
-  useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withTiming,
 } from "react-native-reanimated";
 
 import { ConfirmModal } from "@/components/ConfirmModal";
@@ -20,6 +14,7 @@ import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GrowingGuessBoard } from "@/components/GrowingGuessBoard";
 import { HelpModal } from "@/components/HelpModal";
+import { HintableLetterTile } from "@/components/HintableLetterTile";
 import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
@@ -423,8 +418,8 @@ export default function WorttrefferScreen() {
                   const placeholder = inputRow && !letter ? revealedLetters[letterIndex] : null;
 
                   return (
-                    <AnimatedWorttrefferTile
-                      accessibilityRole="button"
+                    <HintableLetterTile
+                      accessibilityLabel={letter || placeholder ? `Buchstabe ${(letter || placeholder || "").toLocaleUpperCase("de-DE")}` : "Leeres Eingabefeld"}
                       disabled={
                         Boolean(guess) ||
                         !inputRow ||
@@ -436,8 +431,8 @@ export default function WorttrefferScreen() {
                       minHeight={boardTileMinHeight}
                       onPress={() => setCursorIndex(letterIndex)}
                       placeholder={placeholder}
-                      revealed={Boolean(mark) && rowIndex !== revealingGuessIndex}
                       revealDelay={letterIndex * TILE_REVEAL_DELAY_MS}
+                      revealDuration={TILE_REVEAL_DURATION_MS}
                       revealing={Boolean(mark) && rowIndex === revealingGuessIndex}
                       selected={inputRow && !guess && letterIndex === cursorIndex}
                       textSize={boardTileTextSize}
@@ -487,7 +482,7 @@ export default function WorttrefferScreen() {
         onNext={() => {
           setResultVisible(false);
 
-          if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0);
+          if (nextDailyKniffRoute) setTimeout(() => router.replace(nextDailyKniffRoute as never), 0);
           else startNextWord();
         }}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: "worttreffer", dateKey, scope: "game", outcome: state.status })}
@@ -513,96 +508,9 @@ export default function WorttrefferScreen() {
   );
 }
 
-type AnimatedWorttrefferTileProps = {
-  accessibilityRole: "button";
-  disabled: boolean;
-  letter: string;
-  mark?: TileMark;
-  minHeight: number;
-  onPress: () => void;
-  placeholder?: string | null;
-  revealed: boolean;
-  revealDelay: number;
-  revealing: boolean;
-  selected: boolean;
-  textSize: number;
-};
-
-function markColor(mark?: TileMark) {
-  if (mark === "correct") return tokens.semantic.correct;
-  if (mark === "present") return tokens.semantic.partial;
-  if (mark === "absent") return tokens.semantic.eliminated;
-
-  return tokens.surface.input;
-}
-
-function AnimatedWorttrefferTile({ accessibilityRole, disabled, letter, mark, minHeight, onPress, placeholder, revealed, revealDelay, revealing, selected, textSize }: AnimatedWorttrefferTileProps) {
-  const targetColor = markColor(mark);
-  const progress = useSharedValue(revealed ? 1 : 0);
-
-  useEffect(() => {
-    if (revealing) {
-      progress.value = 0;
-      progress.value = withDelay(revealDelay, withTiming(1, { duration: TILE_REVEAL_DURATION_MS }));
-      return;
-    }
-
-    progress.value = revealed ? 1 : 0;
-  }, [progress, revealDelay, revealed, revealing]);
-
-  const tileStyle = useAnimatedStyle(() => {
-    const baseBorder = selected ? tokens.color.primary : tokens.color.line;
-    const baseBg = selected ? tokens.color.primaryLight : tokens.surface.input;
-    const endBorder = selected ? tokens.color.primary : targetColor;
-    const endBg = selected ? tokens.color.primaryLight : targetColor;
-    const backgroundColor = interpolateColor(progress.value, [0, 0.5, 1], [baseBg, baseBg, endBg]);
-    const borderColor = interpolateColor(progress.value, [0, 0.5, 1], [baseBorder, baseBorder, endBorder]);
-    const scaleY = interpolate(progress.value, [0, 0.5, 1], [1, 0.08, 1]);
-
-    return { backgroundColor, borderColor, transform: [{ scaleY }] };
-  });
-
-  const textStyle = useAnimatedStyle(() => {
-    const color = interpolateColor(progress.value, [0, 0.5, 1], [tokens.color.ink, tokens.color.ink, mark ? "white" : tokens.color.ink]);
-
-    return { color };
-  });
-
-  return (
-    <AnimatedPressable
-      accessibilityRole={accessibilityRole}
-      disabled={disabled}
-      onPress={onPress}
-      style={[styles.tile, { minHeight }, tileStyle]}
-    >
-      <Animated.Text style={[styles.tileText, { fontSize: textSize, minWidth: 12, textAlign: "center" }, placeholder && !letter && styles.placeholderText, textStyle]}>{(letter || placeholder || "").trim().toLocaleUpperCase("de-DE")}</Animated.Text>
-    </AnimatedPressable>
-  );
-}
-
 const styles = StyleSheet.create({
   wrap: { flex: 1, gap: tokens.space.sm },
   tileRow: { flexDirection: "row" },
-  tile: {
-    flex: 1,
-    minWidth: 0,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 2,
-    borderColor: tokens.color.line,
-    borderRadius: tokens.radius.sm,
-    backgroundColor: tokens.surface.input,
-  },
-  activeTile: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
-  tileText: { color: tokens.color.ink, fontSize: 25, ...tokens.typography.gameLetter },
-  placeholderText: { color: tokens.color.muted, opacity: 0.45 },
-  markedTileText: { color: "white" },
-  absent: { backgroundColor: tokens.semantic.eliminated, borderColor: tokens.semantic.eliminated },
-  present: { backgroundColor: tokens.semantic.partial, borderColor: tokens.semantic.partial },
-  correct: {
-    backgroundColor: tokens.semantic.correct,
-    borderColor: tokens.semantic.correct,
-  },
   message: {
     color: tokens.color.muted,
     ...tokens.typography.uiBody,

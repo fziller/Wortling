@@ -5,6 +5,7 @@ import path from "node:path";
 import readline from "node:readline";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
+import { classifyWord, isTargetApproved, loadEnglishWords, loadReviewOverrides } from "./pipeline/word-review.mjs";
 
 const execFileAsync = promisify(execFile);
 
@@ -67,6 +68,9 @@ const germanPosDir = path.join(cacheDir, "german-pos-dict");
 const germanDictPath = path.join(germanPosDir, "org/languagetool/resource/de/german.dict");
 const germanInfoPath = path.join(germanPosDir, "org/languagetool/resource/de/german.info");
 const posDumpPath = path.join(cacheDir, "german-pos-dump.txt");
+const englishFrequencyPath = path.join(cacheDir, "english-50k.txt");
+const reviewOverridesPath = path.resolve(scriptDir, "data/word-review-overrides.tsv");
+const reviewReportDir = path.resolve(scriptDir, "reports/word-review");
 const args = new Map(
   process.argv.slice(2).map((arg) => {
     const [key, value = ""] = arg.replace(/^--/, "").split("=");
@@ -224,22 +228,25 @@ function getTier(zipf) {
   return "unknown";
 }
 
-async function loadZipfMap() {
-  const map = new Map();
+async function loadZipfData() {
+  const zipfMap = new Map();
+  const rankMap = new Map();
   if (!(await exists(frequencyTsvPath))) {
     console.warn(`Frequency data not found at ${frequencyTsvPath}, all words will be treated as unknown.`);
-    return map;
+    return { zipfMap, rankMap };
   }
   const content = await import("node:fs/promises").then((m) => m.readFile(frequencyTsvPath, "utf8"));
-  for (const line of content.split("\n")) {
+  for (const [index, line] of content.split("\n").entries()) {
     if (!line || line.startsWith("word\t")) continue;
     const [word, zipfStr] = line.split("\t");
     const zipf = Number(zipfStr);
     if (word && Number.isFinite(zipf)) {
-      map.set(normalizeWord(word), zipf);
+      const normalized = normalizeWord(word);
+      zipfMap.set(normalized, zipf);
+      if (!rankMap.has(normalized)) rankMap.set(normalized, index);
     }
   }
-  return map;
+  return { zipfMap, rankMap };
 }
 
 async function addDwdsWords(words, wordTags) {
@@ -317,35 +324,53 @@ if (smokeTests) {
 }
 
 const collator = new Intl.Collator("de-DE", { sensitivity: "base" });
-const sortedWords = Array.from(words).sort(collator.compare);
+const initialSortedWords = Array.from(words).sort(collator.compare);
 
 // Build tiered targets from frequency data (SUBTLEX-DE via FrequencyWords) + morphology buckets.
 // "Better have than need": store zipf/tier/bucket for all words. Genitive already dropped in isAllowedPosTag.
-const zipfMap = await loadZipfMap();
-const wordMeta = sortedWords.map((word) => {
+const { zipfMap, rankMap } = await loadZipfData();
+const [englishWords, reviewOverrides] = await Promise.all([
+  loadEnglishWords(englishFrequencyPath),
+  loadReviewOverrides(reviewOverridesPath),
+]);
+const reviewedWordMeta = initialSortedWords.map((word) => {
   const zipf = zipfMap.get(word) ?? 1.0;
   const tags = wordTags.get(word) ?? new Set();
   const bucket = classifyBucket(word, tags);
-  return { word, zipf: Math.round(zipf * 100) / 100, tier: getTier(zipf), bucket };
+  const roundedZipf = Math.round(zipf * 100) / 100;
+  const review = classifyWord({ word, zipf: roundedZipf, germanRank: rankMap.get(word), englishWords, overrides: reviewOverrides });
+  return { word, zipf: roundedZipf, germanRank: rankMap.get(word) ?? null, tier: getTier(zipf), bucket, review };
 });
+const allowedReviewedWordMeta = reviewedWordMeta.filter((item) => item.review.status !== "blocked");
+const wordMeta = allowedReviewedWordMeta.map(({ word, zipf, tier, bucket }) => ({ word, zipf, tier, bucket }));
+const sortedWords = wordMeta.map((item) => item.word);
+const rejectedEnglish = reviewedWordMeta.filter((item) => item.review.status === "blocked" && englishWords.has(item.word));
 const classicThreshold = WORD_THRESHOLDS_BY_LENGTH[wordLength] ?? ZIPF_MEDIUM_THRESHOLD;
 const hartThreshold = Math.min(classicThreshold, ZIPF_HARD_THRESHOLD);
-const isBaseEligible = (m) => m.bucket === "base" && m.zipf >= classicThreshold;
-const isErweitertEligible = (m) => (m.bucket === "base" || m.bucket === "plural" || m.bucket === "verb-finite") && m.zipf >= classicThreshold;
-const isHartEligible = (m) => m.bucket !== "genitive" && m.zipf >= hartThreshold; // hart = all non-genitive buckets but at least hart/classic lower
+const isBaseEligible = (m) => isTargetApproved(m.review) && m.bucket === "base" && m.zipf >= classicThreshold;
+const isErweitertEligible = (m) => isTargetApproved(m.review) && (m.bucket === "base" || m.bucket === "plural" || m.bucket === "verb-finite") && m.zipf >= classicThreshold;
+const isHartEligible = (m) => isTargetApproved(m.review) && m.bucket !== "genitive" && m.zipf >= hartThreshold; // hart = all non-genitive buckets but at least hart/classic lower
 // classic = base only (klassisch), erweitert = base+plural+verb-finite, hart = all (genitive already excluded)
-const targetWords = wordMeta.filter(isBaseEligible).map((m) => m.word);
-const erweitertWords = wordMeta.filter(isErweitertEligible).map((m) => m.word);
-const hartWords = wordMeta.filter(isHartEligible).map((m) => m.word);
-const hardWords = wordMeta.filter((m) => m.zipf >= ZIPF_HARD_THRESHOLD && m.zipf < ZIPF_MEDIUM_THRESHOLD).map((m) => m.word);
-const easyWords = wordMeta.filter((m) => m.tier === "easy").map((m) => m.word);
-const mediumWords = wordMeta.filter((m) => m.tier === "medium").map((m) => m.word);
+const targetWords = allowedReviewedWordMeta.filter(isBaseEligible).map((m) => m.word);
+const erweitertWords = allowedReviewedWordMeta.filter(isErweitertEligible).map((m) => m.word);
+const hartWords = allowedReviewedWordMeta.filter(isHartEligible).map((m) => m.word);
+const hardWords = allowedReviewedWordMeta.filter((m) => m.zipf >= ZIPF_HARD_THRESHOLD && m.zipf < ZIPF_MEDIUM_THRESHOLD).map((m) => m.word);
+const easyWords = allowedReviewedWordMeta.filter((m) => m.tier === "easy").map((m) => m.word);
+const mediumWords = allowedReviewedWordMeta.filter((m) => m.tier === "medium").map((m) => m.word);
 
 await mkdir(path.dirname(outputPath), { recursive: true });
+await mkdir(reviewReportDir, { recursive: true });
+await writeFile(
+  path.join(reviewReportDir, `rejected-english-${wordLength}.tsv`),
+  "word\tstatus\tzipf\tbucket\treason\n" + rejectedEnglish
+    .map((item) => [item.word, item.review.status, item.zipf, item.bucket, item.review.reason].join("\t"))
+    .join("\n") + "\n",
+  "utf8",
+);
 await writeFile(
   outputPath,
   `// Generated by scripts/import-dwds-words.mjs. Do not edit by hand.\n` +
-    `// Sources: DWDS Lemma Database (${DWDS_URL}) and German POS Dictionary (${GERMAN_POS_JAR_URL}).\n` +
+    `// Sources: DWDS Lemma Database (${DWDS_URL}), German POS Dictionary (${GERMAN_POS_JAR_URL}), and reviewed English-frequency exclusions.\n` +
     `// License: CC BY-SA 4.0. Filtered and modified for ${wordLength}-letter gameplay guesses.\n` +
     `export const generatedAllowedGuesses = ${JSON.stringify(sortedWords, null, 2)} as const;\n`,
   "utf8"
@@ -365,7 +390,7 @@ const metaPath = path.join(dir, metaFileName);
 await writeFile(
   targetPath,
   `// Generated by scripts/import-dwds-words.mjs. Do not edit by hand.\n` +
-    `// Tier thresholds: easy ≥${ZIPF_EASY_THRESHOLD}, medium ≥${ZIPF_MEDIUM_THRESHOLD} (classic = easy+medium ∩ base, per-length threshold ${classicThreshold} for ${wordLength}), hard ≥${ZIPF_HARD_THRESHOLD}.\n` +
+    `// Tier thresholds: easy ≥${ZIPF_EASY_THRESHOLD}, medium ≥${ZIPF_MEDIUM_THRESHOLD} (classic = easy+medium ∩ base, per-length threshold ${classicThreshold} for ${wordLength}), hard ≥${ZIPF_HARD_THRESHOLD}. Target words must pass the English-word review policy.\n` +
     `// Buckets: base (klassisch), plural + verb-finite (erweitert), all (hart). Genitive dropped completely.\n` +
     `// Source: SUBTLEX-DE approximation via FrequencyWords de_50k (FrequencyWords + SUBTLEX Zipf per billion) at ${path.relative(path.resolve(scriptDir, ".."), frequencyTsvPath)}.\n` +
     `export const generatedTargetWords = ${JSON.stringify(targetWords, null, 2)} as const;\n`,

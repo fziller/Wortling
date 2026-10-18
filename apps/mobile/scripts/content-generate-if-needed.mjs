@@ -7,6 +7,10 @@ import { join } from "node:path";
 const projectRoot = join(import.meta.dirname, "..");
 const markers = [
   "scripts/import-dwds-words.mjs",
+  "scripts/pipeline/word-review.mjs",
+  "scripts/generate-word-review.mjs",
+  "scripts/validate-target-words.mjs",
+  "scripts/data/word-review-overrides.tsv",
   "scripts/import-bio-words.mjs",
   "scripts/pipeline/shared.mjs",
   "scripts/sources/bio.mjs",

@@ -81,6 +81,10 @@ Wortkniff is an Expo + React Native + TypeScript mobile app for German daily wor
 - Home shows onboarding before news and never stacks both modals.
 - Development builds can reset the seen state from Settings; do not expose this in production.
 
+## Skills
+
+- When creating release notes, changelogs, or update announcements for this repo, load and follow the `release-notes` skill (`.opencode/skills/release-notes/SKILL.md`).
+
 ## Checks
 
 Before handing off non-trivial code changes, run from `apps/mobile`:

@@ -68,10 +68,14 @@ export default function HomeScreen() {
       loadCurrentWinDayStreak(),
       hasSeenOnboarding(),
       currentNews ? hasSeenNews(currentNews.id) : Promise.resolve(true),
-    ]).then(([nextSeedOverride, nextStreak, seenOnboarding, seenNews]) => {
+      loadProgressForGames(games.map((game) => game.id), dateKey),
+    ]).then(([nextSeedOverride, nextStreak, seenOnboarding, seenNews, progress]) => {
       if (!mounted) return;
       setSeedOverride(nextSeedOverride);
       setWinDayStreak(nextStreak);
+      setProgressByGame(progress);
+      updateBadgeCount(progress, dateKey, nextSeedOverride);
+      scheduleDailyReminder().catch(() => {});
       if (!seenOnboarding) setOnboardingVisible(true);
       else if (currentNews && !seenNews) {
         setNewsVisible(true);
@@ -84,26 +88,7 @@ export default function HomeScreen() {
     return () => {
       mounted = false;
     };
-  }, []));
-
-  useEffect(() => {
-    let mounted = true;
-
-    loadProgressForGames(
-      games.map((game) => game.id),
-      dateKey,
-    ).then((progress) => {
-      if (mounted) {
-        setProgressByGame(progress);
-        updateBadgeCount(progress, dateKey, seedOverride);
-        scheduleDailyReminder().catch(() => {});
-      }
-    });
-
-    return () => {
-      mounted = false;
-    };
-  }, [dateKey, seedOverride]);
+  }, [dateKey, posthog]));
 
   useEffect(() => {
     for (const kniff of dailyKniffe) {

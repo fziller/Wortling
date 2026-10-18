@@ -13,7 +13,7 @@ Wortkniff is an offline-first German word-game app. It provides short daily puzz
   - **Klassisch:** familiar base forms; verbs are infinitives and nouns are singular.
   - **Erweitert:** Klassisch plus plurals and conjugated verbs.
   - **Hart:** Erweitert plus participles, subjunctive forms, imperatives, and inflected adjectives. Genitive-only forms are never targets.
-- Core targets use curated static German word lists. The classic pool uses a Zipf-frequency threshold of 2.9 for five- to eight-letter words and 2.2 for four-letter words so Wortleiter stays connected.
+- Core targets use static German word lists and SUBTLEX-DE frequency tiers. English-only and ambiguous German/English matches are blocked unless a developer explicitly restores them; this also applies to Wabenwort's curated words and hints. The classic pool uses a Zipf-frequency threshold of 2.9 for five- to eight-letter words and 2.2 for four-letter words so Wortleiter stays connected.
 - The current Biologie word pack exists in the content pipeline, but is not yet presented as an active player option.
 
 ## Game modes
@@ -34,26 +34,27 @@ Wortkniff is an offline-first German word-game app. It provides short daily puzz
 
 ## Hints and round outcomes
 
-- A new installation starts with **three hints**. Hints are global across games and regenerate one every 30 minutes until the balance reaches three.
-- Hint behavior is game-specific: most word games reveal a target-letter placeholder; Anagramm locks one correct unresolved position; Galgenwort reveals a correct letter; Wortleiter inserts a valid next step; Wabenwort reveals a missing word; Silbenmix marks a start syllable or adjacent pair, or reveals one missing word; Doppel reveals its staged clues.
+- A new installation starts with **three hints**. Hints are global across games and regenerate one every 30 minutes until the balance reaches three. Development and Preview builds can select a shorter debug-only interval; Production always uses 30 minutes.
+- Hint behavior is game-specific: most word games reveal a target-letter placeholder; Anagramm locks one correct unresolved position in the same green Worttreffer-style input tile; Galgenwort reveals a correct letter; Wortleiter inserts a valid next step; Wabenwort reveals a missing word; Silbenmix marks a start syllable or adjacent pair, or reveals one missing word; Doppel reveals its staged clues.
 - Revealing a solution ends the official round without a win. Games with attempt limits allow continued play after an official loss; that later solve does not change the official loss used for streaks and win rates.
 
 ## Daily loop and progression
 
 - Every Berlin calendar day, **Tageskniffe** highlights three existing game modes.
 - Completing all three gives one completed day and contributes to the local daily streak.
-- Home, result screens, and optional notifications point players to the next unfinished Tageskniff.
+- Home, result screens, and optional notifications point players to the next unfinished Tageskniff. Moving from a result to the next Tageskniff replaces the completed game in navigation, so Back returns to Home.
 - In-progress rounds, draft input, and completion state are stored locally. Home exposes a `Weiterspielen` shortcut when relevant.
 
 ## Onboarding, help, and feedback
 
 - First-run onboarding explains the Tageskniffe loop.
 - Each game opens its rules modal once for players with no local history in that game. The help button in every game header remains available afterwards.
-- After a player's first visible result, the app makes one best-effort native App Store or Play Store review request. Settings also contains `App bewerten`; platform quota can suppress either dialog.
+- After a player's first visible result, the app makes one best-effort native App Store or Play Store review request. Settings also contains `App bewerten` and explains when native review is unavailable; platform quota can suppress either dialog.
 - Result screens support spoiler-safe sharing and lightweight difficulty feedback.
 
 ## Statistics, reminders, and privacy
 
 - Personal stats are calculated from local SQLite session and guess records. They cover outcomes, attempts, active time, streaks, per-game performance, word/letter stats, and personal records. Anagramm additionally shows played rounds, solve rate, average time, wrong attempts, hints, and longest solved word.
 - Guess words, solutions, and other personal gameplay content never leave the device through analytics.
-- Optional daily and unfinished-Tageskniffe reminders are local notifications. The app remains playable without notification permissions or network access.
+- Optional daily and unfinished-Tageskniffe reminders are local notifications. A separate `Hinweise wieder voll` setting controls the reminder when the three-hint wallet has regenerated. Notification permission is requested during startup; the app remains playable without permission or network access.
+- Development and Preview builds provide an isolated Settings debug menu for daily, unfinished-day, and full-hint-wallet notification tests. It is absent from Production.

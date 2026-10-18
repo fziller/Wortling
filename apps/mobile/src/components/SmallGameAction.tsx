@@ -6,13 +6,14 @@ type SmallGameActionProps = {
   disabled?: boolean;
   label: string;
   onPress: () => void;
+  size?: "default" | "large";
   variant?: "secondary" | "tertiary" | "reveal";
 };
 
-export function SmallGameAction({ disabled = false, label, onPress, variant = "secondary" }: SmallGameActionProps) {
+export function SmallGameAction({ disabled = false, label, onPress, size = "default", variant = "secondary" }: SmallGameActionProps) {
   return (
-    <Pressable accessibilityRole="button" disabled={disabled} onPress={onPress} style={[styles.button, styles[variant], disabled && styles.disabled]}>
-      <Text style={[styles.text, styles[`${variant}Text`], disabled && styles.disabledText]}>{label}</Text>
+    <Pressable accessibilityRole="button" disabled={disabled} onPress={onPress} style={[styles.button, styles[variant], size === "large" && styles.largeButton, disabled && styles.disabled]}>
+      <Text style={[styles.text, styles[`${variant}Text`], size === "large" && styles.largeText, disabled && styles.disabledText]}>{label}</Text>
     </Pressable>
   );
 }
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
     borderRadius: tokens.radius.action,
     borderWidth: 1,
   },
+  largeButton: { minHeight: 44, paddingHorizontal: tokens.space.md, paddingVertical: tokens.space.sm },
   secondary: {
     borderColor: tokens.border.strong,
     backgroundColor: tokens.surface.raised,
@@ -48,6 +50,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: tokens.font.ui.semibold,
   },
+  largeText: { fontSize: 16 },
   secondaryText: { color: tokens.color.primaryDark },
   tertiaryText: { color: tokens.color.muted },
   revealText: { color: tokens.color.primaryDark },

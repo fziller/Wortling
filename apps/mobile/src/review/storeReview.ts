@@ -23,12 +23,20 @@ export async function requestStoreReviewOnce(): Promise<StoreReviewRequestResult
 
     if (!await StoreReview.isAvailableAsync()) return "unavailable";
 
-    await AsyncStorage.setItem(STORAGE_KEY, "1");
     const result = await requestStoreReview();
+    if (result === "requested") await AsyncStorage.setItem(STORAGE_KEY, "1");
 
     return result;
   } catch {
     // Native review prompts are optional and platform-quota limited.
     return "unavailable";
+  }
+}
+
+export async function isStoreReviewAvailable(): Promise<boolean> {
+  try {
+    return await StoreReview.isAvailableAsync();
+  } catch {
+    return false;
   }
 }

@@ -19,9 +19,9 @@ const sourceForLength = (length) => length === 4
       : length === 7
         ? "src/games/shared/generated/allowedGuesses7.ts"
         : `src/games/wabenwort/generated/${length}/allowedGuesses.ts`;
-const metaSourceForLength = (length) => sourceForLength(length)
-  .replace("allowedGuesses7.ts", "wordMeta7.ts")
-  .replace("allowedGuesses.ts", "wordMeta.ts");
+const targetSourceForLength = (length) => sourceForLength(length)
+  .replace("allowedGuesses7.ts", "targetWords7.ts")
+  .replace("allowedGuesses.ts", "targetWords.ts");
 
 function parseGeneratedArray(fileText) {
   const match = fileText.match(/= (\[[\s\S]*?\]) as const/);
@@ -65,9 +65,9 @@ function buildPuzzles(words, allowedWords) {
       .map((entry) => entry.word);
     const allowedWords = [...new Set([...entries.map((entry) => entry.word), ...allowedForPuzzle])]
       .sort((a, b) => Number(curatedWords.has(b)) - Number(curatedWords.has(a)) || a.length - b.length || a.localeCompare(b, "de"));
-    // No cap on the word pool: every validated word counts. Ranks are word-count
-    // goals instead, with gold capped so a perfect round stays reachable.
-    const total = allowedWords.length;
+    // Broad allowed guesses may earn their normal word score, but never inflate
+    // rank thresholds or the curated hint/solution pool.
+    const total = entries.length;
     const goldWords = Math.min(60, Math.max(10, Math.round(total * 0.4)));
     const silverWords = Math.max(6, Math.min(Math.floor(goldWords * 0.6), goldWords - 2));
     const bronzeWords = Math.max(3, Math.min(Math.floor(silverWords * 0.5), silverWords - 1));
@@ -95,11 +95,11 @@ function buildPuzzles(words, allowedWords) {
 
 const imported = await Promise.all(lengths.map(async (length) => ({
   words: parseGeneratedArray(await readFile(path.join(appDir, sourceForLength(length)), "utf8")),
-  meta: parseGeneratedArray(await readFile(path.join(appDir, metaSourceForLength(length)), "utf8")),
+  targets: parseGeneratedArray(await readFile(path.join(appDir, targetSourceForLength(length)), "utf8")),
 })));
-const qualityWords = new Set(imported.flatMap(({ meta }) => meta
-  .filter((item) => item.zipf >= 2.9 && item.bucket === "base")
-  .map((item) => item.word)));
+// Puzzle words, pangrams, scores, and hints must come from the reviewed target
+// lists. allowedWords remains intentionally broader for player discoveries.
+const qualityWords = new Set(imported.flatMap(({ targets }) => targets));
 const words = imported.flatMap(({ words }) => words.filter((word) => qualityWords.has(word)));
 // Wabenwort accepts every valid word form in the generated lists. Frequency and
 // morphology still curate puzzle selection, hints, and the visible solution pool.

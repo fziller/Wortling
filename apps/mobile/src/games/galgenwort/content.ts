@@ -14,7 +14,7 @@ import { generatedHartWords as fourLetterHart } from "../wortleiter/generated/ha
 import type { GalgenwortPuzzle } from "./types";
 import type { BucketPreset } from "@/games/wordBuckets";
 
-export const GALGENWORT_CONTENT_VERSION = 5;
+export const GALGENWORT_CONTENT_VERSION = 6;
 export const GALGENWORT_MAX_WRONG_GUESSES = 8;
 
 function buildPool(words: readonly string[]): string[] {

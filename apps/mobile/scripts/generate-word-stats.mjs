@@ -72,7 +72,7 @@ const now = new Date().toISOString().slice(0, 10);
 let md = `# Wort-Statistik
 
 > Auto-generated — \`yarn words:stats\` (oder \`yarn content:generate\` regeneriert Bio + Core). Quelle: \`src/games/**/generated/*.ts\` + \`src/games/packs/bio/generated/bioTargets.ts\`.
-> Letztes Update: ${now} · Core via DWDS + LanguageTool POS + SUBTLEX-DE Zipf, Bio ohne Zipf (alle validen Shapes).
+> Letztes Update: ${now} · Core via DWDS + LanguageTool POS + SUBTLEX-DE Zipf und Englisch-Review, Bio ohne Zipf (alle validen Shapes).
 
 ## Überblick
 
@@ -111,7 +111,7 @@ md += `\n* Bio: \`scripts/data/bio.tsv\` + optional Wikidata (\`WIKIDATA_BIO=1\`
 
 md += `## Packs & Freischaltung\n\n- Pack \`bio\` ist Premium-gated via \`src/premium/packsAccess.ts\` (\`isPackGated()\` + \`hasPremiumAccess()\`). Settings rendert Toggle nur wenn nicht gegated oder Premium vorhanden, sonst Paywall-CTA. So kann später ein Flag / Paywall alles verstecken ohne Game-Logik zu ändern.\n- \`allowedGuesses\` bleibt immer Union (kein Gate) — Gate betrifft nur Daily/Next Target-Auswahl (siehe \`src/games/*/daily.ts\`).\n\n`;
 
-md += `## Quellen & Pipeline\n\n- Core: DWDS Lemma DB + LanguageTool german-pos-dict → \`scripts/import-dwds-words.mjs\` (pro Länge 4 Dateien: allowed/target/erweitert/hart/wordMeta) — Zipf via \`scripts/data/subtlex-de.tsv\`.\n- Bio: \`scripts/data/bio.tsv\` → \`scripts/import-bio-words.mjs\` (pro Länge Bio-Targets).\n- Shared Helpers: \`scripts/pipeline/shared.mjs\`, Adapter: \`scripts/sources/{dwds,morphology,bio}.mjs\`. Neu = 1 Adapter + 1 TSV + \`wordConfig.ts:PACKS\`.\n- Generierung: \`yarn content:generate\` (words:import + bio + wortleiter) · Quick-Skip: \`scripts/content-generate-if-needed.mjs\`.\n\n`;
+md += `## Quellen & Pipeline\n\n- Core: DWDS Lemma DB + LanguageTool german-pos-dict → \`scripts/import-dwds-words.mjs\` (pro Länge 4 Dateien: allowed/target/erweitert/hart/wordMeta) — Zipf via \`scripts/data/subtlex-de.tsv\`.\n- Core targets: English-only matches are blocked; ambiguous overlaps require a durable decision in \`scripts/data/word-review-overrides.tsv\` (\`yarn words:review:generate\`).\n- Bio: \`scripts/data/bio.tsv\` → \`scripts/import-bio-words.mjs\` (pro Länge Bio-Targets).\n- Shared Helpers: \`scripts/pipeline/shared.mjs\`, Adapter: \`scripts/sources/{dwds,morphology,bio}.mjs\`. Neu = 1 Adapter + 1 TSV + \`wordConfig.ts:PACKS\`.\n- Generierung: \`yarn content:generate\` (words:import + bio + wortleiter) · Quick-Skip: \`scripts/content-generate-if-needed.mjs\`.\n\n`;
 
 md += `---\n*Regenerieren: \`yarn words:stats\` nach \`yarn content:generate\`. Nicht von Hand editieren — Script überschreibt.*\n`;
 

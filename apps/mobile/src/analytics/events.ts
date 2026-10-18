@@ -21,9 +21,9 @@ export type WortkniffEvents = {
   game_feedback_submitted: { gameId: string; dateKey: string; rating: "too_easy" | "ok" | "too_hard"; outcome: string };
   result_shared: { gameId?: string; dateKey: string; scope: "game" | "daily_kniffe"; outcome?: string };
   onboarding_completed: { dateKey: string; action: "started" | "dismissed" | "reset" };
-  notification_tested: { kind: "daily" | "unfinished" };
+  notification_tested: { kind: "daily" | "unfinished" | "hint_wallet_full" };
   notification_opened: { kind: "daily" | "unfinished" | "hint_wallet_full" | "unknown"; url?: string };
-  notification_permission_result: { granted: boolean; source: "settings" | "dev" };
+  notification_permission_result: { granted: boolean; source: "settings" | "dev" | "startup" };
   news_viewed: { id: string };
   news_dismissed: { id: string };
   store_review_requested: { source: "first_result" | "settings" };

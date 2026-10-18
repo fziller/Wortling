@@ -27,4 +27,12 @@ describe("hint wallet regeneration", () => {
     expect(fullHintsAt(partial, start)).toBe(start + 2 * HINT_REGENERATION_MS);
     expect(fullHintsAt(wallet(3, null), start)).toBeNull();
   });
+
+  it("accepts a debug-only regeneration interval without changing the production default", () => {
+    const interval = 60_000;
+    const spent = consumeHint(wallet(3, null), start, interval);
+
+    expect(spent.nextRegenerationAt).toBe(start + interval);
+    expect(regenerateHints(spent, start + interval, interval).balance).toBe(3);
+  });
 });

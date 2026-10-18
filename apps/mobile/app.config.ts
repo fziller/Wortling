@@ -19,6 +19,7 @@ const appName = (): string => {
 export default ({ config }: { config: ExpoConfig }): ExpoConfig => ({
   ...config,
   name: appName(),
+  extra: { ...config.extra, appVariant: variant },
   plugins: [...(config.plugins ?? []), "expo-sqlite", "./plugins/withGradleCache.js"],
   ios: {
     ...config.ios,

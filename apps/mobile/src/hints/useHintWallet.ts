@@ -5,18 +5,21 @@ import { loadHintWallet, saveHintWallet } from "./storage";
 import { canConsumeHint, consumeHint, earnHintOnWin, fullHintsAt, nextHintInMs, regenerateHints } from "./wallet";
 import type { HintWallet } from "./types";
 import { createDefaultWallet } from "./storage";
+import { loadDebugHintRegenerationMs } from "./debugSettings";
 import { scheduleHintWalletFullReminder } from "@/notifications/scheduler";
 
 export function useHintWallet() {
   const [wallet, setWallet] = useState<HintWallet>(() => createDefaultWallet());
   const [loaded, setLoaded] = useState(false);
+  const [regenerationMs, setRegenerationMs] = useState<number | null>(null);
 
   useEffect(() => {
-    loadHintWallet().then(async (w) => {
-      const next = regenerateHints(w);
+    Promise.all([loadHintWallet(), loadDebugHintRegenerationMs()]).then(async ([w, intervalMs]) => {
+      const next = regenerateHints(w, Date.now(), intervalMs);
       setWallet(next);
+      setRegenerationMs(intervalMs);
       await saveHintWallet(next);
-      scheduleHintWalletFullReminder(fullHintsAt(next)).catch(() => {});
+      scheduleHintWalletFullReminder(fullHintsAt(next, Date.now(), intervalMs)).catch(() => {});
       setLoaded(true);
     });
   }, []);
@@ -24,46 +27,50 @@ export function useHintWallet() {
   // reload when app comes to foreground (multi-screen consistency)
   useEffect(() => {
     const sub = AppState.addEventListener("change", (s) => {
-      if (s === "active") loadHintWallet().then(async (w) => {
-        const next = regenerateHints(w);
+      if (s === "active") Promise.all([loadHintWallet(), loadDebugHintRegenerationMs()]).then(async ([w, intervalMs]) => {
+        const next = regenerateHints(w, Date.now(), intervalMs);
         setWallet(next);
+        setRegenerationMs(intervalMs);
         await saveHintWallet(next);
-        scheduleHintWalletFullReminder(fullHintsAt(next)).catch(() => {});
+        scheduleHintWalletFullReminder(fullHintsAt(next, Date.now(), intervalMs)).catch(() => {});
       });
     });
     return () => sub.remove();
   }, []);
 
-  const persist = useCallback(async (next: HintWallet) => {
+  const persist = useCallback(async (next: HintWallet, intervalMs: number) => {
     setWallet(next);
     await saveHintWallet(next);
-    scheduleHintWalletFullReminder(fullHintsAt(next)).catch(() => {});
+    scheduleHintWalletFullReminder(fullHintsAt(next, Date.now(), intervalMs)).catch(() => {});
   }, []);
 
   const tryConsume = useCallback(async (): Promise<boolean> => {
-    const current = await loadHintWallet();
-    const regenerated = regenerateHints(current);
+    const [current, intervalMs] = await Promise.all([loadHintWallet(), loadDebugHintRegenerationMs()]);
+    const regenerated = regenerateHints(current, Date.now(), intervalMs);
     if (!canConsumeHint(regenerated)) return false;
-    const next = consumeHint(regenerated);
-    await persist(next);
+    const next = consumeHint(regenerated, Date.now(), intervalMs);
+    await persist(next, intervalMs);
     return true;
   }, [persist]);
 
   const onWin = useCallback(async (): Promise<boolean> => {
-    const current = await loadHintWallet();
-    const { wallet: next, granted } = earnHintOnWin(current);
+    const [current, intervalMs] = await Promise.all([loadHintWallet(), loadDebugHintRegenerationMs()]);
+    const { wallet: next, granted } = earnHintOnWin(current, intervalMs);
     if (granted || next.winsSinceLastHint !== current.winsSinceLastHint || next.balance !== current.balance) {
-      await persist(next);
+      await persist(next, intervalMs);
     }
     return granted;
   }, [persist]);
 
   const refresh = useCallback(async () => {
-    const w = regenerateHints(await loadHintWallet());
+    const [current, intervalMs] = await Promise.all([loadHintWallet(), loadDebugHintRegenerationMs()]);
+    const w = regenerateHints(current, Date.now(), intervalMs);
     setWallet(w);
+    setRegenerationMs(intervalMs);
     await saveHintWallet(w);
-    scheduleHintWalletFullReminder(fullHintsAt(w)).catch(() => {});
+    scheduleHintWalletFullReminder(fullHintsAt(w, Date.now(), intervalMs)).catch(() => {});
   }, []);
 
-  return { wallet, loaded, canConsume: canConsumeHint(wallet), nextHintInMs: nextHintInMs(wallet), tryConsume, onWin, refresh };
+  const intervalMs = regenerationMs ?? undefined;
+  return { wallet, loaded, canConsume: canConsumeHint(wallet), nextHintInMs: nextHintInMs(wallet, Date.now(), intervalMs), tryConsume, onWin, refresh };
 }

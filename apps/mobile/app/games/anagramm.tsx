@@ -10,6 +10,7 @@ import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { HelpModal } from "@/components/HelpModal";
+import { HintableLetterTile } from "@/components/HintableLetterTile";
 import { ShakeView } from "@/components/ShakeView";
 import { SmallGameAction } from "@/components/SmallGameAction";
 import { getBerlinDateKey } from "@/daily/date";
@@ -212,7 +213,7 @@ export default function AnagrammScreen() {
   return (
     <GameScreenFrame
       actions={<View style={styles.actions}>{state.status === "playing" ? <SmallGameAction disabled={hintDisabled} label={hintLabel} onPress={useHint} /> : null}{state.status === "playing" ? <SmallGameAction label="Lösung anzeigen" onPress={() => setGiveUpVisible(true)} variant="reveal" /> : null}</View>}
-      keyboard={{ disabled: state.status !== "playing", onBackspace: () => undefined, onLetter: () => undefined, onSubmit: submit, showBackspace: false, showLetters: false, submitDisabled: !canSubmit }}
+      keyboard={{ disabled: state.status !== "playing", onBackspace: () => undefined, onLetter: () => undefined, onSubmit: submit, showBackspace: false, showLetters: false, showSubmit: true, submitDisabled: !canSubmit }}
       onBack={goBack}
       onHelp={() => { captureEvent(posthog, "help_opened", { gameId: "anagramm", dateKey, source: "manual" }); help.open(); }}
       progressLabel={continuedAfterLoss ? `${state.guesses.length} Versuche · frei` : `${state.guesses.length}/${puzzle.maxAttempts} Versuche`}
@@ -238,7 +239,7 @@ export default function AnagrammScreen() {
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <ContinueAfterLossModal onContinue={continueAfterLoss} onGiveUp={reveal} visible={lossVisible} />
-      <GameResultModal attempts={state.guesses.length} dateKey={dateKey} durationMs={elapsedSeconds * 1000} gameId="anagramm" guesses={state.guesses} message={state.status === "won" ? "Buchstaben sauber sortiert." : "Die Lösung ist raus. Noch eins?"} onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "anagramm", dateKey, rating, outcome: state.status })} onHome={() => router.replace("/")} actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined} onNext={() => { setResultVisible(false); if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0); else nextGame(); }} onShare={() => captureEvent(posthog, "result_shared", { gameId: "anagramm", dateKey, scope: "game", outcome: state.status })} onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "anagramm", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })} outcome={state.status === "playing" ? undefined : state.status} shareText={buildSimpleShareText("Anagramm", dateKey, state.status, `${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`)} solution={puzzle.answer} stats={[{ label: "Versuche", value: state.guesses.length }, { label: "Hinweise", value: state.fixedIndices.length }, { label: "Zeit", value: `${elapsedSeconds} Sek.` }]} success={state.status === "won"} title={state.status === "won" ? "Gelöst." : state.status === "lost" ? "Heute nicht gelöst." : "Aufgelöst."} visible={resultVisible && state.status !== "playing"} />
+      <GameResultModal attempts={state.guesses.length} dateKey={dateKey} durationMs={elapsedSeconds * 1000} gameId="anagramm" guesses={state.guesses} message={state.status === "won" ? "Buchstaben sauber sortiert." : "Die Lösung ist raus. Noch eins?"} onFeedback={(rating) => captureEvent(posthog, "game_feedback_submitted", { gameId: "anagramm", dateKey, rating, outcome: state.status })} onHome={() => router.replace("/")} actionLabel={nextDailyKniffRoute ? "Nächster Tageskniff" : undefined} onNext={() => { setResultVisible(false); if (nextDailyKniffRoute) setTimeout(() => router.replace(nextDailyKniffRoute as never), 0); else nextGame(); }} onShare={() => captureEvent(posthog, "result_shared", { gameId: "anagramm", dateKey, scope: "game", outcome: state.status })} onViewed={() => captureEvent(posthog, "result_viewed", { gameId: "anagramm", dateKey, scope: "game", outcome: state.status, success: state.status === "won" })} outcome={state.status === "playing" ? undefined : state.status} shareText={buildSimpleShareText("Anagramm", dateKey, state.status, `${state.guesses.length} Versuche · ${elapsedSeconds} Sek.`)} solution={puzzle.answer} stats={[{ label: "Versuche", value: state.guesses.length }, { label: "Hinweise", value: state.fixedIndices.length }, { label: "Zeit", value: `${elapsedSeconds} Sek.` }]} success={state.status === "won"} title={state.status === "won" ? "Gelöst." : state.status === "lost" ? "Heute nicht gelöst." : "Aufgelöst."} visible={resultVisible && state.status !== "playing"} />
       <HelpModal {...gameHelp.anagramm} onClose={help.close} visible={help.visible} />
     </GameScreenFrame>
   );
@@ -255,7 +256,11 @@ function LetterTile({ disabled, fixed = false, label, minHeight, onPress, textSi
     opacity: label ? 1 - disabledProgress.value * 0.72 : 1,
     transform: [{ scale: 1 + fixedProgress.value * 0.035 }],
   }));
-  return <Pressable accessibilityLabel={label ? `Buchstabe ${label.toLocaleUpperCase("de-DE")}` : "Leeres Lösungsfeld"} accessibilityRole="button" disabled={disabled} onPress={onPress} style={styles.tilePressable}><Animated.View style={[styles.tile, { minHeight }, fixed && styles.fixedTile, animatedStyle]}><Text style={[styles.tileText, { fontSize: textSize }, fixed && styles.fixedText]}>{label.toLocaleUpperCase("de-DE")}</Text></Animated.View></Pressable>;
+  if (fixed) {
+    return <HintableLetterTile accessibilityLabel={`Buchstabe ${label.toLocaleUpperCase("de-DE")}, per Hinweis fixiert`} disabled={disabled} letter={label} mark="correct" minHeight={minHeight} onPress={onPress} textSize={textSize} />;
+  }
+
+  return <Pressable accessibilityLabel={label ? `Buchstabe ${label.toLocaleUpperCase("de-DE")}` : "Leeres Lösungsfeld"} accessibilityRole="button" disabled={disabled} onPress={onPress} style={styles.tilePressable}><Animated.View style={[styles.tile, { minHeight }, animatedStyle]}><Text style={[styles.tileText, { fontSize: textSize }]}>{label.toLocaleUpperCase("de-DE")}</Text></Animated.View></Pressable>;
 }
 
 function difficultyLabel(difficulty: "easy" | "medium" | "hard") { return difficulty === "easy" ? "leicht" : difficulty === "medium" ? "mittel" : "schwer"; }
@@ -267,9 +272,7 @@ const styles = StyleSheet.create({
   tiles: { flexDirection: "row", justifyContent: "center" },
   tilePressable: { flex: 1, minWidth: 0 },
   tile: { alignItems: "center", backgroundColor: tokens.surface.control, borderColor: tokens.border.control, borderRadius: tokens.radius.sm, borderWidth: 2, flex: 1, justifyContent: "center", minWidth: 0 },
-  fixedTile: { backgroundColor: "rgba(33, 166, 122, 0.14)", borderColor: tokens.semantic.correct },
   tileText: { color: tokens.color.ink, ...tokens.typography.gameLetter },
-  fixedText: { color: tokens.semantic.correct },
   remaining: { color: tokens.color.muted, fontFamily: tokens.font.ui.semibold, fontSize: tokens.type.body, textAlign: "center" },
   message: { color: tokens.color.ink, fontFamily: tokens.font.ui.semibold, fontSize: tokens.type.body, textAlign: "center" },
 });

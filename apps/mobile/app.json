@@ -21,7 +21,7 @@
         "foregroundImage": "./assets/adaptive-foreground.png",
         "backgroundColor": "#232E40"
       },
-      "versionCode": 9
+      "versionCode": 10
     },
     "web": {
       "bundler": "metro"
@@ -63,7 +63,7 @@
         {
           "android": {
             "usesCleartextTraffic": false,
-            "enableMinifyInReleaseBuilds": false,
+            "enableMinifyInReleaseBuilds": true,
             "usePrecompiledHeaders": true
           },
           "ios": {

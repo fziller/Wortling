@@ -1,4 +1,5 @@
 import { getBuildLabel } from "@/config/buildInfo";
+import { isDebugBuild } from "@/config/runtime";
 import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 import { useEffect, useMemo, useState } from "react";
@@ -18,16 +19,18 @@ import { loadNotificationSettings, saveNotificationSettings, NotificationSetting
 import { BUCKET_PRESET_DESCRIPTIONS } from "@/games/wordBuckets";
 import { loadWordBucketSettings, saveWordBucketSettings, WordBucketSettings } from "@/storage/wordBuckets";
 import { requestNotificationPermission } from "@/notifications/register";
-import { presentDevNotification, scheduleDailyReminder } from "@/notifications/scheduler";
+import { presentDevNotification, scheduleDailyReminder, scheduleHintWalletFullReminder } from "@/notifications/scheduler";
 import { currentNews } from "@/news/current";
 import { resetNews } from "@/news/storage";
 import { resetOnboarding } from "@/onboarding/storage";
 import { PACKS } from "@/games/wordConfig";
 import { HINT_MAX_BALANCE, HINT_STORAGE_VERSION, type HintWallet } from "@/hints/types";
 import { loadHintWallet, saveHintWallet } from "@/hints/storage";
+import { DEBUG_HINT_INTERVALS, loadDebugHintRegenerationMs, saveDebugHintRegenerationMs } from "@/hints/debugSettings";
+import { fullHintsAt } from "@/hints/wallet";
 import { loadPacksSettings, savePacksSettings, type PacksSettings } from "@/storage/packs";
 import { hasPremiumAccess, isPackGated, setMockPremiumEnabled } from "@/premium/packsAccess";
-import { requestStoreReview } from "@/review/storeReview";
+import { isStoreReviewAvailable, requestStoreReview } from "@/review/storeReview";
 
 const DWDS_URL = "https://www.dwds.de/lemma/list";
 const CC_BY_SA_URL = "https://creativecommons.org/licenses/by-sa/4.0/";
@@ -38,6 +41,7 @@ export default function SettingsScreen() {
   const [settings, setSettings] = useState<NotificationSettings>({
     enabled: false,
     hour: 18,
+    hintWalletEnabled: true,
     minute: 0,
     unfinishedEnabled: true,
   });
@@ -47,7 +51,9 @@ export default function SettingsScreen() {
   const [packsGated, setPacksGated] = useState(false);
   const [dailyKniffeSeedOverride, setDailyKniffeSeedOverride] = useState<number | undefined>();
   const [hintWallet, setHintWallet] = useState<HintWallet | null>(null);
+  const [debugHintRegenerationMs, setDebugHintRegenerationMs] = useState(30 * 60 * 1000);
   const [devStatus, setDevStatus] = useState("");
+  const [reviewStatus, setReviewStatus] = useState("");
   const dateKey = getBerlinDateKey();
   const productionSeed = createDailyKniffeSeed(dateKey);
   const generatedKniffe = useMemo(() => generateDailyKniffe({
@@ -61,7 +67,10 @@ export default function SettingsScreen() {
     loadNotificationSettings().then(setSettings);
     loadWordBucketSettings().then(setBucketSettings);
     loadDailyKniffeSeedOverride().then(setDailyKniffeSeedOverride);
-    if (__DEV__) loadHintWallet().then(setHintWallet);
+    if (isDebugBuild) {
+      loadHintWallet().then(setHintWallet);
+      loadDebugHintRegenerationMs().then(setDebugHintRegenerationMs);
+    }
     loadPacksSettings().then(setPacksSettings);
     setPacksGated(isPackGated());
     hasPremiumAccess().then(setCanUsePacks);
@@ -88,6 +97,19 @@ export default function SettingsScreen() {
     const unfinishedEnabled = !settings.unfinishedEnabled;
     await updateAndReschedule({ ...settings, unfinishedEnabled });
     captureEvent(posthog, "settings_changed", { key: "unfinished_reminder", value: String(unfinishedEnabled) });
+  }
+
+  async function toggleHintWalletEnabled() {
+    if (!settings.hintWalletEnabled) {
+      const granted = await requestNotificationPermission();
+      captureEvent(posthog, "notification_permission_result", { granted, source: "settings" });
+      if (!granted) return;
+    }
+    const hintWalletEnabled = !settings.hintWalletEnabled;
+    await updateAndReschedule({ ...settings, hintWalletEnabled });
+    const wallet = await loadHintWallet();
+    await scheduleHintWalletFullReminder(hintWalletEnabled ? fullHintsAt(wallet, Date.now(), debugHintRegenerationMs) : null);
+    captureEvent(posthog, "settings_changed", { key: "hint_wallet_reminder", value: String(hintWalletEnabled) });
   }
 
   async function toggleErweitert() {
@@ -162,7 +184,7 @@ export default function SettingsScreen() {
     captureEvent(posthog, "onboarding_completed", { dateKey, action: "reset" });
   }
 
-  async function testNotification(kind: "daily" | "unfinished") {
+  async function testNotification(kind: "daily" | "unfinished" | "hint_wallet_full") {
     const granted = await requestNotificationPermission();
     captureEvent(posthog, "notification_permission_result", { granted, source: "dev" });
     if (!granted) {
@@ -173,6 +195,17 @@ export default function SettingsScreen() {
     await presentDevNotification(kind);
     setDevStatus(`Notification ausgelöst: ${kind}`);
     captureEvent(posthog, "notification_tested", { kind });
+  }
+
+  async function setDebugHintRegeneration(value: number) {
+    await saveDebugHintRegenerationMs(value);
+    setDebugHintRegenerationMs(value);
+    const wallet = await loadHintWallet();
+    const next = { ...wallet, nextRegenerationAt: wallet.balance >= HINT_MAX_BALANCE ? null : Date.now() + value };
+    await saveHintWallet(next);
+    setHintWallet(next);
+    await scheduleHintWalletFullReminder(fullHintsAt(next, Date.now(), value));
+    setDevStatus(`Hinweis-Regeneration: ${formatDebugInterval(value)}.`);
   }
 
   async function resetNewsDev() {
@@ -189,7 +222,7 @@ export default function SettingsScreen() {
     const next = {
       version: HINT_STORAGE_VERSION,
       balance,
-      nextRegenerationAt: balance >= HINT_MAX_BALANCE ? null : Date.now() + 30 * 60 * 1000,
+      nextRegenerationAt: balance >= HINT_MAX_BALANCE ? null : Date.now() + debugHintRegenerationMs,
       winsSinceLastHint: 0,
       totalEarned: balance,
       totalSpent: 0,
@@ -197,13 +230,19 @@ export default function SettingsScreen() {
 
     setHintWallet(next);
     await saveHintWallet(next);
+    await scheduleHintWalletFullReminder(fullHintsAt(next, Date.now(), debugHintRegenerationMs));
     setDevStatus(`Hinweise gesetzt: ${balance}/${HINT_MAX_BALANCE}`);
   }
 
   async function rateApp() {
     const result = await requestStoreReview();
-    if (result === "requested") captureEvent(posthog, "store_review_requested", { source: "settings" });
-    else captureEvent(posthog, "store_review_unavailable", { source: "settings" });
+    if (result === "requested") {
+      setReviewStatus("Bewertungsdialog geöffnet.");
+      captureEvent(posthog, "store_review_requested", { source: "settings" });
+    } else {
+      setReviewStatus("Bewertungen sind in diesem Build gerade nicht verfügbar.");
+      captureEvent(posthog, "store_review_unavailable", { source: "settings" });
+    }
   }
 
   const timeLabel = `${String(settings.hour).padStart(2, "0")}:${String(settings.minute).padStart(2, "0")}`;
@@ -258,6 +297,13 @@ export default function SettingsScreen() {
                 </View>
               </View>
             ) : null}
+            <View style={styles.toggleRow}>
+              <View style={{ flex: 1, paddingRight: 12 }}>
+                <Text style={styles.toggleLabel}>Hinweise wieder voll</Text>
+                <Text style={styles.bucketDesc}>Erinnert dich, sobald alle drei Hinweise wieder verfügbar sind.</Text>
+              </View>
+              <AnimatedSwitch checked={settings.hintWalletEnabled} onPress={toggleHintWalletEnabled} />
+            </View>
           </AppCard>
         </Animated.View>
 
@@ -323,10 +369,11 @@ export default function SettingsScreen() {
             <Pressable accessibilityRole="button" onPress={rateApp} style={styles.reviewButton}>
               <Text style={styles.reviewButtonText}>App bewerten</Text>
             </Pressable>
+            {reviewStatus ? <Text style={styles.versionText}>{reviewStatus}</Text> : null}
           </AppCard>
         </Animated.View>
 
-        {__DEV__ ? (
+        {isDebugBuild ? (
           <Animated.View entering={FadeInDown.delay(170).duration(tokens.motion.normal)}>
             <AppCard>
               <Text style={styles.cardTitle}>DEV Menü</Text>
@@ -335,7 +382,8 @@ export default function SettingsScreen() {
               </Text>
               <Text style={styles.versionText}>Datum: {dateKey}</Text>
               <Text style={styles.versionText}>Quest Seed: {dailyKniffeSeedOverride ?? productionSeed}</Text>
-              <Text style={styles.versionText}>Hinweise: {hintWallet?.balance ?? 0}/{HINT_MAX_BALANCE}</Text>
+                <Text style={styles.versionText}>Hinweise: {hintWallet?.balance ?? 0}/{HINT_MAX_BALANCE}</Text>
+                <ReviewAvailability />
               <View style={styles.devGenerated}>
                 <Text style={styles.stepperLabel}>Generated</Text>
                 {generatedKniffe.map((kniff) => (
@@ -362,11 +410,22 @@ export default function SettingsScreen() {
                     </Pressable>
                   ))}
                 </View>
+                <Text style={styles.stepperLabel}>Hinweis-Regeneration</Text>
+                <View style={styles.devHintRow}>
+                  {DEBUG_HINT_INTERVALS.map((value) => (
+                    <Pressable accessibilityRole="button" key={value} onPress={() => setDebugHintRegeneration(value)} style={[styles.devHintButton, debugHintRegenerationMs === value && styles.devHintButtonActive]}>
+                      <Text style={styles.devButtonSecondaryText}>{formatDebugInterval(value)}</Text>
+                    </Pressable>
+                  ))}
+                </View>
                 <Pressable accessibilityRole="button" onPress={() => testNotification("daily")} style={styles.devButtonSecondary}>
                   <Text style={styles.devButtonSecondaryText}>Notification testen: Daily</Text>
                 </Pressable>
                 <Pressable accessibilityRole="button" onPress={() => testNotification("unfinished")} style={styles.devButtonSecondary}>
                   <Text style={styles.devButtonSecondaryText}>Notification testen: Offen</Text>
+                </Pressable>
+                <Pressable accessibilityRole="button" onPress={() => testNotification("hint_wallet_full")} style={styles.devButtonSecondary}>
+                  <Text style={styles.devButtonSecondaryText}>Notification testen: Hinweise voll</Text>
                 </Pressable>
                 {devStatus ? <Text style={styles.versionText}>{devStatus}</Text> : null}
               </View>
@@ -400,6 +459,20 @@ export default function SettingsScreen() {
       </ScrollView>
     </Screen>
   );
+}
+
+function formatDebugInterval(value: number): string {
+  return value < 60_000 ? `${Math.round(value / 1_000)} Sek.` : `${Math.round(value / 60_000)} Min.`;
+}
+
+function ReviewAvailability() {
+  const [available, setAvailable] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    isStoreReviewAvailable().then(setAvailable);
+  }, []);
+
+  return <Text style={styles.versionText}>Native Bewertung: {available === null ? "wird geprüft" : available ? "verfügbar" : "in diesem Build nicht verfügbar"}</Text>;
 }
 
 function AnimatedSwitch({ checked, onPress, disabled }: { checked: boolean; onPress?: () => void; disabled?: boolean }) {
@@ -622,6 +695,7 @@ const styles = StyleSheet.create({
     borderColor: tokens.border.control,
     backgroundColor: tokens.surface.control,
   },
+  devHintButtonActive: { borderColor: tokens.color.primary, backgroundColor: tokens.color.primaryLight },
   devButton: {
     minHeight: 48,
     alignItems: "center",

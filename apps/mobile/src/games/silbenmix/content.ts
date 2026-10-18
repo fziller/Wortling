@@ -2,7 +2,7 @@ import type { SilbenmixGeneratedPuzzle, SilbenmixPuzzle } from "./types";
 
 declare const require: (path: string) => unknown;
 
-export const SILBENMIX_CONTENT_VERSION = 1;
+export const SILBENMIX_CONTENT_VERSION = 2;
 const generatedContent = require("./generated/puzzles.json") as { generatedSilbenmixWords: readonly Omit<SilbenmixPuzzle["targets"][number], "id">[]; generatedSilbenmixPuzzles: readonly SilbenmixGeneratedPuzzle[] };
 const generatedSilbenmixWords = generatedContent.generatedSilbenmixWords;
 export const silbenmixPuzzleCandidates = generatedContent.generatedSilbenmixPuzzles;

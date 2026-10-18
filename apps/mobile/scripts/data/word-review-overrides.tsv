@@ -1,0 +1,4 @@
+word	decision	note
+abandon	block	English word, not valid German gameplay vocabulary.
+hash	keep-allowed	Established German loanword; valid guess, never a Core solution.
+need	block	English word from corpus noise; never use as a Core solution or guess.

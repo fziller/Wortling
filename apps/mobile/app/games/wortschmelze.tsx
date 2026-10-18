@@ -346,7 +346,7 @@ export default function WortschmelzeScreen() {
         onNext={() => {
           setResultVisible(false);
 
-          if (nextDailyKniffRoute) setTimeout(() => router.push(nextDailyKniffRoute as never), 0);
+          if (nextDailyKniffRoute) setTimeout(() => router.replace(nextDailyKniffRoute as never), 0);
           else startNextWord();
         }}
         onShare={() => captureEvent(posthog, "result_shared", { gameId: GAME_ID, dateKey, scope: "game", outcome: state.status })}

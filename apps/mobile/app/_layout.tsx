@@ -16,6 +16,7 @@ import { initSentry } from "@/monitoring/sentry";
 import { posthogConfig } from "@/analytics/posthog";
 import { captureEvent } from "@/analytics/events";
 import { configureNotifications } from "@/notifications/configure";
+import { requestNotificationPermission } from "@/notifications/register";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { closeAbandonedSessions } from "@/stats/repository";
 import { initStats } from "@/stats/db";
@@ -40,6 +41,10 @@ function RootLayoutInner() {
       // Notifications are nice-to-have; startup must stay offline-safe.
     }
 
+    requestNotificationPermission()
+      .then((granted) => captureEvent(posthog, "notification_permission_result", { granted, source: "startup" }))
+      .catch(() => {});
+
     scheduleDailyReminder().catch(() => {});
 
     initStats()
@@ -47,7 +52,7 @@ function RootLayoutInner() {
       .catch(() => {
         // Stats are nice-to-have; startup must stay offline-safe.
       });
-  }, []);
+  }, [posthog]);
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener((response) => {

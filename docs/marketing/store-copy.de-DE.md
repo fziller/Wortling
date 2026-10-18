@@ -4,43 +4,56 @@ Draft store metadata for German app-store listings. Keep final character limits 
 
 ## Core Positioning
 
-**One-liner:** Tägliche Wortspiele für alle, die deutsche Wörter lieben.
+**One-liner:** Deine tägliche Portion deutsche Wortspiele – kurz, abwechslungsreich und clever.
 
-**Short pitch:** Wortkniff bündelt kurze, moderne Worträtsel auf Deutsch: jeden Tag neue Aufgaben, mehrere Spielmodi, klare Regeln und kein unnötiger Ballast.
+**Short pitch:** Wortkniff bündelt kurze, moderne Worträtsel auf Deutsch: jeden Tag neue Aufgaben, elf abwechslungsreiche Spielideen, klare Regeln und kein unnötiger Ballast.
 
 **Primary promise:** Ein smarter täglicher Rätselmoment in 2 bis 5 Minuten.
 
-## App Store Subtitle Ideas
+## Apple App Store Subtitle Ideas
 
-- Tägliche Wortspiele auf Deutsch
-- Kurze Worträtsel für jeden Tag
-- Deutsche Wörter clever rätseln
-- Daily Puzzle für Wortfans
-- Wortspiele, kurz und clever
+Apple limit: 30 characters.
+
+- Tägliche Wortspiele (20)
+- Deutsche Rätsel. Jeden Tag. (26)
+- Wortspiele für zwischendurch (29)
+- Dein täglicher Rätselkniff (27)
+- Kurz rätseln. Clever lösen. (29)
 
 ## Apple App Store Promotional Text
 
-Knacke jeden Tag kurze deutsche Worträtsel: Wörter eingrenzen, Komposita verbinden und neue Wortlogik entdecken.
+Apple limit: 170 characters. This field can be changed without a new app review.
+
+Elf deutsche Wortspiele, ein täglicher Rätselmoment: von Anagrammen über Wortcodes bis Silbenmix. Kurz starten, clever knobeln, wiederkommen.
 
 ## Apple App Store Description
 
 Wortkniff ist deine tägliche App für kurze, clevere Wortspiele auf Deutsch.
 
-Jeden Tag warten neue Rätsel, die in wenigen Minuten gespielt sind: grenze Wörter alphabetisch ein, finde verbindende Begriffe in deutschen Komposita und knacke Wortcodes mit Logik statt Raten.
+Eine Runde in der Bahn, beim Kaffee oder vor dem Schlafen: Wähle dein Spiel, löse das Rätsel und hol dir deinen täglichen Rätselkniff. Ohne Account, ohne endloses Scrollen, ohne unnötigen Ballast.
 
-Wortkniff ist gemacht für alle, die Wordle, Daily Puzzles und Sprachspiele mögen, aber mehr Abwechslung und einen klar deutschen Fokus wollen.
+ELF SPIELIDEEN. EIN TÄGLICHER RÄTSELMOMENT.
 
-Was dich erwartet:
+- Finde versteckte Wörter und ordne Buchstaben neu
+- Knacke Anagramme und Wortcodes mit Logik
+- Kombiniere Silben zu passenden Wörtern
+- Finde das fehlende Wort in Waben und Wortketten
+- Taste dich Buchstabe für Buchstabe an die Lösung heran
 
-- Tägliche deutsche Wortspiele
-- Mehrere kurze Spielmodi in einer App
-- Einfache Regeln ohne Tutorial-Ballast
-- Kurze Runden für Pause, Bahn oder Sofa
-- Kuratierte Wörter statt zufälliger Wörterbuch-Treffer
-- Fortschritt und Streaks lokal auf deinem Gerät
-- Voll spielbar ohne Account
+Jedes Spiel hat klare Regeln, einen eigenen Kniff und passt in wenige Minuten. Wenn du festhängst, helfen Hinweise weiter – sie laden sich mit der Zeit wieder auf.
 
-Ob du jeden Tag nur eine schnelle Runde suchst oder deutsche Wörter, Komposita und Wortbeziehungen liebst: Wortkniff gibt dir einen kleinen, smarten Rätselmoment für zwischendurch.
+DEINE RÄTSELROUTINE
+
+Jeden Tag warten ausgewählte Tageskniffe auf dich. Schaffst du alle drei, wächst deine Serie. Dein Fortschritt, deine Bestwerte und deine Spielstatistiken bleiben dabei auf deinem Gerät.
+
+WORTKNIFF IST FÜR DICH, WENN DU …
+
+- deutsche Wörter und clevere Sprachspiele liebst
+- kurze Denkpausen statt stundenlangem Grind suchst
+- Abwechslung willst, statt jeden Tag dieselbe Spielidee zu spielen
+- direkt losrätseln möchtest – auch offline
+
+Ob schnelle Pause oder feste Abendroutine: Wortkniff macht aus ein paar Minuten einen kleinen Denksport-Moment.
 
 ## Google Play Short Description
 
@@ -97,24 +110,25 @@ Apple keyword field is comma-separated and limited to 100 characters. Avoid spac
 
 ### Balanced
 
-Wortspiel,Worträtsel,Deutsch,Wordle,Wörterspiel,Buchstaben,Daily,Rätsel,Komposita
+Wortspiel,Worträtsel,Deutsch,Wörterspiel,Buchstaben,Daily,Rätsel,Komposita,Anagramm,Silben
 
 ### Wordle-Seeking
 
-Wordle,Deutsch,Wortspiel,Wörterspiel,Worträtsel,Buchstaben,Rätsel,Daily,Wortquiz
+Wordle,Deutsch,Wortspiel,Wörterspiel,Worträtsel,Buchstaben,Rätsel,Daily,Wortquiz,Anagramm
 
 ### Language-Nerd
 
-Wortspiel,Komposita,Wortschatz,Deutsch,Worträtsel,Sprachspiel,Buchstaben,Wortquiz
+Wortspiel,Komposita,Wortschatz,Deutsch,Worträtsel,Sprachspiel,Buchstaben,Wortquiz,Silbenmix
 
 ## Screenshot Copy Ideas
 
-- Jeden Tag neue deutsche Wortspiele
-- Grenze Wörter clever ein
-- Finde das verbindende Wort
-- Knacke den Wortcode
-- Kurze Runden, klare Regeln
-- Deine tägliche Rätselroutine
+- Elf Spiele. Jeden Tag neue Kniffe.
+- Dein täglicher Rätselmoment
+- Anagramme? Läuft bei dir.
+- Silben richtig mischen. Wort finden.
+- Knacke den Code mit Köpfchen
+- Mach drei Tageskniffe voll
+- Kurz spielen. Lange stolz sein.
 
 ## Release Notes Template
 

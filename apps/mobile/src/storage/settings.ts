@@ -5,6 +5,7 @@ const STORAGE_KEY = "wortkniff:settings:notifications";
 export type NotificationSettings = {
   enabled: boolean;
   hour: number;
+  hintWalletEnabled: boolean;
   minute: number;
   unfinishedEnabled: boolean;
 };
@@ -12,6 +13,7 @@ export type NotificationSettings = {
 const DEFAULTS: NotificationSettings = {
   enabled: false,
   hour: 18,
+  hintWalletEnabled: true,
   minute: 0,
   unfinishedEnabled: true,
 };
