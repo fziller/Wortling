@@ -75,7 +75,7 @@ export function submitAnagrammGuess(puzzle: AnagrammPuzzle, state: AnagrammState
     state: {
       ...state,
       guesses: [...state.guesses, guess],
-      placedTileIndices: Array.from({ length: puzzle.wordLength }, () => null),
+      placedTileIndices: state.placedTileIndices.map((tileIndex, index) => state.fixedIndices.includes(index) ? tileIndex : null),
       status: won ? "won" : lost ? "lost" : "playing",
     },
   };

@@ -92,19 +92,26 @@ export function revealFormwortSolution(state: FormwortState): FormwortState {
   return { ...state, status: "revealed" };
 }
 
-export function getFormwortHintPosition(puzzle: FormwortPuzzle, state: FormwortState): number | null {
+export function getFormwortHintPosition(puzzle: FormwortPuzzle, state: FormwortState, random = Math.random): number | null {
   const revealed = new Set(state.revealedIndices ?? []);
-  const available: number[] = [];
-  for (let i = 0; i < puzzle.wordLength; i += 1) if (!revealed.has(i)) available.push(i);
-  if (available.length === 0) return null;
-  return available[Math.floor(Math.random() * available.length)];
+  const availableSymbols = [...new Set(puzzle.symbols.filter((symbol, index) => !revealed.has(index)))];
+  if (availableSymbols.length === 0) return null;
+  const symbol = availableSymbols[Math.floor(random() * availableSymbols.length)];
+
+  return puzzle.symbols.findIndex((item, index) => item === symbol && !revealed.has(index));
 }
 
-export function applyFormwortHint(puzzle: FormwortPuzzle, state: FormwortState): FormwortState {
+export function applyFormwortHint(puzzle: FormwortPuzzle, state: FormwortState, random = Math.random): FormwortState {
   if (state.status !== "playing") return state;
-  const pos = getFormwortHintPosition(puzzle, state);
+  const pos = getFormwortHintPosition(puzzle, state, random);
   if (pos === null) return state;
-  return { ...state, revealedIndices: [...(state.revealedIndices ?? []), pos] };
+  const symbol = puzzle.symbols[pos];
+  const revealed = new Set(state.revealedIndices ?? []);
+  puzzle.symbols.forEach((item, index) => {
+    if (item === symbol) revealed.add(index);
+  });
+
+  return { ...state, revealedIndices: [...revealed] };
 }
 
 export function getFormwortRevealedLetters(puzzle: FormwortPuzzle, state: FormwortState): (string | null)[] {

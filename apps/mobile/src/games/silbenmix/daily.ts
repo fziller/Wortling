@@ -13,12 +13,13 @@ function clonePuzzle(puzzle: SilbenmixPuzzle, id = puzzle.id): SilbenmixPuzzle {
   };
 }
 
-export function createNextSilbenmixGame(previousPuzzleId?: string, dateKey = "Freies Spiel") {
+export function createNextSilbenmixGame(previousPuzzleId?: string, dateKey = "Freies Spiel", random = Math.random) {
   const options = silbenmixPuzzleCandidates.filter((puzzle) => puzzle.id !== previousPuzzleId);
   const pool = options.length ? options : silbenmixPuzzleCandidates;
-  const difficulty = Math.random() < 0.6 ? "medium" : Math.random() < 0.5 ? "easy" : "hard";
-  const difficultyPool = pool.filter((puzzle) => puzzle.difficulty === difficulty);
-  const source = difficultyPool[Math.floor(Math.random() * difficultyPool.length)] ?? pool[0];
+  const roll = random();
+  const wordCount = roll < 0.35 ? 3 : roll < 0.7 ? 4 : 5;
+  const profilePool = pool.filter((puzzle) => puzzle.targetIndexes.length === wordCount);
+  const source = profilePool[Math.floor(random() * profilePool.length)] ?? pool[0];
   if (!source) throw new Error("No Silbenmix puzzles available.");
   const puzzle = clonePuzzle(materializeSilbenmixPuzzle(source), dateKey === "Freies Spiel" ? `silbenmix-next-${Date.now()}` : source.id);
   return { dateKey, puzzle, state: createSilbenmixState(puzzle) };

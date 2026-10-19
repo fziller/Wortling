@@ -14,7 +14,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 
 | Game | Summary | Rules Snapshot |
 | --- | --- | --- |
-| Anagramm | Reorder scrambled letters into a German word. | Curated four- to eight-letter words are shuffled for each round. Place every tile once, solve within five wrong attempts, and use hints to lock correct positions. Valid alternative anagrams also win. |
+| Anagramm | Reorder scrambled letters into a German word. | New rounds use curated five- to eight-letter words (5% / 40% / 35% / 20%). Place every tile once, solve within five wrong attempts, and use hints to lock correct positions across further attempts. Valid alternative anagrams also win and are shown as the solved word. |
 | Dazwischen | Narrow down a German target word alphabetically. | Guess valid 5-letter words; each guess shows whether the target comes before or after it. |
 | Galgenwort | Guess a German word before running out of mistakes. | Guess letters from a clue category; wrong guesses count against the limit. |
 | Formwort | Solve a 5- to 7-letter word with shape and color feedback. | Guess words and use visual hints to infer repeated letters and positions. |
@@ -27,7 +27,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 
 ## Current Features
 
-- Random puzzle selection when opening a game without saved in-progress input; Anagramm chooses curated 4- to 8-letter words automatically, Worttreffer chooses 4- to 7-letter words automatically, while Formwort and Wortcode choose 5-, 6-, or 7-letter words.
+- Random puzzle selection when opening a game without saved in-progress input; Anagramm chooses curated 5- to 8-letter words automatically (5%, 40%, 35%, 20% by length), Worttreffer chooses 4- to 7-letter words automatically, while Formwort and Wortcode choose 5-, 6-, or 7-letter words.
 - Tageskniffe: each Berlin day highlights three existing games on Home; completing one puzzle in each highlighted game completes the day.
 - Tageskniffe continuation: Home highlights unfinished Tageskniffe, result screens replace the completed game with the next open Tageskniff so Back returns Home, daily reminders deep-link to the next open Tageskniff, and an optional evening reminder is scheduled only after a player has started but not finished the Tageskniffe.
 - Local daily streaks based on consecutive completed Tageskniffe days.
@@ -43,7 +43,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 - Word pipeline is modular: `scripts/pipeline/shared.mjs` (normalize/shape/bucket/tier), `scripts/sources/{dwds,morphology,bio}.mjs` (adapters), `scripts/import-*.mjs` (import/bewerten), `scripts/data/{subtlex-de,bio}.tsv` (sources). New pack = 1 adapter + 1 TSV + 1 entry in `wordConfig.ts:PACKS`.
 - Wortschmelze puzzles are generated at build time from filtered 5-letter pools (`klassisch`, `erweitert`, `hart`) via `scripts/generate-wortschmelze-puzzles.mjs` into `src/games/wortschmelze/generated/puzzles.ts`.
 - Wabenwort puzzles are generated at build time from validated 4- to 12-letter word data via `scripts/generate-wabenwort-puzzles.mjs`. Every valid generated word form matching a puzzle's letters is accepted regardless of Zipf frequency; common base-form words remain the curated source for puzzle selection, hints, and visible solutions. Each generated puzzle stores its exact accepted words, word-count thresholds, and pangrams for offline runtime lookups.
-- Silbenmix puzzles are generated at build time from curated common target words via `scripts/generate-silbenmix-puzzles.mjs`. The build pipeline uses vendored MIT-licensed `hyph-de-1996` German orthographic hyphenation patterns, rejects unsuitable splits, and accepts only word groups with one valid complete partition of the available syllable tiles. Runtime selects and locally persists a random candidate; there are no manually maintained puzzles or daily seeds.
+- Silbenmix puzzles are generated at build time from curated common target words via `scripts/generate-silbenmix-puzzles.mjs`. New rounds contain three words with 10–12 syllables (35%), four with 12–15 (35%), or five with 15–18 (30%); word lengths vary within every mix, and larger mixes include at least one four- or five-syllable word. The build pipeline uses vendored MIT-licensed `hyph-de-1996` German orthographic hyphenation patterns, rejects unsuitable splits, and accepts only word groups with one valid complete partition of the available syllable tiles. Runtime selects and locally persists a random candidate; there are no manually maintained puzzles or daily seeds.
 - Word packs: `bio` (Biologie) remains implemented in the code/data pipeline for all games (4–7 letters), but the Settings UI currently presents word packs only as a coming-soon teaser until packs are product-ready.
 - Word stats at a glance: `docs/word-stats.md` (auto-generated via `yarn words:stats` after `content:generate`) — counts per length & tier/bucket & pack.
 - Optional daily and unfinished-Tageskniff reminders, plus a separately controllable local reminder when the three-hint wallet is full. Notification permission is requested during startup; all notification features degrade safely when declined.

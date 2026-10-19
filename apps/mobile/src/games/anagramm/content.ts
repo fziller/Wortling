@@ -2,7 +2,7 @@ import { generatedAnagrammSolutionsBySignature, generatedAnagrammTargetsByLength
 import type { BucketPreset } from "../wordBuckets";
 import type { AnagrammWordLength } from "./types";
 
-export const ANAGRAMM_CONTENT_VERSION = 2;
+export const ANAGRAMM_CONTENT_VERSION = 3;
 
 export const anagrammTargetsByLength = generatedAnagrammTargetsByLength as unknown as Record<AnagrammWordLength, readonly string[]>;
 export const anagrammTargetsByPreset = generatedAnagrammTargetsByPreset as unknown as Record<BucketPreset, Record<AnagrammWordLength, readonly string[]>>;

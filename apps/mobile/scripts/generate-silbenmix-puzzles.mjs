@@ -27,9 +27,9 @@ const inputPaths = [
 ];
 
 const tiers = [
-  { difficulty: "easy", wordCount: 2, minSyllables: 4, maxSyllables: 6 },
-  { difficulty: "medium", wordCount: 3, minSyllables: 7, maxSyllables: 10 },
-  { difficulty: "hard", wordCount: 4, minSyllables: 10, maxSyllables: 14 },
+  { difficulty: "medium", wordCount: 3, minSyllables: 10, maxSyllables: 12 },
+  { difficulty: "hard", wordCount: 4, minSyllables: 12, maxSyllables: 15, minLongWordSyllables: 4 },
+  { difficulty: "hard", wordCount: 5, minSyllables: 15, maxSyllables: 18, minLongWordSyllables: 4 },
 ];
 
 function mulberry32(seed) {
@@ -145,6 +145,8 @@ for (const tier of tiers) {
     const totalSyllables = targets.reduce((sum, target) => sum + target.syllables.length, 0);
     if (new Set(targets.map((target) => target.word)).size !== tier.wordCount) continue;
     if (totalSyllables < tier.minSyllables || totalSyllables > tier.maxSyllables) continue;
+    if (new Set(targets.map((target) => target.syllables.length)).size < 2) continue;
+    if (tier.minLongWordSyllables && !targets.some((target) => target.syllables.length >= tier.minLongWordSyllables)) continue;
 
     const key = [...targets.map((target) => target.word)].sort().join("|");
     if (seen.has(key) || !isUniquelySolvable(targets, candidatesByFirstSyllable)) continue;
@@ -175,7 +177,7 @@ const puzzles = generated.map((item, index) => {
   const flattened = item.targets.flatMap((target) => target.syllables);
   return {
   id: `silbenmix-${String(index + 1).padStart(4, "0")}`,
-  version: 1,
+   version: 2,
   difficulty: item.difficulty,
   targetIndexes: item.targets.map(wordIndex),
   tileOrder: shuffled(flattened.map((_, syllableIndex) => syllableIndex)),

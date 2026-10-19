@@ -4,7 +4,7 @@ import { getWordLength, supportedWordLengths } from "../wordLengths";
 
 import { formwortGuessWords, formwortTargetsByLength } from "./content";
 import { createFormwortPuzzle, getFormwortMaxAttempts, restoreFormwortPuzzle } from "./daily";
-import { applyFormwortInputLetter, createFormwortState, createFormwortSymbols, removeFormwortInputLetter, submitFormwortGuess } from "./engine";
+import { applyFormwortHint, applyFormwortInputLetter, createFormwortState, createFormwortSymbols, getFormwortRevealedLetters, removeFormwortInputLetter, submitFormwortGuess } from "./engine";
 
 const puzzle = createFormwortPuzzle("allee", 5, "test");
 
@@ -26,6 +26,15 @@ describe("formwort engine", () => {
 
     expect(result.letters).toEqual(["a", "", "", "", ""]);
     expect(result.cursorIndex).toBe(2);
+  });
+
+  it("reveals every matching shape with one hint", () => {
+    const firstHint = applyFormwortHint(puzzle, createFormwortState(puzzle), () => 0.5);
+    const secondHint = applyFormwortHint(puzzle, firstHint, () => 0.5);
+
+    expect(firstHint.revealedIndices).toEqual([1, 2]);
+    expect(getFormwortRevealedLetters(puzzle, firstHint)).toEqual([null, "l", "l", null, null]);
+    expect(secondHint.revealedIndices).toEqual([1, 2, 3, 4]);
   });
 
   it("submits guesses with wordle feedback", () => {

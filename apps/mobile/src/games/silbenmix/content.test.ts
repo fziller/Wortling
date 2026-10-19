@@ -15,12 +15,24 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 describe("Silbenmix generated content", () => {
   it("provides fair candidates for every difficulty with stable unique tile IDs", () => {
-    for (const difficulty of ["easy", "medium", "hard"] as const) {
+    for (const difficulty of ["medium", "hard"] as const) {
       expect(silbenmixPuzzleCandidates.filter((puzzle) => puzzle.difficulty === difficulty).length).toBeGreaterThanOrEqual(40);
     }
     const sample = silbenmixPuzzleCandidates.slice(0, 30).map((candidate) => materializeSilbenmixPuzzle(candidate));
     expect(sample.every((puzzle) => new Set(puzzle.tiles.map((tile) => tile.id)).size === puzzle.tiles.length)).toBe(true);
     expect(sample.every((puzzle) => puzzle.tiles.length === puzzle.syllableCount)).toBe(true);
+  });
+
+  it("uses larger mixed-syllable puzzle profiles", () => {
+    expect(silbenmixPuzzleCandidates.every((candidate) => candidate.syllableCount >= 10)).toBe(true);
+
+    for (const candidate of silbenmixPuzzleCandidates) {
+      const puzzle = materializeSilbenmixPuzzle(candidate);
+      const syllableLengths = puzzle.targets.map((target) => target.syllables.length);
+
+      expect(new Set(syllableLengths).size).toBeGreaterThanOrEqual(2);
+      if (puzzle.targets.length >= 4) expect(syllableLengths.some((length) => length >= 4)).toBe(true);
+    }
   });
 
   it("uses the vendored German reformed-orthography patterns", () => {

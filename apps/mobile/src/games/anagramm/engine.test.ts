@@ -70,6 +70,19 @@ describe("Anagramm engine", () => {
     expect(hinted.placedTileIndices).toContain(null);
   });
 
+  it("keeps fixed hint letters in place after a failed guess", () => {
+    let state = applyAnagrammHint(puzzle, createAnagrammState(puzzle), () => 0);
+    for (const tileIndex of [0, 1, 2, 4]) state = placeAnagrammTile(puzzle, state, tileIndex);
+
+    const result = submitAnagrammGuess(puzzle, state);
+
+    expect(result.ok).toBe(true);
+    expect(result.state.status).toBe("playing");
+    expect(result.state.fixedIndices).toEqual([0]);
+    expect(result.state.placedTileIndices[0]).toBe(3);
+    expect(getAnagrammDraft(puzzle, result.state)).toBe("b");
+  });
+
   it("records five wrong complete attempts as a loss", () => {
     let state = createAnagrammState(puzzle);
     for (const guess of ["melbu", "melub", "meblu", "mubel", "ulbem"]) {

@@ -6,7 +6,8 @@ import { createAnagrammState, getAnagrammSolutions, normalizeAnagrammWord, shuff
 import type { AnagrammDifficulty, AnagrammPuzzle, AnagrammWordLength } from "./types";
 
 const lengths: readonly AnagrammWordLength[] = [4, 5, 6, 7, 8];
-const weights: Record<AnagrammWordLength, number> = { 4: 18, 5: 30, 6: 24, 7: 18, 8: 10 };
+const selectableLengths: readonly AnagrammWordLength[] = [5, 6, 7, 8];
+const weights: Record<AnagrammWordLength, number> = { 4: 0, 5: 5, 6: 40, 7: 35, 8: 20 };
 
 export function getAnagrammDifficulty(wordLength: AnagrammWordLength): AnagrammDifficulty {
   return wordLength <= 5 ? "easy" : wordLength <= 7 ? "medium" : "hard";
@@ -62,12 +63,12 @@ export function restoreAnagrammPuzzle(value: unknown): AnagrammPuzzle | null {
 }
 
 function pickLength(targetsByLength: Record<AnagrammWordLength, readonly string[]>): AnagrammWordLength {
-  const available = lengths.filter((length) => targetsByLength[length]?.length);
+  const available = selectableLengths.filter((length) => targetsByLength[length]?.length);
   const total = available.reduce((sum, length) => sum + weights[length], 0);
   let roll = Math.random() * total;
   for (const length of available) {
     roll -= weights[length];
     if (roll < 0) return length;
   }
-  return available[0] ?? 4;
+  return available[0] ?? 5;
 }
