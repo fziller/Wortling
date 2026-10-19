@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { applySilbenmixPairHint, applySilbenmixStartHint, createSilbenmixState, getSilbenmixDraft, removeSilbenmixTile, revealSilbenmixWord, selectSilbenmixTile, submitSilbenmixWord } from "./engine";
+import { applySilbenmixPairHint, applySilbenmixStartHint, createSilbenmixState, getSilbenmixDraft, moveSilbenmixTile, removeSilbenmixTile, revealSilbenmixWord, selectSilbenmixTile, submitSilbenmixWord } from "./engine";
 import type { SilbenmixPuzzle } from "./types";
 
 const puzzle: SilbenmixPuzzle = {
@@ -29,6 +29,14 @@ describe("Silbenmix engine", () => {
     state = removeSilbenmixTile(state, "ne-1");
     expect(state.selectedTileIds).toEqual(["ne-2"]);
     expect(selectSilbenmixTile(puzzle, state, "ne-1").selectedTileIds).toEqual(["ne-2", "ne-1"]);
+  });
+
+  it("inserts and reorders selected tiles for drag-and-drop", () => {
+    let state = createSilbenmixState(puzzle);
+    state = selectSilbenmixTile(puzzle, state, "ne-1");
+    state = selectSilbenmixTile(puzzle, state, "zi", 0);
+    expect(state.selectedTileIds).toEqual(["zi", "ne-1"]);
+    expect(moveSilbenmixTile(state, "ne-1", 0).selectedTileIds).toEqual(["ne-1", "zi"]);
   });
 
   it("accepts a correct word, removes exactly its tiles, and rejects a wrong combination", () => {

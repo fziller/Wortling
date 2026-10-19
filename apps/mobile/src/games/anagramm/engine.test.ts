@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { createAnagrammPuzzle, getAnagrammDifficulty, restoreAnagrammPuzzle } from "./daily";
-import { applyAnagrammHint, createAnagrammState, getAnagrammDraft, getAnagrammHintPosition, placeAnagrammTile, removeAnagrammTile, shuffleAnagrammLetters, submitAnagrammGuess } from "./engine";
+import { applyAnagrammHint, createAnagrammState, getAnagrammDraft, getAnagrammHintPosition, moveAnagrammTile, placeAnagrammTile, removeAnagrammTile, shuffleAnagrammLetters, submitAnagrammGuess } from "./engine";
 import type { AnagrammPuzzle } from "./types";
 
 const puzzle: AnagrammPuzzle = {
@@ -35,6 +35,13 @@ describe("Anagramm engine", () => {
     state = placeAnagrammTile(puzzle, state, 0);
     expect(state.placedTileIndices).toEqual([0, null, null, null, null]);
     expect(removeAnagrammTile(state, 0).placedTileIndices[0]).toBeNull();
+  });
+
+  it("moves or swaps placed tiles without moving fixed hint tiles", () => {
+    let state = placeAnagrammTile(puzzle, createAnagrammState(puzzle), 0);
+    state = placeAnagrammTile(puzzle, state, 1);
+    expect(moveAnagrammTile(state, 0, 1).placedTileIndices).toEqual([1, 0, null, null, null]);
+    expect(moveAnagrammTile({ ...state, fixedIndices: [0] }, 0, 1)).toEqual({ ...state, fixedIndices: [0] });
   });
 
   it("handles duplicate letters", () => {

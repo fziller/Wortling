@@ -55,14 +55,27 @@ export function getSilbenmixDraft(puzzle: SilbenmixPuzzle, state: SilbenmixState
   return state.selectedTileIds.map((tileId) => byId.get(tileId) ?? "").join("");
 }
 
-export function selectSilbenmixTile(puzzle: SilbenmixPuzzle, state: SilbenmixState, tileId: string): SilbenmixState {
+export function selectSilbenmixTile(puzzle: SilbenmixPuzzle, state: SilbenmixState, tileId: string, insertIndex = state.selectedTileIds.length): SilbenmixState {
   if (isFinished(state) || state.usedTileIds.includes(tileId) || state.selectedTileIds.includes(tileId) || !puzzle.tiles.some((tile) => tile.id === tileId)) return state;
-  return { ...state, selectedTileIds: [...state.selectedTileIds, tileId] };
+  const selectedTileIds = [...state.selectedTileIds];
+  selectedTileIds.splice(Math.max(0, Math.min(insertIndex, selectedTileIds.length)), 0, tileId);
+  return { ...state, selectedTileIds };
 }
 
 export function removeSilbenmixTile(state: SilbenmixState, tileId: string): SilbenmixState {
   if (isFinished(state) || !state.selectedTileIds.includes(tileId)) return state;
   return { ...state, selectedTileIds: state.selectedTileIds.filter((id) => id !== tileId) };
+}
+
+export function moveSilbenmixTile(state: SilbenmixState, tileId: string, insertIndex: number): SilbenmixState {
+  if (isFinished(state)) return state;
+  const fromIndex = state.selectedTileIds.indexOf(tileId);
+  if (fromIndex === -1) return state;
+  const selectedTileIds = state.selectedTileIds.filter((id) => id !== tileId);
+  const targetIndex = Math.max(0, Math.min(insertIndex, selectedTileIds.length));
+  selectedTileIds.splice(targetIndex, 0, tileId);
+  if (selectedTileIds.every((id, index) => id === state.selectedTileIds[index])) return state;
+  return { ...state, selectedTileIds };
 }
 
 export function submitSilbenmixWord(puzzle: SilbenmixPuzzle, state: SilbenmixState): SilbenmixSubmitResult {

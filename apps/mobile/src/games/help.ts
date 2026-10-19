@@ -3,7 +3,7 @@ export const gameHelp = {
     title: "So geht Anagramm",
     paragraphs: [
       "Sortiere die gemischten Buchstaben zum gesuchten Wort.",
-      "Tippe einen Buchstaben an, um ihn in die Lösungszeile zu setzen. Dort kannst du ihn wieder entfernen.",
+      "Ziehe einen Buchstaben in die Lösungszeile oder tippe ihn an. Dort kannst du ihn verschieben oder wieder entfernen.",
       "Du hast fünf falsche Lösungsversuche. Mehrere gültige Anagramme zählen als Lösung.",
       "Ein Hinweis fixiert einen noch ungelösten Buchstaben an seiner richtigen Stelle."
     ]
@@ -76,7 +76,7 @@ export const gameHelp = {
     title: "So geht Silbenmix",
     paragraphs: [
       "Setze aus dem gemischten Silbenpool alle gesuchten Wörter zusammen.",
-      "Tippe Silben an, um dein Wort zu bauen. In deiner Wortzeile kannst du sie wieder entfernen.",
+      "Ziehe Silben in dein Wort oder tippe sie an. In der Wortzeile kannst du sie verschieben oder zurück in den Pool ziehen.",
       "Prüfe dein Wort, sobald es fertig ist. Richtige Wörter bleiben gefunden und ihre Silben verschwinden aus dem Pool.",
       "Hinweise markieren eine Startsilbe oder ein Silbenpaar – oder decken ein fehlendes Wort auf."
     ]

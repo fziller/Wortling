@@ -6,6 +6,7 @@ import Animated, { FadeInDown, LinearTransition, useAnimatedStyle, useSharedValu
 
 import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { DraggableTile } from "@/components/DraggableTile";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { HelpModal } from "@/components/HelpModal";
@@ -15,7 +16,7 @@ import { getBerlinDateKey } from "@/daily/date";
 import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
 import { createDailySilbenmixGame, createNextSilbenmixGame, restoreSilbenmixPuzzle } from "@/games/silbenmix/daily";
-import { applySilbenmixPairHint, applySilbenmixStartHint, getSilbenmixDraft, getSilbenmixTarget, removeSilbenmixTile, revealSilbenmixSolution, revealSilbenmixWord, selectSilbenmixTile, submitSilbenmixWord } from "@/games/silbenmix/engine";
+import { applySilbenmixPairHint, applySilbenmixStartHint, getSilbenmixDraft, getSilbenmixTarget, moveSilbenmixTile, removeSilbenmixTile, revealSilbenmixSolution, revealSilbenmixWord, selectSilbenmixTile, submitSilbenmixWord } from "@/games/silbenmix/engine";
 import type { SilbenmixState } from "@/games/silbenmix/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
@@ -33,6 +34,11 @@ import { useGameRecorder } from "@/stats/recorder";
 
 const GAME_ID = "silbenmix";
 type SilbenmixGame = ReturnType<typeof createDailySilbenmixGame>;
+type DropRect = { height: number; width: number; x: number; y: number };
+
+function measureInWindow(view: View): Promise<DropRect> {
+  return new Promise((resolve) => view.measureInWindow((x, y, width, height) => resolve({ x, y, width, height })));
+}
 
 function difficultyLabel(value: string): string {
   return value === "easy" ? "leicht" : value === "hard" ? "schwer" : "mittel";
@@ -52,6 +58,9 @@ export default function SilbenmixScreen() {
   const hintPolicy = getHintPolicy();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
+  const draftRef = useRef<View>(null);
+  const poolRef = useRef<View>(null);
+  const selectedTileRefs = useRef(new Map<string, View>());
   const [game, setGame] = useState<SilbenmixGame>(() => createDailySilbenmixGame());
   const { dateKey, puzzle } = game;
   const [state, setState] = useState<SilbenmixState>(game.state);
@@ -124,8 +133,12 @@ export default function SilbenmixScreen() {
   }
 
   function choose(tileId: string) {
+    chooseAt(tileId, state.selectedTileIds.length);
+  }
+
+  function chooseAt(tileId: string, insertIndex: number) {
     startStats();
-    const next = selectSilbenmixTile(puzzle, state, tileId);
+    const next = selectSilbenmixTile(puzzle, state, tileId, insertIndex);
     if (next === state) return;
     selectionHaptic();
     setState(next);
@@ -137,6 +150,43 @@ export default function SilbenmixScreen() {
     if (next === state) return;
     selectionHaptic();
     setState(next);
+  }
+
+  async function isInside(view: View | null, x: number, y: number): Promise<boolean> {
+    if (!view) return false;
+    const rect = await measureInWindow(view);
+    return x >= rect.x && x <= rect.x + rect.width && y >= rect.y && y <= rect.y + rect.height;
+  }
+
+  async function draftInsertIndex(x: number, y: number): Promise<number | null> {
+    if (!await isInside(draftRef.current, x, y)) return null;
+    const tiles = await Promise.all(state.selectedTileIds.flatMap((tileId) => {
+      const view = selectedTileRefs.current.get(tileId);
+      return view ? [measureInWindow(view).then((rect) => ({ tileId, rect }))] : [];
+    }));
+    if (!tiles.length) return 0;
+    const ordered = [...tiles].sort((left, right) => left.rect.y === right.rect.y ? left.rect.x - right.rect.x : left.rect.y - right.rect.y);
+    const nextIndex = ordered.findIndex(({ rect }) => y < rect.y + rect.height / 2 || (y <= rect.y + rect.height && x < rect.x + rect.width / 2));
+    return nextIndex === -1 ? ordered.length : nextIndex;
+  }
+
+  function dropPoolTile(tileId: string, x: number, y: number) {
+    void draftInsertIndex(x, y).then((insertIndex) => {
+      if (insertIndex !== null) chooseAt(tileId, insertIndex);
+    });
+  }
+
+  function dropSelectedTile(tileId: string, x: number, y: number) {
+    void draftInsertIndex(x, y).then(async (insertIndex) => {
+      if (insertIndex !== null) {
+        const next = moveSilbenmixTile(state, tileId, insertIndex);
+        if (next === state) return;
+        selectionHaptic();
+        setState(next);
+      } else if (await isInside(poolRef.current, x, y)) {
+        remove(tileId);
+      }
+    });
   }
 
   function submit() {
@@ -210,15 +260,15 @@ export default function SilbenmixScreen() {
     >
       <View style={styles.wrap}>
         <Text style={styles.sectionLabel}>DEIN WORT</Text>
-        <ShakeView trigger={shakeTick}><Animated.View layout={LinearTransition.springify().damping(18).stiffness(220)} style={styles.draft}>
+        <ShakeView trigger={shakeTick}><Animated.View collapsable={false} layout={LinearTransition.springify().damping(18).stiffness(220)} ref={draftRef} style={styles.draft}>
           {state.selectedTileIds.length ? state.selectedTileIds.map((tileId) => {
             const tile = puzzle.tiles.find((item) => item.id === tileId);
-            return tile ? <SyllableTile key={tile.id} label={tile.syllable} onPress={() => remove(tile.id)} selected /> : null;
+            return tile ? <View collapsable={false} key={tile.id} ref={(view) => { if (view) selectedTileRefs.current.set(tile.id, view); else selectedTileRefs.current.delete(tile.id); }}><DraggableTile onDrop={(x, y) => dropSelectedTile(tile.id, x, y)}><SyllableTile label={tile.syllable} onPress={() => remove(tile.id)} selected /></DraggableTile></View> : null;
           }) : <Text style={styles.emptyDraft}>Tippe unten Silben an.</Text>}
         </Animated.View></ShakeView>
         <Text style={styles.sectionLabel}>SILBENPOOL</Text>
-        <View style={styles.pool}>
-          {puzzle.tiles.map((tile) => <SyllableTile disabled={used.has(tile.id) || selected.has(tile.id) || state.status !== "playing"} hinted={state.hintedTileIds.includes(tile.id)} key={tile.id} label={tile.syllable} onPress={() => choose(tile.id)} />)}
+        <View collapsable={false} ref={poolRef} style={styles.pool}>
+          {puzzle.tiles.map((tile) => { const disabled = used.has(tile.id) || selected.has(tile.id) || state.status !== "playing"; return <DraggableTile disabled={disabled} key={tile.id} onDrop={(x, y) => dropPoolTile(tile.id, x, y)}><SyllableTile disabled={disabled} hinted={state.hintedTileIds.includes(tile.id)} label={tile.syllable} onPress={() => choose(tile.id)} /></DraggableTile>; })}
         </View>
         <Text style={styles.sectionLabel}>GEFUNDEN</Text>
         <ScrollView contentContainerStyle={styles.foundList} style={styles.foundScroll} showsVerticalScrollIndicator={false}>

@@ -41,9 +41,11 @@ export function shuffleAnagrammLetters(answer: string, random = Math.random): st
   return [...letters.slice(first), ...letters.slice(0, first)];
 }
 
-export function placeAnagrammTile(puzzle: AnagrammPuzzle, state: AnagrammState, tileIndex: number): AnagrammState {
+export function placeAnagrammTile(puzzle: AnagrammPuzzle, state: AnagrammState, tileIndex: number, preferredSlotIndex?: number): AnagrammState {
   if (state.status !== "playing" || tileIndex < 0 || tileIndex >= puzzle.shuffledLetters.length || state.placedTileIndices.includes(tileIndex)) return state;
-  const slotIndex = state.placedTileIndices.findIndex((tile, index) => tile === null && !state.fixedIndices.includes(index));
+  const slotIndex = preferredSlotIndex === undefined
+    ? state.placedTileIndices.findIndex((tile, index) => tile === null && !state.fixedIndices.includes(index))
+    : state.placedTileIndices[preferredSlotIndex] === null && !state.fixedIndices.includes(preferredSlotIndex) ? preferredSlotIndex : -1;
   if (slotIndex === -1) return state;
   const placedTileIndices = [...state.placedTileIndices];
   placedTileIndices[slotIndex] = tileIndex;
@@ -54,6 +56,16 @@ export function removeAnagrammTile(state: AnagrammState, slotIndex: number): Ana
   if (state.status !== "playing" || state.fixedIndices.includes(slotIndex) || state.placedTileIndices[slotIndex] === null) return state;
   const placedTileIndices = [...state.placedTileIndices];
   placedTileIndices[slotIndex] = null;
+  return { ...state, placedTileIndices };
+}
+
+export function moveAnagrammTile(state: AnagrammState, fromSlotIndex: number, toSlotIndex: number): AnagrammState {
+  if (state.status !== "playing" || fromSlotIndex === toSlotIndex || state.fixedIndices.includes(fromSlotIndex) || state.fixedIndices.includes(toSlotIndex)) return state;
+  const tileIndex = state.placedTileIndices[fromSlotIndex];
+  if (tileIndex === null || fromSlotIndex < 0 || toSlotIndex < 0 || fromSlotIndex >= state.placedTileIndices.length || toSlotIndex >= state.placedTileIndices.length) return state;
+  const placedTileIndices = [...state.placedTileIndices];
+  placedTileIndices[fromSlotIndex] = placedTileIndices[toSlotIndex];
+  placedTileIndices[toSlotIndex] = tileIndex;
   return { ...state, placedTileIndices };
 }
 

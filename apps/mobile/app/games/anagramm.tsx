@@ -7,6 +7,7 @@ import Animated, { FadeInDown, LinearTransition, useAnimatedStyle, useSharedValu
 import { captureEvent } from "@/analytics/events";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
+import { DraggableTile } from "@/components/DraggableTile";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { HelpModal } from "@/components/HelpModal";
@@ -17,7 +18,7 @@ import { getBerlinDateKey } from "@/daily/date";
 import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { tokens } from "@/design/tokens";
 import { createNextAnagrammGame, restoreAnagrammPuzzle } from "@/games/anagramm/daily";
-import { applyAnagrammHint, getAnagrammDraft, getAnagrammHintPosition, placeAnagrammTile, removeAnagrammTile, revealAnagrammSolution, submitAnagrammGuess } from "@/games/anagramm/engine";
+import { applyAnagrammHint, getAnagrammDraft, getAnagrammHintPosition, moveAnagrammTile, placeAnagrammTile, removeAnagrammTile, revealAnagrammSolution, submitAnagrammGuess } from "@/games/anagramm/engine";
 import type { AnagrammState } from "@/games/anagramm/types";
 import { gameHelp } from "@/games/help";
 import { games } from "@/games/registry";
@@ -37,6 +38,11 @@ import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
 type AnagrammGame = ReturnType<typeof createNextAnagrammGame>;
+type DropRect = { height: number; width: number; x: number; y: number };
+
+function measureInWindow(view: View): Promise<DropRect> {
+  return new Promise((resolve) => view.measureInWindow((x, y, width, height) => resolve({ x, y, width, height })));
+}
 
 export default function AnagrammScreen() {
   const router = useRouter();
@@ -47,6 +53,7 @@ export default function AnagrammScreen() {
   const hintPolicy = getHintPolicy();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
+  const slotRefs = useRef(new Map<number, View>());
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
   const [game, setGame] = useState<AnagrammGame>(() => createNextAnagrammGame(undefined, today));
   const { dateKey, puzzle } = game;
@@ -119,8 +126,8 @@ export default function AnagrammScreen() {
     stats.start({ gameId: "anagramm", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength, difficulty: puzzle.difficulty });
   }
 
-  function place(tileIndex: number) {
-    const next = placeAnagrammTile(puzzle, state, tileIndex);
+  function place(tileIndex: number, preferredSlotIndex?: number) {
+    const next = placeAnagrammTile(puzzle, state, tileIndex, preferredSlotIndex);
     if (next === state) return;
     selectionHaptic();
     setState(next);
@@ -131,6 +138,28 @@ export default function AnagrammScreen() {
     if (next === state) return;
     selectionHaptic();
     setState(next);
+  }
+
+  async function slotAt(x: number, y: number): Promise<number | null> {
+    const slots = await Promise.all([...slotRefs.current.entries()].map(async ([index, view]) => ({ index, rect: await measureInWindow(view) })));
+    return slots.find(({ rect }) => x >= rect.x && x <= rect.x + rect.width && y >= rect.y && y <= rect.y + rect.height)?.index ?? null;
+  }
+
+  function dropPoolTile(tileIndex: number, x: number, y: number) {
+    void slotAt(x, y).then((slotIndex) => {
+      if (slotIndex === null || state.placedTileIndices[slotIndex] !== null || state.fixedIndices.includes(slotIndex)) return;
+      place(tileIndex, slotIndex);
+    });
+  }
+
+  function dropPlacedTile(fromSlotIndex: number, x: number, y: number) {
+    void slotAt(x, y).then((toSlotIndex) => {
+      if (toSlotIndex === null) return;
+      const next = moveAnagrammTile(state, fromSlotIndex, toSlotIndex);
+      if (next === state) return;
+      selectionHaptic();
+      setState(next);
+    });
   }
 
   async function useHint() {
@@ -224,14 +253,15 @@ export default function AnagrammScreen() {
       <View style={styles.content}>
         <Text style={styles.label}>BUCHSTABEN</Text>
         <View style={[styles.tiles, { gap: tileLayout.gap + 3 }]}>
-          {puzzle.shuffledLetters.map((letter, index) => <LetterTile disabled={state.status !== "playing" || usedTiles.has(index)} key={`${letter}-${index}`} label={letter} minHeight={tileLayout.minHeight + 10} onPress={() => place(index)} textSize={tileLayout.fontSize + 3} />)}
+          {puzzle.shuffledLetters.map((letter, index) => <DraggableTile disabled={state.status !== "playing" || usedTiles.has(index)} key={`${letter}-${index}`} onDrop={(x, y) => dropPoolTile(index, x, y)} style={styles.draggableTile}><LetterTile disabled={state.status !== "playing" || usedTiles.has(index)} label={letter} minHeight={tileLayout.minHeight + 10} onPress={() => place(index)} textSize={tileLayout.fontSize + 3} /></DraggableTile>)}
         </View>
         <Text style={styles.label}>LÖSUNG</Text>
         <ShakeView trigger={shakeTick}>
           <Animated.View layout={LinearTransition.springify().damping(18).stiffness(220)} style={[styles.tiles, { gap: tileLayout.gap }]}> 
             {state.placedTileIndices.map((tileIndex, index) => {
               const fixed = state.fixedIndices.includes(index);
-              return <LetterTile disabled={tileIndex === null || fixed || state.status !== "playing"} fixed={fixed} key={index} label={tileIndex === null ? "" : puzzle.shuffledLetters[tileIndex]} minHeight={tileLayout.minHeight + 10} onPress={() => remove(index)} textSize={tileLayout.fontSize + 3} />;
+              const disabled = tileIndex === null || fixed || state.status !== "playing";
+              return <View collapsable={false} key={index} ref={(view) => { if (view) slotRefs.current.set(index, view); else slotRefs.current.delete(index); }} style={styles.draggableTile}><DraggableTile disabled={disabled} onDrop={(x, y) => dropPlacedTile(index, x, y)} style={styles.draggableTile}><LetterTile disabled={disabled} fixed={fixed} label={tileIndex === null ? "" : puzzle.shuffledLetters[tileIndex]} minHeight={tileLayout.minHeight + 10} onPress={() => remove(index)} textSize={tileLayout.fontSize + 3} /></DraggableTile></View>;
             })}
           </Animated.View>
         </ShakeView>
@@ -270,7 +300,7 @@ const styles = StyleSheet.create({
   content: { flex: 1, gap: tokens.space.md, justifyContent: "center" },
   label: { color: tokens.color.muted, fontFamily: tokens.font.ui.semibold, fontSize: 11, letterSpacing: 1, textAlign: "center" },
   tiles: { flexDirection: "row", justifyContent: "center" },
-  tilePressable: { flex: 1, minWidth: 0 },
+  draggableTile: { flex: 1, minWidth: 0 }, tilePressable: { flex: 1, minWidth: 0 },
   tile: { alignItems: "center", backgroundColor: tokens.surface.control, borderColor: tokens.border.control, borderRadius: tokens.radius.sm, borderWidth: 2, flex: 1, justifyContent: "center", minWidth: 0 },
   tileText: { color: tokens.color.ink, ...tokens.typography.gameLetter },
   remaining: { color: tokens.color.muted, fontFamily: tokens.font.ui.semibold, fontSize: tokens.type.body, textAlign: "center" },
