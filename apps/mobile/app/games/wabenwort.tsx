@@ -244,7 +244,7 @@ export default function WabenwortScreen() {
       <View style={styles.wrap}>
         <RankProgress rank={rank} found={foundCount} puzzle={puzzle} />
         <Honeycomb activeLetter={activeLetter} activeTick={activeLetterTick} centerLetter={puzzle.centerLetter} letters={puzzle.letters} onLetter={addLetter} />
-        <View style={styles.input}><Text style={styles.inputText}>{input ? input.toLocaleUpperCase("de-DE") : "Wort eingeben"}</Text><Text style={styles.inputHint}>{message}</Text></View>
+        <View style={styles.input}><Text style={styles.inputText}>{input ? input.toLocaleUpperCase("de-DE") : "Wort eingeben"}</Text></View>
         <ScrollView contentContainerStyle={styles.foundContent} showsVerticalScrollIndicator={false} style={styles.foundList}>
           {foundByLength.length ? foundByLength.map(([length, words]) => <View key={length} style={styles.wordGroup}><Text style={styles.groupLabel}>{length} BUCHSTABEN · {words.length}/{totalByLength.get(length) ?? words.length}</Text><View style={styles.wordWrap}>{words.map((word) => <Animated.View entering={FadeInDown.duration(tokens.motion.quick)} key={word} layout={LinearTransition.springify().damping(18).stiffness(220)} style={[styles.wordChip, getWabenwortWord(puzzle, word)?.isPangram && styles.pangramChip]}><Text style={styles.wordChipText}>{word.toLocaleUpperCase("de-DE")}</Text></Animated.View>)}</View></View>) : <Text style={styles.emptyText}>Deine gefundenen Wörter erscheinen hier.</Text>}
         </ScrollView>

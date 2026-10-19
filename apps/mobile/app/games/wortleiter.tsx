@@ -409,9 +409,8 @@ export default function WortleiterScreen() {
           </ScrollView>
         </View>
 
-        {message || state.status === "won" ? (
+        {state.status === "won" ? (
           <View style={styles.statusBlock}>
-            <Text style={styles.message}>{message}</Text>
             {state.status === "won" ? (
               <Text style={styles.rating}>
                 {getWortleiterRating(puzzle, state)}

@@ -338,7 +338,6 @@ export default function WortschmelzeScreen() {
             return inputRow ? <ShakeView key={rowIndex} trigger={shakeTick}>{rowContent}</ShakeView> : rowContent;
           })}
         </GrowingGuessBoard>
-        <Text style={[styles.message, !message && styles.hiddenMessage]}>{message || " "}</Text>
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <ContinueAfterLossModal onContinue={continueAfterLoss} onGiveUp={reveal} visible={lossVisible} />

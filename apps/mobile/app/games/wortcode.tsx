@@ -420,7 +420,6 @@ export default function WortcodeScreen() {
             ) : null}
           </GrowingGuessBoard>
 
-          {message ? <Text style={styles.answer}>{message}</Text> : null}
         </ScrollView>
       </View>
       <ConfirmModal

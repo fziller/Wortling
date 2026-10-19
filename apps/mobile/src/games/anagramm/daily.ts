@@ -4,6 +4,7 @@ import type { BucketPreset } from "@/games/wordBuckets";
 import { ANAGRAMM_CONTENT_VERSION, anagrammTargetsByPreset } from "./content";
 import { createAnagrammState, getAnagrammSolutions, normalizeAnagrammWord, shuffleAnagrammLetters } from "./engine";
 import type { AnagrammDifficulty, AnagrammPuzzle, AnagrammWordLength } from "./types";
+import { pickFreshRound } from "@/storage/recentRounds";
 
 const lengths: readonly AnagrammWordLength[] = [4, 5, 6, 7, 8];
 const selectableLengths: readonly AnagrammWordLength[] = [5, 6, 7, 8];
@@ -22,7 +23,7 @@ export function createNextAnagrammGame(previousAnswer?: string, dateKey = "Freie
   const wordLength = pickLength(targetsByLength);
   const targets = targetsByLength[wordLength];
   const options = targets.filter((word) => word !== previousAnswer);
-  const answer = (options.length ? options : targets)[Math.floor(Math.random() * (options.length ? options.length : targets.length))];
+  const answer = pickFreshRound("anagramm", () => (options.length ? options : targets)[Math.floor(Math.random() * (options.length ? options.length : targets.length))], (candidate) => candidate);
   if (!answer) throw new Error("No Anagramm target words available.");
   const puzzle = createAnagrammPuzzle(answer, `anagramm-next-${Date.now()}`);
   return { dateKey, puzzle, state: createAnagrammState(puzzle) };

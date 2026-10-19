@@ -394,7 +394,6 @@ export default function FormwortScreen() {
             })}
           </GrowingGuessBoard>
 
-          {message ? <Text style={styles.answer}>{message}</Text> : null}
         </View>
       </ScrollView>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />

@@ -9,6 +9,7 @@ import { getBioTargetsForLength } from "../packs/selection";
 import type { PacksSettings } from "@/storage/packs";
 import { galgenwortPoolsByPreset } from "./content";
 import type { GalgenwortPuzzle } from "./types";
+import { pickFreshRound } from "@/storage/recentRounds";
 
 function buildBioPuzzlePool(): string[] {
   const allBio = [4, 5, 6, 7].flatMap((len) => [...getBioTargetsForLength(len)]);
@@ -52,15 +53,7 @@ function pickWeightedPuzzle(pool: GalgenwortPuzzle[], coreSize: number, bioSize:
 }
 
 export function createDailyGalgenwortGame(date = new Date(), preset: BucketPreset = "klassisch", packs?: PacksSettings) {
-  const dateKey = getBerlinDateKey(date);
-  const seed = `${dateKey}:galgenwort:${GALGENWORT_CONTENT_VERSION}:${preset}`;
-  const pool = getPoolWithPack(preset, packs);
-  // For haeufig, use weighted pick with core size
-  const coreSize = galgenwortPoolsByPreset[preset]?.length ?? galgenwortPuzzles.length;
-  const bioSize = pool.length - coreSize;
-  const puzzle = pickWeightedPuzzle(pool, coreSize, bioSize, seed, packs);
-
-  return { dateKey, puzzle, state: createGalgenwortState(puzzle) };
+  return createNextGalgenwortGame(undefined, getBerlinDateKey(date), preset, packs);
 }
 
 export function createNextGalgenwortGame(previousPuzzleId?: string, dateKey = "Freies Spiel", preset: BucketPreset = "klassisch", packs?: PacksSettings) {
@@ -68,7 +61,7 @@ export function createNextGalgenwortGame(previousPuzzleId?: string, dateKey = "F
   const coreSize = galgenwortPoolsByPreset[preset]?.length ?? galgenwortPuzzles.length;
   const bioSize = pool.length - coreSize;
   const seed = `${dateKey}:galgenwort:${preset}:${previousPuzzleId ?? ""}`;
-  const puzzle = pickWeightedPuzzle(pool, coreSize, bioSize, seed, packs, previousPuzzleId);
+  const puzzle = pickFreshRound("galgenwort", () => pickWeightedPuzzle(pool, coreSize, bioSize, `${seed}:${Math.random()}`, packs, previousPuzzleId), (item) => item.id);
 
   return { dateKey, puzzle, state: createGalgenwortState(puzzle) };
 }

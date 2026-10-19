@@ -29,6 +29,7 @@ Wortkniff is an offline-first German daily word game app. It bundles short, poli
 
 - Random puzzle selection when opening a game without saved in-progress input; Anagramm chooses curated 5- to 8-letter words automatically (5%, 40%, 35%, 20% by length), Worttreffer chooses 4- to 7-letter words automatically, while Formwort and Wortcode choose 5-, 6-, or 7-letter words.
 - Tageskniffe: each Berlin day highlights three existing games on Home; completing one puzzle in each highlighted game completes the day.
+- Rounds are selected randomly and locally avoid each game's ten most recently selected puzzles, while an in-progress round is always restored exactly.
 - Tageskniffe continuation: Home highlights unfinished Tageskniffe, result screens replace the completed game with the next open Tageskniff so Back returns Home, daily reminders deep-link to the next open Tageskniff, and an optional evening reminder is scheduled only after a player has started but not finished the Tageskniffe.
 - Local daily streaks based on consecutive completed Tageskniffe days.
 - Personal statistics stored locally in SQLite (`expo-sqlite`): every round is recorded as raw data (sessions, guesses with order/timing, hint events) via the central `StatsRecorder`. The Home streak and the `/stats` screen (lifetime summary, outcomes, streaks, per-game counts, word/letter stats, personal records, and Anagramm-specific free metrics) are computed from that raw data. Stats are strictly local; no guess words or answers reach PostHog.

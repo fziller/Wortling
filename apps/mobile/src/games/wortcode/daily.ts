@@ -7,6 +7,7 @@ import { BucketPreset, getWordsByLengthForPreset } from "@/games/wordBuckets";
 import { WortcodePuzzle } from "./types";
 import { pickRandomTargetWordWithPack } from "../packs/selection";
 import type { PacksSettings } from "@/storage/packs";
+import { pickFreshRound } from "@/storage/recentRounds";
 
 type WortcodeWordLength = Exclude<SupportedWordLength, 4>;
 
@@ -21,9 +22,11 @@ export function createDailyWortcodeGame(date = new Date(), preset: BucketPreset 
 
 export function createNextWortcodeGame(previousAnswer?: string, dateKey = "Freies Spiel", preset: BucketPreset = "klassisch", packs?: PacksSettings) {
   const targets = preset === "klassisch" ? wortcodeTargetsByLength : getWordsByLengthForPreset(preset);
-  const { answer, wordLength } = packs
-    ? pickRandomTargetWordWithPack(targets, packs, previousAnswer)
-    : pickRandomTargetWord(targets, previousAnswer);
+  const { answer, wordLength } = pickFreshRound(
+    "wortcode",
+    () => packs ? pickRandomTargetWordWithPack(targets, packs, previousAnswer) : pickRandomTargetWord(targets, previousAnswer),
+    (candidate) => candidate.answer,
+  );
   if (!isWortcodeWordLength(wordLength)) throw new Error("Wortcode only supports 5- to 7-letter words.");
   const puzzle = createWortcodePuzzle(answer, wordLength, `wortcode-next-${Date.now()}`);
 

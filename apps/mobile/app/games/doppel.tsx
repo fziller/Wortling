@@ -273,7 +273,6 @@ export default function DoppelScreen() {
             <Text style={styles.plus}>+</Text>
             <Text style={styles.sideWord}>{puzzle.rightWord.toUpperCase()}</Text>
           </View>
-          {message ? <Text style={styles.message}>{message}</Text> : null}
 
           {visibleHints.length > 0 ? (
             <View style={styles.hints}>

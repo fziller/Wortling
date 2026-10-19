@@ -236,7 +236,6 @@ export default function AnagrammScreen() {
           </Animated.View>
         </ShakeView>
         <Text style={styles.remaining}>{continuedAfterLoss ? "Fehler zählen nicht mehr." : `${Math.max(0, puzzle.maxAttempts - state.guesses.length)} Fehlversuche übrig`}</Text>
-        {message ? <Animated.Text entering={FadeInDown.duration(tokens.motion.quick)} style={styles.message}>{message}</Animated.Text> : null}
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <ContinueAfterLossModal onContinue={continueAfterLoss} onGiveUp={reveal} visible={lossVisible} />

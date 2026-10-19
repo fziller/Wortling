@@ -1,25 +1,21 @@
 import { getBerlinDateKey } from "@/daily/date";
-import { pickSeededIndex } from "@/daily/seed";
 
 import { WABENWORT_CONTENT_VERSION, wabenwortPuzzles } from "./content";
 import { createWabenwortState } from "./engine";
 import type { WabenwortPuzzle } from "./types";
+import { pickFreshRound } from "@/storage/recentRounds";
 
 function createPuzzle(item: (typeof wabenwortPuzzles)[number], id: string): WabenwortPuzzle {
   return { ...item, id, version: WABENWORT_CONTENT_VERSION, letters: [...item.letters], words: [...item.words], allowedWords: [...item.allowedWords] };
 }
 
 export function createDailyWabenwortGame(date = new Date()) {
-  const dateKey = getBerlinDateKey(date);
-  const item = wabenwortPuzzles[pickSeededIndex(`${dateKey}:wabenwort:${WABENWORT_CONTENT_VERSION}`, wabenwortPuzzles.length)];
-  if (!item) throw new Error("No Wabenwort puzzles available.");
-  const puzzle = createPuzzle(item, item.id);
-  return { dateKey, puzzle, state: createWabenwortState(puzzle) };
+  return createNextWabenwortGame(undefined, getBerlinDateKey(date));
 }
 
 export function createNextWabenwortGame(previousPuzzleId?: string, dateKey = "Freies Spiel") {
   const options = wabenwortPuzzles.filter((item) => item.id !== previousPuzzleId);
-  const item = options[Math.floor(Math.random() * options.length)] ?? wabenwortPuzzles[0];
+  const item = pickFreshRound("wabenwort", () => options[Math.floor(Math.random() * options.length)] ?? wabenwortPuzzles[0], (candidate) => candidate.id);
   if (!item) throw new Error("No Wabenwort puzzles available.");
   const puzzle = createPuzzle(item, `wabenwort-next-${Date.now()}`);
   return { dateKey, puzzle, state: createWabenwortState(puzzle) };

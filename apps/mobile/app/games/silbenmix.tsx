@@ -216,7 +216,6 @@ export default function SilbenmixScreen() {
             return tile ? <SyllableTile key={tile.id} label={tile.syllable} onPress={() => remove(tile.id)} selected /> : null;
           }) : <Text style={styles.emptyDraft}>Tippe unten Silben an.</Text>}
         </Animated.View></ShakeView>
-        {message ? <Animated.Text entering={FadeInDown.duration(tokens.motion.quick)} style={styles.message}>{message}</Animated.Text> : null}
         <Text style={styles.sectionLabel}>SILBENPOOL</Text>
         <View style={styles.pool}>
           {puzzle.tiles.map((tile) => <SyllableTile disabled={used.has(tile.id) || selected.has(tile.id) || state.status !== "playing"} hinted={state.hintedTileIds.includes(tile.id)} key={tile.id} label={tile.syllable} onPress={() => choose(tile.id)} />)}

@@ -4,6 +4,7 @@ import { createWorttrefferState } from "@/games/worttreffer/engine";
 
 import { WORTSCHMELZE_CONTENT_VERSION, wortschmelzePuzzlesByPreset } from "./content";
 import type { WortschmelzePuzzle } from "./types";
+import { pickFreshRound } from "@/storage/recentRounds";
 
 type GeneratedPuzzle = (typeof wortschmelzePuzzlesByPreset)[BucketPreset][number];
 
@@ -14,7 +15,7 @@ export function createDailyWortschmelzeGame(date = new Date(), preset: BucketPre
 export function createNextWortschmelzeGame(previousAnswer?: string, dateKey = "Freies Spiel", preset: BucketPreset = "klassisch") {
   const source = wortschmelzePuzzlesByPreset[preset] ?? wortschmelzePuzzlesByPreset.klassisch;
   const options = source.filter((puzzle) => puzzle.answer !== previousAnswer);
-  const item = (options.length > 0 ? options : source)[Math.floor(Math.random() * (options.length > 0 ? options.length : source.length))];
+  const item = pickFreshRound("wortschmelze", () => (options.length > 0 ? options : source)[Math.floor(Math.random() * (options.length > 0 ? options.length : source.length))], (candidate) => candidate.answer);
 
   if (!item) throw new Error("No Wortschmelze puzzles available.");
 

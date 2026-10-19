@@ -44,6 +44,7 @@ Wortkniff is an offline-first German word-game app. It provides short daily puzz
 - Completing all three gives one completed day and contributes to the local daily streak.
 - Home, result screens, and optional notifications point players to the next unfinished Tageskniff. Moving from a result to the next Tageskniff replaces the completed game in navigation, so Back returns to Home.
 - In-progress rounds, draft input, and completion state are stored locally. Home exposes a `Weiterspielen` shortcut when relevant.
+- New rounds are random and avoid each game's ten most recently selected puzzles; an in-progress round still resumes unchanged.
 
 ## Onboarding, help, and feedback
 

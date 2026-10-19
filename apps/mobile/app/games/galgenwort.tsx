@@ -284,9 +284,6 @@ export default function GalgenwortScreen() {
           {wrongLetters.length > 0 ? <Text style={styles.wrong}>Falsch: {wrongLetters.join(" ").toLocaleUpperCase("de-DE")}</Text> : null}
         </View>
 
-        {message && state.status !== "playing" ? <View style={styles.statusBlock}>
-          <Text style={styles.message}>{message}</Text>
-        </View> : null}
       </View>
       <ConfirmModal confirmLabel="Lösung zeigen" message="Die Lösung wird angezeigt und die Runde zählt nicht als geschafft." onCancel={() => setGiveUpVisible(false)} onConfirm={reveal} title="Lösung anzeigen?" visible={giveUpVisible} />
       <ContinueAfterLossModal onContinue={continueAfterLoss} onGiveUp={reveal} visible={lossVisible} />

@@ -7,6 +7,7 @@ import { BucketPreset, getWordsByLengthForPreset } from "@/games/wordBuckets";
 import type { FormwortPuzzle } from "./types";
 import { pickRandomTargetWordWithPack } from "../packs/selection";
 import type { PacksSettings } from "@/storage/packs";
+import { pickFreshRound } from "@/storage/recentRounds";
 
 type FormwortWordLength = Exclude<SupportedWordLength, 4>;
 
@@ -20,9 +21,11 @@ export function createDailyFormwortGame(date = new Date(), preset: BucketPreset 
 
 export function createNextFormwortGame(previousAnswer?: string, dateKey = "Freies Spiel", preset: BucketPreset = "klassisch", packs?: PacksSettings) {
   const targets = preset === "klassisch" ? formwortTargetsByLength : getWordsByLengthForPreset(preset);
-  const { answer, wordLength } = packs
-    ? pickRandomTargetWordWithPack(targets, packs, previousAnswer)
-    : pickRandomTargetWord(targets, previousAnswer);
+  const { answer, wordLength } = pickFreshRound(
+    "formwort",
+    () => packs ? pickRandomTargetWordWithPack(targets, packs, previousAnswer) : pickRandomTargetWord(targets, previousAnswer),
+    (candidate) => candidate.answer,
+  );
   if (!isFormwortWordLength(wordLength)) throw new Error("Formwort only supports 5- to 7-letter words.");
   const puzzle = createFormwortPuzzle(answer, wordLength, `formwort-next-${Date.now()}`);
 

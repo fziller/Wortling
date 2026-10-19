@@ -23,8 +23,10 @@ import { hasSeenNews, markNewsSeen } from "@/news/storage";
 import { OnboardingModal } from "@/onboarding/OnboardingModal";
 import { hasSeenOnboarding, markOnboardingSeen } from "@/onboarding/storage";
 import { loadDailyKniffeSeedOverride } from "@/storage/dailyKniffeDev";
+import { hasSeenDailyKniffeReward, markDailyKniffeRewardSeen } from "@/dailyKniffe/rewardStorage";
 import { loadCurrentWinDayStreak } from "@/stats/freeStats";
 import { isStartedProgress, loadProgressForGames, type StoredProgress } from "@/storage/progress";
+import { hydrateRecentRounds } from "@/storage/recentRounds";
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -36,6 +38,7 @@ export default function HomeScreen() {
   const [newsVisible, setNewsVisible] = useState(false);
   const [winDayStreak, setWinDayStreak] = useState({ current: 0, longest: 0, todayIsWinDay: false });
   const [seedOverride, setSeedOverride] = useState<number | undefined>();
+  const [dailyRewardSeen, setDailyRewardSeen] = useState(true);
   const completedEventIds = useRef(new Set<string>());
   const celebratedDateKeys = useRef(new Set<string>());
   const orderedGames = homeOrder
@@ -69,11 +72,14 @@ export default function HomeScreen() {
       hasSeenOnboarding(),
       currentNews ? hasSeenNews(currentNews.id) : Promise.resolve(true),
       loadProgressForGames(games.map((game) => game.id), dateKey),
-    ]).then(([nextSeedOverride, nextStreak, seenOnboarding, seenNews, progress]) => {
+      hasSeenDailyKniffeReward(dateKey),
+      hydrateRecentRounds(),
+    ]).then(([nextSeedOverride, nextStreak, seenOnboarding, seenNews, progress, seenDailyReward]) => {
       if (!mounted) return;
       setSeedOverride(nextSeedOverride);
       setWinDayStreak(nextStreak);
       setProgressByGame(progress);
+      setDailyRewardSeen(seenDailyReward);
       updateBadgeCount(progress, dateKey, nextSeedOverride);
       scheduleDailyReminder().catch(() => {});
       if (!seenOnboarding) setOnboardingVisible(true);
@@ -100,14 +106,17 @@ export default function HomeScreen() {
   }, [dateKey, dailyKniffe, posthog, progressByGame]);
 
   useEffect(() => {
-    if (!dailySummary.isComplete || !winDayStreak.todayIsWinDay || celebratedDateKeys.current.has(dateKey)) return;
+    if (!dailySummary.isComplete || !winDayStreak.todayIsWinDay || dailyRewardSeen || celebratedDateKeys.current.has(dateKey)) return;
 
     celebratedDateKeys.current.add(dateKey);
-    successHaptic();
-    captureEvent(posthog, "daily_kniffe_all_completed", { dateKey, streak: winDayStreak.current });
-    captureEvent(posthog, "daily_streak_updated", { dateKey, streak: winDayStreak.current });
-    setDailyRewardVisible(true);
-  }, [dateKey, dailySummary.isComplete, posthog, winDayStreak]);
+    markDailyKniffeRewardSeen(dateKey).then(() => {
+      successHaptic();
+      captureEvent(posthog, "daily_kniffe_all_completed", { dateKey, streak: winDayStreak.current });
+      captureEvent(posthog, "daily_streak_updated", { dateKey, streak: winDayStreak.current });
+      setDailyRewardSeen(true);
+      setDailyRewardVisible(true);
+    });
+  }, [dailyRewardSeen, dateKey, dailySummary.isComplete, posthog, winDayStreak]);
 
   function openDailyKniff(gameId: string) {
     const game = gameRegistry[gameId];

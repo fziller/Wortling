@@ -52,7 +52,7 @@
     "eas:build": "yarn content:generate && eas build --platform all --profile production",
     "eas:build:dev": "yarn content:generate && eas build --platform all --profile development",
     "eas:build:preview": "yarn content:generate && eas build --platform all --profile preview",
-    "eas:update": "yarn content:generate && eas update --channel production --message \"OTA update\"",
+    "expo:update": "yarn content:generate && eas update --channel production --message \"OTA update\"",
     "eas:submit": "eas submit --platform all --profile production",
     "eas:doctor": "eas doctor",
     "version:bump": "node scripts/version.mjs bump",

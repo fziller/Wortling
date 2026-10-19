@@ -466,7 +466,6 @@ export default function WorttrefferScreen() {
           })}
         </GrowingGuessBoard>
 
-        <Text style={[styles.message, !message && styles.hiddenMessage]}>{message || " "}</Text>
       </View>
       <ConfirmModal
         confirmLabel="Lösung zeigen"

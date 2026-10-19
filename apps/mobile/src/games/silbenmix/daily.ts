@@ -3,6 +3,7 @@ import { getBerlinDateKey } from "@/daily/date";
 import { materializeSilbenmixPuzzle, silbenmixPuzzleCandidates } from "./content";
 import { createSilbenmixState } from "./engine";
 import type { SilbenmixPuzzle } from "./types";
+import { pickFreshRound } from "@/storage/recentRounds";
 
 function clonePuzzle(puzzle: SilbenmixPuzzle, id = puzzle.id): SilbenmixPuzzle {
   return {
@@ -16,10 +17,12 @@ function clonePuzzle(puzzle: SilbenmixPuzzle, id = puzzle.id): SilbenmixPuzzle {
 export function createNextSilbenmixGame(previousPuzzleId?: string, dateKey = "Freies Spiel", random = Math.random) {
   const options = silbenmixPuzzleCandidates.filter((puzzle) => puzzle.id !== previousPuzzleId);
   const pool = options.length ? options : silbenmixPuzzleCandidates;
-  const roll = random();
-  const wordCount = roll < 0.35 ? 3 : roll < 0.7 ? 4 : 5;
-  const profilePool = pool.filter((puzzle) => puzzle.targetIndexes.length === wordCount);
-  const source = profilePool[Math.floor(random() * profilePool.length)] ?? pool[0];
+  const source = pickFreshRound("silbenmix", () => {
+    const roll = random();
+    const wordCount = roll < 0.35 ? 3 : roll < 0.7 ? 4 : 5;
+    const profilePool = pool.filter((puzzle) => puzzle.targetIndexes.length === wordCount);
+    return profilePool[Math.floor(random() * profilePool.length)] ?? pool[0];
+  }, (candidate) => candidate.id);
   if (!source) throw new Error("No Silbenmix puzzles available.");
   const puzzle = clonePuzzle(materializeSilbenmixPuzzle(source), dateKey === "Freies Spiel" ? `silbenmix-next-${Date.now()}` : source.id);
   return { dateKey, puzzle, state: createSilbenmixState(puzzle) };
