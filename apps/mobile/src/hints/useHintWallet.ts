@@ -7,6 +7,7 @@ import type { HintWallet } from "./types";
 import { createDefaultWallet } from "./storage";
 import { loadDebugHintRegenerationMs } from "./debugSettings";
 import { scheduleHintWalletFullReminder } from "@/notifications/scheduler";
+import { syncHintWalletFullReminder } from "./reminder";
 
 export function useHintWallet() {
   const [wallet, setWallet] = useState<HintWallet>(() => createDefaultWallet());
@@ -14,26 +15,20 @@ export function useHintWallet() {
   const [regenerationMs, setRegenerationMs] = useState<number | null>(null);
 
   useEffect(() => {
-    Promise.all([loadHintWallet(), loadDebugHintRegenerationMs()]).then(async ([w, intervalMs]) => {
-      const next = regenerateHints(w, Date.now(), intervalMs);
+    syncHintWalletFullReminder().then(({ wallet: next, intervalMs }) => {
       setWallet(next);
       setRegenerationMs(intervalMs);
-      await saveHintWallet(next);
-      scheduleHintWalletFullReminder(fullHintsAt(next, Date.now(), intervalMs)).catch(() => {});
       setLoaded(true);
-    });
+    }).catch(() => setLoaded(true));
   }, []);
 
   // reload when app comes to foreground (multi-screen consistency)
   useEffect(() => {
     const sub = AppState.addEventListener("change", (s) => {
-      if (s === "active") Promise.all([loadHintWallet(), loadDebugHintRegenerationMs()]).then(async ([w, intervalMs]) => {
-        const next = regenerateHints(w, Date.now(), intervalMs);
+      if (s === "active") syncHintWalletFullReminder().then(({ wallet: next, intervalMs }) => {
         setWallet(next);
         setRegenerationMs(intervalMs);
-        await saveHintWallet(next);
-        scheduleHintWalletFullReminder(fullHintsAt(next, Date.now(), intervalMs)).catch(() => {});
-      });
+      }).catch(() => {});
     });
     return () => sub.remove();
   }, []);

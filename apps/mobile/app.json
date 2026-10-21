@@ -17,6 +17,9 @@
     },
     "android": {
       "package": "com.existuus.wortling",
+      "permissions": [
+        "android.permission.SCHEDULE_EXACT_ALARM"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-foreground.png",
         "backgroundColor": "#232E40"

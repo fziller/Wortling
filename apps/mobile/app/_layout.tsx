@@ -18,6 +18,7 @@ import { captureEvent } from "@/analytics/events";
 import { configureNotifications } from "@/notifications/configure";
 import { requestNotificationPermission } from "@/notifications/register";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
+import { syncHintWalletFullReminder } from "@/hints/reminder";
 import { closeAbandonedSessions } from "@/stats/repository";
 import { initStats } from "@/stats/db";
 
@@ -42,7 +43,10 @@ function RootLayoutInner() {
     }
 
     requestNotificationPermission()
-      .then((granted) => captureEvent(posthog, "notification_permission_result", { granted, source: "startup" }))
+      .then(async (granted) => {
+        captureEvent(posthog, "notification_permission_result", { granted, source: "startup" });
+        await syncHintWalletFullReminder();
+      })
       .catch(() => {});
 
     scheduleDailyReminder().catch(() => {});

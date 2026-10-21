@@ -94,7 +94,15 @@ export function revealFormwortSolution(state: FormwortState): FormwortState {
 
 export function getFormwortHintPosition(puzzle: FormwortPuzzle, state: FormwortState, random = Math.random): number | null {
   const revealed = new Set(state.revealedIndices ?? []);
-  const availableSymbols = [...new Set(puzzle.symbols.filter((symbol, index) => !revealed.has(index)))];
+  const correct = new Set<number>();
+  for (const guess of state.guesses) {
+    guess.marks.forEach((mark, index) => {
+      if (mark === "correct") correct.add(index);
+    });
+  }
+  const availableSymbols = [...new Set(puzzle.symbols)].filter((symbol) => puzzle.symbols.every(
+    (item, index) => item !== symbol || (!revealed.has(index) && !correct.has(index)),
+  ));
   if (availableSymbols.length === 0) return null;
   const symbol = availableSymbols[Math.floor(random() * availableSymbols.length)];
 

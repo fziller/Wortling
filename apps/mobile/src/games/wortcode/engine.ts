@@ -135,12 +135,17 @@ export function revealWortcodeSolution(state: WortcodeState): WortcodeState {
   return { ...state, status: "revealed" };
 }
 
-export function getWortcodeHintPosition(puzzle: WortcodePuzzle, state: WortcodeState): number | null {
+export function getWortcodeHintPosition(puzzle: WortcodePuzzle, state: WortcodeState, random = Math.random): number | null {
   const revealed = new Set(state.revealedIndices ?? []);
+  for (const marks of getWortcodeEffectiveMarks(state)) {
+    marks.forEach((mark, index) => {
+      if (mark === "exact") revealed.add(index);
+    });
+  }
   const available: number[] = [];
   for (let i = 0; i < puzzle.wordLength; i += 1) if (!revealed.has(i)) available.push(i);
   if (available.length === 0) return null;
-  return available[Math.floor(Math.random() * available.length)];
+  return available[Math.floor(random() * available.length)];
 }
 
 export function applyWortcodeHint(puzzle: WortcodePuzzle, state: WortcodeState): WortcodeState {

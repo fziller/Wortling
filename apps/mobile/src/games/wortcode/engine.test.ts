@@ -4,7 +4,8 @@ import { getWordLength, supportedWordLengths } from "../wordLengths";
 
 import { guessWords, wortcodeTargetsByLength } from "./content";
 import { createWortcodePuzzle, getWortcodeDifficulty, getWortcodeMaxAttempts, restoreWortcodePuzzle } from "./daily";
-import { createWortcodeState, evaluateGuess, getWortcodeEffectiveMarks, submitWortcodeGuess, toggleWortcodeLetterMark } from "./engine";
+import { createWortcodeState, evaluateGuess, getWortcodeEffectiveMarks, getWortcodeHintPosition, submitWortcodeGuess, toggleWortcodeLetterMark } from "./engine";
+import type { WortcodeState } from "./types";
 
 const puzzle = createWortcodePuzzle("banane", 6, "test");
 
@@ -118,6 +119,15 @@ describe("wortcode engine", () => {
       ["exact", "none", "none", "none", "none", "none"],
       ["exact", "none", "none", "none", "none", "none"],
     ]);
+  });
+
+  it("does not hint positions already marked green", () => {
+    const state: WortcodeState = {
+      ...createWortcodeState(puzzle),
+      guesses: [{ value: "ananas", exactMatches: 0, misplacedMatches: 4, marks: ["none", "none", "exact", "none", "none", "none"] }],
+    };
+
+    expect(getWortcodeHintPosition(puzzle, state, () => 0.4)).toBe(3);
   });
 
   it("restores old persisted puzzles without wordLength", () => {

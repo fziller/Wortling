@@ -4,7 +4,8 @@ import { getWordLength, supportedWordLengths } from "../wordLengths";
 
 import { formwortGuessWords, formwortTargetsByLength } from "./content";
 import { createFormwortPuzzle, getFormwortMaxAttempts, restoreFormwortPuzzle } from "./daily";
-import { applyFormwortHint, applyFormwortInputLetter, createFormwortState, createFormwortSymbols, getFormwortRevealedLetters, removeFormwortInputLetter, submitFormwortGuess } from "./engine";
+import { applyFormwortHint, applyFormwortInputLetter, createFormwortState, createFormwortSymbols, getFormwortHintPosition, getFormwortRevealedLetters, removeFormwortInputLetter, submitFormwortGuess } from "./engine";
+import type { FormwortState } from "./types";
 
 const puzzle = createFormwortPuzzle("allee", 5, "test");
 
@@ -35,6 +36,15 @@ describe("formwort engine", () => {
     expect(firstHint.revealedIndices).toEqual([1, 2]);
     expect(getFormwortRevealedLetters(puzzle, firstHint)).toEqual([null, "l", "l", null, null]);
     expect(secondHint.revealedIndices).toEqual([1, 2, 3, 4]);
+  });
+
+  it("does not hint a shape that is already green", () => {
+    const state: FormwortState = {
+      ...createFormwortState(puzzle),
+      guesses: [{ value: "allee", marks: ["correct", "absent", "absent", "absent", "absent"] }],
+    };
+
+    expect(getFormwortHintPosition(puzzle, state, () => 0)).toBe(1);
   });
 
   it("submits guesses with wordle feedback", () => {
