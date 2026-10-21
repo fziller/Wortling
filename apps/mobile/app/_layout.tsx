@@ -9,6 +9,7 @@ import * as Sentry from "@sentry/react-native";
 import { PostHogProvider, usePostHog } from "posthog-react-native";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { AppSplash } from "@/components/AppSplash";
 import { getBerlinDateKey } from "@/daily/date";
@@ -21,6 +22,7 @@ import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { syncHintWalletFullReminder } from "@/hints/reminder";
 import { closeAbandonedSessions } from "@/stats/repository";
 import { initStats } from "@/stats/db";
+import { OtaUpdateSnackbar } from "@/updates/OtaUpdateSnackbar";
 
 initSentry();
 
@@ -97,6 +99,7 @@ function RootLayoutInner() {
         }}
       />
       {showSplash ? <AppSplash /> : null}
+      <OtaUpdateSnackbar canShow={!showSplash} />
       <StatusBar style={showSplash ? "light" : "dark"} />
     </>
   );
@@ -104,12 +107,14 @@ function RootLayoutInner() {
 
 function PostHogWrapper() {
   return (
-    <PostHogProvider
-      apiKey={posthogConfig.apiKey}
-      options={posthogConfig.options}
-    >
-      <RootLayoutInner />
-    </PostHogProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <PostHogProvider
+        apiKey={posthogConfig.apiKey}
+        options={posthogConfig.options}
+      >
+        <RootLayoutInner />
+      </PostHogProvider>
+    </GestureHandlerRootView>
   );
 }
 

@@ -31,6 +31,9 @@ export type WortkniffEvents = {
   store_review_native_requested: { source: "first_result" };
   store_review_store_opened: { source: "first_result" | "settings" };
   store_review_store_unavailable: { source: "first_result" | "settings" };
+  ota_update_available: Record<string, never>;
+  ota_update_dismissed: Record<string, never>;
+  ota_update_restart_pressed: Record<string, never>;
 };
 
 export type AnalyticsClient = {

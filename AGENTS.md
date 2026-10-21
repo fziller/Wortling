@@ -35,6 +35,12 @@ Wortkniff is an Expo + React Native + TypeScript mobile app for German daily wor
 - Challenge new tasks that lack animation consideration: ask whether a toggle, modal, tile, or navigation needs a spring/timing transition before marking done.
 - Keep animations offline-friendly and lightweight (Reanimated worklets only, no JS-thread jank).
 
+## Gameplay Sanity Checks
+
+- For every changed game screen, run a quick on-device Maestro sanity check before handoff. Start/open the app on an available simulator or emulator, navigate to every changed game, and capture a screenshot after the screen settles.
+- Inspect the screenshot and view hierarchy for crashes, clipped or overlapping content, and game controls hidden under the header, footer, keyboard, or safe areas. Exercise one primary interaction when practical.
+- If no device is available, say so in the handoff. Do not claim the visual check passed.
+
 ## Word Data
 
 - Keep target words and allowed guesses separate: target words are curated daily solutions; allowed guesses are generated validation/ranking data.
