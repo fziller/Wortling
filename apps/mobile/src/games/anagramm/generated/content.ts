@@ -14,8 +14,6 @@ export const generatedAnagrammTargetsByLength = {
     "amin",
     "amok",
     "anal",
-    "anke",
-    "anno",
     "ante",
     "anti",
     "anus",
@@ -28,7 +26,6 @@ export const generatedAnagrammTargetsByLength = {
     "auge",
     "auto",
     "avec",
-    "axel",
     "azur",
     "baba",
     "babe",
@@ -44,12 +41,9 @@ export const generatedAnagrammTargetsByLength = {
     "beil",
     "bein",
     "berg",
-    "bern",
     "bett",
-    "bibi",
     "bien",
     "bier",
-    "bild",
     "blau",
     "blei",
     "blöd",
@@ -57,7 +51,6 @@ export const generatedAnagrammTargetsByLength = {
     "blut",
     "boah",
     "bobo",
-    "bond",
     "bong",
     "boot",
     "bora",
@@ -121,7 +114,6 @@ export const generatedAnagrammTargetsByLength = {
     "dodo",
     "doge",
     "dojo",
-    "doll",
     "dong",
     "doof",
     "dorf",
@@ -133,7 +125,6 @@ export const generatedAnagrammTargetsByLength = {
     "dumm",
     "dune",
     "dung",
-    "dürr",
     "dutt",
     "eben",
     "echo",
@@ -167,7 +158,6 @@ export const generatedAnagrammTargetsByLength = {
     "fett",
     "fiat",
     "fies",
-    "fink",
     "fist",
     "flip",
     "flop",
@@ -191,7 +181,6 @@ export const generatedAnagrammTargetsByLength = {
     "gelb",
     "geld",
     "gell",
-    "genf",
     "gern",
     "gift",
     "glee",
@@ -200,7 +189,6 @@ export const generatedAnagrammTargetsByLength = {
     "gold",
     "gott",
     "grad",
-    "graf",
     "gral",
     "gram",
     "gran",
@@ -249,7 +237,6 @@ export const generatedAnagrammTargetsByLength = {
     "horn",
     "hort",
     "huch",
-    "hugo",
     "huhn",
     "huhu",
     "hulk",
@@ -258,7 +245,6 @@ export const generatedAnagrammTargetsByLength = {
     "idol",
     "iglu",
     "inne",
-    "iran",
     "item",
     "iwan",
     "jade",
@@ -277,7 +263,6 @@ export const generatedAnagrammTargetsByLength = {
     "jung",
     "juno",
     "kaff",
-    "kahl",
     "kahn",
     "kali",
     "kalt",
@@ -294,7 +279,6 @@ export const generatedAnagrammTargetsByLength = {
     "kelp",
     "kerl",
     "khan",
-    "kiel",
     "kilo",
     "kilt",
     "kind",
@@ -303,7 +287,6 @@ export const generatedAnagrammTargetsByLength = {
     "kino",
     "kitt",
     "klan",
-    "klee",
     "klub",
     "klug",
     "kode",
@@ -332,7 +315,6 @@ export const generatedAnagrammTargetsByLength = {
     "laub",
     "laut",
     "lehm",
-    "lenz",
     "lied",
     "lift",
     "link",
@@ -351,11 +333,8 @@ export const generatedAnagrammTargetsByLength = {
     "mami",
     "mann",
     "mara",
-    "marc",
     "mare",
-    "matt",
     "maxi",
-    "maya",
     "mayo",
     "meck",
     "meer",
@@ -412,7 +391,6 @@ export const generatedAnagrammTargetsByLength = {
     "oger",
     "opal",
     "oral",
-    "otto",
     "oval",
     "pakt",
     "palm",
@@ -462,7 +440,6 @@ export const generatedAnagrammTargetsByLength = {
     "rick",
     "riff",
     "rind",
-    "rita",
     "rohr",
     "rosa",
     "ross",
@@ -477,7 +454,6 @@ export const generatedAnagrammTargetsByLength = {
     "safe",
     "saft",
     "sali",
-    "sami",
     "sand",
     "sani",
     "sari",
@@ -539,7 +515,6 @@ export const generatedAnagrammTargetsByLength = {
     "toga",
     "töle",
     "tone",
-    "tony",
     "tool",
     "tora",
     "toto",
@@ -562,7 +537,6 @@ export const generatedAnagrammTargetsByLength = {
     "vieh",
     "viel",
     "vite",
-    "vogt",
     "volk",
     "voll",
     "vorn",
@@ -577,7 +551,6 @@ export const generatedAnagrammTargetsByLength = {
     "wert",
     "west",
     "wett",
-    "wien",
     "wild",
     "wirr",
     "wirt",
@@ -603,7 +576,6 @@ export const generatedAnagrammTargetsByLength = {
     "zelt",
     "zero",
     "zeta",
-    "zeus",
     "zimt",
     "zinn",
     "zoff",
@@ -667,10 +639,8 @@ export const generatedAnagrammTargetsByLength = {
     "block",
     "blond",
     "bloss",
-    "bobby",
     "boden",
     "brass",
-    "braun",
     "breit",
     "brent",
     "brett",
@@ -678,10 +648,8 @@ export const generatedAnagrammTargetsByLength = {
     "brite",
     "bruch",
     "buddy",
-    "busch",
     "butch",
     "caddy",
-    "carol",
     "cello",
     "champ",
     "chase",
@@ -717,7 +685,6 @@ export const generatedAnagrammTargetsByLength = {
     "dödel",
     "dolan",
     "dolch",
-    "donna",
     "donut",
     "draht",
     "drama",
@@ -741,8 +708,6 @@ export const generatedAnagrammTargetsByLength = {
     "enorm",
     "enzym",
     "erdöl",
-    "erika",
-    "ernst",
     "essay",
     "essig",
     "ethan",
@@ -769,12 +734,9 @@ export const generatedAnagrammTargetsByLength = {
     "foyer",
     "frack",
     "franc",
-    "frank",
     "freak",
     "frech",
     "fremd",
-    "fritz",
-    "fromm",
     "frust",
     "fuhre",
     "fünft",
@@ -803,7 +765,6 @@ export const generatedAnagrammTargetsByLength = {
     "grant",
     "greis",
     "grell",
-    "grimm",
     "groll",
     "gross",
     "grund",
@@ -815,17 +776,12 @@ export const generatedAnagrammTargetsByLength = {
     "hades",
     "hafen",
     "hafer",
-    "hakim",
     "hallo",
     "handy",
     "harem",
     "haupt",
     "hecht",
-    "heidi",
     "heini",
-    "heinz",
-    "helge",
-    "henry",
     "herab",
     "heran",
     "herum",
@@ -842,7 +798,6 @@ export const generatedAnagrammTargetsByLength = {
     "holle",
     "honig",
     "horne",
-    "horst",
     "hotel",
     "humor",
     "hurra",
@@ -861,10 +816,8 @@ export const generatedAnagrammTargetsByLength = {
     "intus",
     "janus",
     "jeher",
-    "jesus",
     "jetzt",
     "joint",
-    "jonny",
     "juice",
     "jumbo",
     "juwel",
@@ -884,7 +837,6 @@ export const generatedAnagrammTargetsByLength = {
     "klaps",
     "klaro",
     "kleid",
-    "klein",
     "klima",
     "knabe",
     "knapp",
@@ -911,7 +863,6 @@ export const generatedAnagrammTargetsByLength = {
     "lakai",
     "largo",
     "lasso",
-    "laura",
     "ledig",
     "legal",
     "lepra",
@@ -929,20 +880,15 @@ export const generatedAnagrammTargetsByLength = {
     "macho",
     "madam",
     "magen",
-    "major",
     "mambo",
-    "marie",
     "marin",
     "markt",
     "massa",
-    "meier",
     "meist",
     "mekka",
     "merci",
-    "merle",
     "mette",
     "mikro",
-    "milan",
     "mille",
     "mobil",
     "modul",
@@ -985,8 +931,6 @@ export const generatedAnagrammTargetsByLength = {
     "patch",
     "patty",
     "pedal",
-    "penny",
-    "peter",
     "petit",
     "pfahl",
     "pfand",
@@ -1028,10 +972,8 @@ export const generatedAnagrammTargetsByLength = {
     "raven",
     "regal",
     "retro",
-    "rhein",
     "riese",
     "river",
-    "roger",
     "rollo",
     "roman",
     "rosig",
@@ -1120,7 +1062,6 @@ export const generatedAnagrammTargetsByLength = {
     "titan",
     "titte",
     "toast",
-    "tommy",
     "tonic",
     "total",
     "trans",
@@ -1156,7 +1097,6 @@ export const generatedAnagrammTargetsByLength = {
     "video",
     "viert",
     "vikar",
-    "viola",
     "viper",
     "visum",
     "vogel",
@@ -1164,7 +1104,6 @@ export const generatedAnagrammTargetsByLength = {
     "voran",
     "vorne",
     "warum",
-    "weber",
     "welpe",
     "wenig",
     "wieso",
@@ -1196,12 +1135,10 @@ export const generatedAnagrammTargetsByLength = {
     "absurd",
     "abteil",
     "abwurf",
-    "afrika",
     "akkord",
     "akzent",
     "albino",
     "alltag",
-    "anders",
     "anfall",
     "anflug",
     "anhand",
@@ -1232,7 +1169,6 @@ export const generatedAnagrammTargetsByLength = {
     "autsch",
     "auweia",
     "avatar",
-    "balkan",
     "balkon",
     "ballon",
     "bandit",
@@ -1247,7 +1183,6 @@ export const generatedAnagrammTargetsByLength = {
     "beinah",
     "benzin",
     "bergab",
-    "berlin",
     "besser",
     "bezirk",
     "bikini",
@@ -1273,8 +1208,6 @@ export const generatedAnagrammTargetsByLength = {
     "cabrio",
     "campen",
     "canyon",
-    "carina",
-    "carmen",
     "carver",
     "casino",
     "castor",
@@ -1291,7 +1224,6 @@ export const generatedAnagrammTargetsByLength = {
     "cyborg",
     "daheim",
     "damals",
-    "damian",
     "daphne",
     "darren",
     "dasein",
@@ -1334,7 +1266,6 @@ export const generatedAnagrammTargetsByLength = {
     "ersatz",
     "eskimo",
     "essbar",
-    "europa",
     "exmann",
     "extrem",
     "faible",
@@ -1404,7 +1335,6 @@ export const generatedAnagrammTargetsByLength = {
     "gigolo",
     "glasur",
     "global",
-    "gloria",
     "gnädig",
     "golden",
     "goldig",
@@ -1428,7 +1358,6 @@ export const generatedAnagrammTargetsByLength = {
     "hastig",
     "häufig",
     "hauser",
-    "hawaii",
     "heftig",
     "hehler",
     "heikel",
@@ -1479,15 +1408,12 @@ export const generatedAnagrammTargetsByLength = {
     "iraner",
     "irgend",
     "irrtum",
-    "island",
     "jaguar",
-    "jasmin",
     "jawohl",
     "jawoll",
     "jemals",
     "jersey",
     "jetlag",
-    "jochen",
     "jockey",
     "jucken",
     "junior",
@@ -1522,9 +1448,7 @@ export const generatedAnagrammTargetsByLength = {
     "konsum",
     "konvoi",
     "kostüm",
-    "kramer",
     "kredit",
-    "krüger",
     "kürbis",
     "kürzer",
     "landei",
@@ -1571,7 +1495,6 @@ export const generatedAnagrammTargetsByLength = {
     "moloch",
     "moment",
     "montag",
-    "moritz",
     "mörser",
     "moslem",
     "muffin",
@@ -1610,7 +1533,6 @@ export const generatedAnagrammTargetsByLength = {
     "pardon",
     "parfüm",
     "parfum",
-    "pascal",
     "pascha",
     "passiv",
     "pastor",
@@ -1661,7 +1583,6 @@ export const generatedAnagrammTargetsByLength = {
     "ritual",
     "rivale",
     "robust",
-    "roland",
     "rührei",
     "rundum",
     "runter",
@@ -1717,7 +1638,6 @@ export const generatedAnagrammTargetsByLength = {
     "sofort",
     "soldat",
     "sonnig",
-    "sophia",
     "sozial",
     "spasti",
     "specht",
@@ -1729,7 +1649,6 @@ export const generatedAnagrammTargetsByLength = {
     "sprung",
     "stabil",
     "stande",
-    "stefan",
     "steril",
     "stetig",
     "stokes",
@@ -1746,7 +1665,6 @@ export const generatedAnagrammTargetsByLength = {
     "sultan",
     "summer",
     "surfen",
-    "sutter",
     "symbol",
     "system",
     "tablet",
@@ -1793,7 +1711,6 @@ export const generatedAnagrammTargetsByLength = {
     "unecht",
     "unfair",
     "unfall",
-    "ungarn",
     "ungern",
     "unheil",
     "unklar",
@@ -1834,7 +1751,6 @@ export const generatedAnagrammTargetsByLength = {
     "vulkan",
     "wacker",
     "waggon",
-    "wagner",
     "walker",
     "wärmer",
     "warner",
@@ -1861,7 +1777,6 @@ export const generatedAnagrammTargetsByLength = {
     "zufall",
     "zugang",
     "zünder",
-    "zürich",
     "zusatz",
     "zyklop"
   ],
@@ -2133,7 +2048,6 @@ export const generatedAnagrammTargetsByLength = {
     "hashtag",
     "hatschi",
     "haustür",
-    "havanna",
     "heimweg",
     "heimweh",
     "herüber",
@@ -2147,7 +2061,6 @@ export const generatedAnagrammTargetsByLength = {
     "hochmut",
     "hodscha",
     "höflich",
-    "holland",
     "holprig",
     "holzweg",
     "homerun",
@@ -2181,7 +2094,6 @@ export const generatedAnagrammTargetsByLength = {
     "kapitän",
     "kapitol",
     "karaoke",
-    "karibik",
     "kartell",
     "katalog",
     "kerosin",
@@ -2269,7 +2181,6 @@ export const generatedAnagrammTargetsByLength = {
     "morphin",
     "mühelos",
     "münchen",
-    "münster",
     "musical",
     "mustang",
     "nachbar",
@@ -2376,7 +2287,6 @@ export const generatedAnagrammTargetsByLength = {
     "rückruf",
     "rückweg",
     "rückzug",
-    "rudolph",
     "rumpeln",
     "saatgut",
     "samstag",
@@ -2391,7 +2301,6 @@ export const generatedAnagrammTargetsByLength = {
     "schluss",
     "schmach",
     "schmied",
-    "schmitz",
     "schmuck",
     "schmutz",
     "schnaps",
@@ -2400,7 +2309,6 @@ export const generatedAnagrammTargetsByLength = {
     "schrill",
     "schroff",
     "schrott",
-    "schulze",
     "schurke",
     "schwach",
     "schwanz",
@@ -2446,7 +2354,6 @@ export const generatedAnagrammTargetsByLength = {
     "ständig",
     "stärker",
     "staubig",
-    "stephan",
     "steward",
     "stickig",
     "stinker",
@@ -2553,9 +2460,7 @@ export const generatedAnagrammTargetsByLength = {
     "wichser",
     "wichtig",
     "wieviel",
-    "wilhelm",
     "wirksam",
-    "wolfram",
     "wurscht",
     "wütende",
     "zahltag",
@@ -2585,7 +2490,6 @@ export const generatedAnagrammTargetsByLength = {
     "abschuss",
     "absprung",
     "abwesend",
-    "achilles",
     "adjutant",
     "albtraum",
     "allerlei",
@@ -2653,8 +2557,6 @@ export const generatedAnagrammTargetsByLength = {
     "beispiel",
     "bekloppt",
     "beknackt",
-    "benjamin",
-    "bergmann",
     "bergwerk",
     "bescheid",
     "beschuss",
@@ -2811,7 +2713,6 @@ export const generatedAnagrammTargetsByLength = {
     "freilich",
     "freiraum",
     "friedhof",
-    "fröhlich",
     "frühjahr",
     "frühling",
     "führende",
@@ -2939,12 +2840,10 @@ export const generatedAnagrammTargetsByLength = {
     "investor",
     "irgendwo",
     "ironisch",
-    "isabelle",
     "jahrbuch",
     "jahrgang",
     "jährlich",
     "jedesmal",
-    "johannes",
     "jubiläum",
     "jüngling",
     "juwelier",
@@ -3172,7 +3071,6 @@ export const generatedAnagrammTargetsByLength = {
     "saboteur",
     "sachlich",
     "sägewerk",
-    "salzburg",
     "sandmann",
     "satellit",
     "säugling",
@@ -3182,7 +3080,6 @@ export const generatedAnagrammTargetsByLength = {
     "schamlos",
     "schärfer",
     "scheusal",
-    "schiller",
     "schisser",
     "schlecht",
     "schlumpf",
@@ -3390,8 +3287,6 @@ export const generatedAnagrammTargetsByPreset = {
       "amin",
       "amok",
       "anal",
-      "anke",
-      "anno",
       "ante",
       "anti",
       "anus",
@@ -3404,7 +3299,6 @@ export const generatedAnagrammTargetsByPreset = {
       "auge",
       "auto",
       "avec",
-      "axel",
       "azur",
       "baba",
       "babe",
@@ -3420,12 +3314,9 @@ export const generatedAnagrammTargetsByPreset = {
       "beil",
       "bein",
       "berg",
-      "bern",
       "bett",
-      "bibi",
       "bien",
       "bier",
-      "bild",
       "blau",
       "blei",
       "blöd",
@@ -3433,7 +3324,6 @@ export const generatedAnagrammTargetsByPreset = {
       "blut",
       "boah",
       "bobo",
-      "bond",
       "bong",
       "boot",
       "bora",
@@ -3497,7 +3387,6 @@ export const generatedAnagrammTargetsByPreset = {
       "dodo",
       "doge",
       "dojo",
-      "doll",
       "dong",
       "doof",
       "dorf",
@@ -3509,7 +3398,6 @@ export const generatedAnagrammTargetsByPreset = {
       "dumm",
       "dune",
       "dung",
-      "dürr",
       "dutt",
       "eben",
       "echo",
@@ -3543,7 +3431,6 @@ export const generatedAnagrammTargetsByPreset = {
       "fett",
       "fiat",
       "fies",
-      "fink",
       "fist",
       "flip",
       "flop",
@@ -3567,7 +3454,6 @@ export const generatedAnagrammTargetsByPreset = {
       "gelb",
       "geld",
       "gell",
-      "genf",
       "gern",
       "gift",
       "glee",
@@ -3576,7 +3462,6 @@ export const generatedAnagrammTargetsByPreset = {
       "gold",
       "gott",
       "grad",
-      "graf",
       "gral",
       "gram",
       "gran",
@@ -3625,7 +3510,6 @@ export const generatedAnagrammTargetsByPreset = {
       "horn",
       "hort",
       "huch",
-      "hugo",
       "huhn",
       "huhu",
       "hulk",
@@ -3634,7 +3518,6 @@ export const generatedAnagrammTargetsByPreset = {
       "idol",
       "iglu",
       "inne",
-      "iran",
       "item",
       "iwan",
       "jade",
@@ -3653,7 +3536,6 @@ export const generatedAnagrammTargetsByPreset = {
       "jung",
       "juno",
       "kaff",
-      "kahl",
       "kahn",
       "kali",
       "kalt",
@@ -3670,7 +3552,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kelp",
       "kerl",
       "khan",
-      "kiel",
       "kilo",
       "kilt",
       "kind",
@@ -3679,7 +3560,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kino",
       "kitt",
       "klan",
-      "klee",
       "klub",
       "klug",
       "kode",
@@ -3708,7 +3588,6 @@ export const generatedAnagrammTargetsByPreset = {
       "laub",
       "laut",
       "lehm",
-      "lenz",
       "lied",
       "lift",
       "link",
@@ -3727,11 +3606,8 @@ export const generatedAnagrammTargetsByPreset = {
       "mami",
       "mann",
       "mara",
-      "marc",
       "mare",
-      "matt",
       "maxi",
-      "maya",
       "mayo",
       "meck",
       "meer",
@@ -3788,7 +3664,6 @@ export const generatedAnagrammTargetsByPreset = {
       "oger",
       "opal",
       "oral",
-      "otto",
       "oval",
       "pakt",
       "palm",
@@ -3838,7 +3713,6 @@ export const generatedAnagrammTargetsByPreset = {
       "rick",
       "riff",
       "rind",
-      "rita",
       "rohr",
       "rosa",
       "ross",
@@ -3853,7 +3727,6 @@ export const generatedAnagrammTargetsByPreset = {
       "safe",
       "saft",
       "sali",
-      "sami",
       "sand",
       "sani",
       "sari",
@@ -3915,7 +3788,6 @@ export const generatedAnagrammTargetsByPreset = {
       "toga",
       "töle",
       "tone",
-      "tony",
       "tool",
       "tora",
       "toto",
@@ -3938,7 +3810,6 @@ export const generatedAnagrammTargetsByPreset = {
       "vieh",
       "viel",
       "vite",
-      "vogt",
       "volk",
       "voll",
       "vorn",
@@ -3953,7 +3824,6 @@ export const generatedAnagrammTargetsByPreset = {
       "wert",
       "west",
       "wett",
-      "wien",
       "wild",
       "wirr",
       "wirt",
@@ -3979,7 +3849,6 @@ export const generatedAnagrammTargetsByPreset = {
       "zelt",
       "zero",
       "zeta",
-      "zeus",
       "zimt",
       "zinn",
       "zoff",
@@ -4043,10 +3912,8 @@ export const generatedAnagrammTargetsByPreset = {
       "block",
       "blond",
       "bloss",
-      "bobby",
       "boden",
       "brass",
-      "braun",
       "breit",
       "brent",
       "brett",
@@ -4054,10 +3921,8 @@ export const generatedAnagrammTargetsByPreset = {
       "brite",
       "bruch",
       "buddy",
-      "busch",
       "butch",
       "caddy",
-      "carol",
       "cello",
       "champ",
       "chase",
@@ -4093,7 +3958,6 @@ export const generatedAnagrammTargetsByPreset = {
       "dödel",
       "dolan",
       "dolch",
-      "donna",
       "donut",
       "draht",
       "drama",
@@ -4117,8 +3981,6 @@ export const generatedAnagrammTargetsByPreset = {
       "enorm",
       "enzym",
       "erdöl",
-      "erika",
-      "ernst",
       "essay",
       "essig",
       "ethan",
@@ -4145,12 +4007,9 @@ export const generatedAnagrammTargetsByPreset = {
       "foyer",
       "frack",
       "franc",
-      "frank",
       "freak",
       "frech",
       "fremd",
-      "fritz",
-      "fromm",
       "frust",
       "fuhre",
       "fünft",
@@ -4179,7 +4038,6 @@ export const generatedAnagrammTargetsByPreset = {
       "grant",
       "greis",
       "grell",
-      "grimm",
       "groll",
       "gross",
       "grund",
@@ -4191,17 +4049,12 @@ export const generatedAnagrammTargetsByPreset = {
       "hades",
       "hafen",
       "hafer",
-      "hakim",
       "hallo",
       "handy",
       "harem",
       "haupt",
       "hecht",
-      "heidi",
       "heini",
-      "heinz",
-      "helge",
-      "henry",
       "herab",
       "heran",
       "herum",
@@ -4218,7 +4071,6 @@ export const generatedAnagrammTargetsByPreset = {
       "holle",
       "honig",
       "horne",
-      "horst",
       "hotel",
       "humor",
       "hurra",
@@ -4237,10 +4089,8 @@ export const generatedAnagrammTargetsByPreset = {
       "intus",
       "janus",
       "jeher",
-      "jesus",
       "jetzt",
       "joint",
-      "jonny",
       "juice",
       "jumbo",
       "juwel",
@@ -4260,7 +4110,6 @@ export const generatedAnagrammTargetsByPreset = {
       "klaps",
       "klaro",
       "kleid",
-      "klein",
       "klima",
       "knabe",
       "knapp",
@@ -4287,7 +4136,6 @@ export const generatedAnagrammTargetsByPreset = {
       "lakai",
       "largo",
       "lasso",
-      "laura",
       "ledig",
       "legal",
       "lepra",
@@ -4305,20 +4153,15 @@ export const generatedAnagrammTargetsByPreset = {
       "macho",
       "madam",
       "magen",
-      "major",
       "mambo",
-      "marie",
       "marin",
       "markt",
       "massa",
-      "meier",
       "meist",
       "mekka",
       "merci",
-      "merle",
       "mette",
       "mikro",
-      "milan",
       "mille",
       "mobil",
       "modul",
@@ -4361,8 +4204,6 @@ export const generatedAnagrammTargetsByPreset = {
       "patch",
       "patty",
       "pedal",
-      "penny",
-      "peter",
       "petit",
       "pfahl",
       "pfand",
@@ -4404,10 +4245,8 @@ export const generatedAnagrammTargetsByPreset = {
       "raven",
       "regal",
       "retro",
-      "rhein",
       "riese",
       "river",
-      "roger",
       "rollo",
       "roman",
       "rosig",
@@ -4496,7 +4335,6 @@ export const generatedAnagrammTargetsByPreset = {
       "titan",
       "titte",
       "toast",
-      "tommy",
       "tonic",
       "total",
       "trans",
@@ -4532,7 +4370,6 @@ export const generatedAnagrammTargetsByPreset = {
       "video",
       "viert",
       "vikar",
-      "viola",
       "viper",
       "visum",
       "vogel",
@@ -4540,7 +4377,6 @@ export const generatedAnagrammTargetsByPreset = {
       "voran",
       "vorne",
       "warum",
-      "weber",
       "welpe",
       "wenig",
       "wieso",
@@ -4572,12 +4408,10 @@ export const generatedAnagrammTargetsByPreset = {
       "absurd",
       "abteil",
       "abwurf",
-      "afrika",
       "akkord",
       "akzent",
       "albino",
       "alltag",
-      "anders",
       "anfall",
       "anflug",
       "anhand",
@@ -4608,7 +4442,6 @@ export const generatedAnagrammTargetsByPreset = {
       "autsch",
       "auweia",
       "avatar",
-      "balkan",
       "balkon",
       "ballon",
       "bandit",
@@ -4623,7 +4456,6 @@ export const generatedAnagrammTargetsByPreset = {
       "beinah",
       "benzin",
       "bergab",
-      "berlin",
       "besser",
       "bezirk",
       "bikini",
@@ -4649,8 +4481,6 @@ export const generatedAnagrammTargetsByPreset = {
       "cabrio",
       "campen",
       "canyon",
-      "carina",
-      "carmen",
       "carver",
       "casino",
       "castor",
@@ -4667,7 +4497,6 @@ export const generatedAnagrammTargetsByPreset = {
       "cyborg",
       "daheim",
       "damals",
-      "damian",
       "daphne",
       "darren",
       "dasein",
@@ -4710,7 +4539,6 @@ export const generatedAnagrammTargetsByPreset = {
       "ersatz",
       "eskimo",
       "essbar",
-      "europa",
       "exmann",
       "extrem",
       "faible",
@@ -4780,7 +4608,6 @@ export const generatedAnagrammTargetsByPreset = {
       "gigolo",
       "glasur",
       "global",
-      "gloria",
       "gnädig",
       "golden",
       "goldig",
@@ -4804,7 +4631,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hastig",
       "häufig",
       "hauser",
-      "hawaii",
       "heftig",
       "hehler",
       "heikel",
@@ -4855,15 +4681,12 @@ export const generatedAnagrammTargetsByPreset = {
       "iraner",
       "irgend",
       "irrtum",
-      "island",
       "jaguar",
-      "jasmin",
       "jawohl",
       "jawoll",
       "jemals",
       "jersey",
       "jetlag",
-      "jochen",
       "jockey",
       "jucken",
       "junior",
@@ -4898,9 +4721,7 @@ export const generatedAnagrammTargetsByPreset = {
       "konsum",
       "konvoi",
       "kostüm",
-      "kramer",
       "kredit",
-      "krüger",
       "kürbis",
       "kürzer",
       "landei",
@@ -4947,7 +4768,6 @@ export const generatedAnagrammTargetsByPreset = {
       "moloch",
       "moment",
       "montag",
-      "moritz",
       "mörser",
       "moslem",
       "muffin",
@@ -4986,7 +4806,6 @@ export const generatedAnagrammTargetsByPreset = {
       "pardon",
       "parfüm",
       "parfum",
-      "pascal",
       "pascha",
       "passiv",
       "pastor",
@@ -5037,7 +4856,6 @@ export const generatedAnagrammTargetsByPreset = {
       "ritual",
       "rivale",
       "robust",
-      "roland",
       "rührei",
       "rundum",
       "runter",
@@ -5093,7 +4911,6 @@ export const generatedAnagrammTargetsByPreset = {
       "sofort",
       "soldat",
       "sonnig",
-      "sophia",
       "sozial",
       "spasti",
       "specht",
@@ -5105,7 +4922,6 @@ export const generatedAnagrammTargetsByPreset = {
       "sprung",
       "stabil",
       "stande",
-      "stefan",
       "steril",
       "stetig",
       "stokes",
@@ -5122,7 +4938,6 @@ export const generatedAnagrammTargetsByPreset = {
       "sultan",
       "summer",
       "surfen",
-      "sutter",
       "symbol",
       "system",
       "tablet",
@@ -5169,7 +4984,6 @@ export const generatedAnagrammTargetsByPreset = {
       "unecht",
       "unfair",
       "unfall",
-      "ungarn",
       "ungern",
       "unheil",
       "unklar",
@@ -5210,7 +5024,6 @@ export const generatedAnagrammTargetsByPreset = {
       "vulkan",
       "wacker",
       "waggon",
-      "wagner",
       "walker",
       "wärmer",
       "warner",
@@ -5237,7 +5050,6 @@ export const generatedAnagrammTargetsByPreset = {
       "zufall",
       "zugang",
       "zünder",
-      "zürich",
       "zusatz",
       "zyklop"
     ],
@@ -5509,7 +5321,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hashtag",
       "hatschi",
       "haustür",
-      "havanna",
       "heimweg",
       "heimweh",
       "herüber",
@@ -5523,7 +5334,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hochmut",
       "hodscha",
       "höflich",
-      "holland",
       "holprig",
       "holzweg",
       "homerun",
@@ -5557,7 +5367,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kapitän",
       "kapitol",
       "karaoke",
-      "karibik",
       "kartell",
       "katalog",
       "kerosin",
@@ -5645,7 +5454,6 @@ export const generatedAnagrammTargetsByPreset = {
       "morphin",
       "mühelos",
       "münchen",
-      "münster",
       "musical",
       "mustang",
       "nachbar",
@@ -5752,7 +5560,6 @@ export const generatedAnagrammTargetsByPreset = {
       "rückruf",
       "rückweg",
       "rückzug",
-      "rudolph",
       "rumpeln",
       "saatgut",
       "samstag",
@@ -5767,7 +5574,6 @@ export const generatedAnagrammTargetsByPreset = {
       "schluss",
       "schmach",
       "schmied",
-      "schmitz",
       "schmuck",
       "schmutz",
       "schnaps",
@@ -5776,7 +5582,6 @@ export const generatedAnagrammTargetsByPreset = {
       "schrill",
       "schroff",
       "schrott",
-      "schulze",
       "schurke",
       "schwach",
       "schwanz",
@@ -5822,7 +5627,6 @@ export const generatedAnagrammTargetsByPreset = {
       "ständig",
       "stärker",
       "staubig",
-      "stephan",
       "steward",
       "stickig",
       "stinker",
@@ -5929,9 +5733,7 @@ export const generatedAnagrammTargetsByPreset = {
       "wichser",
       "wichtig",
       "wieviel",
-      "wilhelm",
       "wirksam",
-      "wolfram",
       "wurscht",
       "wütende",
       "zahltag",
@@ -5961,7 +5763,6 @@ export const generatedAnagrammTargetsByPreset = {
       "abschuss",
       "absprung",
       "abwesend",
-      "achilles",
       "adjutant",
       "albtraum",
       "allerlei",
@@ -6029,8 +5830,6 @@ export const generatedAnagrammTargetsByPreset = {
       "beispiel",
       "bekloppt",
       "beknackt",
-      "benjamin",
-      "bergmann",
       "bergwerk",
       "bescheid",
       "beschuss",
@@ -6187,7 +5986,6 @@ export const generatedAnagrammTargetsByPreset = {
       "freilich",
       "freiraum",
       "friedhof",
-      "fröhlich",
       "frühjahr",
       "frühling",
       "führende",
@@ -6315,12 +6113,10 @@ export const generatedAnagrammTargetsByPreset = {
       "investor",
       "irgendwo",
       "ironisch",
-      "isabelle",
       "jahrbuch",
       "jahrgang",
       "jährlich",
       "jedesmal",
-      "johannes",
       "jubiläum",
       "jüngling",
       "juwelier",
@@ -6548,7 +6344,6 @@ export const generatedAnagrammTargetsByPreset = {
       "saboteur",
       "sachlich",
       "sägewerk",
-      "salzburg",
       "sandmann",
       "satellit",
       "säugling",
@@ -6558,7 +6353,6 @@ export const generatedAnagrammTargetsByPreset = {
       "schamlos",
       "schärfer",
       "scheusal",
-      "schiller",
       "schisser",
       "schlecht",
       "schlumpf",
@@ -6765,8 +6559,6 @@ export const generatedAnagrammTargetsByPreset = {
       "amin",
       "amok",
       "anal",
-      "anke",
-      "anno",
       "ante",
       "anti",
       "anus",
@@ -6779,7 +6571,6 @@ export const generatedAnagrammTargetsByPreset = {
       "auge",
       "auto",
       "avec",
-      "axel",
       "azur",
       "baba",
       "babe",
@@ -6795,12 +6586,9 @@ export const generatedAnagrammTargetsByPreset = {
       "beil",
       "bein",
       "berg",
-      "bern",
       "bett",
-      "bibi",
       "bien",
       "bier",
-      "bild",
       "biss",
       "bist",
       "blau",
@@ -6810,7 +6598,6 @@ export const generatedAnagrammTargetsByPreset = {
       "blut",
       "boah",
       "bobo",
-      "bond",
       "bong",
       "boot",
       "bora",
@@ -6875,7 +6662,6 @@ export const generatedAnagrammTargetsByPreset = {
       "dodo",
       "doge",
       "dojo",
-      "doll",
       "dong",
       "doof",
       "dorf",
@@ -6887,7 +6673,6 @@ export const generatedAnagrammTargetsByPreset = {
       "dumm",
       "dune",
       "dung",
-      "dürr",
       "dutt",
       "eben",
       "echo",
@@ -6924,7 +6709,6 @@ export const generatedAnagrammTargetsByPreset = {
       "fiel",
       "fies",
       "fing",
-      "fink",
       "fist",
       "flip",
       "flog",
@@ -6953,7 +6737,6 @@ export const generatedAnagrammTargetsByPreset = {
       "gelb",
       "geld",
       "gell",
-      "genf",
       "gern",
       "gibt",
       "gift",
@@ -6966,7 +6749,6 @@ export const generatedAnagrammTargetsByPreset = {
       "goss",
       "gott",
       "grad",
-      "graf",
       "gral",
       "gram",
       "gran",
@@ -7019,7 +6801,6 @@ export const generatedAnagrammTargetsByPreset = {
       "horn",
       "hort",
       "huch",
-      "hugo",
       "huhn",
       "huhu",
       "hulk",
@@ -7028,7 +6809,6 @@ export const generatedAnagrammTargetsByPreset = {
       "idol",
       "iglu",
       "inne",
-      "iran",
       "isst",
       "item",
       "iwan",
@@ -7048,7 +6828,6 @@ export const generatedAnagrammTargetsByPreset = {
       "jung",
       "juno",
       "kaff",
-      "kahl",
       "kahn",
       "kali",
       "kalt",
@@ -7066,7 +6845,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kelp",
       "kerl",
       "khan",
-      "kiel",
       "kilo",
       "kilt",
       "kind",
@@ -7075,7 +6853,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kino",
       "kitt",
       "klan",
-      "klee",
       "klub",
       "klug",
       "kode",
@@ -7105,7 +6882,6 @@ export const generatedAnagrammTargetsByPreset = {
       "laub",
       "laut",
       "lehm",
-      "lenz",
       "lied",
       "lief",
       "lieh",
@@ -7127,11 +6903,8 @@ export const generatedAnagrammTargetsByPreset = {
       "mami",
       "mann",
       "mara",
-      "marc",
       "mare",
-      "matt",
       "maxi",
-      "maya",
       "mayo",
       "meck",
       "meer",
@@ -7190,7 +6963,6 @@ export const generatedAnagrammTargetsByPreset = {
       "oger",
       "opal",
       "oral",
-      "otto",
       "oval",
       "pakt",
       "palm",
@@ -7245,7 +7017,6 @@ export const generatedAnagrammTargetsByPreset = {
       "riff",
       "rind",
       "riss",
-      "rita",
       "ritt",
       "roch",
       "rohr",
@@ -7263,7 +7034,6 @@ export const generatedAnagrammTargetsByPreset = {
       "saft",
       "saht",
       "sali",
-      "sami",
       "sand",
       "sang",
       "sani",
@@ -7329,7 +7099,6 @@ export const generatedAnagrammTargetsByPreset = {
       "toga",
       "töle",
       "tone",
-      "tony",
       "tool",
       "tora",
       "toto",
@@ -7358,7 +7127,6 @@ export const generatedAnagrammTargetsByPreset = {
       "vieh",
       "viel",
       "vite",
-      "vogt",
       "volk",
       "voll",
       "vorn",
@@ -7377,7 +7145,6 @@ export const generatedAnagrammTargetsByPreset = {
       "west",
       "wett",
       "wich",
-      "wien",
       "wies",
       "wild",
       "wird",
@@ -7405,7 +7172,6 @@ export const generatedAnagrammTargetsByPreset = {
       "zelt",
       "zero",
       "zeta",
-      "zeus",
       "zimt",
       "zinn",
       "zoff",
@@ -7488,11 +7254,9 @@ export const generatedAnagrammTargetsByPreset = {
       "block",
       "blond",
       "bloss",
-      "bobby",
       "boden",
       "brach",
       "brass",
-      "braun",
       "breit",
       "brent",
       "brett",
@@ -7500,10 +7264,8 @@ export const generatedAnagrammTargetsByPreset = {
       "brite",
       "bruch",
       "buddy",
-      "busch",
       "butch",
       "caddy",
-      "carol",
       "cello",
       "champ",
       "chase",
@@ -7539,7 +7301,6 @@ export const generatedAnagrammTargetsByPreset = {
       "dödel",
       "dolan",
       "dolch",
-      "donna",
       "donut",
       "draht",
       "drama",
@@ -7567,8 +7328,6 @@ export const generatedAnagrammTargetsByPreset = {
       "erdöl",
       "ergab",
       "erhob",
-      "erika",
-      "ernst",
       "essay",
       "essig",
       "ethan",
@@ -7598,13 +7357,10 @@ export const generatedAnagrammTargetsByPreset = {
       "foyer",
       "frack",
       "franc",
-      "frank",
       "frass",
       "freak",
       "frech",
       "fremd",
-      "fritz",
-      "fromm",
       "frust",
       "fuhre",
       "fünft",
@@ -7643,7 +7399,6 @@ export const generatedAnagrammTargetsByPreset = {
       "greis",
       "grell",
       "griff",
-      "grimm",
       "groll",
       "gross",
       "grund",
@@ -7656,7 +7411,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hafen",
       "hafer",
       "haien",
-      "hakim",
       "hallo",
       "handy",
       "harem",
@@ -7664,11 +7418,7 @@ export const generatedAnagrammTargetsByPreset = {
       "haupt",
       "hebst",
       "hecht",
-      "heidi",
       "heini",
-      "heinz",
-      "helge",
-      "henry",
       "herab",
       "heran",
       "herum",
@@ -7689,7 +7439,6 @@ export const generatedAnagrammTargetsByPreset = {
       "holst",
       "honig",
       "horne",
-      "horst",
       "hörst",
       "hotel",
       "humor",
@@ -7711,10 +7460,8 @@ export const generatedAnagrammTargetsByPreset = {
       "jagst",
       "janus",
       "jeher",
-      "jesus",
       "jetzt",
       "joint",
-      "jonny",
       "juice",
       "jumbo",
       "juwel",
@@ -7722,7 +7469,6 @@ export const generatedAnagrammTargetsByPreset = {
       "käfig",
       "kakao",
       "kamel",
-      "kamen",
       "kamin",
       "kampf",
       "kamst",
@@ -7737,7 +7483,6 @@ export const generatedAnagrammTargetsByPreset = {
       "klaps",
       "klaro",
       "kleid",
-      "klein",
       "klima",
       "knabe",
       "knapp",
@@ -7771,7 +7516,6 @@ export const generatedAnagrammTargetsByPreset = {
       "lasso",
       "lässt",
       "läuft",
-      "laura",
       "lebst",
       "ledig",
       "legal",
@@ -7794,21 +7538,16 @@ export const generatedAnagrammTargetsByPreset = {
       "macho",
       "madam",
       "magen",
-      "major",
       "malst",
       "mambo",
-      "marie",
       "marin",
       "markt",
       "massa",
-      "meier",
       "meist",
       "mekka",
       "merci",
-      "merle",
       "mette",
       "mikro",
-      "milan",
       "mille",
       "mobil",
       "modul",
@@ -7853,8 +7592,6 @@ export const generatedAnagrammTargetsByPreset = {
       "patch",
       "patty",
       "pedal",
-      "penny",
-      "peter",
       "petit",
       "pfahl",
       "pfand",
@@ -7898,10 +7635,8 @@ export const generatedAnagrammTargetsByPreset = {
       "regal",
       "regst",
       "retro",
-      "rhein",
       "riese",
       "river",
-      "roger",
       "rollo",
       "roman",
       "rosig",
@@ -8006,7 +7741,6 @@ export const generatedAnagrammTargetsByPreset = {
       "titan",
       "titte",
       "toast",
-      "tommy",
       "tonic",
       "total",
       "trägt",
@@ -8047,7 +7781,6 @@ export const generatedAnagrammTargetsByPreset = {
       "video",
       "viert",
       "vikar",
-      "viola",
       "viper",
       "visum",
       "vogel",
@@ -8057,9 +7790,7 @@ export const generatedAnagrammTargetsByPreset = {
       "wagst",
       "warst",
       "warum",
-      "weber",
       "wegen",
-      "weiss",
       "welpe",
       "wenig",
       "wicht",
@@ -8106,12 +7837,10 @@ export const generatedAnagrammTargetsByPreset = {
       "absurd",
       "abteil",
       "abwurf",
-      "afrika",
       "akkord",
       "akzent",
       "albino",
       "alltag",
-      "anders",
       "anfall",
       "anfing",
       "anflug",
@@ -8159,7 +7888,6 @@ export const generatedAnagrammTargetsByPreset = {
       "autsch",
       "auweia",
       "avatar",
-      "balkan",
       "balkon",
       "ballon",
       "bandit",
@@ -8185,7 +7913,6 @@ export const generatedAnagrammTargetsByPreset = {
       "benahm",
       "benzin",
       "bergab",
-      "berlin",
       "besass",
       "besser",
       "betraf",
@@ -8219,8 +7946,6 @@ export const generatedAnagrammTargetsByPreset = {
       "cabrio",
       "campen",
       "canyon",
-      "carina",
-      "carmen",
       "carver",
       "casino",
       "castor",
@@ -8237,7 +7962,6 @@ export const generatedAnagrammTargetsByPreset = {
       "cyborg",
       "daheim",
       "damals",
-      "damian",
       "daphne",
       "darren",
       "dasein",
@@ -8298,7 +8022,6 @@ export const generatedAnagrammTargetsByPreset = {
       "erwies",
       "eskimo",
       "essbar",
-      "europa",
       "exmann",
       "extrem",
       "fährst",
@@ -8396,7 +8119,6 @@ export const generatedAnagrammTargetsByPreset = {
       "gingst",
       "glasur",
       "global",
-      "gloria",
       "gnädig",
       "golden",
       "goldig",
@@ -8430,7 +8152,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hattet",
       "häufig",
       "hauser",
-      "hawaii",
       "heftig",
       "hehler",
       "heikel",
@@ -8448,7 +8169,6 @@ export const generatedAnagrammTargetsByPreset = {
       "heroin",
       "herrje",
       "hervor",
-      "herzog",
       "hetero",
       "heulst",
       "hilfst",
@@ -8489,17 +8209,14 @@ export const generatedAnagrammTargetsByPreset = {
       "iraner",
       "irgend",
       "irrtum",
-      "island",
       "jägern",
       "jaguar",
       "jahren",
-      "jasmin",
       "jawohl",
       "jawoll",
       "jemals",
       "jersey",
       "jetlag",
-      "jochen",
       "jockey",
       "jucken",
       "junior",
@@ -8543,9 +8260,7 @@ export const generatedAnagrammTargetsByPreset = {
       "konsum",
       "konvoi",
       "kostüm",
-      "kramer",
       "kredit",
-      "krüger",
       "kürbis",
       "kürzer",
       "lachst",
@@ -8607,7 +8322,6 @@ export const generatedAnagrammTargetsByPreset = {
       "moloch",
       "moment",
       "montag",
-      "moritz",
       "mörser",
       "moslem",
       "muffin",
@@ -8654,7 +8368,6 @@ export const generatedAnagrammTargetsByPreset = {
       "pardon",
       "parfüm",
       "parfum",
-      "pascal",
       "pascha",
       "passiv",
       "pastor",
@@ -8713,7 +8426,6 @@ export const generatedAnagrammTargetsByPreset = {
       "rivale",
       "robust",
       "rohren",
-      "roland",
       "römern",
       "rührei",
       "rührst",
@@ -8782,7 +8494,6 @@ export const generatedAnagrammTargetsByPreset = {
       "sofort",
       "soldat",
       "sonnig",
-      "sophia",
       "sorgst",
       "sozial",
       "sparst",
@@ -8799,7 +8510,6 @@ export const generatedAnagrammTargetsByPreset = {
       "spürst",
       "stabil",
       "stande",
-      "stefan",
       "stehst",
       "steril",
       "stetig",
@@ -8825,7 +8535,6 @@ export const generatedAnagrammTargetsByPreset = {
       "sultan",
       "summer",
       "surfen",
-      "sutter",
       "symbol",
       "system",
       "tablet",
@@ -8888,7 +8597,6 @@ export const generatedAnagrammTargetsByPreset = {
       "unecht",
       "unfair",
       "unfall",
-      "ungarn",
       "ungern",
       "unheil",
       "unklar",
@@ -8937,7 +8645,6 @@ export const generatedAnagrammTargetsByPreset = {
       "wächst",
       "wacker",
       "waggon",
-      "wagner",
       "wählst",
       "walker",
       "warfen",
@@ -8991,7 +8698,6 @@ export const generatedAnagrammTargetsByPreset = {
       "zugibt",
       "zuhört",
       "zünder",
-      "zürich",
       "zusagt",
       "zusatz",
       "zyklop"
@@ -9393,7 +9099,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hattest",
       "häusern",
       "haustür",
-      "havanna",
       "heimkam",
       "heimweg",
       "heimweh",
@@ -9410,7 +9115,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hochmut",
       "hodscha",
       "höflich",
-      "holland",
       "holprig",
       "holzweg",
       "homerun",
@@ -9452,7 +9156,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kapitän",
       "kapitol",
       "karaoke",
-      "karibik",
       "kartell",
       "katalog",
       "kerosin",
@@ -9564,7 +9267,6 @@ export const generatedAnagrammTargetsByPreset = {
       "morphin",
       "mühelos",
       "münchen",
-      "münster",
       "musical",
       "mustang",
       "müttern",
@@ -9683,7 +9385,6 @@ export const generatedAnagrammTargetsByPreset = {
       "rückruf",
       "rückweg",
       "rückzug",
-      "rudolph",
       "rumpeln",
       "saatgut",
       "samstag",
@@ -9708,7 +9409,6 @@ export const generatedAnagrammTargetsByPreset = {
       "schmach",
       "schmied",
       "schmiss",
-      "schmitz",
       "schmuck",
       "schmutz",
       "schnaps",
@@ -9722,7 +9422,6 @@ export const generatedAnagrammTargetsByPreset = {
       "schrott",
       "schufen",
       "schuhen",
-      "schulze",
       "schurke",
       "schwach",
       "schwamm",
@@ -9787,7 +9486,6 @@ export const generatedAnagrammTargetsByPreset = {
       "steigst",
       "steinen",
       "stellst",
-      "stephan",
       "sternen",
       "steward",
       "stickig",
@@ -9936,9 +9634,7 @@ export const generatedAnagrammTargetsByPreset = {
       "wichser",
       "wichtig",
       "wieviel",
-      "wilhelm",
       "wirksam",
-      "wolfram",
       "wörtern",
       "wuchsen",
       "wurdest",
@@ -9991,7 +9687,6 @@ export const generatedAnagrammTargetsByPreset = {
       "abstrich",
       "abwesend",
       "abziehst",
-      "achilles",
       "adjutant",
       "albtraum",
       "allerlei",
@@ -10109,8 +9804,6 @@ export const generatedAnagrammTargetsByPreset = {
       "bekommst",
       "bemerkst",
       "benimmst",
-      "benjamin",
-      "bergmann",
       "bergwerk",
       "berührst",
       "besassen",
@@ -10311,7 +10004,6 @@ export const generatedAnagrammTargetsByPreset = {
       "freilich",
       "freiraum",
       "friedhof",
-      "fröhlich",
       "früchten",
       "frühjahr",
       "frühling",
@@ -10460,13 +10152,11 @@ export const generatedAnagrammTargetsByPreset = {
       "investor",
       "irgendwo",
       "ironisch",
-      "isabelle",
       "jahrbuch",
       "jahrgang",
       "jährlich",
       "japanern",
       "jedesmal",
-      "johannes",
       "jubiläum",
       "jüngling",
       "juwelier",
@@ -10714,7 +10404,6 @@ export const generatedAnagrammTargetsByPreset = {
       "saboteur",
       "sachlich",
       "sägewerk",
-      "salzburg",
       "sandmann",
       "satellit",
       "säugling",
@@ -10730,7 +10419,6 @@ export const generatedAnagrammTargetsByPreset = {
       "schickst",
       "schiebst",
       "schienst",
-      "schiller",
       "schisser",
       "schläfst",
       "schlägen",
@@ -11007,8 +10695,6 @@ export const generatedAnagrammTargetsByPreset = {
       "amin",
       "amok",
       "anal",
-      "anke",
-      "anno",
       "ante",
       "anti",
       "anus",
@@ -11022,7 +10708,6 @@ export const generatedAnagrammTargetsByPreset = {
       "auge",
       "auto",
       "avec",
-      "axel",
       "azur",
       "baba",
       "babe",
@@ -11049,16 +10734,12 @@ export const generatedAnagrammTargetsByPreset = {
       "beet",
       "beil",
       "bein",
-      "bell",
       "berg",
-      "bern",
       "bett",
       "beug",
-      "bibi",
       "bieg",
       "bien",
       "bier",
-      "bild",
       "bind",
       "biss",
       "bist",
@@ -11073,7 +10754,6 @@ export const generatedAnagrammTargetsByPreset = {
       "bobo",
       "bock",
       "bohr",
-      "bond",
       "bong",
       "boom",
       "boot",
@@ -11152,7 +10832,6 @@ export const generatedAnagrammTargetsByPreset = {
       "dodo",
       "doge",
       "dojo",
-      "doll",
       "dong",
       "doof",
       "dope",
@@ -11169,7 +10848,6 @@ export const generatedAnagrammTargetsByPreset = {
       "dune",
       "dung",
       "dünn",
-      "dürr",
       "dutt",
       "eben",
       "echo",
@@ -11226,7 +10904,6 @@ export const generatedAnagrammTargetsByPreset = {
       "film",
       "filz",
       "fing",
-      "fink",
       "fist",
       "fitz",
       "fleh",
@@ -11279,7 +10956,6 @@ export const generatedAnagrammTargetsByPreset = {
       "gelb",
       "geld",
       "gell",
-      "genf",
       "gern",
       "gibt",
       "gift",
@@ -11298,7 +10974,6 @@ export const generatedAnagrammTargetsByPreset = {
       "gott",
       "grab",
       "grad",
-      "graf",
       "gral",
       "gram",
       "gran",
@@ -11331,7 +11006,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hanf",
       "häng",
       "hart",
-      "harz",
       "hase",
       "hass",
       "haue",
@@ -11386,7 +11060,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hort",
       "hört",
       "huch",
-      "hugo",
       "huhn",
       "huhu",
       "hulk",
@@ -11398,7 +11071,6 @@ export const generatedAnagrammTargetsByPreset = {
       "idol",
       "iglu",
       "inne",
-      "iran",
       "irrt",
       "isst",
       "item",
@@ -11421,7 +11093,6 @@ export const generatedAnagrammTargetsByPreset = {
       "jung",
       "juno",
       "kaff",
-      "kahl",
       "kahn",
       "kalb",
       "kali",
@@ -11451,7 +11122,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kerl",
       "kern",
       "khan",
-      "kiel",
       "kies",
       "kilo",
       "kilt",
@@ -11466,13 +11136,10 @@ export const generatedAnagrammTargetsByPreset = {
       "klär",
       "klau",
       "kleb",
-      "klee",
       "klon",
       "klub",
       "klug",
-      "koch",
       "kode",
-      "kohl",
       "koje",
       "koma",
       "komm",
@@ -11524,7 +11191,6 @@ export const generatedAnagrammTargetsByPreset = {
       "leih",
       "leim",
       "lenk",
-      "lenz",
       "lern",
       "lest",
       "lieb",
@@ -11560,12 +11226,9 @@ export const generatedAnagrammTargetsByPreset = {
       "mami",
       "mann",
       "mara",
-      "marc",
       "mare",
-      "matt",
       "maul",
       "maxi",
-      "maya",
       "mayo",
       "meck",
       "meer",
@@ -11636,7 +11299,6 @@ export const generatedAnagrammTargetsByPreset = {
       "nett",
       "netz",
       "neue",
-      "nick",
       "nimm",
       "noch",
       "nord",
@@ -11649,7 +11311,6 @@ export const generatedAnagrammTargetsByPreset = {
       "olle",
       "opal",
       "oral",
-      "otto",
       "oval",
       "paar",
       "pack",
@@ -11740,7 +11401,6 @@ export const generatedAnagrammTargetsByPreset = {
       "rind",
       "ring",
       "riss",
-      "rita",
       "ritt",
       "ritz",
       "robb",
@@ -11775,7 +11435,6 @@ export const generatedAnagrammTargetsByPreset = {
       "saht",
       "sali",
       "salz",
-      "sami",
       "samt",
       "sand",
       "sang",
@@ -11881,7 +11540,6 @@ export const generatedAnagrammTargetsByPreset = {
       "toll",
       "tone",
       "tönt",
-      "tony",
       "tool",
       "topf",
       "tora",
@@ -11921,7 +11579,6 @@ export const generatedAnagrammTargetsByPreset = {
       "vieh",
       "viel",
       "vite",
-      "vogt",
       "volk",
       "voll",
       "vorn",
@@ -11956,7 +11613,6 @@ export const generatedAnagrammTargetsByPreset = {
       "west",
       "wett",
       "wich",
-      "wien",
       "wies",
       "wild",
       "wind",
@@ -11968,7 +11624,6 @@ export const generatedAnagrammTargetsByPreset = {
       "witz",
       "wohl",
       "wohn",
-      "wolf",
       "wood",
       "wort",
       "wund",
@@ -11998,7 +11653,6 @@ export const generatedAnagrammTargetsByPreset = {
       "zero",
       "zeta",
       "zeug",
-      "zeus",
       "zieh",
       "ziel",
       "zier",
@@ -12024,10 +11678,8 @@ export const generatedAnagrammTargetsByPreset = {
       "abzug",
       "achte",
       "ächzt",
-      "adele",
       "adieu",
       "agent",
-      "ahmet",
       "ahnst",
       "ahnte",
       "aktiv",
@@ -12076,7 +11728,6 @@ export const generatedAnagrammTargetsByPreset = {
       "audio",
       "autor",
       "award",
-      "babel",
       "backt",
       "bacon",
       "baden",
@@ -12152,7 +11803,6 @@ export const generatedAnagrammTargetsByPreset = {
       "bloss",
       "bluff",
       "blüht",
-      "bobby",
       "boden",
       "bohre",
       "bohrt",
@@ -12166,7 +11816,6 @@ export const generatedAnagrammTargetsByPreset = {
       "brach",
       "brass",
       "brate",
-      "braun",
       "brave",
       "breit",
       "brems",
@@ -12188,12 +11837,10 @@ export const generatedAnagrammTargetsByPreset = {
       "bunte",
       "bürge",
       "bürgt",
-      "busch",
       "bussi",
       "büsst",
       "butch",
       "caddy",
-      "carol",
       "cello",
       "champ",
       "chase",
@@ -12254,7 +11901,6 @@ export const generatedAnagrammTargetsByPreset = {
       "dolan",
       "dolce",
       "dolch",
-      "donna",
       "donut",
       "doofe",
       "dorne",
@@ -12321,10 +11967,8 @@ export const generatedAnagrammTargetsByPreset = {
       "ergib",
       "erhob",
       "erhol",
-      "erika",
       "erlag",
       "erlös",
-      "ernst",
       "erste",
       "erzog",
       "essay",
@@ -12399,9 +12043,7 @@ export const generatedAnagrammTargetsByPreset = {
       "frack",
       "fragt",
       "franc",
-      "frank",
       "frans",
-      "franz",
       "frass",
       "fratz",
       "freak",
@@ -12412,12 +12054,9 @@ export const generatedAnagrammTargetsByPreset = {
       "frier",
       "fries",
       "friss",
-      "fritz",
       "frohe",
-      "fromm",
       "frost",
       "frust",
-      "fuchs",
       "fügen",
       "fügst",
       "fügte",
@@ -12505,7 +12144,6 @@ export const generatedAnagrammTargetsByPreset = {
       "grell",
       "griff",
       "grill",
-      "grimm",
       "grobe",
       "groll",
       "gross",
@@ -12527,7 +12165,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hafen",
       "hafer",
       "haien",
-      "hakim",
       "halbe",
       "hallo",
       "hallt",
@@ -12553,18 +12190,14 @@ export const generatedAnagrammTargetsByPreset = {
       "hegen",
       "hegst",
       "hegte",
-      "heidi",
       "heile",
       "heilt",
       "heini",
-      "heinz",
       "heiss",
       "heizt",
       "helfe",
       "helft",
-      "helge",
       "helix",
-      "henry",
       "herab",
       "heran",
       "hertz",
@@ -12611,7 +12244,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hören",
       "höret",
       "horne",
-      "horst",
       "hörst",
       "hörte",
       "hotel",
@@ -12651,12 +12283,10 @@ export const generatedAnagrammTargetsByPreset = {
       "japst",
       "jault",
       "jeher",
-      "jesus",
       "jetzt",
       "jihad",
       "joggt",
       "joint",
-      "jonny",
       "juice",
       "jumbo",
       "junge",
@@ -12669,7 +12299,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kakao",
       "kalte",
       "kamel",
-      "kamen",
       "kämen",
       "kamin",
       "kampf",
@@ -12707,7 +12336,6 @@ export const generatedAnagrammTargetsByPreset = {
       "klebe",
       "klebt",
       "kleid",
-      "klein",
       "klemm",
       "klick",
       "klima",
@@ -12750,7 +12378,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kranz",
       "krass",
       "kratz",
-      "kraus",
       "kraut",
       "krebs",
       "kreis",
@@ -12764,7 +12391,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kubus",
       "kühen",
       "kühlt",
-      "kühne",
       "kurze",
       "kusch",
       "küsst",
@@ -12793,11 +12419,9 @@ export const generatedAnagrammTargetsByPreset = {
       "lasst",
       "lässt",
       "lauch",
-      "lauda",
       "laufe",
       "lauft",
       "läuft",
-      "laura",
       "laust",
       "läute",
       "lebst",
@@ -12865,21 +12489,17 @@ export const generatedAnagrammTargetsByPreset = {
       "mähen",
       "mahlt",
       "maile",
-      "major",
       "malen",
       "malst",
       "malte",
       "mambo",
       "manne",
-      "marie",
       "marin",
       "markt",
       "massa",
       "mater",
-      "matze",
       "mausi",
       "meide",
-      "meier",
       "meine",
       "meint",
       "meist",
@@ -12888,13 +12508,11 @@ export const generatedAnagrammTargetsByPreset = {
       "merci",
       "merke",
       "merkt",
-      "merle",
       "mette",
       "miaut",
       "micke",
       "miese",
       "mikro",
-      "milan",
       "milde",
       "mille",
       "mimen",
@@ -12994,8 +12612,6 @@ export const generatedAnagrammTargetsByPreset = {
       "patty",
       "pedal",
       "pennt",
-      "penny",
-      "peter",
       "petit",
       "pfahl",
       "pfand",
@@ -13101,7 +12717,6 @@ export const generatedAnagrammTargetsByPreset = {
       "rennt",
       "retro",
       "rette",
-      "rhein",
       "riech",
       "riese",
       "ringt",
@@ -13110,7 +12725,6 @@ export const generatedAnagrammTargetsByPreset = {
       "river",
       "roche",
       "rockt",
-      "roger",
       "rohes",
       "rollo",
       "rollt",
@@ -13348,7 +12962,6 @@ export const generatedAnagrammTargetsByPreset = {
       "tickt",
       "tippe",
       "tippt",
-      "tirol",
       "tisch",
       "titan",
       "titte",
@@ -13357,7 +12970,6 @@ export const generatedAnagrammTargetsByPreset = {
       "tobte",
       "toddy",
       "tolle",
-      "tommy",
       "tönen",
       "tonic",
       "törnt",
@@ -13452,7 +13064,6 @@ export const generatedAnagrammTargetsByPreset = {
       "viert",
       "vikar",
       "vinyl",
-      "viola",
       "viper",
       "visum",
       "vivat",
@@ -13488,7 +13099,6 @@ export const generatedAnagrammTargetsByPreset = {
       "wasch",
       "waten",
       "weben",
-      "weber",
       "weckt",
       "wegen",
       "wehrt",
@@ -13497,7 +13107,6 @@ export const generatedAnagrammTargetsByPreset = {
       "weich",
       "weilt",
       "weint",
-      "weiss",
       "weist",
       "welpe",
       "wenig",
@@ -13609,7 +13218,6 @@ export const generatedAnagrammTargetsByPreset = {
       "adlige",
       "adrett",
       "affekt",
-      "afrika",
       "agiert",
       "ähneln",
       "ähnelt",
@@ -13619,7 +13227,6 @@ export const generatedAnagrammTargetsByPreset = {
       "aktive",
       "akzent",
       "albern",
-      "albert",
       "albino",
       "alltag",
       "ältere",
@@ -13629,7 +13236,6 @@ export const generatedAnagrammTargetsByPreset = {
       "andere",
       "ändere",
       "ändern",
-      "anders",
       "ändert",
       "anfall",
       "anfang",
@@ -13706,7 +13312,6 @@ export const generatedAnagrammTargetsByPreset = {
       "avanti",
       "avatar",
       "badest",
-      "balkan",
       "balkon",
       "bällen",
       "ballet",
@@ -13779,7 +13384,6 @@ export const generatedAnagrammTargetsByPreset = {
       "bereut",
       "bergab",
       "bergen",
-      "berlin",
       "beruft",
       "berühr",
       "beruht",
@@ -13869,8 +13473,6 @@ export const generatedAnagrammTargetsByPreset = {
       "braust",
       "braves",
       "breche",
-      "brecht",
-      "bremen",
       "bremst",
       "brenne",
       "brennt",
@@ -13905,8 +13507,6 @@ export const generatedAnagrammTargetsByPreset = {
       "campen",
       "cancan",
       "canyon",
-      "carina",
-      "carmen",
       "carver",
       "casino",
       "castor",
@@ -13929,14 +13529,12 @@ export const generatedAnagrammTargetsByPreset = {
       "cousin",
       "cowboy",
       "coyote",
-      "cruise",
       "cyborg",
       "dachte",
       "dächte",
       "dadrin",
       "daheim",
       "damals",
-      "damian",
       "danken",
       "dankst",
       "dankte",
@@ -14055,7 +13653,6 @@ export const generatedAnagrammTargetsByPreset = {
       "engeln",
       "engere",
       "engste",
-      "enigma",
       "enkeln",
       "enorme",
       "entern",
@@ -14112,7 +13709,6 @@ export const generatedAnagrammTargetsByPreset = {
       "eskimo",
       "essbar",
       "eunuch",
-      "europa",
       "ewigem",
       "ewiges",
       "exakte",
@@ -14211,7 +13807,6 @@ export const generatedAnagrammTargetsByPreset = {
       "fossil",
       "fragst",
       "fragte",
-      "franke",
       "freche",
       "freiem",
       "freies",
@@ -14377,7 +13972,6 @@ export const generatedAnagrammTargetsByPreset = {
       "glaubt",
       "gleich",
       "global",
-      "gloria",
       "glotzt",
       "glucke",
       "glühen",
@@ -14462,10 +14056,8 @@ export const generatedAnagrammTargetsByPreset = {
       "hättet",
       "häufen",
       "häufig",
-      "hausen",
       "hauser",
       "häuten",
-      "hawaii",
       "heften",
       "heftig",
       "hehler",
@@ -14496,7 +14088,6 @@ export const generatedAnagrammTargetsByPreset = {
       "herold",
       "herrje",
       "hervor",
-      "herzog",
       "hetero",
       "hetzte",
       "heuern",
@@ -14577,13 +14168,11 @@ export const generatedAnagrammTargetsByPreset = {
       "irgend",
       "irisch",
       "irrtum",
-      "island",
       "jägern",
       "jagten",
       "jaguar",
       "jahren",
       "japsen",
-      "jasmin",
       "jaulen",
       "jawohl",
       "jawoll",
@@ -14593,7 +14182,6 @@ export const generatedAnagrammTargetsByPreset = {
       "jersey",
       "jessas",
       "jetlag",
-      "jochen",
       "jockey",
       "jodeln",
       "jodelt",
@@ -14699,7 +14287,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kochte",
       "ködern",
       "kognak",
-      "köhler",
       "kojote",
       "kokain",
       "koksen",
@@ -14720,7 +14307,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kostüm",
       "kotzte",
       "kracht",
-      "kramer",
       "krampf",
       "kranke",
       "krasse",
@@ -14733,7 +14319,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kriech",
       "kriegt",
       "krönen",
-      "krüger",
       "krumme",
       "krümmt",
       "kühles",
@@ -14797,7 +14382,6 @@ export const generatedAnagrammTargetsByPreset = {
       "leguan",
       "lehnst",
       "lehnte",
-      "lehrte",
       "leicht",
       "leider",
       "leidet",
@@ -14921,7 +14505,6 @@ export const generatedAnagrammTargetsByPreset = {
       "morast",
       "morden",
       "mordet",
-      "moritz",
       "morsch",
       "mörser",
       "mosaik",
@@ -15033,7 +14616,6 @@ export const generatedAnagrammTargetsByPreset = {
       "parkte",
       "paroli",
       "parton",
-      "pascal",
       "pascha",
       "passen",
       "pässen",
@@ -15213,7 +14795,6 @@ export const generatedAnagrammTargetsByPreset = {
       "rocket",
       "roggen",
       "rohren",
-      "roland",
       "rollte",
       "römern",
       "rookie",
@@ -15320,7 +14901,6 @@ export const generatedAnagrammTargetsByPreset = {
       "schont",
       "schopf",
       "schoss",
-      "schott",
       "schräg",
       "schrei",
       "schrie",
@@ -15330,7 +14910,6 @@ export const generatedAnagrammTargetsByPreset = {
       "schürt",
       "schuss",
       "schutt",
-      "schütz",
       "schutz",
       "schwan",
       "schwer",
@@ -15346,7 +14925,6 @@ export const generatedAnagrammTargetsByPreset = {
       "segnet",
       "sehnst",
       "sehnte",
-      "seidel",
       "seiest",
       "seilen",
       "sektor",
@@ -15401,7 +14979,6 @@ export const generatedAnagrammTargetsByPreset = {
       "sollte",
       "sonett",
       "sonnig",
-      "sophia",
       "sopran",
       "sorgst",
       "sorgte",
@@ -15460,7 +15037,6 @@ export const generatedAnagrammTargetsByPreset = {
       "stecht",
       "stecke",
       "steckt",
-      "stefan",
       "stehen",
       "stehle",
       "stehlt",
@@ -15536,7 +15112,6 @@ export const generatedAnagrammTargetsByPreset = {
       "surren",
       "süssem",
       "süsses",
-      "sutter",
       "symbol",
       "system",
       "tablet",
@@ -15673,7 +15248,6 @@ export const generatedAnagrammTargetsByPreset = {
       "uneins",
       "unfair",
       "unfall",
-      "ungarn",
       "ungern",
       "unheil",
       "unhold",
@@ -15759,7 +15333,6 @@ export const generatedAnagrammTargetsByPreset = {
       "wachte",
       "wacker",
       "waggon",
-      "wagner",
       "wagnis",
       "wagten",
       "wählen",
@@ -15933,7 +15506,6 @@ export const generatedAnagrammTargetsByPreset = {
       "zünder",
       "zündet",
       "zupfen",
-      "zürich",
       "zusagt",
       "zusatz",
       "zusehe",
@@ -17234,7 +16806,6 @@ export const generatedAnagrammTargetsByPreset = {
       "gezogen",
       "gezuckt",
       "gierige",
-      "giessen",
       "giftgas",
       "giftige",
       "gittern",
@@ -17318,7 +16889,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hättest",
       "häusern",
       "haustür",
-      "havanna",
       "hecheln",
       "hechelt",
       "heftige",
@@ -17369,7 +16939,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hofnarr",
       "höherem",
       "höheres",
-      "holland",
       "holprig",
       "holzweg",
       "homerun",
@@ -17441,7 +17010,6 @@ export const generatedAnagrammTargetsByPreset = {
       "kapitol",
       "kaputte",
       "karaoke",
-      "karibik",
       "kartell",
       "katalog",
       "käufern",
@@ -17759,7 +17327,6 @@ export const generatedAnagrammTargetsByPreset = {
       "münchen",
       "mundtot",
       "munkelt",
-      "münster",
       "muntere",
       "muntert",
       "murmelt",
@@ -18055,7 +17622,6 @@ export const generatedAnagrammTargetsByPreset = {
       "rückruf",
       "rückweg",
       "rückzug",
-      "rudolph",
       "ruhelos",
       "ruhiges",
       "rührend",
@@ -18155,7 +17721,6 @@ export const generatedAnagrammTargetsByPreset = {
       "schmied",
       "schmier",
       "schmiss",
-      "schmitz",
       "schmolz",
       "schmort",
       "schmuck",
@@ -18190,7 +17755,6 @@ export const generatedAnagrammTargetsByPreset = {
       "schufen",
       "schufte",
       "schuhen",
-      "schulze",
       "schüren",
       "schurke",
       "schütze",
@@ -18367,7 +17931,6 @@ export const generatedAnagrammTargetsByPreset = {
       "stellst",
       "stellte",
       "stemmen",
-      "stephan",
       "sterben",
       "sterile",
       "sternen",
@@ -18791,7 +18354,6 @@ export const generatedAnagrammTargetsByPreset = {
       "wiehert",
       "wieviel",
       "wildern",
-      "wilhelm",
       "willige",
       "willigt",
       "wimmeln",
@@ -18816,7 +18378,6 @@ export const generatedAnagrammTargetsByPreset = {
       "witzige",
       "wohnort",
       "wohnten",
-      "wolfram",
       "wollten",
       "wolltet",
       "wörtern",
@@ -19006,7 +18567,6 @@ export const generatedAnagrammTargetsByPreset = {
       "abzahlen",
       "abziehen",
       "abziehst",
-      "achilles",
       "addieren",
       "adjektiv",
       "adjutant",
@@ -19405,7 +18965,6 @@ export const generatedAnagrammTargetsByPreset = {
       "beneidet",
       "benennen",
       "benimmst",
-      "benjamin",
       "benommen",
       "benötige",
       "benötigt",
@@ -19419,7 +18978,6 @@ export const generatedAnagrammTargetsByPreset = {
       "bereisen",
       "bereitet",
       "bergdorf",
-      "bergmann",
       "bergwerk",
       "beruhige",
       "beruhigt",
@@ -19869,7 +19427,6 @@ export const generatedAnagrammTargetsByPreset = {
       "erkrankt",
       "erkunden",
       "erkundet",
-      "erlangen",
       "erlangte",
       "erlassen",
       "erlauben",
@@ -20082,7 +19639,6 @@ export const generatedAnagrammTargetsByPreset = {
       "frisches",
       "frisiert",
       "fristlos",
-      "fröhlich",
       "frohsinn",
       "fröschen",
       "früchten",
@@ -20486,7 +20042,6 @@ export const generatedAnagrammTargetsByPreset = {
       "hardcore",
       "harmlose",
       "härteste",
-      "hartmann",
       "hässlich",
       "haupttor",
       "hausarzt",
@@ -20622,7 +20177,6 @@ export const generatedAnagrammTargetsByPreset = {
       "irgendwo",
       "irisches",
       "ironisch",
-      "isabelle",
       "isoliert",
       "jagdhund",
       "jahrbuch",
@@ -20634,7 +20188,6 @@ export const generatedAnagrammTargetsByPreset = {
       "jedesmal",
       "jiddisch",
       "jobsuche",
-      "johannes",
       "jubiläum",
       "juckreiz",
       "judentum",
@@ -21261,7 +20814,6 @@ export const generatedAnagrammTargetsByPreset = {
       "sägewerk",
       "sakrileg",
       "salpeter",
-      "salzburg",
       "sammelst",
       "sammelte",
       "sandbank",
@@ -21310,7 +20862,6 @@ export const generatedAnagrammTargetsByPreset = {
       "schiesst",
       "schiffen",
       "schilden",
-      "schiller",
       "schimpfe",
       "schimpft",
       "schinden",
@@ -22315,10 +21866,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "akku": [
       "akku"
     ],
-    "aekn": [
-      "akne",
-      "anke"
-    ],
     "aktu": [
       "akut",
       "kaut"
@@ -22348,11 +21895,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "aimn": [
       "amin"
     ],
-    "aims": [
-      "amis",
-      "mais",
-      "sami"
-    ],
     "akmo": [
       "amok",
       "koma"
@@ -22369,9 +21911,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "ains": [
       "anis",
       "sani"
-    ],
-    "anno": [
-      "anno"
     ],
     "aent": [
       "ante"
@@ -22391,10 +21930,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "aemr": [
       "arme",
       "mare"
-    ],
-    "ainr": [
-      "arni",
-      "iran"
     ],
     "artz": [
       "arzt",
@@ -22419,10 +21954,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "acev": [
       "avec"
-    ],
-    "aelx": [
-      "axel",
-      "laxe"
     ],
     "aruz": [
       "azur"
@@ -22479,14 +22010,8 @@ export const generatedAnagrammSolutionsBySignature = {
       "berg",
       "gerb"
     ],
-    "benr": [
-      "bern"
-    ],
     "bett": [
       "bett"
-    ],
-    "bbii": [
-      "bibi"
     ],
     "beir": [
       "bier",
@@ -22494,9 +22019,6 @@ export const generatedAnagrammSolutionsBySignature = {
       "brie",
       "reib",
       "rieb"
-    ],
-    "bdil": [
-      "bild"
     ],
     "ablu": [
       "blau",
@@ -22518,9 +22040,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "bboo": [
       "bobo"
-    ],
-    "bdno": [
-      "bond"
     ],
     "bgno": [
       "bong"
@@ -22727,9 +22246,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "djoo": [
       "dojo"
     ],
-    "dllo": [
-      "doll"
-    ],
     "dgno": [
       "dong"
     ],
@@ -22771,9 +22287,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "dgnu": [
       "dung"
-    ],
-    "drrü": [
-      "dürr"
     ],
     "dttu": [
       "dutt"
@@ -22817,11 +22330,6 @@ export const generatedAnagrammSolutionsBySignature = {
       "eins",
       "nies",
       "sein"
-    ],
-    "eekl": [
-      "ekel",
-      "ekle",
-      "klee"
     ],
     "aeln": [
       "elan"
@@ -22918,9 +22426,6 @@ export const generatedAnagrammSolutionsBySignature = {
       "fies",
       "seif"
     ],
-    "fikn": [
-      "fink"
-    ],
     "fist": [
       "fist"
     ],
@@ -22948,10 +22453,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "foot": [
       "foto"
-    ],
-    "afgr": [
-      "frag",
-      "graf"
     ],
     "efir": [
       "frei",
@@ -23018,9 +22519,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "aegm": [
       "gema",
       "mega"
-    ],
-    "efgn": [
-      "genf"
     ],
     "egnr": [
       "gern"
@@ -23192,9 +22690,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "chhu": [
       "huch"
     ],
-    "ghou": [
-      "hugo"
-    ],
     "hhnu": [
       "huhn"
     ],
@@ -23293,9 +22788,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "affk": [
       "kaff"
     ],
-    "ahkl": [
-      "kahl"
-    ],
     "ahkn": [
       "kahn",
       "khan"
@@ -23330,12 +22822,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "cekk": [
       "keck"
-    ],
-    "eikl": [
-      "keil",
-      "kiel",
-      "leik",
-      "liek"
     ],
     "ekks": [
       "keks"
@@ -23456,9 +22942,6 @@ export const generatedAnagrammSolutionsBySignature = {
       "lide",
       "lied"
     ],
-    "elnz": [
-      "lenz"
-    ],
     "eltz": [
       "letz",
       "zelt"
@@ -23521,12 +23004,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "aamr": [
       "mara"
     ],
-    "acmr": [
-      "marc"
-    ],
-    "amtt": [
-      "matt"
-    ],
     "amsu": [
       "maus",
       "musa",
@@ -23534,9 +23011,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "aimx": [
       "maxi"
-    ],
-    "aamy": [
-      "maya"
     ],
     "amoy": [
       "mayo"
@@ -23871,9 +23345,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "ffir": [
       "riff"
     ],
-    "airt": [
-      "rita"
-    ],
     "horr": [
       "rohr"
     ],
@@ -24025,9 +23496,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "agot": [
       "toga"
     ],
-    "noty": [
-      "tony"
-    ],
     "loot": [
       "tool"
     ],
@@ -24080,9 +23548,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "eitv": [
       "vite"
     ],
-    "gotv": [
-      "vogt"
-    ],
     "klov": [
       "volk"
     ],
@@ -24109,10 +23574,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "beiw": [
       "weib"
-    ],
-    "einw": [
-      "wein",
-      "wien"
     ],
     "eitw": [
       "weit"
@@ -24198,9 +23659,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "eguz": [
       "zeug",
       "zuge"
-    ],
-    "esuz": [
-      "zeus"
     ],
     "imtz": [
       "zimt"
@@ -24454,10 +23912,6 @@ export const generatedAnagrammSolutionsBySignature = {
       "augen",
       "genau"
     ],
-    "aalru": [
-      "aural",
-      "laura"
-    ],
     "aortu": [
       "autor"
     ],
@@ -24542,9 +23996,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "bloss": [
       "bloss"
     ],
-    "bbboy": [
-      "bobby"
-    ],
     "bdeno": [
       "boden"
     ],
@@ -24596,10 +24047,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "acddy": [
       "caddy"
-    ],
-    "aclor": [
-      "calor",
-      "carol"
     ],
     "cello": [
       "cello"
@@ -24710,9 +24157,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "cdhlo": [
       "dolch"
     ],
-    "adnno": [
-      "donna"
-    ],
     "dnotu": [
       "donut"
     ],
@@ -24803,12 +24247,6 @@ export const generatedAnagrammSolutionsBySignature = {
       "stile",
       "teils"
     ],
-    "eeimr": [
-      "eimer",
-      "meier",
-      "miere",
-      "reime"
-    ],
     "einst": [
       "einst",
       "estin",
@@ -24857,9 +24295,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "ehhör": [
       "erhöh",
       "höher"
-    ],
-    "aeikr": [
-      "erika"
     ],
     "aeglr": [
       "erlag",
@@ -24981,9 +24416,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "acfnr": [
       "franc"
     ],
-    "afknr": [
-      "frank"
-    ],
     "aefkr": [
       "freak"
     ],
@@ -24992,12 +24424,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "defmr": [
       "fremd"
-    ],
-    "firtz": [
-      "fritz"
-    ],
-    "fmmor": [
-      "fromm"
     ],
     "frstu": [
       "frust",
@@ -25098,9 +24524,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "egllr": [
       "grell"
     ],
-    "gimmr": [
-      "grimm"
-    ],
     "gllor": [
       "groll"
     ],
@@ -25128,9 +24551,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "adehs": [
       "hades"
     ],
-    "ahikm": [
-      "hakim"
-    ],
     "ahllo": [
       "hallo",
       "holla"
@@ -25149,26 +24569,14 @@ export const generatedAnagrammSolutionsBySignature = {
     "cehht": [
       "hecht"
     ],
-    "dehii": [
-      "heidi"
-    ],
     "ehiin": [
       "heini"
-    ],
-    "ehinz": [
-      "heinz"
-    ],
-    "eeghl": [
-      "helge"
     ],
     "ehlot": [
       "helot",
       "holet",
       "holte",
       "hotel"
-    ],
-    "ehnry": [
-      "henry"
     ],
     "ehmru": [
       "herum",
@@ -25193,10 +24601,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "hinuz": [
       "hinzu"
-    ],
-    "ehinr": [
-      "hirne",
-      "rhein"
     ],
     "ehirt": [
       "hirte",
@@ -25285,17 +24689,11 @@ export const generatedAnagrammSolutionsBySignature = {
     "eehjr": [
       "jeher"
     ],
-    "ejssu": [
-      "jesus"
-    ],
     "ejttz": [
       "jetzt"
     ],
     "ijnot": [
       "joint"
-    ],
-    "jnnoy": [
-      "jonny"
     ],
     "ceiju": [
       "juice"
@@ -25365,11 +24763,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "deikl": [
       "kleid"
-    ],
-    "eikln": [
-      "klein",
-      "liken",
-      "linke"
     ],
     "aiklm": [
       "klima"
@@ -25515,14 +24908,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "aadmm": [
       "madam"
     ],
-    "aeimr": [
-      "maire",
-      "marie",
-      "ramie"
-    ],
-    "ajmor": [
-      "major"
-    ],
     "abmmo": [
       "mambo"
     ],
@@ -25543,17 +24928,11 @@ export const generatedAnagrammSolutionsBySignature = {
     "ceimr": [
       "merci"
     ],
-    "eelmr": [
-      "merle"
-    ],
     "eemtt": [
       "mette"
     ],
     "ikmor": [
       "mikro"
-    ],
-    "ailmn": [
-      "milan"
     ],
     "eillm": [
       "mille"
@@ -25699,12 +25078,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "aptty": [
       "patty"
     ],
-    "ennpy": [
-      "penny"
-    ],
-    "eeprt": [
-      "peter"
-    ],
     "eiptt": [
       "petit"
     ],
@@ -25837,9 +25210,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "eirrv": [
       "river"
-    ],
-    "egorr": [
-      "roger"
     ],
     "lloor": [
       "rollo"
@@ -26030,9 +25400,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "aostt": [
       "toast"
     ],
-    "mmoty": [
-      "tommy"
-    ],
     "cinot": [
       "tonic"
     ],
@@ -26115,9 +25482,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "aikrv": [
       "vikar"
     ],
-    "ailov": [
-      "viola"
-    ],
     "eiprv": [
       "viper"
     ],
@@ -26136,10 +25500,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "amruw": [
       "warum"
-    ],
-    "beerw": [
-      "weber",
-      "werbe"
     ],
     "eillw": [
       "welli",
@@ -26264,9 +25624,6 @@ export const generatedAnagrammSolutionsBySignature = {
       "ackert",
       "tacker",
       "tracke"
-    ],
-    "aafikr": [
-      "afrika"
     ],
     "aegiln": [
       "agilen",
@@ -26479,9 +25836,6 @@ export const generatedAnagrammSolutionsBySignature = {
       "labtet",
       "tablet"
     ],
-    "aabkln": [
-      "balkan"
-    ],
     "abklno": [
       "balkon",
       "blanko"
@@ -26532,9 +25886,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "beinnz": [
       "benzin"
-    ],
-    "beilnr": [
-      "berlin"
     ],
     "beerss": [
       "besser"
@@ -26632,12 +25983,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "acnnoy": [
       "canyon"
     ],
-    "aacinr": [
-      "carina"
-    ],
-    "acemnr": [
-      "carmen"
-    ],
     "acerrv": [
       "carver"
     ],
@@ -26704,9 +26049,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "aadlms": [
       "damals"
-    ],
-    "aadimn": [
-      "damian"
     ],
     "adehnp": [
       "daphne"
@@ -26797,10 +26139,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "adgnor": [
       "dragon"
-    ],
-    "adlnor": [
-      "dralon",
-      "roland"
     ],
     "deirst": [
       "dreist"
@@ -26931,9 +26269,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "eikmos": [
       "eskimo"
     ],
-    "aeopru": [
-      "europa"
-    ],
     "aemnnx": [
       "exmann"
     ],
@@ -26957,12 +26292,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "äefgnr": [
       "fänger"
-    ],
-    "aefnst": [
-      "fasten",
-      "saften",
-      "sanfte",
-      "stefan"
     ],
     "efgitt": [
       "fettig",
@@ -27201,9 +26530,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "abgllo": [
       "global"
     ],
-    "agilor": [
-      "gloria"
-    ],
     "ädggin": [
       "gnädig"
     ],
@@ -27272,9 +26598,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "äfghiu": [
       "häufig"
-    ],
-    "aahiiw": [
-      "hawaii"
     ],
     "eehhlr": [
       "hehler"
@@ -27418,14 +26741,8 @@ export const generatedAnagrammSolutionsBySignature = {
     "imrrtu": [
       "irrtum"
     ],
-    "adilns": [
-      "island"
-    ],
     "aagjru": [
       "jaguar"
-    ],
-    "aijmns": [
-      "jasmin"
     ],
     "ahjlow": [
       "jawohl"
@@ -27441,9 +26758,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "aegjlt": [
       "jetlag"
-    ],
-    "cehjno": [
-      "jochen"
     ],
     "cejkoy": [
       "jockey"
@@ -27562,13 +26876,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "kmostü": [
       "kostüm"
     ],
-    "aekmrr": [
-      "kramer",
-      "marker"
-    ],
-    "egkrrü": [
-      "krüger"
-    ],
     "bikrsü": [
       "kürbis"
     ],
@@ -27619,8 +26926,7 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "deeilr": [
       "leider",
-      "lieder",
-      "riedel"
+      "lieder"
     ],
     "eeills": [
       "leslie"
@@ -27718,9 +27024,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "agmnot": [
       "montag"
-    ],
-    "imortz": [
-      "moritz"
     ],
     "emörrs": [
       "mörser",
@@ -27855,9 +27158,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "anoprt": [
       "parton",
       "patron"
-    ],
-    "aaclps": [
-      "pascal"
     ],
     "aachps": [
       "pascha"
@@ -28173,9 +27473,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "ginnos": [
       "sonnig"
     ],
-    "ahiops": [
-      "sophia"
-    ],
     "ailosz": [
       "sozial"
     ],
@@ -28210,10 +27507,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "adnrst": [
       "strand"
-    ],
-    "ersttu": [
-      "streut",
-      "sutter"
     ],
     "ikrstt": [
       "strikt"
@@ -28347,9 +27640,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "afllnu": [
       "unfall"
     ],
-    "agnnru": [
-      "ungarn"
-    ],
     "egnnru": [
       "ungern"
     ],
@@ -28459,9 +27749,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "aggnow": [
       "waggon"
     ],
-    "aegnrw": [
-      "wagner"
-    ],
     "aeklrw": [
       "walker"
     ],
@@ -28530,9 +27817,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "denrüz": [
       "zünder"
-    ],
-    "chirüz": [
-      "zürich"
     ],
     "astuzz": [
       "zusatz"
@@ -28814,8 +28098,7 @@ export const generatedAnagrammSolutionsBySignature = {
       "staubig"
     ],
     "aadlnsu": [
-      "ausland",
-      "landaus"
+      "ausland"
     ],
     "affpsuu": [
       "auspuff"
@@ -29658,9 +28941,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "ahrstuü": [
       "haustür"
     ],
-    "aaahnnv": [
-      "havanna"
-    ],
     "eeghimw": [
       "heimweg"
     ],
@@ -29704,9 +28984,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "cfhhilö": [
       "höflich"
-    ],
-    "adhllno": [
-      "holland"
     ],
     "ghilopr": [
       "holprig"
@@ -29805,9 +29082,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "aadiklr": [
       "kardial",
       "radikal"
-    ],
-    "abiikkr": [
-      "karibik"
     ],
     "aekllrt": [
       "kartell",
@@ -30068,11 +29342,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "cehmnnü": [
       "münchen"
-    ],
-    "emnrstü": [
-      "münster",
-      "stürmen",
-      "türmens"
     ],
     "acilmsu": [
       "musical"
@@ -30381,9 +29650,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "cgkruüz": [
       "rückzug"
     ],
-    "dhlopru": [
-      "rudolph"
-    ],
     "elmnpru": [
       "rumpeln"
     ],
@@ -30433,9 +29699,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "cdehims": [
       "schmied"
     ],
-    "chimstz": [
-      "schmitz"
-    ],
     "chmstuz": [
       "schmutz"
     ],
@@ -30457,9 +29720,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "chorstt": [
       "schrott"
-    ],
-    "cehlsuz": [
-      "schulze"
     ],
     "cehkrsu": [
       "schurke"
@@ -30577,9 +29837,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "äekrrst": [
       "stärker"
-    ],
-    "aehnpst": [
-      "stephan"
     ],
     "aderstw": [
       "steward"
@@ -30869,14 +30126,8 @@ export const generatedAnagrammSolutionsBySignature = {
     "eeiilvw": [
       "wieviel"
     ],
-    "ehillmw": [
-      "wilhelm"
-    ],
     "aikmrsw": [
       "wirksam"
-    ],
-    "aflmorw": [
-      "wolfram"
     ],
     "chrstuw": [
       "wurscht"
@@ -30972,9 +30223,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "abdeensw": [
       "abwesend"
-    ],
-    "acehills": [
-      "achilles"
     ],
     "aadjnttu": [
       "adjutant"
@@ -31228,12 +30476,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "abcekknt": [
       "beknackt"
-    ],
-    "abeijmnn": [
-      "benjamin"
-    ],
-    "abegmnnr": [
-      "bergmann"
     ],
     "beegkrrw": [
       "bergwerk"
@@ -31818,9 +31060,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "deffhior": [
       "friedhof"
     ],
-    "cfhhilör": [
-      "fröhlich"
-    ],
     "afhhjrrü": [
       "frühjahr"
     ],
@@ -32246,9 +31485,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "chiinors": [
       "ironisch"
     ],
-    "abeeills": [
-      "isabelle"
-    ],
     "abchhjru": [
       "jahrbuch"
     ],
@@ -32260,9 +31496,6 @@ export const generatedAnagrammSolutionsBySignature = {
     ],
     "adeejlms": [
       "jedesmal"
-    ],
-    "aehjnnos": [
-      "johannes"
     ],
     "äbijlmuu": [
       "jubiläum"
@@ -32958,9 +32191,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "äeegkrsw": [
       "sägewerk"
     ],
-    "abglrsuz": [
-      "salzburg"
-    ],
     "aadmnnns": [
       "sandmann"
     ],
@@ -32992,10 +32222,6 @@ export const generatedAnagrammSolutionsBySignature = {
     "acehlssu": [
       "scheusal",
       "schlaues"
-    ],
-    "cehillrs": [
-      "schiller",
-      "schrille"
     ],
     "cehirsss": [
       "schisser"

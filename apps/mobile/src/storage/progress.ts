@@ -56,6 +56,22 @@ export function mergeCompletedStatus(previous: GameStatus | undefined, next: Gam
   return next ?? previous;
 }
 
+/** A loss remains official when a player keeps solving after running out of attempts. */
+export function resolveOfficialOutcome(
+  previous: StoredProgress["officialOutcome"] | undefined,
+  status: GameStatus,
+  continuedAfterLoss: boolean,
+): StoredProgress["officialOutcome"] | undefined {
+  if (previous === "lost" || continuedAfterLoss || status === "lost") return "lost";
+  return undefined;
+}
+
+/** Restores the immutable loss marker from both current and legacy progress records. */
+export function getStoredOfficialOutcome(progress: StoredProgress | null | undefined): StoredProgress["officialOutcome"] | undefined {
+  if (progress?.officialOutcome === "lost" || progress?.continuedAfterLoss || progress?.solvedAfterLoss || progress?.postLossCompletion) return "lost";
+  return undefined;
+}
+
 export function isStartedProgress(progress: StoredProgress | null | undefined): progress is StoredProgress {
   if (!progress || progress.status !== "playing") return false;
   if (!progress.puzzle) return false;

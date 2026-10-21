@@ -221,6 +221,11 @@ function classifyBucket(word, tags) {
   return "base";
 }
 
+function isProperNameOnly(tags) {
+  const dictionaryTags = [...tags].filter((tag) => tag !== "DWDS:BASE");
+  return dictionaryTags.length > 0 && dictionaryTags.every((tag) => tag.startsWith("EIG:"));
+}
+
 function getTier(zipf) {
   if (zipf >= ZIPF_EASY_THRESHOLD) return "easy";
   if (zipf >= ZIPF_MEDIUM_THRESHOLD) return "medium";
@@ -276,7 +281,15 @@ async function addMorphologyWords(words, wordTags) {
     const [form, lemma, tag] = line.split("\t");
     const word = normalizeWord(form);
 
-    if (hasValidShape(word) && isAllowedPosTag(form, lemma, tag)) {
+    if (!hasValidShape(word)) continue;
+
+    if (tag.startsWith("EIG:")) {
+      if (!wordTags.has(word)) wordTags.set(word, new Set());
+      wordTags.get(word).add(tag);
+      continue;
+    }
+
+    if (isAllowedPosTag(form, lemma, tag)) {
       words.add(word);
       if (!wordTags.has(word)) wordTags.set(word, new Set());
       wordTags.get(word).add(tag);
@@ -292,6 +305,12 @@ const words = new Set();
 const wordTags = new Map(); // word -> Set<tag>
 await addDwdsWords(words, wordTags);
 await addMorphologyWords(words, wordTags);
+
+// DWDS can label proper names as generic nouns. Prefer the morphology tags when
+// available: words tagged exclusively as EIG (Eigenname) are never gameplay words.
+for (const [word, tags] of wordTags) {
+  if (isProperNameOnly(tags)) words.delete(word);
+}
 
 const smokeTestsByLength = {
   5: {

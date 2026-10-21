@@ -43,10 +43,12 @@ import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { useHintWallet } from "@/hints/useHintWallet";
 import { getHintPolicy, requestAdHint } from "@/hints/policy";
 import {
+  getStoredOfficialOutcome,
   isStartedProgress,
   loadProgress,
   loadProgressForGames,
   mergeCompletedStatus,
+  resolveOfficialOutcome,
   saveProgress,
   type StoredProgress,
 } from "@/storage/progress";
@@ -76,6 +78,7 @@ export default function WorttrefferScreen() {
   const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
+  const officialOutcomeRef = useRef<StoredProgress["officialOutcome"] | undefined>(undefined);
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
   const { packs } = usePacksSettings();
   const [game, setGame] = useState<WorttrefferGame>(() => createNextWorttrefferGame(undefined, today, "klassisch"));
@@ -124,6 +127,7 @@ export default function WorttrefferScreen() {
     loadProgress<WorttrefferState>("worttreffer", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
+      officialOutcomeRef.current = getStoredOfficialOutcome(progress);
       setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreWorttrefferPuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
@@ -140,11 +144,12 @@ export default function WorttrefferScreen() {
   useEffect(() => {
     if (!progressLoaded) return;
 
-    const officialOutcome = continuedAfterLoss ? "lost" : state.status === "lost" ? "lost" : undefined;
+    const officialOutcome = resolveOfficialOutcome(officialOutcomeRef.current, state.status, continuedAfterLoss);
     const completedAt = officialOutcome || state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
     const completedStatus = mergeCompletedStatus(completedStatusRef.current, officialOutcome ?? (state.status !== "playing" ? state.status : undefined));
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
+    officialOutcomeRef.current = officialOutcome;
     saveProgress({
       gameId: "worttreffer",
       dateKey,
@@ -189,7 +194,7 @@ export default function WorttrefferScreen() {
   const boardTileMinHeight = board.minHeight;
   const boardTileTextSize = board.fontSize;
   const visibleRows = state.guesses.length + (state.status === "playing" && revealingGuessIndex === null ? 1 : 0);
-  const nextDailyKniffRoute = useNextOpenDailyKniff("worttreffer", dateKey, state.status === "won");
+  const nextDailyKniffRoute = useNextOpenDailyKniff("worttreffer", dateKey, state.status === "won" && officialOutcomeRef.current !== "lost");
 
   function addLetter(letter: string) {
     if (state.status !== "playing") return;

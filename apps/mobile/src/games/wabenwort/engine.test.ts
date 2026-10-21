@@ -28,6 +28,8 @@ describe("Wabenwort engine", () => {
     const state = createWabenwortState(puzzle);
     expect(submitWabenwortWord(puzzle, state, "ehre").ok).toBe(false);
     expect(submitWabenwortWord(puzzle, state, "maus").ok).toBe(false);
+    const noCenterLetter = submitWabenwortWord(puzzle, state, "mehr");
+    expect(noCenterLetter).toMatchObject({ ok: false, reason: "Nutze auch A." });
   });
 
   it("ranks by found word count and completes at the gold word goal", () => {

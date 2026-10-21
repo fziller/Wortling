@@ -29,7 +29,7 @@ import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
-import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, saveProgress, type StoredProgress } from "@/storage/progress";
+import { getStoredOfficialOutcome, isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, resolveOfficialOutcome, saveProgress, type StoredProgress } from "@/storage/progress";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 import { buildMarkedGridShareText } from "@/games/share/grid";
@@ -59,6 +59,7 @@ export default function WortschmelzeScreen() {
   const hintPolicy = getHintPolicy();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
+  const officialOutcomeRef = useRef<StoredProgress["officialOutcome"] | undefined>(undefined);
   const revealDoneTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
   const [game, setGame] = useState<WortschmelzeGame>(() => createNextWortschmelzeGame(undefined, today, "klassisch"));
@@ -76,7 +77,7 @@ export default function WortschmelzeScreen() {
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const [revealingGuessIndex, setRevealingGuessIndex] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
-  const nextDailyKniffRoute = useNextOpenDailyKniff(GAME_ID, dateKey, state.status === "won");
+  const nextDailyKniffRoute = useNextOpenDailyKniff(GAME_ID, dateKey, state.status === "won" && officialOutcomeRef.current !== "lost");
   const help = useFirstGameHelp({
     enabled: progressLoaded && state.status === "playing",
     gameId: GAME_ID,
@@ -99,6 +100,7 @@ export default function WortschmelzeScreen() {
     loadProgress<WortschmelzeState>(GAME_ID, today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
+      officialOutcomeRef.current = getStoredOfficialOutcome(progress);
       setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreWortschmelzePuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
@@ -114,11 +116,12 @@ export default function WortschmelzeScreen() {
 
   useEffect(() => {
     if (!progressLoaded) return;
-    const officialOutcome = continuedAfterLoss ? "lost" : state.status === "lost" ? "lost" : undefined;
+    const officialOutcome = resolveOfficialOutcome(officialOutcomeRef.current, state.status, continuedAfterLoss);
     const completedAt = officialOutcome || state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
     const completedStatus = mergeCompletedStatus(completedStatusRef.current, officialOutcome ?? (state.status !== "playing" ? state.status : undefined));
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
+    officialOutcomeRef.current = officialOutcome;
     saveProgress({ gameId: GAME_ID, dateKey, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt, officialOutcome, continuedAfterLoss, officialLossAttemptCount: continuedAfterLoss ? puzzle.maxAttempts : undefined, solvedAfterLoss: continuedAfterLoss && state.status === "won", postLossCompletion: continuedAfterLoss && state.status === "won" ? "solved" : continuedAfterLoss && state.status === "revealed" ? "revealed" : undefined });
   }, [continuedAfterLoss, dateKey, progressLoaded, puzzle, state]);
 

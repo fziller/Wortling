@@ -73,6 +73,10 @@ describe("daily kniffe", () => {
     expect(isDailyKniffCompleted({ ...progress("playing"), completedStatus: "won" })).toBe(true);
   });
 
+  it("does not count a solution after an official loss", () => {
+    expect(isDailyKniffCompleted({ ...progress("won"), completedStatus: "won", officialOutcome: "lost" })).toBe(false);
+  });
+
   it("summarizes 0/3, 1/3, 2/3, and 3/3", () => {
     const kniffe = generateDailyKniffe({ dateKey: "2026-08-21", games: testGames });
     const [first, second, third] = kniffe;

@@ -36,7 +36,7 @@ import { BucketPreset } from "@/games/wordBuckets";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
-import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, saveProgress, type StoredProgress } from "@/storage/progress";
+import { getStoredOfficialOutcome, isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, resolveOfficialOutcome, saveProgress, type StoredProgress } from "@/storage/progress";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 import { usePacksSettings } from "@/hooks/usePacksSettings";
@@ -87,6 +87,7 @@ export default function FormwortScreen() {
   const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
+  const officialOutcomeRef = useRef<StoredProgress["officialOutcome"] | undefined>(undefined);
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
   const { packs } = usePacksSettings();
   const [game, setGame] = useState<FormwortGame>(() => createNextFormwortGame(undefined, today, "klassisch"));
@@ -107,7 +108,7 @@ export default function FormwortScreen() {
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
-  const nextDailyKniffRoute = useNextOpenDailyKniff("formwort", dateKey, state.status === "won");
+  const nextDailyKniffRoute = useNextOpenDailyKniff("formwort", dateKey, state.status === "won" && officialOutcomeRef.current !== "lost");
   const hintWallet = useHintWallet();
   const hintPolicy = getHintPolicy();
   const revealedLetters = getFormwortRevealedLetters(puzzle, state);
@@ -126,6 +127,7 @@ export default function FormwortScreen() {
     loadProgress<FormwortState>("formwort", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
+      officialOutcomeRef.current = getStoredOfficialOutcome(progress);
       setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreFormwortPuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
@@ -142,11 +144,12 @@ export default function FormwortScreen() {
   useEffect(() => {
     if (!progressLoaded) return;
 
-    const officialOutcome = continuedAfterLoss ? "lost" : state.status === "lost" ? "lost" : undefined;
+    const officialOutcome = resolveOfficialOutcome(officialOutcomeRef.current, state.status, continuedAfterLoss);
     const completedAt = officialOutcome || state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
     const completedStatus = mergeCompletedStatus(completedStatusRef.current, officialOutcome ?? (state.status !== "playing" ? state.status : undefined));
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
+    officialOutcomeRef.current = officialOutcome;
     saveProgress({ gameId: "formwort", dateKey, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt, officialOutcome, continuedAfterLoss, officialLossAttemptCount: continuedAfterLoss ? puzzle.maxAttempts : undefined, solvedAfterLoss: continuedAfterLoss && state.status === "won", postLossCompletion: continuedAfterLoss && state.status === "won" ? "solved" : continuedAfterLoss && state.status === "revealed" ? "revealed" : undefined });
   }, [continuedAfterLoss, dateKey, progressLoaded, puzzle, state]);
 

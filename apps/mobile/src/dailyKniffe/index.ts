@@ -59,6 +59,7 @@ export function generateDailyKniffe({
 }
 
 export function isDailyKniffCompleted(progress: StoredProgress | null | undefined): boolean {
+  if (progress?.officialOutcome === "lost") return false;
   return progress?.completedStatus === "won" || progress?.status === "won";
 }
 

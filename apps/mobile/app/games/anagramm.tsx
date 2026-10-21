@@ -33,7 +33,7 @@ import { selectionHaptic, successHaptic, warningHaptic } from "@/haptics";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
 import { rejectMessage } from "@/games/rejectMessages";
-import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, saveProgress, type StoredProgress } from "@/storage/progress";
+import { getStoredOfficialOutcome, isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, resolveOfficialOutcome, saveProgress, type StoredProgress } from "@/storage/progress";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { isFinishedGameStatus, useGameRecorder } from "@/stats/recorder";
 
@@ -53,6 +53,7 @@ export default function AnagrammScreen() {
   const hintPolicy = getHintPolicy();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
+  const officialOutcomeRef = useRef<StoredProgress["officialOutcome"] | undefined>(undefined);
   const slotRefs = useRef(new Map<number, View>());
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
   const [game, setGame] = useState<AnagrammGame>(() => createNextAnagrammGame(undefined, today));
@@ -67,7 +68,7 @@ export default function AnagrammScreen() {
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
-  const nextDailyKniffRoute = useNextOpenDailyKniff("anagramm", dateKey, state.status === "won");
+  const nextDailyKniffRoute = useNextOpenDailyKniff("anagramm", dateKey, state.status === "won" && officialOutcomeRef.current !== "lost");
   const help = useFirstGameHelp({
     enabled: progressLoaded && state.status === "playing",
     gameId: "anagramm",
@@ -87,6 +88,7 @@ export default function AnagrammScreen() {
     loadProgress<AnagrammState>("anagramm", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
+      officialOutcomeRef.current = getStoredOfficialOutcome(progress);
       setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreAnagrammPuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
@@ -99,11 +101,12 @@ export default function AnagrammScreen() {
 
   useEffect(() => {
     if (!progressLoaded) return;
-    const officialOutcome = continuedAfterLoss ? "lost" : state.status === "lost" ? "lost" : undefined;
+    const officialOutcome = resolveOfficialOutcome(officialOutcomeRef.current, state.status, continuedAfterLoss);
     const completedAt = officialOutcome || state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
     const completedStatus = mergeCompletedStatus(completedStatusRef.current, officialOutcome ?? (state.status !== "playing" ? state.status : undefined));
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
+    officialOutcomeRef.current = officialOutcome;
     saveProgress({ gameId: "anagramm", dateKey, completedStatus, puzzle, puzzleId: puzzle.id, puzzleVersion: puzzle.version, status: state.status, state, completedAt, officialOutcome, continuedAfterLoss, officialLossAttemptCount: continuedAfterLoss ? puzzle.maxAttempts : undefined, solvedAfterLoss: continuedAfterLoss && state.status === "won", postLossCompletion: continuedAfterLoss && state.status === "won" ? "solved" : continuedAfterLoss && state.status === "revealed" ? "revealed" : undefined });
   }, [continuedAfterLoss, dateKey, progressLoaded, puzzle, state]);
 
@@ -115,6 +118,8 @@ export default function AnagrammScreen() {
   }, [dateKey, state.status]);
 
   const tileLayout = getWordTileLayout(puzzle.wordLength);
+  const tileMinHeight = tileLayout.minHeight + 10;
+  const tileWrapperStyle = { ...styles.draggableTile, minHeight: tileMinHeight };
   const usedTiles = new Set(state.placedTileIndices.filter((index): index is number => index !== null));
   const draft = getAnagrammDraft(puzzle, state);
   const displayedSolution = state.status === "won" ? state.guesses[state.guesses.length - 1] ?? puzzle.answer : puzzle.answer;
@@ -253,7 +258,7 @@ export default function AnagrammScreen() {
       <View style={styles.content}>
         <Text style={styles.label}>BUCHSTABEN</Text>
         <View style={[styles.tiles, { gap: tileLayout.gap + 3 }]}>
-          {puzzle.shuffledLetters.map((letter, index) => <DraggableTile disabled={state.status !== "playing" || usedTiles.has(index)} key={`${letter}-${index}`} onDrop={(x, y) => dropPoolTile(index, x, y)} style={styles.draggableTile}><LetterTile disabled={state.status !== "playing" || usedTiles.has(index)} label={letter} minHeight={tileLayout.minHeight + 10} onPress={() => place(index)} textSize={tileLayout.fontSize + 3} /></DraggableTile>)}
+          {puzzle.shuffledLetters.map((letter, index) => <DraggableTile disabled={state.status !== "playing" || usedTiles.has(index)} key={`${letter}-${index}`} onDrop={(x, y) => dropPoolTile(index, x, y)} style={tileWrapperStyle}><LetterTile disabled={state.status !== "playing" || usedTiles.has(index)} label={letter} minHeight={tileMinHeight} onPress={() => place(index)} textSize={tileLayout.fontSize + 3} /></DraggableTile>)}
         </View>
         <Text style={styles.label}>LÖSUNG</Text>
         <ShakeView trigger={shakeTick}>
@@ -261,7 +266,7 @@ export default function AnagrammScreen() {
             {state.placedTileIndices.map((tileIndex, index) => {
               const fixed = state.fixedIndices.includes(index);
               const disabled = tileIndex === null || fixed || state.status !== "playing";
-              return <View collapsable={false} key={index} ref={(view) => { if (view) slotRefs.current.set(index, view); else slotRefs.current.delete(index); }} style={styles.draggableTile}><DraggableTile disabled={disabled} onDrop={(x, y) => dropPlacedTile(index, x, y)} style={styles.draggableTile}><LetterTile disabled={disabled} fixed={fixed} label={tileIndex === null ? "" : puzzle.shuffledLetters[tileIndex]} minHeight={tileLayout.minHeight + 10} onPress={() => remove(index)} textSize={tileLayout.fontSize + 3} /></DraggableTile></View>;
+              return <View collapsable={false} key={index} ref={(view) => { if (view) slotRefs.current.set(index, view); else slotRefs.current.delete(index); }} style={tileWrapperStyle}><DraggableTile disabled={disabled} onDrop={(x, y) => dropPlacedTile(index, x, y)} style={tileWrapperStyle}><LetterTile disabled={disabled} fixed={fixed} label={tileIndex === null ? "" : puzzle.shuffledLetters[tileIndex]} minHeight={tileMinHeight} onPress={() => remove(index)} textSize={tileLayout.fontSize + 3} /></DraggableTile></View>;
             })}
           </Animated.View>
         </ShakeView>

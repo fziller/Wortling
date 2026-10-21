@@ -34,7 +34,7 @@ import { useFittedBoardMetrics } from "@/games/useFittedBoardMetrics";
 import { getWordTileLayout } from "@/games/wordTileLayout";
 import { useActiveTimer } from "@/hooks/useActiveTimer";
 import { BucketPreset } from "@/games/wordBuckets";
-import { isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, saveProgress, type StoredProgress } from "@/storage/progress";
+import { getStoredOfficialOutcome, isStartedProgress, loadProgress, loadProgressForGames, mergeCompletedStatus, resolveOfficialOutcome, saveProgress, type StoredProgress } from "@/storage/progress";
 import { getPreset, loadWordBucketSettings } from "@/storage/wordBuckets";
 import { updateBadgeCount } from "@/notifications/badge";
 import { scheduleDailyReminder } from "@/notifications/scheduler";
@@ -59,6 +59,7 @@ export default function WortcodeScreen() {
   const stats = useGameRecorder();
   const completedAtRef = useRef<string | undefined>(undefined);
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
+  const officialOutcomeRef = useRef<StoredProgress["officialOutcome"] | undefined>(undefined);
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
   const { packs } = usePacksSettings();
   const [game, setGame] = useState<WortcodeGame>(() => createNextWortcodeGame(undefined, today, "klassisch"));
@@ -79,7 +80,7 @@ export default function WortcodeScreen() {
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [finishedAt, setFinishedAt] = useState<number | null>(null);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
-  const nextDailyKniffRoute = useNextOpenDailyKniff("wortcode", dateKey, state.status === "won");
+  const nextDailyKniffRoute = useNextOpenDailyKniff("wortcode", dateKey, state.status === "won" && officialOutcomeRef.current !== "lost");
   const posthog = usePostHog();
   const hintWallet = useHintWallet();
   const hintPolicy = getHintPolicy();
@@ -99,6 +100,7 @@ export default function WortcodeScreen() {
     loadProgress<WortcodeState>("wortcode", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
+      officialOutcomeRef.current = getStoredOfficialOutcome(progress);
       setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreWortcodePuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
@@ -115,11 +117,12 @@ export default function WortcodeScreen() {
   useEffect(() => {
     if (!progressLoaded) return;
 
-    const officialOutcome = continuedAfterLoss ? "lost" : state.status === "lost" ? "lost" : undefined;
+    const officialOutcome = resolveOfficialOutcome(officialOutcomeRef.current, state.status, continuedAfterLoss);
     const completedAt = officialOutcome || state.status !== "playing" ? new Date().toISOString() : completedAtRef.current;
     const completedStatus = mergeCompletedStatus(completedStatusRef.current, officialOutcome ?? (state.status !== "playing" ? state.status : undefined));
     completedAtRef.current = completedAt;
     completedStatusRef.current = completedStatus;
+    officialOutcomeRef.current = officialOutcome;
 
     saveProgress({
       gameId: "wortcode",
