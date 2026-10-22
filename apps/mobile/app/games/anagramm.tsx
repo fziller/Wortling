@@ -5,6 +5,7 @@ import { usePostHog } from "posthog-react-native";
 import Animated, { FadeInDown, LinearTransition, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
 
 import { captureEvent } from "@/analytics/events";
+import { useGameStarted } from "@/analytics/useGameStarted";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { DraggableTile } from "@/components/DraggableTile";
@@ -58,6 +59,7 @@ export default function AnagrammScreen() {
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
   const [game, setGame] = useState<AnagrammGame>(() => createNextAnagrammGame(undefined, today));
   const { dateKey, puzzle } = game;
+  const trackGameStarted = useGameStarted(posthog, "anagramm", dateKey);
   const [state, setState] = useState<AnagrammState>(game.state);
   const [message, setMessage] = useState("");
   const [shakeTick, setShakeTick] = useState(0);
@@ -81,7 +83,6 @@ export default function AnagrammScreen() {
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "anagramm", params: { dateKey } });
-    captureEvent(posthog, "game_started", { gameId: "anagramm", dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -128,6 +129,7 @@ export default function AnagrammScreen() {
   const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
   function startStats() {
+    trackGameStarted(puzzle.id);
     stats.start({ gameId: "anagramm", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength, difficulty: puzzle.difficulty });
   }
 
@@ -173,7 +175,11 @@ export default function AnagrammScreen() {
     if (next === state) { setMessage("Alle Positionen sind schon gelöst."); return; }
     let source = "earned";
     if (hintPolicy === "ads") {
-      if (!await requestAdHint()) { setMessage("Werbung gerade nicht verfügbar."); return; }
+      if (!await requestAdHint()) {
+        captureEvent(posthog, "hint_unavailable", { gameId: "anagramm", dateKey, reason: "ad_unavailable" });
+        setMessage("Werbung gerade nicht verfügbar.");
+        return;
+      }
       source = "ad";
     } else if (!await hintWallet.tryConsume()) { setMessage("Keine Hinweise verfügbar."); return; }
     startStats();

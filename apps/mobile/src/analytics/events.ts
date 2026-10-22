@@ -7,6 +7,7 @@ export type WortkniffEvents = {
   game_abandoned: { gameId: string; dateKey: string; attempts: number; score?: number; foundWordCount?: number };
   help_opened: { gameId?: string; screen?: string; dateKey?: string; source?: "automatic" | "manual" };
   hint_used: { gameId: string; dateKey: string; source?: string };
+  hint_unavailable: { gameId: string; dateKey: string; reason: "ad_unavailable" | "wallet_empty" | "no_hint_available" };
   game_continued_after_loss: { gameId: string; dateKey: string; attempts: number };
   game_solved_after_loss: { gameId: string; dateKey: string; attempts: number };
   solution_revealed: { gameId: string; dateKey: string; attempts: number; foundWordCount?: number };
@@ -20,6 +21,7 @@ export type WortkniffEvents = {
   result_viewed: { gameId?: string; dateKey: string; scope: "game" | "daily_kniffe"; outcome?: string; success?: boolean };
   game_feedback_submitted: { gameId: string; dateKey: string; rating: "too_easy" | "ok" | "too_hard"; outcome: string };
   result_shared: { gameId?: string; dateKey: string; scope: "game" | "daily_kniffe"; outcome?: string };
+  result_share_failed: { gameId: string; dateKey: string; scope: "game"; reason: "native_share_failed" };
   onboarding_completed: { dateKey: string; action: "started" | "dismissed" | "reset" };
   notification_tested: { kind: "daily" | "unfinished" | "hint_wallet_full" };
   notification_opened: { kind: "daily" | "unfinished" | "hint_wallet_full" | "unknown"; url?: string };

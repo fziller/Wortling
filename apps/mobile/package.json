@@ -36,6 +36,7 @@
     "words:validate": "node scripts/validate-target-words.mjs",
     "words:import:bio": "node scripts/import-bio-words.mjs",
     "words:stats": "node scripts/generate-word-stats.mjs",
+    "analytics:check": "node scripts/validate-analytics-catalog.mjs",
     "content:generate": "yarn words:import && yarn words:import:bio && yarn wortleiter:generate && yarn wortschmelze:generate && yarn wabenwort:generate && yarn silbenmix:generate && yarn anagramm:generate && yarn words:review:generate && yarn words:validate && yarn words:stats",
     "anagramm:generate": "node scripts/generate-anagramm-content.mjs",
     "wortleiter:generate": "yarn words:import:4 && node scripts/generate-wortleiter-puzzles.mjs --limit=1500",

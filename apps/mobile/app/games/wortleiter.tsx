@@ -14,6 +14,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { captureEvent } from "@/analytics/events";
+import { useGameStarted } from "@/analytics/useGameStarted";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
@@ -80,6 +81,7 @@ export default function WortleiterScreen() {
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [game, setGame] = useState<WortleiterGame>(() => createNextWortleiterGame(undefined, today));
   const { dateKey, puzzle } = game;
+  const trackGameStarted = useGameStarted(posthog, "wortleiter", dateKey);
   const [state, setState] = useState<WortleiterState>(game.state);
   const [inputLetters, setInputLetters] = useState(() =>
     createEmptyInput(game.puzzle.wordLength),
@@ -101,7 +103,6 @@ export default function WortleiterScreen() {
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "wortleiter", params: { dateKey } });
-    captureEvent(posthog, "game_started", { gameId: "wortleiter", dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -192,6 +193,7 @@ export default function WortleiterScreen() {
   }
 
   function startStats() {
+    trackGameStarted(puzzle.id);
     stats.start({ gameId: "wortleiter", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength });
   }
 
@@ -253,6 +255,7 @@ export default function WortleiterScreen() {
     if (hintPolicy === "ads") {
       const ok = await requestAdHint();
       if (!ok) {
+        captureEvent(posthog, "hint_unavailable", { gameId: "wortleiter", dateKey, reason: "ad_unavailable" });
         setMessage("Werbung gerade nicht verfügbar.");
         return;
       }

@@ -56,6 +56,7 @@ const confetti = [
 
 export function GameResultModal({
   actionLabel = "Neues Wort",
+  dateKey,
   gameId,
   guesses = [],
   message,
@@ -181,6 +182,9 @@ export function GameResultModal({
         setShared(true);
         onShare?.();
       } catch {
+        if (gameId && dateKey) {
+          captureEvent(posthog, "result_share_failed", { gameId, dateKey, scope: "game", reason: "native_share_failed" });
+        }
         // Native share failures should not block the result flow.
       }
     } finally {

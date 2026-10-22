@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import { usePostHog } from "posthog-react-native";
 
 import { captureEvent } from "@/analytics/events";
+import { useGameStarted } from "@/analytics/useGameStarted";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
@@ -47,6 +48,7 @@ export default function DoppelScreen() {
   const completedStatusRef = useRef<StoredProgress["status"] | undefined>(undefined);
   const [game, setGame] = useState<DoppelGame>(() => createNextDoppelGame(undefined, today));
   const { dateKey, puzzle } = game;
+  const trackGameStarted = useGameStarted(posthog, "doppel", dateKey);
   const [state, setState] = useState<DoppelState>(game.state);
   const [input, setInput] = useState("");
   const [message, setMessage] = useState("");
@@ -114,7 +116,6 @@ export default function DoppelScreen() {
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "doppel", params: { dateKey } });
-    captureEvent(posthog, "game_started", { gameId: "doppel", dateKey });
   }, [dateKey, posthog]);
 
   function addLetter(letter: string) {
@@ -127,6 +128,7 @@ export default function DoppelScreen() {
   }
 
   function startStats() {
+    trackGameStarted(puzzle.id);
     stats.start({ gameId: "doppel", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version });
   }
 
@@ -173,6 +175,7 @@ export default function DoppelScreen() {
     if (hintPolicy === "ads") {
       const ok = await requestAdHint();
       if (!ok) {
+        captureEvent(posthog, "hint_unavailable", { gameId: "doppel", dateKey, reason: "ad_unavailable" });
         setMessage("Werbung gerade nicht verfügbar.");
         return;
       }

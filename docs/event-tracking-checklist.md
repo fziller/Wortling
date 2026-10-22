@@ -1,5 +1,7 @@
 # Event Tracking Checklist
 
+`docs/posthog-events.csv` is the complete event catalog. Keep it in lockstep with `WortkniffEvents` and run `yarn analytics:check` after every event change.
+
 ## Pflicht-Events
 
 Every user-facing screen must emit:

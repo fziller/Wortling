@@ -5,6 +5,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, LinearTransition, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
 
 import { captureEvent } from "@/analytics/events";
+import { useGameStarted } from "@/analytics/useGameStarted";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { DraggableTile } from "@/components/DraggableTile";
 import { GameResultModal } from "@/components/GameResultModal";
@@ -63,6 +64,7 @@ export default function SilbenmixScreen() {
   const selectedTileRefs = useRef(new Map<string, View>());
   const [game, setGame] = useState<SilbenmixGame>(() => createDailySilbenmixGame());
   const { dateKey, puzzle } = game;
+  const trackGameStarted = useGameStarted(posthog, GAME_ID, dateKey);
   const [state, setState] = useState<SilbenmixState>(game.state);
   const [message, setMessage] = useState("");
   const [shakeTick, setShakeTick] = useState(0);
@@ -84,7 +86,6 @@ export default function SilbenmixScreen() {
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: GAME_ID, params: { dateKey } });
-    captureEvent(posthog, "game_started", { gameId: GAME_ID, dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -119,6 +120,7 @@ export default function SilbenmixScreen() {
   }, [dateKey, state.status]);
 
   function startStats() {
+    trackGameStarted(puzzle.id);
     stats.start({ gameId: GAME_ID, playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, difficulty: puzzle.difficulty });
   }
 
@@ -211,7 +213,11 @@ export default function SilbenmixScreen() {
     if (next === state) { setMessage("Dafür ist gerade kein Hinweis offen."); return; }
     let source = "earned";
     if (hintPolicy === "ads") {
-      if (!await requestAdHint()) { setMessage("Werbung gerade nicht verfügbar."); return; }
+      if (!await requestAdHint()) {
+        captureEvent(posthog, "hint_unavailable", { gameId: GAME_ID, dateKey, reason: "ad_unavailable" });
+        setMessage("Werbung gerade nicht verfügbar.");
+        return;
+      }
       source = "ad";
     } else if (!await hintWallet.tryConsume()) { setMessage("Keine Hinweise verfügbar."); return; }
     startStats();

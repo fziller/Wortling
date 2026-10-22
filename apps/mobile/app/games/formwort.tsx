@@ -5,6 +5,7 @@ import { usePostHog } from "posthog-react-native";
 import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated";
 
 import { captureEvent } from "@/analytics/events";
+import { useGameStarted } from "@/analytics/useGameStarted";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
@@ -96,6 +97,7 @@ export default function FormwortScreen() {
     loadWordBucketSettings().then((s) => setBucketPreset(getPreset(s)));
   }, []);
   const { dateKey, puzzle } = game;
+  const trackGameStarted = useGameStarted(posthog, "formwort", dateKey);
   const [state, setState] = useState<FormwortState>(game.state);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(game.puzzle.wordLength));
   const [cursorIndex, setCursorIndex] = useState(0);
@@ -120,7 +122,6 @@ export default function FormwortScreen() {
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "formwort", params: { dateKey } });
-    captureEvent(posthog, "game_started", { gameId: "formwort", dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -196,10 +197,15 @@ export default function FormwortScreen() {
     if (state.status !== "playing") return;
     if (hintPolicy === "ads") {
       const ok = await requestAdHint();
-      if (!ok) { setMessage("Werbung gerade nicht verfügbar."); return; }
+      if (!ok) {
+        captureEvent(posthog, "hint_unavailable", { gameId: "formwort", dateKey, reason: "ad_unavailable" });
+        setMessage("Werbung gerade nicht verfügbar.");
+        return;
+      }
       const next = applyFormwortHint(puzzle, state);
       if (next === state) { setMessage("Alle Buchstaben schon aufgedeckt."); return; }
       setState(next);
+      startStats();
       stats.recordHint({ source: "ad", gameId: "formwort" });
       captureEvent(posthog, "hint_used", { gameId: "formwort", dateKey, source: "ad" });
       setMessage("Hinweis aufgedeckt.");
@@ -221,6 +227,7 @@ export default function FormwortScreen() {
   }
 
   function startStats() {
+    trackGameStarted(puzzle.id);
     stats.start({ gameId: "formwort", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength });
   }
 

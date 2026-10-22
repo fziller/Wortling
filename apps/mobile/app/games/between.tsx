@@ -16,6 +16,7 @@ import Animated, {
 
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { captureEvent } from "@/analytics/events";
+import { useGameStarted } from "@/analytics/useGameStarted";
 import { getBerlinDateKey } from "@/daily/date";
 import { useNextOpenDailyKniff } from "@/dailyKniffe/continuation";
 import { hashSeed } from "@/daily/seed";
@@ -112,6 +113,7 @@ export default function BetweenScreen() {
   const centerWord = state.status === "revealed" || state.status === "won" ? state.targetWord : undefined;
   const showScaleHints = Boolean(lastGuess);
   const puzzleId = `between-${state.targetWord}`;
+  const trackGameStarted = useGameStarted(posthog, "between", dateKey);
   const hintPlaceholders = getBetweenRevealedHintLetters(state);
   const help = useFirstGameHelp({
     enabled: progressLoaded && state.status === "playing",
@@ -121,9 +123,13 @@ export default function BetweenScreen() {
   const hintDisabled = state.status !== "playing" || (state.revealedHintIndices?.length ?? 0) >= Array.from(state.targetWord).length || (hintPolicy !== "ads" && !hintWallet.canConsume);
   const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
+  function startStats() {
+    trackGameStarted(puzzleId);
+    stats.start({ gameId: "between", playDate: dateKey, puzzleId, gameVersion: puzzleVersion, wordLength: 5 });
+  }
+
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "between", params: { dateKey } });
-    captureEvent(posthog, "game_started", { gameId: "between", dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -227,7 +233,7 @@ export default function BetweenScreen() {
   }
 
   function guess() {
-    stats.start({ gameId: "between", playDate: dateKey, puzzleId, gameVersion: puzzleVersion, wordLength: 5 });
+    startStats();
     const result = submitGuess(state, inputLetters.join(""));
 
     if (!result.ok) {
@@ -302,14 +308,17 @@ export default function BetweenScreen() {
     let source = "earned";
     if (hintPolicy === "ads") {
       const ok = await requestAdHint();
-      if (!ok) return;
+      if (!ok) {
+        captureEvent(posthog, "hint_unavailable", { gameId: "between", dateKey, reason: "ad_unavailable" });
+        return;
+      }
       source = "ad";
     } else {
       const consumed = await hintWallet.tryConsume();
       if (!consumed) return;
     }
 
-    stats.start({ gameId: "between", playDate: dateKey, puzzleId, gameVersion: puzzleVersion, wordLength: 5 });
+    startStats();
     setState(next);
     stats.recordHint({ source, gameId: "between", revealedCount: next.revealedHintIndices?.length });
     captureEvent(posthog, "hint_used", { gameId: "between", dateKey, source });
@@ -338,7 +347,7 @@ export default function BetweenScreen() {
   }
 
   function revealRound() {
-    stats.start({ gameId: "between", playDate: dateKey, puzzleId, gameVersion: puzzleVersion, wordLength: 5 });
+    startStats();
     stats.finish("revealed");
     captureEvent(posthog, "solution_revealed", { gameId: "between", dateKey, attempts: state.guesses.length });
     captureEvent(posthog, "game_completed", {

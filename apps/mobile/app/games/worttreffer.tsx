@@ -10,6 +10,7 @@ import Animated, {
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { captureEvent } from "@/analytics/events";
+import { useGameStarted } from "@/analytics/useGameStarted";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GrowingGuessBoard } from "@/components/GrowingGuessBoard";
@@ -87,6 +88,7 @@ export default function WorttrefferScreen() {
     loadWordBucketSettings().then((s) => setBucketPreset(getPreset(s)));
   }, []);
   const { dateKey, puzzle } = game;
+  const trackGameStarted = useGameStarted(posthog, "worttreffer", dateKey);
   const [state, setState] = useState<WorttrefferState>(game.state);
   const [inputLetters, setInputLetters] = useState(() =>
     createEmptyInput(game.puzzle.wordLength),
@@ -120,7 +122,6 @@ export default function WorttrefferScreen() {
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "worttreffer", params: { dateKey } });
-    captureEvent(posthog, "game_started", { gameId: "worttreffer", dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -219,6 +220,7 @@ export default function WorttrefferScreen() {
     if (hintPolicy === "ads") {
       const ok = await requestAdHint();
       if (!ok) {
+        captureEvent(posthog, "hint_unavailable", { gameId: "worttreffer", dateKey, reason: "ad_unavailable" });
         setMessage("Werbung gerade nicht verfügbar.");
         return;
       }
@@ -229,6 +231,7 @@ export default function WorttrefferScreen() {
         return;
       }
       setState(next);
+      startStats();
       stats.recordHint({ source: "ad", gameId: "worttreffer" });
       captureEvent(posthog, "hint_used", { gameId: "worttreffer", dateKey, source: "ad" });
       setMessage("Hinweis aufgedeckt.");
@@ -259,6 +262,7 @@ export default function WorttrefferScreen() {
   }
 
   function startStats() {
+    trackGameStarted(puzzle.id);
     stats.start({ gameId: "worttreffer", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength });
   }
 

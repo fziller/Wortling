@@ -5,6 +5,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, LinearTransition, interpolate, interpolateColor, useAnimatedStyle, useSharedValue, withDelay, withTiming } from "react-native-reanimated";
 
 import { captureEvent } from "@/analytics/events";
+import { useGameStarted } from "@/analytics/useGameStarted";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { GameResultModal } from "@/components/GameResultModal";
@@ -64,6 +65,7 @@ export default function WortschmelzeScreen() {
   const [bucketPreset, setBucketPreset] = useState<BucketPreset>("klassisch");
   const [game, setGame] = useState<WortschmelzeGame>(() => createNextWortschmelzeGame(undefined, today, "klassisch"));
   const { dateKey, puzzle } = game;
+  const trackGameStarted = useGameStarted(posthog, GAME_ID, dateKey);
   const [state, setState] = useState<WortschmelzeState>(game.state);
   const [inputLetters, setInputLetters] = useState(() => createEmptyInput(game.puzzle.wordLength));
   const [cursorIndex, setCursorIndex] = useState(0);
@@ -93,7 +95,6 @@ export default function WortschmelzeScreen() {
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: GAME_ID, params: { dateKey } });
-    captureEvent(posthog, "game_started", { gameId: GAME_ID, dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -174,6 +175,7 @@ export default function WortschmelzeScreen() {
     if (hintPolicy === "ads") {
       const ok = await requestAdHint();
       if (!ok) {
+        captureEvent(posthog, "hint_unavailable", { gameId: GAME_ID, dateKey, reason: "ad_unavailable" });
         setMessage("Werbung gerade nicht verfügbar.");
         return;
       }
@@ -194,6 +196,7 @@ export default function WortschmelzeScreen() {
   }
 
   function startStats() {
+    trackGameStarted(puzzle.id);
     stats.start({ gameId: GAME_ID, playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength });
   }
 

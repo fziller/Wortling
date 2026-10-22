@@ -5,6 +5,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeInDown, LinearTransition, useAnimatedStyle, useSharedValue, withSequence, withSpring, withTiming } from "react-native-reanimated";
 
 import { captureEvent } from "@/analytics/events";
+import { useGameStarted } from "@/analytics/useGameStarted";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { GameResultModal } from "@/components/GameResultModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
@@ -62,6 +63,7 @@ export default function WabenwortScreen() {
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
   const [activeLetterTick, setActiveLetterTick] = useState(0);
   const { dateKey, puzzle } = game;
+  const trackGameStarted = useGameStarted(posthog, GAME_ID, dateKey);
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
   const nextDailyKniffRoute = useNextOpenDailyKniff(GAME_ID, dateKey, state.status === "won");
   const rank = getWabenwortRank(puzzle, state);
@@ -77,7 +79,6 @@ export default function WabenwortScreen() {
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: GAME_ID, params: { dateKey } });
-    captureEvent(posthog, "game_started", { gameId: GAME_ID, dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -147,6 +148,7 @@ export default function WabenwortScreen() {
   }, [puzzle.words]);
 
   function startStats() {
+    trackGameStarted(puzzle.id);
     stats.start({ gameId: GAME_ID, playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: 7 });
   }
 
@@ -192,7 +194,10 @@ export default function WabenwortScreen() {
     startStats();
     let source = "earned";
     if (hintPolicy === "ads") {
-      if (!await requestAdHint()) return setMessage("Werbung gerade nicht verfügbar.");
+      if (!await requestAdHint()) {
+        captureEvent(posthog, "hint_unavailable", { gameId: GAME_ID, dateKey, reason: "ad_unavailable" });
+        return setMessage("Werbung gerade nicht verfügbar.");
+      }
       source = "ad";
     } else if (!await hintWallet.tryConsume()) return setMessage("Keine Hinweise verfügbar.");
     const hintedWord = next.foundWords[next.foundWords.length - 1]!;

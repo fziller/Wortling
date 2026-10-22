@@ -5,6 +5,7 @@ import { usePostHog } from "posthog-react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
 import { captureEvent } from "@/analytics/events";
+import { useGameStarted } from "@/analytics/useGameStarted";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
@@ -53,6 +54,7 @@ export default function GalgenwortScreen() {
     loadWordBucketSettings().then((s) => setBucketPreset(getPreset(s)));
   }, []);
   const { dateKey, puzzle } = game;
+  const trackGameStarted = useGameStarted(posthog, "galgenwort", dateKey);
   const [state, setState] = useState<GalgenwortState>(game.state);
   const [message, setMessage] = useState("");
   const [shakeTick, setShakeTick] = useState(0);
@@ -72,7 +74,6 @@ export default function GalgenwortScreen() {
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "galgenwort", params: { dateKey } });
-    captureEvent(posthog, "game_started", { gameId: "galgenwort", dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -117,6 +118,7 @@ export default function GalgenwortScreen() {
   const hintLabel = hintPolicy === "ads" ? "💡 Hinweis (Werbung)" : `💡 Hinweis (${hintWallet.wallet.balance}/3)`;
 
   function startStats() {
+    trackGameStarted(puzzle.id);
     stats.start({ gameId: "galgenwort", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version });
   }
 
@@ -160,6 +162,7 @@ export default function GalgenwortScreen() {
     if (hintPolicy === "ads") {
       const ok = await requestAdHint();
       if (!ok) {
+        captureEvent(posthog, "hint_unavailable", { gameId: "galgenwort", dateKey, reason: "ad_unavailable" });
         setMessage("Werbung gerade nicht verfügbar.");
         return;
       }

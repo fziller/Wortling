@@ -1,0 +1,35 @@
+event,category,trigger,properties,privacy
+daily_kniff_completed,daily,Tageskniff offiziell abgeschlossen,dateKey|gameId,No gameplay content
+daily_kniff_opened,daily,Tageskniff von Home geöffnet,dateKey|gameId|completed,No gameplay content
+daily_kniffe_all_completed,daily,Alle Tageskniffe gewonnen,dateKey|streak,No gameplay content
+daily_kniffe_viewed,daily,Home zeigt Tageskniffe,dateKey|total,No gameplay content
+daily_streak_updated,daily,Tageskniff-Serie wächst,dateKey|streak,No gameplay content
+game_abandoned,game,Spiel mit Fortschritt verlassen,gameId|dateKey|attempts|score?|foundWordCount?,No guesses or answers
+game_completed,game,Runde endet,gameId|dateKey|durationMs|attempts|outcome|success|score?|rank?|foundWordCount?|totalWords?|pangramCount?|highestWordLength?,No guesses or answers
+game_continued_after_loss,game,Nach Verlust weiterspielen,gameId|dateKey|attempts,No guesses or answers
+game_feedback_submitted,game,Schwierigkeitsfeedback im Ergebnis,gameId|dateKey|rating|outcome,No guesses or answers
+game_solved_after_loss,game,Nach Verlust doch gelöst,gameId|dateKey|attempts,No guesses or answers
+game_started,game,Erste semantische Aktion der Runde,gameId|dateKey,No guesses or answers
+help_opened,engagement,Hilfe automatisch oder manuell geöffnet,gameId?|screen?|dateKey?|source?,No gameplay content
+hint_unavailable,game,Hinweis kann nicht genutzt werden,gameId|dateKey|reason,No guesses or answers
+hint_used,game,Hinweis erfolgreich genutzt,gameId|dateKey|source?,No guesses or answers
+news_dismissed,engagement,News-Modal geschlossen,id,No gameplay content
+news_viewed,engagement,News-Modal angezeigt,id,No gameplay content
+notification_opened,notification,Push-Notification geöffnet,kind|url?,No personal content in URL
+notification_permission_result,notification,Berechtigungsdialog beantwortet,granted|source,No gameplay content
+notification_tested,notification,Dev-Testnotification ausgelöst,kind,Development only
+onboarding_completed,onboarding,Onboarding gestartet geschlossen oder zurückgesetzt,dateKey|action,No gameplay content
+ota_update_available,release,OTA-Update verfügbar,None,No gameplay content
+ota_update_dismissed,release,OTA-Update geschlossen,None,No gameplay content
+ota_update_restart_pressed,release,App-Neustart für OTA angefordert,None,No gameplay content
+result_share_failed,engagement,Native Share-Fallback ebenfalls fehlgeschlagen,gameId|dateKey|scope|reason,No guesses or answers
+result_shared,engagement,Native Share-Flow geöffnet,gameId?|dateKey|scope|outcome?,No guesses or answers
+result_viewed,engagement,Ergebnis-Modal erstmals sichtbar,gameId?|dateKey|scope|outcome?|success?,No guesses or answers
+screen_viewed,navigation,User-facing Screen sichtbar,screen|params?,No gameplay content
+settings_changed,settings,Einstellung geändert,key|value,No secrets or personal content
+solution_revealed,game,Lösung bewusst aufgedeckt,gameId|dateKey|attempts|foundWordCount?,No guesses or answers
+store_review_native_requested,review,Native Store-Review angefordert,source,No gameplay content
+store_review_prompt_responded,review,Store-Review-Prompt beantwortet,source|response,No gameplay content
+store_review_prompt_shown,review,Store-Review-Prompt angezeigt,source,No gameplay content
+store_review_store_opened,review,Store-Bewertungsseite geöffnet,source,No gameplay content
+store_review_store_unavailable,review,Store-Bewertungsseite nicht erreichbar,source,No gameplay content

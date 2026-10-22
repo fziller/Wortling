@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated";
 
 import { captureEvent } from "@/analytics/events";
+import { useGameStarted } from "@/analytics/useGameStarted";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { ContinueAfterLossModal } from "@/components/ContinueAfterLossModal";
 import { GameScreenFrame } from "@/components/GameScreenFrame";
@@ -82,6 +83,7 @@ export default function WortcodeScreen() {
   const { elapsedSeconds, reset: resetTimer } = useActiveTimer(state.status === "playing", finishedAt);
   const nextDailyKniffRoute = useNextOpenDailyKniff("wortcode", dateKey, state.status === "won" && officialOutcomeRef.current !== "lost");
   const posthog = usePostHog();
+  const trackGameStarted = useGameStarted(posthog, "wortcode", dateKey);
   const hintWallet = useHintWallet();
   const hintPolicy = getHintPolicy();
   const revealedLetters = getWortcodeRevealedLetters(puzzle, state);
@@ -93,7 +95,6 @@ export default function WortcodeScreen() {
 
   useEffect(() => {
     captureEvent(posthog, "screen_viewed", { screen: "wortcode", params: { dateKey } });
-    captureEvent(posthog, "game_started", { gameId: "wortcode", dateKey });
   }, [dateKey, posthog]);
 
   useEffect(() => {
@@ -183,10 +184,15 @@ export default function WortcodeScreen() {
     if (state.status !== "playing") return;
     if (hintPolicy === "ads") {
       const ok = await requestAdHint();
-      if (!ok) { setMessage("Werbung gerade nicht verfügbar."); return; }
+      if (!ok) {
+        captureEvent(posthog, "hint_unavailable", { gameId: "wortcode", dateKey, reason: "ad_unavailable" });
+        setMessage("Werbung gerade nicht verfügbar.");
+        return;
+      }
       const next = applyWortcodeHint(puzzle, state);
       if (next === state) { setMessage("Alle Buchstaben schon aufgedeckt."); return; }
       setState(next);
+      startStats();
       stats.recordHint({ source: "ad", gameId: "wortcode" });
       captureEvent(posthog, "hint_used", { gameId: "wortcode", dateKey, source: "ad" });
       setMessage("Hinweis aufgedeckt.");
@@ -208,6 +214,7 @@ export default function WortcodeScreen() {
   }
 
   function startStats() {
+    trackGameStarted(puzzle.id);
     stats.start({ gameId: "wortcode", playDate: dateKey, puzzleId: puzzle.id, gameVersion: puzzle.version, wordLength: puzzle.wordLength, difficulty: puzzle.difficulty });
   }
 
