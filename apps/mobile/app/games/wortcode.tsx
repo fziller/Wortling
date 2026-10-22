@@ -100,7 +100,7 @@ export default function WortcodeScreen() {
     loadProgress<WortcodeState>("wortcode", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
-      officialOutcomeRef.current = getStoredOfficialOutcome(progress);
+      officialOutcomeRef.current = isStartedProgress(progress) ? getStoredOfficialOutcome(progress) : undefined;
       setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreWortcodePuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
@@ -289,6 +289,7 @@ export default function WortcodeScreen() {
   function startNextWord() {
     const nextGame = createNextWortcodeGame(puzzle.answer, today, bucketPreset, packs);
 
+    officialOutcomeRef.current = undefined;
     setGame(nextGame);
     setState(nextGame.state);
     setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));

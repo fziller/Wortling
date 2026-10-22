@@ -88,7 +88,7 @@ export default function AnagrammScreen() {
     loadProgress<AnagrammState>("anagramm", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
-      officialOutcomeRef.current = getStoredOfficialOutcome(progress);
+      officialOutcomeRef.current = isStartedProgress(progress) ? getStoredOfficialOutcome(progress) : undefined;
       setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreAnagrammPuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
@@ -237,6 +237,7 @@ export default function AnagrammScreen() {
 
   function nextGame() {
     const next = createNextAnagrammGame(puzzle.answer, today, bucketPreset);
+    officialOutcomeRef.current = undefined;
     setGame(next); setState(next.state); setMessage(""); setResultVisible(false); setLossVisible(false); setContinuedAfterLoss(false); setFinishedAt(null); resetTimer();
   }
 

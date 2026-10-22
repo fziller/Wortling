@@ -1,7 +1,7 @@
 import { getBerlinDateKey } from "@/daily/date";
 import { hashSeed } from "@/daily/seed";
 import type { GameDefinition, GameStatus } from "@/games/types";
-import type { StoredProgress } from "@/storage/progress";
+import { getStoredOfficialOutcome, type StoredProgress } from "@/storage/progress";
 
 export const DAILY_KNIFFE_VERSION = 1;
 export const DAILY_KNIFFE_COUNT = 3;
@@ -59,7 +59,7 @@ export function generateDailyKniffe({
 }
 
 export function isDailyKniffCompleted(progress: StoredProgress | null | undefined): boolean {
-  if (progress?.officialOutcome === "lost") return false;
+  if (getStoredOfficialOutcome(progress) === "lost") return false;
   return progress?.completedStatus === "won" || progress?.status === "won";
 }
 

@@ -127,7 +127,7 @@ export default function FormwortScreen() {
     loadProgress<FormwortState>("formwort", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
-      officialOutcomeRef.current = getStoredOfficialOutcome(progress);
+      officialOutcomeRef.current = isStartedProgress(progress) ? getStoredOfficialOutcome(progress) : undefined;
       setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreFormwortPuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
@@ -280,6 +280,7 @@ export default function FormwortScreen() {
   function startNextWord() {
     const nextGame = createNextFormwortGame(puzzle.answer, today, bucketPreset, packs);
 
+    officialOutcomeRef.current = undefined;
     setGame(nextGame);
     setState(nextGame.state);
     setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));

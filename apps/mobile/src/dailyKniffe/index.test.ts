@@ -73,8 +73,12 @@ describe("daily kniffe", () => {
     expect(isDailyKniffCompleted({ ...progress("playing"), completedStatus: "won" })).toBe(true);
   });
 
-  it("does not count a solution after an official loss", () => {
-    expect(isDailyKniffCompleted({ ...progress("won"), completedStatus: "won", officialOutcome: "lost" })).toBe(false);
+  it("does not count a solution after continuing the same official loss", () => {
+    expect(isDailyKniffCompleted({ ...progress("won"), completedStatus: "won", officialOutcome: "lost", continuedAfterLoss: true, solvedAfterLoss: true })).toBe(false);
+  });
+
+  it("counts a clean later round despite a stale legacy loss marker", () => {
+    expect(isDailyKniffCompleted({ ...progress("won"), completedStatus: "won", officialOutcome: "lost" })).toBe(true);
   });
 
   it("summarizes 0/3, 1/3, 2/3, and 3/3", () => {

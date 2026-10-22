@@ -79,7 +79,7 @@ export default function GalgenwortScreen() {
     loadProgress<GalgenwortState>("galgenwort", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
-      officialOutcomeRef.current = getStoredOfficialOutcome(progress);
+      officialOutcomeRef.current = isStartedProgress(progress) ? getStoredOfficialOutcome(progress) : undefined;
       setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       if (isStartedProgress(progress)) {
         setGame({ dateKey: progress.dateKey, puzzle: progress.puzzle as GalgenwortGame["puzzle"], state: progress.state });
@@ -213,6 +213,7 @@ export default function GalgenwortScreen() {
   function startNextWord() {
     const nextGame = createNextGalgenwortGame(puzzle.id, today, bucketPreset, packs);
 
+    officialOutcomeRef.current = undefined;
     setGame(nextGame);
     setState(nextGame.state);
     setMessage("");

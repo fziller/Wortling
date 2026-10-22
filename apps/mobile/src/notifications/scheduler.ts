@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 
 import { isDebugBuild } from "@/config/runtime";
 import { getBerlinDateKey } from "@/daily/date";
-import { generateDailyKniffe, getDailyKniffeSummary } from "@/dailyKniffe";
+import { generateDailyKniffe, getDailyKniffeSummary, isDailyKniffCompleted } from "@/dailyKniffe";
 import { gameRegistry, games } from "@/games/registry";
 import { loadProgressForGames } from "@/storage/progress";
 import { loadNotificationSettings } from "@/storage/settings";
@@ -109,7 +109,7 @@ async function createReminderContent(dateKey: string): Promise<{ completed: numb
   const progress = await loadProgressForGames(dailyKniffe.map((kniff) => kniff.gameId), dateKey).catch(() => ({} as Awaited<ReturnType<typeof loadProgressForGames>>));
   const summary = getDailyKniffeSummary(dailyKniffe, progress);
   const open = Math.max(0, summary.total - summary.completed);
-  const next = dailyKniffe.find((kniff) => progress[kniff.gameId]?.completedStatus !== "won" && progress[kniff.gameId]?.status !== "won");
+  const next = dailyKniffe.find((kniff) => !isDailyKniffCompleted(progress[kniff.gameId]));
   const nextUrl = next ? gameRegistry[next.gameId]?.route ?? "/" : "/";
 
   return {

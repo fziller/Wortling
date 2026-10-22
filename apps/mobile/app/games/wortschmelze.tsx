@@ -100,7 +100,7 @@ export default function WortschmelzeScreen() {
     loadProgress<WortschmelzeState>(GAME_ID, today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
-      officialOutcomeRef.current = getStoredOfficialOutcome(progress);
+      officialOutcomeRef.current = isStartedProgress(progress) ? getStoredOfficialOutcome(progress) : undefined;
       setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreWortschmelzePuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
@@ -264,6 +264,7 @@ export default function WortschmelzeScreen() {
   function startNextWord() {
     const nextGame = createNextWortschmelzeGame(puzzle.answer, today, bucketPreset);
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
+    officialOutcomeRef.current = undefined;
     setGame(nextGame);
     setState(nextGame.state);
     setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));

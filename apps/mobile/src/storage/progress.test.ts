@@ -18,4 +18,8 @@ describe("mergeCompletedStatus", () => {
     expect(resolveOfficialOutcome(undefined, "won", true)).toBe("lost");
     expect(getStoredOfficialOutcome({ continuedAfterLoss: true } as StoredProgress)).toBe("lost");
   });
+
+  it("repairs a stale loss marker on a later clean win", () => {
+    expect(getStoredOfficialOutcome({ officialOutcome: "lost", status: "won" } as StoredProgress)).toBeUndefined();
+  });
 });

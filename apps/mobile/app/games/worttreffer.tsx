@@ -127,7 +127,7 @@ export default function WorttrefferScreen() {
     loadProgress<WorttrefferState>("worttreffer", today).then((progress) => {
       completedAtRef.current = progress?.completedAt;
       completedStatusRef.current = progress?.completedStatus;
-      officialOutcomeRef.current = getStoredOfficialOutcome(progress);
+      officialOutcomeRef.current = isStartedProgress(progress) ? getStoredOfficialOutcome(progress) : undefined;
       setContinuedAfterLoss(Boolean(progress?.continuedAfterLoss && !progress.postLossCompletion));
       const restoredPuzzle = restoreWorttrefferPuzzle(progress?.puzzle);
       if (isStartedProgress(progress) && restoredPuzzle && progress.state.puzzleId === restoredPuzzle.id) {
@@ -355,6 +355,7 @@ export default function WorttrefferScreen() {
     const nextGame = createNextWorttrefferGame(puzzle.answer, today, bucketPreset, packs);
 
     if (revealDoneTimeoutRef.current) clearTimeout(revealDoneTimeoutRef.current);
+    officialOutcomeRef.current = undefined;
     setGame(nextGame);
     setState(nextGame.state);
     setInputLetters(createEmptyInput(nextGame.puzzle.wordLength));

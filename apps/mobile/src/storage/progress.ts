@@ -68,6 +68,16 @@ export function resolveOfficialOutcome(
 
 /** Restores the immutable loss marker from both current and legacy progress records. */
 export function getStoredOfficialOutcome(progress: StoredProgress | null | undefined): StoredProgress["officialOutcome"] | undefined {
+  // Older builds kept this marker when a player started a new round on the
+  // same day. A clean win cannot be a continuation of that earlier loss.
+  if (
+    progress?.officialOutcome === "lost" &&
+    progress.status === "won" &&
+    !progress.continuedAfterLoss &&
+    !progress.solvedAfterLoss &&
+    !progress.postLossCompletion
+  ) return undefined;
+
   if (progress?.officialOutcome === "lost" || progress?.continuedAfterLoss || progress?.solvedAfterLoss || progress?.postLossCompletion) return "lost";
   return undefined;
 }
